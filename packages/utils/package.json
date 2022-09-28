@@ -1,0 +1,31 @@
+{
+  "name": "@yusui/utils",
+  "alias": "YusuiUtils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.5",
+    "file-saver": "^2.0.5",
+    "js-cookie": "^3.0.1",
+    "mitt": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.5",
+    "@types/js-cookie": "^3.0.2",
+    "@yusui/types": "workspace:*"
+  }
+}
