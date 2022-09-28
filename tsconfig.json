@@ -2,7 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": ["esnext", "dom"],
+    "lib": ["dom"],
     "paths": {
       "@yusui/*": ["packages/*/src"]
     },

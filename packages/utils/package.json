@@ -1,22 +1,24 @@
 {
   "name": "@yusui/utils",
-  "alias": "YusuiUtils",
   "version": "1.0.0",
-  "description": "",
+  "description": "Collection of development tools",
+  "author": "SoulLyoko<https://github.com/SoulLyoko>",
+  "license": "MIT",
+  "homepage": "https://github.com/SoulLyoko/yusui#readme",
+  "repository": "https://github.com/SoulLyoko/yusui.git",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "unpkg": "dist/index.umd.js",
   "jsdelivr": "dist/index.umd.js",
+  "types": "dist/index.d.js",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./*": "./*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "dayjs": "^1.11.5",
     "file-saver": "^2.0.5",
