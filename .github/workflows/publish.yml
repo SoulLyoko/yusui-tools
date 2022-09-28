@@ -21,10 +21,10 @@ jobs:
           node-version: 16
           cache: "pnpm"
 
-      - name: Bulid and Publish
+      - name: Build and Publish
         run: | 
           pnpm install
           pnpm run build
           pnpm run publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
