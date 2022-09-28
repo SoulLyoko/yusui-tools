@@ -19,7 +19,8 @@
     },
     "./*": "./*"
   },
-  "devDependencies": {
-    "@vueuse/core": "^9.3.0"
+  "dependencies": {
+    "@vueuse/core": "^9.3.0",
+    "@yusui/utils": "workspace:*"
   }
 }

@@ -20,6 +20,7 @@
     "./*": "./*"
   },
   "dependencies": {
+    "@yusui/types": "workspace:*",
     "dayjs": "^1.11.5",
     "file-saver": "^2.0.5",
     "js-cookie": "^3.0.1",
@@ -27,7 +28,6 @@
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
-    "@types/js-cookie": "^3.0.2",
-    "@yusui/types": "workspace:*"
+    "@types/js-cookie": "^3.0.2"
   }
 }
