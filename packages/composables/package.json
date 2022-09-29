@@ -22,5 +22,8 @@
   "dependencies": {
     "@vueuse/core": "^9.3.0",
     "@yusui/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "vue": "^3.2.40"
   }
 }

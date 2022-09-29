@@ -3,7 +3,7 @@ import path from "path";
 
 import fs from "fs-extra";
 
-const packages = ["composables", "types", "utils"];
+const packages = ["composables", "utils"];
 
 function buildPkgs() {
   execSync(`vite build`);

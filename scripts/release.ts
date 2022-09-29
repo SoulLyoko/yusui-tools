@@ -17,19 +17,29 @@ function updatePackageJSON() {
     packageJSON.license = license;
     packageJSON.homepage = homepage;
     packageJSON.repository = repository;
-    packageJSON.main = "dist/index.js";
-    packageJSON.module = "dist/index.mjs";
-    packageJSON.unpkg = "dist/index.umd.js";
-    packageJSON.jsdelivr = "dist/index.umd.js";
-    packageJSON.types = "dist/index.d.js";
-    packageJSON.exports = {
-      ".": {
-        import: "./dist/index.mjs",
-        require: "./dist/index.js",
-        types: "./dist/index.d.ts"
-      },
-      "./*": "./*"
-    };
+    if (name === "types") {
+      packageJSON.types = "src/index.d.ts";
+      packageJSON.exports = {
+        ".": {
+          types: "./src/index.d.ts"
+        },
+        "./*": "./*"
+      };
+    } else {
+      packageJSON.main = "dist/index.js";
+      packageJSON.module = "dist/index.mjs";
+      packageJSON.unpkg = "dist/index.umd.js";
+      packageJSON.jsdelivr = "dist/index.umd.js";
+      packageJSON.types = "dist/index.d.js";
+      packageJSON.exports = {
+        ".": {
+          import: "./dist/index.mjs",
+          require: "./dist/index.js",
+          types: "./dist/index.d.ts"
+        },
+        "./*": "./*"
+      };
+    }
     fs.writeJSONSync(packageJSONPath, packageJSON, { spaces: 2 });
   });
 }
