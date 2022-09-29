@@ -10,7 +10,7 @@ export default defineConfig({
       formats: []
     },
     rollupOptions: {
-      external: /\@yusui/,
+      external: /@yusui/,
       input: {
         composables: path.resolve(__dirname, "packages/composables/src/index.ts"),
         utils: path.resolve(__dirname, "packages/utils/src/index.ts")
