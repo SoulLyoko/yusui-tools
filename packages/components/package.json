@@ -28,8 +28,6 @@
     "@yusui/utils": "workspace:*"
   },
   "devDependencies": {
-    "@vueuse/core": "^9.3.0",
-    "vue": "3.2.40",
-    "sass": "1.55.0"
+    "sass": "^1.55.0"
   }
 }
