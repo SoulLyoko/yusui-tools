@@ -1,3 +1,8 @@
+/// <reference path="./dic.d.ts" />
+/// <reference path="./form.d.ts" />
+/// <reference path="./crud.d.ts" />
+/// <reference path="./tree.d.ts" />
+
 declare module "@smallwei/avue" {
   const AvueConfig: {
     size?: "large" | "default" | "small";
