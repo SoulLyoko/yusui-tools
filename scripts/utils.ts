@@ -2,7 +2,7 @@ import path from "path";
 
 import fs from "fs-extra";
 
-const packages = ["components", "composables", "config", "types", "utils"];
+const packages = fs.readdirSync("packages");
 
 export function updatePackageJSON() {
   const { version, description, author, license, homepage, repository } = fs.readJSONSync("package.json");
