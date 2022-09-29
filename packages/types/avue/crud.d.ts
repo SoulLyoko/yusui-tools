@@ -393,7 +393,7 @@ declare module "@smallwei/avue" {
     /** dateBtn为true时的选择日期回调方法 */
     onDateChange?: (data: { value: string[] }) => any;
     /** 加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
-    onTreeLoad?: (row: T, treeNode: any, resolve: (data: T) => void) => any;
+    onTreeLoad?: (row: T, treeNode: any, resolve: (data: T[]) => void) => any;
     /** 分页页码改变时会触发 */
     onCurrentChange?: (current: number) => any;
     /** 分页条数改变时会触发 */
