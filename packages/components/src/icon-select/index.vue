@@ -14,7 +14,7 @@
       </el-input>
     </template>
     <el-divider>在iconify中查找图标，复制名称到输入框中</el-divider>
-    <iframe src="https://icon-sets.iconify.design/" frameborder="0" width="800px" height="600px"></iframe>
+    <iframe src="https://icon-sets.iconify.design/" frameborder="0" width="100%" height="600px"></iframe>
   </el-popover>
 </template>
 
