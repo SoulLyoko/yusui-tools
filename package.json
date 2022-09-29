@@ -8,10 +8,11 @@
   "repository": "https://github.com/SoulLyoko/yusui.git",
   "scripts": {
     "build": "esno scripts/build.ts",
+    "lint": "eslint --ext .ts,.vue .",
     "release": "bump && esno scripts/release.ts",
+    "prepare": "husky install",
     "test": "vitest",
-    "typecheck": "vue-tsc --noEmit",
-    "lint": "eslint --ext .ts,.vue ."
+    "typecheck": "vue-tsc --noEmit"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -44,5 +45,17 @@
     "vite": "^3.1.4",
     "vitest": "^0.23.4",
     "vue-tsc": "^0.40.13"
+  },
+  "lint-staged": {
+    "*.{ts,vue}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }

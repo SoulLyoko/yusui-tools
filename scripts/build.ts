@@ -3,8 +3,6 @@ import path from "path";
 
 import fs from "fs-extra";
 
-const packages = ["composables", "utils"];
-
 function buildPkgs() {
   execSync(`vite build`);
 }
@@ -12,7 +10,8 @@ function buildTypes() {
   execSync(`vue-tsc -d --emitDeclarationOnly`);
 }
 function copyTypes() {
-  packages.forEach(name => {
+  const packagesTypes = fs.readdirSync(path.join("dist"));
+  packagesTypes.forEach(name => {
     fs.copySync(path.join("dist", name, "src"), path.join("packages", name, "dist"));
   });
 }
