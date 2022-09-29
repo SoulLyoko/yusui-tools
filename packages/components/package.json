@@ -20,7 +20,8 @@
     "./*": "./*"
   },
   "files": [
-    "dist"
+    "dist",
+    "global.d.ts"
   ],
   "dependencies": {
     "@yusui/types": "workspace:*",
