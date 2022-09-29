@@ -8,11 +8,20 @@ dayjs.extend(relativeTime);
 dayjs.extend(durationPlugin);
 
 export interface DateFormatOptions {
-  /** 是否显示日期,默认true */
+  /**
+   * 是否显示日期
+   * @default true
+   */
   date?: boolean;
-  /** 是否显示时间,默认false */
+  /**
+   * 是否显示时间
+   * @default false
+   */
   time?: boolean;
-  /** 语言en|zh,默认enz */
+  /**
+   * 语言en|zh,
+   * @default en
+   */
   locale?: "en" | "zh";
 }
 
@@ -20,7 +29,7 @@ export interface DateFormatOptions {
  * 日期时间格式化
  * @param {String|Number|Date|dayjs.Dayjs} date 需要格式化的日期时间
  * @param {DateFormatOptions|string} options 传入格式化参数或格式化字符串
- * @returns {String} 格式化后的日期时间
+ * @returns 格式化后的日期时间
  */
 export function dateFormat(date: ConfigType, optionsOrFormat: DateFormatOptions | string = {}) {
   if (typeof optionsOrFormat === "string") {
@@ -47,7 +56,7 @@ export function dateFormat(date: ConfigType, optionsOrFormat: DateFormatOptions 
  * 时长格式化
  * @param {Number|String} duration 时长ms
  * @param {Boolean} detail 是否显示精确的时长
- * @returns {String} 格式化后的时长
+ * @returns 格式化后的时长
  */
 export function durationFormat(duration: number | string, detail?: boolean) {
   if (!duration || Number(duration) < 1000) return "";

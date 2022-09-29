@@ -5,7 +5,7 @@ import { isRef } from "vue";
 
 /**
  * 将avue-form的表单校验转为异步函数
- * usage:
+ *
  * ```
  * const formRef = ref();
  * async function onSubmit(){

@@ -19,6 +19,9 @@
     },
     "./*": "./*"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*"

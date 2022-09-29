@@ -8,7 +8,7 @@ export interface EmitterAsync<Events extends Record<EventType, unknown>> extends
 
 /**
  * Async support for mitt
- * usage:
+ *
  * ```
  * const events = mittAsync();
  * events.on('get', async url => fetch(url).then(r=>r.json()));

@@ -1,11 +1,10 @@
 /**
  * 休眠
- * usage:
+ * @param {Number} ms 毫秒
+ *
  * ```
  * await sleep(1000)
  * ```
- * @param {Number} ms 毫秒
- * @returns {Promise}
  */
 export function sleep(ms?: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -15,7 +14,6 @@ export function sleep(ms?: number) {
  * try catch的替代方案
  * @param {Promise} promise 传入执行的promise
  * @param {Object} errorExt 自定义错误数据对象
- * @returns {Promise}
  */
 export function awaitTo<T, U = Error>(promise: Promise<T>, errorExt?: object): Promise<[U, undefined] | [null, T]> {
   return promise

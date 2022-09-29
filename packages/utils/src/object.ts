@@ -2,9 +2,9 @@ import type { Data } from "@yusui/types";
 
 /**
  * 过滤对象值和字段
- * @param {object} obj 被过滤对象
- * @param {any[]} values 被过滤的值
- * @param {string[]} fields 被过滤字段
+ * @param {Object} obj 被过滤对象
+ * @param {Array} values 被过滤的值
+ * @param {Array} fields 被过滤字段
  */
 export function filterObj(obj: Data, values: any[] = [undefined, null], fields: string[] = []) {
   const temp: Data = {};
@@ -18,7 +18,7 @@ export function filterObj(obj: Data, values: any[] = [undefined, null], fields: 
   return temp;
 }
 
-//获取数据类型
+/** 获取数据类型 */
 export function getDataType(data: any) {
   return Object.prototype.toString.call(data).match(/\[object (.*)\]/)?.[1] ?? "";
 }

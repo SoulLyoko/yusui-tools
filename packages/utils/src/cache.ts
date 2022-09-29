@@ -11,39 +11,43 @@ export interface CacheItem<T = any> {
   type: string;
 }
 
-export let cachePrefix = "";
+let cachePrefix = "";
+/** 设置缓存前缀 */
 export function setCachePrefix(key: string) {
   cachePrefix = key;
 }
+/** 获取缓存前缀 */
+export function getCachePrefix() {
+  return cachePrefix;
+}
+/** 获取一个带有缓存前缀的key */
 export function getCacheKey(key: string) {
-  return cachePrefix ? `${cachePrefix}-${key}` : key;
+  return getCachePrefix() ? `${getCachePrefix()}-${key}` : key;
 }
 
-/**
- * 浏览器本地缓存封装
- * @method set(key,value) 设置数据
- * @method get(key) 获取数据
- * @method remove(key) 删除数据
- * @method clear() 清空数据
- */
+/** 浏览器本地缓存封装 */
 export const storage = {
-  set(key: string, value: any) {
+  /** 设置数据 */
+  set<T = any>(key: string, value: T) {
     if (value === undefined) return;
     const data: CacheItem = { key, value, timestamp: Date.now(), type: getDataType(value) };
     localStorage.setItem(getCacheKey(key), JSON.stringify(data));
     this.length++;
   },
+  /** 获取数据 */
   get<T = any>(key: string): T | null {
     const dataJSON = localStorage.getItem(getCacheKey(key));
     if (!dataJSON) return null;
     const data: CacheItem<T> = JSON.parse(dataJSON);
     return data.value;
   },
+  /** 删除数据 */
   remove(key: string) {
     if (!this.get(key)) return;
     localStorage.removeItem(getCacheKey(key));
     this.length--;
   },
+  /** 清空数据 */
   clear() {
     localStorage.clear();
     this.length = 0;
@@ -62,17 +66,22 @@ export const storage = {
   length: 0
 };
 
-/**
- * 浏览器cookie封装
- * @method set(key,value,options) 设置数据
- * @method get(key) 获取数据
- * @method remove(key) 删除数据
- */
+let cookieOptions = {};
+/** 设置默认的cookie配置 */
+export function setCookieOptions(options: CookieAttributes = {}) {
+  cookieOptions = options;
+}
+/** 获取默认的cookie配置 */
+export function getCookieOptions() {
+  return cookieOptions;
+}
+/** 浏览器cookie封装 */
 export const cookie = {
-  set(key: string, value: any, options?: CookieAttributes) {
+  /** 设置数据 */
+  set(key: string, value: any, options: CookieAttributes = {}) {
     if (value === undefined) return;
     const data: CacheItem = { key, value, timestamp: Date.now(), type: getDataType(value) };
-    jscookie.set(getCacheKey(key), JSON.stringify(data), { expires: 1, ...(options ?? {}) });
+    jscookie.set(getCacheKey(key), JSON.stringify(data), { ...getCookieOptions(), ...options });
     this.length++;
   },
   get<T = any>(key: string): T | null {

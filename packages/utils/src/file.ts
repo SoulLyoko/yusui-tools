@@ -2,8 +2,8 @@ import { saveAs } from "file-saver";
 
 /**
  * 从url中获取文件名
- * @param fileUrl 文件地址
- * @param ext 是否返回文件扩展名，默认true
+ * @param {String} fileUrl 文件地址
+ * @param {Boolean} ext 是否返回文件扩展名，默认true
  */
 export function getFileName(fileUrl: string, ext = true) {
   let fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);

@@ -19,6 +19,9 @@
     },
     "./*": "./*"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@yusui/types": "workspace:*",
     "dayjs": "^1.11.5",
