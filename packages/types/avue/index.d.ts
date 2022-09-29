@@ -26,3 +26,5 @@ declare module "vue" {
     $ImagePreview: (list: { url?: string; thumbUrl?: string }[], index?: number) => void;
   }
 }
+
+export {};
