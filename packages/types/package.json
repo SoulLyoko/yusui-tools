@@ -1,12 +1,12 @@
 {
   "name": "@yusui/types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
   "homepage": "https://github.com/SoulLyoko/yusui#readme",
   "repository": "https://github.com/SoulLyoko/yusui.git",
-  "types": "src/index.d.js",
+  "types": "src/index.d.ts",
   "exports": {
     ".": {
       "types": "./src/index.d.ts"
