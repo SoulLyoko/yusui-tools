@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: "./packages/config/eslint"
+  extends: ["@yusui/config/eslint"]
 };

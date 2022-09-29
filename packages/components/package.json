@@ -1,5 +1,5 @@
 {
-  "name": "@yusui/utils",
+  "name": "@yusui/components",
   "version": "1.1.0",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -10,7 +10,7 @@
   "module": "dist/index.mjs",
   "unpkg": "dist/index.umd.js",
   "jsdelivr": "dist/index.umd.js",
-  "types": "dist/index.d.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -24,15 +24,11 @@
   ],
   "dependencies": {
     "@yusui/types": "workspace:*",
-    "dayjs": "^1.11.5",
-    "file-saver": "^2.0.5",
-    "js-cookie": "^3.0.1",
-    "mitt": "^3.0.0"
+    "@yusui/utils": "workspace:*"
   },
   "devDependencies": {
-    "@types/file-saver": "^2.0.5",
-    "@types/js-cookie": "^3.0.2",
     "@vueuse/core": "^9.3.0",
-    "vue": "3.2.40"
+    "vue": "3.2.40",
+    "sass": "1.55.0"
   }
 }

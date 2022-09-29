@@ -1,0 +1,22 @@
+.basic-container {
+  &.card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 4px;
+    padding: 20px;
+    max-height: calc(100% - 41px);
+    overflow: auto;
+  }
+  &.full {
+    height: calc(100% - 40px);
+    background-color: #fff;
+    border-left: 1px solid #eee;
+    padding: 20px;
+    overflow: auto;
+  }
+  &.ghost {
+    height: 100%;
+    overflow: auto;
+  }
+}
