@@ -8,4 +8,3 @@ export * from "./object";
 export * from "./string";
 export * from "./tool";
 export * from "./tree";
-export * from "./math";

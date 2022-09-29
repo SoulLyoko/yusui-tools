@@ -2,7 +2,6 @@ import { execSync } from "child_process";
 import path from "path";
 
 import fs from "fs-extra";
-
 import { series, src, dest } from "gulp";
 import autoprefixer from "gulp-autoprefixer";
 import cleancss from "gulp-clean-css";
