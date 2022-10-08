@@ -70,6 +70,7 @@ export function avuePatch(): Plugin {
       if (/avue.js|avue.min.js/.test(id)) {
         code = fixBtnType(code);
         code = fixAddRow(code);
+        return code;
       }
     }
   };
