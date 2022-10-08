@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         components: path.resolve(__dirname, "packages/components/src/index.ts"),
         composables: path.resolve(__dirname, "packages/composables/src/index.ts"),
+        plugins: path.resolve(__dirname, "packages/plugins/src/index.ts"),
         utils: path.resolve(__dirname, "packages/utils/src/index.ts")
       },
       output: [

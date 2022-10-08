@@ -1,0 +1,25 @@
+{
+  "name": "@yusui/plugins",
+  "version": "1.2.2",
+  "description": "Collection of development tools",
+  "author": "SoulLyoko<https://github.com/SoulLyoko>",
+  "license": "MIT",
+  "homepage": "https://github.com/SoulLyoko/yusui#readme",
+  "repository": "https://github.com/SoulLyoko/yusui.git",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "types": "dist/index.d.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist"
+  ]
+}
