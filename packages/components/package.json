@@ -24,6 +24,7 @@
     "global.d.ts"
   ],
   "dependencies": {
+    "@vueuse/core": "^9.3.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*"
   },

@@ -1,4 +1,4 @@
-import { get } from "lodash-es";
+import { get } from "lodash-unified";
 
 /** 精确加法 */
 export function accAdd(num1: number | string, num2: number | string) {

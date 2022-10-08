@@ -1,1 +1,1 @@
-export * from "./useCrud";
+export * from "./crud";

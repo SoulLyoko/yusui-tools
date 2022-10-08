@@ -24,6 +24,12 @@
   ],
   "dependencies": {
     "@yusui/types": "workspace:*",
-    "@yusui/utils": "workspace:*"
+    "@yusui/utils": "workspace:*",
+    "lodash": "4.17.21",
+    "lodash-es": "4.17.21",
+    "lodash-unified": "1.0.2"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.6"
   }
 }
