@@ -2,7 +2,7 @@ import type { Component, VNode } from "vue";
 import type { FormItemRule, UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
 
 declare module "@smallwei/avue" {
-  export interface AvueFormColumn<T = any, K = keyof T> {
+  export interface AvueFormColumn<T = any, K = T extends Object ? keyof T : string> {
     /** 表单项类型 */
     type?: string;
     /** 字段位置排序，数字越大位置越靠前 */
@@ -136,32 +136,32 @@ declare module "@smallwei/avue" {
   }
 
   export type FormType = "add" | "edit" | "view";
-  export type AvueFormDefaults = Record<string, AvueFormColumn>;
+  export type AvueFormDefaults<T> = Record<string, AvueFormColumn<T>>;
 
   export interface AvueFormProps<T = any> {
     /** 表单绑定值 v-model */
     modelValue?: T;
     /** 表单总配置属性 */
-    option?: AvueFormOption;
+    option?: AvueFormOption<T>;
     /** 配置项结构 */
-    defaults?: AvueFormDefaults;
+    defaults?: AvueFormDefaults<T>;
     /** upload组件上传前的回调,done用于继续图片上传，loading用于中断操作 */
     "upload-before"?: (
       file: UploadRawFile,
       done: (file?: File) => void,
       loading: () => void,
-      column: AvueFormColumn
+      column: AvueFormColumn<T>
     ) => void;
     /** upload组件上传后的回调,done用于结束操作，loading用于中断操作 */
-    "upload-after"?: (res: any, done: () => void, loading: () => void, column: AvueFormColumn) => void;
+    "upload-after"?: (res: any, done: () => void, loading: () => void, column: AvueFormColumn<T>) => void;
     /** upload组件删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除 */
-    "upload-delete"?: (file: UploadFile, column: AvueFormColumn) => boolean | Promise<any> | void;
+    "upload-delete"?: (file: UploadFile, column: AvueFormColumn<T>) => boolean | Promise<any> | void;
     /** upload组件查看回调 */
-    "upload-preview"?: (file: UploadFile, column: AvueFormColumn, done: () => void) => void;
+    "upload-preview"?: (file: UploadFile, column: AvueFormColumn<T>, done: () => void) => void;
     /** upload组件上传失败错误回调 */
-    "upload-error"?: (error: Error, column: AvueFormColumn) => void;
+    "upload-error"?: (error: Error, column: AvueFormColumn<T>) => void;
     /** upload组件上传超过长度限制回调 */
-    "upload-exceed"?: (limit: number, files: File[], fileList: UploadUserFile[], column: AvueFormColumn) => void;
+    "upload-exceed"?: (limit: number, files: File[], fileList: UploadUserFile[], column: AvueFormColumn<T>) => void;
     /** 表单提交回调事件 */
     onSubmit?: (form: T, done: () => void) => void;
     /** 表单重置回调事件 */
@@ -169,7 +169,7 @@ declare module "@smallwei/avue" {
     /** 更新表单值 */
     "onUpdate:modelValue"?: (row: T) => any;
     /** 更新配置项结构 */
-    "onUpdate:defaults"?: (defaluts: AvueFormDefaults) => any;
+    "onUpdate:defaults"?: (defaluts: AvueFormDefaults<T>) => any;
   }
   export interface AvueFormMethods {
     /** 对整个表单进行提交 */
@@ -206,9 +206,9 @@ declare module "@smallwei/avue" {
     }) => VNode[];
   }
 
-  export const AvueForm: new <T = any>() => {
-    $props: AvueFormProps<T>;
-    $slots: AvueFormSlots<T>;
+  export const AvueForm: new () => {
+    $props: AvueFormProps;
+    $slots: AvueFormSlots;
   };
 
   export type AvueFormInstance = InstanceType<typeof AvueForm> & AvueFormMethods;

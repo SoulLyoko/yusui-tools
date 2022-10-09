@@ -12,7 +12,7 @@ export default defineConfig({
       formats: []
     },
     rollupOptions: {
-      external: [/@yusui/, /lodash/, "vue"],
+      external: [/@yusui/, /lodash/, "vue", "element-plus", "@vueuse/core"],
       input: {
         components: path.resolve(__dirname, "packages/components/src/index.ts"),
         composables: path.resolve(__dirname, "packages/composables/src/index.ts"),

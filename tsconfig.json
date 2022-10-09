@@ -9,5 +9,6 @@
     "outDir": "dist",
     "types": ["vitest/globals"]
   },
-  "include": ["packages"]
+  "include": ["packages"],
+  "exclude": ["**/*.test.*"]
 }

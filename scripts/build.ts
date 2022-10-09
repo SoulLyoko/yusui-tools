@@ -8,6 +8,13 @@ import cleancss from "gulp-clean-css";
 import gulpSass from "gulp-sass";
 import sass from "sass";
 
+function removeDist() {
+  fs.removeSync("dist");
+  const packages = fs.readdirSync(path.join("packages"));
+  packages.forEach(name => {
+    fs.removeSync(path.join("packages", name, "dist"));
+  });
+}
 function buildPkgs() {
   execSync(`vite build`);
 }
@@ -31,6 +38,7 @@ function copyTypes() {
 }
 
 function build() {
+  removeDist();
   buildPkgs();
   buildStyles();
   buildTypes();

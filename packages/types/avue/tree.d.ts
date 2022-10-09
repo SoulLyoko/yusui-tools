@@ -1,7 +1,7 @@
 import type { VNode } from "vue";
 
 declare module "@smallwei/avue" {
-  export interface TreeOption<T = any> {
+  export interface AvueTreeOption<T = any> {
     // 是否展开节点
     defaultExpandAll?: boolean;
     // 弹出框宽度
@@ -37,7 +37,7 @@ declare module "@smallwei/avue" {
     /** 存放结构体的数据 */
     data?: T[];
     /** 组件配置属性 */
-    option?: TreeOption<T>;
+    option?: AvueTreeOption<T>;
     /** 新增节点回调 */
     onSave?: (parent: any, data: any, done: () => void, loading: () => void) => void;
     /** 修改节点回调 */
@@ -51,9 +51,9 @@ declare module "@smallwei/avue" {
     default: (arg: { node: { data: T }; data: T }) => VNode[];
   }
 
-  export const AvueTree: new <T = any>() => {
-    $props: AvueTreeProps<T>;
-    $slots: AvueTreeSlots<T>;
+  export const AvueTree: new () => {
+    $props: AvueTreeProps;
+    $slots: AvueTreeSlots;
   };
 
   export type AvueTreeInstance = InstanceType<typeof AvueTree>;
