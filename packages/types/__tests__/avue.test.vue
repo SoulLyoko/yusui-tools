@@ -22,12 +22,26 @@ import type {
 interface User {
   userName: string;
   nickName: string;
+  dept: {
+    deptId: string;
+    deptName: string;
+  };
 }
 
 const crudOption: AvueCrudOption<User> = {
   column: [
     { label: "用户名", prop: "userName" },
-    { label: "姓名", prop: "nickName" }
+    { label: "姓名", prop: "nickName" },
+    {
+      label: "其它",
+      prop: "dept",
+      children: {
+        column: [
+          { label: "部门id", prop: "deptId" },
+          { label: "部门名称", prop: "deptName" }
+        ]
+      }
+    }
   ]
 };
 const formOption: AvueFormOption<User> = {

@@ -2,7 +2,7 @@ import type { Component, VNode } from "vue";
 import type { FormItemRule, UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
 
 declare module "@smallwei/avue" {
-  export interface AvueFormColumn<T = any, K = T extends Object ? keyof T : string> {
+  export interface AvueFormColumn<T = any, K = T extends object ? keyof T : string> {
     /** 表单项类型 */
     type?: string;
     /** 字段位置排序，数字越大位置越靠前 */
@@ -39,7 +39,7 @@ declare module "@smallwei/avue" {
     bind?: string;
     /** 只读 */
     readonly?: boolean;
-    /** 验证规则可以参考<a href="https://github.1/yiminghe/async-validator">async-validator</a> */
+    /** 验证规则可以参考<a href="https://github.com/yiminghe/async-validator">async-validator</a> */
     rules?: FormItemRule[];
     /** 控件大小 */
     size?: string;
@@ -66,7 +66,7 @@ declare module "@smallwei/avue" {
     /** 字典的请求参数 */
     dicQuery?: Record<string, any>;
     /** 子表单 */
-    children?: { type?: "form" | "crud" } & AvueCrudOption<T>;
+    children?: { type?: "form" | "crud" } & AvueCrudOption;
     /** 等同于<component :is=""> */
     component?: string | Component;
     /** 传递给组件的参数 */
@@ -136,7 +136,7 @@ declare module "@smallwei/avue" {
   }
 
   export type FormType = "add" | "edit" | "view";
-  export type AvueFormDefaults<T = any, K = T extends Object ? keyof T : string> = {
+  export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
     [key in K]?: AvueFormColumn<T>;
   };
 
