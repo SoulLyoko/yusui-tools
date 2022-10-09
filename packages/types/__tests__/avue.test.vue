@@ -2,7 +2,7 @@
   <avue-crud :option="crudOption">
     <template #menu></template>
   </avue-crud>
-  <avue-form :option="formOption">
+  <avue-form v-model:defaults="formDefaults" :option="formOption">
     <template #menu-form></template>
   </avue-form>
   <avue-tree :option="treeOption">
@@ -19,6 +19,8 @@ import type {
   AvueFormDefaults
 } from "@smallwei/avue";
 
+import { ref, reactive } from "vue";
+
 interface User {
   userName: string;
   nickName: string;
@@ -28,7 +30,7 @@ interface User {
   };
 }
 
-const crudOption: AvueCrudOption<User> = {
+const crudOption: AvueCrudOption<User> = reactive({
   column: [
     { label: "用户名", prop: "userName" },
     { label: "姓名", prop: "nickName" },
@@ -43,7 +45,7 @@ const crudOption: AvueCrudOption<User> = {
       }
     }
   ]
-};
+});
 const formOption: AvueFormOption<User> = {
   column: [
     { label: "用户名", prop: "userName" },
@@ -51,16 +53,11 @@ const formOption: AvueFormOption<User> = {
   ]
 };
 const treeOption: AvueTreeOption<User> = {
-  formOption: {
-    column: [
-      { label: "用户名", prop: "userName" },
-      { label: "姓名", prop: "nickName" }
-    ]
-  }
+  formOption
 };
 
-const crudDefaults: AvueCrudDefaults<User> = {};
-crudDefaults.nickName!.prop = "nickName";
-const formDefaults: AvueFormDefaults<User> = {};
-formDefaults.nickName!.prop = "nickName";
+const crudDefaults = ref<AvueCrudDefaults>({});
+crudDefaults.value.nickName!.prop = "nickName";
+const formDefaults = ref<AvueFormDefaults>({});
+formDefaults.value.nickName!.prop = "nickName";
 </script>

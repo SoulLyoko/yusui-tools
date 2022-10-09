@@ -327,9 +327,10 @@ declare module "@smallwei/avue" {
   export type CellEvent<T> = (row: any, column: TableColumnCtx<T>, cell: any, event: Event) => void;
   export type RowEvent<T> = (row: any, column: TableColumnCtx<T>, event: Event) => void;
   export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
-  export type AvueCrudDefaults<T = any, K = T extends object ? keyof T : string> = {
-    [key in K]?: AvueCrudColumn<T>;
-  };
+  export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
+  // export type AvueCrudDefaults<T = any, K = T extends object ? keyof T : string> = {
+  //   [key in K]?: AvueCrudColumn<T>;
+  // };
 
   export interface AvueCrudProps<T = any> {
     /** 表单绑定值 v-model */
@@ -345,7 +346,7 @@ declare module "@smallwei/avue" {
     /** 表格的分页数据 v-model */
     page?: PageOption;
     /** 配置项结构 v-model */
-    defaults?: AvueCrudDefaults<T>;
+    defaults?: AvueCrudDefaults;
     /** 打开前的回调，会暂停Dialog的打开，done用于关闭Dialog，type为当前窗口的类型 */
     "before-open"?: (done: () => void, type: FormType) => void;
     /** 关闭前的回调，会暂停Dialog的打开，done用于关闭Dialog，type为当前窗口的类型 */
@@ -439,7 +440,7 @@ declare module "@smallwei/avue" {
     /** 更新分页数据 */
     "onUpdate:page"?: (page: PageOption) => any;
     /** 更新配置项结构 */
-    "onUpdate:defaults"?: (defaluts: AvueCrudDefaults<T>) => any;
+    "onUpdate:defaults"?: (defaluts: AvueCrudDefaults) => any;
   }
   export interface AvueCrudMethods<T = any> {
     /** 打开表单新增窗口 */

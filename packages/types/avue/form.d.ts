@@ -136,9 +136,10 @@ declare module "@smallwei/avue" {
   }
 
   export type FormType = "add" | "edit" | "view";
-  export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
-    [key in K]?: AvueFormColumn<T>;
-  };
+  export type AvueFormDefaults = Record<string, AvueFormColumn>;
+  // export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
+  //   [key in K]?: AvueFormColumn<T>;
+  // };
 
   export interface AvueFormProps<T = any> {
     /** 表单绑定值 v-model */
@@ -146,7 +147,7 @@ declare module "@smallwei/avue" {
     /** 表单总配置属性 */
     option?: AvueFormOption<T>;
     /** 配置项结构 */
-    defaults?: AvueFormDefaults<T>;
+    defaults?: AvueFormDefaults;
     /** upload组件上传前的回调,done用于继续图片上传，loading用于中断操作 */
     "upload-before"?: (
       file: UploadRawFile,
@@ -171,7 +172,7 @@ declare module "@smallwei/avue" {
     /** 更新表单值 */
     "onUpdate:modelValue"?: (row: T) => any;
     /** 更新配置项结构 */
-    "onUpdate:defaults"?: (defaluts: AvueFormDefaults<T>) => any;
+    "onUpdate:defaults"?: (defaluts: AvueFormDefaults) => any;
   }
   export interface AvueFormMethods {
     /** 对整个表单进行提交 */
