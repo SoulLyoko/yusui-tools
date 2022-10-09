@@ -11,7 +11,13 @@
 </template>
 
 <script setup lang="ts">
-import type { AvueCrudOption, AvueFormOption, AvueTreeOption } from "@smallwei/avue";
+import type {
+  AvueCrudOption,
+  AvueFormOption,
+  AvueTreeOption,
+  AvueCrudDefaults,
+  AvueFormDefaults
+} from "@smallwei/avue";
 
 interface User {
   userName: string;
@@ -38,6 +44,9 @@ const treeOption: AvueTreeOption<User> = {
     ]
   }
 };
-</script>
 
-<style lang="scss" scoped></style>
+const crudDefaults: AvueCrudDefaults<User> = {};
+crudDefaults.nickName!.prop = "nickName";
+const formDefaults: AvueFormDefaults<User> = {};
+formDefaults.nickName!.prop = "nickName";
+</script>

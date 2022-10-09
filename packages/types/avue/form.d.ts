@@ -136,7 +136,9 @@ declare module "@smallwei/avue" {
   }
 
   export type FormType = "add" | "edit" | "view";
-  export type AvueFormDefaults<T> = Record<string, AvueFormColumn<T>>;
+  export type AvueFormDefaults<T = any, K = T extends Object ? keyof T : string> = {
+    [key in K]?: AvueFormColumn<T>;
+  };
 
   export interface AvueFormProps<T = any> {
     /** 表单绑定值 v-model */

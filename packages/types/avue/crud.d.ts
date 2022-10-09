@@ -327,7 +327,9 @@ declare module "@smallwei/avue" {
   export type CellEvent<T> = (row: any, column: TableColumnCtx<T>, cell: any, event: Event) => void;
   export type RowEvent<T> = (row: any, column: TableColumnCtx<T>, event: Event) => void;
   export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
-  export type AvueCrudDefaults<T> = Record<string, AvueCrudColumn<T>>;
+  export type AvueCrudDefaults<T = any, K = T extends Object ? keyof T : string> = {
+    [key in K]?: AvueCrudColumn<T>;
+  };
 
   export interface AvueCrudProps<T = any> {
     /** 表单绑定值 v-model */
