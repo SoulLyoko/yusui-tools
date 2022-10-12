@@ -1,7 +1,7 @@
 import { loadProxy } from ".";
 
-describe("file utils", () => {
-  it("getFileName", () => {
+describe("loadProxy", () => {
+  it("should transform to proxy config", () => {
     const PROXY = `[["/api","https://192.168.1.202:8081",true],["/statics","http://192.168.1.202:9300"]]`;
     expect(loadProxy(PROXY)).toMatchInlineSnapshot(`
       {

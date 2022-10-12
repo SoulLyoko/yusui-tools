@@ -1,6 +1,6 @@
 import type { Plugin } from "vite";
 
-function fixAddRow(code: string) {
+export function fixAddRow(code: string) {
   return (
     code
       // prod
@@ -20,8 +20,7 @@ function fixAddRow(code: string) {
         `addRow: function() {
           var e2 = this, t2 = function() {
             var t3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-            t3 = Object.assign(e2.valueOption, t3, { $index: e2.textLen });
-            e2.isCrud ? e2.$refs.main.rowCellAdd(t3) : e2.isForm && e2.text.push(t3);
+            t3 = Object.assign(e2.valueOption, t3, { $index: e2.textLen }), e2.isCrud ? e2.$refs.main.rowCellAdd(t3) : e2.isForm && e2.text.push(t3);
             e2.text = e2.deepClone(e2.text);
           };
           "function" == typeof this.rowAdd ? this.rowAdd(t2) : t2();
@@ -30,7 +29,7 @@ function fixAddRow(code: string) {
   );
 }
 
-function fixBtnType(code: string) {
+export function fixBtnType(code: string) {
   return (
     code
       // prod
