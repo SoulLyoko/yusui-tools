@@ -10,7 +10,6 @@
       "@yusui/types": ["packages/types/index.ts"],
       "@yusui/utils": ["packages/utils/index.ts"]
     },
-    "outDir": "dist",
     "types": ["vitest/globals"]
   },
   "include": ["packages"]

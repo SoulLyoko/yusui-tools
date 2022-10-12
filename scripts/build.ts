@@ -8,6 +8,9 @@ import cleancss from "gulp-clean-css";
 import gulpSass from "gulp-sass";
 import sass from "sass";
 
+function buildPackages() {
+  execSync("vite build");
+}
 function buildStyles() {
   const task = () =>
     src("packages/components/**/*.scss")
@@ -28,6 +31,7 @@ function copyTypes() {
   });
 }
 
+buildPackages();
 buildStyles();
 buildTypes();
 copyTypes();

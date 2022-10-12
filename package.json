@@ -9,7 +9,7 @@
   "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
   "scripts": {
-    "build": "vite build",
+    "build": "esno scripts/build.ts",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "ci": "pnpm typecheck && pnpm lint && pnpm test run && pnpm build && pnpm docs:build",
     "docs:build": "vitepress build packages",
@@ -17,7 +17,6 @@
     "docs:serve": "vitepress serve packages",
     "lint": "eslint --ext .ts,.vue .",
     "prepare": "husky install",
-    "postbuild": "esno scripts/postbuild.ts",
     "release": "bump && esno scripts/release.ts",
     "test": "vitest",
     "typecheck": "vue-tsc --noEmit"

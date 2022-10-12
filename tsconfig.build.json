@@ -1,5 +1,8 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
   "include": ["packages"],
-  "exclude": ["packages/.vitepress", "demo.*", "*.test.*", "*.md"]
+  "exclude": ["packages/.vitepress", "**/demo.*", "**/*.test.*", "**/*.md"]
 }
