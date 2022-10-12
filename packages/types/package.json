@@ -6,15 +6,15 @@
   "license": "MIT",
   "homepage": "https://github.com/SoulLyoko/yusui#readme",
   "repository": "https://github.com/SoulLyoko/yusui.git",
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./*": "./*"
   },
   "files": [
-    "src",
+    "dist",
     "avue"
   ],
   "devDependencies": {

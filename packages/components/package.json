@@ -24,6 +24,7 @@
     "global.d.ts"
   ],
   "dependencies": {
+    "@iconify/vue": "^4.0.0",
     "@vueuse/core": "^9.3.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",

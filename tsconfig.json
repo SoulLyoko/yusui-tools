@@ -4,11 +4,14 @@
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
     "paths": {
-      "@yusui/*": ["packages/*/src"]
+      "@yusui/components": ["packages/components/index.ts"],
+      "@yusui/composables": ["packages/composables/index.ts"],
+      "@yusui/plugins": ["packages/plugins/index.ts"],
+      "@yusui/types": ["packages/types/index.ts"],
+      "@yusui/utils": ["packages/utils/index.ts"]
     },
     "outDir": "dist",
     "types": ["vitest/globals"]
   },
-  "include": ["packages"],
-  "exclude": ["**/*.test.*"]
+  "include": ["packages"]
 }
