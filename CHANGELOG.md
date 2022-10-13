@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.3.7...v1.4.0) (2022-10-13)
+
+
+### Features
+
+* **uni:** useCrud ([38690c3](https://github.com/SoulLyoko/yusui-tools/commit/38690c3ee746b625639f8414282797831e12f5b1))
+
+
+
 ## [1.3.7](https://github.com/SoulLyoko/yusui/compare/v1.3.6...v1.3.7) (2022-10-09)
 
 
