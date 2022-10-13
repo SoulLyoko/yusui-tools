@@ -4,6 +4,19 @@ import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import fs from "fs-extra";
 
+const external = [
+  /@yusui/,
+  /lodash/,
+  "vue",
+  "element-plus",
+  "@vueuse/core",
+  "@dcloudio/uni-app",
+  /dayjs/,
+  "file-saver",
+  "@iconify/vue",
+  "js-cookie",
+  "mitt"
+];
 const input = {
   components: path.resolve(__dirname, "packages/components/index.ts"),
   composables: path.resolve(__dirname, "packages/composables/index.ts"),
@@ -33,25 +46,34 @@ export default defineConfig(({ mode }) => {
         formats: []
       },
       rollupOptions: {
-        external: [/@yusui/, /lodash/, "vue", "element-plus", "@vueuse/core", "@dcloudio/uni-app"],
+        external,
         input,
         output: [
           // {
-          //   inlineDynamicImports: false,
-          //   entryFileNames: "[name]/dist/index.umd.js",
+          //   inlineDynamicImports: true,
+          //   entryFileNames: "index.umd.js",
+          //   file: input.utils,
           //   format: "umd",
-          //   dir: "./"
+          //   dir: "dist"
           // },
           {
-            entryFileNames: "packages/[name]/dist/index.mjs",
+            preserveModules: true,
+            preserveModulesRoot: "dist",
+            entryFileNames(chunkInfo) {
+              return chunkInfo.isEntry ? "index.mjs" : "[name].mjs";
+            },
             format: "es",
-            dir: "./"
+            dir: "dist"
           },
           {
-            entryFileNames: "packages/[name]/dist/index.js",
+            preserveModules: true,
+            preserveModulesRoot: "dist",
+            entryFileNames(chunkInfo) {
+              return chunkInfo.isEntry ? "index.cjs" : "[name].cjs";
+            },
             exports: "named",
             format: "cjs",
-            dir: "./"
+            dir: "dist"
           }
         ]
       }
