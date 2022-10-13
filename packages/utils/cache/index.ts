@@ -4,18 +4,6 @@ import jscookie from "js-cookie";
 
 import { getDataType } from "../object";
 
-// let localStorage: Storage;
-// function isLocalStorageSupported() {
-//   if (typeof window !== "undefined" && window.localStorage) {
-//     localStorage = window.localStorage;
-//   } else if (typeof global !== "undefined" && global.localStorage) {
-//     localStorage = global.localStorage;
-//   } else {
-//     localStorage = {} as Storage;
-//   }
-// }
-// isLocalStorageSupported();
-
 export interface CacheItem<T = any> {
   key: string;
   value: T;
@@ -124,6 +112,8 @@ export const cookie = {
   removeItem(key: string) {
     this.remove(key);
   },
-  key: (key: number) => key.toString(),
+  key(key: number) {
+    return key?.toString();
+  },
   length: 0
 };
