@@ -5,6 +5,9 @@ module.exports = {
     node: true,
     jest: true
   },
+  globals: {
+    uni: "readonly"
+  },
   parser: "vue-eslint-parser",
   parserOptions: {
     parser: "@typescript-eslint/parser",

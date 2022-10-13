@@ -53,12 +53,12 @@ export function useCrudMethods<T extends Data, P extends Data>({
    * @param {Function} loading 为表单停止loading函数
    */
   const handleSave = async (row: T, done?: () => void, loading?: () => void) => {
-    const { create } = crudState.crudOption;
+    const { rowKey, create } = crudState.crudOption;
     if (!create) return loading?.();
     const data = cloneDeep({ ...crudState.formData, ...row });
     const [err] = await to(emitter.emitAsync("beforeSave", data));
     if (err !== null) return loading?.();
-    delete data[crudState.crudOption.rowKey];
+    delete data[rowKey];
     try {
       const res = await create(filterRow(data));
       ElMessage.success("保存成功");
@@ -99,14 +99,14 @@ export function useCrudMethods<T extends Data, P extends Data>({
    * @param {Object} row 行数据
    */
   const handleDel = async (row: T) => {
-    const { remove } = crudState.crudOption;
+    const { rowKey, remove } = crudState.crudOption;
     if (!remove) return;
     const data = cloneDeep(row);
     const [err] = await to(emitter.emitAsync("beforeDel", data));
     if (err !== null) return;
     await ElMessageBox.confirm("确认进行删除操作？", "提示", { type: "warning" });
     try {
-      const res = await remove(data[crudState.crudOption.rowKey]);
+      const res = await remove(data[rowKey]);
       ElMessage.success("删除成功");
       await emitter.emitAsync("afterDel", res);
       return getDataList();
@@ -118,7 +118,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    * 批量删除
    */
   const batchDel = async () => {
-    const { remove } = crudState.crudOption;
+    const { rowKey, remove } = crudState.crudOption;
     if (!remove) return;
     const data = cloneDeep(crudState.dataSelections);
     const [err] = await to(emitter.emitAsync("beforeBatchDel", data));
@@ -127,7 +127,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
     if (!length) return ElMessage.warning("请选择删除项");
     await ElMessageBox.confirm(`确认删除所选的${length}条数据？`, "提示", { type: "warning" });
     const ids = data
-      .map(item => item[crudState.crudOption.rowKey])
+      .map(item => item[rowKey])
       // 根据后端接口传数组或者逗号拼接的字符串
       .join(",");
     try {

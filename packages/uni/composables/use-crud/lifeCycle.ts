@@ -1,0 +1,20 @@
+import { onReachBottom, onPullDownRefresh, onPageScroll } from "@dcloudio/uni-app";
+
+export const useLifeCycle = ({ crudState, loadMore, handleRefresh }: any) => {
+  /** 触底加载更多数据 */
+  onReachBottom(() => {
+    const { isReachBottom } = crudState.crudOption;
+    isReachBottom && loadMore();
+  });
+  /** 下拉刷新 */
+  onPullDownRefresh(() => {
+    const { isPullDown } = crudState.crudOption;
+    isPullDown && handleRefresh();
+  });
+  /** @ts-ignore 返回顶部按钮 */
+  onPageScroll(e => {
+    if (crudState.crudOption.isSrollTop) {
+      crudState.scrollTop = e.scrollTop;
+    }
+  });
+};

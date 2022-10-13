@@ -46,7 +46,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     afterClose: afterCloseHook
   } = useHooks<T, P>();
 
-  /** crudMethods */
+  /** methods */
   let {
     getDataList,
     handleSave,

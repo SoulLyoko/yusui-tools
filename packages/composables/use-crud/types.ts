@@ -49,11 +49,6 @@ export interface CrudState<T, P> {
   mockCache: string;
 }
 
-export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>, "crudOption" | "pageOption">> {
-  crudOption?: Partial<CrudOption<T, P>>;
-  pageOption?: PageOption;
-}
-
 export type Emitter<T, P> = EmitterAsync<{
   beforeGetList: P;
   afterGetList: any;
@@ -74,6 +69,11 @@ export type Emitter<T, P> = EmitterAsync<{
   beforeClose: FormType;
   afterClose: FormType;
 }>;
+
+export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>, "crudOption" | "pageOption">> {
+  crudOption?: Partial<CrudOption<T, P>>;
+  pageOption?: PageOption;
+}
 
 export type UseCrudMethodsReturns = ReturnType<typeof useCrudMethods>;
 
