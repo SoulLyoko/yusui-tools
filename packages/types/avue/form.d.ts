@@ -20,7 +20,7 @@ declare module "@smallwei/avue" {
     /** 标题名称 */
     label?: string;
     /** 标题名称宽度 */
-    labelWidth?: number;
+    labelWidth?: number | string;
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
     labelPosition?: string;
     /** 文字提示 */
@@ -100,7 +100,7 @@ declare module "@smallwei/avue" {
     /** 间隔 */
     gutter?: number;
     /** 弹出表单的标题的统一宽度 */
-    labelWidth?: number;
+    labelWidth?: number | string;
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
     labelPosition?: string;
     /** 表单标题名称后缀 */

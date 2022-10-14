@@ -28,7 +28,7 @@ declare module "@smallwei/avue" {
     /** 搜索框类型 */
     searchType?: string;
     /** 搜索框的标题宽度 */
-    searchLabelWidth?: number;
+    searchLabelWidth?: number | string;
     /** 搜索框的清除按钮 */
     searchClearable?: boolean;
     /** 搜索表单的是否多选 */
