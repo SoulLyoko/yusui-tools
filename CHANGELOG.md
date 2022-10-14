@@ -1,3 +1,12 @@
+## [1.4.4](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.3...v1.4.4) (2022-10-14)
+
+
+### Bug Fixes
+
+* **types:** avue label type ([6981c50](https://github.com/SoulLyoko/yusui-tools/commit/6981c5021d4136b71f6283d11213a0328555dbd5))
+
+
+
 ## [1.4.3](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.2...v1.4.3) (2022-10-14)
 
 
