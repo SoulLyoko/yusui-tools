@@ -1,3 +1,12 @@
+## [1.4.7](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.6...v1.4.7) (2022-10-14)
+
+
+### Bug Fixes
+
+* **uni:** missing onSubmit ([a7ea26a](https://github.com/SoulLyoko/yusui-tools/commit/a7ea26a8bd81a0c14ab87b9766eacc2f4f660f58))
+
+
+
 ## [1.4.6](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.5...v1.4.6) (2022-10-14)
 
 
