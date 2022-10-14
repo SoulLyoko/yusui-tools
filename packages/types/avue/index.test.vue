@@ -1,5 +1,5 @@
 <template>
-  <avue-crud :option="crudOption">
+  <avue-crud v-model:defaults="crudDefaults" :option="crudOption">
     <template #menu></template>
   </avue-crud>
   <avue-form v-model:defaults="formDefaults" :option="formOption">

@@ -10,3 +10,11 @@ declare module "*.md" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+declare global {
+  interface Window {
+    uni: any;
+  }
+}
+
+export {};

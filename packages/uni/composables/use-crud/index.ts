@@ -29,7 +29,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     afterGetInfo,
     beforeSubmit,
     afterSubmit
-  } = useHooks();
+  } = useHooks<T, P>();
 
   /** methods */
   let {
@@ -44,8 +44,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     handleView,
     getFormData,
     handleSubmit
-    // @ts-ignore
-  } = useCrudMethods({ crudState, emitter });
+  } = useCrudMethods<T, P>({ crudState, emitter });
 
   /** 重置 */
   getDataList = options.getDataList ?? getDataList;
@@ -61,21 +60,30 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
   handleSubmit = options.handleSubmit ?? handleSubmit;
 
   /** 使用v-bind绑定的值 */
-  const bindVal = computed(() => ({
+  const bindList = computed(() => ({
     // 属性
     ref: "listRef",
     data: crudState.listData,
-    option: crudState.listOption ?? {}, //列表配置
-    // filterForm: crudState.searchForm,
+    option: crudState.listOption ?? {},
+    filterForm: crudState.searchForm,
     status: crudState.loadStatus,
     scrollTop: crudState.scrollTop,
     searchValue: crudState.searchForm[crudState.crudOption.searchKey] ?? "",
     // 事件
     onSearch: handleSearch,
     onLoadmore: loadMore,
-    // onFilterChange: filterChange,
+    onFilterChange: filterChange,
     "onUpdate:filterForm": (form: any) => Object.assign(crudState.searchForm, form),
     "onUpdate:searchValue": (val: any) => (crudState.searchForm[crudState.crudOption.searchKey as keyof P] = val)
+  }));
+  const bindForm = computed(() => ({
+    // 属性
+    ref: "formRef",
+    option: crudState.formOption ?? {},
+    modelValue: crudState.formData,
+    formType: crudState.formType,
+    // 事件
+    "onUpdate:modelValue": (form: T) => (crudState.formData = form)
   }));
 
   /** 使用一些默认的生命周期 */
@@ -86,7 +94,8 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     formRef,
     crudState,
     crudStateRefs,
-    bindVal,
+    bindList,
+    bindForm,
     getDataList,
     handleDel,
     loadMore,
