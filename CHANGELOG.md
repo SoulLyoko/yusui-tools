@@ -1,3 +1,12 @@
+## [1.4.3](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.2...v1.4.3) (2022-10-14)
+
+
+### Bug Fixes
+
+* **uni:** fix types ([a94b24b](https://github.com/SoulLyoko/yusui-tools/commit/a94b24b5848ee751324a97303b43ea9dcd9a08a4))
+
+
+
 ## [1.4.2](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.1...v1.4.2) (2022-10-14)
 
 
