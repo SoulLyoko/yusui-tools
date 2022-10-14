@@ -9,7 +9,7 @@ export interface CrudOption<T, P> extends _CrudOption<T, P> {
   /** 搜索栏绑定的字段 */
   searchKey: string;
   /** 跳转到表单页的路径 */
-  formPath: string;
+  formPath: string | string[];
   /** 跳转到表单携带的参数，默认为整个表单 */
   formKeys: string;
   /** 是否携带分页参数 */
