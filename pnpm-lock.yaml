@@ -177,6 +177,7 @@ importers:
       lodash-es: 4.17.21
       lodash-unified: 1.0.2
       postcss: ^8.4.18
+      uvue-crud: ^2.0.0-beta.8
       vue: ^3.2.37
     dependencies:
       '@dcloudio/uni-app': 3.0.0-alpha-3000020210521001
@@ -190,6 +191,7 @@ importers:
       '@dcloudio/types': 3.0.15
       '@types/lodash-es': 4.17.6
       postcss: 8.4.18
+      uvue-crud: 2.0.0-beta.8
       vue: 3.2.40
 
   packages/utils:
@@ -1893,6 +1895,14 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /clipboard/2.0.11:
+    resolution: {integrity: sha512-C+0bbOqkezLIsmWSvlsXS0Q0bmkugu7jcfMIACB+RDEntIzQIkdr148we28AfSloQLRdZlYL/QYyrq05j/3Faw==}
+    dependencies:
+      good-listener: 1.2.2
+      select: 1.1.2
+      tiny-emitter: 2.1.0
+    dev: true
+
   /cliui/3.2.0:
     resolution: {integrity: sha512-0yayqDxWQbqk3ojkYqUKqaAQ6AfNKeKWRNA8kR0WXzAsdHpP4BIaOmMAG87JGuO6qcobyW4GjxHd9PmhEd+T9w==}
     dependencies:
@@ -2427,6 +2437,10 @@ packages:
   /delayed-stream/1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
+    dev: true
+
+  /delegate/3.2.0:
+    resolution: {integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==}
     dev: true
 
   /detect-file/1.0.0:
@@ -3768,6 +3782,12 @@ packages:
     engines: {node: '>= 0.10'}
     dependencies:
       sparkles: 1.0.1
+    dev: true
+
+  /good-listener/1.2.2:
+    resolution: {integrity: sha512-goW1b+d9q/HIwbVYZzZ6SsTr4IgE+WA44A0GmPIQstuOrgsFcT7VEJ48nmr9GaRtNu0XTKacFLGnBPAM6Afouw==}
+    dependencies:
+      delegate: 3.2.0
     dev: true
 
   /graceful-fs/4.2.10:
@@ -5981,6 +6001,10 @@ packages:
       xmlchars: 2.2.0
     dev: true
 
+  /select/1.1.2:
+    resolution: {integrity: sha512-OwpTSOfy6xSs1+pwcNrv0RBMOzI39Lp3qQKUTPVVPRjCdNa5JH/oPRiqsesIskK8TVgmRiHwO4KXlV2Li9dANA==}
+    dev: true
+
   /semver-greatest-satisfied-range/1.1.0:
     resolution: {integrity: sha512-Ny/iyOzSSa8M5ML46IAx3iXc6tfOsYU2R4AXi2UpHk60Zrgyq6eqPj/xiOfS0rRl/iiQ/rdJkVjw/5cdUyCntQ==}
     engines: {node: '>= 0.10'}
@@ -6436,6 +6460,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /tiny-emitter/2.1.0:
+    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
+    dev: true
+
   /tinybench/2.3.0:
     resolution: {integrity: sha512-zs1gMVBwyyG2QbVchYIbnabRhMOCGvrwZz/q+SV+LIMa9q5YDQZi2kkI6ZRqV2Bz7ba1uvrc7ieUoE4KWnGeKg==}
     dev: true
@@ -6801,6 +6829,21 @@ packages:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
     deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
     hasBin: true
+    dev: true
+
+  /uview-plus/3.1.15:
+    resolution: {integrity: sha512-hkluuQcGXNPaym7qO7Y/X2mutu7stBjBvxof/aKFEfK4J/w56LeVZ1H0jZxNznrgNxXmQWn1zStrhPzSBLisBg==}
+    engines: {HBuilderX: ^3.1.0}
+    dependencies:
+      clipboard: 2.0.11
+      dayjs: 1.11.5
+    dev: true
+
+  /uvue-crud/2.0.0-beta.8:
+    resolution: {integrity: sha512-Hx5rY5vLc2gfndZlTXkplJ4P/PhiEwj+SNlxScdbT7ZkvNK+W0TnGLI65Un7Fivxd34zqa+K/7b3H3aF8o03KA==}
+    dependencies:
+      dayjs: 1.11.5
+      uview-plus: 3.1.15
     dev: true
 
   /v8-compile-cache-lib/3.0.1:

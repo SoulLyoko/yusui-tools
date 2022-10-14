@@ -1,4 +1,5 @@
 import type { PageOption, FormType } from "@smallwei/avue";
+import type { UvueListOption, UvueFormOption } from "uvue-crud";
 import type { EmitterAsync } from "@yusui/utils";
 import type { CrudOption as _CrudOption, CrudState as _CrudState } from "@yusui/composables";
 import type { useCrudMethods } from "./methods";
@@ -29,15 +30,15 @@ export interface CrudState<T, P>
   extends Pick<_CrudState<T, P>, "pageOption" | "sortOption" | "searchForm" | "queryForm" | "formData"> {
   crudOption: CrudOption<T, P>;
   /** 列表加载状态 */
-  loadStatus: string;
+  loadStatus: "loadmore" | "loading" | "nomore";
   /** 列表配置 */
-  listOption: any;
+  listOption: UvueListOption<T>;
   /** 列表数据 */
   listData: T[];
   /** 距离顶部距离，在onPageScroll中获取 */
   scrollTop: number;
   /** 表单配置 */
-  formOption: any;
+  formOption: UvueFormOption<T>;
   /** 表单类型 */
   formType: FormType; // add,edit,view
 }
