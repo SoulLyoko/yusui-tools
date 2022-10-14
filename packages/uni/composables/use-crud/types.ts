@@ -5,7 +5,7 @@ import type { CrudOption as _CrudOption, CrudState as _CrudState } from "@yusui/
 import type { useCrudMethods } from "./methods";
 
 export interface CrudOption<T, P> extends _CrudOption<T, P> {
-  getInfo: (() => Promise<any>) | ((params?: P) => Promise<any>) | ((params: P) => Promise<any>);
+  getInfo: (() => Promise<any>) | ((params?: any) => Promise<any>) | ((params: any) => Promise<any>);
   /** 搜索栏绑定的字段 */
   searchKey: string;
   /** 跳转到表单页的路径 */
