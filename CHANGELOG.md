@@ -1,3 +1,12 @@
+## [1.4.5](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.4...v1.4.5) (2022-10-14)
+
+
+### Bug Fixes
+
+* **uni:** fix `crudOption.getInfo`  type ([d6036d6](https://github.com/SoulLyoko/yusui-tools/commit/d6036d6c175b888dd9dd3f55575e0e0341e22826))
+
+
+
 ## [1.4.4](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.3...v1.4.4) (2022-10-14)
 
 
