@@ -75,7 +75,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     onLoadmore: loadMore,
     // onFilterChange: filterChange,
     "onUpdate:filterForm": (form: any) => Object.assign(crudState.searchForm, form),
-    "onUpdate:searchValue": (val: any) => (crudState.searchForm[crudState.crudOption.searchKey] = val)
+    "onUpdate:searchValue": (val: any) => (crudState.searchForm[crudState.crudOption.searchKey as keyof P] = val)
   }));
 
   /** 使用一些默认的生命周期 */

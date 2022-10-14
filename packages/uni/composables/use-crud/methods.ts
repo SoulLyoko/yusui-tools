@@ -51,8 +51,12 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
     }
   };
   const handleDel = async (row: T) => {
-    await emitter.emitAsync("beforeDel", row);
     const { rowKey, remove } = crudState.crudOption;
+    if (!remove) return;
+    const data = cloneDeep(row);
+    const [err] = await to(emitter.emitAsync("beforeDel", data));
+    if (err !== null) return;
+    await emitter.emitAsync("beforeDel", row);
     uni.showModal({
       title: "提示",
       content: "确认进行删除操作？",
@@ -88,6 +92,9 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
   const encodeData = (data: any) => {
     return encodeURIComponent(JSON.stringify(data));
   };
+  const decodeData = (data: string) => {
+    return JSON.parse(decodeURIComponent(data));
+  };
   const getFormUrl = (row: T, formType: string) => {
     const { formPath, formKeys } = crudState.crudOption;
     const formData = formKeys.length ? pick(row, formKeys) : row;
@@ -109,7 +116,7 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
   const getFormData = async (options: any) => {
     const { formType, formData } = options as { formData: string; formType: CrudState<T, P>["formType"] };
     const { getInfo, rowKey, dataPath } = crudState.crudOption;
-    const urlFormData = formData ? JSON.parse(decodeURIComponent(formData)) : {};
+    const urlFormData = formData ? decodeData(formData) : {};
     crudState.formType = formType;
     await emitter.emitAsync("beforeGetInfo", urlFormData);
     if (formType !== "add" && getInfo && urlFormData[rowKey]) {
@@ -128,7 +135,7 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
    * @param {Function} loading 取消加载按钮函数
    * @param {Function} back 返回上一页函数
    */
-  const handleSubmit = async (form: T, loading: () => void, back: () => void) => {
+  const handleSubmit = async (form: T, loading?: () => void, back?: () => void) => {
     const { create, update, submitBack } = crudState.crudOption;
     if (!create || !update) loading?.();
     const data = cloneDeep({ ...crudState.formData, ...form });
@@ -136,6 +143,7 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
     if (err !== null) return loading?.();
     const submitMethod = { add: create, edit: update, view: () => Promise.resolve() };
     try {
+      console.log("🚀 ~ file: methods.ts ~ line 140 ~ handleSubmit ~ crudState.formType", crudState.formType);
       const res = await submitMethod[crudState.formType](filterObj(data));
       uni.showToast({ title: "保存成功", icon: "success" });
       await emitter.emitAsync("afterSubmit", res);

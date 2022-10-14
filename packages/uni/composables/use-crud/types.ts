@@ -6,7 +6,7 @@ import type { useCrudMethods } from "./methods";
 export interface CrudOption<T, P> extends _CrudOption<T, P> {
   getInfo: (() => Promise<any>) | ((params?: P) => Promise<any>) | ((params: P) => Promise<any>);
   /** 搜索栏绑定的字段 */
-  searchKey: keyof P;
+  searchKey: string;
   /** 跳转到表单页的路径 */
   formPath: string;
   /** 跳转到表单携带的参数，默认为整个表单 */
