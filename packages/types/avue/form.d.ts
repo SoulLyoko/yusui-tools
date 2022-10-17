@@ -1,7 +1,11 @@
 import type { Component, VNode } from "vue";
-import type { FormItemRule, UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
+import type { UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
+import type { RuleItem } from "async-validator";
 
 declare module "@smallwei/avue" {
+  export interface FormItemRule extends RuleItem {
+    trigger?: Arrayable<string>;
+  }
   export interface AvueFormColumn<T = any, K = T extends object ? keyof T : string> {
     /** 表单项类型 */
     type?: string;
