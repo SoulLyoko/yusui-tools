@@ -1,3 +1,13 @@
+## [1.4.9](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.8...v1.4.9) (2022-10-17)
+
+
+### Bug Fixes
+
+* **types:** add type FormItemRule ([68db9b4](https://github.com/SoulLyoko/yusui-tools/commit/68db9b4d6f96e19a854a86b70c4265f945310111))
+* **uni:** define default rowKey from options ([1996804](https://github.com/SoulLyoko/yusui-tools/commit/19968044ec7ff2617769cf0d9651bdb320a9fb0a))
+
+
+
 ## [1.4.8](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.7...v1.4.8) (2022-10-17)
 
 
