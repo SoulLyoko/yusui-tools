@@ -320,7 +320,7 @@ declare module "@smallwei/avue" {
     /** 每页显示条目个数，支持.sync修饰符 */
     pageSize?: number;
     /** 分页的数组分段 */
-    pageSizes?: number;
+    pageSizes?: number[];
     /** 页码按钮的数量，当总页数超过该值时会折叠 */
     pagerCount?: number;
   }

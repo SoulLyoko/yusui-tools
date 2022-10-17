@@ -114,13 +114,18 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
    * @param {Object} options onLoad的参数
    */
   const getFormData = async (options: any) => {
-    const { formType, formData } = options as { formData: string; formType: CrudState<T, P>["formType"] };
+    const { formType, formData } = options as { formData: string | object; formType: CrudState<T, P>["formType"] };
     const { getInfo, rowKey, dataPath } = crudState.crudOption;
-    const urlFormData = formData ? decodeData(formData) : {};
+    let urlFormData = {};
+    if (typeof formData === "string") {
+      urlFormData = formData ? decodeData(formData) : {};
+    } else if (typeof formData === "object") {
+      urlFormData = formData || {};
+    }
     crudState.formType = formType;
     await emitter.emitAsync("beforeGetInfo", urlFormData);
-    if (formType !== "add" && getInfo && urlFormData[rowKey]) {
-      const res = await getInfo(urlFormData[rowKey]);
+    if (formType !== "add" && getInfo) {
+      const res = await getInfo(urlFormData[rowKey as keyof typeof urlFormData]);
       console.log("getFormData ~ res", res);
       crudState.formData = get({ res }, dataPath, {});
       await emitter.emitAsync("afterGetInfo", res);
@@ -143,7 +148,6 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
     if (err !== null) return loading?.();
     const submitMethod = { add: create, edit: update, view: () => Promise.resolve() };
     try {
-      console.log("🚀 ~ file: methods.ts ~ line 140 ~ handleSubmit ~ crudState.formType", crudState.formType);
       const res = await submitMethod[crudState.formType](filterObj(data));
       uni.showToast({ title: "保存成功", icon: "success" });
       await emitter.emitAsync("afterSubmit", res);
@@ -167,6 +171,10 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
     handleEdit,
     handleView,
     getFormData,
-    handleSubmit
+    handleSubmit,
+    encodeData,
+    decodeData,
+    getFormUrl,
+    openForm
   };
 }
