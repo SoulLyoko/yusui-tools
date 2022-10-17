@@ -159,10 +159,13 @@ importers:
 
   packages/types:
     specifiers:
-      element-plus: ^2.2.17
+      async-validator: ^4.2.5
+      element-plus: ^2.2.18
       vue: ^3.2.37
+    dependencies:
+      async-validator: 4.2.5
     devDependencies:
-      element-plus: 2.2.17_vue@3.2.40
+      element-plus: 2.2.18_vue@3.2.40
       vue: 3.2.40
 
   packages/uni:
@@ -177,7 +180,7 @@ importers:
       lodash-es: 4.17.21
       lodash-unified: 1.0.2
       postcss: ^8.4.18
-      uvue-crud: ^2.0.0-beta.8
+      uvue-crud: ^2.0.0-beta.11
       vue: ^3.2.37
     dependencies:
       '@dcloudio/uni-app': 3.0.0-alpha-3000020210521001
@@ -191,7 +194,7 @@ importers:
       '@dcloudio/types': 3.0.15
       '@types/lodash-es': 4.17.6
       postcss: 8.4.18
-      uvue-crud: 2.0.0-beta.8
+      uvue-crud: 2.0.0-beta.11
       vue: 3.2.40
 
   packages/utils:
@@ -2544,6 +2547,31 @@ packages:
       vue: 3.2.40
     transitivePeerDependencies:
       - '@vue/composition-api'
+
+  /element-plus/2.2.18_vue@3.2.40:
+    resolution: {integrity: sha512-2pK2zmVOwP14eFl3rGoR+3BWJwDyO+DZCvzjQ8L6qjUR+hVKwFhgxIcSkKJatbcHFw5Xui6UyN20jV+gQP7mLg==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@ctrl/tinycolor': 3.4.1
+      '@element-plus/icons-vue': 2.0.9_vue@3.2.40
+      '@floating-ui/dom': 1.0.2
+      '@popperjs/core': /@sxzz/popperjs-es/2.11.7
+      '@types/lodash': 4.14.186
+      '@types/lodash-es': 4.17.6
+      '@vueuse/core': 9.3.0_vue@3.2.40
+      async-validator: 4.2.5
+      dayjs: 1.11.5
+      escape-html: 1.0.3
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.2_3ib2ivapxullxkx3xftsimdk7u
+      memoize-one: 6.0.0
+      normalize-wheel-es: 1.2.0
+      vue: 3.2.40
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: true
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -6839,8 +6867,8 @@ packages:
       dayjs: 1.11.5
     dev: true
 
-  /uvue-crud/2.0.0-beta.8:
-    resolution: {integrity: sha512-Hx5rY5vLc2gfndZlTXkplJ4P/PhiEwj+SNlxScdbT7ZkvNK+W0TnGLI65Un7Fivxd34zqa+K/7b3H3aF8o03KA==}
+  /uvue-crud/2.0.0-beta.11:
+    resolution: {integrity: sha512-7gklfMK+3xDol2BzHVtSnnxL6f7lpBzv2o9chvhOEd7vwlbI4qVDKmj8LBSAS7wLHqKJl1oIXLPE37DmSQW+fA==}
     dependencies:
       dayjs: 1.11.5
       uview-plus: 3.1.15

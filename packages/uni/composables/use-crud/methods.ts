@@ -97,7 +97,7 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
   };
   const getFormUrl = (row: T, formType: string) => {
     const { formPath, formKeys } = crudState.crudOption;
-    const formData = formKeys.length ? pick(row, formKeys) : row;
+    const formData = formKeys?.length ? pick(row, formKeys) : row;
     const url = `${formPath}?formType=${formType}&formData=${encodeData(formData)}`;
     return url;
   };

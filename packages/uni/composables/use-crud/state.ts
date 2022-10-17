@@ -9,7 +9,7 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
     merge(
       {
         crudOption: {
-          rowKey: "id", // 行键值(id/_id/uuid/...)
+          rowKey: options.listOption?.rowKey ?? options.formOption?.rowKey ?? "id", // 行键值(id/_id/uuid/...)
           searchKey: "", // 搜索栏绑定的字段
           getList: null, // 获取数据列表方法
           getInfo: null, // 获取表单数据方法
