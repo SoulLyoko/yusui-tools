@@ -1,3 +1,12 @@
+## [1.4.8](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.7...v1.4.8) (2022-10-17)
+
+
+### Bug Fixes
+
+* **uni,use-crud:** getFormData params type ([2392877](https://github.com/SoulLyoko/yusui-tools/commit/23928770b78a69a5a2e734a4b36ed8e9a95d250b))
+
+
+
 ## [1.4.7](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.6...v1.4.7) (2022-10-14)
 
 
