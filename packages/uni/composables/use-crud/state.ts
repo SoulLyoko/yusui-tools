@@ -47,7 +47,7 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
         scrollTop: 0, //距离顶部距离，在onPageScroll中获取
         formOption: {},
         formData: {}, // 表单数据
-        formType: "" // add,edit,view
+        formType: options.formType || "" // add,edit,view
       },
       options
     )
