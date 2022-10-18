@@ -17,9 +17,9 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
           update: null, // 编辑数据方法
           remove: null, // 删除数据方法
           dataPath: "res.data.records", // 接口返回数据的路径
-          totalPath: "res.total", // 接口返回总数的路径
-          currKey: "pageNum", // 当前页key
-          sizeKey: "pageSize", // 每页条数key
+          totalPath: "res.data.total", // 接口返回总数的路径
+          currKey: "current", // 当前页key
+          sizeKey: "size", // 每页条数key
           formPath: "", // 跳转到表单页的路径
           formKeys: [], // 跳转到表单携带的参数
           isPage: true, // 是否分页
