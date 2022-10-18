@@ -1,3 +1,12 @@
+## [1.4.10](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.9...v1.4.10) (2022-10-18)
+
+
+### Bug Fixes
+
+* **uni:** default formType ([55b6ff0](https://github.com/SoulLyoko/yusui-tools/commit/55b6ff00ee53b152736a65ddca290fd8116391d9))
+
+
+
 ## [1.4.9](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.8...v1.4.9) (2022-10-17)
 
 
