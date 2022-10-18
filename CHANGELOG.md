@@ -1,3 +1,12 @@
+## [1.4.11](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.10...v1.4.11) (2022-10-18)
+
+
+### Bug Fixes
+
+* **uni:** change default dataPath ([91d4c5d](https://github.com/SoulLyoko/yusui-tools/commit/91d4c5d642e41a4afffa4a008cbe0abf6607b455))
+
+
+
 ## [1.4.10](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.9...v1.4.10) (2022-10-18)
 
 
