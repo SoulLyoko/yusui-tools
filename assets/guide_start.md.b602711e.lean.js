@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as o,e as r,f as n}from"./app.f7dd10a1.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"guide/start.md"}'),s={name:"guide/start.md"};function c(d,p,m,_,i,l){const e=n("markdown");return a(),o("div",null,[r(e,{path:"../README.md"})])}const h=t(s,[["render",c]]);export{u as __pageData,h as default};
