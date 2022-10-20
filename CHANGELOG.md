@@ -1,3 +1,13 @@
+## [1.4.12](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.10...v1.4.12) (2022-10-20)
+
+
+### Bug Fixes
+
+* **types:** avue types ([ad26db3](https://github.com/SoulLyoko/yusui-tools/commit/ad26db3a363f67ff8f63b70124983bd939e2eb6a))
+* **uni:** default value of `totalPath,currKey,sizeKey` ([5d36370](https://github.com/SoulLyoko/yusui-tools/commit/5d36370e9937c0cf1e1b71ed3fcd9b61031ad40c))
+
+
+
 ## [1.4.11](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.10...v1.4.11) (2022-10-18)
 
 
