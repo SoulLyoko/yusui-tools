@@ -74,11 +74,11 @@ declare module "@smallwei/avue" {
       /** 展示类型 */
       type?: "form" | "crud";
       /** 新增方法 */
-      rowAdd: (done: (row: any) => void) => void;
+      rowAdd?: (done: (row: any) => void) => void;
       /** 删除方法 */
-      rowDel: (row: any, done: () => void) => void;
+      rowDel?: (row: any, done: () => void) => void;
       /** 限制当前最大行数 */
-      limit: number;
+      limit?: number;
     } & AvueCrudOption;
     /** 等同于<component :is=""> */
     component?: string | Component;
