@@ -70,7 +70,16 @@ declare module "@smallwei/avue" {
     /** 字典的请求参数 */
     dicQuery?: Record<string, any>;
     /** 子表单 */
-    children?: { type?: "form" | "crud" } & AvueCrudOption;
+    children?: {
+      /** 展示类型 */
+      type?: "form" | "crud";
+      /** 新增方法 */
+      rowAdd: (done: (row: any) => void) => void;
+      /** 删除方法 */
+      rowDel: (row: any, done: () => void) => void;
+      /** 限制当前最大行数 */
+      limit: number;
+    } & AvueCrudOption;
     /** 等同于<component :is=""> */
     component?: string | Component;
     /** 传递给组件的参数 */
@@ -89,12 +98,21 @@ declare module "@smallwei/avue" {
   }
 
   export interface AvueFormGroup<T = any> {
+    /** 左侧图标 */
     icon?: string;
+    /** 标题 */
     label?: string;
+    /** 是否折叠 */
     collapse?: boolean;
+    /** 是否显示右侧箭头 */
     arrow?: boolean;
+    /** 分组字段唯一标识 */
     prop?: string;
+    /** 是否显示分组 */
     display?: boolean;
+    /** 是否禁用 */
+    disabled?: boolean;
+    /** 表单项配置 */
     column?: Array<AvueFormColumn<T>>;
   }
 
