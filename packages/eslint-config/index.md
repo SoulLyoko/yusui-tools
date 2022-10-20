@@ -1,9 +1,9 @@
-# eslint-config
+# eslint-config & prettier-config
 
 ## Install
 
 ```bash
-npm i -D eslint @yusui/eslint-config
+npm i -D eslint prettier @yusui/eslint-config @yusui/prettier-config
 ```
 
 ## Usage
@@ -13,8 +13,19 @@ npm i -D eslint @yusui/eslint-config
 module.exports = {
   extends: "@yusui"
 };
+
+// .prettierrc.js
+module.exports = {
+  ...require("@yusui/prettier-config")
+};
 ```
 
 ## Preview
 
+### eslint-config
+
 <<< @/eslint-config/index.js
+
+### prettier-config
+
+<<< @/prettier-config/index.js
