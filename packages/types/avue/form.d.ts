@@ -6,7 +6,7 @@ declare module "@smallwei/avue" {
   export interface FormItemRule extends RuleItem {
     trigger?: Arrayable<string>;
   }
-  export interface AvueFormColumn<T = any, K = T extends object ? keyof T : string> {
+  export interface AvueFormColumn<T = any, K = keyof T extends string ? keyof T : string> {
     /** 表单项类型 */
     type?: string;
     /** 字段位置排序，数字越大位置越靠前 */
