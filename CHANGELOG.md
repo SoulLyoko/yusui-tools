@@ -1,3 +1,13 @@
+## [1.4.13](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.12...v1.4.13) (2022-10-24)
+
+
+### Bug Fixes
+
+* **types:** avue types ([e3e9a7b](https://github.com/SoulLyoko/yusui-tools/commit/e3e9a7be5cd75778a1b066b49cd4e32cf18ab83e))
+* **types:** avue types ([3a8174b](https://github.com/SoulLyoko/yusui-tools/commit/3a8174b2756fc3509fe2f5a2886091fe1bdc74ce))
+
+
+
 ## [1.4.12](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.10...v1.4.12) (2022-10-20)
 
 
