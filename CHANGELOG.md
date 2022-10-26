@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.14...v1.5.0) (2022-10-26)
+
+
+### Features
+
+* uni-composables,uni-utils ([3b4bbf0](https://github.com/SoulLyoko/yusui-tools/commit/3b4bbf0770d814c52d73b59559bda3d4075f4539))
+
+
+
 ## [1.4.14](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.13...v1.4.14) (2022-10-26)
 
 
