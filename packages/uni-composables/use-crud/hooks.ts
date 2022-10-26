@@ -1,6 +1,6 @@
 import type { Emitter } from "./types";
 
-import { mittAsync } from "@yusui/utils";
+import { mittAsync } from "@yusui/uni-utils";
 
 export function useHooks<T, P>() {
   /** emitter */

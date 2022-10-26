@@ -8,6 +8,8 @@
       "@yusui/composables": ["packages/composables/index.ts"],
       "@yusui/plugins": ["packages/plugins/index.ts"],
       "@yusui/types": ["packages/types/index.ts"],
+      "@yusui/uni-composables": ["packages/uni-composables/index.ts"],
+      "@yusui/uni-utils": ["packages/uni-utils/index.ts"],
       "@yusui/utils": ["packages/utils/index.ts"]
     },
     "types": ["vitest/globals", "@dcloudio/types"]

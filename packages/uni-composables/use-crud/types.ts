@@ -1,6 +1,6 @@
 import type { PageOption, FormType } from "@smallwei/avue";
 import type { UvueListOption, UvueFormOption } from "uvue-crud";
-import type { EmitterAsync } from "@yusui/utils";
+import type { EmitterAsync } from "@yusui/uni-utils";
 import type { CrudOption as _CrudOption, CrudState as _CrudState } from "@yusui/composables";
 import type { useCrudMethods } from "./methods";
 

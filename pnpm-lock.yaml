@@ -170,14 +170,14 @@ importers:
       element-plus: 2.2.19_vue@3.2.40
       vue: 3.2.40
 
-  packages/uni:
+  packages/uni-composables:
     specifiers:
       '@dcloudio/types': ^3.0.15
       '@dcloudio/uni-app': '*'
       '@types/lodash-es': ^4.17.6
       '@yusui/composables': workspace:*
       '@yusui/types': workspace:*
-      '@yusui/utils': workspace:*
+      '@yusui/uni-utils': workspace:*
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.2
@@ -188,7 +188,7 @@ importers:
       '@dcloudio/uni-app': 3.0.0-alpha-3000020210521001
       '@yusui/composables': link:../composables
       '@yusui/types': link:../types
-      '@yusui/utils': link:../utils
+      '@yusui/uni-utils': link:../uni-utils
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.2_3ib2ivapxullxkx3xftsimdk7u
@@ -197,6 +197,33 @@ importers:
       '@types/lodash-es': 4.17.6
       postcss: 8.4.18
       uvue-crud: 2.0.0-beta.14
+      vue: 3.2.40
+
+  packages/uni-utils:
+    specifiers:
+      '@dcloudio/types': ^3.0.15
+      '@dcloudio/uni-app': '*'
+      '@types/lodash-es': ^4.17.6
+      '@yusui/types': workspace:*
+      dayjs: ^1.11.6
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.2
+      mitt: ^3.0.0
+      postcss: ^8.4.18
+      vue: ^3.2.37
+    dependencies:
+      '@dcloudio/uni-app': 3.0.0-alpha-3000020210521001
+      '@yusui/types': link:../types
+      dayjs: 1.11.6
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.2_3ib2ivapxullxkx3xftsimdk7u
+      mitt: 3.0.0
+    devDependencies:
+      '@dcloudio/types': 3.0.15
+      '@types/lodash-es': 4.17.6
+      postcss: 8.4.18
       vue: 3.2.40
 
   packages/utils:
@@ -2342,7 +2369,6 @@ packages:
 
   /dayjs/1.11.6:
     resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
-    dev: false
 
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -6868,7 +6894,7 @@ packages:
   /uvue-crud/2.0.0-beta.14:
     resolution: {integrity: sha512-RSOKPMNlZ0rTzd6S1I5QBOnJLyzvyFa6C1WIplPwRRC95+JxWvHr02Bf5mbfQNqczo+q/JUPs6kP7Lzi4vpjNA==}
     dependencies:
-      dayjs: 1.11.5
+      dayjs: 1.11.6
       uview-plus: 3.1.16
     dev: true
 

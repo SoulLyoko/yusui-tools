@@ -6,7 +6,7 @@ import { ref, computed, toRefs } from "vue";
 import { useCrudState } from "./state";
 import { useHooks } from "./hooks";
 import { useCrudMethods } from "./methods";
-import { useLifeCycle } from "./lifeCycle";
+import { useLifeCycle } from "./life-cycle";
 
 export function useCrud<T extends Data = Data, P extends Data = Data>(options: UseCrudOptions<T, P>) {
   /** listRef.value等同于this.$refs.listRef */
