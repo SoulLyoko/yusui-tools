@@ -1,3 +1,12 @@
+## [1.4.14](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.13...v1.4.14) (2022-10-26)
+
+
+### Features
+
+* **plugins:** uview-patch ([17ce1c0](https://github.com/SoulLyoko/yusui-tools/commit/17ce1c006c18655e5644764f101a9763fdf9205d))
+
+
+
 ## [1.4.13](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.12...v1.4.13) (2022-10-24)
 
 
