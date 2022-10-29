@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-npm i -D  @yusui/plugins
+npm i -D @yusui/plugins
 ```
 
 ## Usage
