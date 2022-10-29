@@ -18,7 +18,8 @@ export default defineConfig({
           { text: "@yusui/composables", link: "/composables/index" },
           { text: "@yusui/eslint-config", link: "/eslint-config/index" },
           { text: "@yusui/prettier-config", link: "/prettier-config/index" },
-          { text: "@yusui/plugins", link: "/plugins/index" }
+          { text: "@yusui/plugins", link: "/plugins/index" },
+          { text: "@yusui/utils", link: "/utils/index" }
         ]
       }
     ],
@@ -60,6 +61,58 @@ export default defineConfig({
             { text: "avuePatch", link: "/plugins/avue-patch/index" },
             { text: "loadProxy", link: "/plugins/load-proxy/index" },
             { text: "uviewPatch", link: "/plugins/uview-patch/index" }
+          ]
+        }
+      ],
+      "/utils": [
+        {
+          text: "Utils",
+          items: [
+            { text: "Start", link: "/utils/index" },
+            {
+              text: "date",
+              items: [
+                { text: "dateFormat", link: "/utils/date/dateFormat" },
+                { text: "durationFormat", link: "/utils/date/durationFormat" }
+              ]
+            },
+            {
+              text: "emitter",
+              items: [{ text: "mittASync", link: "/utils/emitter/mittASync" }]
+            },
+            {
+              text: "file",
+              items: [
+                { text: "downloadFile", link: "/utils/file/downloadFile" },
+                { text: "getFileName", link: "/utils/file/getFileName" }
+              ]
+            },
+            {
+              text: "math",
+              link: "/utils/math/index"
+            },
+            {
+              text: "object",
+              items: [
+                { text: "filterObj", link: "/utils/object/filterObj" },
+                { text: "getDataType", link: "/utils/object/getDataType" }
+              ]
+            },
+            {
+              text: "string",
+              items: [
+                { text: "serialize", link: "/utils/string/serialize" },
+                { text: "deserialize", link: "/utils/string/deserialize" },
+                { text: "uuid", link: "/utils/string/uuid" }
+              ]
+            },
+            {
+              text: "tool",
+              items: [
+                { text: "awaitTo", link: "/utils/tool/awaitTo" },
+                { text: "sleep", link: "/utils/tool/sleep" }
+              ]
+            }
           ]
         }
       ]

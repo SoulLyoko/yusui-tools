@@ -28,7 +28,7 @@ export interface DateFormatOptions {
 /**
  * 日期时间格式化
  * @param {String|Number|Date|dayjs.Dayjs} date 需要格式化的日期时间
- * @param {DateFormatOptions|string} options 传入格式化参数或格式化字符串
+ * @param {DateFormatOptions|String} options 传入格式化参数或格式化字符串
  * @returns 格式化后的日期时间
  */
 export function dateFormat(date: ConfigType, optionsOrFormat: DateFormatOptions | string = {}) {
