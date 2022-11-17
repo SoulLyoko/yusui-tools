@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/SoulLyoko/yusui-tools/compare/v1.5.0...v1.5.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* **composables:** add useCrud mock getList params ([cf4e63c](https://github.com/SoulLyoko/yusui-tools/commit/cf4e63c0a5d5e6a1e7f6ee95321618975aebe1d7))
+
+
+
 # [1.5.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.4.14...v1.5.0) (2022-10-26)
 
 
