@@ -4,6 +4,7 @@ import { execSync } from "child_process";
 import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import fs from "fs-extra";
+import { createEnvDts } from "@yusui/plugins";
 
 const external = [
   /@yusui/,
@@ -38,7 +39,7 @@ export default defineConfig(({ mode }) => {
   }
   execSync("pnpm copy:utils");
   return {
-    plugins: [Vue()],
+    plugins: [Vue(), createEnvDts()],
     resolve: {
       alias
     },
