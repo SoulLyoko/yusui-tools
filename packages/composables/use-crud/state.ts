@@ -12,7 +12,7 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
       {
         crudOption: {
           rowKey: options?.tableOption?.rowKey ?? "id", // 行键值(id/_id/uuid/...)
-          getList: () => getList(), // 获取数据列表方法
+          getList: (params: P) => getList(params), // 获取数据列表方法
           create: (row: T) => create(row), // 添加数据方法
           update: (row: T) => update(row), // 编辑数据方法
           remove: (ids: string | number) => remove(ids), // 删除单条数据方法

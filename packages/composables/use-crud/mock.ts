@@ -2,7 +2,7 @@ import type { Data } from "@yusui/types";
 import type { CrudState } from "./types";
 
 import { watch } from "vue";
-import { orderBy } from "lodash-unified";
+import { orderBy, omit } from "lodash-unified";
 import { storage, uuid } from "@yusui/utils";
 
 export function useMock<T extends Data, P extends Data>({ crudState }: { crudState: CrudState<T, P> }) {
@@ -20,13 +20,12 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
       console.log("🚀 ~ file: mock.ts ~ line 21 ~ error", error);
     }
   }
-  function getList() {
-    const {
-      pageOption: { currentPage, pageSize },
-      searchForm,
-      // sortOption: { order, prop }
-      sortOption: { descs, ascs }
-    } = crudState;
+  function getList(params: P) {
+    const { currKey, sizeKey } = crudState.crudOption;
+    const current = params[currKey];
+    const size = params[sizeKey];
+    const { descs, ascs /** , order, prop*/ } = params;
+    const searchForm = omit(params, [currKey, sizeKey, "descs", "ascs" /** , "order", "prop"*/]);
     const filterData = crudState.mockData.filter(item => {
       return Object.entries(searchForm).every(([key, value]) => {
         if (typeof item[key] === "string") {
@@ -39,7 +38,7 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     // const orderData = orderBy(filterData, prop, order);
     const orderData = orderBy(filterData, descs || ascs || undefined, descs ? "desc" : ascs ? "asc" : undefined);
     const pageData = orderData.filter((item, index) => {
-      return index >= (currentPage - 1) * pageSize && index < currentPage * pageSize;
+      return index >= (current - 1) * size && index < current * size;
     });
     return Promise.resolve({
       code: 200,
