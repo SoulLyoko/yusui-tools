@@ -16,7 +16,9 @@ const external = [
   "file-saver",
   "@iconify/vue",
   "js-cookie",
-  "mitt"
+  "mitt",
+  "fs",
+  "path"
 ];
 const input = {
   components: path.resolve(__dirname, "packages/components/index.ts"),

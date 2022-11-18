@@ -59,6 +59,7 @@ export default defineConfig({
           items: [
             { text: "Start", link: "/plugins/index" },
             { text: "avuePatch", link: "/plugins/avue-patch/index" },
+            { text: "createEnvDts", link: "/plugins/env-dts/index" },
             { text: "loadProxy", link: "/plugins/load-proxy/index" },
             { text: "uviewPatch", link: "/plugins/uview-patch/index" }
           ]

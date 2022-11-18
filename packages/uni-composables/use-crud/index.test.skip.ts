@@ -35,7 +35,7 @@ window.uni = {
   showToast() {}
 };
 
-describe("useCrud", () => {
+describe.skip("useCrud", () => {
   const rows = useRows();
   function getList() {
     return resolve({ rows: rows, size: 10, current: 1, total: rows.length });
