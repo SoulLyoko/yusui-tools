@@ -1,3 +1,24 @@
+# [1.6.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.5.1...v1.6.0) (2022-11-18)
+
+
+### Bug Fixes
+
+* **plugins:** load-proxy ([a81ca60](https://github.com/SoulLyoko/yusui-tools/commit/a81ca60ddd40f1d324da9fb8de972a4b25e490c5))
+
+
+### Features
+
+* env-dts ([a346823](https://github.com/SoulLyoko/yusui-tools/commit/a346823e4e6b1f55f9645f7b2d4b7c31b25691c5))
+* **plugins:** env-dts ([8aee08d](https://github.com/SoulLyoko/yusui-tools/commit/8aee08d9d250555c5f6ffcd877454930f371993a))
+
+
+### BREAKING CHANGES
+
+* **plugins:** - plugin `loadProxy` no need to pass proxy variable
+- plugin `loadProxy` will auto merge with `server.proxy` and `preview.proxy`
+
+
+
 ## [1.5.1](https://github.com/SoulLyoko/yusui-tools/compare/v1.5.0...v1.5.1) (2022-11-17)
 
 
