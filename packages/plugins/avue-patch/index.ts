@@ -63,7 +63,7 @@ export function fixBtnType(code: string) {
 
 export function avuePatch(): Plugin {
   return {
-    name: "avue-patch",
+    name: "vite-plugin-avue-patch",
     enforce: "pre",
     transform(code, id) {
       if (/avue.js|avue.min.js/.test(id)) {

@@ -2,8 +2,9 @@ import { generateTemplate } from ".";
 
 describe("createEnvDts", () => {
   it("should create dts file", () => {
-    const env = { VITE_TEST: "test" };
+    const env = { DEV: true, VITE_TEST: "test" };
     const template = generateTemplate(env);
-    expect(template).toContain("VITE_NAME: `test`");
+    expect(template).toContain("DEV: boolean");
+    expect(template).toContain("VITE_NAME: string");
   });
 });

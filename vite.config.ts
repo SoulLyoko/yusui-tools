@@ -4,7 +4,6 @@ import { execSync } from "child_process";
 import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import fs from "fs-extra";
-import { createEnvDts } from "@yusui/plugins";
 
 const external = [
   /@yusui/,
@@ -17,7 +16,9 @@ const external = [
   "file-saver",
   "@iconify/vue",
   "js-cookie",
-  "mitt"
+  "mitt",
+  "fs",
+  "path"
 ];
 const input = {
   components: path.resolve(__dirname, "packages/components/index.ts"),
@@ -39,7 +40,7 @@ export default defineConfig(({ mode }) => {
   }
   execSync("pnpm copy:utils");
   return {
-    plugins: [Vue(), createEnvDts()],
+    plugins: [Vue()],
     resolve: {
       alias
     },

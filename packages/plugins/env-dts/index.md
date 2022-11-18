@@ -3,27 +3,29 @@
 ## Usage
 
 ```js
-// vite.config.js
-import { defineConfig } from "vite";
+// vite.config.ts
 import { createEnvDts } from "@yusui/plugins";
 
-export default defineConfig(mode => {
-  return {
-    plugins:[createEnvDts()]
-  };
-});
+export default {
+  plugins: [createEnvDts()]
+};
 ```
 
----
+## How It Works
 
 ```sh
-# .env.development
-
-# VITE_PROXY=[[prefix,target,rewrite?]]
-VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:8081"]]
+# .env
+VITE_TEST=test
 ```
 
 file generated
 
 ```ts
+// node_modules/@types/env-dts/index.d.ts
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+interface ImportMetaEnv {
+  VITE_TEST: string;
+}
 ```
