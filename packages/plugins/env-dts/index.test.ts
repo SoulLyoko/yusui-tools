@@ -5,6 +5,6 @@ describe("createEnvDts", () => {
     const env = { DEV: true, VITE_TEST: "test" };
     const template = generateTemplate(env);
     expect(template).toContain("DEV: boolean");
-    expect(template).toContain("VITE_NAME: string");
+    expect(template).toContain("VITE_TEST: string");
   });
 });

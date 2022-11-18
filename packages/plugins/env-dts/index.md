@@ -2,6 +2,11 @@
 
 ## Usage
 
+```sh
+# .env
+VITE_TEST=test
+```
+
 ```js
 // vite.config.ts
 import { createEnvDts } from "@yusui/plugins";
@@ -18,7 +23,7 @@ export default {
 VITE_TEST=test
 ```
 
-file generated
+dts file generated
 
 ```ts
 // node_modules/@types/env-dts/index.d.ts

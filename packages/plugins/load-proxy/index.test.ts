@@ -1,9 +1,9 @@
-import { loadProxy } from ".";
+import { transformProxy } from ".";
 
-describe("loadProxy", () => {
+describe("transformProxy", () => {
   it("should transform to proxy config", () => {
-    const PROXY = `[["/api","https://127.0.0.1:8080",true],["/apis","http://127.0.0.1:8081"]]`;
-    expect(loadProxy(PROXY)).toMatchInlineSnapshot(`
+    const VITE_PROXY = `[["/api","https://127.0.0.1:8080",true],["/apis","http://127.0.0.1:8081"]]`;
+    expect(transformProxy(VITE_PROXY)).toMatchInlineSnapshot(`
       {
         "/api": {
           "changeOrigin": true,
