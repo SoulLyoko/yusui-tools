@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.0...v1.6.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* **types:** update `AvueCrudOption` types ([0c2023b](https://github.com/SoulLyoko/yusui-tools/commit/0c2023b3c76f51f61c39bf4a207c26c8a96401b7))
+
+
+
 # [1.6.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.5.1...v1.6.0) (2022-11-18)
 
 
