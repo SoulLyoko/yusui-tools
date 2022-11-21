@@ -229,7 +229,7 @@ declare module "@smallwei/avue" {
     /** 搜索按钮图标 */
     searchBtnIcon?: string;
     /** 清空按钮 */
-    emptyBtn?: string;
+    emptyBtn?: boolean;
     /** 清空按钮文案 */
     emptyBtnText?: string;
     /** 清空按钮图标 */

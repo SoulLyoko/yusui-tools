@@ -26,7 +26,7 @@ declare module "@smallwei/avue" {
     /** 标题名称宽度 */
     labelWidth?: number | string;
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
-    labelPosition?: string;
+    labelPosition?: Position;
     /** 文字提示 */
     tip?: string;
     /** 文字提示展示方向 */
@@ -46,7 +46,7 @@ declare module "@smallwei/avue" {
     /** 验证规则可以参考<a href="https://github.com/yiminghe/async-validator">async-validator</a> */
     rules?: FormItemRule[];
     /** 控件大小 */
-    size?: string;
+    size?: Size;
     /** 字段控制器 */
     control?: (val: any, form: T) => Record<string, AvueFormColumn<T>>;
     /** 栅列 */
@@ -124,7 +124,7 @@ declare module "@smallwei/avue" {
     /** 弹出表单的标题的统一宽度 */
     labelWidth?: number | string;
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
-    labelPosition?: string;
+    labelPosition?: Position;
     /** 表单标题名称后缀 */
     labelSuffix?: string;
     /** 表单操作菜单的显影 */
@@ -132,9 +132,9 @@ declare module "@smallwei/avue" {
     /** 表单操作菜单栅格占据的列数 */
     menuSpan?: number;
     /** 表单菜单按钮的排列方式 */
-    menuPosition?: string;
+    menuPosition?: Position;
     /** 表格总控件大小 */
-    size?: string;
+    size?: Size;
     /** 重值不清空的字段 */
     clearExclude?: string[];
     /** 提交按钮显隐 */
