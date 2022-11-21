@@ -6,7 +6,7 @@
 declare module "@smallwei/avue" {
   const AvueConfig: {
     size?: "large" | "default" | "small";
-    menuType?: "button" | "icon" | "text" | "menu";
+    menuType?: MenuType;
     theme?: "dark";
     axios: import("axios").AxiosInstance;
   };
