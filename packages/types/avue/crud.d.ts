@@ -550,6 +550,7 @@ declare module "@smallwei/avue" {
       column: AvueCrudColumn<T>;
       size: string;
       disabled: boolean;
+      dic: DicItem[];
     }) => VNode[];
     [x: `${string}-header`]: (arg: { column: AvueCrudColumn<T> }) => VNode[];
     [x: `${string}-form`]: (arg: {
