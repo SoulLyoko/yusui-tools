@@ -1,3 +1,14 @@
+## [1.6.2](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.1...v1.6.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* **types:** types error ([e3fc99b](https://github.com/SoulLyoko/yusui-tools/commit/e3fc99b1789e60cc20907d913c38be3614605bd0))
+* **types:** update `AvueCrudSlots` types ([b0a9b1d](https://github.com/SoulLyoko/yusui-tools/commit/b0a9b1df38687ab17ca1c7a425f8cf6a92f5e065))
+* **types:** update AvueForm types ([150cb98](https://github.com/SoulLyoko/yusui-tools/commit/150cb98666223f6eb6bf38959aaeee715c5384d2))
+
+
+
 ## [1.6.1](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.0...v1.6.1) (2022-11-21)
 
 
