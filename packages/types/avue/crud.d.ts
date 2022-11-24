@@ -99,7 +99,9 @@ declare module "@smallwei/avue" {
     [x: string]: any;
   }
 
-  export interface AvueCrudGroup<T = any> extends AvueFormGroup<T> {}
+  export interface AvueCrudGroup<T = any> extends AvueFormGroup<T> {
+    column?: AvueCrudColumn[];
+  }
 
   export interface AvueCrudOption<T = any> extends AvueFormOption<T> {
     /** 表格的高度，默认为自动高度。如果设置为auto，会自适应窗口高度，配合calcHeight参数去调节范围 */
