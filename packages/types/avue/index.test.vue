@@ -1,12 +1,21 @@
 <template>
   <avue-crud v-model:defaults="crudDefaults" :option="crudOption">
     <template #menu></template>
+    <template #test-form="{ value }">
+      {{ value }}
+    </template>
   </avue-crud>
   <avue-form v-model:defaults="formDefaults" :option="formOption">
     <template #menu-form></template>
+    <template #test="{ value }">
+      {{ value }}
+    </template>
   </avue-form>
   <avue-tree :option="treeOption">
-    <template #default></template>
+    <template #default="{ node, data }">
+      {{ node }}
+      {{ data }}
+    </template>
   </avue-tree>
 </template>
 

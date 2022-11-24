@@ -307,7 +307,7 @@ declare module "@smallwei/avue" {
     /** 表格行编辑时添加按钮 */
     addRowBtn?: boolean;
     /** 表格列齐方式 */
-    align?: string;
+    align?: Align;
     /** 表格行编辑操作按钮 */
     cellBtn?: boolean;
     /** 表格以卡片分层模式显示，搜索部分和主体部分分层展示 */
@@ -317,7 +317,7 @@ declare module "@smallwei/avue" {
     /** 表格头部中间菜单显隐 */
     header?: boolean;
     /** 表头对齐方式 */
-    headerAlign?: string;
+    headerAlign?: Align;
     /** 只负责样式控制表格如果选择一半，不会出现半选 */
     indeterminate?: boolean;
     /** 表格合计需要配置的字段 */
@@ -529,6 +529,7 @@ declare module "@smallwei/avue" {
     /** 清空搜索栏目的值 */
     searchReset: () => void;
   }
+
   export interface AvueCrudSlots<T = any> {
     empty: () => VNode[];
     expand: (arg: { row: T; index: number }) => VNode[];
@@ -542,9 +543,14 @@ declare module "@smallwei/avue" {
     "menu-right": (arg: { size: string }) => VNode[];
     search: (arg: { row: T; search: T; size: string }) => VNode[];
     "search-menu": (arg: { row: T; search: T; disabled: boolean; size: string }) => VNode[];
-    [`${string}-search`]: (arg: { value: any; column: AvueCrudColumn<T>; size: string; disabled: boolean }) => VNode[];
-    [`${string}-header`]: (arg: { column: AvueCrudColumn<T> }) => VNode[];
-    [`${string}-form`]: (arg: {
+    [x: `${string}-search`]: (arg: {
+      value: any;
+      column: AvueCrudColumn<T>;
+      size: string;
+      disabled: boolean;
+    }) => VNode[];
+    [x: `${string}-header`]: (arg: { column: AvueCrudColumn<T> }) => VNode[];
+    [x: `${string}-form`]: (arg: {
       value: any;
       column: AvueCrudColumn<T>;
       label: string;
@@ -555,6 +561,7 @@ declare module "@smallwei/avue" {
     }) => VNode[];
     [x: string]: (arg: { row: T; index: number; dic: DicItem[]; size: string; label: string }) => VNode[];
     // [x: string]: (arg: {
+    //   value?: any;
     //   row?: T;
     //   type?: FormType | string;
     //   index?: number;
