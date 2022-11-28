@@ -232,6 +232,16 @@ declare module "@smallwei/avue" {
   }
   export interface AvueFormSlots<T = any> {
     "menu-form": (arg: { disabled: boolean; size: string }) => VNode[];
+    [x: `${string}-label`]: (arg: { column: AvueFormColumn<T> }) => VNode[];
+    [x: `${string}-header`]: (arg: { column: AvueFormColumn<T> }) => VNode[];
+    [x: `${string}-error`]: (arg: {
+      column: AvueFormColumn<T>;
+      value: any;
+      readonly: boolean;
+      disabled: boolean;
+      size: string;
+      dic: DicItem[];
+    }) => VNode[];
     [x: string]: (arg: {
       value: any;
       column: AvueFormColumn<T>;

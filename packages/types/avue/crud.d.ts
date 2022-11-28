@@ -554,6 +554,7 @@ declare module "@smallwei/avue" {
     }) => VNode[];
     [x: `${string}-header`]: (arg: { column: AvueCrudColumn<T> }) => VNode[];
     [x: `${string}-form`]: (arg: {
+      row: T;
       value: any;
       column: AvueCrudColumn<T>;
       label: string;
