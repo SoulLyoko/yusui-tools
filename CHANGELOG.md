@@ -1,3 +1,12 @@
+## [1.6.5](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.4...v1.6.5) (2022-11-28)
+
+
+### Bug Fixes
+
+* **types:** update AvueFormSlots types ([8dbbe94](https://github.com/SoulLyoko/yusui-tools/commit/8dbbe94a1d1a992b7a6a8da8c9a76c5f349b386f))
+
+
+
 ## [1.6.4](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.3...v1.6.4) (2022-11-24)
 
 
