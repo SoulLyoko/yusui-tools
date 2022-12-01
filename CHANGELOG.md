@@ -1,3 +1,12 @@
+## [1.6.6](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.5...v1.6.6) (2022-12-01)
+
+
+### Bug Fixes
+
+* **types:** update avue types ([e800820](https://github.com/SoulLyoko/yusui-tools/commit/e800820984f52eb0d2fd4acacb59d8241bc3a208))
+
+
+
 ## [1.6.5](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.4...v1.6.5) (2022-11-28)
 
 
