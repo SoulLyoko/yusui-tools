@@ -61,7 +61,7 @@
 
 ### BREAKING CHANGES
 
-* **plugins:** - plugin `loadProxy` no need to pass proxy variable
+- plugin `loadProxy` no need to pass proxy variable
 - plugin `loadProxy` will auto merge with `server.proxy` and `preview.proxy`
 
 
