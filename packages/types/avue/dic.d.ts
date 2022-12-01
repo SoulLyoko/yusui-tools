@@ -4,6 +4,7 @@ declare module "@smallwei/avue" {
     value?: any;
     display?: boolean;
     disabled?: boolean;
+    children?: DicItem[];
   }
 
   export interface DicProps {

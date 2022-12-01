@@ -5,9 +5,31 @@ import type { VNode } from "vue";
 
 declare module "@smallwei/avue" {
   export type Align = "left" | "center" | "right";
-  export type Position = "left" | "right" | "top";
+  export type MenuPosition = "left" | "right" | "center";
+  export type LabelPosition = "left" | "right" | "top";
   export type MenuType = "button" | "icon" | "text" | "menu";
   export type Size = "large" | "default" | "small";
+  export type CellEvent<T> = (row: any, column: TableColumnCtx<T>, cell: any, event: Event) => void;
+  export type RowEvent<T> = (row: any, column: TableColumnCtx<T>, event: Event) => void;
+  export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
+  export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
+  // export type AvueCrudDefaults<T = any, K = T extends object ? keyof T : string> = {
+  //   [key in K]?: AvueCrudColumn<T>;
+  // };
+  export interface PageOption {
+    /** 总条数,如果为0的话不显示分页 */
+    total?: number;
+    /** 当前页数 */
+    currentPage?: number;
+    /** 是否为分页按钮添加背景色 */
+    background?: boolean;
+    /** 每页显示条目个数，支持.sync修饰符 */
+    pageSize?: number;
+    /** 分页的数组分段 */
+    pageSizes?: number[];
+    /** 页码按钮的数量，当总页数超过该值时会折叠 */
+    pagerCount?: number;
+  }
 
   export interface AvueCrudColumn<T = any> extends AvueFormColumn<T> {
     /** 对应列的宽度 */
@@ -22,9 +44,9 @@ declare module "@smallwei/avue" {
     formatter?: (row: T, value: any, label: string, column: Array<AvueCrudColumn<T>>) => string;
     /** 当内容过长被隐藏时显示 tooltip */
     overHidden?: boolean;
-    /** 对齐方式 */
+    /** 表格内容对齐方式 */
     align?: Align;
-    /**  */
+    /** 表头对齐方式 */
     headerAlign?: Align;
     /** 传入true开启默认数据过滤的选项，也可以传入自定义数组格式，数组中的元素需要有text和value属性 */
     filters?: boolean | [{ text: string; value: string | number }];
@@ -53,7 +75,7 @@ declare module "@smallwei/avue" {
     /** 多选时是否将选中值按文字的形式展示 */
     searchTags?: boolean;
     /** 搜索项标题位置	 */
-    searchLabelPosition?: Position;
+    searchLabelPosition?: LabelPosition;
     /** 弹窗编辑文字提示 */
     searchTip?: string;
     /** 搜索框辅助文字提示展示方向 */
@@ -100,7 +122,19 @@ declare module "@smallwei/avue" {
   }
 
   export interface AvueCrudGroup<T = any> extends AvueFormGroup<T> {
-    column?: AvueCrudColumn[];
+    /** 表单新增时是否禁止 */
+    addDisabled?: boolean;
+    /** 表单编辑时是否禁止 */
+    editDisabled?: boolean;
+    /** 表单查看时是否禁止 */
+    viewDisabled?: boolean;
+    /** 表单新增时是否可见 */
+    addDisplay?: boolean;
+    /** 表单编辑时是否可见 */
+    editDisplay?: boolean;
+    /** viewDisplay */
+    viewDisplay?: boolean;
+    column?: AvueCrudColumn<T>[];
   }
 
   export interface AvueCrudOption<T = any> extends AvueFormOption<T> {
@@ -137,7 +171,7 @@ declare module "@smallwei/avue" {
     /** 菜单按钮的文字信息 */
     menuBtnTitle?: string;
     /** 表格右侧行操作按钮的排列方式 */
-    menuPosition?: Position;
+    menuPosition?: MenuPosition;
     /** 表格勾选列 */
     selection?: boolean;
     /** 表格勾选列的宽度 */
@@ -271,7 +305,7 @@ declare module "@smallwei/avue" {
     /** 表格弹窗是否需要遮罩层 */
     dialogModal?: boolean;
     /** 表格弹窗框按钮的位置 */
-    dialogMenuPosition?: Position;
+    dialogMenuPosition?: MenuPosition;
     /** 表格弹窗顶部的距离 */
     dialogTop?: string | number;
     /** 表格弹窗方式 */
@@ -289,7 +323,7 @@ declare module "@smallwei/avue" {
     /** 展示半收缩按钮的触发条件个数 */
     searchIndex?: number;
     /** 搜索操作按钮的位置 */
-    searchMenuPosition?: Position;
+    searchMenuPosition?: MenuPosition;
     /** 搜索框辅助文字 */
     searchPlaceholder?: string;
     /** 搜索项栅格占据的列数 */
@@ -299,9 +333,9 @@ declare module "@smallwei/avue" {
     /** 搜索框的标题宽度 */
     searchLabelWidth?: number | string;
     /** 搜索项标题位置	 */
-    searchLabelPosition?: Position;
+    searchLabelPosition?: LabelPosition;
     /** 搜索框整体布局大小 */
-    searchSize?: string;
+    searchSize?: Size;
     /** 搜索操作按钮栅格占据的列数 */
     searchMenuSpan?: number;
     /** 首次加载是否显示搜索 */
@@ -337,28 +371,6 @@ declare module "@smallwei/avue" {
     /** 分组表单,放入正常的column配置就行 */
     group?: Array<AvueCrudGroup<T>>;
   }
-
-  export interface PageOption {
-    /** 总条数,如果为0的话不显示分页 */
-    total?: number;
-    /** 当前页数 */
-    currentPage?: number;
-    /** 是否为分页按钮添加背景色 */
-    background?: boolean;
-    /** 每页显示条目个数，支持.sync修饰符 */
-    pageSize?: number;
-    /** 分页的数组分段 */
-    pageSizes?: number[];
-    /** 页码按钮的数量，当总页数超过该值时会折叠 */
-    pagerCount?: number;
-  }
-  export type CellEvent<T> = (row: any, column: TableColumnCtx<T>, cell: any, event: Event) => void;
-  export type RowEvent<T> = (row: any, column: TableColumnCtx<T>, event: Event) => void;
-  export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
-  export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
-  // export type AvueCrudDefaults<T = any, K = T extends object ? keyof T : string> = {
-  //   [key in K]?: AvueCrudColumn<T>;
-  // };
 
   export interface AvueCrudProps<T = any> {
     /** 表单绑定值 v-model */
@@ -535,20 +547,20 @@ declare module "@smallwei/avue" {
   export interface AvueCrudSlots<T = any> {
     empty: () => VNode[];
     expand: (arg: { row: T; index: number }) => VNode[];
-    menu: (arg: { row: T; type: string; disabled: boolean; size: string; index: number }) => VNode[];
-    "menu-form": (arg: { disabled: boolean; size: string; type: FormType }) => VNode[];
+    menu: (arg: { row: T; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
+    "menu-form": (arg: { disabled: boolean; size: Size; type: FormType }) => VNode[];
     header: () => VNode[];
     footer: () => VNode[];
     page: () => VNode[];
     "menu-btn": () => VNode[];
-    "menu-left": (arg: { size: string }) => VNode[];
-    "menu-right": (arg: { size: string }) => VNode[];
-    search: (arg: { row: T; search: T; size: string }) => VNode[];
-    "search-menu": (arg: { row: T; search: T; disabled: boolean; size: string }) => VNode[];
+    "menu-left": (arg: { size: Size }) => VNode[];
+    "menu-right": (arg: { size: Size }) => VNode[];
+    search: (arg: { row: T; search: T; size: Size }) => VNode[];
+    "search-menu": (arg: { row: T; search: T; disabled: boolean; size: Size }) => VNode[];
     [x: `${string}-search`]: (arg: {
       value: any;
       column: AvueCrudColumn<T>;
-      size: string;
+      size: Size;
       disabled: boolean;
       dic: DicItem[];
     }) => VNode[];
@@ -558,12 +570,12 @@ declare module "@smallwei/avue" {
       value: any;
       column: AvueCrudColumn<T>;
       label: string;
-      size: string;
+      size: Size;
       readonly: boolean;
       disabled: boolean;
       dic: DicItem[];
     }) => VNode[];
-    [x: string]: (arg: { row: T; index: number; dic: DicItem[]; size: string; label: string }) => VNode[];
+    [x: string]: (arg: { row: T; index: number; dic: DicItem[]; size: Size; label: string }) => VNode[];
     // [x: string]: (arg: {
     //   value?: any;
     //   row?: T;
@@ -572,7 +584,7 @@ declare module "@smallwei/avue" {
     //   dic?: DicItem[];
     //   disabled?: boolean;
     //   readonly?: boolean;
-    //   size?: string;
+    //   size?: Size;
     //   label?: string;
     //   search?: T;
     //   column?: AvueCrudColumn<T>;

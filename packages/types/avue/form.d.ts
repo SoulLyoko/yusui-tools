@@ -3,9 +3,15 @@ import type { UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
 import type { RuleItem } from "async-validator";
 
 declare module "@smallwei/avue" {
+  export type FormType = "add" | "edit" | "view";
+  export type AvueFormDefaults = Record<string, AvueFormColumn>;
+  // export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
+  //   [key in K]?: AvueFormColumn<T>;
+  // };
   export interface FormItemRule extends RuleItem {
     trigger?: Arrayable<string>;
   }
+
   export interface AvueFormColumn<T = any, K = keyof T extends string ? keyof T : string> {
     /** 标题名称 */
     label?: string;
@@ -42,7 +48,7 @@ declare module "@smallwei/avue" {
     /** 标题名称宽度 */
     labelWidth?: number | string;
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
-    labelPosition?: Position;
+    labelPosition?: LabelPosition;
     /** 文字提示 */
     tip?: string;
     /** 文字提示展示方向 */
@@ -136,7 +142,7 @@ declare module "@smallwei/avue" {
     /** 标题宽度 */
     labelWidth?: number | string;
     /** 标题位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
-    labelPosition?: Position;
+    labelPosition?: LabelPosition;
     /** 标题的后缀 */
     labelSuffix?: string;
     /** 回车按键触发提交表单 */
@@ -150,7 +156,7 @@ declare module "@smallwei/avue" {
     /** 表单操作菜单栅格占据的列数 */
     menuSpan?: number;
     /** 表单操作菜单按钮的排列方式 */
-    menuPosition?: Position;
+    menuPosition?: MenuPosition;
     /** 重值不清空的字段 */
     clearExclude?: string[];
     /** 提交按钮 */
@@ -168,12 +174,6 @@ declare module "@smallwei/avue" {
     /** 间隔 */
     gutter?: number;
   }
-
-  export type FormType = "add" | "edit" | "view";
-  export type AvueFormDefaults = Record<string, AvueFormColumn>;
-  // export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
-  //   [key in K]?: AvueFormColumn<T>;
-  // };
 
   export interface AvueFormProps<T = any> {
     /** 表单绑定值 v-model */
@@ -231,7 +231,7 @@ declare module "@smallwei/avue" {
     dicInit: () => void;
   }
   export interface AvueFormSlots<T = any> {
-    "menu-form": (arg: { disabled: boolean; size: string }) => VNode[];
+    "menu-form": (arg: { disabled: boolean; size: Size }) => VNode[];
     [x: `${string}-label`]: (arg: { column: AvueFormColumn<T> }) => VNode[];
     [x: `${string}-header`]: (arg: { column: AvueFormColumn<T> }) => VNode[];
     [x: `${string}-error`]: (arg: {
@@ -239,14 +239,14 @@ declare module "@smallwei/avue" {
       value: any;
       readonly: boolean;
       disabled: boolean;
-      size: string;
+      size: Size;
       dic: DicItem[];
     }) => VNode[];
     [x: string]: (arg: {
       value: any;
       column: AvueFormColumn<T>;
       label: string;
-      size: string;
+      size: Size;
       readonly: boolean;
       disabled: boolean;
       dic: DicItem[];
