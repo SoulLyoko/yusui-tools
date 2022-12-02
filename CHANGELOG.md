@@ -1,3 +1,12 @@
+## [1.6.7](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.6...v1.6.7) (2022-12-02)
+
+
+### Features
+
+* **plugins:** uniUIPatch ([d47927f](https://github.com/SoulLyoko/yusui-tools/commit/d47927f471f3e2ac33da8db224e7a594cfd9837e))
+
+
+
 ## [1.6.6](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.5...v1.6.6) (2022-12-01)
 
 
