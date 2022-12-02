@@ -80,7 +80,7 @@ export default defineConfig({
             },
             {
               text: "emitter",
-              items: [{ text: "mittASync", link: "/utils/emitter/mittASync" }]
+              items: [{ text: "mittAsync", link: "/utils/emitter/mittAsync" }]
             },
             {
               text: "file",

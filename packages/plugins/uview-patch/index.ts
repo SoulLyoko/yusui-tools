@@ -48,7 +48,7 @@ export function uviewPatch(): Plugin {
       if (!id.endsWith(".vue")) return;
       const match = id.slice(id.lastIndexOf("/")).match(/(u-.*).vue/);
       const component = match?.[1];
-      if (component && !Object.keys(componentsEventsToFix).includes(component)) {
+      if (component && Object.keys(componentsEventsToFix).includes(component)) {
         code = fixEvents(code, component);
       }
       if (component === "u-back-top") {
