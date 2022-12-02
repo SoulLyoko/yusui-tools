@@ -1,3 +1,12 @@
+## [1.6.8](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.7...v1.6.8) (2022-12-02)
+
+
+### Bug Fixes
+
+* **plugins:** uviewPatch bug ([9e2c72d](https://github.com/SoulLyoko/yusui-tools/commit/9e2c72d44c57e7cea0906f21bac79868b8a88a7f))
+
+
+
 ## [1.6.7](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.6...v1.6.7) (2022-12-02)
 
 
