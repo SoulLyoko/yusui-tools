@@ -1,3 +1,12 @@
+## [1.6.9](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.8...v1.6.9) (2022-12-02)
+
+
+### Bug Fixes
+
+* **plugins:** add fixUniDataSelectChange to uniUIPatch ([9308527](https://github.com/SoulLyoko/yusui-tools/commit/93085271d0db972f2a0b2cc20ebc7dfe044fca0e))
+
+
+
 ## [1.6.8](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.7...v1.6.8) (2022-12-02)
 
 
