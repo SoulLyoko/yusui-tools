@@ -1,10 +1,9 @@
-import type { Data } from "@yusui/types";
 import type { CrudState, Emitter } from "./types";
 
 import { cloneDeep, get, pick } from "lodash-unified";
 import { filterObj, to } from "@yusui/uni-utils";
 
-export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
+export function useCrudMethods<T extends object = object, P extends object = object>({
   crudState,
   emitter
 }: {
@@ -127,7 +126,7 @@ export function useCrudMethods<T extends Data = Data, P extends Data = Data>({
     if (formType !== "add" && getInfo) {
       const res = await getInfo(urlFormData[rowKey as keyof typeof urlFormData]);
       console.log("getFormData ~ res", res);
-      crudState.formData = get({ res }, dataPath, {});
+      crudState.formData = get({ res }, dataPath, {} as T);
       await emitter.emitAsync("afterGetInfo", res);
     } else {
       crudState.formData = { ...crudState.formData, ...urlFormData };

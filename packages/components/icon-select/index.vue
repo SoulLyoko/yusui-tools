@@ -27,7 +27,7 @@ import { useVModel } from "@vueuse/core";
 import { Icon } from "@iconify/vue";
 
 const props = defineProps({
-  modelValue: { type: String }
+  modelValue: { type: String, default: "" }
 });
 const modelValue = useVModel(props);
 </script>

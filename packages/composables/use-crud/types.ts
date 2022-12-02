@@ -4,7 +4,7 @@ import type { useCrudMethods } from "./methods";
 
 export interface CrudOption<T, P> {
   /** 行键值(id/_id/uuid/...) */
-  rowKey: string;
+  rowKey: keyof T;
   /** 获取数据列表方法 */
   getList: (() => Promise<any>) | ((params?: P) => Promise<any>) | ((params: P) => Promise<any>);
   /** 添加数据方法 */

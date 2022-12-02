@@ -27,11 +27,11 @@
     "@yusui/utils": "workspace:*",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
-    "lodash-unified": "1.0.2"
+    "lodash-unified": "1.0.3"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
-    "element-plus": "^2.2.19",
-    "vue": "^3.2.37"
+    "element-plus": "^2.2.25",
+    "vue": "^3.2.45"
   }
 }

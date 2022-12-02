@@ -21,7 +21,7 @@
     "async-validator": "^4.2.5"
   },
   "devDependencies": {
-    "element-plus": "^2.2.19",
-    "vue": "^3.2.37"
+    "element-plus": "^2.2.25",
+    "vue": "^3.2.45"
   }
 }
