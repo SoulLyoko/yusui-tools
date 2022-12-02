@@ -1,5 +1,7 @@
 # avuePatch
 
+A vite plugin for fixing `@smallwei/avue`'s bug.
+
 ## Usage
 
 ```js

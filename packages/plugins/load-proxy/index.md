@@ -14,7 +14,8 @@ VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:80
 import { loadProxy } from "@yusui/plugins";
 
 export default {
-  plugins: [loadProxy()]
+  /** default key is "VITE_PROXY" */
+  plugins: [loadProxy({ key: "VITE_PROXY" })]
 };
 ```
 

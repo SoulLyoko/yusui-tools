@@ -29,15 +29,13 @@ const componentsEventsToFix = {
   "u-list": ["scroll", "scrolltolower", "scrolltoupper"]
 };
 
-export function fixEvents(code: string, component?: string) {
-  if (!component || !Object.keys(componentsEventsToFix).includes(component)) return code;
+export function fixEvents(code: string, component: string) {
   const emits = componentsEventsToFix[component as keyof typeof componentsEventsToFix];
   code = code.replace(/export default {/, `export default {\nemits:[${emits.map(e => '"' + e + '"')}],`);
   return code;
 }
 
-export function fixBackTop(code: string, component?: string) {
-  if (component !== "u-back-top") return code;
+export function fixBackTop(code: string) {
   code = code.replace("uni.$u.mpMixin, uni.$u.mixin", "mpMixin, mixin");
   return code;
 }
@@ -50,8 +48,12 @@ export function uviewPatch(): Plugin {
       if (!id.endsWith(".vue")) return;
       const match = id.slice(id.lastIndexOf("/")).match(/(u-.*).vue/);
       const component = match?.[1];
-      code = fixEvents(code, component);
-      code = fixBackTop(code, component);
+      if (component && !Object.keys(componentsEventsToFix).includes(component)) {
+        code = fixEvents(code, component);
+      }
+      if (component === "u-back-top") {
+        code = fixBackTop(code);
+      }
       return code;
     }
   };

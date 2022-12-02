@@ -7,6 +7,7 @@ importers:
       '@commitlint/cli': ^17.1.2
       '@commitlint/config-conventional': ^17.1.0
       '@dcloudio/types': ^3.0.15
+      '@dcloudio/uni-ui': ^1.4.23
       '@iconify/vue': 4.0.0
       '@jsdevtools/version-bump-prompt': ^6.1.0
       '@smallwei/avue': ^3.2.3
@@ -50,6 +51,7 @@ importers:
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
       '@dcloudio/types': 3.0.15
+      '@dcloudio/uni-ui': 1.4.23
       '@iconify/vue': 4.0.0_vue@3.2.40
       '@jsdevtools/version-bump-prompt': 6.1.0
       '@smallwei/avue': 3.2.3
@@ -610,6 +612,10 @@ packages:
   /@dcloudio/uni-app/3.0.0-alpha-3000020210521001:
     resolution: {integrity: sha512-Knjp8TbOtJgwE/THx32YuidATTIZzmGktYUAzvACl497It6crOWpcyTp9j58Kw5n3HzMl7iB0FSuFtleRyL4hw==}
     dev: false
+
+  /@dcloudio/uni-ui/1.4.23:
+    resolution: {integrity: sha512-FJRkhL240gin9WvOunY38Yi2/0FzTLVlEI3dxcjzaV1oYa81o+IWEf/29YDiRrsHuvYDk9g600QgiZLC+A6ycA==}
+    dev: true
 
   /@docsearch/css/3.2.1:
     resolution: {integrity: sha512-gaP6TxxwQC+K8D6TRx5WULUWKrcbzECOPA2KCVMuI+6C7dNiGUk5yXXzVhc5sld79XKYLnO9DRTI4mjXDYkh+g==}
