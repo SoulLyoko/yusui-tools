@@ -68,7 +68,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
         success: async ({ confirm }) => {
           if (confirm) {
             try {
-              const res = await remove(row[rowKey]);
+              const res = await remove(row[rowKey as keyof T]);
               uni.showToast({ title: "删除成功", icon: "success" });
               await emitter.emitAsync("afterDel", res);
               handleRefresh();
