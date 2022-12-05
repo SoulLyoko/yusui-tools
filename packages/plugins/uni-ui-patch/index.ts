@@ -14,16 +14,10 @@ export function uniCalendarSlot(code: string, component?: string) {
 
 export function fixUniDataSelectChange(code: string, component?: string) {
   if (component !== "uni-data-select") return code;
-  return code.replace(
-    `emit(val) {
-				this.$emit('change', val)
-				this.$emit('input', val)
-				this.$emit('update:modelValue', val)`,
-    `emit(val) {
-				this.$emit('input', val)
-				this.$emit('update:modelValue', val)
-        this.$emit('change', val)`
-  );
+  code = code
+    .replace(`this.$emit('change', val)`, "")
+    .replace(`this.$emit('update:modelValue', val)`, `this.$emit('update:modelValue', val);this.$emit('change', val)`);
+  return code;
 }
 
 export function uniUIPatch(): Plugin {
