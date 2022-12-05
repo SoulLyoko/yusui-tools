@@ -1,3 +1,13 @@
+## [1.6.11](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.10...v1.6.11) (2022-12-05)
+
+
+### Bug Fixes
+
+* **components:** v-icon type ([14ed7e8](https://github.com/SoulLyoko/yusui-tools/commit/14ed7e89424b65308d913e8a0032553e7dcac410))
+* **composables:** useCrud rowKey type ([034f346](https://github.com/SoulLyoko/yusui-tools/commit/034f346b8085cd6bd016a1322e0156cee33d16aa))
+
+
+
 ## [1.6.10](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.9...v1.6.10) (2022-12-05)
 
 
