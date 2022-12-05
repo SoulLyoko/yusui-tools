@@ -1,3 +1,12 @@
+## [1.6.10](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.9...v1.6.10) (2022-12-05)
+
+
+### Bug Fixes
+
+* **composbles:** useCrud useCrudMethodsOptions ([f5c188f](https://github.com/SoulLyoko/yusui-tools/commit/f5c188f7754dcb08d76b388fa3d96a4480807ccc))
+
+
+
 ## [1.6.9](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.8...v1.6.9) (2022-12-02)
 
 
