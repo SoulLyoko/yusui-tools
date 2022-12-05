@@ -1,6 +1,5 @@
-import type { AvueCrudOption, PageOption, FormType } from "@smallwei/avue";
+import type { AvueCrudOption, AvueCrudProps, PageOption, FormType } from "@smallwei/avue";
 import type { EmitterAsync } from "@yusui/utils";
-import type { useCrudMethods } from "./methods";
 
 export interface CrudOption<T, P> {
   /** 行键值(id/_id/uuid/...) */
@@ -75,6 +74,22 @@ export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>,
   pageOption?: PageOption;
 }
 
-export type UseCrudMethodsReturns = ReturnType<typeof useCrudMethods>;
+export type UseCrudMethodsOptions<T, P> = {
+  getDataList?: () => any;
+  handleSave?: AvueCrudProps<T>["onRowSave"];
+  handleUpdate?: AvueCrudProps<T>["onRowUpdate"];
+  handleDel?: AvueCrudProps<T>["onRowDel"];
+  batchDel?: () => any;
+  filterRow?: (row: T) => T;
+  filterParams?: (params: P) => P;
+  searchChange?: (form: P, done: () => void) => any;
+  searchReset?: () => any;
+  selectionChange?: AvueCrudProps<T>["onSelectionChange"];
+  pageSizeChange?: AvueCrudProps<T>["onSizeChange"];
+  pageCurrentChange?: AvueCrudProps<T>["onCurrentChange"];
+  sortChange?: AvueCrudProps<T>["onSortChange"];
+  beforeOpen?: AvueCrudProps<T>["before-open"];
+  beforeClose?: AvueCrudProps<T>["before-close"];
+};
 
-export type UseCrudOptions<T, P> = UseCrudStateOptions<T, P> & Partial<UseCrudMethodsReturns>;
+export type UseCrudOptions<T, P> = UseCrudStateOptions<T, P> & UseCrudMethodsOptions<T, P>;

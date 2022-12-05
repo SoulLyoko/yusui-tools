@@ -2,7 +2,6 @@ import type { PageOption, FormType } from "@smallwei/avue";
 import type { UvueListOption, UvueFormOption } from "uvue-crud";
 import type { EmitterAsync } from "@yusui/uni-utils";
 import type { CrudOption as _CrudOption, CrudState as _CrudState } from "@yusui/composables";
-import type { useCrudMethods } from "./methods";
 
 export interface CrudOption<T, P> extends _CrudOption<T, P> {
   getInfo: (() => Promise<any>) | ((params?: any) => Promise<any>) | ((params: any) => Promise<any>);
@@ -59,6 +58,22 @@ export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>,
   pageOption?: PageOption;
 }
 
-export type UseCrudMethodsReturns = ReturnType<typeof useCrudMethods>;
+export type UseCrudMethodsOptions<T> = {
+  getDataList?: () => any;
+  handleDel?: (row: T) => any;
+  loadMore?: () => any;
+  handleRefresh?: () => any;
+  handleSearch?: () => any;
+  filterChange?: () => any;
+  encodeData?: (data: any) => any;
+  decodeData?: (data: any) => any;
+  getFormUrl?: (row: T, formType: string) => string;
+  openForm?: (row: T, formType: string) => any;
+  handleAdd?: (row: T) => any;
+  handleEdit?: (row: T) => any;
+  handleView?: (row: T) => any;
+  getFormData?: (options: any) => any;
+  handleSubmit?: (form: T, loading?: () => void, back?: () => void) => any;
+};
 
-export type UseCrudOptions<T, P> = UseCrudStateOptions<T, P> & Partial<UseCrudMethodsReturns>;
+export type UseCrudOptions<T, P> = UseCrudStateOptions<T, P> & UseCrudMethodsOptions<T>;

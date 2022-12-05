@@ -32,14 +32,12 @@ const componentsEventsToFix = {
 export function fixEvents(code: string, component?: string) {
   if (!component || !Object.keys(componentsEventsToFix).includes(component)) return code;
   const emits = componentsEventsToFix[component as keyof typeof componentsEventsToFix];
-  code = code.replace(/export default {/, `export default {\nemits:[${emits.map(e => '"' + e + '"')}],`);
-  return code;
+  return code.replace(/export default {/, `export default {\nemits:[${emits.map(e => '"' + e + '"')}],`);
 }
 
 export function fixBackTop(code: string, component?: string) {
   if (component !== "u-back-top") return code;
-  code = code.replace("uni.$u.mpMixin, uni.$u.mixin", "mpMixin, mixin");
-  return code;
+  return code.replace("uni.$u.mpMixin, uni.$u.mixin", "mpMixin, mixin");
 }
 
 export function uviewPatch(): Plugin {

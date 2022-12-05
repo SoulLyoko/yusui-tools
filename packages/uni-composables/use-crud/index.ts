@@ -32,7 +32,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
   } = useHooks<T, P>();
 
   /** methods */
-  let {
+  const {
     getDataList,
     handleDel,
     loadMore,
@@ -44,20 +44,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     handleView,
     getFormData,
     handleSubmit
-  } = useCrudMethods<T, P>({ crudState, emitter });
-
-  /** 重置 */
-  getDataList = options.getDataList ?? getDataList;
-  handleDel = options.handleDel ?? handleDel;
-  loadMore = options.loadMore ?? loadMore;
-  handleRefresh = options.handleRefresh ?? handleRefresh;
-  handleSearch = options.handleSearch ?? handleSearch;
-  filterChange = options.filterChange ?? filterChange;
-  handleAdd = options.handleAdd ?? handleAdd;
-  handleEdit = options.handleEdit ?? handleEdit;
-  handleView = options.handleView ?? handleView;
-  getFormData = options.getFormData ?? getFormData;
-  handleSubmit = options.handleSubmit ?? handleSubmit;
+  } = useCrudMethods<T, P>({ crudState, emitter, options });
 
   /** 使用v-bind绑定的值 */
   const bindList = computed(() => ({

@@ -31,6 +31,9 @@ function useRows(): RowData[] {
 
 window.console.log = () => {};
 
+const done = () => {};
+const loading = () => {};
+
 describe("useCrud", () => {
   const rows = useRows();
   function getList() {
@@ -101,7 +104,7 @@ describe("useCrud", () => {
     let saveRes: Res = {};
     beforeSave(row => (row.age = newAge));
     afterSave(res => (saveRes = res));
-    await handleSave(saveRow);
+    await handleSave(saveRow, done, loading);
     expect(saveRes.msg).toBe("success");
     expect(saveRes.data.age).toEqual(newAge);
     expect(crudState.tableData).toEqual([...useRows(), { id: "6", name: "赵六", age: 60 }]);
@@ -113,7 +116,7 @@ describe("useCrud", () => {
     let updateRes: Res = {};
     beforeUpdate(row => (row.age = newAge));
     afterUpdate(res => (updateRes = res));
-    await handleUpdate(updateRow, 0);
+    await handleUpdate(updateRow, 0, done, loading);
     expect(updateRes.msg).toBe("success");
     expect(updateRes.data.age).toEqual(newAge);
     expect(crudState.tableData).toEqual([...useRows(), { ...updateRow, age: newAge }]);
@@ -125,7 +128,7 @@ describe("useCrud", () => {
     let delRes: Res = {};
     beforeDel(row => (row.id = newDelId));
     afterDel(res => (delRes = res));
-    await handleDel(delRow);
+    await handleDel(delRow, 0);
     expect(delRes.msg).toBe("success");
     expect(delRes.data).toEqual(newDelId);
     expect(crudState.tableData.length).toBe(useRows().length);
@@ -161,14 +164,14 @@ describe("useCrud", () => {
   it("handleSave reject", async () => {
     let isReject = false;
     beforeSave(() => Promise.reject());
-    await handleSave({}, undefined, () => (isReject = true));
+    await handleSave({}, done, () => (isReject = true));
     expect(isReject).toBeTruthy();
   });
 
   it("handleUpdate reject", async () => {
     let isReject = false;
     beforeUpdate(() => Promise.reject());
-    await handleUpdate({}, undefined, undefined, () => (isReject = true));
+    await handleUpdate({}, 0, done, () => (isReject = true));
     expect(isReject).toBeTruthy();
   });
 
@@ -176,7 +179,7 @@ describe("useCrud", () => {
     let isReject = true;
     beforeDel(() => Promise.reject());
     afterDel(() => (isReject = false));
-    await handleDel({});
+    await handleDel({}, 0);
     expect(isReject).toBeTruthy();
   });
 
@@ -203,19 +206,19 @@ describe("useCrud mock", () => {
 
   it("handleSave", async () => {
     const saveRow = { name: "赵六", age: 60 };
-    await handleSave(saveRow);
+    await handleSave(saveRow, done, loading);
     expect(crudState.tableData.length).toBe(useRows().length + 1);
   });
 
   it("handleUpdate", async () => {
     const updateRow = { id: "1", name: "刘一", age: 11 };
-    await handleUpdate(updateRow);
+    await handleUpdate(updateRow, 0, done, loading);
     expect(crudState.tableData[0]).toEqual(updateRow);
   });
 
   it("handleDel", async () => {
     const delRow = crudState.tableData[crudState.tableData.length - 1];
-    await handleDel(delRow);
+    await handleDel(delRow, 0);
     expect(crudState.tableData.length).toEqual(useRows().length);
   });
 

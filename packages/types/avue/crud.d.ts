@@ -432,7 +432,7 @@ declare module "@smallwei/avue" {
     /** 点击搜索后触发该事件 */
     onSearchChange?: (form: any, done: () => void) => any;
     /** 清空搜索回调方法 */
-    onSearchReset?: () => void;
+    onSearchReset?: () => any;
     /** dateBtn为true时的选择日期回调方法 */
     onDateChange?: (data: { value: string[] }) => any;
     /** 加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
