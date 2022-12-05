@@ -1,3 +1,13 @@
+## [1.6.12](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.11...v1.6.12) (2022-12-05)
+
+
+### Bug Fixes
+
+* **components:** downgrade @iconify/vue version ([4ada197](https://github.com/SoulLyoko/yusui-tools/commit/4ada1977bbff68ecb8e88f3a76f44ead8d6554ee))
+* **plugins:** uniUIPatch ([a89c01d](https://github.com/SoulLyoko/yusui-tools/commit/a89c01ddd4a6dfe4bee89b53153c0dc20de460ce))
+
+
+
 ## [1.6.11](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.10...v1.6.11) (2022-12-05)
 
 
