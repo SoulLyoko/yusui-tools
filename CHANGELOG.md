@@ -1,3 +1,12 @@
+## [1.6.13](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.12...v1.6.13) (2022-12-07)
+
+
+### Features
+
+* **plugins:** add fixFormGroup for avuePatch ([331e94a](https://github.com/SoulLyoko/yusui-tools/commit/331e94aa2868d5e424cb7bcf95576fea47bfe9b5))
+
+
+
 ## [1.6.12](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.11...v1.6.12) (2022-12-05)
 
 
