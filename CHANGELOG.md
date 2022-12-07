@@ -1,3 +1,12 @@
+## [1.6.16](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.15...v1.6.16) (2022-12-07)
+
+
+### Bug Fixes
+
+* **types:** rowCellAdd ([0d2072b](https://github.com/SoulLyoko/yusui-tools/commit/0d2072b68c077c22c65a3bfe97d48a90a72e5967))
+
+
+
 ## [1.6.15](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.14...v1.6.15) (2022-12-07)
 
 
