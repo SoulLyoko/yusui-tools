@@ -1,3 +1,12 @@
+## [1.6.15](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.14...v1.6.15) (2022-12-07)
+
+
+### Bug Fixes
+
+* **uni-composables:** make beforeXxx hooks earlier ([3407c6a](https://github.com/SoulLyoko/yusui-tools/commit/3407c6a6949206d94247542f36d8ce2c0721b4a9))
+
+
+
 ## [1.6.14](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.13...v1.6.14) (2022-12-07)
 
 
