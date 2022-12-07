@@ -44,19 +44,20 @@ import Demo from "./demo.vue"
 
 ## CrudOption
 
-| 名称      | 类型     | 默认值                   | 说明                     |
-| --------- | -------- | ------------------------ | ------------------------ |
-| rowKey    | String   | tableOption.rowKey??"id" | 行键值(id/\_id/uuid/...) |
-| getList   | Function | 获取模拟数据             | 获取数据列表方法         |
-| create    | Function | 新增模拟数据             | 添加数据方法             |
-| update    | Function | 更新模拟数据             | 编辑数据方法             |
-| remove    | Function | 尚处模拟数据             | 删除单条数据方法         |
-| dataPath  | String   | "res.rows"               | 接口返回数据的属性路径   |
-| totalPath | String   | "res.total"              | 接口返回总数的属性路径   |
-| currKey   | String   | "pageNum"                | 当前页 key               |
-| sizeKey   | String   | "pageSize"               | 每页条数 key             |
-| isPage    | Boolean  | true                     | 是否携带分页参数         |
-| isSort    | Boolean  | true                     | 是否携带排序参数         |
+| 名称       | 类型     | 默认值                   | 说明                     |
+| ---------- | -------- | ------------------------ | ------------------------ |
+| rowKey     | String   | tableOption.rowKey??"id" | 行键值(id/\_id/uuid/...) |
+| getList    | Function | 获取模拟数据             | 获取数据列表方法         |
+| create     | Function | 新增模拟数据             | 添加数据方法             |
+| update     | Function | 更新模拟数据             | 编辑数据方法             |
+| remove     | Function | 尚处模拟数据             | 删除单条数据方法         |
+| dataPath   | String   | "res.data.records"       | 接口返回数据的属性路径   |
+| totalPath  | String   | "res.data.total"         | 接口返回总数的属性路径   |
+| currKey    | String   | "current"                | 当前页 key               |
+| sizeKey    | String   | "size"                   | 每页条数 key             |
+| isPage     | Boolean  | true                     | 是否携带分页参数         |
+| isSort     | Boolean  | true                     | 是否携带排序参数         |
+| delConfirm | Boolean  | true                     | 删除前是否提示确认       |
 
 ## PageOption
 

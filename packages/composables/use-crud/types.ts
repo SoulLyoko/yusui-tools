@@ -24,6 +24,8 @@ export interface CrudOption<T, P> {
   isPage: Boolean;
   /** 是否携带排序参数 */
   isSort: Boolean;
+  /** 删除前是否提示确认 */
+  delConfirm: Boolean;
 }
 
 export interface SortOption {

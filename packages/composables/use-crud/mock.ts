@@ -17,7 +17,7 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
         { immediate: true, deep: true }
       );
     } catch (error) {
-      console.log("🚀 ~ file: mock.ts ~ line 21 ~ error", error);
+      console.log(error);
     }
   }
   function getList(params: P) {

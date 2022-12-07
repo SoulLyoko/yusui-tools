@@ -21,7 +21,8 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
           currKey: "current", // 当前页key
           sizeKey: "size", // 每页条数key
           isPage: true, // 是否携带分页参数
-          isSort: true // 是否携带排序参数
+          isSort: true, // 是否携带排序参数
+          delConfirm: true // 删除前是否提示确认
         },
         pageOption: {
           total: 0, // 总条数

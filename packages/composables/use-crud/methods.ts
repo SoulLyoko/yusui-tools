@@ -24,14 +24,15 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const getDataList =
     options.getDataList ??
     (async () => {
-      const { getList, dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption;
-      if (!getList) return;
+      const { dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption;
       const { currentPage, pageSize } = crudState.pageOption;
       const page = isPage ? { [currKey]: currentPage, [sizeKey]: pageSize } : {};
       const sort = isSort ? crudState.sortOption : {};
       const params = cloneDeep({ ...crudState.searchForm, ...page, ...sort, ...crudState.queryForm }) as P;
       const [err] = await to(emitter.emitAsync("beforeGetList", params));
       if (err !== null) return;
+      const { getList } = crudState.crudOption;
+      if (!getList) return;
       crudState.tableLoading = true;
       // 延迟请求，解决avue渲染报错
       await sleep(100);
@@ -59,11 +60,11 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const handleSave =
     options.handleSave ??
     (async (row: T, done?: () => void, loading?: () => void) => {
-      const { rowKey, create } = crudState.crudOption;
-      if (!create) return loading?.();
       const data = cloneDeep({ ...crudState.formData, ...row });
       const [err] = await to(emitter.emitAsync("beforeSave", data));
       if (err !== null) return loading?.();
+      const { rowKey, create } = crudState.crudOption;
+      if (!create) return loading?.();
       delete data[rowKey];
       try {
         const res = await create(filterRow(data));
@@ -86,11 +87,11 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const handleUpdate =
     options.handleUpdate ??
     (async (row: T, index?: number, done?: () => void, loading?: () => void) => {
-      const { update } = crudState.crudOption;
-      if (!update) return loading?.();
       const data = cloneDeep({ ...crudState.formData, ...row });
       const [err] = await to(emitter.emitAsync("beforeUpdate", data));
       if (err !== null) return loading?.();
+      const { update } = crudState.crudOption;
+      if (!update) return loading?.();
       try {
         const res = await update(filterRow(data));
         ElMessage.success("保存成功");
@@ -109,12 +110,12 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const handleDel =
     options.handleDel ??
     (async (row: T) => {
-      const { rowKey, remove } = crudState.crudOption;
-      if (!remove) return;
       const data = cloneDeep(row);
       const [err] = await to(emitter.emitAsync("beforeDel", data));
       if (err !== null) return;
-      await ElMessageBox.confirm("确认进行删除操作？", "提示", { type: "warning" });
+      const { rowKey, remove, delConfirm } = crudState.crudOption;
+      if (!remove) return;
+      delConfirm && (await ElMessageBox.confirm("确认进行删除操作？", "提示", { type: "warning" }));
       try {
         const res = await remove(data[rowKey]);
         ElMessage.success("删除成功");
@@ -130,14 +131,14 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const batchDel =
     options.batchDel ??
     (async () => {
-      const { rowKey, remove } = crudState.crudOption;
-      if (!remove) return;
       const data = cloneDeep(crudState.dataSelections);
       const [err] = await to(emitter.emitAsync("beforeBatchDel", data));
       if (err !== null) return;
+      const { rowKey, remove, delConfirm } = crudState.crudOption;
+      if (!remove) return;
       const length = data.length;
       if (!length) return ElMessage.warning("请选择删除项");
-      await ElMessageBox.confirm(`确认删除所选的${length}条数据？`, "提示", { type: "warning" });
+      delConfirm && (await ElMessageBox.confirm(`确认删除所选的${length}条数据？`, "提示", { type: "warning" }));
       const ids = data
         .map(item => item[rowKey])
         // 根据后端接口传数组或者逗号拼接的字符串
