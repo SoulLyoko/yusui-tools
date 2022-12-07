@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as a}from"./app.ddddc498.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"types/avue/index.md"}'),n={name:"types/avue/index.md"};function r(s,o,c,p,d,i){return t(),a("div")}const f=e(n,[["render",r]]);export{m as __pageData,f as default};
