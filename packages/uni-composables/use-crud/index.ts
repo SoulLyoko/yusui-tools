@@ -43,7 +43,11 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     handleEdit,
     handleView,
     getFormData,
-    handleSubmit
+    handleSubmit,
+    encodeData,
+    decodeData,
+    getFormUrl,
+    openForm
   } = useCrudMethods<T, P>({ crudState, emitter, options });
 
   /** 使用v-bind绑定的值 */
@@ -95,6 +99,10 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     handleView,
     getFormData,
     handleSubmit,
+    encodeData,
+    decodeData,
+    getFormUrl,
+    openForm,
     beforeGetList,
     afterGetList,
     beforeDel,

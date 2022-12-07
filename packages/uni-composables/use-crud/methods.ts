@@ -23,13 +23,15 @@ export function useCrudMethods<T extends object = object, P extends object = obj
         crudState.pageOption.currentPage = 1;
         crudState.listData = [];
       }
-      const { getList, dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption;
+      const { dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption;
       const { currentPage, pageSize } = crudState.pageOption;
       const page = isPage ? { [currKey]: currentPage, [sizeKey]: pageSize } : {};
       const sort = isSort ? crudState.sortOption : {};
       const params = cloneDeep({ ...crudState.searchForm, ...page, ...sort, ...crudState.queryForm }) as P;
       const [err] = await to(emitter.emitAsync("beforeGetList", params));
       if (err !== null) return;
+      const { getList } = crudState.crudOption;
+      if (!getList) return;
       crudState.loadStatus = "loading";
       try {
         const res = await getList(params);
@@ -56,12 +58,11 @@ export function useCrudMethods<T extends object = object, P extends object = obj
   const handleDel =
     options.handleDel ??
     (async (row: T) => {
-      const { rowKey, remove } = crudState.crudOption;
-      if (!remove) return;
       const data = cloneDeep(row);
       const [err] = await to(emitter.emitAsync("beforeDel", data));
       if (err !== null) return;
-      await emitter.emitAsync("beforeDel", row);
+      const { rowKey, remove } = crudState.crudOption;
+      if (!remove) return;
       uni.showModal({
         title: "提示",
         content: "确认进行删除操作？",
@@ -122,15 +123,16 @@ export function useCrudMethods<T extends object = object, P extends object = obj
     options.getFormData ??
     (async (options: any) => {
       const { formType, formData } = options as { formData: string | object; formType: CrudState<T, P>["formType"] };
-      const { getInfo, rowKey, dataPath } = crudState.crudOption;
+      crudState.formType = formType;
       let urlFormData = {};
       if (typeof formData === "string") {
         urlFormData = formData ? decodeData(formData) : {};
       } else if (typeof formData === "object") {
         urlFormData = formData || {};
       }
-      crudState.formType = formType;
-      await emitter.emitAsync("beforeGetInfo", urlFormData);
+      const [err] = await to(emitter.emitAsync("beforeGetInfo", urlFormData));
+      if (err !== null) return;
+      const { getInfo, rowKey, dataPath } = crudState.crudOption;
       if (formType !== "add" && getInfo) {
         const res = await getInfo(urlFormData[rowKey as keyof typeof urlFormData]);
         console.log("getFormData ~ res", res);
@@ -150,11 +152,11 @@ export function useCrudMethods<T extends object = object, P extends object = obj
   const handleSubmit =
     options.handleSubmit ??
     (async (form: T, loading?: () => void, back?: () => void) => {
-      const { create, update, submitBack } = crudState.crudOption;
-      if (!create || !update) loading?.();
       const data = cloneDeep({ ...crudState.formData, ...form });
       const [err] = await to(emitter.emitAsync("beforeSubmit", data));
       if (err !== null) return loading?.();
+      const { create, update, submitBack } = crudState.crudOption;
+      if (!create || !update) loading?.();
       const submitMethod = { add: create, edit: update, view: () => Promise.resolve() };
       try {
         const res = await submitMethod[crudState.formType](filterObj(data));
