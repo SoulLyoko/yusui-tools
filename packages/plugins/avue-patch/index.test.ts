@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 
-import { fixAddRow, fixBtnType } from ".";
+import { fixAddRow, fixBtnType, fixFormGroup } from ".";
 
 describe("avuePatch", () => {
   it("should transform code", () => {
@@ -9,5 +9,6 @@ describe("avuePatch", () => {
     expect(fixBtnType(avue_min_js)).toMatch(
       `type:e.menuText("danger"),text:e.isTextMenu,icon:e.crud.getBtnIcon("delBtn")`
     );
+    expect(fixFormGroup(avue_min_js)).toMatch(`n=this.deepClone(this.tableOption.group)`);
   });
 });

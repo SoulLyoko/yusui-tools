@@ -61,6 +61,16 @@ export function fixBtnType(code: string) {
   );
 }
 
+export function fixFormGroup(code: string) {
+  return (
+    code
+      // prod
+      .replace("n=this.tableOption.group", "n=this.deepClone(this.tableOption.group)")
+      // dev
+      .replace("n = this.tableOption.group", "n = this.deepClone(this.tableOption.group)")
+  );
+}
+
 export function avuePatch(): Plugin {
   return {
     name: "vite-plugin-avue-patch",
@@ -69,6 +79,7 @@ export function avuePatch(): Plugin {
       if (/avue.js|avue.min.js/.test(id)) {
         code = fixBtnType(code);
         code = fixAddRow(code);
+        code = fixFormGroup(code);
         return code;
       }
     }
