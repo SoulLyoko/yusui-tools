@@ -530,10 +530,12 @@ declare module "@smallwei/avue" {
     rowSave: (row: T) => void;
     /** 表单更新调用 */
     rowUpdate: (row: T) => void;
+    /** 行新增 */
+    rowCellAdd: (row: T) => void;
+    /** 行编辑 */
+    rowCell: (row: T, index?: number) => void;
     /** 行删除 */
     rowDel: (row: T, index?: number) => void;
-    /** 打开行编辑 */
-    rowCell: (row: T, index?: number) => void;
     /** 打印表格 */
     rowPrint: () => void;
     /** 导出表格 */
