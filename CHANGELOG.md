@@ -1,3 +1,13 @@
+## [1.6.17](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.16...v1.6.17) (2022-12-08)
+
+
+### Bug Fixes
+
+* **composables:** useCrudOption.clearSelection ([9bd2ecd](https://github.com/SoulLyoko/yusui-tools/commit/9bd2ecd38ecf27b21caf239e3e3b7daf899abf80))
+* **types:** update AvueCrudMethods ([58b59cd](https://github.com/SoulLyoko/yusui-tools/commit/58b59cd700aa0b0ea85d6a43a800126da4cb5133))
+
+
+
 ## [1.6.16](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.15...v1.6.16) (2022-12-07)
 
 
