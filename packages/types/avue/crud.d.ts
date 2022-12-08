@@ -503,8 +503,10 @@ declare module "@smallwei/avue" {
     clearValidate: () => void;
     /** 用于多选表格，清空用户的选择 */
     clearSelection: () => void;
-    /** 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） */
+    /** 用于多选表格，切换某些行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） */
     toggleSelection: (rows?: T[], selected?: boolean) => void;
+    /** 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则可直接设置这一行选中与否 */
+    toggleRowSelection: (rows?: T, selected?: boolean) => void;
     /** 用于多选表格，切换所有行的选中状态 */
     toggleAllSelection: () => void;
     /** 用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） */
