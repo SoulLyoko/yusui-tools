@@ -24,7 +24,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const getDataList =
     options.getDataList ??
     (async () => {
-      const { dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption;
+      const { dataPath, totalPath, currKey, sizeKey, isPage, isSort, clearSelection } = crudState.crudOption;
       const { currentPage, pageSize } = crudState.pageOption;
       const page = isPage ? { [currKey]: currentPage, [sizeKey]: pageSize } : {};
       const sort = isSort ? crudState.sortOption : {};
@@ -47,7 +47,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
         crudState.tableData = [];
         crudState.pageOption.total = 0;
       } finally {
-        crudRef?.value?.selectClear?.();
+        clearSelection && crudRef?.value?.selectClear?.();
         crudState.tableLoading = false;
       }
     });

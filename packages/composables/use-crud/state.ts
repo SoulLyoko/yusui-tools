@@ -22,7 +22,8 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
           sizeKey: "size", // 每页条数key
           isPage: true, // 是否携带分页参数
           isSort: true, // 是否携带排序参数
-          delConfirm: true // 删除前是否提示确认
+          delConfirm: true, // 删除前是否提示确认
+          clearSelection: true // 获取数据后是否清除选择
         },
         pageOption: {
           total: 0, // 总条数

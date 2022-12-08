@@ -26,6 +26,8 @@ export interface CrudOption<T, P> {
   isSort: Boolean;
   /** 删除前是否提示确认 */
   delConfirm: Boolean;
+  /** 获取数据后是否清除选择 */
+  clearSelection: Boolean;
 }
 
 export interface SortOption {
