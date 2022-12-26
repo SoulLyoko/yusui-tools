@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@yusui/types": "workspace:*",
-    "dayjs": "^1.11.6",
+    "dayjs": "^1.11.7",
     "file-saver": "^2.0.5",
     "js-cookie": "^3.0.1",
     "mitt": "^3.0.0",
