@@ -46,13 +46,10 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       lib: {
-        entry: "",
-        fileName: "index",
-        formats: []
+        entry: input
       },
       rollupOptions: {
         external,
-        input,
         output: [
           // {
           //   inlineDynamicImports: true,
@@ -65,7 +62,7 @@ export default defineConfig(({ mode }) => {
             preserveModules: true,
             preserveModulesRoot: "dist",
             entryFileNames(chunkInfo) {
-              return chunkInfo.isEntry ? "index.mjs" : "[name].mjs";
+              return chunkInfo.isEntry ? "[name]/index.mjs" : "[name].mjs";
             },
             format: "es",
             dir: "dist"
@@ -74,7 +71,7 @@ export default defineConfig(({ mode }) => {
             preserveModules: true,
             preserveModulesRoot: "dist",
             entryFileNames(chunkInfo) {
-              return chunkInfo.isEntry ? "index.cjs" : "[name].cjs";
+              return chunkInfo.isEntry ? "[name]/index.cjs" : "[name].cjs";
             },
             exports: "named",
             format: "cjs",
