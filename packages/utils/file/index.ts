@@ -1,4 +1,4 @@
-import { saveAs } from "file-saver";
+import fileSaver from "file-saver";
 
 /**
  * 从url中获取文件名
@@ -19,6 +19,7 @@ export function getFileName(fileUrl: string, ext = true) {
  * @param {String} filename 文件名
  */
 export function downloadFile(data: string | Blob, filename?: string) {
+  const { saveAs } = fileSaver;
   if (typeof data === "string" && data.endsWith(".pdf")) {
     fetch(data)
       .then(res => res.blob())
