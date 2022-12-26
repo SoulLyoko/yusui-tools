@@ -1,3 +1,13 @@
+# [1.7.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.17...v1.7.0) (2022-12-26)
+
+
+### Bug Fixes
+
+* upgrade vite4.x ([1249c1e](https://github.com/SoulLyoko/yusui-tools/commit/1249c1ec1cc4d5d7b5d82c80d379eb1fec850b57))
+* **utils:** imports ([217061e](https://github.com/SoulLyoko/yusui-tools/commit/217061ed36529c61ce4e1a8612b504854efa2b1c))
+
+
+
 ## [1.6.17](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.16...v1.6.17) (2022-12-08)
 
 
