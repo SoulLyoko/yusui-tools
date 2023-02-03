@@ -38,11 +38,12 @@ module.exports = {
     "vue/component-definition-name-casing": 0,
     "vue/attribute-hyphenation": 0,
     "vue/v-on-event-hyphenation": 0,
+    "vue/no-unused-vars": 1,
     "import/no-unresolved": 0,
     "import/order": [
       "warn",
       {
-        groups: ["type", "builtin", "external"],
+        groups: ["type", "builtin", "external", "internal"],
         "newlines-between": "always"
       }
     ]
