@@ -49,7 +49,7 @@ export function uviewPatch(): Plugin {
       const match = id.slice(id.lastIndexOf("/")).match(/(u-.*).vue/);
       const component = match?.[1];
       code = fixEvents(code, component);
-      code = fixBackTop(code);
+      code = fixBackTop(code, component);
       return code;
     }
   };
