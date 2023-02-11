@@ -11,6 +11,7 @@ importers:
       '@iconify/vue': 4.0.0
       '@jsdevtools/version-bump-prompt': ^6.1.0
       '@smallwei/avue': ^3.2.5
+      '@sscfaith/avue-form-design': 3.0.0-beta.5
       '@types/fs-extra': ^9.0.13
       '@types/lodash': ^4.14.191
       '@types/lodash-es': ^4.17.6
@@ -56,6 +57,7 @@ importers:
       '@iconify/vue': 4.0.0_vue@3.2.45
       '@jsdevtools/version-bump-prompt': 6.1.0
       '@smallwei/avue': 3.2.6_kjekj6dhchzgl2zamwe5cd34ta
+      '@sscfaith/avue-form-design': 3.0.0-beta.5_vue@3.2.45
       '@types/fs-extra': 9.0.13
       '@types/lodash': 4.14.191
       '@types/lodash-es': 4.17.6
@@ -93,6 +95,35 @@ importers:
       vitest: 0.26.2_jsdom@20.0.3+sass@1.57.1
       vue: 3.2.45
       vue-tsc: 1.0.17_typescript@4.9.4
+
+  packages/avue-flow:
+    specifiers:
+      '@logicflow/core': ^1.1.31
+      '@logicflow/extension': ^1.1.31
+      '@smallwei/avue': ^3.2.6
+      '@sscfaith/avue-form-design': ^3.0.0-beta.5
+      '@types/lodash-es': ^4.17.6
+      '@vueuse/core': ^9.12.0
+      '@yusui/types': workspace:*
+      '@yusui/utils': workspace:*
+      element-plus: ^2.2.29
+      lodash-es: ^4.17.21
+      sass: ^1.58.0
+      vue: ^3.2.45
+    dependencies:
+      '@logicflow/core': 1.1.31
+      '@logicflow/extension': 1.1.31
+      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
+      '@sscfaith/avue-form-design': 3.0.0-beta.5_vue@3.2.45
+      '@vueuse/core': 9.12.0_vue@3.2.45
+      '@yusui/types': link:../types
+      '@yusui/utils': link:../utils
+      element-plus: 2.2.29_vue@3.2.45
+      lodash-es: 4.17.21
+    devDependencies:
+      '@types/lodash-es': 4.17.6
+      sass: 1.58.0
+      vue: 3.2.45
 
   packages/components:
     specifiers:
@@ -1002,6 +1033,22 @@ packages:
       semver: 7.3.7
     dev: true
 
+  /@logicflow/core/1.1.31:
+    resolution: {integrity: sha512-TQYJoxhqSzWBvw/NkI5hNZ8WkfS7JDLrvp56EU/OYo6Nbusj2n8/ya8XaMM50+GXqnp6+38t3RAGCC9Dk9cmhA==}
+    dependencies:
+      '@types/mousetrap': 1.6.11
+      mousetrap: 1.6.5
+      preact: 10.11.1
+    dev: false
+
+  /@logicflow/extension/1.1.31:
+    resolution: {integrity: sha512-MUDdP7Anf3OmIEVmJTlIH8e5h2yrdqlwWYCDjDoh9R1IOfzR4wCvEiH4HgOkadTsGtfaihFRyFnPIYT1cu7oUA==}
+    dependencies:
+      '@logicflow/core': 1.1.31
+      ids: 1.0.0
+      preact: 10.11.1
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1020,6 +1067,20 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
+  /@smallwei/avue/3.2.6_k3wepboole6np3kb4d5xrrkbri:
+    resolution: {integrity: sha512-84+Qv1DiZOnGiD0ZuSkiEbZmGrSS75GsPQy45lRRmVnt3iw1xINSxfm7wbIkYIAFTSWqVZ9UBoOMMKwfT7/jWg==}
+    peerDependencies:
+      axios: ^0.21.1
+      element-plus: ^2.2.17
+      vue: ^3.2.37
+    dependencies:
+      '@element-plus/icons-vue': 2.0.9_vue@3.2.45
+      countup.js: 1.9.3
+      dayjs: 1.11.7
+      element-plus: 2.2.29_vue@3.2.45
+      vue: 3.2.45
+    dev: false
+
   /@smallwei/avue/3.2.6_kjekj6dhchzgl2zamwe5cd34ta:
     resolution: {integrity: sha512-84+Qv1DiZOnGiD0ZuSkiEbZmGrSS75GsPQy45lRRmVnt3iw1xINSxfm7wbIkYIAFTSWqVZ9UBoOMMKwfT7/jWg==}
     peerDependencies:
@@ -1034,6 +1095,14 @@ packages:
       element-plus: 2.2.27_vue@3.2.45
       vue: 3.2.45
     dev: true
+
+  /@sscfaith/avue-form-design/3.0.0-beta.5_vue@3.2.45:
+    resolution: {integrity: sha512-DABLO32SgC+/6WogBZFpcQUzrIT8MvweN2PjGFpmMpodxISUCLP7JRqJuWoe0R7+L+ZD9mTOPow8+2VTft0siA==}
+    dependencies:
+      monaco-editor: 0.32.1
+      vuedraggable: 4.1.0_vue@3.2.45
+    transitivePeerDependencies:
+      - vue
 
   /@sxzz/popperjs-es/2.11.7:
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
@@ -1106,6 +1175,10 @@ packages:
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
+
+  /@types/mousetrap/1.6.11:
+    resolution: {integrity: sha512-F0oAily9Q9QQpv9JKxKn0zMKfOo36KHCW7myYsmUyf2t0g+sBTbG3UleTPoguHdE1z3GLFr3p7/wiOio52QFjQ==}
+    dev: false
 
   /@types/node/14.18.30:
     resolution: {integrity: sha512-8OEyg4oc/CqN5+LbInKNLA8MfbGzbC+k8lVPePXazuwEVrVeQ9gwMDX00HJwWbC7syc1FWRU6Mow0Lm+mibHAQ==}
@@ -1406,6 +1479,18 @@ packages:
       '@types/node': 18.11.17
     dev: true
 
+  /@vueuse/core/9.12.0_vue@3.2.45:
+    resolution: {integrity: sha512-h/Di8Bvf6xRcvS/PvUVheiMYYz3U0tH3X25YxONSaAUBa841ayMwxkuzx/DGUMCW/wHWzD8tRy2zYmOC36r4sg==}
+    dependencies:
+      '@types/web-bluetooth': 0.0.16
+      '@vueuse/metadata': 9.12.0
+      '@vueuse/shared': 9.12.0_vue@3.2.45
+      vue-demi: 0.13.11_vue@3.2.45
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   /@vueuse/core/9.9.0_vue@3.2.45:
     resolution: {integrity: sha512-JdDb7TrE0imZnwBhMF4+0PCJqGD3AxzH8S2sfk54P0rqvklK+EAtAR/mPb1HwV/JPujQFQJhghQ190Yq03YpVw==}
     dependencies:
@@ -1417,8 +1502,21 @@ packages:
       - '@vue/composition-api'
       - vue
 
+  /@vueuse/metadata/9.12.0:
+    resolution: {integrity: sha512-9oJ9MM9lFLlmvxXUqsR1wLt1uF7EVbP5iYaHJYqk+G2PbMjY6EXvZeTjbdO89HgoF5cI6z49o2zT/jD9SVoNpQ==}
+    dev: false
+
   /@vueuse/metadata/9.9.0:
     resolution: {integrity: sha512-pgxsUJv/d7IjKpLeB6TthggEsaBwM3ffc5jPrr5TmxAm/fup0mGR5VTzrdA/PSx85tpb+CIvP92D+55qBNc8ag==}
+
+  /@vueuse/shared/9.12.0_vue@3.2.45:
+    resolution: {integrity: sha512-TWuJLACQ0BVithVTRbex4Wf1a1VaRuSpVeyEd4vMUWl54PzlE0ciFUshKCXnlLuD0lxIaLK4Ypj3NXYzZh4+SQ==}
+    dependencies:
+      vue-demi: 0.13.11_vue@3.2.45
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@vueuse/shared/9.9.0_vue@3.2.45:
     resolution: {integrity: sha512-+D0XFwHG0T+uaIbCSlROBwm1wzs71B7n3KyDOxnvfEMMHDOzl09rYKwaE2AENmYwYPXfHPbSBRDD2gBVHbvTcg==}
@@ -2459,7 +2557,6 @@ packages:
 
   /countup.js/1.9.3:
     resolution: {integrity: sha512-UHf2P/mFKaESqdPq+UdBJm/1y8lYdlcDd0nTZHNC8cxWoJwZr1Eldm1PpWui446vDl5Pd8PtRYkr3q6K4+Qa5A==}
-    dev: true
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -2746,6 +2843,31 @@ packages:
       vue: 3.2.45
     transitivePeerDependencies:
       - '@vue/composition-api'
+
+  /element-plus/2.2.29_vue@3.2.45:
+    resolution: {integrity: sha512-g4dcrURrKkR5uUX8n5RVnnqGnimoki9HfqS4yHHG6XwCHBkZGozdq4x+478BzeWUe31h++BO+7dakSx4VnM8RQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@ctrl/tinycolor': 3.4.1
+      '@element-plus/icons-vue': 2.0.9_vue@3.2.45
+      '@floating-ui/dom': 1.0.2
+      '@popperjs/core': /@sxzz/popperjs-es/2.11.7
+      '@types/lodash': 4.14.191
+      '@types/lodash-es': 4.17.6
+      '@vueuse/core': 9.12.0_vue@3.2.45
+      async-validator: 4.2.5
+      dayjs: 1.11.7
+      escape-html: 1.0.3
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.3_3ib2ivapxullxkx3xftsimdk7u
+      memoize-one: 6.0.0
+      normalize-wheel-es: 1.2.0
+      vue: 3.2.45
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4222,6 +4344,10 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
+  /ids/1.0.0:
+    resolution: {integrity: sha512-Zvtq1xUto4LttpstyOlFum8lKx+i1OmRfg+6A9drFS9iSZsDPMHG4Sof/qwNR4kCU7jBeWFPrY2ocHxiz7cCRw==}
+    dev: false
+
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -5213,6 +5339,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /monaco-editor/0.32.1:
+    resolution: {integrity: sha512-LUt2wsUvQmEi2tfTOK+tjAPvt7eQ+K5C4rZPr6SeuyzjAuAHrIvlUloTcOiGjZW3fn3a/jFQCONrEJbNOaCqbA==}
+
+  /mousetrap/1.6.5:
+    resolution: {integrity: sha512-QNo4kEepaIBwiT8CDhP98umTetp+JNfQYBWvC1pc6/OAibuXtRcxZ58Qz8skvEHYvURne/7R8T5VoOI7rDsEUA==}
+    dev: false
+
   /ms/2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
 
@@ -5788,7 +5921,6 @@ packages:
 
   /preact/10.11.1:
     resolution: {integrity: sha512-1Wz5PCRm6Fg+6BTXWJHhX4wRK9MZbZBHuwBqfZlOdVm2NqPe8/rjYpufvYCwJSGb9layyzB2jTTXfpCTynLqFQ==}
-    dev: true
 
   /prelude-ls/1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
@@ -6198,6 +6330,16 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /sass/1.58.0:
+    resolution: {integrity: sha512-PiMJcP33DdKtZ/1jSjjqVIKihoDc6yWmYr9K/4r3fVVIEDAluD0q7XZiRKrNJcPK3qkLRF/79DND1H5q1LBjgg==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.1.0
+      source-map-js: 1.0.2
+    dev: true
+
   /saxes/6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
@@ -6338,6 +6480,9 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /sortablejs/1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
@@ -7323,6 +7468,14 @@ packages:
       '@vue/runtime-dom': 3.2.45
       '@vue/server-renderer': 3.2.45_vue@3.2.45
       '@vue/shared': 3.2.45
+
+  /vuedraggable/4.1.0_vue@3.2.45:
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
+    peerDependencies:
+      vue: ^3.0.1
+    dependencies:
+      sortablejs: 1.14.0
+      vue: 3.2.45
 
   /w3c-xmlserializer/4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}

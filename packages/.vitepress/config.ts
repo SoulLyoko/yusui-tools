@@ -14,6 +14,7 @@ export default defineConfig({
       {
         text: "Packages",
         items: [
+          { text: "@yusui/avue-flow", link: "/avue-flow/index" },
           { text: "@yusui/components", link: "/components/index" },
           { text: "@yusui/composables", link: "/composables/index" },
           { text: "@yusui/eslint-config", link: "/eslint-config/index" },
@@ -30,6 +31,19 @@ export default defineConfig({
           items: [
             { text: "Start", link: "/guide/start" },
             { text: "Changelog", link: "/guide/changelog" }
+          ]
+        }
+      ],
+      "/avue-flow": [
+        {
+          text: "AvueFlow",
+          items: [
+            { text: "Start", link: "/avue-flow/index" },
+            { text: "FlowModeler", link: "/avue-flow/flow-modeler/index" },
+            { text: "FlowViewer", link: "/avue-flow/flow-viewer/index" },
+            { text: "ModelTemplate", link: "/avue-flow/model-template/index" },
+            { text: "FormTemplate", link: "/avue-flow/form-template/index" },
+            { text: "FlowDesign", link: "/avue-flow/flow-design/index" }
           ]
         }
       ],

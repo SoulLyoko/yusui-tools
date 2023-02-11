@@ -1,0 +1,3 @@
+<template>
+  {{ $attrs.modelValue }}
+</template>
