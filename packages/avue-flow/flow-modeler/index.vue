@@ -24,16 +24,7 @@ import type { AvueFormGroup } from "@smallwei/avue";
 import { onMounted } from "vue";
 import { uniqueId } from "lodash-es";
 import LogicFlow from "@logicflow/core";
-import {
-  Control,
-  DndPanel,
-  SelectionSelect,
-  Menu,
-  MiniMap,
-  InsertNodeInPolyline,
-  BpmnElement,
-  Group
-} from "@logicflow/extension";
+import { Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline } from "@logicflow/extension";
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
 
@@ -67,18 +58,7 @@ onMounted(() => {
   lf.value = new LogicFlow({
     container: document.querySelector(`#${containerId}`)!,
     grid: { type: "dot", size: 10 },
-    plugins: [
-      Control,
-      DndPanel,
-      SelectionSelect,
-      Menu,
-      MiniMap,
-      InsertNodeInPolyline,
-      BpmnElement,
-      BpmnExtend,
-      TurboAdapter,
-      Group
-    ],
+    plugins: [Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, TurboAdapter],
     ...props.initOptions
   });
   lf.value?.setTheme(defaultTheme);

@@ -1,21 +1,12 @@
-import type { NodeConfig, EdgeConfig, GraphConfigData, LogicFlow, TextConfig } from "@logicflow/core";
-
-export enum TurboType {
-  "bpmn:sequenceFlow" = 1,
-  "bpmn:startEvent" = 2,
-  "bpmn:endEvent" = 3,
-  "bpmn:userTask" = 4,
-  "bpmn:serviceTask" = 5,
-  "bpmn:exclusiveGateway" = 6
-}
+import type { NodeConfig, EdgeConfig, GraphConfigData, LogicFlow, TextConfig, Point } from "@logicflow/core";
 
 export interface FlowElement {
   incoming: string[];
   outgoing: string[];
   dockers: string[];
-  type: TurboType | string;
+  type: string;
   properties: Record<string, unknown>;
-  key?: string;
+  key: string;
 }
 
 export interface FlowNode extends FlowElement {
@@ -30,19 +21,15 @@ export interface FlowEdge extends FlowElement {
   properties: Record<string, unknown> & {
     name?: string;
     text?: TextConfig;
-    startPoint?: string;
-    endPoint?: string;
-    pointsList?: string;
+    startPoint?: Point;
+    endPoint?: Point;
+    pointsList?: Point[];
   };
 }
 
 export interface TurboData {
   flowElementList: FlowElement[];
   [x: string]: any;
-}
-
-function getTurboType(type?: TurboType | string) {
-  return TurboType[type as any] || type || "";
 }
 
 // 将LogicFlow中的Node数据转换为Turbo元素数据
@@ -53,7 +40,7 @@ function convertNodeToTurboElement(node: NodeConfig): FlowElement {
     incoming: [],
     outgoing: [],
     dockers: [],
-    type: getTurboType(type),
+    type,
     properties: {
       ...properties,
       name: text?.value ?? "",
@@ -61,7 +48,7 @@ function convertNodeToTurboElement(node: NodeConfig): FlowElement {
       y,
       text
     },
-    key: id
+    key: id!
   };
 }
 
@@ -72,15 +59,15 @@ function convertEdgeToTurboElement(edge: EdgeConfig) {
   return {
     incoming: [sourceNodeId],
     outgoing: [targetNodeId],
-    type: getTurboType(type),
+    type,
     dockers: [],
     properties: {
       ...properties,
       name: text?.value,
       text,
-      startPoint: JSON.stringify(startPoint),
-      endPoint: JSON.stringify(endPoint),
-      pointsList: JSON.stringify(pointsList)
+      startPoint,
+      endPoint,
+      pointsList
     },
     key: id
   };
@@ -90,7 +77,7 @@ function convertEdgeToTurboElement(edge: EdgeConfig) {
 export function toTurboData(data: GraphConfigData) {
   const nodeMap = new Map();
   const turboData: TurboData = {
-    flowElementList: [] as any[]
+    flowElementList: []
   };
   data.nodes.forEach(node => {
     const flowElement = convertNodeToTurboElement(node);
@@ -103,7 +90,7 @@ export function toTurboData(data: GraphConfigData) {
     sourceElement.outgoing.push(flowElement.key);
     const targetElement = nodeMap.get(edge.targetNodeId);
     targetElement.incoming.push(flowElement.key);
-    turboData.flowElementList.push(flowElement);
+    turboData.flowElementList.push(flowElement as FlowElement);
   });
   return turboData;
 }
@@ -114,25 +101,19 @@ function convertFlowElementToEdge(element: FlowEdge) {
   const { text, name, startPoint, endPoint, pointsList } = properties;
   const edge: EdgeConfig = {
     id: key,
-    type: getTurboType(type) as string,
+    type,
     sourceNodeId: incoming[0],
     targetNodeId: outgoing[0],
     text: text || name,
-    properties: {}
+    properties: {},
+    startPoint,
+    endPoint,
+    pointsList
   };
-  if (startPoint) {
-    edge.startPoint = JSON.parse(startPoint);
-  }
-  if (endPoint) {
-    edge.endPoint = JSON.parse(endPoint);
-  }
-  if (pointsList) {
-    edge.pointsList = JSON.parse(pointsList);
-  }
   // 这种转换方式，在自定义属性中不能与excludeProperties中的属性重名，否则将在转换过程中丢失
   const excludeProperties = ["startPoint", "endPoint", "pointsList", "text"];
   Object.keys(element.properties).forEach(property => {
-    if (excludeProperties.indexOf(property) === -1) {
+    if (!excludeProperties.includes(property)) {
       edge.properties![property] = element.properties[property];
     }
   });
@@ -151,7 +132,7 @@ function convertFlowElementToNode(element: FlowNode) {
   // }
   const node: NodeConfig = {
     id: key,
-    type: getTurboType(type) as string,
+    type,
     x: x!,
     y: y!,
     text,
@@ -160,7 +141,7 @@ function convertFlowElementToNode(element: FlowNode) {
   // 这种转换方式，在自定义属性中不能与excludeProperties中的属性重名，否则将在转换过程中丢失
   const excludeProperties = ["x", "y", "text"];
   Object.keys(element.properties).forEach(property => {
-    if (excludeProperties.indexOf(property) === -1) {
+    if (!excludeProperties.includes(property)) {
       node.properties![property] = element.properties[property];
     }
   });
@@ -169,22 +150,13 @@ function convertFlowElementToNode(element: FlowNode) {
 
 // 将Turbo元素数据转换为LogicFlow数据
 export function toLogicflowData(data: TurboData) {
+  const { flowElementList } = data;
+  const nodes = flowElementList.filter(e => e.type !== "sequenceFlow").map(convertFlowElementToNode);
+  const edges = flowElementList.filter(e => e.type === "sequenceFlow").map(convertFlowElementToEdge);
   const lfData: GraphConfigData = {
-    nodes: [],
-    edges: []
+    nodes,
+    edges
   };
-  const list = data.flowElementList;
-  list &&
-    list.length > 0 &&
-    list.forEach(element => {
-      if (element.type === TurboType["bpmn:sequenceFlow"]) {
-        const edge = convertFlowElementToEdge(element);
-        lfData.edges.push(edge);
-      } else {
-        const node = convertFlowElementToNode(element);
-        lfData.nodes.push(node);
-      }
-    });
   return lfData;
 }
 

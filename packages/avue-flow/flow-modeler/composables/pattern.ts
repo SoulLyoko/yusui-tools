@@ -13,40 +13,40 @@ export function usePattern({ lf }: ModelerState) {
       }
     },
     {
-      type: "bpmn:startEvent",
+      type: "startEvent",
       text: "开始",
       label: "开始节点",
       icon: "https://api.iconify.design/bpmn/start-event.svg?width=24&height=24"
     },
     {
-      type: "bpmn:userTask",
+      type: "userTask",
       label: "用户任务",
       icon: "https://api.iconify.design/bpmn/user-task.svg?width=24&height=24"
     },
     {
-      type: "bpmn:serviceTask",
+      type: "serviceTask",
       label: "服务任务",
       icon: "https://api.iconify.design/bpmn/service-task.svg?width=24&height=24"
     },
     {
-      type: "bpmn:exclusiveGateway",
-      label: "条件判断",
+      type: "exclusiveGateway",
+      label: "互斥网关",
       icon: "https://api.iconify.design/bpmn/gateway-xor.svg?width=24&height=24"
     },
     {
-      type: "bpmn:endEvent",
+      type: "parallelGateway",
+      label: "并行网关",
+      icon: "https://api.iconify.design/bpmn/gateway-parallel.svg?width=24&height=24"
+    },
+    {
+      type: "endEvent",
       text: "结束",
       label: "结束节点",
       icon: "https://api.iconify.design/bpmn/end-event.svg?width=24&height=24"
     },
     {
-      type: "bpmn:group",
-      label: "分组",
-      icon: "https://api.iconify.design/bpmn/group.svg?width=24&height=24"
-    },
-    {
       type: "group",
-      label: "分组2",
+      label: "分组",
       icon: "https://api.iconify.design/bpmn/group.svg?width=24&height=24"
     }
   ]);

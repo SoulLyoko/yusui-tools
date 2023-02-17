@@ -6,8 +6,7 @@ export const multiInstanceTypeColumn = {
     { label: "并行多重事件", value: "parallel" },
     { label: "时序多重事件", value: "sequential" },
     { label: "循环", value: "standard" }
-  ],
-  value: { completionCondition: "", collection: "", elementVariable: "" }
+  ]
 };
 
 export const completionConditionColumn = {

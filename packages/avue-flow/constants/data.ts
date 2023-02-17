@@ -10,7 +10,7 @@ export function defaultGraphData() {
         incoming: [],
         outgoing: [flowId],
         dockers: [],
-        type: 2,
+        type: "startEvent",
         properties: {
           name: "开始",
           x: 160,
@@ -27,7 +27,7 @@ export function defaultGraphData() {
         incoming: [flowId],
         outgoing: [],
         dockers: [],
-        type: 4,
+        type: "userTask",
         properties: {
           name: "",
           x: 290,
@@ -39,14 +39,17 @@ export function defaultGraphData() {
       {
         incoming: [StartEventId],
         outgoing: [userTaskId],
-        type: 1,
+        type: "sequenceFlow",
         dockers: [],
         properties: {
           name: "",
           text: "",
-          startPoint: '{"x":178,"y":240}',
-          endPoint: '{"x":240,"y":240}',
-          pointsList: '[{"x":178,"y":240},{"x":240,"y":240}]'
+          startPoint: { x: 178, y: 240 },
+          endPoint: { x: 240, y: 240 },
+          pointsList: [
+            { x: 178, y: 240 },
+            { x: 240, y: 240 }
+          ]
         },
         key: flowId
       }
