@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import { mdDemoTransform } from "./plugins/md-demo-transform";
 
 import { alias } from "../../vite.config";
 import pkg from "../../package.json";
@@ -39,11 +40,11 @@ export default defineConfig({
           text: "AvueFlow",
           items: [
             { text: "Start", link: "/avue-flow/index" },
-            { text: "FlowModeler", link: "/avue-flow/flow-modeler/index" },
-            { text: "FlowViewer", link: "/avue-flow/flow-viewer/index" },
-            { text: "ModelTemplate", link: "/avue-flow/model-template/index" },
-            { text: "FormTemplate", link: "/avue-flow/form-template/index" },
-            { text: "FlowDesign", link: "/avue-flow/flow-design/index" }
+            { text: "FlowModeler", link: "/avue-flow/flow/flow-modeler/index" },
+            { text: "FlowViewer", link: "/avue-flow/flow/flow-viewer/index" },
+            { text: "ModelTemplate", link: "/avue-flow/pages/model-template/index" },
+            { text: "FormTemplate", link: "/avue-flow/pages/form-template/index" },
+            { text: "FlowDesign", link: "/avue-flow/pages/flow-design/index" }
           ]
         }
       ],
@@ -135,6 +136,7 @@ export default defineConfig({
     }
   },
   vite: {
+    plugins: [mdDemoTransform()],
     resolve: {
       alias
     }

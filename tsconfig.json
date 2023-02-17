@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
     "paths": {
+      "@yusui/avue-flow": ["packages/avue-flow/index.ts"],
       "@yusui/components": ["packages/components/index.ts"],
       "@yusui/composables": ["packages/composables/index.ts"],
       "@yusui/plugins": ["packages/plugins/index.ts"],

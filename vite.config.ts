@@ -21,6 +21,7 @@ const external = [
   "path"
 ];
 const input = {
+  "avue-flow": path.resolve(__dirname, "packages/avue-flow/index.ts"),
   components: path.resolve(__dirname, "packages/components/index.ts"),
   composables: path.resolve(__dirname, "packages/composables/index.ts"),
   plugins: path.resolve(__dirname, "packages/plugins/index.ts"),
