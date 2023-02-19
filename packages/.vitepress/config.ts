@@ -42,9 +42,10 @@ export default defineConfig({
             { text: "Start", link: "/avue-flow/index" },
             { text: "FlowModeler", link: "/avue-flow/flow/flow-modeler/index" },
             { text: "FlowViewer", link: "/avue-flow/flow/flow-viewer/index" },
-            { text: "ModelTemplate", link: "/avue-flow/pages/model-template/index" },
-            { text: "FormTemplate", link: "/avue-flow/pages/form-template/index" },
-            { text: "FlowDesign", link: "/avue-flow/pages/flow-design/index" }
+            { text: "FormDesigner", link: "/avue-flow/form-designer/index" }
+            // { text: "ModelTemplate", link: "/avue-flow/pages/model-template/index" },
+            // { text: "FormTemplate", link: "/avue-flow/pages/form-template/index" },
+            // { text: "FlowDesign", link: "/avue-flow/pages/flow-design/index" }
           ]
         }
       ],

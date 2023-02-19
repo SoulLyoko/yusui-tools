@@ -13,7 +13,7 @@
       "@yusui/uni-utils": ["packages/uni-utils/index.ts"],
       "@yusui/utils": ["packages/utils/index.ts"]
     },
-    "types": ["vitest/globals", "@dcloudio/types"]
+    "types": ["vitest/globals", "@dcloudio/types", "element-plus/global"]
   },
   "include": ["packages", "packages/.vitepress/**/*"]
 }
