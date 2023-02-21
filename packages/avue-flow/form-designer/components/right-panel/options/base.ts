@@ -1,3 +1,5 @@
+import type { AvueFormColumn } from "@smallwei/avue";
+
 import { defaultResourceList } from "../../left-panel/components/resource";
 
 const typeDic = defaultResourceList.map(g => {
@@ -12,7 +14,7 @@ const typeDic = defaultResourceList.map(g => {
   };
 });
 
-export const base = [
+export const base: AvueFormColumn[] = [
   {
     label: "类型",
     prop: "type",
@@ -78,6 +80,7 @@ export const base = [
     prop: "tipPlacement",
     type: "radio",
     button: true,
+    value: "top",
     dicData: [
       { label: "上", value: "top" },
       { label: "下", value: "bottom" },
@@ -99,6 +102,7 @@ export const base = [
     prop: "labelTipPlacement",
     type: "radio",
     button: true,
+    value: "top",
     dicData: [
       { label: "上", value: "top" },
       { label: "下", value: "bottom" },
@@ -145,6 +149,7 @@ export const base = [
       } else {
         delete form.rules;
       }
+      return {};
     }
   }
 ];

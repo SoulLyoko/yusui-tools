@@ -1,4 +1,6 @@
-export const form = [
+import type { AvueFormColumn } from "@smallwei/avue";
+
+export const form: AvueFormColumn[] = [
   {
     label: "标签位置",
     prop: "labelPosition",
@@ -34,7 +36,9 @@ export const form = [
         submitText: { display: menuBtn && submitBtn },
         emptyBtn: { display: menuBtn },
         emptyIcon: { display: menuBtn && emptyBtn },
-        emptyText: { display: menuBtn && emptyBtn }
+        emptyText: { display: menuBtn && emptyBtn },
+        menuSpan: { display: menuBtn },
+        menuPosition: { display: menuBtn }
       };
     }
   },
@@ -42,7 +46,7 @@ export const form = [
     label: "显示提交按钮",
     prop: "submitBtn",
     type: "switch",
-    value: true,
+    value: false,
     control(submitBtn: boolean) {
       return {
         submitIcon: { display: submitBtn },
@@ -64,7 +68,7 @@ export const form = [
     label: "显示清空按钮",
     prop: "emptyBtn",
     type: "switch",
-    value: true,
+    value: false,
     control(emptyBtn: boolean) {
       return {
         emptyIcon: { display: emptyBtn },
@@ -123,6 +127,11 @@ export const form = [
     prop: "disabled",
     type: "switch",
     value: false
+  },
+  {
+    label: "表单项栅格",
+    prop: "span",
+    type: "number"
   },
   {
     label: "表单项间隔",

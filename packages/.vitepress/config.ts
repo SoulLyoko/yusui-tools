@@ -1,8 +1,8 @@
 import { defineConfig } from "vitepress";
-import { mdDemoTransform } from "./plugins/md-demo-transform";
 
 import { alias } from "../../vite.config";
 import pkg from "../../package.json";
+import { mdDemoTransform } from "./plugins/md-demo-transform";
 
 export default defineConfig({
   base: `/${pkg.name}/`,

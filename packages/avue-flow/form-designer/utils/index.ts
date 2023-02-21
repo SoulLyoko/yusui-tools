@@ -2,7 +2,7 @@ import type { AvueFormOption } from "@smallwei/avue";
 import type { ResourceElement } from "../types";
 
 // 获取随机数字id
-export function getPropId(prefix?: string) {
+export function getRandomId(prefix?: string) {
   const id = Date.now() + Math.floor(Math.random() * 10000);
   return prefix ? `${prefix}_${id}` : id + "";
 }

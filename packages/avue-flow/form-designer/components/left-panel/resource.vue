@@ -10,7 +10,7 @@
         itemKey="label"
       >
         <template #item="{ element }: { element: (typeof group.children)[number] }">
-          <div class="resource-item" @click="onItemClick(element)">
+          <div class="resource-item" @click="addElement(element)">
             <el-button :icon="element.icon">{{ element.label }}</el-button>
           </div>
         </template>
@@ -20,37 +20,37 @@
 </template>
 
 <script setup lang="ts">
-import type { ResourceElement } from "../../../../types";
+import type { Resource } from "../../types";
 
+import { cloneDeep, omit } from "lodash-es";
 import { ref, computed } from "vue";
 import Draggable from "vuedraggable";
-import { cloneDeep } from "lodash-es";
 
-import { defaultResourceList } from ".";
-import { useInjectState } from "../../../../composables";
-import { getPropId } from "../../../../utils";
+import { useInjectState } from "../../composables";
+import { getRandomId } from "../../utils";
+
+const { resources, resourceElementList, activeElement, recordHistory } = useInjectState();
 
 const searchValue = ref("");
 const resourceList = computed(() => {
-  return defaultResourceList
-    .map(group => {
-      const children = group.children?.filter(e => e.label?.includes(searchValue.value));
-      return {
-        ...group,
-        children
-      };
-    })
-    .filter(e => e.children?.length);
+  const groups = resources.value.map(e => e.group);
+  const groupsSet = [...new Set(groups)];
+  return groupsSet.map(group => {
+    return {
+      label: group,
+      children: resources.value.filter(e => e.group === group)
+    };
+  });
 });
 
-const { resourceElementList, activeItem, recordHistory } = useInjectState();
-function cloneItem(element: ResourceElement) {
-  return cloneDeep({ ...element, prop: getPropId(element.type) });
+function cloneItem(element: Resource) {
+  return cloneDeep(omit({ ...element, prop: getRandomId(element.type) }, ["icon", "group", "settings"]));
 }
-function onItemClick(element: ResourceElement) {
+
+function addElement(element: Resource) {
   const ele = cloneItem(element);
   resourceElementList.value.push(ele);
-  activeItem.value = ele.prop ?? "";
+  activeElement.value = ele;
   recordHistory("added");
 }
 </script>

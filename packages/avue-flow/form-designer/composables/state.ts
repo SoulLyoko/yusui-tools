@@ -1,60 +1,39 @@
 import type { AvueFormOption } from "@smallwei/avue";
-import type { ResourceElement, History } from "../types";
+import type { ResourceElement, History, Resource } from "../types";
 
 import { ref, computed, provide, inject } from "vue";
 import { cloneDeep } from "lodash-es";
 
+import * as defaultResourcesMap from "../resources";
+
 const injectKey = Symbol("form-designer-state");
 
-export function useProvideState() {
+export function useProvideState(props?: any) {
+  const resources = computed<Resource[]>(() => [...Object.values(defaultResourcesMap), ...(props.resources || [])]);
   const resourceElementList = ref<ResourceElement[]>([]);
-  const activeItem = ref("");
-  const hoverItem = ref("");
+  const activeElement = ref<ResourceElement>({});
+  const hoverElement = ref<ResourceElement>({});
   const formOption = ref<AvueFormOption>({ menuBtn: false, span: 24, group: [], column: [] });
   const hitoryList = ref<History[]>([]);
-  const activeElement = computed(() => {
-    let element: ResourceElement = {};
-    resourceElementList.value.forEach((item, index) => {
-      if (item.prop === activeItem.value) {
-        element = cloneDeep(item);
-        element.path = [index];
-      } else if (item.type === "group") {
-        item.column?.forEach((e, i) => {
-          if (e.prop === activeItem.value) {
-            element = cloneDeep(e);
-            element.path = [index, "column", i];
-          }
-        });
-      } else if (item.type === "dynamic") {
-        item.column?.forEach((e, i) => {
-          if (e.prop === activeItem.value) {
-            element = cloneDeep(e);
-            element.path = [index, "children", "column", i];
-          }
-        });
-      }
-    });
-    return element;
-  });
 
   function recordHistory(type: string) {
     hitoryList.value.push({
       type: type,
       timestamp: Date.now(),
-      active: activeItem.value,
+      active: activeElement.value,
       list: cloneDeep(resourceElementList.value)
     });
   }
   function restoreHistory(history: History) {
-    activeItem.value = history.active;
+    activeElement.value = history.active;
     resourceElementList.value = history.list;
   }
 
   const state = {
+    resources,
     resourceElementList,
-    activeItem,
     activeElement,
-    hoverItem,
+    hoverElement,
     formOption,
     hitoryList,
     recordHistory,

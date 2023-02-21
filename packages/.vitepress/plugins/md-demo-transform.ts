@@ -1,4 +1,5 @@
 import type { Plugin } from "vite";
+
 import path from "path";
 
 const MATCHER = /:::\s*demo\s*(.*)\s*:::/;

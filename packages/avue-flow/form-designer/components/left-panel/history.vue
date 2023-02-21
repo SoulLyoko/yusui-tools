@@ -1,0 +1,40 @@
+<template>
+  <ul class="history-list">
+    <li v-for="item in hitoryList" :key="item.timestamp" class="history-item" @click="restoreHistory(item)">
+      <span>
+        {{ historyTypeMap[item.type as keyof typeof historyTypeMap] }}
+      </span>
+      <span>
+        {{ new Date(item.timestamp).toLocaleString() }}
+      </span>
+    </li>
+  </ul>
+</template>
+
+<script setup lang="ts">
+import { useInjectState } from "../../composables";
+
+const { hitoryList, restoreHistory } = useInjectState();
+
+const historyTypeMap = {
+  added: "添加组件",
+  moved: "移动组件",
+  removed: "删除组件",
+  property: "修改属性"
+};
+</script>
+
+<style lang="scss" scoped>
+.history-list {
+  .history-item {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+</style>

@@ -1,30 +1,31 @@
 <template>
   <draggable :list="list" class="draggable-list" :group="{ name: 'components' }" itemKey="prop" @change="onChange">
     <template #item="{ element, index }: { element: ResourceElement, index: number }">
-      <div
+      <el-col
         class="draggable-item"
         :class="{
-          'is-active': activeItem === element.prop,
-          'is-hover': hoverItem === element.prop
+          'is-active': activeElement.prop === element.prop,
+          'is-hover': hoverElement.prop === element.prop
         }"
-        @click.stop="onItemClick(element)"
-        @mouseover="hoverItem = element.prop || ''"
-        @mouseleave="hoverItem = ''"
+        :span="element.span || formOption.span || 24"
+        @click.stop="activeElement = element"
+        @mouseover="hoverElement = element || {}"
+        @mouseleave="hoverElement = {}"
       >
         <avue-form :option="resolveItemOption(element)"></avue-form>
-        <MainPanel
-          v-if="element.type === 'group' && element.display"
-          class="item-slot"
-          :list="element.column || []"
-          @update:list="element.column = $event"
-        ></MainPanel>
-        <MainPanel
+        <Workspace
           v-if="element.type === 'dynamic' && element.display"
           class="item-slot"
           :list="element.children?.column || []"
           @update:list="element.children!.column = $event"
-        ></MainPanel>
-        <div v-show="activeItem === element.prop" class="item-tool">
+        ></Workspace>
+        <Workspace
+          v-if="element.type === 'group' && element.display"
+          class="item-slot"
+          :list="element.column || []"
+          @update:list="element.column = $event"
+        ></Workspace>
+        <div v-show="activeElement.prop === element.prop" class="item-tool">
           <el-button
             type="primary"
             size="mini"
@@ -42,7 +43,7 @@
             @click.stop="handleDelItem(index)"
           ></el-button>
         </div>
-      </div>
+      </el-col>
     </template>
   </draggable>
 </template>
@@ -53,73 +54,63 @@ import type { ResourceElement } from "../../types";
 
 import draggable from "vuedraggable";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep } from "lodash-es";
+import { cloneDeep, omit } from "lodash-es";
 
 import { useInjectState } from "../../composables";
-import MainPanel from "./index.vue";
-import { getPropId } from "../../utils";
+import Workspace from "./index.vue";
+import { getRandomId } from "../../utils";
 
-const props = defineProps<{
-  list: ResourceElement[];
-}>();
+const props = defineProps<{ list: ResourceElement[] }>();
 const emit = defineEmits(["update:active", "update:list"]);
 const { list } = useVModels(props, emit, { passive: true, deep: true });
 
-const { activeItem, hoverItem, formOption, recordHistory } = useInjectState();
+const { activeElement, hoverElement, formOption, recordHistory } = useInjectState();
 
 function resolveItemOption(element: ResourceElement): AvueFormOption {
-  const common = { ...cloneDeep(formOption.value), menuBtn: false, span: 24 };
+  const common = { ...cloneDeep(formOption.value), menuBtn: false };
   if (element.type === "group") {
-    return { ...common, group: [{ ...element, arrow: false, collapse: false }] };
+    return { ...common, tabs: false, group: [{ ...element, arrow: false, collapse: false }] };
   }
   if (element.type === "dynamic") {
     return { ...common, column: [{ ...element, children: { ...element.children, addBtn: false, type: "form" } }] };
   }
-  return { ...common, column: [element] };
+  return { ...common, column: [omit(element, "icon")] };
 }
 
-function onChange(e: {
-  added?: { element: ResourceElement };
-  moved?: {
-    element: ResourceElement;
-  };
-}) {
-  const { added, moved } = e;
-  if (added) {
-    activeItem.value = added.element.prop ?? "";
-  }
-  if (moved) {
-    activeItem.value = moved.element.prop ?? "";
-  }
+function onChange(operation: Record<string, { element?: ResourceElement }>) {
+  const operationName = Object.keys(operation)[0];
+  if (!operationName) return;
+  activeElement.value = operation[operationName]?.element ?? {};
   // list.value.sort((a, b) => (b.type === "group" ? -1 : 1));
-  recordHistory(Object.keys(e)[0]);
+  recordHistory(operationName);
 }
 
 function handleCopyItem(element: ResourceElement) {
-  const item = cloneDeep({ ...element, prop: getPropId(element.type) });
+  const item = cloneDeep({ ...element, prop: getRandomId(element.type) });
   if (element.type === "group") {
-    item.column = element.column?.map(e => ({ ...e, prop: getPropId(element.type) }));
+    item.column = element.column?.map(e => ({ ...e, prop: getRandomId(element.type) }));
   }
   if (element.type === "dynamic") {
-    item.children!.column = element.children?.column?.map(e => ({ ...e, prop: getPropId(element.type) }));
+    item.children!.column = element.children?.column?.map(e => ({ ...e, prop: getRandomId(element.type) }));
   }
-  list.value = [...list.value, item];
-  activeItem.value = item.prop;
+  list.value.push(item);
+  activeElement.value = item;
   recordHistory("added");
 }
 function handleDelItem(index: number) {
-  list.value = list.value.filter((e, i) => i !== index);
-  activeItem.value = list.value[index]?.prop ?? list.value[index - 1]?.prop ?? "";
+  list.value.splice(index, 1);
+  activeElement.value = list.value[index] ?? list.value[index - 1] ?? {};
   recordHistory("removed");
-}
-function onItemClick(element: ResourceElement) {
-  activeItem.value = element.prop ?? "";
 }
 </script>
 
 <style lang="scss" scoped>
 .draggable-list {
-  height: 100%;
+  // height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  box-sizing: border-box;
   .draggable-item {
     position: relative;
     padding: 1px;
