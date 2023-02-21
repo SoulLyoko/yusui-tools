@@ -18,7 +18,11 @@ const external = [
   "js-cookie",
   "mitt",
   "fs",
-  "path"
+  "path",
+  /@logicflow/,
+  "vuedraggable",
+  "@smallwei/avue",
+  "axios"
 ];
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),

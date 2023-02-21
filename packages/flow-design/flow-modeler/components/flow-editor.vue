@@ -32,12 +32,3 @@ watchEffect(() => {
   jsonForEdit.value = JSON.stringify(modelValue.value, null, 2);
 });
 </script>
-
-<style lang="scss">
-.flow-editor__textarea {
-  height: 100%;
-}
-.flow-editor__textarea .el-textarea__inner {
-  height: 100%;
-}
-</style>

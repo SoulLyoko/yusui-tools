@@ -41,9 +41,3 @@ onMounted(() => {
   });
 });
 </script>
-
-<style>
-.lf-container {
-  height: 100%;
-}
-</style>

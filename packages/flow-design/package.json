@@ -27,17 +27,17 @@
     "@iconify/vue": "4.0.0",
     "@logicflow/core": "^1.1.31",
     "@logicflow/extension": "^1.1.31",
-    "@smallwei/avue": "^3.2.6",
     "@vueuse/core": "^9.12.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "element-plus": "^2.2.29",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
+    "@smallwei/avue": "^3.2.6",
+    "element-plus": "^2.2.29",
     "sass": "^1.58.0",
     "vue": "^3.2.45"
   }

@@ -4,6 +4,7 @@ import type { Theme } from "vitepress";
 import defaultTheme from "vitepress/theme";
 import "./index.scss";
 import ElementPlus from "element-plus";
+// @ts-ignore
 import AvueFormDesign from "@sscfaith/avue-form-design";
 
 import components from "../components";

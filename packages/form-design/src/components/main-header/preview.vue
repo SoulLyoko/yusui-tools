@@ -22,5 +22,3 @@ const option = computed(() => {
   return { ...formOption.value, ...transformResouceToFormOption(resourceElementList.value) };
 });
 </script>
-
-<style lang="scss" scoped></style>

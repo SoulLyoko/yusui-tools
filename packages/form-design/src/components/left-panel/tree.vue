@@ -58,5 +58,3 @@ function onNodeDrop() {
   recordHistory("moved");
 }
 </script>
-
-<style lang="scss" scoped></style>

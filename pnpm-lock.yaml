@@ -181,16 +181,16 @@ importers:
       '@iconify/vue': 4.0.0_vue@3.2.45
       '@logicflow/core': 1.1.31
       '@logicflow/extension': 1.1.31
-      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
       '@vueuse/core': 9.12.0_vue@3.2.45
       '@yusui/types': link:../types
       '@yusui/utils': link:../utils
-      element-plus: 2.2.29_vue@3.2.45
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.3_3ib2ivapxullxkx3xftsimdk7u
     devDependencies:
+      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
       '@types/lodash-es': 4.17.6
+      element-plus: 2.2.29_vue@3.2.45
       sass: 1.58.0
       vue: 3.2.45
 
@@ -242,17 +242,17 @@ importers:
       vuedraggable: ^4.1.0
     dependencies:
       '@iconify/vue': 4.0.0_vue@3.2.45
-      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
       '@vueuse/core': 9.12.0_vue@3.2.45
       '@yusui/types': link:../types
       '@yusui/utils': link:../utils
-      element-plus: 2.2.29_vue@3.2.45
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.3_3ib2ivapxullxkx3xftsimdk7u
       vuedraggable: 4.1.0_vue@3.2.45
     devDependencies:
+      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
       '@types/lodash-es': 4.17.6
+      element-plus: 2.2.29_vue@3.2.45
       sass: 1.58.0
       vue: 3.2.45
 
@@ -288,7 +288,7 @@ importers:
       uvue-crud: ^2.0.3
       vue: ^3.2.45
     dependencies:
-      '@dcloudio/uni-app': 2.0.2-3061820230117002_@dcloudio+types@3.0.20
+      '@dcloudio/uni-app': 2.0.2-3061820230117003_@dcloudio+types@3.0.20
       '@yusui/composables': link:../composables
       '@yusui/types': link:../types
       '@yusui/uni-utils': link:../uni-utils
@@ -316,7 +316,7 @@ importers:
       postcss: ^8.4.20
       vue: ^3.2.45
     dependencies:
-      '@dcloudio/uni-app': 2.0.2-3061820230117002_@dcloudio+types@3.0.20
+      '@dcloudio/uni-app': 2.0.2-3061820230117003_@dcloudio+types@3.0.20
       '@yusui/types': link:../types
       dayjs: 1.11.7
       lodash: 4.17.21
@@ -696,8 +696,8 @@ packages:
   /@dcloudio/types/3.0.20:
     resolution: {integrity: sha512-rZ4okvj3LCN77rzZWtQg/uQLL4DPl72XjNdmRxTXgboGpBYuyjJ9V9do87RkHNM0bA0l0RIUoy3nh7P6Exb3hA==}
 
-  /@dcloudio/uni-app/2.0.2-3061820230117002_@dcloudio+types@3.0.20:
-    resolution: {integrity: sha512-US+0WRUcM6gyL/R/Z4EtME5xDDTlWLpbG7OOEyKhTVu/Yf4eY553CMUkuA+HjtszPx/Z1F82TYdcMfXIr1FWvw==}
+  /@dcloudio/uni-app/2.0.2-3061820230117003_@dcloudio+types@3.0.20:
+    resolution: {integrity: sha512-XBiEQz7eRjSRKNp3iaRS+ofdtcB6SnxbdriSx3oYl9WZEW3j61lu9ZaMYmTod/ULrBWadb5ywqXI+e+IZFupIg==}
     peerDependencies:
       '@dcloudio/types': ^3.0.15
       '@vue/composition-api': ^1.7.0
@@ -1147,7 +1147,7 @@ packages:
       dayjs: 1.11.7
       element-plus: 2.2.29_vue@3.2.45
       vue: 3.2.45
-    dev: false
+    dev: true
 
   /@smallwei/avue/3.2.6_kjekj6dhchzgl2zamwe5cd34ta:
     resolution: {integrity: sha512-84+Qv1DiZOnGiD0ZuSkiEbZmGrSS75GsPQy45lRRmVnt3iw1xINSxfm7wbIkYIAFTSWqVZ9UBoOMMKwfT7/jWg==}
@@ -1573,7 +1573,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: false
 
   /@vueuse/core/9.9.0_vue@3.2.45:
     resolution: {integrity: sha512-JdDb7TrE0imZnwBhMF4+0PCJqGD3AxzH8S2sfk54P0rqvklK+EAtAR/mPb1HwV/JPujQFQJhghQ190Yq03YpVw==}
@@ -1588,7 +1587,6 @@ packages:
 
   /@vueuse/metadata/9.12.0:
     resolution: {integrity: sha512-9oJ9MM9lFLlmvxXUqsR1wLt1uF7EVbP5iYaHJYqk+G2PbMjY6EXvZeTjbdO89HgoF5cI6z49o2zT/jD9SVoNpQ==}
-    dev: false
 
   /@vueuse/metadata/9.9.0:
     resolution: {integrity: sha512-pgxsUJv/d7IjKpLeB6TthggEsaBwM3ffc5jPrr5TmxAm/fup0mGR5VTzrdA/PSx85tpb+CIvP92D+55qBNc8ag==}
@@ -1600,7 +1598,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: false
 
   /@vueuse/shared/9.9.0_vue@3.2.45:
     resolution: {integrity: sha512-+D0XFwHG0T+uaIbCSlROBwm1wzs71B7n3KyDOxnvfEMMHDOzl09rYKwaE2AENmYwYPXfHPbSBRDD2gBVHbvTcg==}
@@ -2958,7 +2955,6 @@ packages:
       vue: 3.2.45
     transitivePeerDependencies:
       - '@vue/composition-api'
-    dev: false
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}

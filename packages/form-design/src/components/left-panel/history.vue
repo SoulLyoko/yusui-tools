@@ -23,18 +23,3 @@ const historyTypeMap = {
   property: "修改属性"
 };
 </script>
-
-<style lang="scss" scoped>
-.history-list {
-  .history-item {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 8px;
-    cursor: pointer;
-    &:hover {
-      background-color: #eee;
-    }
-  }
-}
-</style>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { AvueFormOption } from "@smallwei/avue";
 import type { ResourceElement, History, Resource } from "../types";
 
@@ -6,7 +7,7 @@ import { cloneDeep } from "lodash-es";
 
 import * as defaultResourcesMap from "../resources";
 
-const injectKey = Symbol("form-designer-state");
+const injectKey = "form-designer-state";
 
 export function useProvideState(props?: any) {
   const resources = computed<Resource[]>(() => [...Object.values(defaultResourcesMap), ...(props.resources || [])]);

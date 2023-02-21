@@ -54,24 +54,3 @@ function addElement(element: Resource) {
   recordHistory("added");
 }
 </script>
-
-<style lang="scss" scoped>
-.resource-item {
-  width: 50%;
-  padding: 5px;
-  display: inline-block;
-
-  .el-button {
-    width: 100%;
-    justify-content: left;
-
-    :deep(span) {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      display: block;
-      font-size: 12px;
-    }
-  }
-}
-</style>

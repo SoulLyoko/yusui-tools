@@ -59,7 +59,6 @@ export function dateFormat(date: ConfigType, optionsOrFormat: DateFormatOptions 
  * @returns 格式化后的时长
  */
 export function durationFormat(duration: number | string, detail?: boolean) {
-  if (!duration || Number(duration) < 1000) return "";
   const d = dayjs.duration(Number(duration));
   if (detail) {
     let format = "";

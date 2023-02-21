@@ -1,5 +1,5 @@
 <template>
-  <el-container class="form-designer">
+  <el-container class="form-design">
     <el-aside class="left-panel">
       <LeftPanel></LeftPanel>
     </el-aside>
@@ -26,13 +26,3 @@ import MainHeader from "./components/main-header/index.vue";
 
 const { resourceElementList, activeElement } = useProvideState({});
 </script>
-
-<style lang="scss" scoped>
-.form-designer {
-  height: 100%;
-  width: 100%;
-  .main-container {
-    height: calc(100% - 60px);
-  }
-}
-</style>

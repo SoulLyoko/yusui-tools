@@ -1,0 +1,30 @@
+
+.draggable-list {
+  // height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  box-sizing: border-box;
+  .draggable-item {
+    position: relative;
+    padding: 1px;
+    &.is-hover {
+      outline: 1px dashed var(--el-color-primary);
+    }
+    &.is-active {
+      outline: 1px solid var(--el-color-primary);
+    }
+
+    .item-slot {
+      margin-top: 1px;
+      min-height: 200px;
+      outline: 1px dashed var(--el-color-info);
+    }
+    .item-tool {
+      position: absolute;
+      right: 10px;
+      bottom: -16px;
+      z-index: 1;
+    }
+  }
+}

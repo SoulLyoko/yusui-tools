@@ -14,5 +14,3 @@ function handlePreview() {
   previewVisible.value = true;
 }
 </script>
-
-<style lang="scss" scoped></style>

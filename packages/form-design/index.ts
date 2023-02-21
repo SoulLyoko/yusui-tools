@@ -1,1 +1,3 @@
-export { default as FormDesign } from "./src/index.vue";
+import FormDesign from "./src/index.vue";
+
+export { FormDesign };
