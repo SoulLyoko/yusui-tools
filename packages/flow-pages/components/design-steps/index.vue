@@ -2,7 +2,7 @@
   <el-dialog v-model="visible" :show-close="false" fullscreen @close="handleClose">
     <template #header>
       <el-row align="center" justify="center">
-        <el-col :span="4"> 流程设计 - {{ formData.flowName }} </el-col>
+        <el-col :span="4"> 流程设计 - {{ formData?.flowName }} </el-col>
         <el-col :span="16">
           <el-steps :active="activeStep" simple>
             <el-step title="流程信息" />
@@ -44,19 +44,25 @@
 
 <script setup lang="ts">
 import type { AvueFormInstance } from "@smallwei/avue";
-import type { FlowDefinition } from "../api/flow-definition";
+import type { FlowDefinition } from "../../api/flow-definition";
+import type { FlowDeploy } from "../../api/flow-deploy";
 
 import { ref, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 
-import FormDesign from "../components/form-design/index.vue";
-import FlowDesign from "../components/flow-design/index.vue";
+import FormDesign from "../form-design/index.vue";
+import FlowDesign from "../flow-design/index.vue";
 import { formOption } from "./option";
-import { create, update, getDetail } from "../api/flow-definition";
-import { asyncValidate } from "../utils";
+import {
+  create as createDefinition,
+  update as updateDefinition,
+  getDetail as getDefinitionDetail
+} from "../../api/flow-definition";
+import { update as updateDeploy, getDetail as getDeployDetail } from "../../api/flow-deploy";
+import { asyncValidate } from "../../utils";
 
 const props = defineProps<{
-  modelValue: FlowDefinition;
+  modelValue: FlowDefinition | FlowDeploy;
   visible: boolean;
 }>();
 const emit = defineEmits(["close"]);
@@ -65,15 +71,20 @@ const { visible, modelValue: formData } = vModels as Required<typeof vModels>;
 
 watch(
   visible,
-  val => {
-    if (val && formData.value.flowModuleId) {
-      getDetail({ flowModuleId: formData.value.flowModuleId })
-        .then(res => {
-          formData.value = res.data;
-        })
-        .finally(() => {
-          loading.value = false;
-        });
+  async val => {
+    if (!val) return;
+    const { flowModuleId } = formData.value;
+    const { flowDeployId } = formData.value as FlowDeploy;
+    try {
+      let res: any = {};
+      if (flowDeployId) {
+        res = await getDeployDetail({ flowDeployId });
+      } else if (flowModuleId) {
+        res = await getDefinitionDetail({ flowModuleId });
+      }
+      formData.value = res.data;
+    } finally {
+      loading.value = false;
     }
   },
   { immediate: true }
@@ -94,18 +105,20 @@ async function saveAndNext() {
     await asyncValidate(formRef);
   }
   loading.value = true;
-  if (formData.value.flowModuleId) {
-    await update(formData.value).finally(() => {
-      loading.value = false;
-    });
-  } else {
-    await create(formData.value)
-      .then(res => {
+  const { flowModuleId } = formData.value;
+  const { flowDeployId } = formData.value as FlowDeploy;
+  try {
+    if (flowDeployId) {
+      await updateDeploy(formData.value as FlowDeploy);
+    } else if (flowModuleId) {
+      await updateDefinition(formData.value);
+    } else {
+      await createDefinition(formData.value).then(res => {
         formData.value.flowModuleId = res.data.flowModuleId;
-      })
-      .finally(() => {
-        loading.value = false;
       });
+    }
+  } finally {
+    loading.value = false;
   }
   activeStep.value++;
 }

@@ -71,7 +71,7 @@ export default defineConfig({
         {
           text: "流程设计器",
           items: [
-            { text: "卡死hi", link: "/flow-design/index" },
+            { text: "开始", link: "/flow-design/index" },
             { text: "流程模型设计", link: "/flow-design/flow-modeler/index" },
             { text: "流程查看", link: "/flow-design/flow-viewer/index" }
           ]

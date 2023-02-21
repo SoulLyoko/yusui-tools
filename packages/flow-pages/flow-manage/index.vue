@@ -14,17 +14,20 @@
       </avue-crud>
     </el-col>
   </el-row> -->
-
-  <avue-crud v-bind="bindVal">
+  <FlowDeploy v-if="deployVisible" :flowModuleId="formData.flowModuleId" @back="handleBack"></FlowDeploy>
+  <avue-crud v-else v-bind="bindVal">
     <template #menu-left>
       <el-button type="primary" icon="el-icon-plus" @click="handleOpenAdd">新增</el-button>
     </template>
     <template #menu="{ row }">
       <el-button :loading="loading" type="primary" icon="el-icon-edit" @click="handleOpenEdit(row)">编辑</el-button>
       <el-button :loading="loading" type="primary" icon="el-icon-download" @click="handleDeploy(row)">部署</el-button>
+      <el-button :loading="loading" type="primary" icon="el-icon-upload2" @click="handleShowDeploy(row)">
+        版本管理
+      </el-button>
     </template>
   </avue-crud>
-  <DesignDialog v-model="formData" v-model:visible="dialogVisible" @close="getDataList()"></DesignDialog>
+  <DesignSteps v-model="formData" v-model:visible="designVisible" @close="getDataList()"></DesignSteps>
 </template>
 
 <script setup lang="ts">
@@ -37,7 +40,8 @@ import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
 import CategoryTree from "../components/category-tree/index.vue";
-import DesignDialog from "./design-dialog.vue";
+import DesignSteps from "../components/design-steps/index.vue";
+import FlowDeploy from "../flow-deploy/index.vue";
 import { getList, deploy } from "../api/flow-definition";
 
 const crudOption = {
@@ -68,14 +72,14 @@ function nodeClick(data: FlowCategory) {
 }
 
 const loading = ref(false);
-const dialogVisible = ref(false);
+const designVisible = ref(false);
 function handleOpenAdd() {
   formData.value = {};
-  dialogVisible.value = true;
+  designVisible.value = true;
 }
 function handleOpenEdit(row: FlowDefinition) {
   formData.value = row;
-  dialogVisible.value = true;
+  designVisible.value = true;
 }
 
 function handleDeploy(row: FlowDefinition) {
@@ -88,5 +92,15 @@ function handleDeploy(row: FlowDefinition) {
     .finally(() => {
       loading.value = false;
     });
+}
+
+const deployVisible = ref(false);
+function handleShowDeploy(row: FlowDefinition) {
+  formData.value = row;
+  deployVisible.value = true;
+}
+function handleBack() {
+  formData.value = {};
+  deployVisible.value = false;
 }
 </script>

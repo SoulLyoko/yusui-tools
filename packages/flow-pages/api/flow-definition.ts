@@ -10,7 +10,7 @@ export interface FlowDefinition {
    */
   flowKey?: string;
   /**
-   * 流程ID
+   * 流程定义ID
    */
   flowModuleId?: string;
   /**
