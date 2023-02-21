@@ -1,22 +1,5 @@
 import type { AvueCrudOption } from "@smallwei/avue";
-
-export interface FormTemplate {
-  createBy?: string;
-  createDept?: string;
-  createTime?: string;
-  id?: string;
-  isDeleted?: 0 | 1;
-  key?: string;
-  name?: string;
-  remark?: string;
-  rev?: number;
-  /** 表单json */
-  source?: string;
-  status?: number;
-  tableId?: string;
-  updateBy?: string;
-  updateTime?: string;
-}
+import type { FormTemplate } from "../api/form-template";
 
 export const tableOption: AvueCrudOption<FormTemplate> = {
   rowKey: "id",
@@ -25,10 +8,16 @@ export const tableOption: AvueCrudOption<FormTemplate> = {
   border: true,
   stripe: true,
   searchMenuSpan: 4,
+  span: 24,
   column: [
-    { label: "表单名称", prop: "name" },
-    { label: "表单标识", prop: "key" },
-    { label: "备注", prop: "remark" },
-    { label: "表单配置", prop: "source", display: false }
+    { label: "表单KEY", prop: "formKey" },
+    { label: "表单名称", prop: "formName" },
+    { label: "表单配置", prop: "formOption", display: false },
+    { label: "表单备注", prop: "remarks" },
+    { label: "排序", prop: "sort", type: "number" }
+    // { label: "分组ID", prop: "groupId" },
+    // { label: "主键id", prop: "id" },
+    // { label: "状态", prop: "status", type: "number" },
+    // { label: "版本号", prop: "version", type: "number" }
   ]
 };

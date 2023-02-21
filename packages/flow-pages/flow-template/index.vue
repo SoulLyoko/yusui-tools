@@ -1,11 +1,11 @@
 <template>
   <avue-crud v-bind="bindVal">
-    <template #modelXml="{ row }">
+    <template #flowData="{ row }">
       <el-button type="primary" text icon="el-icon-crop" @click="openDesign(row)">设计</el-button>
     </template>
   </avue-crud>
-  <el-dialog v-model="dialogVisible" :title="`模型设计-${formData.name}`" fullscreen destroy-on-close>
-    <FlowDesign v-model="formData.modelXml" style="height: calc(100vh - 177px)"></FlowDesign>
+  <el-dialog v-model="dialogVisible" :title="`模型设计-${formData.flowName}`" fullscreen destroy-on-close>
+    <FlowDesign v-model="formData.flowData" style="height: calc(100vh - 177px)"></FlowDesign>
     <template #footer>
       <el-button type="primary" @click="handleSaveLayout">保存</el-button>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -14,20 +14,21 @@
 </template>
 
 <script setup lang="ts">
-import type { ModelTemplate } from "./option";
+import type { FlowTemplate } from "../api/flow-template";
 
 import { ref } from "vue";
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
 import FlowDesign from "../components/flow-design/index.vue";
+import { getList, create, update, remove } from "../api/flow-template";
 
 const crudOption = {
-  rowKey: "id"
-  // getList,
-  // create,
-  // update,
-  // remove
+  rowKey: "id",
+  getList,
+  create,
+  update,
+  remove
 };
 const {
   bindVal,
@@ -38,7 +39,7 @@ const {
 getDataList();
 
 const dialogVisible = ref(false);
-async function openDesign(row: ModelTemplate) {
+async function openDesign(row: FlowTemplate) {
   formData.value = row;
   dialogVisible.value = true;
 }

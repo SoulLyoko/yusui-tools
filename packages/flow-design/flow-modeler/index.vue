@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="main-container">
     <el-main>
       <div :id="containerId" class="lf-container"></div>
     </el-main>
@@ -80,6 +80,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.main-container {
+  height: 100%;
+}
 .lf-container {
   height: 100%;
 }

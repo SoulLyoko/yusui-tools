@@ -1,51 +1,22 @@
 import type { AvueCrudOption } from "@smallwei/avue";
+import type { FlowTemplate } from "../api/flow-template";
 
-/** 表单类型 */
-export enum FlowFormType {
-  /** 内置 */
-  Internal = 0,
-  /** 外置 */
-  External = 1
-}
-
-export interface ModelTemplate {
-  categoryId?: string;
-  createBy?: string;
-  createDept?: string;
-  createTime?: string;
-  deployId?: string;
-  formKey?: string;
-  formType?: FlowFormType;
-  description?: string;
-  icon?: string;
-  id?: string;
-  isDeleted?: number;
-  modelKey?: string;
-  modelXml?: string;
-  name?: string;
-  layoutId?: string;
-  layoutJson?: string;
-  status?: number;
-  updateBy?: string;
-  updateTime?: string;
-  version?: number;
-  scope?: any;
-}
-
-export const tableOption: AvueCrudOption<ModelTemplate> = {
+export const tableOption: AvueCrudOption<FlowTemplate> = {
   rowKey: "id",
   align: "center",
   index: true,
   border: true,
   stripe: true,
   searchMenuSpan: 4,
+  span: 24,
   column: [
-    { label: "模型名称", prop: "name" },
-    { label: "模型标识", prop: "modelKey" },
-    { label: "模型描述", prop: "description" },
-    // { label: "所属分类", prop: "categoryId" },
-    // { label: "图标", prop: "icon" },
-    // { label: "权限", prop: "scope" },
-    { label: "流程图", prop: "modelXml", display: false }
+    { label: "流程KEY", prop: "flowKey" },
+    { label: "流程名称", prop: "flowName" },
+    { label: "流程模型数据", prop: "flowData", display: false },
+    { label: "流程备注", prop: "remarks" },
+    { label: "排序", prop: "sort" }
+    // { label: "分组ID", prop: "groupId" }
+    // { label: "业务状态", prop: "status" },
+    // { label: "版本号", prop: "version" }
   ]
 };

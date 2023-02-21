@@ -19,9 +19,9 @@ export default defineConfig({
           { text: "@yusui/components", link: "/components/index" },
           { text: "@yusui/composables", link: "/composables/index" },
           { text: "@yusui/eslint-config", link: "/eslint-config/index" },
-          { text: "@yusui/form-design", link: "/form-design/index" },
-          { text: "@yusui/flow-design", link: "/flow-design/index" },
-          { text: "@yusui/flow-pages", link: "/flow-pages/index" },
+          { text: "@yusui/form-design表单设计器", link: "/form-design/index" },
+          { text: "@yusui/flow-design流程设计器", link: "/flow-design/index" },
+          { text: "@yusui/flow-pages工作流页面", link: "/flow-pages/index" },
           { text: "@yusui/prettier-config", link: "/prettier-config/index" },
           { text: "@yusui/plugins", link: "/plugins/index" },
           { text: "@yusui/utils", link: "/utils/index" }
@@ -60,31 +60,31 @@ export default defineConfig({
       ],
       "/form-design": [
         {
-          text: "FormDesign",
+          text: "表单设计器",
           items: [
-            { text: "Start", link: "/form-design/index" },
-            { text: "FormDesign", link: "/form-design/src/index" }
+            { text: "开始", link: "/form-design/index" },
+            { text: "表单设计器", link: "/form-design/src/index" }
           ]
         }
       ],
       "/flow-design": [
         {
-          text: "FlowDesign",
+          text: "流程设计器",
           items: [
-            { text: "Start", link: "/flow-design/index" },
-            { text: "FlowModeler", link: "/flow-design/flow-modeler/index" },
-            { text: "FlowViewer", link: "/flow-design/flow-viewer/index" }
+            { text: "卡死hi", link: "/flow-design/index" },
+            { text: "流程模型设计", link: "/flow-design/flow-modeler/index" },
+            { text: "流程查看", link: "/flow-design/flow-viewer/index" }
           ]
         }
       ],
       "/flow-pages": [
         {
-          text: "FlowPages",
+          text: "工作流页面",
           items: [
-            { text: "Start", link: "/flow-pages/index" },
-            { text: "FormTemplate", link: "/flow-pages/form-template/index" },
-            { text: "FlowTemplate", link: "/flow-pages/flow-template/index" },
-            { text: "FlowManage", link: "/flow-pages/flow-manage/index" }
+            { text: "开始", link: "/flow-pages/index" },
+            { text: "表单模板", link: "/flow-pages/form-template/index" },
+            { text: "流程模板", link: "/flow-pages/flow-template/index" },
+            { text: "流程设计", link: "/flow-pages/flow-manage/index" }
           ]
         }
       ],
@@ -159,6 +159,11 @@ export default defineConfig({
     plugins: [mdDemoTransform(), avuePatch()],
     resolve: {
       alias
+    },
+    server: {
+      proxy: {
+        "/sapier-flow": "http://flow.frp.71ic.com"
+      }
     }
   }
 });
