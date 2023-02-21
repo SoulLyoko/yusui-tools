@@ -1,6 +1,6 @@
-import type { AvueCrudOption, AvueCrudGroup, AvueCrudColumn, AvueTreeOption } from "@smallwei/avue";
+import type { AvueCrudOption, AvueCrudGroup, AvueCrudColumn } from "@smallwei/avue";
 
-export interface FlowDesign {
+export interface FlowManage {
   id?: string;
   name?: string;
   categoryId?: string;
@@ -9,12 +9,6 @@ export interface FlowDesign {
   formOption?: string;
   modelData?: string;
   assTable?: string;
-}
-export interface FlowCategory {
-  id?: string;
-  name?: string;
-  code?: string;
-  remark?: string;
 }
 
 const group: AvueCrudGroup[] = [
@@ -63,7 +57,7 @@ const group: AvueCrudGroup[] = [
   },
   {
     label: "模型设计",
-    column: [{ prop: "modelDesign", labelWidth: 0, span: 24, hide: true }]
+    column: [{ prop: "flowDesign", labelWidth: 0, span: 24, hide: true }]
   }
 ];
 
@@ -72,7 +66,7 @@ const column: AvueCrudColumn[] = group
   .flat()
   .map(e => ({ ...e, display: false }));
 
-export const tableOption: AvueCrudOption<FlowDesign> = {
+export const tableOption: AvueCrudOption<FlowManage> = {
   rowKey: "id",
   align: "center",
   index: true,
@@ -83,28 +77,4 @@ export const tableOption: AvueCrudOption<FlowDesign> = {
   dialogFullscreen: true,
   column,
   group
-};
-
-export const treeOption: AvueTreeOption<FlowCategory> = {
-  defaultExpandAll: true,
-  props: { label: "name", value: "id" },
-  filter: true,
-  formOption: {
-    column: [
-      {
-        label: "分类名称",
-        prop: "name",
-        rules: [{ required: true, message: "请输入分类名称" }]
-      },
-      {
-        label: "分类标识",
-        prop: "code",
-        rules: [{ required: true, message: "请输入分类标识" }]
-      },
-      {
-        label: "描述",
-        prop: "remark"
-      }
-    ]
-  }
 };

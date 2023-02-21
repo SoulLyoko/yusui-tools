@@ -1,11 +1,11 @@
 <template>
   <div style="height: 800px">
-    <FormDesigner></FormDesigner>
+    <FormDesign></FormDesign>
   </div>
 </template>
 
 <script setup lang="ts">
-import FormDesigner from "./index.vue";
+import { FormDesign } from "@yusui/form-design";
 </script>
 
 <style lang="scss" scoped></style>

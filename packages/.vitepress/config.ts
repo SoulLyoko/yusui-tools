@@ -3,6 +3,7 @@ import { defineConfig } from "vitepress";
 import { alias } from "../../vite.config";
 import pkg from "../../package.json";
 import { mdDemoTransform } from "./plugins/md-demo-transform";
+import { avuePatch } from "@yusui/plugins";
 
 export default defineConfig({
   base: `/${pkg.name}/`,
@@ -15,10 +16,12 @@ export default defineConfig({
       {
         text: "Packages",
         items: [
-          { text: "@yusui/avue-flow", link: "/avue-flow/index" },
           { text: "@yusui/components", link: "/components/index" },
           { text: "@yusui/composables", link: "/composables/index" },
           { text: "@yusui/eslint-config", link: "/eslint-config/index" },
+          { text: "@yusui/form-design", link: "/form-design/index" },
+          { text: "@yusui/flow-design", link: "/flow-design/index" },
+          { text: "@yusui/flow-pages", link: "/flow-pages/index" },
           { text: "@yusui/prettier-config", link: "/prettier-config/index" },
           { text: "@yusui/plugins", link: "/plugins/index" },
           { text: "@yusui/utils", link: "/utils/index" }
@@ -32,20 +35,6 @@ export default defineConfig({
           items: [
             { text: "Start", link: "/guide/start" },
             { text: "Changelog", link: "/guide/changelog" }
-          ]
-        }
-      ],
-      "/avue-flow": [
-        {
-          text: "AvueFlow",
-          items: [
-            { text: "Start", link: "/avue-flow/index" },
-            { text: "FlowModeler", link: "/avue-flow/flow/flow-modeler/index" },
-            { text: "FlowViewer", link: "/avue-flow/flow/flow-viewer/index" },
-            { text: "FormDesigner", link: "/avue-flow/form-designer/index" }
-            // { text: "ModelTemplate", link: "/avue-flow/pages/model-template/index" },
-            // { text: "FormTemplate", link: "/avue-flow/pages/form-template/index" },
-            // { text: "FlowDesign", link: "/avue-flow/pages/flow-design/index" }
           ]
         }
       ],
@@ -66,6 +55,36 @@ export default defineConfig({
           items: [
             { text: "Start", link: "/composables/index" },
             { text: "useCrud", link: "/composables/use-crud/index" }
+          ]
+        }
+      ],
+      "/form-design": [
+        {
+          text: "FormDesign",
+          items: [
+            { text: "Start", link: "/form-design/index" },
+            { text: "FormDesign", link: "/form-design/src/index" }
+          ]
+        }
+      ],
+      "/flow-design": [
+        {
+          text: "FlowDesign",
+          items: [
+            { text: "Start", link: "/flow-design/index" },
+            { text: "FlowModeler", link: "/flow-design/flow-modeler/index" },
+            { text: "FlowViewer", link: "/flow-design/flow-viewer/index" }
+          ]
+        }
+      ],
+      "/flow-pages": [
+        {
+          text: "FlowPages",
+          items: [
+            { text: "Start", link: "/flow-pages/index" },
+            { text: "FormTemplate", link: "/flow-pages/form-template/index" },
+            { text: "FlowTemplate", link: "/flow-pages/flow-template/index" },
+            { text: "FlowManage", link: "/flow-pages/flow-manage/index" }
           ]
         }
       ],
@@ -137,7 +156,7 @@ export default defineConfig({
     }
   },
   vite: {
-    plugins: [mdDemoTransform()],
+    plugins: [mdDemoTransform(), avuePatch()],
     resolve: {
       alias
     }

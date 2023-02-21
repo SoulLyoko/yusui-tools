@@ -20,7 +20,7 @@ import { ref } from "vue";
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
-import FormDesign from "../form-design/index.vue";
+import FormDesign from "../components/form-design/index.vue";
 
 const crudOption = {
   rowKey: "id"

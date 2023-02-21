@@ -8,23 +8,23 @@
         <template #formDesign-form>
           <FormDesign v-model="formData.formOption" style="height: calc(100vh - 232px)"></FormDesign>
         </template>
-        <template #modelDesign-form>
-          <ModelDesign v-model="formData.modelData" style="height: calc(100vh - 232px)"></ModelDesign>
+        <template #flowDesign-form>
+          <FlowDesign v-model="formData.modelData" style="height: calc(100vh - 232px)"></FlowDesign>
         </template>
       </avue-crud>
     </el-col>
   </el-row>
 </template>
 
-<script setup lang="ts" name="sys-dict">
-import type { FlowCategory } from "./option";
+<script setup lang="ts">
+import type { FlowCategory } from "../components/category-tree/option";
 
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
-import CategoryTree from "./category-tree.vue";
-import FormDesign from "../form-design/index.vue";
-import ModelDesign from "../model-design/index.vue";
+import CategoryTree from "../components/category-tree/index.vue";
+import FormDesign from "../components/form-design/index.vue";
+import FlowDesign from "../components/flow-design/index.vue";
 
 const crudOption = {
   rowKey: "id"

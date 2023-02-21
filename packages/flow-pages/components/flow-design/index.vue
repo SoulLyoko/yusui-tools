@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { ref, watchEffect, computed } from "vue";
-import { FlowModeler, defaultGraphData } from "@yusui/avue-flow";
+import { FlowModeler, defaultGraphData } from "@yusui/flow-design";
 
 import { formOptions } from "./options";
 

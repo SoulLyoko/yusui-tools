@@ -1,6 +1,6 @@
-# ModelTemplate
+# FlowTemplate
 
-ModelTemplate
+FlowTemplate
 
 ## 基础用法
 
