@@ -33,7 +33,8 @@
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "axios": "^1.3.3",
-    "element-plus": "^2.2.29"
+    "element-plus": "^2.2.29",
+    "vue-request": "2.0.0-rc.4"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",

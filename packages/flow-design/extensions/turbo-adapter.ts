@@ -1,77 +1,79 @@
 import type { NodeConfig, EdgeConfig, GraphConfigData, LogicFlow, TextConfig, Point } from "@logicflow/core";
 
+import { omit, isString } from "lodash-unified";
+
 export interface FlowElement {
   incoming: string[];
   outgoing: string[];
-  dockers: string[];
   children?: string[];
   type: string;
-  properties: Record<string, unknown>;
   key: string;
+  groupKey?: string;
+  properties: Record<string, unknown>;
 }
 
 export interface FlowNode extends FlowElement {
-  properties: Record<string, unknown> & {
+  properties: {
     name?: string;
-    text?: TextConfig;
+    text?: TextConfig | string;
     x?: number;
     y?: number;
+    [x: string]: unknown;
   };
 }
 export interface FlowEdge extends FlowElement {
-  properties: Record<string, unknown> & {
+  properties: {
     name?: string;
-    text?: TextConfig;
+    text?: TextConfig | string;
     startPoint?: Point;
     endPoint?: Point;
     pointsList?: Point[];
+    [x: string]: unknown;
   };
 }
 
 export interface TurboData {
   flowElementList: FlowElement[];
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 // 将LogicFlow中的Node数据转换为Turbo元素数据
 function convertNodeToTurboElement(node: NodeConfig & { children?: string[] }): FlowElement {
-  const { id, type, x, y, properties, children } = node;
-  const text = node.text as TextConfig;
+  const { id, type, x, y, properties, children, text } = node;
   return {
     incoming: [],
     outgoing: [],
-    dockers: [],
     children,
     type,
+    key: id!,
+    groupKey: (properties?.groupKey as string) ?? "",
     properties: {
       ...properties,
-      name: text?.value ?? "",
+      name: isString(text) ? text : text?.value ?? "",
       x,
       y,
       text
-    },
-    key: id!
+    }
   };
 }
 
 // 将LogicFlow中的Edge数据转换为Turbo元素数据
 function convertEdgeToTurboElement(edge: EdgeConfig) {
-  const { id, type, sourceNodeId, targetNodeId, startPoint, endPoint, pointsList, properties } = edge;
-  const text = edge.text as TextConfig;
+  const { id, type, sourceNodeId, targetNodeId, startPoint, endPoint, pointsList, properties, text } = edge;
   return {
     incoming: [sourceNodeId],
     outgoing: [targetNodeId],
     type,
-    dockers: [],
+    key: id,
+    groupKey: (properties?.groupKey as string) ?? "",
     properties: {
       ...properties,
-      name: text?.value,
+      name: isString(text) ? text : text?.value ?? "",
       text,
       startPoint,
       endPoint,
       pointsList
-    },
-    key: id
+    }
   };
 }
 
@@ -107,47 +109,33 @@ function convertFlowElementToEdge(element: FlowEdge) {
     sourceNodeId: incoming[0],
     targetNodeId: outgoing[0],
     text: text || name,
-    properties: {},
     startPoint,
     endPoint,
-    pointsList
+    pointsList,
+    properties: {}
   };
   // 这种转换方式，在自定义属性中不能与excludeProperties中的属性重名，否则将在转换过程中丢失
   const excludeProperties = ["startPoint", "endPoint", "pointsList", "text"];
-  Object.keys(element.properties).forEach(property => {
-    if (!excludeProperties.includes(property)) {
-      edge.properties![property] = element.properties[property];
-    }
-  });
+  edge.properties = omit(properties, excludeProperties);
   return edge;
 }
 
 // 将Turbo元素数据转换为LogicFlow中的Node数据
 function convertFlowElementToNode(element: FlowNode) {
-  const { properties, key, type /** bounds */, children } = element;
-  const { x, y } = properties;
-  const { text } = properties;
-  // if (x === undefined) {
-  //   const [{ x: x1, y: y1 }, { x: x2, y: y2 }] = bounds;
-  //   x = (x1 + x2) / 2;
-  //   y = (y1 + y2) / 2;
-  // }
+  const { properties, key, type, children } = element;
+  const { x, y, text, name } = properties;
   const node: NodeConfig & { children?: string[] } = {
     id: key,
     type,
     x: x!,
     y: y!,
-    text,
+    text: text || name,
     children,
     properties: {}
   };
   // 这种转换方式，在自定义属性中不能与excludeProperties中的属性重名，否则将在转换过程中丢失
   const excludeProperties = ["x", "y", "text"];
-  Object.keys(element.properties).forEach(property => {
-    if (!excludeProperties.includes(property)) {
-      node.properties![property] = element.properties[property];
-    }
-  });
+  node.properties = omit(properties, excludeProperties);
   return node;
 }
 

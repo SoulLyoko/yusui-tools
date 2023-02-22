@@ -1,3 +1,5 @@
+import type { Page, ResData, ResRecords } from "@yusui/types";
+
 import { request } from ".";
 
 export interface FlowDefinition {
@@ -48,8 +50,8 @@ export interface FlowDefinition {
   mainVersion?: number;
 }
 
-export function getList(params: any) {
-  return request.get("/sapier-flow/flow-definition/list", { params });
+export function getList(params: Page & FlowDefinition) {
+  return request.get<ResRecords<FlowDefinition[]>>("/sapier-flow/flow-definition/list", { params });
 }
 
 export function getDetail(params: { flowModuleId?: string; flowDeployId?: string }) {
@@ -57,7 +59,7 @@ export function getDetail(params: { flowModuleId?: string; flowDeployId?: string
 }
 
 export function create(data: Pick<FlowDefinition, "flowKey" | "flowName" | "remarks">) {
-  return request.post("/sapier-flow/flow-definition/save", data);
+  return request.post<ResData<{ flowModuleId?: string }>>("/sapier-flow/flow-definition/save", data);
 }
 
 export function update(data: FlowDefinition) {

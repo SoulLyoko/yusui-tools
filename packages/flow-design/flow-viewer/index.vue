@@ -6,9 +6,9 @@
 import type { Definition } from "@logicflow/core";
 import type { TurboData } from "../extensions";
 
-import { onMounted, watchEffect } from "vue";
+import { onMounted, watch } from "vue";
 import { useVModels } from "@vueuse/core";
-import { uniqueId } from "lodash-es";
+import { uniqueId } from "lodash-unified";
 import LogicFlow from "@logicflow/core";
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
@@ -36,8 +36,9 @@ onMounted(() => {
     plugins: [BpmnExtend, TurboAdapter]
   });
   lf.value?.setTheme(defaultTheme);
-  watchEffect(() => {
-    lf.value?.render(graphData.value);
+  lf.value?.render(graphData.value);
+  watch(graphData, val => {
+    lf.value?.render(val);
   });
 });
 </script>

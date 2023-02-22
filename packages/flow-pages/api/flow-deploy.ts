@@ -1,3 +1,4 @@
+import type { Page, ResData, ResRecords } from "@yusui/types";
 import type { FlowDefinition } from "./flow-definition";
 
 import { request } from ".";
@@ -13,8 +14,8 @@ export interface FlowDeploy extends FlowDefinition {
   mainVersion?: 0 | 1;
 }
 
-export function getList(params: any) {
-  return request.get("/sapier-flow/flow-deploy/list", { params });
+export function getList(params: Page & FlowDeploy) {
+  return request.get<ResData<FlowDeploy[]>>("/sapier-flow/flow-deploy/list", { params });
 }
 
 export function getDetail(params: { flowModuleId?: string; flowDeployId?: string }) {

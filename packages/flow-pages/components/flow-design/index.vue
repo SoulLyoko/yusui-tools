@@ -1,15 +1,17 @@
 <template>
-  <FlowModeler v-model:lf="lf" v-model="graphData" :formOptions="formOptions" formWidth="30%"></FlowModeler>
+  <FlowViewer v-if="view" v-model="graphData"></FlowViewer>
+  <FlowModeler v-else v-model:lf="lf" v-model="graphData" :formOptions="formOptions" formWidth="30%"></FlowModeler>
 </template>
 
 <script setup lang="ts">
 import { ref, watchEffect, computed } from "vue";
-import { FlowModeler, defaultGraphData } from "@yusui/flow-design";
+import { FlowModeler, FlowViewer, defaultGraphData } from "@yusui/flow-design";
 
 import { formOptions } from "./options";
 
 const props = defineProps<{
   modelValue?: string;
+  view?: boolean;
 }>();
 const emit = defineEmits(["update:modelValue"]);
 

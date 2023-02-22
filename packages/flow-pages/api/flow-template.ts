@@ -1,3 +1,7 @@
+import type { Page, ResRecords } from "@yusui/types";
+
+import { useRequest } from "vue-request";
+
 import { request } from ".";
 
 export interface FlowTemplate {
@@ -39,8 +43,11 @@ export interface FlowTemplate {
   version?: number;
 }
 
-export function getList(params: any) {
-  return request.get("/sapier-flow/dev-flow/list", { params });
+export function getList(params: Page & FlowTemplate) {
+  return request.get<ResRecords<FlowTemplate[]>>("/sapier-flow/dev-flow/list", { params });
+}
+export function useFlowTemplates() {
+  return useRequest(() => getList({ size: -1 }).then(res => res.data.records));
 }
 
 export function create(data: FlowTemplate) {

@@ -20,20 +20,10 @@ import {
 } from "@logicflow/extension";
 
 /** startEvent */
-export class StartEventModel extends _StartEventModel {
-  initNodeData(data: NodeConfig) {
-    super.initNodeData(data);
-    this.text.draggable = true;
-  }
-}
+export class StartEventModel extends _StartEventModel {}
 export class StartEventView extends _StartEventView {}
 /** endEvent */
-export class EndEventModel extends _EndEventModel {
-  initNodeData(data: NodeConfig) {
-    super.initNodeData(data);
-    this.text.draggable = true;
-  }
-}
+export class EndEventModel extends _EndEventModel {}
 export class EndEventView extends _EndEventView {
   getShape() {
     const model = this.props.model;
@@ -55,10 +45,6 @@ export class ExclusiveGatewayModel extends _ExclusiveGatewayModel {
       [25, 50],
       [0, 25]
     ];
-  }
-  initNodeData(data: NodeConfig) {
-    super.initNodeData(data);
-    this.text.draggable = true;
   }
 }
 export class ExclusiveGatewayView extends _ExclusiveGatewayView {
@@ -107,28 +93,13 @@ export class ParallelGatewayView extends PolygonNode {
   }
 }
 /** userTask */
-export class UserTaskModel extends _UserTaskModel {
-  initNodeData(data: NodeConfig) {
-    super.initNodeData(data);
-    this.text.draggable = true;
-  }
-}
+export class UserTaskModel extends _UserTaskModel {}
 export class UserTaskView extends _UserTaskView {}
 /** serviceTask */
-export class ServiceTaskModel extends _ServiceTaskModel {
-  initNodeData(data: NodeConfig) {
-    super.initNodeData(data);
-    this.text.draggable = true;
-  }
-}
+export class ServiceTaskModel extends _ServiceTaskModel {}
 export class ServiceTaskView extends _ServiceTaskView {}
 /** sequenceFlow */
-export class SequenceFlowModel extends _SequenceFlowModel {
-  initEdgeData(data: EdgeConfig) {
-    super.initEdgeData(data);
-    this.text.draggable = true;
-  }
-}
+export class SequenceFlowModel extends _SequenceFlowModel {}
 export class SequenceFlowView extends _SequenceFlowView {}
 /** group */
 export class GroupModel extends GroupNode["model"] {
@@ -139,8 +110,15 @@ export class GroupModel extends GroupNode["model"] {
     super.initNodeData(data);
     this.resizable = true;
     this.foldable = true;
-    this.text.editable = true;
-    this.text.draggable = true;
+    // this.text.editable = true;
+  }
+  addChild(id: string) {
+    super.addChild(id);
+    this.graphModel.nodesMap[id]?.model?.setProperty("groupKey", this.id);
+  }
+  removeChild(id: string) {
+    super.removeChild(id);
+    this.graphModel.nodesMap[id]?.model?.deleteProperty("groupKey");
   }
 }
 export class GroupView extends GroupNode["view"] {}
@@ -152,22 +130,24 @@ const plugins = [
   { type: "parallelGateway", model: ParallelGatewayModel, view: ParallelGatewayView },
   { type: "userTask", model: UserTaskModel, view: UserTaskView },
   { type: "serviceTask", model: ServiceTaskModel, view: ServiceTaskView },
-  { type: "sequenceFlow", model: SequenceFlowModel, view: SequenceFlowView }
+  { type: "sequenceFlow", model: SequenceFlowModel, view: SequenceFlowView },
+  { type: "group", model: GroupModel, view: GroupView }
 ];
 
-export class BpmnExtend {
+export class Group extends _Group {
+  // constructor({ lf }: { lf: LogicFlow }) {
+  //   super({ lf });
+  // lf.register({ type: "group", model: GroupModel, view: GroupView });
+  // }
+}
+
+export class BpmnExtend extends Group {
   static pluginName = "bpmnExtend";
   constructor({ lf }: { lf: LogicFlow }) {
+    super({ lf });
     plugins.forEach(plugin => {
       lf.register(plugin);
     });
     lf.setDefaultEdgeType("sequenceFlow");
-  }
-}
-
-export class Group extends _Group {
-  constructor({ lf }: { lf: LogicFlow }) {
-    super({ lf });
-    lf.register({ type: "group", model: GroupModel, view: GroupView });
   }
 }

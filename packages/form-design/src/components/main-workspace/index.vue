@@ -54,7 +54,7 @@ import type { ResourceElement } from "../../types";
 
 import draggable from "vuedraggable";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep, omit } from "lodash-es";
+import { cloneDeep, omit } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
 import Workspace from "./index.vue";

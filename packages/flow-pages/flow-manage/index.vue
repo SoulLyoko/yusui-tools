@@ -1,106 +1,86 @@
 <template>
-  <!-- <el-row :gutter="20">
+  <el-row :gutter="20">
     <el-col :span="4">
       <CategoryTree @node-click="nodeClick"></CategoryTree>
     </el-col>
-    <el-col :span="24">
-      <avue-crud v-bind="bindVal">
-        <template #formDesign-form>
-          <FormDesign v-model="formData.formOption" style="height: calc(100vh - 232px)"></FormDesign>
-        </template>
-        <template #flowDesign-form>
-          <FlowDesign v-model="formData.flowData" style="height: calc(100vh - 232px)"></FlowDesign>
-        </template>
-      </avue-crud>
+    <el-col :span="20">
+      <FlowDefinitionCrud
+        v-if="showType === 'definition'"
+        :groupId="currentGroupId"
+        @add="handleAdd"
+        @edit="handleEdit"
+        @view="handleView"
+        @version="handleShowDeploy"
+      ></FlowDefinitionCrud>
+      <FlowDeployCrud
+        v-if="showType === 'deploy'"
+        :flowModuleId="currentFlowModuleId"
+        @edit="handleEdit"
+        @view="handleView"
+        @back="handleBack"
+      ></FlowDeployCrud>
+      <DesignSteps v-model="currentFlow" v-model:visible="designVisible" @close="handleClose"></DesignSteps>
+      <DesignView v-model="currentFlow" v-model:visible="viewVisible"></DesignView>
     </el-col>
-  </el-row> -->
-  <FlowDeploy v-if="deployVisible" :flowModuleId="formData.flowModuleId" @back="handleBack"></FlowDeploy>
-  <avue-crud v-else v-bind="bindVal">
-    <template #menu-left>
-      <el-button type="primary" icon="el-icon-plus" @click="handleOpenAdd">新增</el-button>
-    </template>
-    <template #menu="{ row }">
-      <el-button :loading="loading" type="primary" icon="el-icon-edit" @click="handleOpenEdit(row)">编辑</el-button>
-      <el-button :loading="loading" type="primary" icon="el-icon-download" @click="handleDeploy(row)">部署</el-button>
-      <el-button :loading="loading" type="primary" icon="el-icon-upload2" @click="handleShowDeploy(row)">
-        版本管理
-      </el-button>
-    </template>
-  </avue-crud>
-  <DesignSteps v-model="formData" v-model:visible="designVisible" @close="getDataList()"></DesignSteps>
+  </el-row>
 </template>
 
 <script setup lang="ts">
 import type { FlowCategory } from "../components/category-tree/option";
 import type { FlowDefinition } from "../api/flow-definition";
+import type { FlowDeploy } from "../api/flow-deploy";
 
-import { ref } from "vue";
-import { ElMessage } from "element-plus";
-import { useCrud } from "@yusui/composables";
+import { ref, nextTick } from "vue";
 
-import { tableOption } from "./option";
 import CategoryTree from "../components/category-tree/index.vue";
 import DesignSteps from "../components/design-steps/index.vue";
-import FlowDeploy from "../flow-deploy/index.vue";
-import { getList, deploy } from "../api/flow-definition";
+import DesignView from "../components/design-view/index.vue";
+import FlowDefinitionCrud from "../flow-definition/index.vue";
+import FlowDeployCrud from "../flow-deploy/index.vue";
 
-const crudOption = {
-  rowKey: "flowModuleId",
-  getList
-  // remove
-};
-const {
-  bindVal,
-  crudStateRefs: { formData, searchForm },
-  getDataList,
-  afterOpen
-} = useCrud({
-  crudOption,
-  tableOption,
-  searchForm: { groupId: "" }
-});
-getDataList();
-afterOpen(type => {
-  if (type === "add") {
-    formData.value.groupId = searchForm.value.groupId ?? "";
-  }
-});
+const showType = ref("definition");
+const currentFlow = ref<FlowDefinition | FlowDeploy>({});
+const currentGroupId = ref("");
+const currentFlowModuleId = ref("");
 
 function nodeClick(data: FlowCategory) {
-  searchForm.value.groupId = data.id!;
-  getDataList();
+  if (currentGroupId.value === data.id) {
+    currentGroupId.value = "";
+  } else {
+    currentGroupId.value = data.id!;
+  }
 }
 
-const loading = ref(false);
 const designVisible = ref(false);
-function handleOpenAdd() {
-  formData.value = {};
+const viewVisible = ref(false);
+function handleAdd() {
+  currentFlow.value = {};
   designVisible.value = true;
 }
-function handleOpenEdit(row: FlowDefinition) {
-  formData.value = row;
+function handleEdit(row: FlowDefinition | FlowDeploy) {
+  currentFlow.value = row;
   designVisible.value = true;
 }
-
-function handleDeploy(row: FlowDefinition) {
-  loading.value = true;
-  deploy({ flowModuleId: row.flowModuleId })
-    .then(() => {
-      ElMessage.success("部署成功");
-      getDataList();
-    })
-    .finally(() => {
-      loading.value = false;
-    });
+function handleView(row: FlowDefinition | FlowDeploy) {
+  currentFlow.value = row;
+  viewVisible.value = true;
 }
 
-const deployVisible = ref(false);
 function handleShowDeploy(row: FlowDefinition) {
-  formData.value = row;
-  deployVisible.value = true;
+  currentFlowModuleId.value = row.flowModuleId || "";
+  showType.value = "deploy";
 }
 function handleBack() {
-  formData.value = {};
-  deployVisible.value = false;
+  currentFlowModuleId.value = "";
+  showType.value = "definition";
+}
+
+async function handleClose() {
+  console.log(111);
+  const oldShowType = showType.value;
+  await nextTick();
+  showType.value = "";
+  await nextTick();
+  showType.value = oldShowType + "";
 }
 </script>

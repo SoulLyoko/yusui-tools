@@ -13,6 +13,7 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
   addBtn: false,
   editBtn: false,
   delBtn: false,
+  menuWidth: 300,
   column: [
     {
       label: "流程名称",
@@ -30,7 +31,7 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
       label: "流程主版本",
       prop: "mainVersion",
       formatter(row, value) {
-        return value ? `V:${value || ""}` : "";
+        return value ? `V${value || ""}` : "";
       }
     },
     // {

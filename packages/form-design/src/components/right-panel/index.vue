@@ -6,7 +6,7 @@
 import type { AvueFormOption } from "@smallwei/avue";
 
 import { computed, ref, watch, nextTick } from "vue";
-import { get, set, debounce, isEqual } from "lodash-es";
+import { get, set, debounce, isEqual } from "lodash-unified";
 import { filterObj } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";

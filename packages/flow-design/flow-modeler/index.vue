@@ -23,13 +23,13 @@ import type { AvueFormGroup } from "@smallwei/avue";
 import type { TurboData } from "../extensions";
 
 import { onMounted, watch, provide } from "vue";
-import { uniqueId, isEqual } from "lodash-es";
+import { uniqueId, isEqual } from "lodash-unified";
 import LogicFlow from "@logicflow/core";
 import { Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline } from "@logicflow/extension";
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
 
-import { BpmnExtend, TurboAdapter, Group } from "../extensions";
+import { BpmnExtend, TurboAdapter } from "../extensions";
 import { defaultTheme } from "../constants";
 import { useModelerState, useControl, usePattern, useMenu, useModelerListener } from "./composables";
 import FlowEditor from "./components/flow-editor.vue";
@@ -60,7 +60,11 @@ onMounted(() => {
   lf.value = new LogicFlow({
     container: document.querySelector(`#${containerId}`)!,
     grid: { type: "dot", size: 10 },
-    plugins: [Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, TurboAdapter, Group],
+    nodeTextDraggable: true,
+    edgeTextDraggable: true,
+    nodeTextEdit: true,
+    edgeTextEdit: true,
+    plugins: [Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, TurboAdapter],
     ...props.initOptions
   });
   lf.value?.setTheme(defaultTheme);

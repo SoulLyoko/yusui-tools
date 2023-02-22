@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import type { Resource } from "../../types";
 
-import { cloneDeep, omit } from "lodash-es";
+import { cloneDeep, omit } from "lodash-unified";
 import { ref, computed } from "vue";
 import Draggable from "vuedraggable";
 

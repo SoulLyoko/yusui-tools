@@ -22,7 +22,8 @@ const external = [
   /@logicflow/,
   "vuedraggable",
   "@smallwei/avue",
-  "axios"
+  "axios",
+  "vue-request"
 ];
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),

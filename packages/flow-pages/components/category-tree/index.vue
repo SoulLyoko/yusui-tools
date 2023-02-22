@@ -48,5 +48,3 @@ function handleTreeDel(row: any) {
   handleDel(row, NaN);
 }
 </script>
-
-<style lang="scss" scoped></style>

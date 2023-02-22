@@ -3,7 +3,7 @@ import type { AvueFormOption } from "@smallwei/avue";
 import type { ResourceElement, History, Resource } from "../types";
 
 import { ref, computed, provide, inject } from "vue";
-import { cloneDeep } from "lodash-es";
+import { cloneDeep } from "lodash-unified";
 
 import * as defaultResourcesMap from "../resources";
 
