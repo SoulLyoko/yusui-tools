@@ -1,5 +1,11 @@
 <template>
-  <draggable :list="list" class="draggable-list" :group="{ name: 'components' }" itemKey="prop" @change="onChange">
+  <draggable
+    :list="list"
+    class="el-row draggable-list"
+    :group="{ name: 'components' }"
+    itemKey="prop"
+    @change="onChange"
+  >
     <template #item="{ element, index }: { element: ResourceElement, index: number }">
       <el-col
         class="draggable-item"
@@ -7,7 +13,7 @@
           'is-active': activeElement.prop === element.prop,
           'is-hover': hoverElement.prop === element.prop
         }"
-        :span="element.span || formOption.span || 24"
+        :span="getItemSpan(element)"
         @click.stop="activeElement = element"
         @mouseover="hoverElement = element || {}"
         @mouseleave="hoverElement = {}"
@@ -75,6 +81,12 @@ function resolveItemOption(element: ResourceElement): AvueFormOption {
     return { ...common, column: [{ ...element, children: { ...element.children, addBtn: false, type: "form" } }] };
   }
   return { ...common, column: [omit(element, "icon")] };
+}
+function getItemSpan(element: ResourceElement) {
+  if (element.type === "group") {
+    return 24;
+  }
+  return element.span || formOption.value.span || 24;
 }
 
 function onChange(operation: Record<string, { element?: ResourceElement }>) {

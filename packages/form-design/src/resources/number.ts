@@ -31,6 +31,13 @@ export const number: Resource = {
       type: "number"
     },
     {
+      label: "是否显示清除按钮",
+      prop: "clearable",
+      type: "switch",
+      labelWidth: 130,
+      value: true
+    },
+    {
       label: "是否使用控制按钮",
       prop: "controls",
       type: "switch",

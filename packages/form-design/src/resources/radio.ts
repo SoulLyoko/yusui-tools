@@ -5,7 +5,6 @@ export const radio = {
   label: "单选框组",
   icon: "el-icon-circle-check",
   group: "表单组件",
-  // 默认值
   settings: [
     ...dic.settings!,
     {

@@ -1,7 +1,59 @@
 import type { Resource } from "../types";
 
+const defaultValue = {
+  dicData: [
+    { label: "选项一", value: "0" },
+    { label: "选项二", value: "1" },
+    { label: "选项三", value: "2" }
+  ],
+  props: {
+    label: "label",
+    value: "value",
+    desc: "desc",
+    res: "data"
+  }
+};
+
 export const dic: Resource = {
   settings: [
+    {
+      label: "字典类型",
+      prop: "dicType",
+      type: "radio",
+      button: true,
+      dicData: [
+        { label: "静态字典", value: "static" },
+        { label: "远端字典", value: "remote" }
+      ],
+      value: "static",
+      control(val, form) {
+        if (val === "remote") {
+          delete form.dicData;
+          form.props = defaultValue.props;
+        }
+        if (val === "static") {
+          delete form.dicUrl;
+          delete form.dicMethod;
+          delete form.propsLabel;
+          delete form.propsValue;
+          delete form.propsDesc;
+          delete form.propsRes;
+          delete form.remote;
+          form.dicData = defaultValue.dicData;
+          form.props = {};
+        }
+        return {
+          dicData: { display: val === "static" },
+          dicUrl: { display: val === "remote" },
+          dicMethod: { display: val === "remote" },
+          propsLabel: { display: val === "remote" },
+          propsValue: { display: val === "remote" },
+          propsDesc: { display: val === "remote" },
+          propsRes: { display: val === "remote" },
+          remote: { display: val === "remote" }
+        };
+      }
+    },
     {
       label: "字典数据",
       prop: "dicData",
@@ -13,11 +65,7 @@ export const dic: Resource = {
           { label: "value", prop: "value" }
         ]
       },
-      value: [
-        { label: "选项一", value: "0" },
-        { label: "选项二", value: "1" },
-        { label: "选项三", value: "2" }
-      ]
+      value: defaultValue.dicData
     },
     {
       label: "字典网址",
@@ -33,17 +81,6 @@ export const dic: Resource = {
         { label: "post", value: "post" }
       ]
     },
-    // {
-    //   label: "字典配置",
-    //   prop: "props",
-    //   display: false,
-    //   value: {
-    //     label: "label",
-    //     value: "value",
-    //     desc: "desc",
-    //     res: "data"
-    //   }
-    // },
     {
       label: "字典label",
       prop: "propsLabel",

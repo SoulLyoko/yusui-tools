@@ -28,7 +28,7 @@ export const input: Resource = {
       prop: "clearable",
       type: "switch",
       labelWidth: 130,
-      value: false
+      value: true
     },
     {
       label: "自动填充",

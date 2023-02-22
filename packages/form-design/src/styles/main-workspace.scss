@@ -1,13 +1,10 @@
-
 .draggable-list {
-  // height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  box-sizing: border-box;
+  height: 100%;
+  align-content: flex-start;
   .draggable-item {
     position: relative;
     padding: 1px;
+    height: fit-content;
     &.is-hover {
       outline: 1px dashed var(--el-color-primary);
     }

@@ -49,13 +49,6 @@ export const base: AvueFormColumn[] = [
     ]
   },
   {
-    label: "表单栅格",
-    prop: "span",
-    type: "number",
-    min: 1,
-    max: 24
-  },
-  {
     label: "数据类型",
     prop: "dataType",
     type: "radio",
@@ -65,6 +58,13 @@ export const base: AvueFormColumn[] = [
       { label: "数字", value: "number" },
       { label: "数组", value: "array" }
     ]
+  },
+  {
+    label: "表单项栅格",
+    prop: "span",
+    type: "number",
+    min: 1,
+    max: 24
   },
   {
     label: "字段提示",
