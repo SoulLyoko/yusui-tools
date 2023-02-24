@@ -29,16 +29,17 @@ import Draggable from "vuedraggable";
 import { useInjectState } from "../../composables";
 import { getRandomId } from "../../utils";
 
-const { resources, resourceElementList, activeElement, recordHistory } = useInjectState();
+const { resources, resourceElementList, activeElement, activeWorkspace, recordHistory } = useInjectState();
 
 const searchValue = ref("");
 const resourceList = computed(() => {
-  const groups = resources.value.map(e => e.group);
+  const filters = resources.value.filter(e => e.label?.includes(searchValue.value));
+  const groups = filters.map(e => e.group);
   const groupsSet = [...new Set(groups)];
   return groupsSet.map(group => {
     return {
       label: group,
-      children: resources.value.filter(e => e.group === group)
+      children: filters.filter(e => e.group === group)
     };
   });
 });
@@ -48,6 +49,7 @@ function cloneItem(element: Resource) {
 }
 
 function addElement(element: Resource) {
+  if (activeWorkspace.value !== "design") return;
   const ele = cloneItem(element);
   resourceElementList.value.push(ele);
   activeElement.value = ele;

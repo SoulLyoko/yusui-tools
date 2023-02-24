@@ -5,29 +5,40 @@ import type { ResourceElement, History, Resource } from "../types";
 import { ref, computed, provide, inject } from "vue";
 import { cloneDeep } from "lodash-unified";
 
-import * as defaultResourcesMap from "../resources";
+import defaultResources from "../resources";
 
-const injectKey = "form-designer-state";
+const injectKey = Symbol("form-design-state");
 
 export function useProvideState(props?: any) {
-  const resources = computed<Resource[]>(() => [...Object.values(defaultResourcesMap), ...(props.resources || [])]);
+  const resources = computed<Resource[]>(() => [...defaultResources, ...(props.resources || [])]);
   const resourceElementList = ref<ResourceElement[]>([]);
   const activeElement = ref<ResourceElement>({});
   const hoverElement = ref<ResourceElement>({});
   const formOption = ref<AvueFormOption>({ menuBtn: false, span: 24, group: [], column: [] });
-  const hitoryList = ref<History[]>([]);
+  const historyList = ref<History[]>([]);
+  const historyIndex = ref(-1);
+  const activeWorkspace = ref("design");
 
   function recordHistory(type: string) {
-    hitoryList.value.push({
+    historyList.value.push({
       type: type,
       timestamp: Date.now(),
       active: activeElement.value,
       list: cloneDeep(resourceElementList.value)
     });
+    historyIndex.value = historyList.value.length - 1;
   }
-  function restoreHistory(history: History) {
-    activeElement.value = history.active;
-    resourceElementList.value = history.list;
+  function restoreHistory(index: number) {
+    const find = historyList.value.find((item, i) => i === index);
+    if (!find) return;
+    activeElement.value = find.active;
+    resourceElementList.value = find.list;
+    historyIndex.value = index;
+  }
+  function resetHistory() {
+    historyIndex.value = -1;
+    historyList.value = [];
+    activeElement.value = {};
   }
 
   const state = {
@@ -36,11 +47,16 @@ export function useProvideState(props?: any) {
     activeElement,
     hoverElement,
     formOption,
-    hitoryList,
+    historyList,
+    historyIndex,
+    activeWorkspace,
     recordHistory,
-    restoreHistory
+    restoreHistory,
+    resetHistory
   };
+
   provide(injectKey, state);
+
   return state;
 }
 

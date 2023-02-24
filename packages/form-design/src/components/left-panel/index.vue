@@ -2,7 +2,7 @@
   <el-tabs tab-position="top" stretch>
     <el-tab-pane v-for="tab in tabs" :key="tab.title">
       <template #label>
-        <el-link :title="tab.title" :icon="tab.icon" :underline="false"></el-link>
+        <el-link :title="tab.title" :icon="tab.icon" :underline="false" style="color: inherit"></el-link>
       </template>
       <component :is="tab.component"></component>
     </el-tab-pane>

@@ -1,6 +1,12 @@
 <template>
   <ul class="history-list">
-    <li v-for="item in hitoryList" :key="item.timestamp" class="history-item" @click="restoreHistory(item)">
+    <li
+      v-for="(item, index) in historyList"
+      :key="item.timestamp"
+      class="history-item"
+      :class="{ 'is-active': index === historyIndex }"
+      @click="restoreHistory(index)"
+    >
       <span>
         {{ historyTypeMap[item.type as keyof typeof historyTypeMap] }}
       </span>
@@ -14,7 +20,7 @@
 <script setup lang="ts">
 import { useInjectState } from "../../composables";
 
-const { hitoryList, restoreHistory } = useInjectState();
+const { historyList, historyIndex, restoreHistory } = useInjectState();
 
 const historyTypeMap = {
   added: "添加组件",
