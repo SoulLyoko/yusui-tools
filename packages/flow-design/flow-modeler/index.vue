@@ -29,7 +29,7 @@ import { Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
 
-import { BpmnExtend, TurboAdapter } from "../extensions";
+import { BpmnExtend, TurboAdapter, Group } from "../extensions";
 import { defaultTheme } from "../constants";
 import { useModelerState, useControl, usePattern, useMenu, useModelerListener } from "./composables";
 import FlowEditor from "./components/flow-editor.vue";
@@ -64,7 +64,7 @@ onMounted(() => {
     edgeTextDraggable: true,
     nodeTextEdit: true,
     edgeTextEdit: true,
-    plugins: [Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, TurboAdapter],
+    plugins: [Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, Group, TurboAdapter],
     ...props.initOptions
   });
   lf.value?.setTheme(defaultTheme);

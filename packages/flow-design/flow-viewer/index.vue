@@ -13,7 +13,7 @@ import LogicFlow from "@logicflow/core";
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
 
-import { BpmnExtend, TurboAdapter } from "../extensions";
+import { BpmnExtend, TurboAdapter, Group } from "../extensions";
 import { defaultTheme } from "../constants";
 
 const props = defineProps<{
@@ -33,7 +33,7 @@ onMounted(() => {
     container: document.querySelector(`#${containerId}`)!,
     grid: { type: "dot", size: 10 },
     isSilentMode: true,
-    plugins: [BpmnExtend, TurboAdapter]
+    plugins: [BpmnExtend, Group, TurboAdapter]
   });
   lf.value?.setTheme(defaultTheme);
   lf.value?.render(graphData.value);

@@ -23,7 +23,7 @@ export interface ButtonItem {
   approval?: string;
 }
 
-export const buttonColumn = {
+export const button = {
   label: "",
   labelWidth: 0,
   prop: "button",
@@ -57,3 +57,5 @@ export const buttonColumn = {
   },
   value: []
 };
+
+export const buttonColumn = [button];

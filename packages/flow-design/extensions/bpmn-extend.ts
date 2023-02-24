@@ -1,8 +1,9 @@
-import type { LogicFlow, NodeConfig, EdgeConfig, GraphModel } from "@logicflow/core";
+import type { NodeConfig, GraphModel } from "@logicflow/core";
 
-import { h, PolygonNodeModel, PolygonNode } from "@logicflow/core";
+import { LogicFlow, h, PolygonNodeModel, PolygonNode } from "@logicflow/core";
 import { getBpmnId } from "@logicflow/extension/es/bpmn/getBpmnId";
 import {
+  RectResize,
   GroupNode,
   Group as _Group,
   StartEventModel as _StartEventModel,
@@ -56,14 +57,13 @@ export class ExclusiveGatewayView extends _ExclusiveGatewayView {
       "g",
       { transform: `matrix(1 0 0 1 ${x - width / 2} ${y - height / 2})` },
       h("polygon", { ...style, x, y, points }),
-      h("line", { x1: 15, y1: 15, x2: 35, y2: 35, ...style }),
-      h("line", { x1: 35, y1: 15, x2: 15, y2: 35, ...style })
+      h("line", { ...style, x1: 15, y1: 15, x2: 35, y2: 35 }),
+      h("line", { ...style, x1: 35, y1: 15, x2: 15, y2: 35 })
     );
   }
 }
 /** parallelGateway */
 export class ParallelGatewayModel extends PolygonNodeModel {
-  static extendKey = "ParallelGatewayModel";
   constructor(data: NodeConfig, graphModel: GraphModel) {
     const { id, text, x, y } = data;
     data.id = id || `Gateway_${getBpmnId()}`;
@@ -78,7 +78,6 @@ export class ParallelGatewayModel extends PolygonNodeModel {
   }
 }
 export class ParallelGatewayView extends PolygonNode {
-  static extendKey = "ParallelGatewayNode";
   getShape() {
     const { model } = this.props;
     const { x, y, width, height, points } = model;
@@ -87,8 +86,8 @@ export class ParallelGatewayView extends PolygonNode {
       "g",
       { transform: `matrix(1 0 0 1 ${x - width / 2} ${y - height / 2})` },
       h("polygon", { ...style, x, y, points }),
-      h("line", { x1: 10, y1: 25, x2: 40, y2: 25, ...style }),
-      h("line", { x1: 25, y1: 10, x2: 25, y2: 40, ...style })
+      h("line", { ...style, x1: 10, y1: 25, x2: 40, y2: 25 }),
+      h("line", { ...style, x1: 25, y1: 10, x2: 25, y2: 40 })
     );
   }
 }
@@ -99,8 +98,37 @@ export class UserTaskView extends _UserTaskView {}
 export class ServiceTaskModel extends _ServiceTaskModel {}
 export class ServiceTaskView extends _ServiceTaskView {}
 /** sequenceFlow */
-export class SequenceFlowModel extends _SequenceFlowModel {}
+export class SequenceFlowModel extends _SequenceFlowModel {
+  getEdgeStyle() {
+    const style = super.getEdgeStyle();
+    if (["note", "serviceTask"].includes(this.targetNode?.type)) {
+      style.strokeDasharray = "3 3";
+    }
+    return style;
+  }
+}
 export class SequenceFlowView extends _SequenceFlowView {}
+/** note */
+export class NoteModel extends RectResize["model"] {
+  createId() {
+    return "Note_" + getBpmnId();
+  }
+  initNodeData(data: any) {
+    super.initNodeData(data);
+    this.height = 40;
+    this.text.draggable = false;
+  }
+  isAllowConnectedAsSource() {
+    return false;
+  }
+  getNodeStyle() {
+    const style = super.getNodeStyle();
+    style.strokeDasharray = "3 3";
+    style.fill = "transparent";
+    return style;
+  }
+}
+export class NoteView extends RectResize["view"] {}
 /** group */
 export class GroupModel extends GroupNode["model"] {
   createId() {
@@ -122,6 +150,23 @@ export class GroupModel extends GroupNode["model"] {
   }
 }
 export class GroupView extends GroupNode["view"] {}
+export class Group extends _Group {
+  constructor({ lf }: { lf: LogicFlow }) {
+    super({ lf });
+    lf.register({ type: "group", model: GroupModel, view: GroupView });
+    // 原来的deleteGroupChild函数有bug
+    lf.off("node:delete", this.deleteGroupChild);
+    lf.on("node:delete", ({ data }) => {
+      // 如果删除的是分组节点，则同时删除分组的子节点
+      if (data.children) {
+        data.children.forEach((nodeId: string) => {
+          this.nodeGroupMap.delete(nodeId);
+          this.lf.deleteNode(nodeId);
+        });
+      }
+    });
+  }
+}
 
 const plugins = [
   { type: "startEvent", model: StartEventModel, view: StartEventView },
@@ -131,20 +176,12 @@ const plugins = [
   { type: "userTask", model: UserTaskModel, view: UserTaskView },
   { type: "serviceTask", model: ServiceTaskModel, view: ServiceTaskView },
   { type: "sequenceFlow", model: SequenceFlowModel, view: SequenceFlowView },
-  { type: "group", model: GroupModel, view: GroupView }
+  { type: "note", model: NoteModel, view: NoteView }
 ];
 
-export class Group extends _Group {
-  // constructor({ lf }: { lf: LogicFlow }) {
-  //   super({ lf });
-  // lf.register({ type: "group", model: GroupModel, view: GroupView });
-  // }
-}
-
-export class BpmnExtend extends Group {
+export class BpmnExtend {
   static pluginName = "bpmnExtend";
   constructor({ lf }: { lf: LogicFlow }) {
-    super({ lf });
     plugins.forEach(plugin => {
       lf.register(plugin);
     });

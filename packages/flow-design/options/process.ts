@@ -1,14 +1,11 @@
-import { idColumn, nameColumn, documentationColumn } from "./base";
+import { id, name, desc } from "./base";
 
-export const processIdColumn = { ...idColumn, label: "流程标识" };
-export const processNameColumn = { ...nameColumn, label: "流程名称" };
-export const processDocumentationColumn = { ...documentationColumn, label: "流程描述" };
-export const processCategoryColumn = {
-  label: "流程分类",
-  prop: "category"
-};
-export const processIconColumn = { label: "图标", prop: "icon" };
-export const processSkipFirstNodeColumn = {
+export const processId = { ...id, label: "流程标识" };
+export const processName = { ...name, label: "流程名称" };
+export const processDesc = { ...desc, label: "流程描述" };
+export const processCategory = { label: "流程分类", prop: "category" };
+export const processIcon = { label: "图标", prop: "icon" };
+export const processSkipFirstNode = {
   label: "跳过第一节点",
   prop: "skipFirstNode",
   type: "switch",
@@ -19,7 +16,7 @@ export const processSkipFirstNodeColumn = {
     { label: "是", value: "true" }
   ]
 };
-export const processRollbackNodeColumn = {
+export const processRollbackNode = {
   label: "默认驳回节点",
   prop: "rollbackNode",
   type: "select",
@@ -27,12 +24,12 @@ export const processRollbackNodeColumn = {
   params: { filterType: "bpmn:UserTask" }
 };
 
-export const processColumns = [
-  processIdColumn,
-  processNameColumn,
-  processDocumentationColumn,
-  processCategoryColumn,
-  processIconColumn,
-  processSkipFirstNodeColumn,
-  processRollbackNodeColumn
+export const processColumn = [
+  processId,
+  processName,
+  processDesc,
+  processCategory,
+  processIcon,
+  processSkipFirstNode,
+  processRollbackNode
 ];

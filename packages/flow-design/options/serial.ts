@@ -8,7 +8,7 @@ export interface SerialItem {
   cycle?: string;
 }
 
-export const serialColumn = {
+export const serial = {
   label: "",
   labelWidth: 0,
   prop: "serial",
@@ -38,6 +38,7 @@ export const serialColumn = {
         ]
       }
     ]
-  },
-  value: [{ name: "", prefix: "", dateFormat: "", suffixLength: "", startSequence: "", connector: "", cycle: "" }]
+  }
 };
+
+export const serialColumn = [serial];

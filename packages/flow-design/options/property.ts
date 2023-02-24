@@ -3,7 +3,7 @@ export interface PropertyItem {
   value?: string;
 }
 
-export const propertyColumn = {
+export const property = {
   label: "",
   labelWidth: 0,
   prop: "property",
@@ -16,3 +16,5 @@ export const propertyColumn = {
   },
   value: []
 };
+
+export const propertyColumn = [property];

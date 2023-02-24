@@ -1,16 +1,13 @@
-export const classColumn = {
+export const className = {
   label: "类",
-  prop: "class"
+  prop: "className"
 };
 
-export const asyncColumn = {
+export const isAsync = {
   label: "异步",
-  prop: "async",
+  prop: "isAsync",
   type: "switch",
-  dicData: [
-    { label: "否", value: "false" },
-    { label: "是", value: "true" }
-  ]
+  value: false
 };
 
-export const serviceTaskColumns = [classColumn, asyncColumn];
+export const serviceTaskColumn = [className, isAsync];

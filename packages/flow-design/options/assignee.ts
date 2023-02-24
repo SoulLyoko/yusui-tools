@@ -3,7 +3,7 @@ export interface AssigneeItem {
   value?: string;
 }
 
-export const assigneeColumn = {
+export const assignee = {
   label: "",
   labelWidth: 0,
   prop: "assignee",
@@ -31,3 +31,5 @@ export const assigneeColumn = {
   },
   value: []
 };
+
+export const assigneeColumn = [assignee];

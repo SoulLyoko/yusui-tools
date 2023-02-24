@@ -16,8 +16,8 @@ export function usePattern({ lf }: ModelerState) {
     },
     {
       type: "group",
-      label: "分组",
-      icon: "https://api.iconify.design/bpmn/group.svg?width=24&height=24"
+      label: "子流程",
+      icon: "https://api.iconify.design/bpmn/subprocess-expanded.svg?width=24&height=24"
     },
     {
       type: "startEvent",
@@ -50,6 +50,11 @@ export function usePattern({ lf }: ModelerState) {
       type: "parallelGateway",
       label: "并行网关",
       icon: "https://api.iconify.design/bpmn/gateway-parallel.svg?width=24&height=24"
+    },
+    {
+      type: "note",
+      label: "注释",
+      icon: "https://api.iconify.design/bpmn/text-annotation.svg?width=24&height=24"
     }
   ]);
 }

@@ -1,6 +1,6 @@
 import { useListenerColumn } from "./listener";
 
-export const taskListenerColumn = useListenerColumn("taskListener", {
+export const taskListener = useListenerColumn("taskListener", {
   eventName: [
     { label: "创建", value: "create" },
     { label: "指派", value: "assignment" },
@@ -10,3 +10,5 @@ export const taskListenerColumn = useListenerColumn("taskListener", {
     { label: "超时", value: "timeout" }
   ]
 });
+
+export const taskListenerColumn = [taskListener];

@@ -46,7 +46,7 @@ function convertNodeToTurboElement(node: NodeConfig & { children?: string[] }): 
     children,
     type,
     key: id!,
-    groupKey: (properties?.groupKey as string) ?? "",
+    groupKey: properties?.groupKey as string,
     properties: {
       ...properties,
       name: isString(text) ? text : text?.value ?? "",
@@ -65,7 +65,7 @@ function convertEdgeToTurboElement(edge: EdgeConfig) {
     outgoing: [targetNodeId],
     type,
     key: id,
-    groupKey: (properties?.groupKey as string) ?? "",
+    groupKey: properties?.groupKey as string,
     properties: {
       ...properties,
       name: isString(text) ? text : text?.value ?? "",

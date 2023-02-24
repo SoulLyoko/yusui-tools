@@ -1,7 +1,7 @@
 import FlowCheckbox from "../flow-modeler/components/flow-checkbox.vue";
 import FlowText from "../flow-modeler/components/flow-text.vue";
 
-export interface FormpropertyItem {
+export interface FormProperty {
   label?: string;
   prop?: string;
   display?: string;
@@ -10,10 +10,10 @@ export interface FormpropertyItem {
   required?: string;
 }
 
-export const formpropertyColumn = {
+export const formProperty = {
   label: "",
   labelWidth: 0,
-  prop: "formproperty",
+  prop: "formProperty",
   type: "dynamic",
   children: {
     addBtn: false,
@@ -30,3 +30,5 @@ export const formpropertyColumn = {
   },
   value: []
 };
+
+export const formPropertyColumn = [formProperty];

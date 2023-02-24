@@ -1,15 +1,15 @@
-export const idColumn = {
+export const id = {
   label: "节点id",
   prop: "id",
   readonly: true
 };
-export const nameColumn = {
+export const name = {
   label: "节点名称",
   prop: "name"
 };
-export const documentationColumn = {
+export const desc = {
   label: "节点描述",
-  prop: "documentation"
+  prop: "desc"
 };
 
-export const baseColumns = [idColumn, nameColumn, documentationColumn];
+export const baseColumn = [id, name, desc];

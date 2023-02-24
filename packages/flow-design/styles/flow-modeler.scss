@@ -12,16 +12,16 @@
 .lf-dndpanel {
   height: 98%;
   // 分两列
-  // width: 130px;
-  // display: grid;
-  // grid-template-columns: repeat(2, 50%);
-  // grid-template-rows: repeat(10, 60px);
-  // .lf-dnd-text {
-  //   overflow: hidden;
-  // }
-  // .lf-dnd-item {
-  //   margin-top: 0;
-  // }
+  width: 130px;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(10, 60px);
+  .lf-dnd-text {
+    overflow: hidden;
+  }
+  .lf-dnd-item {
+    margin-top: 0;
+  }
 }
 
 .lf-mini-map {

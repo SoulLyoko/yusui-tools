@@ -1,13 +1,13 @@
-export interface TimelimitItem {
+export interface TimeLimitItem {
   name?: string;
-  min?: string;
-  max?: string;
+  min?: number;
+  max?: number;
 }
 
-export const timelimitColumn = {
+export const timeLimit = {
   label: "",
   labelWidth: 0,
-  prop: "timelimit",
+  prop: "timeLimit",
   type: "dynamic",
   children: {
     column: [
@@ -18,3 +18,5 @@ export const timelimitColumn = {
   },
   value: []
 };
+
+export const timeLimitColumn = [timeLimit];
