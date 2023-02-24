@@ -7,10 +7,6 @@ export const textarea: Resource = {
   group: "表单组件",
   settings: [
     {
-      label: "占位文本",
-      prop: "placeholder"
-    },
-    {
       label: "最大长度",
       prop: "maxlength",
       type: "number"

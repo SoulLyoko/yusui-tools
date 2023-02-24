@@ -38,7 +38,7 @@ export const dic: Resource = {
           delete form.propsValue;
           delete form.propsDesc;
           delete form.propsRes;
-          delete form.remote;
+          // delete form.remote;
           form.dicData = defaultValue.dicData;
           form.props = {};
         }
@@ -49,8 +49,8 @@ export const dic: Resource = {
           propsLabel: { display: val === "remote" },
           propsValue: { display: val === "remote" },
           propsDesc: { display: val === "remote" },
-          propsRes: { display: val === "remote" },
-          remote: { display: val === "remote" }
+          propsRes: { display: val === "remote" }
+          // remote: { display: val === "remote" }
         };
       }
     },
@@ -104,12 +104,12 @@ export const dic: Resource = {
       prop: "propsRes",
       bind: "props.res",
       value: "data"
-    },
-    {
-      label: "远程搜索",
-      prop: "remote",
-      type: "switch",
-      value: false
     }
+    // {
+    //   label: "远程搜索",
+    //   prop: "remote",
+    //   type: "switch",
+    //   value: false
+    // }
   ]
 };

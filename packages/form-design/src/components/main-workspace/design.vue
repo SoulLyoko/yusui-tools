@@ -76,12 +76,16 @@ const { activeElement, hoverElement, formOption, recordHistory } = useInjectStat
 function resolveItemOption(element: ResourceElement): AvueFormOption {
   const common = { ...cloneDeep(formOption.value), menuBtn: false };
   if (element.type === "group") {
-    return { ...common, tabs: false, group: [{ ...element, arrow: false, collapse: false }] };
+    return { ...common, tabs: false, readonly: true, group: [{ ...element, arrow: false, collapse: false }] };
   }
   if (element.type === "dynamic") {
-    return { ...common, column: [{ ...element, children: { ...element.children, addBtn: false, type: "form" } }] };
+    return {
+      ...common,
+      readonly: true,
+      column: [{ ...element, children: { ...element.children, addBtn: false, type: "form" } }]
+    };
   }
-  return { ...common, column: [omit(element, "icon")] };
+  return { ...common, readonly: true, column: [omit(element, "icon")] };
 }
 function getItemSpan(element: ResourceElement) {
   if (element.type === "group") {

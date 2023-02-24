@@ -1,6 +1,8 @@
+import type { Resource } from "../types";
+
 import { dic } from "./dic";
 
-export const radio = {
+export const radio: Resource = {
   type: "radio",
   label: "单选框组",
   icon: "el-icon-circle-check",

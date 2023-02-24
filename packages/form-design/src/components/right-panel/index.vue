@@ -19,7 +19,8 @@ const settingOption = ref<AvueFormOption>({});
 
 watch(
   () => activeElement.value.prop,
-  async () => {
+  async val => {
+    console.log("🚀 ~ file: index.vue:23 ~ val:", val);
     formReLoading.value = true;
     await nextTick();
     const formGroup = { label: "表单属性", column: options.form };
@@ -31,10 +32,11 @@ watch(
       labelPosition: "left",
       menuBtn: false,
       span: 24,
+      tabs: true,
       group: activeElement.value.prop ? [baseGroup, componentGroup] : [formGroup]
     };
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 
 const currentElementPath = computed(() => {

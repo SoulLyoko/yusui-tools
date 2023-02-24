@@ -1,6 +1,8 @@
+import type { Resource } from "../types";
+
 import { dic } from "./dic";
 
-export const checkbox = {
+export const checkbox: Resource = {
   type: "checkbox",
   label: "多选框组",
   icon: "el-icon-folder-checked",

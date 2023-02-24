@@ -7,10 +7,6 @@ export const input: Resource = {
   group: "表单组件",
   settings: [
     {
-      label: "占位文本",
-      prop: "placeholder"
-    },
-    {
       label: "最大长度",
       prop: "maxlength",
       type: "number"
@@ -22,13 +18,6 @@ export const input: Resource = {
     {
       label: "后缀图标",
       prop: "suffixIcon"
-    },
-    {
-      label: "是否显示清除按钮",
-      prop: "clearable",
-      type: "switch",
-      labelWidth: 130,
-      value: true
     },
     {
       label: "自动填充",

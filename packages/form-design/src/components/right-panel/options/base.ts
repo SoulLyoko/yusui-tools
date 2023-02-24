@@ -1,27 +1,30 @@
 import type { AvueFormColumn } from "@smallwei/avue";
 
-import { defaultResourceList } from "../../left-panel/components/resource";
+// import { defaultResourceList } from "../../left-panel/components/resource";
+// import resources from "../../../resources";
 
-const typeDic = defaultResourceList.map(g => {
-  return {
-    label: g.label,
-    groups: g.children.map(l => {
-      return {
-        label: l.label,
-        value: l.type
-      };
-    })
-  };
-});
+// const typeDic = resources.map(e => ({ label: e.label, value: e.type }));
+
+// const typeDic = defaultResourceList.map(g => {
+//   return {
+//     label: g.label,
+//     groups: g.children.map(l => {
+//       return {
+//         label: l.label,
+//         value: l.type
+//       };
+//     })
+//   };
+// });
 
 export const base: AvueFormColumn[] = [
-  {
-    label: "类型",
-    prop: "type",
-    type: "select",
-    group: true,
-    dicData: typeDic
-  },
+  // {
+  //   label: "类型",
+  //   prop: "type",
+  //   type: "select",
+  //   group: true,
+  //   dicData: typeDic
+  // },
   {
     label: "字段标识",
     prop: "prop"
@@ -57,6 +60,17 @@ export const base: AvueFormColumn[] = [
       { label: "字符串", value: "string" },
       { label: "数字", value: "number" },
       { label: "数组", value: "array" }
+    ]
+  },
+  {
+    label: "组件大小",
+    prop: "size",
+    type: "radio",
+    button: true,
+    dicData: [
+      { label: "大", value: "large" },
+      { label: "默认", value: "default" },
+      { label: "小", value: "small" }
     ]
   },
   {
@@ -113,6 +127,16 @@ export const base: AvueFormColumn[] = [
   {
     label: "默认值",
     prop: "value"
+  },
+  {
+    label: "占位内容",
+    prop: "placeholder"
+  },
+  {
+    label: "是否可清空",
+    prop: "clearable",
+    type: "switch",
+    value: true
   },
   {
     label: "详情模式",

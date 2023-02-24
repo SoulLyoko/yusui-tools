@@ -2,14 +2,10 @@ import type { Resource } from "../types";
 
 export const number: Resource = {
   type: "number",
-  label: "数字输入",
+  label: "数字输入框",
   icon: "el-icon-more",
   group: "表单组件",
   settings: [
-    {
-      label: "占位文本",
-      prop: "placeholder"
-    },
     {
       label: "最小值",
       prop: "min",
@@ -31,13 +27,6 @@ export const number: Resource = {
       type: "number"
     },
     {
-      label: "是否显示清除按钮",
-      prop: "clearable",
-      type: "switch",
-      labelWidth: 130,
-      value: true
-    },
-    {
       label: "是否使用控制按钮",
       prop: "controls",
       type: "switch",
@@ -53,6 +42,7 @@ export const number: Resource = {
       label: "控制按钮位置",
       prop: "controlsPosition",
       type: "radio",
+      labelWidth: 100,
       button: true,
       value: "default",
       dicData: [

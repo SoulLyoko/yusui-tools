@@ -173,6 +173,10 @@ declare module "@smallwei/avue" {
     span?: number;
     /** 间隔 */
     gutter?: number;
+    /** 表单只读 */
+    readonly?: boolean;
+    /** 表单禁用 */
+    disabled?: boolean;
   }
 
   export interface AvueFormProps<T = any> {

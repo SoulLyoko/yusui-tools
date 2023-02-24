@@ -1,11 +1,18 @@
+export const isMultiInstance = {
+  label: "是否多实例",
+  prop: "isMultiInstance",
+  type: "switch",
+  value: false
+};
+
 export const multiInstanceType = {
   label: "多实例类型",
   prop: "multiInstanceType",
-  tip: "选择后节点变更为多人任务",
+  // tip: "选择后节点变更为多人任务",
   type: "select",
   dicData: [
-    { label: "并行多重事件", value: "parallel" },
-    { label: "时序多重事件", value: "sequential" }
+    { label: "并行审批", value: "parallel", desc: "同时接收审批" },
+    { label: "顺序审批", value: "sequential", desc: "按顺序审批" }
     // { label: "循环", value: "standard" }
   ]
 };
@@ -38,6 +45,7 @@ export const elementVariable = {
 };
 
 export const multiInstanceColumn = [
+  isMultiInstance,
   multiInstanceType,
   completionCondition,
   isRecall
