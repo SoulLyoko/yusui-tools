@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { AvueFormOption } from "@smallwei/avue";
 import type { ResourceElement, History, Resource } from "../types";
 
@@ -15,11 +14,13 @@ export function useProvideState(props?: any) {
   const activeElement = ref<ResourceElement>({});
   const hoverElement = ref<ResourceElement>({});
   const formOption = ref<AvueFormOption>({ menuBtn: false, span: 24, group: [], column: [] });
-  const historyList = ref<History[]>([]);
+  const historyList = ref<History[]>([{ type: "init", timestamp: Date.now(), active: {}, list: [] }]);
   const historyIndex = ref(-1);
-  const activeWorkspace = ref("design");
+  const workType = ref("design");
+  const deviceType = ref("pc");
 
   function recordHistory(type: string) {
+    // resourceElementList.value.sort((a, b) => (b.type === "group" ? -1 : 1));
     historyList.value.push({
       type: type,
       timestamp: Date.now(),
@@ -31,14 +32,15 @@ export function useProvideState(props?: any) {
   function restoreHistory(index: number) {
     const find = historyList.value.find((item, i) => i === index);
     if (!find) return;
-    activeElement.value = find.active;
-    resourceElementList.value = find.list;
+    resourceElementList.value = cloneDeep(find.list);
+    activeElement.value = cloneDeep(find.active);
     historyIndex.value = index;
   }
   function resetHistory() {
+    resourceElementList.value = [];
+    activeElement.value = {};
     historyIndex.value = -1;
     historyList.value = [];
-    activeElement.value = {};
   }
 
   const state = {
@@ -49,7 +51,8 @@ export function useProvideState(props?: any) {
     formOption,
     historyList,
     historyIndex,
-    activeWorkspace,
+    workType,
+    deviceType,
     recordHistory,
     restoreHistory,
     resetHistory

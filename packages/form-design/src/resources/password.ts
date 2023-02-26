@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { input } from "./input";
+import { iconList } from "./icon";
 
 export const password: Resource = {
   type: "password",
@@ -10,7 +10,23 @@ export const password: Resource = {
   // 默认值
   showPassword: false,
   settings: [
-    ...input.settings!,
+    {
+      label: "最大长度",
+      prop: "maxlength",
+      type: "number"
+    },
+    {
+      label: "前缀图标",
+      prop: "prefixIcon",
+      type: "icon",
+      iconList: iconList
+    },
+    {
+      label: "后缀图标",
+      prop: "suffixIcon",
+      type: "icon",
+      iconList: iconList
+    },
     {
       label: "是否显示切换密码",
       prop: "showPassword",

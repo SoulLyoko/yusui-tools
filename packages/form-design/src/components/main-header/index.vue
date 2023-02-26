@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="12" style="align-self: center">
+    <el-col :span="8" style="align-self: center">
       <el-button-group size="small">
         <el-button
           :disabled="historyIndex <= 0"
@@ -19,13 +19,20 @@
           :disabled="!resourceElementList.length"
           title="清空"
           icon="el-icon-delete"
-          @click="resourceElementList = []"
+          @click="resetHistory()"
         ></el-button>
       </el-button-group>
     </el-col>
-    <el-col :span="12" style="text-align: right">
-      <el-radio-group v-model="activeWorkspace" size="small" style="font-size: unset">
-        <el-radio-button v-for="item in workspaceTypes" :key="item.value" :label="item.value">
+    <el-col :span="8" style="text-align: center">
+      <el-radio-group v-model="deviceType" size="small" style="font-size: unset">
+        <el-radio-button v-for="item in deviceTypes" :key="item.value" :label="item.value">
+          <el-link :title="item.label" :icon="item.icon" :underline="false" style="color: inherit"></el-link>
+        </el-radio-button>
+      </el-radio-group>
+    </el-col>
+    <el-col :span="8" style="text-align: right">
+      <el-radio-group v-model="workType" size="small" style="font-size: unset">
+        <el-radio-button v-for="item in workTypes" :key="item.value" :label="item.value">
           <el-link :title="item.label" :icon="item.icon" :underline="false" style="color: inherit"></el-link>
         </el-radio-button>
       </el-radio-group>
@@ -36,10 +43,15 @@
 <script setup lang="ts">
 import { useInjectState } from "../../composables";
 
-const { activeWorkspace, historyList, historyIndex, resourceElementList, restoreHistory, resetHistory } =
+const { workType, deviceType, historyList, historyIndex, resourceElementList, restoreHistory, resetHistory } =
   useInjectState();
 
-const workspaceTypes = [
+const deviceTypes = [
+  { label: "PC端", value: "pc", icon: "el-icon-monitor" },
+  { label: "移动端", value: "mobile", icon: "el-icon-iphone" }
+];
+
+const workTypes = [
   { label: "设计", value: "design", icon: "el-icon-brush" },
   { label: "源码", value: "source", icon: "el-icon-more" },
   { label: "预览", value: "preview", icon: "el-icon-view" }

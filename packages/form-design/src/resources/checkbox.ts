@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { dic } from "./dic";
+import { useDicSettings } from "./dic";
 
 export const checkbox: Resource = {
   type: "checkbox",
@@ -8,7 +8,7 @@ export const checkbox: Resource = {
   icon: "el-icon-folder-checked",
   group: "表单组件",
   settings: [
-    ...dic.settings!,
+    ...useDicSettings(),
     {
       label: "全选",
       prop: "all",

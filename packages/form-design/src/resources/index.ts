@@ -9,6 +9,16 @@ import {
   radio,
   select,
   cascader,
+  tree,
+  table,
+  switchs,
+  rate,
+  slider,
+  icon,
+  color,
+  array,
+  img,
+  url,
   date,
   year,
   month,
@@ -20,7 +30,8 @@ import {
   monthrange,
   time,
   timerange,
-  switchs
+  title,
+  article
 } from ".";
 
 export default [
@@ -34,6 +45,16 @@ export default [
   radio,
   select,
   cascader,
+  tree,
+  table,
+  switchs,
+  rate,
+  slider,
+  icon,
+  color,
+  array,
+  img,
+  url,
   date,
   year,
   month,
@@ -45,19 +66,30 @@ export default [
   monthrange,
   time,
   timerange,
-  switchs
+  title,
+  article
 ];
+
+export * from "./array";
+export * from "./article";
 export * from "./cascader";
 export * from "./checkbox";
+export * from "./color";
 export * from "./date";
 export * from "./dic";
 export * from "./dynamic";
 export * from "./group";
+export * from "./icon";
 export * from "./input";
 export * from "./number";
 export * from "./password";
 export * from "./radio";
+export * from "./rate";
 export * from "./select";
+export * from "./slider";
+export * from "./switch";
+export * from "./table";
 export * from "./textarea";
 export * from "./time";
-export * from "./switch";
+export * from "./title";
+export * from "./tree";

@@ -5,87 +5,77 @@
 <script setup lang="ts">
 import type { AvueFormOption } from "@smallwei/avue";
 
-import { computed, ref, watch, nextTick } from "vue";
-import { get, set, debounce, isEqual } from "lodash-unified";
+import { ref, watch, nextTick } from "vue";
+import { watchDebounced } from "@vueuse/core";
+import { get, set, debounce, isEqual, findKey } from "lodash-unified";
 import { filterObj } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
-import * as options from "./options";
+import { form, base } from "../../options";
 
 const { resources, resourceElementList, activeElement, formOption, recordHistory } = useInjectState();
 
 const formReLoading = ref(false);
 const settingOption = ref<AvueFormOption>({});
-
+const settingData = ref({});
+const currentElementPath = ref<string[]>([]);
+const updateTimes = ref(-1);
 watch(
   () => activeElement.value.prop,
-  async val => {
-    console.log("🚀 ~ file: index.vue:23 ~ val:", val);
+  async () => {
     formReLoading.value = true;
+    updateTimes.value = -1;
     await nextTick();
-    const formGroup = { label: "表单属性", column: options.form };
-    const baseGroup = { label: "基本属性", column: options.base };
+    // 找到路径
+    const path = findPath(resourceElementList.value, { prop: activeElement.value.prop });
+    currentElementPath.value = path || [];
+    // 设置数据
+    settingData.value = path?.length ? get(resourceElementList.value, path) : formOption.value;
+    // 设置配置
+    const formGroup = { label: "表单属性", column: form };
+    const baseGroup = { label: "基本属性", column: base };
     const componentGroup = { label: "组件属性", column: findSettings() };
-    await nextTick();
-    formReLoading.value = false;
     settingOption.value = {
       labelPosition: "left",
+      labelWidth: 100,
       menuBtn: false,
       span: 24,
-      tabs: true,
-      group: activeElement.value.prop ? [baseGroup, componentGroup] : [formGroup]
+      group: path?.length ? [baseGroup, componentGroup] : [formGroup]
     };
-  },
-  { immediate: true, deep: true }
-);
-
-const currentElementPath = computed(() => {
-  let path: (string | number)[] = [];
-  resourceElementList.value.forEach((item, index) => {
-    if (item.prop === activeElement.value.prop) {
-      path = [index];
-    } else if (item.type === "group") {
-      item.column?.forEach((e, i) => {
-        if (e.prop === activeElement.value.prop) {
-          path = [index, "column", i];
-        }
-      });
-    } else if (item.type === "dynamic") {
-      item.column?.forEach((e, i) => {
-        if (e.prop === activeElement.value.prop) {
-          path = [index, "children", "column", i];
-        }
-      });
-    }
-  });
-  return path;
-});
-
-// 同步更新组件属性
-const settingData = ref({});
-const recordHistoryDebounce = debounce(() => recordHistory("property"), 1000);
-watch(
-  currentElementPath,
-  path => {
-    settingData.value = path.length ? get(resourceElementList.value, path) : formOption.value;
+    formReLoading.value = false;
   },
   { immediate: true }
 );
-watch(
+const recordHistoryDebounce = debounce(() => recordHistory("property"), 1000);
+// 同步更新组件属性
+watchDebounced(
   settingData,
   val => {
     const path = currentElementPath.value;
     const temp = filterObj(val, [undefined, null, ""], ["$"]);
     if (path.length && !isEqual(temp, get(resourceElementList.value, path))) {
       set(resourceElementList.value, path, temp);
-      recordHistoryDebounce();
     } else if (!path.length && !isEqual(temp, formOption.value)) {
       formOption.value = temp;
+    }
+    updateTimes.value++;
+    if (updateTimes.value) {
       recordHistoryDebounce();
     }
   },
-  { deep: true }
+  { deep: true, debounce: 100 }
 );
+
+function findPath(object: any, predicate: any): string[] | undefined {
+  if (typeof object !== "object") return;
+  let find = findKey(object, predicate);
+  if (find) return [find];
+  for (const key in object) {
+    let result = findPath(object[key], predicate);
+    if (result) return [key].concat(result);
+  }
+  return;
+}
 
 function findSettings() {
   const { type, component } = activeElement.value;

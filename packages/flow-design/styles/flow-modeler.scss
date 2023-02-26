@@ -1,8 +1,17 @@
-.main-container {
-  height: 100%;
-}
 .lf-container {
   height: 100%;
+}
+.lf-main {
+  height: 100%;
+  padding: 0;
+  padding-right: 20px;
+}
+.lf-aside {
+  .avue-form {
+    .el-slider__input {
+      width: 60px;
+    }
+  }
 }
 
 .lf-drag-able {

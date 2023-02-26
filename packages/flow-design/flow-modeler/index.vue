@@ -1,9 +1,7 @@
 <template>
-  <el-container class="main-container">
-    <el-main>
-      <div :id="containerId" class="lf-container"></div>
-    </el-main>
-    <el-aside :width="formWidth">
+  <el-container class="lf-container">
+    <el-main :id="containerId" class="lf-main"> </el-main>
+    <el-aside :width="formWidth" class="lf-aside">
       <el-empty v-if="!formOption.group?.length" description="选择元素以编辑数据"></el-empty>
       <avue-form
         v-else-if="!formLoading"

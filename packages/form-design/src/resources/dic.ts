@@ -1,71 +1,86 @@
 import type { Resource } from "../types";
 
-const defaultValue = {
-  dicData: [
-    { label: "选项一", value: "0" },
-    { label: "选项二", value: "1" },
-    { label: "选项三", value: "2" }
-  ],
-  props: {
-    label: "label",
-    value: "value",
-    desc: "desc",
-    res: "data"
-  }
+import MonacoEditor from "../components/monaco-editor/index.vue";
+import DicTree from "../components/dic-tree/index.vue";
+import { getRandomId, json5Stringify } from "../utils";
+
+const defaultProps = {
+  label: "label",
+  value: "value",
+  desc: "desc",
+  disabled: "disabled",
+  children: "children",
+  res: "res"
 };
 
-export const dic: Resource = {
-  settings: [
+export function useDicSettings(tree = false) {
+  const dicDataSelect = {
+    type: "dynamic",
+    children: {
+      column: [
+        { label: "名称", prop: "label" },
+        { label: "值", prop: "value" }
+      ]
+    },
+    value: [
+      { label: "选项一", value: "0" },
+      { label: "选项二", value: "1" },
+      { label: "选项三", value: "2" }
+    ]
+  };
+  const dicDataTree = {
+    component: DicTree,
+    value: [
+      {
+        label: "选项1",
+        value: "1",
+        id: getRandomId(),
+        children: [
+          { label: "选项1-1", value: "11", id: getRandomId() },
+          { label: "选项1-2", value: "12", id: getRandomId() }
+        ]
+      },
+      { label: "选项2", value: "2", id: getRandomId() },
+      { label: "选项3", value: "3", id: getRandomId() }
+    ]
+  };
+  return [
     {
       label: "字典类型",
       prop: "dicType",
       type: "radio",
       button: true,
+      labelWidth: 72,
       dicData: [
         { label: "静态字典", value: "static" },
         { label: "远端字典", value: "remote" }
       ],
       value: "static",
-      control(val, form) {
-        if (val === "remote") {
-          delete form.dicData;
-          form.props = defaultValue.props;
-        }
-        if (val === "static") {
+      control(dicType, form) {
+        const isStatic = dicType === "static";
+        const isRemote = dicType === "remote";
+        if (isStatic) {
           delete form.dicUrl;
           delete form.dicMethod;
-          delete form.propsLabel;
-          delete form.propsValue;
-          delete form.propsDesc;
-          delete form.propsRes;
-          // delete form.remote;
-          form.dicData = defaultValue.dicData;
-          form.props = {};
+          delete form.props;
+          delete form.dicFormatter;
         }
         return {
-          dicData: { display: val === "static" },
-          dicUrl: { display: val === "remote" },
-          dicMethod: { display: val === "remote" },
-          propsLabel: { display: val === "remote" },
-          propsValue: { display: val === "remote" },
-          propsDesc: { display: val === "remote" },
-          propsRes: { display: val === "remote" }
-          // remote: { display: val === "remote" }
+          dicData: { display: isStatic },
+          dicUrl: { display: isRemote },
+          dicMethod: { display: isRemote },
+          dicQuery: { display: isRemote },
+          dicHeaders: { display: isRemote },
+          props: { display: isRemote },
+          dicFormatter: { display: isRemote }
         };
       }
     },
     {
       label: "字典数据",
       prop: "dicData",
-      type: "dynamic",
       labelPosition: "top",
-      children: {
-        column: [
-          { label: "label", prop: "label" },
-          { label: "value", prop: "value" }
-        ]
-      },
-      value: defaultValue.dicData
+      ...(tree ? dicDataTree : dicDataSelect)
     },
     {
       label: "字典网址",
@@ -82,34 +97,36 @@ export const dic: Resource = {
       ]
     },
     {
-      label: "字典label",
-      prop: "propsLabel",
-      bind: "props.label",
-      value: "label"
+      label: "请求参数",
+      prop: "dicQuery",
+      component: MonacoEditor,
+      valueType: "object",
+      tooltip: true,
+      defaultValue: "{}"
     },
     {
-      label: "字典value",
-      prop: "propsValue",
-      bind: "props.value",
-      value: "value"
+      label: "请求头",
+      prop: "dicHeaders",
+      component: MonacoEditor,
+      valueType: "object",
+      tooltip: true,
+      defaultValue: "{}"
     },
     {
-      label: "字典desc",
-      prop: "propsDesc",
-      bind: "props.desc",
-      value: "desc"
+      label: "字典配置",
+      prop: "props",
+      component: MonacoEditor,
+      valueType: "object",
+      tooltip: true,
+      defaultValue: json5Stringify(defaultProps)
     },
     {
-      label: "字典res",
-      prop: "propsRes",
-      bind: "props.res",
-      value: "data"
+      label: "字典格式化",
+      prop: "dicFormatter",
+      component: MonacoEditor,
+      valueType: "function",
+      tooltip: true,
+      defaultValue: "(res) => res"
     }
-    // {
-    //   label: "远程搜索",
-    //   prop: "remote",
-    //   type: "switch",
-    //   value: false
-    // }
-  ]
-};
+  ] as NonNullable<Resource["settings"]>;
+}

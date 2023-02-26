@@ -1,22 +1,24 @@
 <template>
-  <el-input v-model="searchValue" suffix-icon="el-icon-search" placeholder="搜索组件"></el-input>
-  <el-collapse :model-value="resourceList.map(e => e.label)">
-    <el-collapse-item v-for="group in resourceList" :key="group.label" :title="group.label" :name="group.label">
-      <Draggable
-        :list="group.children"
-        :group="{ name: 'components', pull: 'clone', put: false }"
-        :clone="cloneItem"
-        :sort="false"
-        itemKey="label"
-      >
-        <template #item="{ element }: { element: (typeof group.children)[number] }">
-          <div class="resource-item" @click="addElement(element)">
-            <el-button :icon="element.icon">{{ element.label }}</el-button>
-          </div>
-        </template>
-      </Draggable>
-    </el-collapse-item>
-  </el-collapse>
+  <div class="resource-list">
+    <el-input v-model="searchValue" suffix-icon="el-icon-search" placeholder="搜索组件"></el-input>
+    <el-collapse :model-value="resourceList.map(e => e.label)">
+      <el-collapse-item v-for="group in resourceList" :key="group.label" :title="group.label" :name="group.label">
+        <Draggable
+          :list="group.children"
+          :group="{ name: 'components', pull: 'clone', put: false }"
+          :clone="cloneItem"
+          :sort="false"
+          itemKey="label"
+        >
+          <template #item="{ element }: { element: (typeof group.children)[number] }">
+            <div class="resource-item" @click="addElement(element)">
+              <el-button :icon="element.icon">{{ element.label }}</el-button>
+            </div>
+          </template>
+        </Draggable>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -29,7 +31,7 @@ import Draggable from "vuedraggable";
 import { useInjectState } from "../../composables";
 import { getRandomId } from "../../utils";
 
-const { resources, resourceElementList, activeElement, activeWorkspace, recordHistory } = useInjectState();
+const { resources, resourceElementList, activeElement, workType, recordHistory } = useInjectState();
 
 const searchValue = ref("");
 const resourceList = computed(() => {
@@ -49,7 +51,7 @@ function cloneItem(element: Resource) {
 }
 
 function addElement(element: Resource) {
-  if (activeWorkspace.value !== "design") return;
+  if (workType.value !== "design") return;
   const ele = cloneItem(element);
   resourceElementList.value.push(ele);
   activeElement.value = ele;

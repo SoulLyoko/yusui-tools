@@ -10,7 +10,7 @@ importers:
       '@dcloudio/uni-ui': ^1.4.23
       '@iconify/vue': 4.0.0
       '@jsdevtools/version-bump-prompt': ^6.1.0
-      '@smallwei/avue': ^3.2.5
+      '@smallwei/avue': ^3.2.11
       '@sscfaith/avue-form-design': 3.0.0-beta.5
       '@types/fs-extra': ^9.0.13
       '@types/lodash': ^4.14.191
@@ -57,7 +57,7 @@ importers:
       '@dcloudio/uni-ui': 1.4.23
       '@iconify/vue': 4.0.0_vue@3.2.45
       '@jsdevtools/version-bump-prompt': 6.1.0
-      '@smallwei/avue': 3.2.6_kjekj6dhchzgl2zamwe5cd34ta
+      '@smallwei/avue': 3.2.11_e6pk72igsyiffh2xhr3ezagn64
       '@sscfaith/avue-form-design': 3.0.0-beta.5_vue@3.2.45
       '@types/fs-extra': 9.0.13
       '@types/lodash': 4.14.191
@@ -166,7 +166,7 @@ importers:
       '@iconify/vue': 4.0.0
       '@logicflow/core': ^1.1.31
       '@logicflow/extension': ^1.1.31
-      '@smallwei/avue': ^3.2.6
+      '@smallwei/avue': ^3.2.11
       '@types/lodash-es': ^4.17.6
       '@vueuse/core': ^9.12.0
       '@yusui/types': workspace:*
@@ -188,7 +188,7 @@ importers:
       lodash-es: 4.17.21
       lodash-unified: 1.0.3_3ib2ivapxullxkx3xftsimdk7u
     devDependencies:
-      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
+      '@smallwei/avue': 3.2.11_k3wepboole6np3kb4d5xrrkbri
       '@types/lodash-es': 4.17.6
       element-plus: 2.2.29_vue@3.2.45
       sass: 1.58.0
@@ -197,7 +197,7 @@ importers:
   packages/flow-pages:
     specifiers:
       '@iconify/vue': 4.0.0
-      '@smallwei/avue': ^3.2.6
+      '@smallwei/avue': ^3.2.11
       '@types/lodash-es': ^4.17.6
       '@vueuse/core': ^9.12.0
       '@yusui/composables': workspace:*
@@ -212,7 +212,7 @@ importers:
       vue-request: 2.0.0-rc.4
     dependencies:
       '@iconify/vue': 4.0.0_vue@3.2.45
-      '@smallwei/avue': 3.2.6_lm33duaz4xay3ghf4a47ryxjie
+      '@smallwei/avue': 3.2.11_k3wepboole6np3kb4d5xrrkbri
       '@vueuse/core': 9.12.0_vue@3.2.45
       '@yusui/composables': link:../composables
       '@yusui/flow-design': link:../flow-design
@@ -229,13 +229,16 @@ importers:
 
   packages/form-design:
     specifiers:
+      '@element-plus/icons-vue': ^2.0.10
+      '@guolao/vue-monaco-editor': ^1.1.0
       '@iconify/vue': 4.0.0
-      '@smallwei/avue': ^3.2.6
+      '@smallwei/avue': ^3.2.11
       '@types/lodash-es': ^4.17.6
       '@vueuse/core': ^9.12.0
       '@yusui/types': workspace:*
       '@yusui/utils': workspace:*
       element-plus: ^2.2.29
+      json5: ^2.2.3
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.3
@@ -243,16 +246,19 @@ importers:
       vue: ^3.2.45
       vuedraggable: ^4.1.0
     dependencies:
+      '@element-plus/icons-vue': 2.0.10_vue@3.2.45
+      '@guolao/vue-monaco-editor': 1.1.0_vue@3.2.45
       '@iconify/vue': 4.0.0_vue@3.2.45
       '@vueuse/core': 9.12.0_vue@3.2.45
       '@yusui/types': link:../types
       '@yusui/utils': link:../utils
+      json5: 2.2.3
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.3_3ib2ivapxullxkx3xftsimdk7u
       vuedraggable: 4.1.0_vue@3.2.45
     devDependencies:
-      '@smallwei/avue': 3.2.6_k3wepboole6np3kb4d5xrrkbri
+      '@smallwei/avue': 3.2.11_k3wepboole6np3kb4d5xrrkbri
       '@types/lodash-es': 4.17.6
       element-plus: 2.2.29_vue@3.2.45
       sass: 1.58.0
@@ -290,7 +296,7 @@ importers:
       uvue-crud: ^2.0.3
       vue: ^3.2.45
     dependencies:
-      '@dcloudio/uni-app': 2.0.2-3061820230117003_@dcloudio+types@3.0.20
+      '@dcloudio/uni-app': 2.0.2-3070320230222001_@dcloudio+types@3.0.20
       '@yusui/composables': link:../composables
       '@yusui/types': link:../types
       '@yusui/uni-utils': link:../uni-utils
@@ -318,7 +324,7 @@ importers:
       postcss: ^8.4.20
       vue: ^3.2.45
     dependencies:
-      '@dcloudio/uni-app': 2.0.2-3061820230117003_@dcloudio+types@3.0.20
+      '@dcloudio/uni-app': 2.0.2-3070320230222001_@dcloudio+types@3.0.20
       '@yusui/types': link:../types
       dayjs: 1.11.7
       lodash: 4.17.21
@@ -698,8 +704,8 @@ packages:
   /@dcloudio/types/3.0.20:
     resolution: {integrity: sha512-rZ4okvj3LCN77rzZWtQg/uQLL4DPl72XjNdmRxTXgboGpBYuyjJ9V9do87RkHNM0bA0l0RIUoy3nh7P6Exb3hA==}
 
-  /@dcloudio/uni-app/2.0.2-3061820230117003_@dcloudio+types@3.0.20:
-    resolution: {integrity: sha512-XBiEQz7eRjSRKNp3iaRS+ofdtcB6SnxbdriSx3oYl9WZEW3j61lu9ZaMYmTod/ULrBWadb5ywqXI+e+IZFupIg==}
+  /@dcloudio/uni-app/2.0.2-3070320230222001_@dcloudio+types@3.0.20:
+    resolution: {integrity: sha512-4wYJsVZcG7SMVc0GtbEyPGnqKWOYNsC5URCUQ5RGNUscYLUJgUIyhhTWuM+QA/jNQIpY/mqfGdhQoSj/Qo51zQ==}
     peerDependencies:
       '@dcloudio/types': ^3.0.15
       '@vue/composition-api': ^1.7.0
@@ -748,6 +754,13 @@ packages:
     transitivePeerDependencies:
       - '@algolia/client-search'
     dev: true
+
+  /@element-plus/icons-vue/2.0.10_vue@3.2.45:
+    resolution: {integrity: sha512-ygEZ1mwPjcPo/OulhzLE7mtDrQBWI8vZzEWSNB2W/RNCRjoQGwbaK4N8lV4rid7Ts4qvySU3njMN7YCiSlSaTQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.2.45
 
   /@element-plus/icons-vue/2.0.9_vue@3.2.45:
     resolution: {integrity: sha512-okdrwiVeKBmW41Hkl0eMrXDjzJwhQMuKiBOu17rOszqM+LS/yBYpNQNV5Jvoh06Wc+89fMmb/uhzf8NZuDuUaQ==}
@@ -1017,6 +1030,21 @@ packages:
     dependencies:
       '@floating-ui/core': 1.0.1
 
+  /@guolao/vue-monaco-editor/1.1.0_vue@3.2.45:
+    resolution: {integrity: sha512-DFtxA8vEP4euP3R4+jisfmY7qfmweUc1M/FxnE2vB8ZzJwX9lz58KNvP0qHg8VPYszk7nvU3kSJjDVOIZeqCgA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.7.1
+      monaco-editor: ^0.35.0
+      vue: ^2.6.14 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@monaco-editor/loader': 1.3.2
+      vue: 3.2.45
+      vue-demi: 0.13.11_vue@3.2.45
+    dev: false
+
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -1119,6 +1147,14 @@ packages:
       preact: 10.11.1
     dev: false
 
+  /@monaco-editor/loader/1.3.2:
+    resolution: {integrity: sha512-BTDbpHl3e47r3AAtpfVFTlAi7WXv4UQ/xZmz8atKl4q7epQV5e7+JbigFDViWF71VBi4IIBdcWP57Hj+OWuc9g==}
+    peerDependencies:
+      monaco-editor: '>= 0.21.0 < 1'
+    dependencies:
+      state-local: 1.0.7
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1137,49 +1173,30 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@smallwei/avue/3.2.6_k3wepboole6np3kb4d5xrrkbri:
-    resolution: {integrity: sha512-84+Qv1DiZOnGiD0ZuSkiEbZmGrSS75GsPQy45lRRmVnt3iw1xINSxfm7wbIkYIAFTSWqVZ9UBoOMMKwfT7/jWg==}
+  /@smallwei/avue/3.2.11_e6pk72igsyiffh2xhr3ezagn64:
+    resolution: {integrity: sha512-L6lkkeBPK5F1n8m1Ivuakws/mfxg1TV2+mg8aAFmbqfobRkxDSJ4/WbDwbl9hJLPgdB7otFYIfboKfqx+0xyCw==}
     peerDependencies:
-      axios: ^0.21.1
-      element-plus: ^2.2.17
-      vue: ^3.2.37
+      element-plus: '>=2.2.0'
+      vue: '>=3.2.0'
     dependencies:
-      '@element-plus/icons-vue': 2.0.9_vue@3.2.45
-      countup.js: 1.9.3
-      dayjs: 1.11.7
-      element-plus: 2.2.29_vue@3.2.45
-      vue: 3.2.45
-    dev: true
-
-  /@smallwei/avue/3.2.6_kjekj6dhchzgl2zamwe5cd34ta:
-    resolution: {integrity: sha512-84+Qv1DiZOnGiD0ZuSkiEbZmGrSS75GsPQy45lRRmVnt3iw1xINSxfm7wbIkYIAFTSWqVZ9UBoOMMKwfT7/jWg==}
-    peerDependencies:
-      axios: ^0.21.1
-      element-plus: ^2.2.17
-      vue: ^3.2.37
-    dependencies:
-      '@element-plus/icons-vue': 2.0.9_vue@3.2.45
-      axios: 0.21.4
+      '@element-plus/icons-vue': 2.0.10_vue@3.2.45
       countup.js: 1.9.3
       dayjs: 1.11.7
       element-plus: 2.2.27_vue@3.2.45
       vue: 3.2.45
     dev: true
 
-  /@smallwei/avue/3.2.6_lm33duaz4xay3ghf4a47ryxjie:
-    resolution: {integrity: sha512-84+Qv1DiZOnGiD0ZuSkiEbZmGrSS75GsPQy45lRRmVnt3iw1xINSxfm7wbIkYIAFTSWqVZ9UBoOMMKwfT7/jWg==}
+  /@smallwei/avue/3.2.11_k3wepboole6np3kb4d5xrrkbri:
+    resolution: {integrity: sha512-L6lkkeBPK5F1n8m1Ivuakws/mfxg1TV2+mg8aAFmbqfobRkxDSJ4/WbDwbl9hJLPgdB7otFYIfboKfqx+0xyCw==}
     peerDependencies:
-      axios: ^0.21.1
-      element-plus: ^2.2.17
-      vue: ^3.2.37
+      element-plus: '>=2.2.0'
+      vue: '>=3.2.0'
     dependencies:
-      '@element-plus/icons-vue': 2.0.9_vue@3.2.45
-      axios: 1.3.3
+      '@element-plus/icons-vue': 2.0.10_vue@3.2.45
       countup.js: 1.9.3
       dayjs: 1.11.7
       element-plus: 2.2.29_vue@3.2.45
       vue: 3.2.45
-    dev: false
 
   /@sscfaith/avue-form-design/3.0.0-beta.5_vue@3.2.45:
     resolution: {integrity: sha512-DABLO32SgC+/6WogBZFpcQUzrIT8MvweN2PjGFpmMpodxISUCLP7JRqJuWoe0R7+L+ZD9mTOPow8+2VTft0siA==}
@@ -2940,7 +2957,7 @@ packages:
       vue: ^3.2.0
     dependencies:
       '@ctrl/tinycolor': 3.4.1
-      '@element-plus/icons-vue': 2.0.9_vue@3.2.45
+      '@element-plus/icons-vue': 2.0.10_vue@3.2.45
       '@floating-ui/dom': 1.0.2
       '@popperjs/core': /@sxzz/popperjs-es/2.11.7
       '@types/lodash': 4.14.191
@@ -4939,6 +4956,12 @@ packages:
       minimist: 1.2.6
     dev: false
 
+  /json5/2.2.3:
+    resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dev: false
+
   /jsonc-parser/3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
     dev: true
@@ -6663,6 +6686,10 @@ packages:
   /stack-trace/0.0.10:
     resolution: {integrity: sha512-KGzahc7puUKkzyMt+IqAep+TVNbKP+k2Lmwhub39m1AsTSkaDutx56aDCo+HLDzf/D26BIHTJWNiTG1KAJiQCg==}
     dev: true
+
+  /state-local/1.0.7:
+    resolution: {integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==}
+    dev: false
 
   /static-extend/0.1.2:
     resolution: {integrity: sha512-72E9+uLc27Mt718pMHt9VMNiAL4LMsmDbBva8mxWUCkT07fSzEGMYUCk0XWY6lp0j6RBAG4cJ3mWuZv2OE3s0g==}

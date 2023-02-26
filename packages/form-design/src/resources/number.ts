@@ -22,6 +22,13 @@ export const number: Resource = {
       type: "number"
     },
     {
+      label: "只能输入步长倍数",
+      prop: "stepStrictly",
+      type: "switch",
+      labelWidth: 130,
+      value: false
+    },
+    {
       label: "数值精度",
       prop: "precision",
       type: "number"
@@ -42,13 +49,30 @@ export const number: Resource = {
       label: "控制按钮位置",
       prop: "controlsPosition",
       type: "radio",
-      labelWidth: 100,
       button: true,
       value: "default",
       dicData: [
         { label: "默认", value: "default" },
         { label: "右", value: "right" }
       ]
+    },
+    {
+      label: "清空时显示值",
+      prop: "valueOnClear",
+      type: "select",
+      filterable: true,
+      allowCreate: true,
+      defaultFirstOption: true,
+      dicData: [
+        { label: "最小值", value: "min" },
+        { label: "最大值", value: "max" }
+      ],
+      control(val, form) {
+        if (val && !["min", "max"].includes(val)) {
+          form.valueOnClear = Number(val);
+        }
+        return {};
+      }
     }
   ]
 };

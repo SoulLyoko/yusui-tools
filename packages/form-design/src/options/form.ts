@@ -1,5 +1,7 @@
 import type { AvueFormColumn } from "@smallwei/avue";
 
+import { iconList } from "../resources/icon";
+
 export const form: AvueFormColumn[] = [
   {
     label: "标签位置",
@@ -8,8 +10,8 @@ export const form: AvueFormColumn[] = [
     button: true,
     value: "left",
     dicData: [
-      { label: "左对齐", value: "left" },
-      { label: "右对齐", value: "right" },
+      { label: "左", value: "left" },
+      { label: "右", value: "right" },
       { label: "顶部", value: "top" }
     ]
   },
@@ -25,28 +27,10 @@ export const form: AvueFormColumn[] = [
     value: "："
   },
   {
-    label: "显示按钮",
-    prop: "menuBtn",
-    type: "switch",
-    value: false,
-    control(menuBtn: boolean, { submitBtn, emptyBtn }: any) {
-      return {
-        submitBtn: { display: menuBtn },
-        submitIcon: { display: menuBtn && submitBtn },
-        submitText: { display: menuBtn && submitBtn },
-        emptyBtn: { display: menuBtn },
-        emptyIcon: { display: menuBtn && emptyBtn },
-        emptyText: { display: menuBtn && emptyBtn },
-        menuSpan: { display: menuBtn },
-        menuPosition: { display: menuBtn }
-      };
-    }
-  },
-  {
     label: "显示提交按钮",
     prop: "submitBtn",
     type: "switch",
-    value: false,
+    value: true,
     control(submitBtn: boolean) {
       return {
         submitIcon: { display: submitBtn },
@@ -57,6 +41,8 @@ export const form: AvueFormColumn[] = [
   {
     label: "提交按钮图标",
     prop: "submitIcon",
+    type: "icon",
+    iconList,
     value: "el-icon-check"
   },
   {
@@ -68,7 +54,7 @@ export const form: AvueFormColumn[] = [
     label: "显示清空按钮",
     prop: "emptyBtn",
     type: "switch",
-    value: false,
+    value: true,
     control(emptyBtn: boolean) {
       return {
         emptyIcon: { display: emptyBtn },
@@ -79,12 +65,33 @@ export const form: AvueFormColumn[] = [
   {
     label: "清空按钮图标",
     prop: "emptyIcon",
+    type: "icon",
+    iconList,
     value: "el-icon-delete"
   },
   {
     label: "清空按钮文字",
     prop: "emptyText",
     value: "清空"
+  },
+  {
+    label: "显示按钮",
+    prop: "menuBtn",
+    type: "switch",
+    value: false,
+    control(menuBtn: boolean, form: any) {
+      const { submitBtn, emptyBtn } = form;
+      return {
+        submitBtn: { display: menuBtn },
+        submitIcon: { display: menuBtn && submitBtn },
+        submitText: { display: menuBtn && submitBtn },
+        emptyBtn: { display: menuBtn },
+        emptyIcon: { display: menuBtn && emptyBtn },
+        emptyText: { display: menuBtn && emptyBtn },
+        menuSpan: { display: menuBtn },
+        menuPosition: { display: menuBtn }
+      };
+    }
   },
   {
     label: "按钮栅格",
@@ -144,7 +151,6 @@ export const form: AvueFormColumn[] = [
     prop: "size",
     type: "radio",
     button: true,
-    value: "default",
     dicData: [
       { label: "大", value: "large" },
       { label: "默认", value: "default" },

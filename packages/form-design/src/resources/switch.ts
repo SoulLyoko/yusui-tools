@@ -19,7 +19,9 @@ export const switchs: Resource = {
             label: "值",
             prop: "value",
             type: "select",
+            filterable: true,
             allowCreate: true,
+            defaultFirstOption: true,
             dicData: [
               { label: "true", value: true },
               { label: "false", value: false }
@@ -28,19 +30,23 @@ export const switchs: Resource = {
         ]
       },
       value: [
-        { label: "否", value: false },
-        { label: "是", value: true }
+        { label: "", value: false },
+        { label: "", value: true }
       ]
+    },
+    {
+      label: "开关宽度",
+      prop: "len"
     },
     {
       label: "开启时背景色",
       prop: "activeColor",
-      labelWidth: 100
+      type: "color"
     },
     {
       label: "关闭时背景色",
       prop: "inactiveColor",
-      labelWidth: 100
+      type: "color"
     }
   ]
 };

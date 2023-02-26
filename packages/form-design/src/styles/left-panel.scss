@@ -1,0 +1,50 @@
+.left-panel {
+  .el-tabs {
+    height: 100%;
+    .el-tabs__content {
+      height: calc(100% - 60px);
+      .el-tab-pane {
+        height: 100%;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+.resource-list {
+  .resource-item {
+    width: 50%;
+    padding: 5px;
+    display: inline-block;
+
+    .el-button {
+      width: 100%;
+      justify-content: left;
+
+      :deep(span) {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        display: block;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.history-list {
+  .history-item {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #eee;
+    }
+    &.is-active {
+      background-color: var(--el-color-primary);
+      color: #fff;
+    }
+  }
+}

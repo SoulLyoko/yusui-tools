@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { dic } from "./dic";
+import { useDicSettings } from "./dic";
 
 export const radio: Resource = {
   type: "radio",
@@ -8,7 +8,7 @@ export const radio: Resource = {
   icon: "el-icon-circle-check",
   group: "表单组件",
   settings: [
-    ...dic.settings!,
+    ...useDicSettings(),
     {
       label: "边框",
       prop: "border",

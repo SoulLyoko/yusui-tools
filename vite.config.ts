@@ -9,7 +9,7 @@ const external = [
   /@yusui/,
   /lodash/,
   "vue",
-  "element-plus",
+  /element-plus/,
   "@vueuse/core",
   "@dcloudio/uni-app",
   /dayjs/,

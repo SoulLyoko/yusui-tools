@@ -1,27 +1,29 @@
 import type { AvueFormOption } from "@smallwei/avue";
 import type { ResourceElement } from "../types";
 
+import json5 from "json5";
+
 // 获取随机数字id
 export function getRandomId(prefix?: string) {
   const id = Date.now() + Math.floor(Math.random() * 10000);
   return prefix ? `${prefix}_${id}` : id + "";
 }
 
-export function formOptionStringify(option: AvueFormOption) {
-  return JSON.stringify(
-    option,
-    (key, value) => {
+export function json5Stringify(json: any) {
+  return json5.stringify(json, {
+    space: 2,
+    quote: '"',
+    replacer: (key, value) => {
       if (typeof value === "function") {
         return value.toString();
       }
       return value;
-    },
-    2
-  );
+    }
+  });
 }
 
-export function formOptionParse(val: string) {
-  return JSON.parse(val, (key, value) => {
+export function json5Parse(str: string) {
+  return json5.parse(str, (key, value) => {
     if (typeof value === "string" && value.includes("=>")) {
       return eval(value);
     }

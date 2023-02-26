@@ -1,16 +1,21 @@
 <template>
-  <avue-form :option="option"></avue-form>
+  <avue-form v-model="formData" :option="option"></avue-form>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed, getCurrentInstance } from "vue";
 
 import { useInjectState } from "../../composables";
-import { transformResouceToFormOption } from "../../utils";
+import { transformResouceToFormOption, json5Stringify, json5Parse } from "../../utils";
 
 const { resourceElementList, formOption } = useInjectState();
 
+const formData = ref({});
+
+const { proxy } = getCurrentInstance()!;
 const option = computed(() => {
-  return { ...formOption.value, ...transformResouceToFormOption(resourceElementList.value) };
+  return json5Parse.bind(proxy)(
+    json5Stringify({ ...formOption.value, ...transformResouceToFormOption(resourceElementList.value) })
+  );
 });
 </script>

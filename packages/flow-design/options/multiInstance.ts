@@ -21,6 +21,9 @@ export const completionCondition = {
   label: "完成条件",
   prop: "completionCondition",
   type: "slider",
+  showInput: true,
+  showInputControls: false,
+  labelPosition: "top",
   labelTip: "任务完成的百分比，如2人接收，需同时完成才往下进行时=100%，只需1人完成时=50%"
 };
 

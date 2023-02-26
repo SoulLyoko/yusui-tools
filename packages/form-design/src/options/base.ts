@@ -17,6 +17,21 @@ import type { AvueFormColumn } from "@smallwei/avue";
 //   };
 // });
 
+export const placementDic = [
+  { label: "上", value: "top" },
+  { label: "下", value: "bottom" },
+  { label: "左", value: "left" },
+  { label: "右", value: "right" },
+  { label: "上左", value: "top-start" },
+  { label: "上右", value: "top-end" },
+  { label: "下左", value: "bottom-start" },
+  { label: "下右", value: "bottom-end" },
+  { label: "左上", value: "left-start" },
+  { label: "左下", value: "left-end" },
+  { label: "右上", value: "right-start" },
+  { label: "右下", value: "right-end" }
+];
+
 export const base: AvueFormColumn[] = [
   // {
   //   label: "类型",
@@ -46,24 +61,13 @@ export const base: AvueFormColumn[] = [
     button: true,
     value: "left",
     dicData: [
-      { label: "左对齐", value: "left" },
-      { label: "右对齐", value: "right" },
+      { label: "左", value: "left" },
+      { label: "右", value: "right" },
       { label: "顶部", value: "top" }
     ]
   },
   {
-    label: "数据类型",
-    prop: "dataType",
-    type: "radio",
-    button: true,
-    dicData: [
-      { label: "字符串", value: "string" },
-      { label: "数字", value: "number" },
-      { label: "数组", value: "array" }
-    ]
-  },
-  {
-    label: "组件大小",
+    label: "组件尺寸",
     prop: "size",
     type: "radio",
     button: true,
@@ -71,6 +75,19 @@ export const base: AvueFormColumn[] = [
       { label: "大", value: "large" },
       { label: "默认", value: "default" },
       { label: "小", value: "small" }
+    ]
+  },
+  {
+    label: "数据类型",
+    prop: "dataType",
+    type: "radio",
+    button: true,
+    labelWidth: 90,
+    labelTip: `会将数据转换为选择的数据类型，如：[1,2,3]=>"1,2,3"`,
+    dicData: [
+      { label: "字符", value: "string" },
+      { label: "数字", value: "number" },
+      { label: "数组", value: "array" }
     ]
   },
   {
@@ -82,47 +99,23 @@ export const base: AvueFormColumn[] = [
   },
   {
     label: "字段提示",
-    prop: "tip",
-    control(tip: string) {
-      return {
-        tipPlacement: { display: !!tip }
-      };
-    }
+    prop: "tip"
   },
   {
     label: "字段提示位置",
     prop: "tipPlacement",
-    type: "radio",
-    button: true,
-    value: "top",
-    dicData: [
-      { label: "上", value: "top" },
-      { label: "下", value: "bottom" },
-      { label: "左", value: "left" },
-      { label: "右", value: "right" }
-    ]
+    type: "select",
+    dicData: placementDic
   },
   {
     label: "标签提示",
-    prop: "labelTip",
-    control(labelTip: string) {
-      return {
-        labelTipPlacement: { display: !!labelTip }
-      };
-    }
+    prop: "labelTip"
   },
   {
     label: "标签提示位置",
     prop: "labelTipPlacement",
-    type: "radio",
-    button: true,
-    value: "top",
-    dicData: [
-      { label: "上", value: "top" },
-      { label: "下", value: "bottom" },
-      { label: "左", value: "left" },
-      { label: "右", value: "right" }
-    ]
+    type: "select",
+    dicData: placementDic
   },
   {
     label: "默认值",
@@ -169,9 +162,10 @@ export const base: AvueFormColumn[] = [
     value: false,
     control(required: boolean, form: any) {
       if (required) {
-        form.rules = [{ required: true, message: form.label + "必须填写" }];
+        const messagePrefix = form.label || form.prop || "该字段";
+        form.rules = [{ required: true, message: messagePrefix + "为必填字段" }];
       } else {
-        delete form.rules;
+        form.rules = form.rules?.filter((e: any) => !e.required) ?? [];
       }
       return {};
     }

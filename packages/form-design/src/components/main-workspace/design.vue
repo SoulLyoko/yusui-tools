@@ -20,18 +20,12 @@
         @mouseleave="hoverElement = {}"
       >
         <avue-form :option="resolveItemOption(element)"></avue-form>
-        <DesignWorkspace
-          v-if="element.type === 'dynamic' && element.display"
+        <Design
+          v-if="element.slotPath"
           class="item-slot"
-          :list="element.children?.column || []"
-          @update:list="element.children!.column = $event"
-        ></DesignWorkspace>
-        <DesignWorkspace
-          v-if="element.type === 'group' && element.display"
-          class="item-slot"
-          :list="element.column || []"
-          @update:list="element.column = $event"
-        ></DesignWorkspace>
+          :list="get(element, element.slotPath, [])"
+          @update:list="set(element, element.slotPath!, $event)"
+        ></Design>
         <div v-show="activeElement.prop === element.prop" class="item-tool">
           <el-button
             type="primary"
@@ -61,10 +55,10 @@ import type { ResourceElement } from "../../types";
 
 import draggable from "vuedraggable";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep, omit } from "lodash-unified";
+import { cloneDeep, omit, get, set } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
-import DesignWorkspace from "./design.vue";
+import Design from "./design.vue";
 import { getRandomId } from "../../utils";
 
 const props = defineProps<{ list: ResourceElement[] }>();
@@ -75,20 +69,13 @@ const { activeElement, hoverElement, formOption, recordHistory } = useInjectStat
 
 function resolveItemOption(element: ResourceElement): AvueFormOption {
   const common = { ...cloneDeep(formOption.value), menuBtn: false };
-  if (element.type === "group") {
-    return { ...common, tabs: false, readonly: true, group: [{ ...element, arrow: false, collapse: false }] };
+  if (element.slotPath) {
+    return { ...common, column: [{ label: element.label, prop: element.prop, type: "title" }] };
   }
-  if (element.type === "dynamic") {
-    return {
-      ...common,
-      readonly: true,
-      column: [{ ...element, children: { ...element.children, addBtn: false, type: "form" } }]
-    };
-  }
-  return { ...common, readonly: true, column: [omit(element, "icon")] };
+  return { ...common, column: [omit(element, "icon")] };
 }
 function getItemSpan(element: ResourceElement) {
-  if (element.type === "group") {
+  if (element.slotPath) {
     return 24;
   }
   return element.span || formOption.value.span || 24;
@@ -98,17 +85,17 @@ function onChange(operation: Record<string, { element?: ResourceElement }>) {
   const operationName = Object.keys(operation)[0];
   if (!operationName) return;
   activeElement.value = operation[operationName]?.element ?? {};
-  // list.value.sort((a, b) => (b.type === "group" ? -1 : 1));
   recordHistory(operationName);
 }
 
-function handleCopyItem(element: ResourceElement) {
+async function handleCopyItem(element: ResourceElement) {
   const item = cloneDeep({ ...element, prop: getRandomId(element.type) });
-  if (element.type === "group") {
-    item.column = element.column?.map(e => ({ ...e, prop: getRandomId(element.type) }));
-  }
-  if (element.type === "dynamic") {
-    item.children!.column = element.children?.column?.map(e => ({ ...e, prop: getRandomId(element.type) }));
+  if (item.slotPath) {
+    set(
+      item,
+      item.slotPath,
+      get(item, item.slotPath, []).map((e: any) => ({ ...e, prop: getRandomId(item.type) }))
+    );
   }
   list.value.push(item);
   activeElement.value = item;

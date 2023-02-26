@@ -16,7 +16,7 @@
       outline: 1px solid var(--el-color-primary);
     }
 
-    .item-slot {
+    &.item-slot {
       margin-top: 1px;
       min-height: 200px;
       outline: 1px dashed var(--el-color-info);
@@ -27,5 +27,16 @@
       bottom: -16px;
       z-index: 1;
     }
+  }
+}
+
+.main-workspace {
+  .device-mobile {
+    padding: 1px;
+    width: 405px !important;
+    height: 720px !important;
+    border: 2px solid #000;
+    margin: 0 auto;
+    overflow-y: auto;
   }
 }

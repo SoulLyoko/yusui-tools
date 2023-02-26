@@ -1,17 +1,13 @@
 <template>
-  <el-input v-model="code" type="textarea" :autosize="{ minRows: 30 }"></el-input>
+  <MonacoEditor v-model="code" valueType="object" />
 </template>
 
-<script setup lang="ts" name="">
+<script setup lang="ts">
 import { computed } from "vue";
 
 import { useInjectState } from "../../composables";
-import {
-  formOptionStringify,
-  formOptionParse,
-  transformResouceToFormOption,
-  transformFormOptionToResouce
-} from "../../utils";
+import { transformResouceToFormOption, transformFormOptionToResouce } from "../../utils";
+import MonacoEditor from "../monaco-editor/index.vue";
 
 const { resourceElementList, formOption } = useInjectState();
 
@@ -21,10 +17,10 @@ const code = computed({
       ...formOption.value,
       ...transformResouceToFormOption(resourceElementList.value)
     };
-    return formOptionStringify(option);
+    return option;
   },
   set(val) {
-    formOption.value = formOptionParse(val);
+    formOption.value = val;
     resourceElementList.value = transformFormOptionToResouce(formOption.value);
   }
 });

@@ -8,7 +8,7 @@ export function useModelerState(props: ModelerProps) {
   const vModels = useVModels(props, undefined, { passive: true });
   const { lf, modelValue: graphData, elementData, formData, formOptions } = vModels as Required<typeof vModels>;
   const formLoading = ref(false);
-  const formOption = ref<AvueFormOption>({ menuBtn: false, span: 24, group: [] });
+  const formOption = ref<AvueFormOption>({ menuBtn: false, span: 24, labelPosition: "left", group: [] });
   const editorVisible = ref(false);
 
   function onUpdateFormData(val: any) {

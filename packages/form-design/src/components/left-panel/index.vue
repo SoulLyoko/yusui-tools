@@ -13,12 +13,10 @@
 import Resource from "./resource.vue";
 import Tree from "./tree.vue";
 import History from "./history.vue";
-import Source from "./source.vue";
 
 const tabs = [
   { title: "组件", icon: "el-icon-menu", component: Resource },
   { title: "大纲", icon: "el-icon-operation", component: Tree },
-  { title: "历史", icon: "el-icon-clock", component: History },
-  { title: "源码", icon: "el-icon-more-filled", component: Source }
+  { title: "历史", icon: "el-icon-clock", component: History }
 ];
 </script>

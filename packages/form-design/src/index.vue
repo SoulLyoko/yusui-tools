@@ -1,17 +1,17 @@
 <template>
   <el-container class="form-design">
-    <el-aside class="left-panel">
+    <el-aside class="left-panel" :width="leftWidth">
       <LeftPanel></LeftPanel>
     </el-aside>
     <el-container>
-      <el-header class="main-header">
+      <el-header class="main-header" height="auto">
         <MainHeader></MainHeader>
       </el-header>
       <el-main class="main-workspace">
-        <MainWorkspace></MainWorkspace>
+        <MainWorkspace :class="'device-' + deviceType"></MainWorkspace>
       </el-main>
     </el-container>
-    <el-aside class="right-panel">
+    <el-aside v-show="workType == 'design'" class="right-panel" :width="rightWidth">
       <RightPanel></RightPanel>
     </el-aside>
   </el-container>
@@ -27,8 +27,10 @@ import RightPanel from "./components/right-panel/index.vue";
 import MainHeader from "./components/main-header/index.vue";
 
 const props = defineProps<{
-  resources: Resource[];
+  resources?: Resource[];
+  leftWidth?: string;
+  rightWidth?: string;
 }>();
 
-useProvideState(props);
+const { workType, deviceType } = useProvideState(props);
 </script>

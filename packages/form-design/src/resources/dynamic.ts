@@ -5,6 +5,7 @@ export const dynamic: Resource = {
   type: "dynamic",
   icon: "el-icon-grid",
   group: "布局组件",
+  slotPath: "children.column",
   children: {
     type: "crud",
     index: "",
@@ -111,8 +112,7 @@ export const dynamic: Resource = {
     return {
       ...e,
       prop: `children${e.prop}`,
-      bind: `children.${e.prop}`,
-      labelWidth: 100
+      bind: `children.${e.prop}`
     };
   })
 };
