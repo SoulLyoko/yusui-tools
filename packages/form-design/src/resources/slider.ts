@@ -4,10 +4,11 @@ import MonacoEditor from "../components/monaco-editor/index.vue";
 import { placementDic } from "../options";
 
 export const slider: Resource = {
-  type: "slider",
-  label: "滑块",
+  name: "slider",
+  title: "滑块",
   icon: "el-icon-operation",
   group: "表单组件",
+  settingsValue: { type: "slider", label: "滑块" },
   settings: [
     {
       label: "最小值",

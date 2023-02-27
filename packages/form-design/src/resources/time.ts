@@ -3,10 +3,11 @@ import type { Resource } from "../types";
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const time: Resource = {
-  type: "time",
-  label: "时间",
+  name: "time",
+  title: "时间",
   icon: "el-icon-clock",
   group: "日期时间组件",
+  settingsValue: { type: "time", label: "时间" },
   settings: [
     {
       label: "开始占位内容",
@@ -88,6 +89,7 @@ export const time: Resource = {
       component: MonacoEditor,
       valueType: "function",
       tooltip: true,
+      labelWidth: 120,
       labelTip: "禁止选择部分小时选项`Function()`"
     },
     {
@@ -96,6 +98,7 @@ export const time: Resource = {
       component: MonacoEditor,
       valueType: "function",
       tooltip: true,
+      labelWidth: 120,
       labelTip: "禁止选择部分分钟选项`Function(selectedHour)`"
     },
     {
@@ -109,4 +112,11 @@ export const time: Resource = {
   ]
 };
 
-export const timerange = { ...time, label: "时间范围", type: "timerange" };
+export const timerange = {
+  ...time,
+  name: "timerange",
+  title: "时间范围",
+  icon: "el-icon-clock",
+  group: "日期时间组件",
+  settingsValue: { type: "timerange", label: "时间范围" }
+};

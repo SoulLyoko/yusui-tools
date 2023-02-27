@@ -1,12 +1,13 @@
 <template>
   <div class="history-list">
-    <el-tooltip v-for="(item, index) in historyList" :key="item.timestamp" effect="light">
+    显示源码：<el-switch v-model="showTooltip"></el-switch>
+    <el-tooltip v-for="(item, index) in historyList" :key="item.timestamp" effect="light" :disabled="!showTooltip">
       <template #content>
         <el-input
           type="textarea"
-          :modelValue="json5Stringify(item.list)"
-          :autosize="{ minRows: 10, maxRows: 20 }"
-          style="width: 300px; height: 440px"
+          :modelValue="json5Stringify(item)"
+          :autosize="{ minRows: 1, maxRows: 20 }"
+          style="width: 300px"
         />
       </template>
       <div class="history-item" :class="{ 'is-active': index === historyIndex }" @click="restoreHistory(index)">
@@ -22,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { useInjectState } from "../../composables";
 import { json5Stringify } from "../../utils";
 
@@ -34,4 +37,6 @@ const historyTypeMap = {
   removed: "删除组件",
   property: "修改属性"
 };
+
+const showTooltip = ref(false);
 </script>

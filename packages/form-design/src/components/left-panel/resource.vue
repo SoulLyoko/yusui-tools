@@ -8,11 +8,11 @@
           :group="{ name: 'components', pull: 'clone', put: false }"
           :clone="cloneItem"
           :sort="false"
-          itemKey="label"
+          itemKey="name"
         >
           <template #item="{ element }: { element: (typeof group.children)[number] }">
             <div class="resource-item" @click="addElement(element)">
-              <el-button :icon="element.icon">{{ element.label }}</el-button>
+              <el-button :icon="element.icon">{{ element.title }}</el-button>
             </div>
           </template>
         </Draggable>
@@ -35,7 +35,11 @@ const { resources, resourceElementList, activeElement, workType, recordHistory }
 
 const searchValue = ref("");
 const resourceList = computed(() => {
-  const filters = resources.value.filter(e => e.label?.includes(searchValue.value));
+  const filters = resources.value.filter(e => {
+    const { name, title, keywords } = e;
+    const searchKeys = [name, title, keywords].filter(e => e).join(",");
+    return searchKeys?.includes(searchValue.value);
+  });
   const groups = filters.map(e => e.group);
   const groupsSet = [...new Set(groups)];
   return groupsSet.map(group => {
@@ -47,7 +51,12 @@ const resourceList = computed(() => {
 });
 
 function cloneItem(element: Resource) {
-  return cloneDeep(omit({ ...element, prop: getRandomId(element.type) }, ["icon", "group", "settings"]));
+  const { name, settingsValue } = element;
+  return cloneDeep({
+    ...settingsValue,
+    resource: omit(element, ["settings", "settingsValue"]),
+    prop: getRandomId(name)
+  });
 }
 
 function addElement(element: Resource) {

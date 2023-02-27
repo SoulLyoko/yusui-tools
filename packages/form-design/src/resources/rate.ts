@@ -3,10 +3,11 @@ import type { Resource } from "../types";
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const rate: Resource = {
-  type: "rate",
-  label: "评分",
+  name: "rate",
+  title: "评分",
   icon: "el-icon-star",
   group: "表单组件",
+  settingsValue: { type: "rate", label: "评分" },
   settings: [
     {
       label: "是否允许半选",

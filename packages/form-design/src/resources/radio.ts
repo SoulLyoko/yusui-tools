@@ -1,12 +1,13 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "./dic";
+import { useDicSettings } from "../options/dic";
 
 export const radio: Resource = {
-  type: "radio",
-  label: "单选框组",
+  name: "radio",
+  title: "单选框组",
   icon: "el-icon-circle-check",
   group: "表单组件",
+  settingsValue: { type: "radio", label: "单选框组" },
   settings: [
     ...useDicSettings(),
     {

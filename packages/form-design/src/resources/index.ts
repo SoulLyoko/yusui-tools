@@ -76,7 +76,7 @@ export * from "./cascader";
 export * from "./checkbox";
 export * from "./color";
 export * from "./date";
-export * from "./dic";
+export * from "../options/dic";
 export * from "./dynamic";
 export * from "./group";
 export * from "./icon";

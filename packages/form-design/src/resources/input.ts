@@ -4,10 +4,11 @@ import { iconList } from "./icon";
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const input: Resource = {
-  type: "input",
-  label: "输入框",
+  name: "input",
+  title: "输入框",
   icon: "el-icon-chat-dot-square",
   group: "表单组件",
+  settingsValue: { type: "input", label: "输入框" },
   settings: [
     {
       label: "最大长度",

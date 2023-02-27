@@ -4,13 +4,11 @@ import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const table: Resource = {
   type: "table",
-  label: "表格选择",
+  title: "表格选择",
   icon: "el-icon-grid",
   group: "表单组件",
-  slotPath: "children.column",
-  children: {
-    column: []
-  },
+  container: "children.column",
+  settingsValue: { type: "table", label: "表格选择", children: { column: [] } },
   settings: [
     {
       label: "显示表头",

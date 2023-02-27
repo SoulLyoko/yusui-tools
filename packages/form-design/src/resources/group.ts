@@ -3,12 +3,12 @@ import type { Resource } from "../types";
 import { iconList } from "./icon";
 
 export const group: Resource = {
-  label: "分组",
-  type: "group",
+  name: "group",
+  title: "分组",
   icon: "el-icon-menu",
   group: "布局组件",
-  slotPath: "column",
-  column: [],
+  container: "column",
+  settingsValue: { type: "group", label: "分组", column: [] },
   settings: [
     {
       label: "图标",

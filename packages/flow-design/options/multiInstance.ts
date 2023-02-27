@@ -24,6 +24,8 @@ export const completionCondition = {
   showInput: true,
   showInputControls: false,
   labelPosition: "top",
+  step: 0.01,
+  max: 1,
   labelTip: "任务完成的百分比，如2人接收，需同时完成才往下进行时=100%，只需1人完成时=50%"
 };
 

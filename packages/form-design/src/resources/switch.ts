@@ -1,10 +1,11 @@
 import type { Resource } from "../types";
 
 export const switchs: Resource = {
-  type: "switch",
-  label: "开关",
+  name: "switch",
+  title: "开关",
   icon: "el-icon-switch",
   group: "表单组件",
+  settingsValue: { type: "switch", label: "开关" },
   settings: [
     {
       label: "开关数据",

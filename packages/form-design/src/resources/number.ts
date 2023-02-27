@@ -1,10 +1,11 @@
 import type { Resource } from "../types";
 
 export const number: Resource = {
-  type: "number",
-  label: "数字输入框",
+  name: "number",
+  title: "数字输入框",
   icon: "el-icon-more",
   group: "表单组件",
+  settingsValue: { type: "number", label: "数字输入框" },
   settings: [
     {
       label: "最小值",

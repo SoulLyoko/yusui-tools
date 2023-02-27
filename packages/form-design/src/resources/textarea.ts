@@ -3,10 +3,11 @@ import type { Resource } from "../types";
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const textarea: Resource = {
-  type: "textarea",
-  label: "文本域",
+  name: "textarea",
+  title: "文本域",
   icon: "el-icon-chat-line-square",
   group: "表单组件",
+  settingsValue: { type: "textarea", label: "文本域" },
   settings: [
     {
       label: "最小行数",

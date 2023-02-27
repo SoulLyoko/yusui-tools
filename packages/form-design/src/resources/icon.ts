@@ -13,10 +13,11 @@ export const iconList = [
 ];
 
 export const icon: Resource = {
-  type: "icon",
-  label: "图标",
+  name: "icon",
+  title: "图标",
   icon: "el-icon-element-plus",
   group: "表单组件",
+  settingsValue: { type: "icon", label: "图标" },
   settings: [
     {
       label: "图标列表",

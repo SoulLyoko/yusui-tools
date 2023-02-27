@@ -16,12 +16,12 @@
       outline: 1px solid var(--el-color-primary);
     }
 
-    &.item-slot {
+    .item-container {
       margin-top: 1px;
-      min-height: 200px;
+      min-height: 220px;
       outline: 1px dashed var(--el-color-info);
     }
-    .item-tool {
+    .item-actions {
       position: absolute;
       right: 10px;
       bottom: -16px;

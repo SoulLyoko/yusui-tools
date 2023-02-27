@@ -1,13 +1,14 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "./dic";
+import { useDicSettings } from "../options/dic";
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const cascader: Resource = {
-  type: "cascader",
-  label: "级联选择器",
+  name: "cascader",
+  title: "级联选择器",
   icon: "el-icon-connection",
   group: "表单组件",
+  settingsValue: { type: "cascader", label: "级联选择器" },
   settings: [
     ...useDicSettings(true),
     {

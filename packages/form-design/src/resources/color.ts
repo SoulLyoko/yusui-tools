@@ -1,10 +1,11 @@
 import type { Resource } from "../types";
 
 export const color: Resource = {
-  type: "color",
-  label: "颜色",
+  name: "color",
+  title: "颜色",
   icon: "el-icon-brush",
   group: "表单组件",
+  settingsValue: { type: "color", label: "颜色" },
   settings: [
     {
       label: "支持透明度选择",

@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import type { AvueFormOption } from "@smallwei/avue";
 import type { Resource } from "./types";
 
 import { useProvideState } from "./composables";
@@ -27,6 +28,7 @@ import RightPanel from "./components/right-panel/index.vue";
 import MainHeader from "./components/main-header/index.vue";
 
 const props = defineProps<{
+  modelValue?: AvueFormOption;
   resources?: Resource[];
   leftWidth?: string;
   rightWidth?: string;

@@ -1,21 +1,12 @@
 import type { Resource } from "../types";
 
 export const dynamic: Resource = {
-  label: "子表单",
-  type: "dynamic",
+  name: "dynamic",
+  title: "子表单",
   icon: "el-icon-grid",
   group: "布局组件",
-  slotPath: "children.column",
-  children: {
-    type: "crud",
-    index: "",
-    addBtn: true,
-    delBtn: true,
-    showHeader: true,
-    stripe: false,
-    border: false,
-    column: []
-  },
+  container: "children.column",
+  settingsValue: { type: "dynamic", label: "子表单", labelPosition: "top", children: { column: [] } },
   settings: [
     {
       label: "展示类型",

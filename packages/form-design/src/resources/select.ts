@@ -1,14 +1,15 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "./dic";
+import { useDicSettings } from "../options/dic";
 import { iconList } from "./icon";
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
 export const select: Resource = {
-  type: "select",
-  label: "选择框",
+  name: "select",
+  title: "选择框",
   icon: "el-icon-arrow-down",
   group: "表单组件",
+  settingsValue: { type: "select", label: "选择框" },
   settings: [
     ...useDicSettings(),
     {

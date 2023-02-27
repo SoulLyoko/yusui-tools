@@ -2,30 +2,16 @@ import type { Resource } from "../types";
 
 import MonacoEditor from "../components/monaco-editor/index.vue";
 
+const dateFormat = "YYYY-MM-DD";
+const datetimeFormat = "YYYY-MM-DD HH:mm:ss";
+
 export const date: Resource = {
-  type: "date",
-  label: "日期",
+  name: "date",
+  title: "日期",
   icon: "el-icon-calendar",
   group: "日期时间组件",
-  format: "YYYY-MM-DD",
-  valueFormat: "YYYY-MM-DD",
+  settingsValue: { type: "date", label: "日期", format: dateFormat, valueFormat: dateFormat },
   settings: [
-    // {
-    //   label: "显示类型",
-    //   prop: "type",
-    //   type: "select",
-    //   dicData: [
-    //     { label: "年", value: "year" },
-    //     { label: "月", value: "month" },
-    //     { label: "周", value: "week" },
-    //     { label: "日期", value: "date" },
-    //     { label: "多个日期", value: "dates" },
-    //     { label: "日期范围", value: "daterange" },
-    //     { label: "日期时间", value: "datetime" },
-    //     { label: "日期时间范围", value: "datetimerange" },
-    //     { label: "月范围", value: "monthrange" }
-    //   ]
-    // },
     {
       label: "开始占位内容",
       prop: "startPlaceholder"
@@ -71,6 +57,16 @@ export const date: Resource = {
       value: false
     },
     {
+      label: "禁用日期方法",
+      prop: "disabledDate",
+      component: MonacoEditor,
+      valueType: "function",
+      tooltip: true,
+      defaultValue: `(date) => false`,
+      labelWidth: 120,
+      labelTip: "一个用来判断该日期是否被禁用的函数，接受一个 Date 对象作为参数。 应该返回一个 Boolean 值。true表示禁用"
+    },
+    {
       label: "快捷选项",
       prop: "shortcuts",
       type: "dynamic",
@@ -81,43 +77,55 @@ export const date: Resource = {
           { label: "值", prop: "value" }
         ]
       }
-    },
-    {
-      label: "禁用日期方法",
-      prop: "disabledDate",
-      component: MonacoEditor,
-      valueType: "function",
-      tooltip: true,
-      defaultValue: `(date) => false`,
-      labelWidth: 120,
-      labelTip: "一个用来判断该日期是否被禁用的函数，接受一个 Date 对象作为参数。 应该返回一个 Boolean 值。true表示禁用"
     }
   ]
 };
 
-export const year = { ...date, label: "年", type: "year", format: "YYYY", valueFormat: "YYYY" };
-export const month = { ...date, label: "月", type: "month", format: "MM", valueFormat: "MM" };
-export const week = { ...date, label: "周", type: "week", format: "W", valueFormat: "W" };
-export const dates = { ...date, label: "多个日期", type: "dates", format: "YYYY-MM-DD", valueFormat: "YYYY-MM-DD" };
-export const monthrange = { ...date, label: "月范围", type: "monthrange", format: "MM", valueFormat: "MM" };
+export const year = {
+  ...date,
+  name: "year",
+  title: "年",
+  settingsValue: { type: "year", label: "年", format: "YYYY", valueFormat: "YYYY" }
+};
+export const month = {
+  ...date,
+  name: "month",
+  title: "月",
+  settingsValue: { type: "month", label: "月", format: "MM", valueFormat: "MM" }
+};
+export const week = {
+  ...date,
+  name: "week",
+  title: "周",
+  settingsValue: { type: "week", label: "周", format: "W", valueFormat: "W" }
+};
+export const dates = {
+  ...date,
+  name: "dates",
+  title: "多个日期",
+  settingsValue: { type: "dates", label: "多个日期", format: dateFormat, valueFormat: dateFormat }
+};
+export const monthrange = {
+  ...date,
+  name: "monthrange",
+  title: "月范围",
+  settingsValue: { type: "monthrange", label: "月范围", format: "MM", valueFormat: "MM" }
+};
 export const daterange = {
   ...date,
-  label: "日期范围",
-  type: "daterange",
-  format: "YYYY-MM-DD",
-  valueFormat: "YYYY-MM-DD"
+  name: "daterange",
+  title: "日期范围",
+  settingsValue: { type: "daterange", label: "日期范围", format: dateFormat, valueFormat: dateFormat }
 };
 export const datetime = {
   ...date,
-  label: "日期时间",
-  type: "datetime",
-  format: "YYYY-MM-DD HH:mm:ss",
-  valueFormat: "YYYY-MM-DD HH:mm:ss"
+  name: "datetime",
+  title: "日期时间",
+  settingsValue: { type: "datetime", label: "日期时间", format: datetimeFormat, valueFormat: datetimeFormat }
 };
 export const datetimerange = {
   ...date,
-  label: "日期时间范围",
-  type: "datetimerange",
-  format: "YYYY-MM-DD HH:mm:ss",
-  valueFormat: "YYYY-MM-DD HH:mm:ss"
+  name: "datetimerange",
+  title: "日期时间范围",
+  settingsValue: { type: "datetimerange", label: "日期时间范围", format: datetimeFormat, valueFormat: datetimeFormat }
 };

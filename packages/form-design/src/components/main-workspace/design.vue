@@ -21,12 +21,12 @@
       >
         <avue-form :option="resolveItemOption(element)"></avue-form>
         <Design
-          v-if="element.slotPath"
-          class="item-slot"
-          :list="get(element, element.slotPath, [])"
-          @update:list="set(element, element.slotPath!, $event)"
+          v-if="element.resource?.container"
+          class="item-container"
+          :list="get(element, element.resource?.container, [])"
+          @update:list="set(element, element.resource?.container!, $event)"
         ></Design>
-        <div v-show="activeElement.prop === element.prop" class="item-tool">
+        <div v-show="activeElement.prop === element.prop" class="item-actions">
           <el-button
             type="primary"
             size="mini"
@@ -69,13 +69,13 @@ const { activeElement, hoverElement, formOption, recordHistory } = useInjectStat
 
 function resolveItemOption(element: ResourceElement): AvueFormOption {
   const common = { ...cloneDeep(formOption.value), menuBtn: false };
-  if (element.slotPath) {
+  if (element.resource?.container) {
     return { ...common, column: [{ label: element.label, prop: element.prop, type: "title" }] };
   }
   return { ...common, column: [omit(element, "icon")] };
 }
 function getItemSpan(element: ResourceElement) {
-  if (element.slotPath) {
+  if (element.resource?.container) {
     return 24;
   }
   return element.span || formOption.value.span || 24;
@@ -90,12 +90,10 @@ function onChange(operation: Record<string, { element?: ResourceElement }>) {
 
 async function handleCopyItem(element: ResourceElement) {
   const item = cloneDeep({ ...element, prop: getRandomId(element.type) });
-  if (item.slotPath) {
-    set(
-      item,
-      item.slotPath,
-      get(item, item.slotPath, []).map((e: any) => ({ ...e, prop: getRandomId(item.type) }))
-    );
+  const { container } = item.resource ?? {};
+  if (container) {
+    const setValue = get(item, container, []).map((e: any) => ({ ...e, prop: getRandomId(item.type) }));
+    set(item, container, setValue);
   }
   list.value.push(item);
   activeElement.value = item;

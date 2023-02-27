@@ -1,12 +1,13 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "./dic";
+import { useDicSettings } from "../options/dic";
 
 export const checkbox: Resource = {
-  type: "checkbox",
-  label: "多选框组",
+  name: "checkbox",
+  title: "多选框组",
   icon: "el-icon-folder-checked",
   group: "表单组件",
+  settingsValue: { type: "checkbox", label: "多选框组" },
   settings: [
     ...useDicSettings(),
     {

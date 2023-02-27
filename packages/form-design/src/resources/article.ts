@@ -1,10 +1,16 @@
 import type { Resource } from "../types";
 
 export const article: Resource = {
-  type: "article",
-  label: "文章",
+  name: "article",
+  title: "文章",
   icon: "el-icon-document",
   group: "其他组件",
+  settingsValue: {
+    type: "article",
+    label: "",
+    labelWidth: 0,
+    data: { title: "文章标题", meta: "文章信息", lead: "简介", body: "正文" }
+  },
   settings: [
     {
       label: "文章标题",
