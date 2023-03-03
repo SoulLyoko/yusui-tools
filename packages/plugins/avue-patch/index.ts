@@ -1,5 +1,6 @@
 import type { Plugin } from "vite";
 
+// avue-dynamic 新增时触发更新
 export function fixAddRow(code: string) {
   return (
     code
@@ -29,6 +30,7 @@ export function fixAddRow(code: string) {
   );
 }
 
+// avue-crud 菜单按钮颜色
 export function fixBtnType(code: string) {
   return (
     code
@@ -71,6 +73,17 @@ export function fixFormGroup(code: string) {
   );
 }
 
+// avue-form 给表单项传表单数据
+export function fixFormRow(code: string) {
+  return (
+    code
+      //prod
+      .replace(`modelValue:e.form[t.prop]`, `modelValue:e.form[t.prop],tableData:{row:e.form}`)
+      //dev
+      .replace(`modelValue: e2.form[t3.prop]`, `modelValue: e2.form[t3.prop], tableData: { row: e2.form }`)
+  );
+}
+
 export function avuePatch(): Plugin {
   return {
     name: "vite-plugin-avue-patch",
@@ -79,7 +92,8 @@ export function avuePatch(): Plugin {
       if (/avue.js|avue.min.js/.test(id)) {
         code = fixBtnType(code);
         code = fixAddRow(code);
-        code = fixFormGroup(code);
+        // code = fixFormGroup(code);
+        code = fixFormRow(code);
         return code;
       }
     }

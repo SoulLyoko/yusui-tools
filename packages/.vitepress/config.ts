@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 import { alias } from "../../vite.config";
 import pkg from "../../package.json";
 import { mdDemoTransform } from "./plugins/md-demo-transform";
-import { avuePatch } from "@yusui/plugins";
+import { avuePatch } from "../plugins";
 
 export default defineConfig({
   base: `/${pkg.name}/`,
@@ -177,11 +177,6 @@ export default defineConfig({
             //       callback();
             //     },{ deep: true })`
             // );
-            code = code.replace(
-              `modelValue: e2.form[t3.prop]`,
-              `modelValue: e2.form[t3.prop], tableData: { row: e2.form }`
-            );
-            console.log("🚀 ~ file: config.ts:182 ~ transform ~ code:", code);
             return code;
           }
         }
