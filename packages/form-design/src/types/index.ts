@@ -2,10 +2,7 @@ import type { AvueFormOption, AvueFormColumn } from "@smallwei/avue";
 import type FormDesign from "../index.vue";
 
 /** 中间拖拽元素 */
-export type ResourceElement = AvueFormColumn & {
-  /** 物料属性 */
-  resource?: Omit<Resource, "settingsValue" | "settings">;
-};
+export type ResourceElement = AvueFormColumn & { name?: Resource["name"] };
 
 /** 左侧物料组件 */
 export interface Resource {
@@ -39,7 +36,6 @@ export interface History {
   timestamp: number;
   active: ResourceElement;
   option: AvueFormOption;
-  // list: ResourceElement[];
 }
 
 export type Props = InstanceType<typeof FormDesign>["$props"];

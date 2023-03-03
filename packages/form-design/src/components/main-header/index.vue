@@ -3,7 +3,7 @@
     <el-col :span="8" style="align-self: center">
       <el-button-group size="small">
         <el-button
-          :disabled="historyIndex <= 0"
+          :disabled="historyIndex === 0"
           title="撤回"
           icon="el-icon-arrow-left"
           @click="restoreHistory(historyIndex - 1)"

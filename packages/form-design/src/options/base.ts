@@ -1,19 +1,12 @@
 import type { AvueFormColumn } from "@smallwei/avue";
 
-// import { defaultResourceList } from "../../left-panel/components/resource";
-// import resources from "../../../resources";
+// import resources from "../resources";
 
-// const typeDic = resources.map(e => ({ label: e.label, value: e.type }));
-
-// const typeDic = defaultResourceList.map(g => {
+// const resourcesDic = resources.map(e => {
 //   return {
-//     label: g.label,
-//     groups: g.children.map(l => {
-//       return {
-//         label: l.label,
-//         value: l.type
-//       };
-//     })
+//     ...e,
+//     label: e.title,
+//     value: e.name
 //   };
 // });
 
@@ -34,11 +27,10 @@ export const placementDic = [
 
 export const base: AvueFormColumn[] = [
   // {
-  //   label: "类型",
-  //   prop: "type",
-  //   type: "select",
-  //   group: true,
-  //   dicData: typeDic
+  // label: "组件名称",
+  // prop: "name"
+  // type: "select",
+  // dicData: resources，
   // },
   {
     label: "字段标识",

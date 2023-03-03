@@ -20,9 +20,10 @@ import { get, set, debounce, isEqual, findKey } from "lodash-unified";
 import { filterObj } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
-import { form, base } from "../../options";
+import { form, base, advance } from "../../options";
 
-const { resourcesMap, resourceElementList, activeElement, formOption, recordHistory } = useInjectState();
+const state = useInjectState();
+const { resourceElementList, activeElement, formOption, recordHistory, getResource } = state;
 
 const commonFormOption = {
   labelPosition: "left" as const,
@@ -39,7 +40,7 @@ const elementPath = ref<string[]>([]);
 const updateTimes = ref(0);
 
 watch(
-  () => activeElement.value.prop,
+  () => [activeElement.value.prop, activeElement.value.name],
   async () => {
     formReLoading.value = true;
     updateTimes.value = 0;
@@ -52,12 +53,13 @@ watch(
     // 设置配置
     const formGroup = { label: "表单属性", prop: "form", column: form };
     const baseGroup = { label: "基本属性", prop: "base", column: base };
-    const componentGroup = { label: "组件属性", prop: "component", column: findSettings() };
-    settingsTabs.value = path?.length ? [baseGroup, componentGroup] : [formGroup];
+    const componentGroup = { label: "组件属性", prop: "component", column: getResource().settings ?? [] };
+    const advanceGroup = { label: "高级", prop: "advance", column: advance };
+    settingsTabs.value = path?.length ? [baseGroup, componentGroup, advanceGroup] : [formGroup];
     activeTab.value = path?.length ? "base" : "form";
     formReLoading.value = false;
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 
 const recordHistoryDebounce = debounce(() => recordHistory("property"), 1000);
@@ -88,10 +90,5 @@ function findPath(object: any, predicate: any): string[] | undefined {
     if (result) return [key].concat(result);
   }
   return;
-}
-
-function findSettings() {
-  const { name } = activeElement.value.resource ?? {};
-  return resourcesMap.value[name!]?.settings ?? [];
 }
 </script>

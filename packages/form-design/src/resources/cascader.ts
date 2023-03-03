@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { useDicSettings } from "../options/dic";
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
 
 export const cascader: Resource = {
   name: "cascader",

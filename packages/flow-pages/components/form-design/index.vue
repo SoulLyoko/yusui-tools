@@ -1,13 +1,11 @@
 <template>
-  <avue-form v-if="view" :modelValue="{}" :option="formOptions"></avue-form>
-  <avue-form-design v-else ref="formDesignRef" :options="formOptions" :show-github-star="false"></avue-form-design>
+  <avue-form v-if="view" :modelValue="{}" :option="formDesignOptions"></avue-form>
+  <FormDesign v-else v-model="formDesignOptions"></FormDesign>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
-import { isEqual } from "lodash-unified";
-
-import { formOptionToJson, formJsonToOption } from "../../utils";
+import { computed } from "vue";
+import { FormDesign, jsonStringify, jsonParse } from "@yusui/form-design";
 
 const props = defineProps<{
   modelValue?: string;
@@ -15,25 +13,12 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["update:modelValue"]);
 
-const formOptions = ref({});
-const formDesignRef = ref();
-
-onMounted(() => {
-  watch(
-    () => props.modelValue,
-    val => {
-      const option = formJsonToOption(val || '{"menuBtn":false}');
-      const eq = isEqual(option, formDesignRef.value?.widget.option);
-      !eq && (formOptions.value = option);
-    },
-    { immediate: true }
-  );
-  watch(
-    () => formDesignRef.value?.widget.option,
-    val => {
-      emit("update:modelValue", formOptionToJson(val));
-    },
-    { deep: true }
-  );
+const formDesignOptions = computed({
+  get() {
+    return props.modelValue ? jsonParse(props.modelValue) : { menuBtn: false, span: 24 };
+  },
+  set(val) {
+    emit("update:modelValue", jsonStringify(val));
+  }
 });
 </script>

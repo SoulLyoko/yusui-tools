@@ -1,11 +1,17 @@
 <template>
   <div class="history-list">
     显示源码：<el-switch v-model="showTooltip"></el-switch>
-    <el-tooltip v-for="(item, index) in historyList" :key="item.timestamp" effect="light" :disabled="!showTooltip">
+    <el-tooltip
+      v-for="(item, index) in historyList"
+      :key="item.timestamp"
+      :disabled="!showTooltip"
+      effect="light"
+      placement="right"
+    >
       <template #content>
         <el-input
           type="textarea"
-          :modelValue="json5Stringify(item)"
+          :modelValue="jsonStringify(item)"
           :autosize="{ minRows: 1, maxRows: 20 }"
           style="width: 300px"
         />
@@ -26,7 +32,7 @@
 import { ref } from "vue";
 
 import { useInjectState } from "../../composables";
-import { json5Stringify } from "../../utils";
+import { jsonStringify } from "../../utils";
 
 const { historyList, historyIndex, restoreHistory } = useInjectState();
 

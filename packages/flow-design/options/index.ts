@@ -6,6 +6,7 @@ import {
   buttonColumn,
   executionListenerColumn,
   formPropertyColumn,
+  gatewayColumn,
   multiInstanceColumn,
   noteColumn,
   processColumn,
@@ -23,6 +24,7 @@ export * from "./base";
 export * from "./button";
 export * from "./executionListener";
 export * from "./formProperty";
+export * from "./gateway";
 export * from "./listener";
 export * from "./multiInstance";
 export * from "./note";
@@ -69,6 +71,10 @@ export const defaultOptions: Record<string, AvueFormGroup[]> = {
     { label: "基本配置", prop: "base", column: baseColumn },
     { label: "条件配置", prop: "sequenceFlow", collapse: true, column: sequenceFlowColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
+  ],
+  parallelGateway: [
+    { label: "基本配置", prop: "base", column: baseColumn },
+    { label: "网关配置", prop: "base", column: gatewayColumn }
   ],
   // process: [
   //   { label: "流程配置", prop: "base", column: processColumn },

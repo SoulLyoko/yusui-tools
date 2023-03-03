@@ -19,6 +19,7 @@ import {
   array,
   img,
   url,
+  upload,
   date,
   year,
   month,
@@ -55,6 +56,7 @@ export default [
   array,
   img,
   url,
+  upload,
   date,
   year,
   month,
@@ -76,7 +78,6 @@ export * from "./cascader";
 export * from "./checkbox";
 export * from "./color";
 export * from "./date";
-export * from "../options/dic";
 export * from "./dynamic";
 export * from "./group";
 export * from "./icon";
@@ -93,3 +94,4 @@ export * from "./textarea";
 export * from "./time";
 export * from "./title";
 export * from "./tree";
+export * from "./upload";

@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { iconList } from "./icon";
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
 
 export const input: Resource = {
   name: "input",

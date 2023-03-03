@@ -1,8 +1,8 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../components/monaco-editor/index.vue";
-import DicTree from "../components/dic-tree/index.vue";
-import { getRandomId, json5Stringify } from "../utils";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
+import DicDataSetter from "../setters/dic-data-setter/index.vue";
+import { getRandomId, jsonStringify } from "../utils";
 
 const defaultProps = {
   label: "label",
@@ -15,13 +15,7 @@ const defaultProps = {
 
 export function useDicSettings(tree = false) {
   const dicDataSelect = {
-    type: "dynamic",
-    children: {
-      column: [
-        { label: "名称", prop: "label" },
-        { label: "值", prop: "value" }
-      ]
-    },
+    component: DicDataSetter,
     value: [
       { label: "选项一", value: "0" },
       { label: "选项二", value: "1" },
@@ -29,7 +23,8 @@ export function useDicSettings(tree = false) {
     ]
   };
   const dicDataTree = {
-    component: DicTree,
+    component: DicDataSetter,
+    setterType: "tree",
     value: [
       {
         label: "选项1",
@@ -118,7 +113,7 @@ export function useDicSettings(tree = false) {
       component: MonacoEditor,
       valueType: "object",
       tooltip: true,
-      defaultValue: json5Stringify(defaultProps)
+      defaultValue: jsonStringify(defaultProps)
     },
     {
       label: "字典格式化",

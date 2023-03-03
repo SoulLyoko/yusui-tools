@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
 import { placementDic } from "../options";
 
 export const slider: Resource = {

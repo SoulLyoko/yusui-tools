@@ -9,8 +9,9 @@
           :clone="cloneItem"
           :sort="false"
           itemKey="name"
+          :move="onMove"
         >
-          <template #item="{ element }: { element: (typeof group.children)[number] }">
+          <template #item="{ element }: { element: Resource }">
             <div class="resource-item" @click="addElement(element)">
               <el-button :icon="element.icon">{{ element.title }}</el-button>
             </div>
@@ -24,7 +25,7 @@
 <script setup lang="ts">
 import type { Resource } from "../../types";
 
-import { cloneDeep, omit } from "lodash-unified";
+import { cloneDeep } from "lodash-unified";
 import { ref, computed } from "vue";
 import Draggable from "vuedraggable";
 
@@ -52,11 +53,7 @@ const resourceList = computed(() => {
 
 function cloneItem(element: Resource) {
   const { name, settingsValue } = element;
-  return cloneDeep({
-    ...settingsValue,
-    resource: omit(element, ["settings", "settingsValue"]),
-    prop: getRandomId(name)
-  });
+  return cloneDeep({ ...settingsValue, name, prop: getRandomId(name) });
 }
 
 function addElement(element: Resource) {
@@ -65,5 +62,12 @@ function addElement(element: Resource) {
   resourceElementList.value.push(ele);
   activeElement.value = ele;
   recordHistory("added");
+}
+
+function onMove({ draggedContext, to }: { draggedContext: { element: Resource }; to: HTMLElement }) {
+  // 容器组件内不能再放置容器组件
+  if (draggedContext?.element?.container && to?.classList.contains("item-container")) {
+    return false;
+  }
 }
 </script>

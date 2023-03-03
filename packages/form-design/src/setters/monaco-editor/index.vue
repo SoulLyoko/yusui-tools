@@ -28,7 +28,7 @@ import type { EditorProps } from "@guolao/vue-monaco-editor";
 import { computed, onUnmounted } from "vue";
 import Editor, { useMonaco } from "@guolao/vue-monaco-editor";
 
-import { json5Stringify, json5Parse } from "../../utils";
+import { jsonStringify, jsonParse } from "../../utils";
 
 const props = defineProps<{
   modelValue?: any;
@@ -54,10 +54,12 @@ const options = computed(() => {
 const editorValue = computed({
   get() {
     const value = props.modelValue;
-    if (props.valueType === "function") {
+    if (typeof value === "string") {
+      return value;
+    } else if (props.valueType === "function" && typeof value === "function") {
       return value ? value.toString() : "";
-    } else if (["object", "array"].includes(props.valueType!)) {
-      return value ? json5Stringify(value) : "";
+    } else if (["object", "array"].includes(props.valueType!) && typeof value === "object") {
+      return value ? jsonStringify(value) : "";
     }
     return String(value);
   },
@@ -65,7 +67,7 @@ const editorValue = computed({
     if (props.valueType === "function") {
       val = eval(`${val}`);
     } else if (["object", "array"].includes(props.valueType!)) {
-      val = json5Parse(val);
+      val = jsonParse(val);
     }
     emit("update:modelValue", val);
   }

@@ -9,7 +9,7 @@ export function getRandomId(prefix?: string) {
   return prefix ? `${prefix}_${id}` : id + "";
 }
 
-export function json5Stringify(json: any) {
+export function jsonStringify(json: any) {
   return json5.stringify(json, {
     space: 2,
     quote: '"',
@@ -22,7 +22,7 @@ export function json5Stringify(json: any) {
   });
 }
 
-export function json5Parse(str: string) {
+export function jsonParse(str: string) {
   return json5.parse(str, (key, value) => {
     if (typeof value === "string" && value.includes("=>")) {
       return eval(value);
@@ -32,12 +32,11 @@ export function json5Parse(str: string) {
 }
 
 export function transformResouceToFormOption(resource: ResourceElement[]) {
-  const group = resource.filter(e => e.type === "group");
   const column = resource.filter(e => e.type !== "group");
-  const option = {
-    column,
-    group
-  };
+  const group = resource.filter(e => e.type === "group");
+  const option: any = {};
+  column.length && (option.column = column);
+  group.length && (option.group = group);
   return option;
 }
 

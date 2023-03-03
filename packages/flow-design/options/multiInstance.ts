@@ -1,9 +1,9 @@
-export const isMultiInstance = {
-  label: "是否多实例",
-  prop: "isMultiInstance",
-  type: "switch",
-  value: false
-};
+// export const isMultiInstance = {
+//   label: "是否多实例",
+//   prop: "isMultiInstance",
+//   type: "switch",
+//   value: false
+// };
 
 export const multiInstanceType = {
   label: "多实例类型",
@@ -23,9 +23,10 @@ export const completionCondition = {
   type: "slider",
   showInput: true,
   showInputControls: false,
-  labelPosition: "top",
+  labelPosition: "top" as const,
   step: 0.01,
   max: 1,
+  value: 0,
   labelTip: "任务完成的百分比，如2人接收，需同时完成才往下进行时=100%，只需1人完成时=50%"
 };
 
@@ -50,7 +51,7 @@ export const elementVariable = {
 };
 
 export const multiInstanceColumn = [
-  isMultiInstance,
+  // isMultiInstance,
   multiInstanceType,
   completionCondition,
   isRecall

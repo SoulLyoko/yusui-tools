@@ -1,9 +1,9 @@
 import type { AvueFormOption } from "@smallwei/avue";
-import type { ResourceElement, History, Resource, Props } from "../types";
+import type { Resource, ResourceElement, History, Props } from "../types";
 
 import { ref, computed, provide, inject, watch, nextTick } from "vue";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep, omit } from "lodash-unified";
+import { cloneDeep, omit, isEqual } from "lodash-unified";
 
 import defaultResources from "../resources";
 import { transformResouceToFormOption, transformFormOptionToResouce } from "../utils";
@@ -14,22 +14,33 @@ export function useProvideState(props: Props) {
   const vModels = useVModels(props);
   const { modelValue } = vModels as Required<typeof vModels>;
 
-  const resources = computed<Resource[]>(() => [...defaultResources, ...(props.resources || [])]);
-  const resourcesMap = computed(() => Object.fromEntries(resources.value.map(item => [item.name, item])));
+  const formOption = ref<AvueFormOption>({});
+
+  const resources = computed(() => props.resources || defaultResources);
+  const resourcesMap = computed<Record<string, Resource>>(() =>
+    Object.fromEntries(resources.value.map(item => [item.name, item]))
+  );
+
   const resourceElementList = ref<ResourceElement[]>([]);
   const activeElement = ref<ResourceElement>({});
   const hoverElement = ref<ResourceElement>({});
-  const formOption = ref<AvueFormOption>({});
-  const historyList = ref<History[]>([{ type: "init", timestamp: Date.now(), active: {}, option: {} }]);
-  const historyIndex = ref(-1);
+
+  const initialHistory = { type: "init", timestamp: Date.now(), active: {}, option: modelValue.value || {} };
+  const historyList = ref<History[]>([initialHistory]);
+  const historyIndex = ref(0);
+
   const workType = ref("design");
   const deviceType = ref("pc");
 
   watch(
     modelValue,
     val => {
-      formOption.value = omit(val, ["group", "column"]);
-      resourceElementList.value = transformFormOptionToResouce(val || {});
+      if (!isEqual(formOption.value, omit(val, ["group", "column"]))) {
+        formOption.value = omit(val, ["group", "column"]);
+      }
+      if (!isEqual(resourceElementList.value, transformFormOptionToResouce(val || {}))) {
+        resourceElementList.value = transformFormOptionToResouce(val || {});
+      }
     },
     { immediate: true, deep: true }
   );
@@ -44,31 +55,35 @@ export function useProvideState(props: Props) {
     { deep: true }
   );
 
+  function getResource(name?: string) {
+    name = name || activeElement.value.name;
+    const findResource = resourcesMap.value[name!] ?? {};
+    return findResource;
+  }
+
   async function recordHistory(type: string) {
-    await nextTick();
     // resourceElementList.value.sort((a, b) => (b.type === "group" ? -1 : 1));
+    await nextTick();
     historyList.value.push({
       type: type,
       timestamp: Date.now(),
       active: activeElement.value,
       option: modelValue.value || {}
-      // list: cloneDeep(resourceElementList.value)
     });
     historyIndex.value = historyList.value.length - 1;
   }
   function restoreHistory(index: number) {
-    const find = historyList.value.find((item, i) => i === index);
+    const find = historyList.value.find((e, i) => i === index);
     if (!find) return;
     modelValue.value = cloneDeep(find.option);
-    // resourceElementList.value = cloneDeep(find.list);
     activeElement.value = cloneDeep(find.active);
     historyIndex.value = index;
   }
   function resetHistory() {
     resourceElementList.value = [];
     activeElement.value = {};
-    historyIndex.value = -1;
-    historyList.value = [];
+    historyIndex.value = 0;
+    historyList.value = [initialHistory];
   }
 
   const state = {
@@ -85,7 +100,8 @@ export function useProvideState(props: Props) {
     modelValue,
     recordHistory,
     restoreHistory,
-    resetHistory
+    resetHistory,
+    getResource
   };
 
   provide(injectKey, state);

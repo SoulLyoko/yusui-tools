@@ -158,16 +158,30 @@ export default defineConfig({
   vite: {
     plugins: [
       mdDemoTransform(),
-      // avuePatch(),
+      avuePatch(),
       {
         name: "avue-patch",
         enforce: "pre",
         transform(code, id) {
           if (/avue.js|avue.min.js/.test(id)) {
+            // code = code.replace(
+            //   `var e = this, t = this.tableOption.column || [], n = this.tableOption.group || [], o = this.tableOption.footer || [];`,
+            //   `var e = this, t = this.deepClone(this.tableOption.column || []), n = this.deepClone(this.tableOption.group || []), o = this.deepClone(this.tableOption.footer || []);`
+            // );
+            // code = code.replace(
+            //   `$watch("form." + prop, function(e, t) {
+            //       callback();
+            //     })`,
+            //   `$watch("form." + prop, function(e, t) {
+            //       console.log(e);
+            //       callback();
+            //     },{ deep: true })`
+            // );
             code = code.replace(
-              `var e = this, t = this.tableOption.column || [], n = this.tableOption.group || [], o = this.tableOption.footer || [];`,
-              `var e = this, t = this.deepClone(this.tableOption.column || []), n = this.deepClone(this.tableOption.group || []), o = this.deepClone(this.tableOption.footer || []);`
+              `modelValue: e2.form[t3.prop]`,
+              `modelValue: e2.form[t3.prop], tableData: { row: e2.form }`
             );
+            console.log("🚀 ~ file: config.ts:182 ~ transform ~ code:", code);
             return code;
           }
         }

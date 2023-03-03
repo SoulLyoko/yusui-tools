@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
 
 const dateFormat = "YYYY-MM-DD";
 const datetimeFormat = "YYYY-MM-DD HH:mm:ss";
@@ -81,49 +81,49 @@ export const date: Resource = {
   ]
 };
 
-export const year = {
+export const year: Resource = {
   ...date,
   name: "year",
   title: "年",
   settingsValue: { type: "year", label: "年", format: "YYYY", valueFormat: "YYYY" }
 };
-export const month = {
+export const month: Resource = {
   ...date,
   name: "month",
   title: "月",
   settingsValue: { type: "month", label: "月", format: "MM", valueFormat: "MM" }
 };
-export const week = {
+export const week: Resource = {
   ...date,
   name: "week",
   title: "周",
   settingsValue: { type: "week", label: "周", format: "W", valueFormat: "W" }
 };
-export const dates = {
+export const dates: Resource = {
   ...date,
   name: "dates",
   title: "多个日期",
   settingsValue: { type: "dates", label: "多个日期", format: dateFormat, valueFormat: dateFormat }
 };
-export const monthrange = {
+export const monthrange: Resource = {
   ...date,
   name: "monthrange",
   title: "月范围",
   settingsValue: { type: "monthrange", label: "月范围", format: "MM", valueFormat: "MM" }
 };
-export const daterange = {
+export const daterange: Resource = {
   ...date,
   name: "daterange",
   title: "日期范围",
   settingsValue: { type: "daterange", label: "日期范围", format: dateFormat, valueFormat: dateFormat }
 };
-export const datetime = {
+export const datetime: Resource = {
   ...date,
   name: "datetime",
   title: "日期时间",
   settingsValue: { type: "datetime", label: "日期时间", format: datetimeFormat, valueFormat: datetimeFormat }
 };
-export const datetimerange = {
+export const datetimerange: Resource = {
   ...date,
   name: "datetimerange",
   title: "日期时间范围",

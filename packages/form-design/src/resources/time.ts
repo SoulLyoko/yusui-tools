@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
 
 export const time: Resource = {
   name: "time",
@@ -112,7 +112,7 @@ export const time: Resource = {
   ]
 };
 
-export const timerange = {
+export const timerange: Resource = {
   ...time,
   name: "timerange",
   title: "时间范围",

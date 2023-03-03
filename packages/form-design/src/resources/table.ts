@@ -1,9 +1,10 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
+import OnLoadSetter from "../setters/on-load-setter/index.vue";
 
 export const table: Resource = {
-  type: "table",
+  name: "table",
   title: "表格选择",
   icon: "el-icon-grid",
   group: "表单组件",
@@ -57,12 +58,17 @@ export const table: Resource = {
       value: ""
     },
     {
+      label: "键值配置",
+      prop: "props",
+      component: MonacoEditor,
+      valueType: "object",
+      tooltip: true,
+      value: { label: "name", value: "id" }
+    },
+    {
       label: "加载数据函数",
       prop: "onLoad",
-      component: MonacoEditor,
-      valueType: "function",
-      tooltip: true,
-      defaultValue: `({ page }, cb) => {\n    cb({ data: [], total: 0 });\n}`
+      component: OnLoadSetter
     }
   ]
 };

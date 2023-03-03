@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { useInjectState } from "../../composables";
-import MonacoEditor from "../monaco-editor/index.vue";
+import MonacoEditor from "../../setters/monaco-editor/index.vue";
 
 const { modelValue } = useInjectState();
 </script>

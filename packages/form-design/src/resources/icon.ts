@@ -3,7 +3,7 @@ import type { Resource } from "../types";
 import * as icons from "@element-plus/icons-vue";
 import { kebabCase } from "lodash-unified";
 
-import MonacoEditor from "../components/monaco-editor/index.vue";
+import MonacoEditor from "../setters/monaco-editor/index.vue";
 
 export const iconList = [
   {

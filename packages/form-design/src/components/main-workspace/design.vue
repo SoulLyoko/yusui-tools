@@ -16,21 +16,21 @@
         }"
         :span="getItemSpan(element)"
         @click.stop="activeElement = element"
-        @mouseover="hoverElement = element || {}"
-        @mouseleave="hoverElement = {}"
+        @mouseover.stop="hoverElement = element || {}"
+        @mouseleave.stop="hoverElement = {}"
       >
         <avue-form :option="resolveItemOption(element)"></avue-form>
         <Design
-          v-if="element.resource?.container"
+          v-if="getResource(element.name).container"
           class="item-container"
-          :list="get(element, element.resource?.container, [])"
-          @update:list="set(element, element.resource?.container!, $event)"
+          :list="get(element, getResource(element.name).container!, [])"
+          @update:list="set(element, getResource(element.name).container!, $event)"
         ></Design>
         <div v-show="activeElement.prop === element.prop" class="item-actions">
           <el-button
             type="primary"
             size="mini"
-            icon="el-icon-document"
+            icon="el-icon-copy-document"
             circle
             plain
             @click.stop="handleCopyItem(element)"
@@ -65,23 +65,22 @@ const props = defineProps<{ list: ResourceElement[] }>();
 const emit = defineEmits(["update:active", "update:list"]);
 const { list } = useVModels(props, emit, { passive: true, deep: true });
 
-const { activeElement, hoverElement, formOption, recordHistory } = useInjectState();
+const { activeElement, hoverElement, formOption, recordHistory, getResource } = useInjectState();
 
 function resolveItemOption(element: ResourceElement): AvueFormOption {
   const common = { ...cloneDeep(formOption.value), menuBtn: false };
-  if (element.resource?.container) {
+  if (getResource(element.name).container) {
     return { ...common, column: [{ label: element.label, prop: element.prop, type: "title" }] };
   }
   return { ...common, column: [omit(element, "icon")] };
 }
 function getItemSpan(element: ResourceElement) {
-  if (element.resource?.container) {
-    return 24;
-  }
+  if (getResource(element.name).container) return 24;
   return element.span || formOption.value.span || 24;
 }
 
 function onChange(operation: Record<string, { element?: ResourceElement }>) {
+  console.log("🚀 ~ file: design.vue:83 ~ onChange ~ operation:", operation);
   const operationName = Object.keys(operation)[0];
   if (!operationName) return;
   activeElement.value = operation[operationName]?.element ?? {};
@@ -90,7 +89,7 @@ function onChange(operation: Record<string, { element?: ResourceElement }>) {
 
 async function handleCopyItem(element: ResourceElement) {
   const item = cloneDeep({ ...element, prop: getRandomId(element.type) });
-  const { container } = item.resource ?? {};
+  const { container } = getResource(item.name);
   if (container) {
     const setValue = get(item, container, []).map((e: any) => ({ ...e, prop: getRandomId(item.type) }));
     set(item, container, setValue);
