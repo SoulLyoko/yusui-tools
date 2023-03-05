@@ -28,6 +28,13 @@ export interface Resource {
   settingsValue?: AvueFormColumn;
   /** 配置面板 */
   settings?: AvueFormColumn[];
+  /** 拖放规则 */
+  rules?: {
+    parentWhiteList?: string[];
+    parentBlackList?: string[];
+    childWhiteList?: string[];
+    childBlackList?: string[];
+  };
 }
 
 /** 历史记录 */

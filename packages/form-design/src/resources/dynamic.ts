@@ -6,6 +6,9 @@ export const dynamic: Resource = {
   icon: "el-icon-grid",
   group: "布局组件",
   container: "children.column",
+  rules: {
+    childBlackList: ["group", "dynamic"]
+  },
   settingsValue: { type: "dynamic", label: "子表单", labelPosition: "top", children: { column: [] } },
   settings: [
     {

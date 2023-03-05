@@ -1,7 +1,7 @@
 <template>
   <el-button @click="visible = true">编辑代码</el-button>
   <el-dialog v-model="visible" title="加载数据函数">
-    <avue-form v-model="data" :option="option"></avue-form>
+    <avue-form v-model="onLoadData" :option="option"></avue-form>
     代码：
     <MonacoEditor v-model="modelValue" valueType="function" height="200px" disabled></MonacoEditor>
   </el-dialog>
@@ -17,6 +17,7 @@ import MonacoEditor from "../monaco-editor/index.vue";
 interface OnLoadData {
   url?: string;
   method?: string;
+  isPage?: boolean;
   currentPageKey?: string;
   pageSizeKey?: string;
   totalPath?: string;
@@ -29,37 +30,36 @@ const vModels = useVModels(props);
 const { modelValue } = vModels as Required<typeof vModels>;
 
 const visible = ref(false);
-const data = ref<OnLoadData>({});
+const onLoadData = ref<OnLoadData>({});
 watch(
   modelValue,
   () => {
     if (!modelValue.value) return;
-    data.value = props.tableData?.row.onLoadParams;
+    onLoadData.value = props.tableData?.row.onLoadData;
     // try {
     //   const ast = parse(modelValue.value, { ecmaVersion: "latest" }) as any;
     //   const dataCacheAst = ast.body[0]?.expression?.body?.body?.find(
     //     (e: any) => e.declarations?.[0]?.id?.name === "dataCache"
     //   );
     //   const dataCacheStr = dataCacheAst?.declarations?.[0]?.init?.value ?? "{}";
-    //   data.value = JSON.parse(dataCacheStr);
+    //   onLoadData.value = JSON.parse(dataCacheStr);
     // } catch {}
   },
   { immediate: true }
 );
 watch(
-  data,
+  onLoadData,
   () => {
     if (!visible.value) return;
-    props.tableData!.row.onLoadParams = data.value;
-    if (data.value.codeMode) return;
-    const { url, method, currentPageKey, pageSizeKey, totalPath, dataPath } = data.value;
+    props.tableData!.row.onLoadData = onLoadData.value;
+    if (onLoadData.value.codeMode) return;
+    const { url, method, isPage, currentPageKey, pageSizeKey, totalPath, dataPath } = onLoadData.value;
     const fn = `({ page, value, data }, callback) => {
-    const { currentPage, pageSize } = page || {};
-    const params = { ${currentPageKey}: currentPage, ${pageSizeKey}: pageSize };
+    const params = page && ${isPage} ? { ${currentPageKey}: page.currentPage, ${pageSizeKey}: page.pageSize } : {};
     this.$axios({ url: "${url}", method: "${method}", params }).then(res => {
-      const data = this.getAsVal({ res }, "${dataPath}");
-      const total = this.getAsVal({ res }, "${totalPath}");
-      callback({ data, total });
+        const data = this.getAsVal({ res }, "${dataPath}");
+        const total = this.getAsVal({ res }, "${totalPath}");
+        callback({ data, total });
     });
 }`;
     modelValue.value = fn;
@@ -86,6 +86,12 @@ const option = {
         { label: "GET", value: "get" },
         { label: "POST", value: "post" }
       ]
+    },
+    {
+      label: "是否分页",
+      prop: "isPage",
+      type: "switch",
+      value: true
     },
     {
       label: "当前页键名",

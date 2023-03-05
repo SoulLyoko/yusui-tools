@@ -13,7 +13,7 @@
     <template #default="{ node, data }: { node: any, data: ResourceElement }">
       <el-row style="width: 100%" :gutter="20" @mouseover="hoverElement = data || {}" @mouseleave="hoverElement = {}">
         <el-col :span="18">
-          {{ data.label || getResource(data.name).title }}
+          {{ data.label || getResource(data.name)?.title }}
         </el-col>
         <el-col v-show="node.level != 1" :span="2">
           <el-link type="primary" icon="el-icon-copy-document" :underline="false" @click="onCopy(node)"></el-link>
@@ -38,19 +38,14 @@ import { computed, ref } from "vue";
 import { cloneDeep, get, set, omit } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
-import { getRandomId } from "../../utils";
+import { getRandomId, checkRules } from "../../utils";
+
+type ElementTreeNode = ResourceElement & { children?: ElementTreeNode[] };
 
 const { resourceElementList, activeElement, hoverElement, recordHistory, getResource } = useInjectState();
+
 const treeData = computed(() => {
-  const children = cloneDeep<ResourceElement[]>(
-    resourceElementList.value.map(item => {
-      const { container } = getResource(item.name);
-      return {
-        ...item,
-        children: container && get(item, container)
-      };
-    })
-  );
+  const children = buildComponentTree(cloneDeep(resourceElementList.value));
   return [
     {
       label: children.length ? "表单" : "表单(空)",
@@ -66,43 +61,19 @@ function allowDrop(
 ) {
   // 顶级不能被放置
   if (dropNode.level === 1) return false;
-  const isDropContainer = !!getResource(dropNode.data.name).container;
-  const isDraggingContainer = !!getResource(draggingNode.data.name).container;
-  // 非容器节点不能被放置
-  if (type === "inner" && !isDropContainer) return false;
-  // 容器组件不能放置到容器节点内
-  if (type === "inner" && isDraggingContainer && isDropContainer) return false;
+  if (type === "inner") {
+    return checkRules(getResource(draggingNode.data.name), getResource(dropNode.data.name));
+  }
   return true;
 }
 function onNodeClick(data: ResourceElement) {
   activeElement.value = data ?? {};
 }
-function onNodeDrop() {
-  updateList();
-  recordHistory("moved");
-}
-
-function updateList() {
-  resourceElementList.value = cloneDeep(
-    treeData.value[0].children.map(item => {
-      const temp = omit(item, ["children"]);
-      const _children = item.children;
-      const { container } = getResource(item.name);
-      container && set(temp, container, _children);
-      return temp as ResourceElement;
-    })
-  );
-}
 
 const treeRef = ref<InstanceType<typeof ElTree>>();
-function onCopy(node: Node & { data: ResourceElement }) {
-  const { data } = node;
-  const item = cloneDeep({ ...data, prop: getRandomId(data.type) });
-  const { container } = getResource(node.data.name);
-  if (container) {
-    const setValue = get(item, container, []).map((e: any) => ({ ...e, prop: getRandomId(item.type) }));
-    set(item, container, setValue);
-  }
+
+function onCopy(node: Node & { data: ElementTreeNode }) {
+  const item = copyItem(node.data);
   treeRef.value?.append(item, node.parent);
   updateList();
   recordHistory("added");
@@ -111,5 +82,40 @@ function onRemove(node: Node & { data: ResourceElement }) {
   treeRef.value?.remove(node);
   updateList();
   recordHistory("removed");
+}
+function onNodeDrop() {
+  updateList();
+  recordHistory("moved");
+}
+
+function buildComponentTree(list: ResourceElement[]): ElementTreeNode[] {
+  return list.map(item => {
+    const { container } = getResource(item.name) ?? {};
+    const children = container && get(item, container);
+    return {
+      ...item,
+      children: children && buildComponentTree(children)
+    };
+  });
+}
+function buildElementTree(tree: ElementTreeNode[]): ResourceElement[] {
+  return tree.map(item => {
+    const temp = omit(item, ["children"]);
+    const _children = item.children;
+    const { container } = getResource(item.name) ?? {};
+    container && _children && set(temp, container, buildElementTree(_children));
+    return temp;
+  });
+}
+function copyItem(element: ElementTreeNode) {
+  const item = cloneDeep({ ...element, prop: getRandomId(element.name) });
+  if (item.children) {
+    item.children = item.children.map(copyItem);
+  }
+  return item;
+}
+
+function updateList() {
+  resourceElementList.value = buildElementTree(cloneDeep(treeData.value[0].children));
 }
 </script>

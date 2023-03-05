@@ -1,5 +1,5 @@
 import type { AvueFormOption } from "@smallwei/avue";
-import type { ResourceElement } from "../types";
+import type { Resource, ResourceElement } from "../types";
 
 import json5 from "json5";
 
@@ -43,4 +43,27 @@ export function transformResouceToFormOption(resource: ResourceElement[]) {
 export function transformFormOptionToResouce(option: AvueFormOption) {
   const { column = [], group = [] } = option;
   return [...column, ...group];
+}
+
+export function checkRules(drag?: Resource, drop?: Resource) {
+  const { parentWhiteList, parentBlackList } = drag?.rules ?? {};
+  const { childWhiteList, childBlackList } = drop?.rules ?? {};
+  const conditions = [];
+  if (parentWhiteList && drop) {
+    const flag = parentWhiteList.includes(drop?.name ?? "");
+    conditions.push(flag);
+  }
+  if (parentBlackList && drop) {
+    const flag = parentBlackList.includes(drop?.name ?? "");
+    conditions.push(!flag);
+  }
+  if (childWhiteList) {
+    const flag = childWhiteList.includes(drag?.name ?? "");
+    conditions.push(flag);
+  }
+  if (childBlackList) {
+    const flag = childBlackList.includes(drag?.name ?? "");
+    conditions.push(!flag);
+  }
+  return conditions.every(flag => flag);
 }

@@ -56,9 +56,11 @@ export function useProvideState(props: Props) {
   );
 
   function getResource(name?: string) {
-    name = name || activeElement.value.name;
-    const findResource = resourcesMap.value[name!] ?? {};
-    return findResource;
+    if (name) {
+      return resourcesMap.value[name];
+    } else {
+      return;
+    }
   }
 
   async function recordHistory(type: string) {
@@ -67,8 +69,8 @@ export function useProvideState(props: Props) {
     historyList.value.push({
       type: type,
       timestamp: Date.now(),
-      active: activeElement.value,
-      option: modelValue.value || {}
+      active: cloneDeep(activeElement.value),
+      option: cloneDeep(modelValue.value || {})
     });
     historyIndex.value = historyList.value.length - 1;
   }

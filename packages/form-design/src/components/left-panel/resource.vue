@@ -30,7 +30,7 @@ import { ref, computed } from "vue";
 import Draggable from "vuedraggable";
 
 import { useInjectState } from "../../composables";
-import { getRandomId } from "../../utils";
+import { getRandomId, checkRules } from "../../utils";
 
 const { resources, resourceElementList, activeElement, workType, recordHistory } = useInjectState();
 
@@ -64,10 +64,13 @@ function addElement(element: Resource) {
   recordHistory("added");
 }
 
-function onMove({ draggedContext, to }: { draggedContext: { element: Resource }; to: HTMLElement }) {
-  // 容器组件内不能再放置容器组件
-  if (draggedContext?.element?.container && to?.classList.contains("item-container")) {
-    return false;
-  }
+function onMove({
+  draggedContext,
+  relatedContext
+}: {
+  draggedContext: { element: Resource };
+  relatedContext: { component: { componentData?: Resource } };
+}) {
+  return checkRules(draggedContext.element, relatedContext.component.componentData);
 }
 </script>

@@ -9,6 +9,9 @@ export const table: Resource = {
   icon: "el-icon-grid",
   group: "表单组件",
   container: "children.column",
+  rules: {
+    childBlackList: ["group", "dynamic"]
+  },
   settingsValue: { type: "table", label: "表格选择", children: { column: [] } },
   settings: [
     {

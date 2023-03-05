@@ -1,7 +1,7 @@
 <template>
   <el-button @click="visible = true">编辑代码</el-button>
   <el-dialog v-model="visible" title="控制字段属性">
-    <avue-dynamic v-model="controlData.controlParams" :children="dynamicOption"></avue-dynamic>
+    <avue-dynamic v-model="controlList" :children="dynamicOption"></avue-dynamic>
     代码：
     <MonacoEditor v-model="modelValue" valueType="function" height="200px"></MonacoEditor>
   </el-dialog>
@@ -18,7 +18,7 @@ import { useInjectState } from "../../composables";
 import MonacoEditor from "../monaco-editor/index.vue";
 import PropertySelect from "./property-select.vue";
 
-interface ControlParams {
+interface Control {
   field?: string;
   property?: string;
   value?: string;
@@ -30,19 +30,19 @@ const { modelValue } = vModels as Required<typeof vModels>;
 const { resourceElementList, getResource } = useInjectState();
 
 const visible = ref(false);
-const controlData = ref({ controlParams: [] as ControlParams[] });
+const controlList = ref<Control[]>([]);
 watch(
   modelValue,
   () => {
     if (!modelValue.value) {
-      controlData.value.controlParams = [];
+      controlList.value = [];
       return;
     }
     try {
       const ast = parse(modelValue.value, { ecmaVersion: "latest" }) as any;
       const returnObject = ast.body[0]?.expression?.body?.properties ?? [];
       if (returnObject?.length) {
-        controlData.value.controlParams = returnObject
+        controlList.value = returnObject
           .map((p: any) => {
             return p.value.properties.map((p2: any) => {
               const value = generate(p2.value);
@@ -56,17 +56,17 @@ watch(
   { immediate: true }
 );
 watch(
-  controlData,
+  controlList,
   () => {
     if (!visible.value) return;
-    const fieldSet = [...new Set(controlData.value.controlParams?.map(e => e.field))];
+    const fieldSet = [...new Set(controlList.value?.map(e => e.field))];
     const fn = `(val, form) => ({
-  ${fieldSet
-    .map(field => {
-      const result = controlData.value.controlParams?.filter(e => e.field === field);
-      return `${field}: { ${result?.map(f => `${f.property}: ${f.value}`).join(", ")} }`;
-    })
-    .join(",\n  ")}
+    ${fieldSet
+      .map(field => {
+        const result = controlList.value?.filter(e => e.field === field);
+        return `${field}: { ${result?.map(f => `${f.property}: ${f.value}`).join(", ")} }`;
+      })
+      .join(",\n    ")}
 })`;
     modelValue.value = fn;
   },
@@ -78,7 +78,7 @@ const allElementList = computed(() => {
     .map(element => {
       const container = getResource(element.name)?.container;
       if (container) {
-        return get(element, container, []);
+        return [element, ...get(element, container, [])];
       }
       return [element];
     })

@@ -40,7 +40,7 @@ const elementPath = ref<string[]>([]);
 const updateTimes = ref(0);
 
 watch(
-  () => [activeElement.value.prop, activeElement.value.name],
+  () => activeElement.value.prop,
   async () => {
     formReLoading.value = true;
     updateTimes.value = 0;
@@ -53,13 +53,17 @@ watch(
     // 设置配置
     const formGroup = { label: "表单属性", prop: "form", column: form };
     const baseGroup = { label: "基本属性", prop: "base", column: base };
-    const componentGroup = { label: "组件属性", prop: "component", column: getResource().settings ?? [] };
+    const componentGroup = {
+      label: "组件属性",
+      prop: "component",
+      column: getResource(activeElement.value.name)?.settings ?? []
+    };
     const advanceGroup = { label: "高级", prop: "advance", column: advance };
     settingsTabs.value = path?.length ? [baseGroup, componentGroup, advanceGroup] : [formGroup];
     activeTab.value = path?.length ? "base" : "form";
     formReLoading.value = false;
   },
-  { immediate: true, deep: true }
+  { immediate: true }
 );
 
 const recordHistoryDebounce = debounce(() => recordHistory("property"), 1000);
