@@ -1,8 +1,16 @@
-import type { AvueFormOption, AvueFormColumn } from "@smallwei/avue";
+import type { AvueFormOption, AvueFormColumn, AvueFormGroup } from "@smallwei/avue";
 import type FormDesign from "../index.vue";
 
 /** 中间拖拽元素 */
-export type ResourceElement = AvueFormColumn & { name?: Resource["name"] };
+// export type ResourceElement = AvueFormColumn & { name?: Resource["name"] };
+
+/** 中间拖拽元素 */
+export interface ElementTreeNode {
+  name?: string;
+  id?: string;
+  settingsValue?: AvueFormOption & AvueFormGroup & AvueFormColumn & { name?: string };
+  children?: ElementTreeNode[];
+}
 
 /** 左侧物料组件 */
 export interface Resource {
@@ -22,8 +30,8 @@ export interface Resource {
   group?: string;
   /** 用于描述组件在同一分组中的排序 */
   priority?: number;
-  /** 表示为容器，值为容器的路径，如children.column */
-  container?: string;
+  /** 是否容器组件 */
+  isContainer?: boolean;
   /** 配置面板的默认值 */
   settingsValue?: AvueFormColumn;
   /** 配置面板 */
@@ -41,8 +49,8 @@ export interface Resource {
 export interface History {
   type: string;
   timestamp: number;
-  active: ResourceElement;
-  option: AvueFormOption;
+  active: ElementTreeNode;
+  tree: ElementTreeNode[];
 }
 
 export type Props = InstanceType<typeof FormDesign>["$props"];

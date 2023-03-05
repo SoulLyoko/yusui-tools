@@ -23,7 +23,7 @@ import { useInjectState } from "../../composables";
 import { form, base, advance } from "../../options";
 
 const state = useInjectState();
-const { resourceElementList, activeElement, formOption, recordHistory, getResource } = state;
+const { elementTree, activeElement, recordHistory, getResource } = state;
 
 const commonFormOption = {
   labelPosition: "left" as const,
@@ -35,32 +35,30 @@ const commonFormOption = {
 const formReLoading = ref(false);
 const activeTab = ref("form");
 const settingsTabs = ref<AvueFormGroup[]>([]);
-const settingsData = ref({});
-const elementPath = ref<string[]>([]);
+const settingsData = ref<any>({});
 const updateTimes = ref(0);
 
 watch(
-  () => activeElement.value.prop,
+  () => activeElement.value.id,
   async () => {
     formReLoading.value = true;
     updateTimes.value = 0;
     await nextTick();
-    // 找到路径
-    const path = findPath(resourceElementList.value, { prop: activeElement.value.prop });
-    elementPath.value = path || [];
-    // 设置数据
-    settingsData.value = path?.length ? get(resourceElementList.value, path) : formOption.value;
-    // 设置配置
     const formGroup = { label: "表单属性", prop: "form", column: form };
     const baseGroup = { label: "基本属性", prop: "base", column: base };
+    const advanceGroup = { label: "高级", prop: "advance", column: advance };
     const componentGroup = {
       label: "组件属性",
       prop: "component",
       column: getResource(activeElement.value.name)?.settings ?? []
     };
-    const advanceGroup = { label: "高级", prop: "advance", column: advance };
-    settingsTabs.value = path?.length ? [baseGroup, componentGroup, advanceGroup] : [formGroup];
-    activeTab.value = path?.length ? "base" : "form";
+    if (!activeElement.value.name || activeElement.value.name === "form") {
+      settingsTabs.value = [formGroup];
+    } else {
+      settingsTabs.value = [baseGroup, componentGroup, advanceGroup];
+    }
+    activeTab.value = settingsTabs.value[0].prop || "form";
+    settingsData.value = activeElement.value.settingsValue;
     formReLoading.value = false;
   },
   { immediate: true }
@@ -71,12 +69,10 @@ const recordHistoryDebounce = debounce(() => recordHistory("property"), 1000);
 watchDebounced(
   settingsData,
   val => {
-    const path = elementPath.value;
+    const path = findPath(elementTree.value, { id: activeElement.value.id }) ?? [];
     const temp = filterObj(val, [undefined, null, ""], ["$"]);
-    if (path.length && !isEqual(temp, get(resourceElementList.value, path))) {
-      set(resourceElementList.value, path, temp);
-    } else if (!path.length && !isEqual(temp, formOption.value)) {
-      formOption.value = temp;
+    if (path.length && !isEqual(temp, get(elementTree.value, path))) {
+      set(elementTree.value, path.concat("settingsValue"), temp);
     }
     // 第一次改变属性时不记录
     updateTimes.value && recordHistoryDebounce();

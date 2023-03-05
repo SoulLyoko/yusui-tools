@@ -1,7 +1,8 @@
-import type { AvueFormOption } from "@smallwei/avue";
-import type { Resource, ResourceElement } from "../types";
+import type { AvueFormOption, AvueFormColumn } from "@smallwei/avue";
+import type { Resource, ElementTreeNode } from "../types";
 
 import json5 from "json5";
+import { cloneDeep } from "lodash-unified";
 
 // 获取随机数字id
 export function getRandomId(prefix?: string) {
@@ -31,20 +32,6 @@ export function jsonParse(str: string) {
   });
 }
 
-export function transformResouceToFormOption(resource: ResourceElement[]) {
-  const column = resource.filter(e => e.type !== "group");
-  const group = resource.filter(e => e.type === "group");
-  const option: any = {};
-  column.length && (option.column = column);
-  group.length && (option.group = group);
-  return option;
-}
-
-export function transformFormOptionToResouce(option: AvueFormOption) {
-  const { column = [], group = [] } = option;
-  return [...column, ...group];
-}
-
 export function checkRules(drag?: Resource, drop?: Resource) {
   const { parentWhiteList, parentBlackList } = drag?.rules ?? {};
   const { childWhiteList, childBlackList } = drop?.rules ?? {};
@@ -66,4 +53,51 @@ export function checkRules(drag?: Resource, drop?: Resource) {
     conditions.push(!flag);
   }
   return conditions.every(flag => flag);
+}
+
+function formItemToElement(list: AvueFormColumn[]): ElementTreeNode[] {
+  return list.map(item => {
+    const temp = cloneDeep(item);
+    let children: ElementTreeNode[] = [];
+    if (temp.name === "form") {
+      children = formItemToElement([...(temp.column ?? []), ...(temp.group ?? [])]);
+    } else if (temp.name === "group") {
+      children = formItemToElement(temp.column ?? []);
+    } else if (["dynamic", "table"].includes(temp.name)) {
+      children = formItemToElement(temp.children?.column ?? []);
+    }
+    return {
+      name: item.name,
+      id: item.prop,
+      settingsValue: temp,
+      children
+    };
+  });
+}
+
+export function adapterIn(option: AvueFormOption): ElementTreeNode[] {
+  return formItemToElement([{ name: "form", ...option }]);
+}
+
+function elementToFormItem(list: ElementTreeNode[]): AvueFormColumn[] {
+  return list.map(item => {
+    const temp = cloneDeep(item);
+    if (temp.name === "form") {
+      const column = elementToFormItem(temp.children?.filter(e => e.name !== "group") ?? []);
+      const group = elementToFormItem(temp.children?.filter(e => e.name === "group") ?? []);
+      return { ...temp.settingsValue, column, group };
+    }
+    if (temp.name === "group") {
+      const column = elementToFormItem(temp.children ?? []);
+      return { ...temp.settingsValue, column };
+    } else if (["dynamic", "table"].includes(temp.name ?? "")) {
+      const tableColumn = elementToFormItem(temp.children ?? []);
+      const tableChildren = { ...temp.settingsValue?.children, column: tableColumn };
+      return { ...temp.settingsValue, children: tableChildren };
+    }
+    return { ...temp.settingsValue } as AvueFormColumn;
+  });
+}
+export function adapterOut(tree: ElementTreeNode[]): AvueFormOption {
+  return elementToFormItem(tree)[0] ?? {};
 }

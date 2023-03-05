@@ -7,7 +7,10 @@ export const group: Resource = {
   title: "分组",
   icon: "el-icon-menu",
   group: "布局组件",
-  container: "column",
+  isContainer: true,
+  rules: {
+    childBlackList: ["group"]
+  },
   settingsValue: { type: "group", label: "分组", column: [] },
   settings: [
     {

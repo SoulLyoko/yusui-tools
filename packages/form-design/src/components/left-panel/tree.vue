@@ -2,7 +2,7 @@
   <el-tree
     ref="treeRef"
     node-key="prop"
-    :data="treeData"
+    :data="elementTree"
     default-expand-all
     draggable
     :expand-on-click-node="false"
@@ -10,10 +10,10 @@
     @node-click="onNodeClick"
     @node-drop="onNodeDrop"
   >
-    <template #default="{ node, data }: { node: any, data: ResourceElement }">
+    <template #default="{ node, data }: { node: any, data: ElementTreeNode }">
       <el-row style="width: 100%" :gutter="20" @mouseover="hoverElement = data || {}" @mouseleave="hoverElement = {}">
         <el-col :span="18">
-          {{ data.label || getResource(data.name)?.title }}
+          {{ getResource(data.name)?.title }}
         </el-col>
         <el-col v-show="node.level != 1" :span="2">
           <el-link type="primary" icon="el-icon-copy-document" :underline="false" @click="onCopy(node)"></el-link>
@@ -32,31 +32,23 @@
 <script setup lang="ts">
 import type { ElTree } from "element-plus";
 import type Node from "element-plus/es/components/tree/src/model/node.d";
-import type { ResourceElement } from "../../types";
+import type { ElementTreeNode } from "../../types";
 
 import { computed, ref } from "vue";
-import { cloneDeep, get, set, omit } from "lodash-unified";
+import { cloneDeep } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
 import { getRandomId, checkRules } from "../../utils";
 
-type ElementTreeNode = ResourceElement & { children?: ElementTreeNode[] };
-
-const { resourceElementList, activeElement, hoverElement, recordHistory, getResource } = useInjectState();
+const { elementTree, activeElement, hoverElement, recordHistory, getResource } = useInjectState();
 
 const treeData = computed(() => {
-  const children = buildComponentTree(cloneDeep(resourceElementList.value));
-  return [
-    {
-      label: children.length ? "表单" : "表单(空)",
-      children
-    }
-  ];
+  return cloneDeep(elementTree.value);
 });
 
 function allowDrop(
-  draggingNode: { data: ResourceElement },
-  dropNode: { data: ResourceElement; level: number },
+  draggingNode: { data: ElementTreeNode },
+  dropNode: { data: ElementTreeNode; level: number },
   type: string
 ) {
   // 顶级不能被放置
@@ -66,7 +58,7 @@ function allowDrop(
   }
   return true;
 }
-function onNodeClick(data: ResourceElement) {
+function onNodeClick(data: ElementTreeNode) {
   activeElement.value = data ?? {};
 }
 
@@ -78,7 +70,7 @@ function onCopy(node: Node & { data: ElementTreeNode }) {
   updateList();
   recordHistory("added");
 }
-function onRemove(node: Node & { data: ResourceElement }) {
+function onRemove(node: Node & { data: ElementTreeNode }) {
   treeRef.value?.remove(node);
   updateList();
   recordHistory("removed");
@@ -88,25 +80,6 @@ function onNodeDrop() {
   recordHistory("moved");
 }
 
-function buildComponentTree(list: ResourceElement[]): ElementTreeNode[] {
-  return list.map(item => {
-    const { container } = getResource(item.name) ?? {};
-    const children = container && get(item, container);
-    return {
-      ...item,
-      children: children && buildComponentTree(children)
-    };
-  });
-}
-function buildElementTree(tree: ElementTreeNode[]): ResourceElement[] {
-  return tree.map(item => {
-    const temp = omit(item, ["children"]);
-    const _children = item.children;
-    const { container } = getResource(item.name) ?? {};
-    container && _children && set(temp, container, buildElementTree(_children));
-    return temp;
-  });
-}
 function copyItem(element: ElementTreeNode) {
   const item = cloneDeep({ ...element, prop: getRandomId(element.name) });
   if (item.children) {
@@ -116,6 +89,6 @@ function copyItem(element: ElementTreeNode) {
 }
 
 function updateList() {
-  resourceElementList.value = buildElementTree(cloneDeep(treeData.value[0].children));
+  elementTree.value = treeData.value;
 }
 </script>

@@ -8,7 +8,7 @@ export const table: Resource = {
   title: "表格选择",
   icon: "el-icon-grid",
   group: "表单组件",
-  container: "children.column",
+  isContainer: true,
   rules: {
     childBlackList: ["group", "dynamic"]
   },

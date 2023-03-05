@@ -1,4 +1,5 @@
 import {
+  form,
   group,
   dynamic,
   input,
@@ -36,6 +37,7 @@ import {
 } from ".";
 
 export default [
+  form,
   group,
   dynamic,
   input,
@@ -79,6 +81,7 @@ export * from "./checkbox";
 export * from "./color";
 export * from "./date";
 export * from "./dynamic";
+export * from "./form";
 export * from "./group";
 export * from "./icon";
 export * from "./input";

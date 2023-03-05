@@ -11,6 +11,15 @@
   &.is-active {
     outline: 1px solid var(--el-color-primary);
   }
+
+  // &.is-form:not(.is-container) > .draggable-item {
+  //   padding: 0;
+  //   height: 99%;
+  //   .is-container {
+  //     margin: 0;
+  //     outline: unset;
+  //   }
+  // }
   .draggable-item {
     position: relative;
     padding: 1px;
@@ -21,8 +30,15 @@
     &.is-active {
       outline: 1px solid var(--el-color-primary);
     }
+    &.is-form {
+      height: 100%;
+      & > .is-container {
+        margin-top: 0;
+        outline: unset;
+      }
+    }
 
-    .item-container {
+    .is-container {
       margin-top: 1px;
       min-height: 220px;
       outline: 1px dashed var(--el-color-info);

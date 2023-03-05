@@ -5,7 +5,7 @@ export const dynamic: Resource = {
   title: "子表单",
   icon: "el-icon-grid",
   group: "布局组件",
-  container: "children.column",
+  isContainer: true,
   rules: {
     childBlackList: ["group", "dynamic"]
   },

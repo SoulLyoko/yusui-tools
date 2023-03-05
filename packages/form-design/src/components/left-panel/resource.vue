@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Resource } from "../../types";
+import type { Resource, ElementTreeNode } from "../../types";
 
 import { cloneDeep } from "lodash-unified";
 import { ref, computed } from "vue";
@@ -32,7 +32,7 @@ import Draggable from "vuedraggable";
 import { useInjectState } from "../../composables";
 import { getRandomId, checkRules } from "../../utils";
 
-const { resources, resourceElementList, activeElement, workType, recordHistory } = useInjectState();
+const { resources, elementTree, activeElement, workType, recordHistory, getResource } = useInjectState();
 
 const searchValue = ref("");
 const resourceList = computed(() => {
@@ -53,13 +53,14 @@ const resourceList = computed(() => {
 
 function cloneItem(element: Resource) {
   const { name, settingsValue } = element;
-  return cloneDeep({ ...settingsValue, name, prop: getRandomId(name) });
+  const id = getRandomId(name);
+  return cloneDeep({ name, id, settingsValue: { ...settingsValue, name, prop: id } });
 }
 
 function addElement(element: Resource) {
   if (workType.value !== "design") return;
   const ele = cloneItem(element);
-  resourceElementList.value.push(ele);
+  elementTree.value[0]?.children?.push(ele);
   activeElement.value = ele;
   recordHistory("added");
 }
@@ -69,8 +70,11 @@ function onMove({
   relatedContext
 }: {
   draggedContext: { element: Resource };
-  relatedContext: { component: { componentData?: Resource } };
+  relatedContext: { component: { componentData?: ElementTreeNode } };
 }) {
-  return checkRules(draggedContext.element, relatedContext.component.componentData);
+  return checkRules(
+    getResource(draggedContext.element.name),
+    getResource(relatedContext.component.componentData?.name)
+  );
 }
 </script>

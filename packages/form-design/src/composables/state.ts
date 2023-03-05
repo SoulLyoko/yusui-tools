@@ -1,12 +1,12 @@
 import type { AvueFormOption } from "@smallwei/avue";
-import type { Resource, ResourceElement, History, Props } from "../types";
+import type { Resource, History, Props, ElementTreeNode } from "../types";
 
 import { ref, computed, provide, inject, watch, nextTick } from "vue";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep, omit, isEqual } from "lodash-unified";
+import { cloneDeep, isEqual, omit } from "lodash-unified";
 
 import defaultResources from "../resources";
-import { transformResouceToFormOption, transformFormOptionToResouce } from "../utils";
+import { adapterIn, adapterOut } from "../utils";
 
 const injectKey = Symbol("form-design-state");
 
@@ -14,18 +14,20 @@ export function useProvideState(props: Props) {
   const vModels = useVModels(props);
   const { modelValue } = vModels as Required<typeof vModels>;
 
-  const formOption = ref<AvueFormOption>({});
-
   const resources = computed(() => props.resources || defaultResources);
   const resourcesMap = computed<Record<string, Resource>>(() =>
     Object.fromEntries(resources.value.map(item => [item.name, item]))
   );
 
-  const resourceElementList = ref<ResourceElement[]>([]);
-  const activeElement = ref<ResourceElement>({});
-  const hoverElement = ref<ResourceElement>({});
+  const elementTree = ref<ElementTreeNode[]>([]);
+  const activeElement = ref<ElementTreeNode>(adapterIn(modelValue.value ?? {})[0]);
+  const hoverElement = ref<ElementTreeNode>({});
 
-  const initialHistory = { type: "init", timestamp: Date.now(), active: {}, option: modelValue.value || {} };
+  const formOption = computed<AvueFormOption>(
+    () => omit(elementTree.value[0]?.settingsValue, ["column", "group"]) ?? {}
+  );
+
+  const initialHistory = { type: "init", timestamp: Date.now(), active: {}, tree: adapterIn(modelValue.value ?? {}) };
   const historyList = ref<History[]>([initialHistory]);
   const historyIndex = ref(0);
 
@@ -35,22 +37,15 @@ export function useProvideState(props: Props) {
   watch(
     modelValue,
     val => {
-      if (!isEqual(formOption.value, omit(val, ["group", "column"]))) {
-        formOption.value = omit(val, ["group", "column"]);
-      }
-      if (!isEqual(resourceElementList.value, transformFormOptionToResouce(val || {}))) {
-        resourceElementList.value = transformFormOptionToResouce(val || {});
-      }
+      if (isEqual(elementTree.value, adapterIn(val || {}))) return;
+      elementTree.value = adapterIn(val || {});
     },
     { immediate: true, deep: true }
   );
   watch(
-    () => [resourceElementList, formOption],
+    elementTree,
     () => {
-      modelValue.value = {
-        ...omit(formOption.value, ["group", "column"]),
-        ...transformResouceToFormOption(resourceElementList.value)
-      };
+      modelValue.value = adapterOut(elementTree.value);
     },
     { deep: true }
   );
@@ -70,19 +65,19 @@ export function useProvideState(props: Props) {
       type: type,
       timestamp: Date.now(),
       active: cloneDeep(activeElement.value),
-      option: cloneDeep(modelValue.value || {})
+      tree: cloneDeep(elementTree.value)
     });
     historyIndex.value = historyList.value.length - 1;
   }
   function restoreHistory(index: number) {
     const find = historyList.value.find((e, i) => i === index);
     if (!find) return;
-    modelValue.value = cloneDeep(find.option);
+    elementTree.value = cloneDeep(find.tree);
     activeElement.value = cloneDeep(find.active);
     historyIndex.value = index;
   }
   function resetHistory() {
-    resourceElementList.value = [];
+    elementTree.value = [];
     activeElement.value = {};
     historyIndex.value = 0;
     historyList.value = [initialHistory];
@@ -91,7 +86,7 @@ export function useProvideState(props: Props) {
   const state = {
     resources,
     resourcesMap,
-    resourceElementList,
+    elementTree,
     activeElement,
     hoverElement,
     formOption,

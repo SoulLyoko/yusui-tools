@@ -16,7 +16,7 @@
           @click="restoreHistory(historyIndex + 1)"
         ></el-button>
         <el-button
-          :disabled="!resourceElementList.length"
+          :disabled="!elementTree[0]?.children?.length"
           title="清空"
           icon="el-icon-delete"
           @click="resetHistory()"
@@ -43,8 +43,7 @@
 <script setup lang="ts">
 import { useInjectState } from "../../composables";
 
-const { workType, deviceType, historyList, historyIndex, resourceElementList, restoreHistory, resetHistory } =
-  useInjectState();
+const { elementTree, workType, deviceType, historyList, historyIndex, restoreHistory, resetHistory } = useInjectState();
 
 const deviceTypes = [
   { label: "PC端", value: "pc", icon: "el-icon-monitor" },
