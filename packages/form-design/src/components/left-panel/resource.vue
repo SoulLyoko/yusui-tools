@@ -32,7 +32,7 @@ import Draggable from "vuedraggable";
 import { useInjectState } from "../../composables";
 import { getRandomId, checkRules } from "../../utils";
 
-const { resources, elementTree, activeElement, workType, recordHistory, getResource } = useInjectState();
+const { resources, elementTree, workType, setActiveElement, recordHistory, getResource } = useInjectState();
 
 const searchValue = ref("");
 const resourceList = computed(() => {
@@ -41,27 +41,35 @@ const resourceList = computed(() => {
     const searchKeys = [name, title, keywords].filter(e => e).join(",");
     return searchKeys?.includes(searchValue.value);
   });
-  const groups = filters.map(e => e.group);
+  const groups = filters.map(e => e.group).filter(e => e);
   const groupsSet = [...new Set(groups)];
   return groupsSet.map(group => {
     return {
       label: group,
-      children: filters.filter(e => e.group === group)
+      children: filters
+        .filter(e => e.group === group)
+        .map((e, i) => {
+          return {
+            ...e,
+            priority: e.priority ?? i
+          };
+        })
+        .sort((a, b) => a.priority - b.priority)
     };
   });
 });
 
 function cloneItem(element: Resource) {
-  const { name, settingsValue } = element;
+  const { name, props } = element;
   const id = getRandomId(name);
-  return cloneDeep({ name, id, settingsValue: { ...settingsValue, name, prop: id } });
+  return cloneDeep({ name, id, props: { ...props, name, id, prop: id } });
 }
 
 function addElement(element: Resource) {
   if (workType.value !== "design") return;
   const ele = cloneItem(element);
-  elementTree.value[0]?.children?.push(ele);
-  activeElement.value = ele;
+  elementTree.value?.children?.push(ele);
+  setActiveElement(ele);
   recordHistory("added");
 }
 

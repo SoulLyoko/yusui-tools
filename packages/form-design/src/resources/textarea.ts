@@ -7,7 +7,7 @@ export const textarea: Resource = {
   title: "文本域",
   icon: "el-icon-chat-line-square",
   group: "表单组件",
-  settingsValue: { type: "textarea", label: "文本域" },
+  props: { type: "textarea", label: "文本域" },
   settings: [
     {
       label: "最小行数",

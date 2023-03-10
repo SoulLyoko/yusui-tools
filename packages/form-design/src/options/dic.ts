@@ -4,14 +4,30 @@ import MonacoEditor from "../setters/monaco-editor/index.vue";
 import DicDataSetter from "../setters/dic-data-setter/index.vue";
 import { getRandomId, jsonStringify } from "../utils";
 
-const defaultProps = {
-  label: "label",
-  value: "value",
-  desc: "desc",
-  disabled: "disabled",
-  children: "children",
-  res: "res"
-};
+export const placementDic = [
+  { label: "上", value: "top" },
+  { label: "下", value: "bottom" },
+  { label: "左", value: "left" },
+  { label: "右", value: "right" },
+  { label: "上左", value: "top-start" },
+  { label: "上右", value: "top-end" },
+  { label: "下左", value: "bottom-start" },
+  { label: "下右", value: "bottom-end" },
+  { label: "左上", value: "left-start" },
+  { label: "左下", value: "left-end" },
+  { label: "右上", value: "right-start" },
+  { label: "右下", value: "right-end" }
+];
+export const positionDic = [
+  { label: "左", value: "left" },
+  { label: "右", value: "right" },
+  { label: "顶部", value: "top" }
+];
+export const alignDic = [
+  { label: "左", value: "left" },
+  { label: "中", value: "center" },
+  { label: "右", value: "right" }
+];
 
 export function useDicSettings(tree = false) {
   const dicDataSelect = {
@@ -55,10 +71,10 @@ export function useDicSettings(tree = false) {
         const isStatic = dicType === "static";
         const isRemote = dicType === "remote";
         if (isStatic) {
-          delete form.dicUrl;
-          delete form.dicMethod;
-          delete form.props;
-          delete form.dicFormatter;
+          form.dicUrl = undefined;
+          form.dicMethod = undefined;
+          form.props = undefined;
+          form.dicFormatter = undefined;
         }
         return {
           dicData: { display: isStatic },
@@ -113,7 +129,14 @@ export function useDicSettings(tree = false) {
       component: MonacoEditor,
       valueType: "object",
       tooltip: true,
-      defaultValue: jsonStringify(defaultProps)
+      defaultValue: jsonStringify({
+        label: "label",
+        value: "value",
+        desc: "desc",
+        disabled: "disabled",
+        children: "children",
+        res: "res"
+      })
     },
     {
       label: "字典格式化",

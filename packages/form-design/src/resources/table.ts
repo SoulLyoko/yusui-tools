@@ -2,6 +2,7 @@ import type { Resource } from "../types";
 
 import MonacoEditor from "../setters/monaco-editor/index.vue";
 import OnLoadSetter from "../setters/on-load-setter/index.vue";
+import { alignDic } from "../options";
 
 export const table: Resource = {
   name: "table",
@@ -9,10 +10,7 @@ export const table: Resource = {
   icon: "el-icon-grid",
   group: "表单组件",
   isContainer: true,
-  rules: {
-    childBlackList: ["group", "dynamic"]
-  },
-  settingsValue: { type: "table", label: "表格选择", children: { column: [] } },
+  props: { type: "table", label: "表格选择", children: { column: [] } },
   settings: [
     {
       label: "显示表头",
@@ -37,22 +35,14 @@ export const table: Resource = {
       prop: "headerAlign",
       type: "radio",
       button: true,
-      dicData: [
-        { label: "左", value: "left" },
-        { label: "中", value: "center" },
-        { label: "右", value: "right" }
-      ]
+      dicData: alignDic
     },
     {
-      label: "对齐方式",
+      label: "整体对齐方式",
       prop: "align",
       type: "radio",
       button: true,
-      dicData: [
-        { label: "左", value: "left" },
-        { label: "中", value: "center" },
-        { label: "右", value: "right" }
-      ]
+      dicData: alignDic
     },
     {
       label: "显示序号",
@@ -67,6 +57,14 @@ export const table: Resource = {
       valueType: "object",
       tooltip: true,
       value: { label: "name", value: "id" }
+    },
+    {
+      label: "格式化函数",
+      prop: "formatter",
+      component: MonacoEditor,
+      valueType: "function",
+      tooltip: true,
+      defaultValue: `(row) => row.name`
     },
     {
       label: "加载数据函数",

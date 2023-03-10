@@ -1,7 +1,6 @@
 import {
   form,
   group,
-  dynamic,
   input,
   textarea,
   number,
@@ -11,6 +10,7 @@ import {
   select,
   cascader,
   tree,
+  dynamic,
   table,
   switchs,
   rate,
@@ -32,14 +32,12 @@ import {
   monthrange,
   time,
   timerange,
-  title,
-  article
+  title
 } from ".";
 
 export default [
   form,
   group,
-  dynamic,
   input,
   textarea,
   number,
@@ -49,6 +47,7 @@ export default [
   select,
   cascader,
   tree,
+  dynamic,
   table,
   switchs,
   rate,
@@ -70,12 +69,10 @@ export default [
   monthrange,
   time,
   timerange,
-  title,
-  article
+  title
 ];
 
 export * from "./array";
-export * from "./article";
 export * from "./cascader";
 export * from "./checkbox";
 export * from "./color";

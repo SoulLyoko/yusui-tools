@@ -6,8 +6,8 @@ export const title: Resource = {
   name: "title",
   title: "标题",
   icon: "el-icon-minus",
-  group: "其他组件",
-  settingsValue: { type: "title", label: "", labelWidth: 0 },
+  group: "布局组件",
+  props: { type: "title", label: "", labelWidth: 0 },
   settings: [
     {
       label: "标题内容",

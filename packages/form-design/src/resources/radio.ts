@@ -7,7 +7,7 @@ export const radio: Resource = {
   title: "单选框组",
   icon: "el-icon-circle-check",
   group: "表单组件",
-  settingsValue: { type: "radio", label: "单选框组" },
+  props: { type: "radio", label: "单选框组" },
   settings: [
     ...useDicSettings(),
     {

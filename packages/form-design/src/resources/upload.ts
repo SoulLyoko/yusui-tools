@@ -7,7 +7,7 @@ export const upload: Resource = {
   title: "上传",
   icon: "el-icon-upload",
   group: "表单组件",
-  settingsValue: { type: "upload", label: "上传" },
+  props: { type: "upload", label: "上传" },
   settings: [
     {
       label: "上传地址",

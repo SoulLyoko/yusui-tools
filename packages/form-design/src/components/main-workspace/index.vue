@@ -1,7 +1,13 @@
 <template>
   <Preview v-if="workType === 'preview'"></Preview>
   <Source v-else-if="workType === 'source'"></Source>
-  <Design v-else v-model:list="elementTree" :componentData="elementTree[0]" @click.stop="activeElement = {}"></Design>
+  <Design
+    v-else
+    :componentData="elementTree"
+    :list="elementTree.children ?? []"
+    @update:list="elementTree.children = $event"
+    @click.stop="setActiveElement()"
+  ></Design>
 </template>
 
 <script setup lang="ts">
@@ -10,5 +16,5 @@ import Design from "./design.vue";
 import Preview from "./preview.vue";
 import Source from "./source.vue";
 
-const { elementTree, activeElement, workType } = useInjectState();
+const { elementTree, workType, setActiveElement } = useInjectState();
 </script>

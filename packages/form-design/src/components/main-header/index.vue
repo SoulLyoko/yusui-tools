@@ -16,7 +16,7 @@
           @click="restoreHistory(historyIndex + 1)"
         ></el-button>
         <el-button
-          :disabled="!elementTree[0]?.children?.length"
+          :disabled="!elementTree.children?.length"
           title="清空"
           icon="el-icon-delete"
           @click="resetHistory()"
@@ -47,7 +47,7 @@ const { elementTree, workType, deviceType, historyList, historyIndex, restoreHis
 
 const deviceTypes = [
   { label: "PC端", value: "pc", icon: "el-icon-monitor" },
-  { label: "移动端", value: "mobile", icon: "el-icon-iphone" }
+  { label: "移动端", value: "mobile", icon: "el-icon-cellphone" }
 ];
 
 const workTypes = [

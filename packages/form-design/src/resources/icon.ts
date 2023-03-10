@@ -17,7 +17,7 @@ export const icon: Resource = {
   title: "图标",
   icon: "el-icon-element-plus",
   group: "表单组件",
-  settingsValue: { type: "icon", label: "图标" },
+  props: { type: "icon", label: "图标", iconList: [{ label: "基本图标", list: [] }] },
   settings: [
     {
       label: "图标列表",

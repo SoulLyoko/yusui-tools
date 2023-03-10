@@ -35,7 +35,7 @@ watch(
   modelValue,
   () => {
     if (!modelValue.value) return;
-    onLoadData.value = props.tableData?.row.onLoadData;
+    onLoadData.value = props.tableData?.row?.onLoadData ?? {};
     // try {
     //   const ast = parse(modelValue.value, { ecmaVersion: "latest" }) as any;
     //   const dataCacheAst = ast.body[0]?.expression?.body?.body?.find(
@@ -51,6 +51,7 @@ watch(
   onLoadData,
   () => {
     if (!visible.value) return;
+    if (!props.tableData?.row) return;
     props.tableData!.row.onLoadData = onLoadData.value;
     if (onLoadData.value.codeMode) return;
     const { url, method, isPage, currentPageKey, pageSizeKey, totalPath, dataPath } = onLoadData.value;
@@ -114,7 +115,7 @@ const option = {
       value: "res.data.records"
     },
     {
-      label: "编写代码模式",
+      label: "编辑代码模式",
       prop: "codeMode",
       type: "switch",
       value: false,

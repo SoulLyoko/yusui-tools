@@ -4,16 +4,17 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { findTree } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
 import { base } from "../../options";
 
 const props = defineProps<{ tableData?: { row: any }; dic?: any }>();
 
-const { resourceElementList, getResource } = useInjectState();
+const { elementTree, getResource } = useInjectState();
 
 const dic = computed(() => {
-  const findElement = resourceElementList.value.find(e => e.prop === props.tableData?.row?.field);
+  const findElement = findTree([elementTree.value], e => e.props?.prop === props.tableData?.row?.field);
   const settings = getResource(findElement?.name)?.settings ?? [];
   return [...base, ...settings].map(e => ({ label: e.label, value: e.prop, desc: e.prop }));
 });

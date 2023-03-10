@@ -7,7 +7,7 @@ export const time: Resource = {
   title: "时间",
   icon: "el-icon-clock",
   group: "日期时间组件",
-  settingsValue: { type: "time", label: "时间" },
+  props: { type: "time", label: "时间" },
   settings: [
     {
       label: "开始占位内容",
@@ -118,5 +118,5 @@ export const timerange: Resource = {
   title: "时间范围",
   icon: "el-icon-clock",
   group: "日期时间组件",
-  settingsValue: { type: "timerange", label: "时间范围" }
+  props: { type: "timerange", label: "时间范围" }
 };

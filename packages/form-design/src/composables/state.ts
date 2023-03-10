@@ -1,5 +1,5 @@
 import type { AvueFormOption } from "@smallwei/avue";
-import type { Resource, History, Props, ElementTreeNode } from "../types";
+import type { ElementTreeNode, Resource, History, Props, Emit, HistoryType } from "../types";
 
 import { ref, computed, provide, inject, watch, nextTick } from "vue";
 import { useVModels } from "@vueuse/core";
@@ -10,7 +10,7 @@ import { adapterIn, adapterOut } from "../utils";
 
 const injectKey = Symbol("form-design-state");
 
-export function useProvideState(props: Props) {
+export function useProvideState(props: Props, emit: Emit) {
   const vModels = useVModels(props);
   const { modelValue } = vModels as Required<typeof vModels>;
 
@@ -19,16 +19,13 @@ export function useProvideState(props: Props) {
     Object.fromEntries(resources.value.map(item => [item.name, item]))
   );
 
-  const elementTree = ref<ElementTreeNode[]>([]);
-  const activeElement = ref<ElementTreeNode>(adapterIn(modelValue.value ?? {})[0]);
+  const elementTree = ref<ElementTreeNode>({});
+  const activeElement = ref<ElementTreeNode>({});
   const hoverElement = ref<ElementTreeNode>({});
 
-  const formOption = computed<AvueFormOption>(
-    () => omit(elementTree.value[0]?.settingsValue, ["column", "group"]) ?? {}
-  );
+  const formOption = computed<AvueFormOption>(() => omit(elementTree.value?.props, ["column", "group"]) ?? {});
 
-  const initialHistory = { type: "init", timestamp: Date.now(), active: {}, tree: adapterIn(modelValue.value ?? {}) };
-  const historyList = ref<History[]>([initialHistory]);
+  const historyList = ref<History[]>([]);
   const historyIndex = ref(0);
 
   const workType = ref("design");
@@ -39,6 +36,12 @@ export function useProvideState(props: Props) {
     val => {
       if (isEqual(elementTree.value, adapterIn(val || {}))) return;
       elementTree.value = adapterIn(val || {});
+      if (!Object.keys(activeElement.value).length) {
+        setActiveElement();
+      }
+      if (!historyList.value.length) {
+        recordHistory("init");
+      }
     },
     { immediate: true, deep: true }
   );
@@ -58,14 +61,18 @@ export function useProvideState(props: Props) {
     }
   }
 
-  async function recordHistory(type: string) {
-    // resourceElementList.value.sort((a, b) => (b.type === "group" ? -1 : 1));
-    await nextTick();
+  function setActiveElement(element?: ElementTreeNode) {
+    activeElement.value = element ?? elementTree.value ?? {};
+  }
+
+  async function recordHistory(type: HistoryType) {
+    // await nextTick();
     historyList.value.push({
       type: type,
       timestamp: Date.now(),
       active: cloneDeep(activeElement.value),
-      tree: cloneDeep(elementTree.value)
+      tree: cloneDeep(elementTree.value),
+      option: cloneDeep(modelValue.value ?? {})
     });
     historyIndex.value = historyList.value.length - 1;
   }
@@ -77,10 +84,11 @@ export function useProvideState(props: Props) {
     historyIndex.value = index;
   }
   function resetHistory() {
-    elementTree.value = [];
-    activeElement.value = {};
+    historyList.value = [];
     historyIndex.value = 0;
-    historyList.value = [initialHistory];
+    elementTree.value = {};
+    activeElement.value = {};
+    emit("reset");
   }
 
   const state = {
@@ -95,6 +103,7 @@ export function useProvideState(props: Props) {
     workType,
     deviceType,
     modelValue,
+    setActiveElement,
     recordHistory,
     restoreHistory,
     resetHistory,

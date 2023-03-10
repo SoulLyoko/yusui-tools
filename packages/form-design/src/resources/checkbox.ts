@@ -7,7 +7,7 @@ export const checkbox: Resource = {
   title: "多选框组",
   icon: "el-icon-folder-checked",
   group: "表单组件",
-  settingsValue: { type: "checkbox", label: "多选框组" },
+  props: { type: "checkbox", label: "多选框组" },
   settings: [
     ...useDicSettings(),
     {

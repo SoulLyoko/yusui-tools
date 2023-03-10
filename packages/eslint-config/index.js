@@ -31,7 +31,6 @@ module.exports = {
     "@typescript-eslint/ban-types": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
-    "import/namespace": 0,
     "vue/require-render-return": 0,
     "vue/require-explicit-emits": 0,
     "vue/require-default-prop": 0,
@@ -41,6 +40,7 @@ module.exports = {
     "vue/v-on-event-hyphenation": 0,
     "vue/no-unused-vars": 1,
     "no-empty": 0,
+    "import/namespace": 0,
     "import/no-unresolved": 0,
     "import/order": [
       "warn",

@@ -2,7 +2,7 @@
 aside: false
 ---
 
-# FormDesigner
+# FormDesign
 
 :::demo
 ./demo

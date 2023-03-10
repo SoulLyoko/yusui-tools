@@ -12,7 +12,7 @@ import { ref, computed, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 import { parse } from "acorn";
 import { generate } from "astring";
-import { get } from "lodash-unified";
+import { flatTree } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
 import MonacoEditor from "../monaco-editor/index.vue";
@@ -27,7 +27,7 @@ interface Control {
 const props = defineProps<{ modelValue?: string }>();
 const vModels = useVModels(props);
 const { modelValue } = vModels as Required<typeof vModels>;
-const { resourceElementList, getResource } = useInjectState();
+const { elementTree } = useInjectState();
 
 const visible = ref(false);
 const controlList = ref<Control[]>([]);
@@ -73,16 +73,12 @@ watch(
   { deep: true }
 );
 
-const allElementList = computed(() => {
-  return resourceElementList.value
-    .map(element => {
-      const container = getResource(element.name)?.container;
-      if (container) {
-        return [element, ...get(element, container, [])];
-      }
-      return [element];
-    })
-    .flat();
+const fieldDic = computed(() => {
+  const allElementList = flatTree(elementTree.value?.children ?? []);
+  return allElementList.map(e => {
+    const { label, prop } = e.props ?? {};
+    return { label, value: prop, desc: prop };
+  });
 });
 
 const dynamicOption = computed(() => {
@@ -92,7 +88,7 @@ const dynamicOption = computed(() => {
         label: "受控字段",
         prop: "field",
         type: "select",
-        dicData: allElementList.value.map(e => ({ label: e.label, value: e.prop, desc: e.prop }))
+        dicData: fieldDic.value
       },
       {
         label: "受控属性",

@@ -8,7 +8,7 @@ export const cascader: Resource = {
   title: "级联选择器",
   icon: "el-icon-connection",
   group: "表单组件",
-  settingsValue: { type: "cascader", label: "级联选择器" },
+  props: { type: "cascader", label: "级联选择器" },
   settings: [
     ...useDicSettings(true),
     {

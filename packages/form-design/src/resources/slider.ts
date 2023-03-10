@@ -8,7 +8,7 @@ export const slider: Resource = {
   title: "滑块",
   icon: "el-icon-operation",
   group: "表单组件",
-  settingsValue: { type: "slider", label: "滑块" },
+  props: { type: "slider", label: "滑块" },
   settings: [
     {
       label: "最小值",

@@ -32,6 +32,24 @@
   }
 }
 
+.component-tree {
+  .el-tree-node.is-current > .el-tree-node__content {
+    background-color: #eee;
+  }
+  .tree-item {
+    position: relative;
+    width: 100%;
+    .item-actions {
+      position: absolute;
+      top: -2px;
+      right: 0;
+      .el-link {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
 .history-list {
   .history-item {
     list-style: none;
@@ -43,8 +61,7 @@
       background-color: #eee;
     }
     &.is-active {
-      background-color: var(--el-color-primary);
-      color: #fff;
+      background-color: #eee;
     }
   }
 }

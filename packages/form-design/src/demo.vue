@@ -8,5 +8,5 @@
 import { ref } from "vue";
 import { FormDesign } from "@yusui/form-design";
 
-const option = ref({ menuBtn: false, span: 24 });
+const option = ref({});
 </script>

@@ -8,7 +8,7 @@ export const input: Resource = {
   title: "输入框",
   icon: "el-icon-chat-dot-square",
   group: "表单组件",
-  settingsValue: { type: "input", label: "输入框" },
+  props: { type: "input", label: "输入框" },
   settings: [
     {
       label: "最大长度",

@@ -10,7 +10,7 @@ export const date: Resource = {
   title: "日期",
   icon: "el-icon-calendar",
   group: "日期时间组件",
-  settingsValue: { type: "date", label: "日期", format: dateFormat, valueFormat: dateFormat },
+  props: { type: "date", label: "日期", format: dateFormat, valueFormat: dateFormat },
   settings: [
     {
       label: "开始占位内容",
@@ -85,47 +85,47 @@ export const year: Resource = {
   ...date,
   name: "year",
   title: "年",
-  settingsValue: { type: "year", label: "年", format: "YYYY", valueFormat: "YYYY" }
+  props: { type: "year", label: "年", format: "YYYY", valueFormat: "YYYY" }
 };
 export const month: Resource = {
   ...date,
   name: "month",
   title: "月",
-  settingsValue: { type: "month", label: "月", format: "MM", valueFormat: "MM" }
+  props: { type: "month", label: "月", format: "MM", valueFormat: "MM" }
 };
 export const week: Resource = {
   ...date,
   name: "week",
   title: "周",
-  settingsValue: { type: "week", label: "周", format: "W", valueFormat: "W" }
+  props: { type: "week", label: "周", format: "W", valueFormat: "W" }
 };
 export const dates: Resource = {
   ...date,
   name: "dates",
   title: "多个日期",
-  settingsValue: { type: "dates", label: "多个日期", format: dateFormat, valueFormat: dateFormat }
+  props: { type: "dates", label: "多个日期", format: dateFormat, valueFormat: dateFormat }
 };
 export const monthrange: Resource = {
   ...date,
   name: "monthrange",
   title: "月范围",
-  settingsValue: { type: "monthrange", label: "月范围", format: "MM", valueFormat: "MM" }
+  props: { type: "monthrange", label: "月范围", format: "MM", valueFormat: "MM" }
 };
 export const daterange: Resource = {
   ...date,
   name: "daterange",
   title: "日期范围",
-  settingsValue: { type: "daterange", label: "日期范围", format: dateFormat, valueFormat: dateFormat }
+  props: { type: "daterange", label: "日期范围", format: dateFormat, valueFormat: dateFormat }
 };
 export const datetime: Resource = {
   ...date,
   name: "datetime",
   title: "日期时间",
-  settingsValue: { type: "datetime", label: "日期时间", format: datetimeFormat, valueFormat: datetimeFormat }
+  props: { type: "datetime", label: "日期时间", format: datetimeFormat, valueFormat: datetimeFormat }
 };
 export const datetimerange: Resource = {
   ...date,
   name: "datetimerange",
   title: "日期时间范围",
-  settingsValue: { type: "datetimerange", label: "日期时间范围", format: datetimeFormat, valueFormat: datetimeFormat }
+  props: { type: "datetimerange", label: "日期时间范围", format: datetimeFormat, valueFormat: datetimeFormat }
 };

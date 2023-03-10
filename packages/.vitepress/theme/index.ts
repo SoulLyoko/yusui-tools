@@ -20,7 +20,7 @@ export default {
   enhanceApp({ app }: { app: App }) {
     app.use(components);
     app.use(ElementPlus, { locale: zhCn });
-    app.use(Avue);
+    app.use(Avue, { appendToBody: true });
     app.use(AvueFormDesign);
     app.use(YSComponents);
     // app.mixin({

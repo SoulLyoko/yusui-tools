@@ -1,10 +1,10 @@
 <template>
   <div class="history-list">
-    显示源码：<el-switch v-model="showTooltip"></el-switch>
+    显示源码：<el-switch v-model="showSource"></el-switch>
     <el-tooltip
       v-for="(item, index) in historyList"
       :key="item.timestamp"
-      :disabled="!showTooltip"
+      :disabled="!showSource"
       effect="light"
       placement="right"
     >
@@ -18,7 +18,7 @@
       </template>
       <div class="history-item" :class="{ 'is-active': index === historyIndex }" @click="restoreHistory(index)">
         <span>
-          {{ historyTypeMap[item.type as keyof typeof historyTypeMap] }}
+          {{ HistoryType[item.type] }}
         </span>
         <span>
           {{ new Date(item.timestamp).toLocaleString() }}
@@ -29,20 +29,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { useLocalStorage } from "@vueuse/core";
 
 import { useInjectState } from "../../composables";
 import { jsonStringify } from "../../utils";
+import { HistoryType } from "../../types";
 
 const { historyList, historyIndex, restoreHistory } = useInjectState();
 
-const historyTypeMap = {
-  init: "初始化",
-  added: "添加组件",
-  moved: "移动组件",
-  removed: "删除组件",
-  property: "修改属性"
-};
-
-const showTooltip = ref(false);
+const showSource = useLocalStorage("history-show-source", false);
 </script>

@@ -9,7 +9,7 @@ export const select: Resource = {
   title: "选择框",
   icon: "el-icon-arrow-down",
   group: "表单组件",
-  settingsValue: { type: "select", label: "选择框" },
+  props: { type: "select", label: "选择框" },
   settings: [
     ...useDicSettings(),
     {

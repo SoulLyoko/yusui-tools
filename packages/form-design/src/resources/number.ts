@@ -5,7 +5,7 @@ export const number: Resource = {
   title: "数字输入框",
   icon: "el-icon-more",
   group: "表单组件",
-  settingsValue: { type: "number", label: "数字输入框" },
+  props: { type: "number", label: "数字输入框" },
   settings: [
     {
       label: "最小值",

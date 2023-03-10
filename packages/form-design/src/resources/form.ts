@@ -1,12 +1,14 @@
 import type { Resource } from "../types";
 
 import { iconList } from "../resources/icon";
+import { positionDic } from "../options";
 
 export const form: Resource = {
   name: "form",
   title: "表单",
   isContainer: true,
-  settingsValue: { menuBtn: false, span: 24 },
+  disabledActions: ["copy", "delete", "clear"],
+  disabledSettings: ["base", "event", "advance"],
   settings: [
     {
       label: "标签位置",
@@ -14,11 +16,7 @@ export const form: Resource = {
       type: "radio",
       button: true,
       value: "left",
-      dicData: [
-        { label: "左", value: "left" },
-        { label: "右", value: "right" },
-        { label: "顶部", value: "top" }
-      ]
+      dicData: positionDic
     },
     {
       label: "标签宽度",
@@ -143,7 +141,8 @@ export const form: Resource = {
     {
       label: "表单项栅格",
       prop: "span",
-      type: "number"
+      type: "number",
+      value: 24
     },
     {
       label: "表单项间隔",

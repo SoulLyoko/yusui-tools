@@ -1,8 +1,9 @@
 <template>
   <el-tree
     ref="treeRef"
-    node-key="prop"
-    :data="elementTree"
+    class="component-tree"
+    node-key="id"
+    :data="treeData"
     default-expand-all
     draggable
     :expand-on-click-node="false"
@@ -11,20 +12,20 @@
     @node-drop="onNodeDrop"
   >
     <template #default="{ node, data }: { node: any, data: ElementTreeNode }">
-      <el-row style="width: 100%" :gutter="20" @mouseover="hoverElement = data || {}" @mouseleave="hoverElement = {}">
-        <el-col :span="18">
-          {{ getResource(data.name)?.title }}
-        </el-col>
-        <el-col v-show="node.level != 1" :span="2">
-          <el-link type="primary" icon="el-icon-copy-document" :underline="false" @click="onCopy(node)"></el-link>
-        </el-col>
-        <el-col v-show="node.level != 1" :span="2">
-          <el-link type="danger" icon="el-icon-delete" :underline="false" @click="onRemove(node)"></el-link>
-        </el-col>
-      </el-row>
-      <!-- <div style="width: 100%" :gutter="20" @mouseover="hoverElement = data || {}" @mouseleave="hoverElement = {}">
-        {{ data.label || getResource(data.name).title }}
-      </div> -->
+      <div class="tree-item" @mouseover="hoverElement = data || {}" @mouseleave="hoverElement = {}">
+        <div class="item-label">
+          {{ data.props?.label || getResource(data.name)?.title }}
+        </div>
+        <div class="item-actions">
+          <el-link
+            v-for="action in getActionList(data)"
+            :key="action.name"
+            v-bind="action"
+            :underline="false"
+            @click.stop="action.handler(node)"
+          ></el-link>
+        </div>
+      </div>
     </template>
   </el-tree>
 </template>
@@ -32,18 +33,18 @@
 <script setup lang="ts">
 import type { ElTree } from "element-plus";
 import type Node from "element-plus/es/components/tree/src/model/node.d";
-import type { ElementTreeNode } from "../../types";
+import type { ElementTreeNode, DesignAction } from "../../types";
 
-import { computed, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { cloneDeep } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
 import { getRandomId, checkRules } from "../../utils";
 
-const { elementTree, activeElement, hoverElement, recordHistory, getResource } = useInjectState();
+const { elementTree, activeElement, hoverElement, setActiveElement, recordHistory, getResource } = useInjectState();
 
 const treeData = computed(() => {
-  return cloneDeep(elementTree.value);
+  return [cloneDeep(elementTree.value)];
 });
 
 function allowDrop(
@@ -52,43 +53,72 @@ function allowDrop(
   type: string
 ) {
   // 顶级不能被放置
-  if (dropNode.level === 1) return false;
+  if (dropNode.data.isRoot) return false;
   if (type === "inner") {
     return checkRules(getResource(draggingNode.data.name), getResource(dropNode.data.name));
   }
   return true;
 }
-function onNodeClick(data: ElementTreeNode) {
-  activeElement.value = data ?? {};
-}
 
 const treeRef = ref<InstanceType<typeof ElTree>>();
 
+watchEffect(() => {
+  treeRef.value?.setCurrentKey(activeElement.value?.id);
+});
+
+function onNodeClick(data: ElementTreeNode) {
+  setActiveElement(data);
+}
+
+function updateList() {
+  elementTree.value = treeData.value[0];
+}
+function copyItem(element: ElementTreeNode) {
+  const item = cloneDeep({ ...element, id: getRandomId(element.name) });
+  if (item.children) {
+    item.children = item.children.map(copyItem);
+  }
+  return item;
+}
 function onCopy(node: Node & { data: ElementTreeNode }) {
   const item = copyItem(node.data);
   treeRef.value?.append(item, node.parent);
   updateList();
+  setActiveElement(item);
   recordHistory("added");
 }
 function onRemove(node: Node & { data: ElementTreeNode }) {
   treeRef.value?.remove(node);
   updateList();
+  setActiveElement();
   recordHistory("removed");
+}
+function onClearChildren(node: Node & { data: ElementTreeNode }) {
+  if (!node.data.children?.length) return;
+  node.data.children.forEach(e => treeRef.value?.remove(e));
+  updateList();
+  setActiveElement(node.data);
+  recordHistory("clear");
 }
 function onNodeDrop() {
   updateList();
   recordHistory("moved");
 }
 
-function copyItem(element: ElementTreeNode) {
-  const item = cloneDeep({ ...element, prop: getRandomId(element.name) });
-  if (item.children) {
-    item.children = item.children.map(copyItem);
-  }
-  return item;
+const actions = [
+  { name: "copy", type: "primary", icon: "el-icon-copy-document", handler: onCopy },
+  { name: "delete", type: "danger", icon: "el-icon-delete", handler: onRemove },
+  { name: "clear", type: "warning", icon: "el-icon-folder-delete", handler: onClearChildren }
+];
+function getActionList(element: ElementTreeNode) {
+  return actions.filter(e => showActions(element, e.name as DesignAction));
 }
-
-function updateList() {
-  elementTree.value = treeData.value;
+function showActions(element: ElementTreeNode, type: DesignAction) {
+  const { disabledActions, isContainer } = getResource(element.name) ?? {};
+  const enable = !disabledActions?.includes(type);
+  if (type === "clear") {
+    return isContainer && enable;
+  }
+  return enable;
 }
 </script>

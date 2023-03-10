@@ -1,3 +1,1 @@
-# Changelog
-
-<markdown path="../CHANGELOG.md"></markdown>
+<markdown path="CHANGELOG.md"></markdown>

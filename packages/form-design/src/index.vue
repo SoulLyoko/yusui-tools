@@ -33,6 +33,7 @@ const props = defineProps<{
   leftWidth?: string;
   rightWidth?: string;
 }>();
+const emit = defineEmits(["reset"]);
 
-const { workType, deviceType } = useProvideState(props);
+const { workType, deviceType } = useProvideState(props, emit);
 </script>

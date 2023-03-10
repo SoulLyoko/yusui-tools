@@ -5,7 +5,7 @@ export const switchs: Resource = {
   title: "开关",
   icon: "el-icon-switch",
   group: "表单组件",
-  settingsValue: { type: "switch", label: "开关" },
+  props: { type: "switch", label: "开关" },
   settings: [
     {
       label: "开关数据",

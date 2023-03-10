@@ -9,9 +9,16 @@ export const group: Resource = {
   group: "布局组件",
   isContainer: true,
   rules: {
+    parentWhiteList: ["form"],
     childBlackList: ["group"]
   },
-  settingsValue: { type: "group", label: "分组", column: [] },
+  designOption: element => {
+    const { label, prop } = element.props ?? {};
+    return {
+      column: [{ prop, labelWidth: 0, type: "title", modelValue: label, styles: { fontWeight: 500, fontSize: "16px" } }]
+    };
+  },
+  props: { type: "group", label: "分组", column: [] },
   settings: [
     {
       label: "图标",
