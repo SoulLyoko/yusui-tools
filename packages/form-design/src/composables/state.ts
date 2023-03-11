@@ -1,7 +1,7 @@
 import type { AvueFormOption } from "@smallwei/avue";
 import type { ElementTreeNode, Resource, History, Props, Emit, HistoryType } from "../types";
 
-import { ref, computed, provide, inject, watch, nextTick } from "vue";
+import { ref, computed, provide, inject, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 import { cloneDeep, isEqual, omit } from "lodash-unified";
 

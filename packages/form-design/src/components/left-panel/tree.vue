@@ -39,7 +39,7 @@ import { computed, ref, watchEffect } from "vue";
 import { cloneDeep } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
-import { getRandomId, checkRules } from "../../utils";
+import { checkRules, copyItem } from "../../utils";
 
 const { elementTree, activeElement, hoverElement, setActiveElement, recordHistory, getResource } = useInjectState();
 
@@ -72,13 +72,6 @@ function onNodeClick(data: ElementTreeNode) {
 
 function updateList() {
   elementTree.value = treeData.value[0];
-}
-function copyItem(element: ElementTreeNode) {
-  const item = cloneDeep({ ...element, id: getRandomId(element.name) });
-  if (item.children) {
-    item.children = item.children.map(copyItem);
-  }
-  return item;
 }
 function onCopy(node: Node & { data: ElementTreeNode }) {
   const item = copyItem(node.data);

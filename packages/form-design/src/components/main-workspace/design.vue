@@ -54,7 +54,7 @@ import { cloneDeep } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
 import Design from "./design.vue";
-import { getRandomId, checkRules } from "../../utils";
+import { checkRules, copyItem } from "../../utils";
 
 const props = defineProps<{ list: ElementTreeNode[]; componentData: ElementTreeNode }>();
 const emit = defineEmits(["update:active", "update:list"]);
@@ -85,11 +85,6 @@ function onChange(operation: Record<string, { element?: ElementTreeNode }>) {
   recordHistory(operationName);
 }
 
-function copyItem(element: ElementTreeNode) {
-  const item = cloneDeep({ ...element, id: getRandomId(element.name) });
-  item.children = item.children?.map(copyItem) ?? [];
-  return item;
-}
 function onCopy(element: ElementTreeNode) {
   const item = copyItem(element);
   list.value.push(item);

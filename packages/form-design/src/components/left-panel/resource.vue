@@ -12,8 +12,8 @@
           :move="onMove"
         >
           <template #item="{ element }: { element: Resource }">
-            <div class="resource-item" @click="addElement(element)">
-              <el-button :icon="element.icon">{{ element.title }}</el-button>
+            <div class="resource-item">
+              <el-button :icon="element.icon" @click="addElement(element)">{{ element.title }}</el-button>
             </div>
           </template>
         </Draggable>
@@ -25,12 +25,11 @@
 <script setup lang="ts">
 import type { Resource, ElementTreeNode } from "../../types";
 
-import { cloneDeep } from "lodash-unified";
 import { ref, computed } from "vue";
 import Draggable from "vuedraggable";
 
 import { useInjectState } from "../../composables";
-import { getRandomId, checkRules } from "../../utils";
+import { checkRules, cloneItem } from "../../utils";
 
 const { resources, elementTree, workType, setActiveElement, recordHistory, getResource } = useInjectState();
 
@@ -58,12 +57,6 @@ const resourceList = computed(() => {
     };
   });
 });
-
-function cloneItem(element: Resource) {
-  const { name, props } = element;
-  const id = getRandomId(name);
-  return cloneDeep({ name, id, props: { ...props, name, id, prop: id } });
-}
 
 function addElement(element: Resource) {
   if (workType.value !== "design") return;

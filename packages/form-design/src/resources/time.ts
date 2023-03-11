@@ -118,5 +118,5 @@ export const timerange: Resource = {
   title: "时间范围",
   icon: "el-icon-clock",
   group: "日期时间组件",
-  props: { type: "timerange", label: "时间范围" }
+  props: { type: "timerange", label: "时间范围", isRange: true }
 };

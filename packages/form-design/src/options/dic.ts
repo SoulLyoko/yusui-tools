@@ -61,7 +61,6 @@ export function useDicSettings(tree = false) {
       prop: "dicType",
       type: "radio",
       button: true,
-      labelWidth: 72,
       dicData: [
         { label: "静态字典", value: "static" },
         { label: "远端字典", value: "remote" }
@@ -94,7 +93,7 @@ export function useDicSettings(tree = false) {
       ...(tree ? dicDataTree : dicDataSelect)
     },
     {
-      label: "字典网址",
+      label: "字典地址",
       prop: "dicUrl"
     },
     {
@@ -145,6 +144,12 @@ export function useDicSettings(tree = false) {
       valueType: "function",
       tooltip: true,
       defaultValue: "(res) => res"
+    },
+    {
+      label: "级联",
+      prop: "cascader",
+      type: "array",
+      labelTip: "在被联动字段的字典地址中可以通过{{key}}获取到当前值"
     }
   ] as NonNullable<Resource["settings"]>;
 }

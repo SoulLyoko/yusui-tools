@@ -43,7 +43,7 @@ export interface Resource {
   /** 属性面板中禁用的设置 */
   disabledSettings?: string[];
   /** 配置面板的默认值 */
-  props?: AvueFormColumn;
+  props?: ComponentProps;
   /** 配置面板 */
   settings?: AvueFormColumn[];
   /** 拖放规则 */

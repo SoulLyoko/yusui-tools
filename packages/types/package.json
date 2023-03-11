@@ -17,9 +17,6 @@
     "dist",
     "avue"
   ],
-  "dependencies": {
-    "async-validator": "^4.2.5"
-  },
   "devDependencies": {
     "element-plus": "^2.2.27",
     "vue": "^3.2.45"

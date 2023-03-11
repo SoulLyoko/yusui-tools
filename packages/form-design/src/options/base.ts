@@ -1,6 +1,8 @@
 import type { AvueFormColumn } from "@smallwei/avue";
 
 import { placementDic, positionDic, alignDic } from "./dic";
+import ValueSetter from "../setters/value-setter/index.vue";
+import RulesSetter from "../setters/rules-setter/index.vue";
 
 // import resources from "../resources";
 
@@ -94,7 +96,8 @@ export const base: AvueFormColumn[] = [
   },
   {
     label: "默认值",
-    prop: "value"
+    prop: "value",
+    component: ValueSetter
   },
   {
     label: "占位内容",
@@ -131,19 +134,9 @@ export const base: AvueFormColumn[] = [
     value: true
   },
   {
-    label: "是否必填",
-    prop: "required",
-    type: "switch",
-    value: false,
-    control(required: boolean, form: any) {
-      if (required) {
-        const messagePrefix = form.label || form.prop || "该字段";
-        form.rules = [{ required: true, message: messagePrefix + "为必填字段" }];
-      } else {
-        form.rules = form.rules?.filter((e: any) => !e.required) ?? [];
-      }
-      return {};
-    }
+    label: "校验规则",
+    prop: "rules",
+    component: RulesSetter
   },
   { labelWidth: 0, type: "title", modelValue: "子表单/表格属性" },
   {

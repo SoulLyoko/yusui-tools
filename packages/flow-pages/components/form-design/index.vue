@@ -18,7 +18,7 @@ const formDesignOptions = computed({
     return props.modelValue ? jsonParse(props.modelValue) : { menuBtn: false, span: 24 };
   },
   set(val) {
-    emit("update:modelValue", jsonStringify(val));
+    emit("update:modelValue", jsonStringify(val, { useJson5: false }));
   }
 });
 </script>

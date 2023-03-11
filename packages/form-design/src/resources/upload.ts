@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
 import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { jsonStringify } from "../utils";
 
 export const upload: Resource = {
   name: "upload",
@@ -52,6 +53,12 @@ export const upload: Resource = {
       value: true
     },
     {
+      label: "拖拽排序",
+      prop: "drag",
+      type: "switch",
+      value: false
+    },
+    {
       label: "拖拽上传",
       prop: "dragFile",
       type: "switch",
@@ -68,7 +75,8 @@ export const upload: Resource = {
       dicData: [
         { label: "文本", value: "text" },
         { label: "图片", value: "picture" },
-        { label: "图片卡片", value: "picture-card" }
+        { label: "图片卡片", value: "picture-card" },
+        { label: "图片图片", value: "picture-img" }
       ]
     },
     {
@@ -95,7 +103,13 @@ export const upload: Resource = {
       component: MonacoEditor,
       valueType: "object",
       tooltip: true,
-      defaultValue: `{}`
+      defaultValue: jsonStringify({
+        home: "",
+        res: "",
+        url: "",
+        name: "",
+        fileName: "file"
+      })
     },
     {
       label: "图片水印配置",
@@ -103,7 +117,16 @@ export const upload: Resource = {
       component: MonacoEditor,
       valueType: "object",
       tooltip: true,
-      defaultValue: `{}`
+      defaultValue: jsonStringify({
+        text: "",
+        fontFamily: "microsoft yahei",
+        color: "#999",
+        fontSize: 16,
+        opacity: 100,
+        bottom: 10,
+        right: 10,
+        ratio: 1
+      })
     }
   ]
 };

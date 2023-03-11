@@ -35,6 +35,7 @@ export function adapterIn(option: AvueFormOption): ElementTreeNode {
 function elementToFormItem(list: ElementTreeNode[]): ComponentProps[] {
   return list.map(item => {
     const temp = cloneDeep(item);
+    temp.props && (temp.props.prop = temp.props.prop ?? temp.id);
     if (temp.name === "form") {
       const column = elementToFormItem(temp.children?.filter(e => e.name !== "group") ?? []);
       const group = elementToFormItem(temp.children?.filter(e => e.name === "group") ?? []);
