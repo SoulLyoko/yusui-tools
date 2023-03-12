@@ -11,7 +11,6 @@ importers:
       '@iconify/vue': 4.0.0
       '@jsdevtools/version-bump-prompt': ^6.1.0
       '@smallwei/avue': ^3.2.11
-      '@sscfaith/avue-form-design': 3.0.0-beta.5
       '@types/fs-extra': ^9.0.13
       '@types/lodash': ^4.14.191
       '@types/lodash-es': ^4.17.6
@@ -58,7 +57,6 @@ importers:
       '@iconify/vue': 4.0.0_vue@3.2.45
       '@jsdevtools/version-bump-prompt': 6.1.0
       '@smallwei/avue': 3.2.11_e6pk72igsyiffh2xhr3ezagn64
-      '@sscfaith/avue-form-design': 3.0.0-beta.5_vue@3.2.45
       '@types/fs-extra': 9.0.13
       '@types/lodash': 4.14.191
       '@types/lodash-es': 4.17.6
@@ -1198,15 +1196,6 @@ packages:
       dayjs: 1.11.7
       element-plus: 2.2.29_vue@3.2.45
       vue: 3.2.45
-
-  /@sscfaith/avue-form-design/3.0.0-beta.5_vue@3.2.45:
-    resolution: {integrity: sha512-DABLO32SgC+/6WogBZFpcQUzrIT8MvweN2PjGFpmMpodxISUCLP7JRqJuWoe0R7+L+ZD9mTOPow8+2VTft0siA==}
-    dependencies:
-      monaco-editor: 0.32.1
-      vuedraggable: 4.1.0_vue@3.2.45
-    transitivePeerDependencies:
-      - vue
-    dev: true
 
   /@sxzz/popperjs-es/2.11.7:
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
@@ -5459,10 +5448,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /monaco-editor/0.32.1:
-    resolution: {integrity: sha512-LUt2wsUvQmEi2tfTOK+tjAPvt7eQ+K5C4rZPr6SeuyzjAuAHrIvlUloTcOiGjZW3fn3a/jFQCONrEJbNOaCqbA==}
-    dev: true
-
   /mousetrap/1.6.5:
     resolution: {integrity: sha512-QNo4kEepaIBwiT8CDhP98umTetp+JNfQYBWvC1pc6/OAibuXtRcxZ58Qz8skvEHYvURne/7R8T5VoOI7rDsEUA==}
     dev: false
@@ -6608,6 +6593,7 @@ packages:
 
   /sortablejs/1.14.0:
     resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+    dev: false
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
@@ -7618,6 +7604,7 @@ packages:
     dependencies:
       sortablejs: 1.14.0
       vue: 3.2.45
+    dev: false
 
   /w3c-xmlserializer/4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}

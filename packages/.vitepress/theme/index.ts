@@ -8,8 +8,6 @@ import zhCn from "element-plus/es/locale/lang/zh-cn";
 import "element-plus/dist/index.css";
 import Avue from "@smallwei/avue";
 import "@smallwei/avue/lib/index.css";
-// @ts-ignore
-import AvueFormDesign from "@sscfaith/avue-form-design";
 
 import components from "../components";
 import YSComponents from "../../components/index";
@@ -21,7 +19,6 @@ export default {
     app.use(components);
     app.use(ElementPlus, { locale: zhCn });
     app.use(Avue, { appendToBody: true });
-    app.use(AvueFormDesign);
     app.use(YSComponents);
     // app.mixin({
     // beforeCreate() {
