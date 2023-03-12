@@ -23,7 +23,11 @@ const external = [
   "vuedraggable",
   "@smallwei/avue",
   "axios",
-  "vue-request"
+  "vue-request",
+  /monaco-editor/,
+  "acorn",
+  "astring",
+  "json5"
 ];
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),

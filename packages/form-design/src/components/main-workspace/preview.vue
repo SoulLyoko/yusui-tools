@@ -1,15 +1,10 @@
-<template>
-  <avue-form v-model="form" v-model:defaults="defaults" :option="option"></avue-form>
-</template>
-
 <script lang="ts">
-import { ref, computed, getCurrentInstance } from "vue";
+import { ref, computed, getCurrentInstance, defineComponent, h, resolveComponent } from "vue";
 
 import { useInjectState } from "../../composables";
 import { jsonStringify, jsonParse } from "../../utils";
 
-// 为了让配置中的事件函数从this中获取到数据
-export default {
+export default defineComponent({
   setup() {
     const { proxy } = getCurrentInstance()!;
     const { modelValue } = useInjectState();
@@ -18,7 +13,18 @@ export default {
     const option = computed(() => {
       return jsonParse.bind(proxy)(jsonStringify(modelValue.value));
     });
-    return { form, defaults, option };
+    const formRef = ref();
+    return { form, defaults, option, formRef };
+  },
+  render() {
+    return h(resolveComponent("avue-form"), {
+      ref: "formRef",
+      modelValue: this.form,
+      option: this.option,
+      defaults: this.defaults,
+      onUpdateModelValue: (e: any) => (this.form = e),
+      onUpdateDefaults: (e: any) => (this.defaults = e)
+    });
   }
-};
+});
 </script>

@@ -25,7 +25,7 @@ describe("dateFormat", () => {
 
 describe("durationFormat", () => {
   it("< 1000", () => {
-    expect(durationFormat(999)).toBe("");
+    expect(durationFormat(999)).toMatchInlineSnapshot('"几秒"');
   });
 
   it("humanize", () => {

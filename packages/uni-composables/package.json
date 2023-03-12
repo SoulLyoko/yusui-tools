@@ -32,10 +32,10 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@dcloudio/types": "^3.0.20",
+    "@dcloudio/types": "^3.2.11",
     "@types/lodash-es": "^4.17.6",
-    "postcss": "^8.4.20",
-    "uvue-crud": "^2.0.3",
-    "vue": "^3.2.45"
+    "postcss": "^8.4.21",
+    "uvue-crud": "^2.0.5",
+    "vue": "^3.2.47"
   }
 }
