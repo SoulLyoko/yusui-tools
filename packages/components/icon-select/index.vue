@@ -1,5 +1,13 @@
 <template>
-  <el-popover popper-class="icon-select-popper" placement="right" :width="800" trigger="click" v-bind="$attrs">
+  <el-popover
+    popper-class="icon-select-popper"
+    placement="right"
+    :width="800"
+    trigger="click"
+    v-bind="$attrs"
+    @show="onPopShow"
+    @hide="onPopHide"
+  >
     <template #reference>
       <el-input
         v-model="modelValue"
@@ -23,6 +31,7 @@
  * 图标选择组件
  * @prop {String} modelValue v-icon 的icon值
  */
+import { onUnmounted } from "vue";
 import { useVModel } from "@vueuse/core";
 import { Icon } from "@iconify/vue";
 
@@ -30,4 +39,22 @@ const props = defineProps({
   modelValue: { type: String }
 });
 const modelValue = useVModel(props);
+
+let interval: any;
+async function onPopShow() {
+  clearInterval(interval);
+  await window.navigator.clipboard.writeText("");
+  interval = setInterval(async () => {
+    const text = await window.navigator.clipboard.readText();
+    if (text && modelValue.value !== text) {
+      modelValue.value = text;
+    }
+  });
+}
+function onPopHide() {
+  clearInterval(interval);
+}
+onUnmounted(() => {
+  clearInterval(interval);
+});
 </script>
