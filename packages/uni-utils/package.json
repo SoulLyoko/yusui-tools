@@ -32,8 +32,6 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@dcloudio/types": "^3.2.11",
-    "@types/lodash-es": "^4.17.6",
     "postcss": "^8.4.21",
     "vue": "^3.2.47"
   }

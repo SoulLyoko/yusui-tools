@@ -30,8 +30,7 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.6",
-    "element-plus": "^2.2.36",
+    "element-plus": "^2.3.0",
     "vue": "^3.2.47"
   }
 }

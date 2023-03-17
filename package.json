@@ -32,18 +32,17 @@
     "@smallwei/avue": "^3.2.12",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.191",
-    "@types/lodash-es": "^4.17.6",
-    "@types/node": "^18.15.0",
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@types/lodash-es": "^4.17.7",
+    "@types/node": "^18.15.3",
+    "@vitejs/plugin-vue": "^4.1.0",
     "@vue/test-utils": "^2.3.1",
     "@vue/tsconfig": "^0.1.3",
     "@vueuse/core": "^9.13.0",
     "@yusui/eslint-config": "workspace:*",
     "@yusui/prettier-config": "workspace:*",
-    "@yusui/plugins": "workspace:*",
     "c8": "^7.13.0",
     "conventional-changelog-cli": "^2.2.2",
-    "element-plus": "^2.2.36",
+    "element-plus": "^2.3.0",
     "eslint": "^8.36.0",
     "esno": "^0.16.3",
     "fs-extra": "^11.1.0",
@@ -52,19 +51,19 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-sass": "^5.1.0",
     "husky": "^8.0.3",
-    "jsdom": "^21.1.0",
+    "jsdom": "^21.1.1",
     "lint-staged": "^13.2.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.3",
     "prettier": "^2.8.4",
-    "sass": "1.59.2",
+    "sass": "1.59.3",
     "tsc-alias": "^1.8.3",
-    "typescript": "^4.9.5",
-    "uview-plus": "^3.1.27",
-    "vite": "^4.1.4",
+    "typescript": "^5.0.2",
+    "uview-plus": "^3.1.29",
+    "vite": "^4.2.0",
     "vitepress": "1.0.0-alpha.52",
-    "vitest": "^0.29.2",
+    "vitest": "^0.29.3",
     "vue": "^3.2.47",
     "vue-tsc": "^1.2.0"
   },
@@ -83,7 +82,11 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@algolia/client-search"
+        "@algolia/client-search",
+        "@types/lodash-es",
+        "typescript",
+        "@dcloudio/types",
+        "@vue/composition-api"
       ]
     }
   }

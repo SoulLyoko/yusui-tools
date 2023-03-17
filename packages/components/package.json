@@ -28,10 +28,10 @@
     "@vueuse/core": "^9.13.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "element-plus": "^2.2.36"
+    "element-plus": "^2.3.0"
   },
   "devDependencies": {
-    "sass": "^1.59.2",
+    "sass": "^1.59.3",
     "vue": "^3.2.47"
   }
 }

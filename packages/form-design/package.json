@@ -40,9 +40,8 @@
   },
   "devDependencies": {
     "@smallwei/avue": "^3.2.12",
-    "@types/lodash-es": "^4.17.6",
-    "element-plus": "^2.2.36",
-    "sass": "^1.59.2",
+    "element-plus": "^2.3.0",
+    "sass": "^1.59.3",
     "vue": "^3.2.47"
   }
 }
