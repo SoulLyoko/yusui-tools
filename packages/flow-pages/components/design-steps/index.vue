@@ -124,7 +124,7 @@ const templatesDic = computed(() => {
   return [];
 });
 
-function selectTemplate(item: typeof templatesDic.value[number]) {
+function selectTemplate(item: (typeof templatesDic.value)[number]) {
   if (activeStep.value === 1) {
     formData.value.formOption = item.value;
   } else if (activeStep.value === 2) {

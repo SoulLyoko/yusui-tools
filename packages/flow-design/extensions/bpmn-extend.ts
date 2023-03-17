@@ -95,18 +95,14 @@ export class ParallelGatewayView extends PolygonNode {
 export class UserTaskModel extends _UserTaskModel {}
 export class UserTaskView extends _UserTaskView {}
 /** serviceTask */
-export class ServiceTaskModel extends _ServiceTaskModel {}
-export class ServiceTaskView extends _ServiceTaskView {}
-/** sequenceFlow */
-export class SequenceFlowModel extends _SequenceFlowModel {
-  getEdgeStyle() {
-    const style = super.getEdgeStyle();
-    if (["note", "serviceTask"].includes(this.targetNode?.type)) {
-      style.strokeDasharray = "3 3";
-    }
-    return style;
+export class ServiceTaskModel extends _ServiceTaskModel {
+  isAllowConnectedAsSource() {
+    return false;
   }
 }
+export class ServiceTaskView extends _ServiceTaskView {}
+/** sequenceFlow */
+export class SequenceFlowModel extends _SequenceFlowModel {}
 export class SequenceFlowView extends _SequenceFlowView {}
 /** note */
 export class NoteModel extends RectResize["model"] {
@@ -129,6 +125,15 @@ export class NoteModel extends RectResize["model"] {
   }
 }
 export class NoteView extends RectResize["view"] {}
+/** noteFlow */
+export class NoteFlowModel extends _SequenceFlowModel {
+  getEdgeStyle() {
+    const style = super.getEdgeStyle();
+    style.strokeDasharray = "3 3";
+    return style;
+  }
+}
+export class NoteFlowView extends _SequenceFlowView {}
 /** group */
 export class GroupModel extends GroupNode["model"] {
   createId() {
@@ -176,7 +181,8 @@ const plugins = [
   { type: "userTask", model: UserTaskModel, view: UserTaskView },
   { type: "serviceTask", model: ServiceTaskModel, view: ServiceTaskView },
   { type: "sequenceFlow", model: SequenceFlowModel, view: SequenceFlowView },
-  { type: "note", model: NoteModel, view: NoteView }
+  { type: "note", model: NoteModel, view: NoteView },
+  { type: "noteFlow", model: NoteFlowModel, view: NoteFlowView }
 ];
 
 export class BpmnExtend {

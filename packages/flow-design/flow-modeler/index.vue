@@ -63,6 +63,9 @@ onMounted(() => {
     nodeTextEdit: true,
     edgeTextEdit: true,
     plugins: [Control, DndPanel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, Group, TurboAdapter],
+    edgeGenerator: (sourceNode, targetNode) => {
+      if (["note", "serviceTask"].includes(targetNode.type)) return "noteFlow";
+    },
     ...props.initOptions
   });
   lf.value?.setTheme(defaultTheme);

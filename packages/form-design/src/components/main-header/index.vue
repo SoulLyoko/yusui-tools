@@ -26,14 +26,26 @@
     <el-col :span="8" style="text-align: center">
       <el-radio-group v-model="deviceType" size="small" style="font-size: unset">
         <el-radio-button v-for="item in deviceTypes" :key="item.value" :label="item.value">
-          <el-link :title="item.label" :icon="item.icon" :underline="false" style="color: inherit"></el-link>
+          <el-link
+            :title="item.label"
+            :icon="item.icon"
+            :underline="false"
+            style="color: inherit"
+            @click="deviceType = item.value"
+          ></el-link>
         </el-radio-button>
       </el-radio-group>
     </el-col>
     <el-col :span="8" style="text-align: right">
       <el-radio-group v-model="workType" size="small" style="font-size: unset">
         <el-radio-button v-for="item in workTypes" :key="item.value" :label="item.value">
-          <el-link :title="item.label" :icon="item.icon" :underline="false" style="color: inherit"></el-link>
+          <el-link
+            :title="item.label"
+            :icon="item.icon"
+            :underline="false"
+            style="color: inherit"
+            @click="workType = item.value"
+          ></el-link>
         </el-radio-button>
       </el-radio-group>
     </el-col>

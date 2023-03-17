@@ -142,8 +142,9 @@ function convertFlowElementToNode(element: FlowNode) {
 // 将Turbo元素数据转换为LogicFlow数据
 export function toLogicflowData(data: TurboData) {
   const { flowElementList } = data;
-  const nodes = flowElementList.filter(e => e.type !== "sequenceFlow").map(convertFlowElementToNode);
-  const edges = flowElementList.filter(e => e.type === "sequenceFlow").map(convertFlowElementToEdge);
+  const isFlow = (type: string) => ["sequenceFlow", "noteFlow"].includes(type);
+  const nodes = flowElementList.filter(e => !isFlow(e.type)).map(convertFlowElementToNode);
+  const edges = flowElementList.filter(e => isFlow(e.type)).map(convertFlowElementToEdge);
   const lfData: GraphConfigData = {
     nodes,
     edges

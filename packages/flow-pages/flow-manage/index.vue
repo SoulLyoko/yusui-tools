@@ -76,7 +76,6 @@ function handleBack() {
 }
 
 async function handleClose() {
-  console.log(111);
   const oldShowType = showType.value;
   await nextTick();
   showType.value = "";
