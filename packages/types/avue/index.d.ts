@@ -8,7 +8,8 @@ declare module "@smallwei/avue" {
     size?: "large" | "default" | "small";
     menuType?: MenuType;
     theme?: "dark";
-    axios: import("axios").AxiosInstance;
+    axios?: import("axios").AxiosInstance;
+    appendToBody?: boolean;
   };
   const Avue: {
     install(app: import("vue").App, config?: typeof AvueConfig): void;

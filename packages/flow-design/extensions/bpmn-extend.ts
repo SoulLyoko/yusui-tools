@@ -105,7 +105,8 @@ export class ServiceTaskView extends _ServiceTaskView {}
 export class SequenceFlowModel extends _SequenceFlowModel {}
 export class SequenceFlowView extends _SequenceFlowView {}
 /** note */
-export class NoteModel extends RectResize["model"] {
+const RectResizeModel = RectResize["model"] as any;
+export class NoteModel extends RectResizeModel {
   createId() {
     return "Note_" + getBpmnId();
   }
@@ -135,7 +136,8 @@ export class NoteFlowModel extends _SequenceFlowModel {
 }
 export class NoteFlowView extends _SequenceFlowView {}
 /** group */
-export class GroupModel extends GroupNode["model"] {
+const GroupNodeModel = GroupNode["model"] as any;
+export class GroupModel extends GroupNodeModel {
   createId() {
     return "Group_" + getBpmnId();
   }

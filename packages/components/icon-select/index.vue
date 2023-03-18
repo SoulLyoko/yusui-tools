@@ -43,9 +43,9 @@ const modelValue = useVModel(props);
 let interval: any;
 async function onPopShow() {
   clearInterval(interval);
-  await window.navigator.clipboard.writeText("");
+  await global.navigator.clipboard.writeText("");
   interval = setInterval(async () => {
-    const text = await window.navigator.clipboard.readText();
+    const text = await global.navigator.clipboard.readText();
     if (text && modelValue.value !== text) {
       modelValue.value = text;
     }

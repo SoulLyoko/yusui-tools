@@ -1,7 +1,5 @@
 import type { Page, ResRecords } from "@yusui/types";
 
-import { useRequest } from "vue-request";
-
 import { request } from ".";
 
 export interface FormTemplate {
@@ -45,9 +43,6 @@ export interface FormTemplate {
 
 export function getList(params: Page & FormTemplate) {
   return request.get<ResRecords<FormTemplate[]>>("/sapier-flow/dev-form/list", { params });
-}
-export function useFormTemplates() {
-  return useRequest(() => getList({ size: -1 }).then(res => res.data.records));
 }
 
 export function create(data: FormTemplate) {

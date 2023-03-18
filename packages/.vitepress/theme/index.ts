@@ -18,12 +18,12 @@ export default {
   enhanceApp({ app }: { app: App }) {
     app.use(components);
     app.use(ElementPlus, { locale: zhCn });
-    app.use(Avue, { appendToBody: true });
     app.use(YSComponents);
+    app.use(Avue, { appendToBody: true });
     // app.mixin({
-    // beforeCreate() {
-    //   import("@smallwei/avue").then(module => app.use(module.default));
-    // }
+    //   beforeCreate() {
+    //     import("@smallwei/avue").then(module => app.use(module.default, { appendToBody: true }));
+    //   }
     // });
   }
 } as Theme;

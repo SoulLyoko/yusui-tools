@@ -1,5 +1,5 @@
 <template>
-  <draggable
+  <Draggable
     :list="list"
     class="el-row draggable-list"
     :class="{ 'is-empty': !list.length, 'is-root': componentData.isRoot }"
@@ -41,14 +41,14 @@
         </div>
       </el-col>
     </template>
-  </draggable>
+  </Draggable>
 </template>
 
 <script setup lang="ts">
 import type { AvueFormOption } from "@smallwei/avue";
 import type { ElementTreeNode, HistoryType, DesignAction } from "../../types";
 
-import draggable from "vuedraggable";
+import Draggable from "vuedraggable";
 import { useVModels } from "@vueuse/core";
 import { cloneDeep } from "lodash-unified";
 

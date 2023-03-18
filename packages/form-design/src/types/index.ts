@@ -8,7 +8,7 @@ export interface ElementTreeNode {
   name?: string;
   id?: string;
   isRoot?: boolean;
-  props?: ComponentProps;
+  props?: Record<string, any>;
   children?: ElementTreeNode[];
 }
 

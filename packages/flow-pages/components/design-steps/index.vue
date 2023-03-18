@@ -77,8 +77,8 @@ import {
   deploy
 } from "../../api/flow-definition";
 import { update as updateDeploy, getDetail as getDeployDetail } from "../../api/flow-deploy";
-import { useFormTemplates } from "../../api/form-template";
-import { useFlowTemplates } from "../../api/flow-template";
+import { getList as getFormTemplateList } from "../../api/form-template";
+import { getList as getFlowTemplateList } from "../../api/flow-template";
 import { asyncValidate } from "../../utils";
 
 const props = defineProps<{
@@ -112,9 +112,13 @@ watch(
   { immediate: true }
 );
 
+const formTemplates = ref<any[]>([]);
+const flowTemplates = ref<any[]>([]);
+getFormTemplateList({ size: -1 }).then(res => (formTemplates.value = res.data.records));
+getFlowTemplateList({ size: -1 }).then(res => (formTemplates.value = res.data.records));
 const activeStep = ref(0);
-const { data: formTemplates } = useFormTemplates();
-const { data: flowTemplates } = useFlowTemplates();
+// const { data: formTemplates } = useFormTemplates();
+// const { data: flowTemplates } = useFlowTemplates();
 const templatesDic = computed(() => {
   if (activeStep.value === 1) {
     return formTemplates.value?.map(e => ({ label: e.formName, value: e.formOption })) ?? [];

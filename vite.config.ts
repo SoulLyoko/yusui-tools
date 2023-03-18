@@ -23,7 +23,6 @@ const external = [
   "vuedraggable",
   "@smallwei/avue",
   "axios",
-  "vue-request",
   /monaco-editor/,
   "acorn",
   "astring",
