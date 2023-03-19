@@ -2,6 +2,4 @@
   <FormTemplate></FormTemplate>
 </template>
 
-<script setup lang="ts">
-import FormTemplate from "./index.vue";
-</script>
+<script setup lang="ts"></script>

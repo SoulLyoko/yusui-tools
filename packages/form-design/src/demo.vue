@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { FormDesign } from "@yusui/form-design";
 
 const option = ref({});
 </script>

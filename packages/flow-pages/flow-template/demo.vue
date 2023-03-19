@@ -2,6 +2,4 @@
   <FlowTemplate></FlowTemplate>
 </template>
 
-<script setup lang="ts">
-import FlowTemplate from "./index.vue";
-</script>
+<script setup lang="ts"></script>

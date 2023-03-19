@@ -6,7 +6,6 @@ import "./index.scss";
 import ElementPlus from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import "element-plus/dist/index.css";
-import Avue from "@smallwei/avue";
 import "@smallwei/avue/lib/index.css";
 
 import components from "../components";
@@ -19,11 +18,16 @@ export default {
     app.use(components);
     app.use(ElementPlus, { locale: zhCn });
     app.use(YSComponents);
-    app.use(Avue, { appendToBody: true });
-    // app.mixin({
-    //   beforeCreate() {
-    //     import("@smallwei/avue").then(module => app.use(module.default, { appendToBody: true }));
-    //   }
-    // });
+    app.mixin({
+      async beforeCreate() {
+        await import("@smallwei/avue").then(module => app.use(module.default, { appendToBody: true }));
+        await import("@yusui/flow-design").then(module => app.component("FlowViewer", module.FlowViewer));
+        await import("@yusui/flow-design").then(module => app.component("FlowModeler", module.FlowModeler));
+        await import("@yusui/form-design").then(module => app.component("FormDesign", module.FormDesign));
+        await import("@yusui/flow-pages").then(module => app.component("FlowTemplate", module.FlowTemplate));
+        await import("@yusui/flow-pages").then(module => app.component("FormTemplate", module.FormTemplate));
+        await import("@yusui/flow-pages").then(module => app.component("FlowManage", module.FlowManage));
+      }
+    });
   }
 } as Theme;

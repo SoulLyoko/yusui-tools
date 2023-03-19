@@ -4,7 +4,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { FlowViewer, defaultGraphData } from "@yusui/flow-design";
+
+import { defaultGraphData } from "../constants";
 
 const graphData = ref(defaultGraphData());
 </script>

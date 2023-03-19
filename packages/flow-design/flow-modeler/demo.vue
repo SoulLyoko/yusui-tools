@@ -4,7 +4,9 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";
-import { FlowModeler, defaultOptions, defaultGraphData } from "@yusui/flow-design";
+
+import { defaultGraphData } from "../constants";
+import { defaultOptions } from "../options";
 
 const graphData = ref(defaultGraphData());
 
