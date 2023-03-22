@@ -71,7 +71,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
   /** 使用v-bind绑定的值 */
   const bindVal = computed(() => ({
     /** 属性 */
-    ref: "crudRef",
+    ref: (el: AvueCrudInstance) => (crudRef.value = el),
     modelValue: crudState.formData,
     tableLoading: crudState.tableLoading,
     option: options.tableOption ?? {},
