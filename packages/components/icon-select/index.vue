@@ -1,5 +1,7 @@
 <template>
+  <Icon v-if="preview" class="icon-select-preview" :icon="modelValue" v-bind="$attrs" />
   <el-popover
+    v-else
     popper-class="icon-select-popper"
     placement="right"
     :width="800"
@@ -36,16 +38,17 @@ import { useVModel } from "@vueuse/core";
 import { Icon } from "@iconify/vue";
 
 const props = defineProps({
-  modelValue: { type: String }
+  modelValue: { type: String },
+  preview: { type: Boolean }
 });
 const modelValue = useVModel(props);
 
 let interval: any;
 async function onPopShow() {
   clearInterval(interval);
-  await global.navigator.clipboard.writeText("");
+  await globalThis.navigator.clipboard.writeText("");
   interval = setInterval(async () => {
-    const text = await global.navigator.clipboard.readText();
+    const text = await globalThis.navigator.clipboard.readText();
     if (text && modelValue.value !== text) {
       modelValue.value = text;
     }

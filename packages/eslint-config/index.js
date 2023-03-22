@@ -6,7 +6,8 @@ module.exports = {
     jest: true
   },
   globals: {
-    uni: "readonly"
+    uni: "readonly",
+    globalThis: "readonly"
   },
   parser: "vue-eslint-parser",
   parserOptions: {
