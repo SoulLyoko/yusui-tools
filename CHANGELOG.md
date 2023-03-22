@@ -1,3 +1,44 @@
+# [2.0.0-beta.1](https://github.com/SoulLyoko/yusui-tools/compare/v1.7.0...v2.0.0-beta.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* build styles ([85a69df](https://github.com/SoulLyoko/yusui-tools/commit/85a69df51b05743d9710a6b9cb0cb1235cf6759c))
+* build types error ([be33097](https://github.com/SoulLyoko/yusui-tools/commit/be330971d788ac5bf60032b368bf2bb4f2bd2851))
+* elementTree ([3bbe876](https://github.com/SoulLyoko/yusui-tools/commit/3bbe876fb302083f100bce67cfc36fa8c5ae9bf8))
+* **eslint-config:** update ruls ([aec6111](https://github.com/SoulLyoko/yusui-tools/commit/aec6111728dc015477a0be5d0e6309a0d67dffaf))
+* flow-manage ([41dd52c](https://github.com/SoulLyoko/yusui-tools/commit/41dd52c383ecbb829c5df7617f268017c7d34362))
+* flow-modeler ([86594af](https://github.com/SoulLyoko/yusui-tools/commit/86594af3715db6691020ead570b481e40d134aa5))
+* form-design ([099c65a](https://github.com/SoulLyoko/yusui-tools/commit/099c65af63152f459b98b4c02ccda15b34d204f6))
+* main-workspace ([d62e6fc](https://github.com/SoulLyoko/yusui-tools/commit/d62e6fc2ca8852d0bf5ce3045b74c6739d783672))
+* **plugins:** uview-patch ([fc9e79f](https://github.com/SoulLyoko/yusui-tools/commit/fc9e79ffa7e2e77adc316214c0f87424d82d3f00))
+* turbo-adapter ([1e8125e](https://github.com/SoulLyoko/yusui-tools/commit/1e8125e94fd3a6fceffcb8f44f66ed62004d2484))
+* **types-avue:** sumColumnList type ([c4aa8a3](https://github.com/SoulLyoko/yusui-tools/commit/c4aa8a3101bad3d4d7eb11fb832981f7c251529a))
+* **types:** avue types ([9bca787](https://github.com/SoulLyoko/yusui-tools/commit/9bca7875d3f527948bf242adce1370982f4e314c))
+* **types:** avue updateDic ([008203c](https://github.com/SoulLyoko/yusui-tools/commit/008203c90fd78838bd543cfd5d048e10054cf95f))
+* **useCrud:** bindVal.ref use function type ([2e518ab](https://github.com/SoulLyoko/yusui-tools/commit/2e518abd26890718333d4cbd870d7f9eb760d014))
+* **utils:** durationFormat ([1871088](https://github.com/SoulLyoko/yusui-tools/commit/187108834739781884266758461a46591a7973c9))
+
+
+### Features
+
+* api ([59a43ff](https://github.com/SoulLyoko/yusui-tools/commit/59a43ff07778ff16712632a22b07493e121c5714))
+* avue-flow ([5f79824](https://github.com/SoulLyoko/yusui-tools/commit/5f798241ac531f229c245c06265d80fd738ccc13))
+* **components:** icon-select readText from clipboard ([4c83df1](https://github.com/SoulLyoko/yusui-tools/commit/4c83df1aa7901d231a5155c09e8b53fb6745f153))
+* flow-deploy ([58291d5](https://github.com/SoulLyoko/yusui-tools/commit/58291d5be1460819a7f89e422c2dc52a2a9837f8))
+* **flow-design:** noteFlow ([b7f30be](https://github.com/SoulLyoko/yusui-tools/commit/b7f30be1d37ca55f6b351a88654c5171b60d0ebf))
+* form-designer ([0a2c51c](https://github.com/SoulLyoko/yusui-tools/commit/0a2c51c9458f3e8a5d4319d0c5df2e4950854ffe))
+* **form-design:** resources ([b50305c](https://github.com/SoulLyoko/yusui-tools/commit/b50305c6d4b9945ce8862f73a150d9f6d3d9ea0f))
+* **form-design:** rules ([d69cf20](https://github.com/SoulLyoko/yusui-tools/commit/d69cf2028581ab4c1a145b2c2bab6d514b9578e9))
+* **form-design:** rules-setter ([f72ef62](https://github.com/SoulLyoko/yusui-tools/commit/f72ef62f243719bf130eba5a50f44b1e66cdef90))
+* **icon-select:** preview mode ([b403644](https://github.com/SoulLyoko/yusui-tools/commit/b403644f10466b0d29a4aabc9604d9c10fea72b8))
+* monaco-editor,resources ([3c09072](https://github.com/SoulLyoko/yusui-tools/commit/3c0907285b0e45992e0f8e8e0c26b6ed6392aeb1))
+* **plugins:** avue-patch fixFormRow ([7a1243f](https://github.com/SoulLyoko/yusui-tools/commit/7a1243f504366936f1505e8af15b0b6d765f5a28))
+* **plugins:** createEnvDts generate comment ([527c448](https://github.com/SoulLyoko/yusui-tools/commit/527c448124dc8377651545d90d2e344db9d5b430))
+* setters ([be6b35f](https://github.com/SoulLyoko/yusui-tools/commit/be6b35f5abfc5714b0950f9a2db9a9863a1c3de5))
+
+
+
 # [1.7.0](https://github.com/SoulLyoko/yusui-tools/compare/v1.6.17...v1.7.0) (2022-12-26)
 
 
