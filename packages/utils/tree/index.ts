@@ -172,7 +172,7 @@ export interface TreeMapOptions<T> {
   depth?: number;
 }
 /**
- * 提取tree指定结构
+ * 创建新的树结构
  * @param {Array} tree 树数组
  * @param {Function} fn 传入的方法,相当于Array.map((node, index, parent, depth)=>any),函数内返回新的结构
  * @param {TreeMapOptions} options

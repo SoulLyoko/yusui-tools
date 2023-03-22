@@ -149,6 +149,16 @@ export default defineConfig({
                 { text: "awaitTo", link: "/utils/tool/awaitTo" },
                 { text: "sleep", link: "/utils/tool/sleep" }
               ]
+            },
+            {
+              text: "tree",
+              items: [
+                { text: "buildTree", link: "/utils/tree/buildTree" },
+                { text: "flatTree", link: "/utils/tree/flatTree" },
+                { text: "filterTree", link: "/utils/tree/filterTree" },
+                { text: "findTree", link: "/utils/tree/findTree" },
+                { text: "treeMap", link: "/utils/tree/treeMap" }
+              ]
             }
           ]
         }
