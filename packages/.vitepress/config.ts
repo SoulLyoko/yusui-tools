@@ -156,32 +156,7 @@ export default defineConfig({
     }
   },
   vite: {
-    plugins: [
-      mdDemoTransform(),
-      avuePatch(),
-      {
-        name: "avue-patch",
-        enforce: "pre",
-        transform(code, id) {
-          if (/avue.js|avue.min.js/.test(id)) {
-            // code = code.replace(
-            //   `var e = this, t = this.tableOption.column || [], n = this.tableOption.group || [], o = this.tableOption.footer || [];`,
-            //   `var e = this, t = this.deepClone(this.tableOption.column || []), n = this.deepClone(this.tableOption.group || []), o = this.deepClone(this.tableOption.footer || []);`
-            // );
-            // code = code.replace(
-            //   `$watch("form." + prop, function(e, t) {
-            //       callback();
-            //     })`,
-            //   `$watch("form." + prop, function(e, t) {
-            //       console.log(e);
-            //       callback();
-            //     },{ deep: true })`
-            // );
-            return code;
-          }
-        }
-      }
-    ],
+    plugins: [mdDemoTransform(), avuePatch()],
     resolve: {
       alias
     },

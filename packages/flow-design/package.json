@@ -20,8 +20,7 @@
     "./*": "./*"
   },
   "files": [
-    "dist",
-    "global.d.ts"
+    "dist"
   ],
   "dependencies": {
     "@iconify/vue": "4.0.0",
