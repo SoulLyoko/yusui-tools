@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 /**
- * 继承自el-text
+ * extends el-text
  */
 defineProps({
-  modelValue: String
+  modelValue: { type: String }
 });
 </script>
