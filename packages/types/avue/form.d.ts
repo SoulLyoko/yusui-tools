@@ -214,7 +214,7 @@ declare module "@smallwei/avue" {
     /** 对整个表单进行重置 */
     resetForm: () => void;
     /** 更新字典 */
-    updateDic: (props: string) => void;
+    updateDic: (prop?: string, list?: DicItem[]) => void;
     /** 获取prop的ref对象 */
     getPropRef: (prop: string) => void;
     /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */
