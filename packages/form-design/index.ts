@@ -1,9 +1,8 @@
-import FormDesign from "./src/index.vue";
-import "./src/styles/index.scss";
+import FormDesign from "./index.vue";
 
 export { FormDesign };
 
-export * from "./src/options";
-export * from "./src/resources";
-export * from "./src/types";
-export * from "./src/utils";
+export * from "./options";
+export * from "./resources";
+export * from "./types";
+export * from "./utils";

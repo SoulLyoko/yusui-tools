@@ -63,7 +63,7 @@ export default defineConfig({
           text: "表单设计器",
           items: [
             { text: "开始", link: "/form-design/index" },
-            { text: "表单设计器", link: "/form-design/src/index" }
+            { text: "表单设计器", link: "/form-design/demo" }
           ]
         }
       ],

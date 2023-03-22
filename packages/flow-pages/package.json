@@ -1,6 +1,7 @@
 {
   "name": "@yusui/flow-pages",
   "version": "1.7.0",
+  "private": true,
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
