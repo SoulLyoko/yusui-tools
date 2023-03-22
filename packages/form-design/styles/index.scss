@@ -1,0 +1,21 @@
+@import "./fix";
+@import "./left-panel";
+@import "./main-workspace";
+@import "./right-panel";
+
+.form-design {
+  height: 100%;
+  width: 100%;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    &-thumb {
+      border-radius: 10px;
+      background: #ccc;
+      &:hover {
+        background: #aaa;
+      }
+    }
+  }
+}

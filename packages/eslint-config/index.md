@@ -11,7 +11,7 @@ npm i -D eslint prettier @yusui/eslint-config @yusui/prettier-config
 ```js
 // .eslintrc.js
 module.exports = {
-  extends: "@yusui"
+  extends: "@yusui/eslint-config"
 };
 
 // .prettierrc.js

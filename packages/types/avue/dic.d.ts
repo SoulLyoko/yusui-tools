@@ -7,7 +7,7 @@ declare module "@smallwei/avue" {
     children?: DicItem[];
   }
 
-  export interface DicProps {
+  export interface DicProps extends Record<string, any> {
     /** 选项标签为选项对象的某个属性值 */
     label?: string;
     /** 选项的值为选项对象的某个属性值 */

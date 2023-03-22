@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 
-import { fixAddRow, fixBtnType, fixFormGroup } from ".";
+import { fixAddRow, fixBtnType, fixFormGroup, fixFormRow } from ".";
 
 describe("avuePatch", () => {
   it("should transform code", () => {
@@ -10,5 +10,6 @@ describe("avuePatch", () => {
       `type:e.menuText("danger"),text:e.isTextMenu,icon:e.crud.getBtnIcon("delBtn")`
     );
     expect(fixFormGroup(avue_min_js)).toMatch(`n=this.deepClone(this.tableOption.group)`);
+    expect(fixFormRow(avue_min_js)).toMatch(`modelValue:e.form[t.prop],tableData:{row:e.form}`);
   });
 });

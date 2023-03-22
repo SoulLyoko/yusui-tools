@@ -1,1 +1,1 @@
-<markdown path="../README.md"></markdown>
+<markdown path="README.md"></markdown>

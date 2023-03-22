@@ -12,13 +12,16 @@ function buildPackages() {
   execSync("vite build");
 }
 function buildStyles() {
-  const task = () =>
-    src("packages/components/**/*.scss")
-      .pipe(gulpSass(sass).sync())
-      .pipe(autoprefixer())
-      .pipe(cleancss())
-      .pipe(dest("packages/components/dist"));
-  series(task)();
+  const packagesToBuild = ["components", "flow-design", "form-design"];
+  const tasks = packagesToBuild.map(packageName => {
+    return () =>
+      src(`packages/${packageName}/**/*.scss`)
+        .pipe(gulpSass(sass).sync())
+        .pipe(autoprefixer())
+        .pipe(cleancss())
+        .pipe(dest(`packages/${packageName}/dist`));
+  });
+  series(...tasks)();
 }
 function buildTypes() {
   execSync(`vue-tsc -p tsconfig.build.json -d --emitDeclarationOnly`);

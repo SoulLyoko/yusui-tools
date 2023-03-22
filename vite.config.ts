@@ -9,7 +9,7 @@ const external = [
   /@yusui/,
   /lodash/,
   "vue",
-  "element-plus",
+  /element-plus/,
   "@vueuse/core",
   "@dcloudio/uni-app",
   /dayjs/,
@@ -18,9 +18,20 @@ const external = [
   "js-cookie",
   "mitt",
   "fs",
-  "path"
+  "path",
+  /@logicflow/,
+  "vuedraggable",
+  "@smallwei/avue",
+  "axios",
+  /monaco-editor/,
+  "acorn",
+  "astring",
+  "json5"
 ];
 const input = {
+  "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),
+  "flow-design": path.resolve(__dirname, "packages/flow-design/index.ts"),
+  "flow-pages": path.resolve(__dirname, "packages/flow-pages/index.ts"),
   components: path.resolve(__dirname, "packages/components/index.ts"),
   composables: path.resolve(__dirname, "packages/composables/index.ts"),
   plugins: path.resolve(__dirname, "packages/plugins/index.ts"),

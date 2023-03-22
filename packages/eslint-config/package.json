@@ -1,6 +1,6 @@
 {
   "name": "@yusui/eslint-config",
-  "version": "1.7.0",
+  "version": "2.0.0-beta.1",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
@@ -8,16 +8,15 @@
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
   "main": "index.js",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.47.0",
-    "@typescript-eslint/parser": "^5.47.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.8.0"
+    "eslint-plugin-vue": "^9.9.0"
   },
   "devDependencies": {
-    "eslint": "8.30.0",
-    "prettier": "2.8.1",
-    "typescript": "4.9.4"
+    "eslint": "8.36.0",
+    "prettier": "2.8.4"
   }
 }

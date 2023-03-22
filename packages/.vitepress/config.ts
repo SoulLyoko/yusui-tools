@@ -2,6 +2,8 @@ import { defineConfig } from "vitepress";
 
 import { alias } from "../../vite.config";
 import pkg from "../../package.json";
+import { mdDemoTransform } from "./plugins/md-demo-transform";
+import { avuePatch } from "../plugins";
 
 export default defineConfig({
   base: `/${pkg.name}/`,
@@ -17,6 +19,9 @@ export default defineConfig({
           { text: "@yusui/components", link: "/components/index" },
           { text: "@yusui/composables", link: "/composables/index" },
           { text: "@yusui/eslint-config", link: "/eslint-config/index" },
+          { text: "@yusui/form-design表单设计器", link: "/form-design/index" },
+          { text: "@yusui/flow-design流程设计器", link: "/flow-design/index" },
+          { text: "@yusui/flow-pages工作流页面", link: "/flow-pages/index" },
           { text: "@yusui/prettier-config", link: "/prettier-config/index" },
           { text: "@yusui/plugins", link: "/plugins/index" },
           { text: "@yusui/utils", link: "/utils/index" }
@@ -50,6 +55,36 @@ export default defineConfig({
           items: [
             { text: "Start", link: "/composables/index" },
             { text: "useCrud", link: "/composables/use-crud/index" }
+          ]
+        }
+      ],
+      "/form-design": [
+        {
+          text: "表单设计器",
+          items: [
+            { text: "开始", link: "/form-design/index" },
+            { text: "表单设计器", link: "/form-design/demo" }
+          ]
+        }
+      ],
+      "/flow-design": [
+        {
+          text: "流程设计器",
+          items: [
+            { text: "开始", link: "/flow-design/index" },
+            { text: "流程模型设计", link: "/flow-design/flow-modeler/index" },
+            { text: "流程查看", link: "/flow-design/flow-viewer/index" }
+          ]
+        }
+      ],
+      "/flow-pages": [
+        {
+          text: "工作流页面",
+          items: [
+            { text: "开始", link: "/flow-pages/index" },
+            { text: "表单模板", link: "/flow-pages/form-template/index" },
+            { text: "流程模板", link: "/flow-pages/flow-template/index" },
+            { text: "流程设计", link: "/flow-pages/flow-manage/index" }
           ]
         }
       ],
@@ -114,6 +149,16 @@ export default defineConfig({
                 { text: "awaitTo", link: "/utils/tool/awaitTo" },
                 { text: "sleep", link: "/utils/tool/sleep" }
               ]
+            },
+            {
+              text: "tree",
+              items: [
+                { text: "buildTree", link: "/utils/tree/buildTree" },
+                { text: "flatTree", link: "/utils/tree/flatTree" },
+                { text: "filterTree", link: "/utils/tree/filterTree" },
+                { text: "findTree", link: "/utils/tree/findTree" },
+                { text: "treeMap", link: "/utils/tree/treeMap" }
+              ]
             }
           ]
         }
@@ -121,8 +166,14 @@ export default defineConfig({
     }
   },
   vite: {
+    plugins: [mdDemoTransform(), avuePatch()],
     resolve: {
       alias
+    },
+    server: {
+      proxy: {
+        "/sapier-flow": "http://flow.frp.71ic.com"
+      }
     }
   }
 });

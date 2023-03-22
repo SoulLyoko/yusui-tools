@@ -1,0 +1,46 @@
+{
+  "name": "@yusui/form-design",
+  "version": "2.0.0-beta.1",
+  "description": "Collection of development tools",
+  "author": "SoulLyoko<https://github.com/SoulLyoko>",
+  "license": "MIT",
+  "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
+  "repository": "https://github.com/SoulLyoko/yusui-tools.git",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@guolao/vue-monaco-editor": "^1.1.1",
+    "@iconify/vue": "4.0.0",
+    "@vueuse/core": "^9.13.0",
+    "@yusui/types": "workspace:*",
+    "@yusui/utils": "workspace:*",
+    "acorn": "^8.8.2",
+    "astring": "^1.8.4",
+    "json5": "^2.2.3",
+    "lodash": "4.17.21",
+    "lodash-es": "4.17.21",
+    "lodash-unified": "1.0.3",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@smallwei/avue": "^3.2.12",
+    "element-plus": "^2.3.0",
+    "sass": "^1.59.3",
+    "vue": "^3.2.47"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@yusui/components",
-  "version": "1.7.0",
+  "version": "2.0.0-beta.1",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
@@ -25,13 +25,13 @@
   ],
   "dependencies": {
     "@iconify/vue": "4.0.0",
-    "@vueuse/core": "^9.9.0",
+    "@vueuse/core": "^9.13.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "element-plus": "^2.2.27"
+    "element-plus": "^2.3.0"
   },
   "devDependencies": {
-    "sass": "^1.57.1",
-    "vue": "^3.2.45"
+    "sass": "^1.59.3",
+    "vue": "^3.2.47"
   }
 }

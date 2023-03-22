@@ -1,6 +1,6 @@
 {
   "name": "@yusui/composables",
-  "version": "1.7.0",
+  "version": "2.0.0-beta.1",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
@@ -30,8 +30,7 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.6",
-    "element-plus": "^2.2.27",
-    "vue": "^3.2.45"
+    "element-plus": "^2.3.0",
+    "vue": "^3.2.47"
   }
 }

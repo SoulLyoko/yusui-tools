@@ -31,6 +31,15 @@ declare module "@smallwei/avue" {
     pagerCount?: number;
   }
 
+  export interface SumColumn {
+    /** 前缀 */
+    label?: string;
+    /** 需要计算的prop */
+    name?: string;
+    /** 计算类型 sum:合计,avg:平均,count:统计 */
+    type?: "sum" | "avg" | "count";
+  }
+
   export interface AvueCrudColumn<T = any> extends AvueFormColumn<T> {
     /** 对应列的宽度 */
     width?: number | string;
@@ -357,7 +366,7 @@ declare module "@smallwei/avue" {
     /** 只负责样式控制表格如果选择一半，不会出现半选 */
     indeterminate?: boolean;
     /** 表格合计需要配置的字段 */
-    sumColumnList?: string[];
+    sumColumnList?: SumColumn[];
     /** 弹出框更新按钮标题 */
     updateBtnTitle?: string;
     /** 拖拽排序 */
@@ -490,7 +499,7 @@ declare module "@smallwei/avue" {
     /** 打开表单查看窗口 */
     rowView: (row: T, index?: number) => void;
     /** 更新字典 */
-    updateDic: (prop: string) => void;
+    updateDic: (prop?: string, list?: DicItem[]) => void;
     /** 获取prop的ref对象 */
     getPropRef: (props: string) => void;
     /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */

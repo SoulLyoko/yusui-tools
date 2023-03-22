@@ -1,6 +1,5 @@
 import type { Component, VNode } from "vue";
-import type { UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
-import type { RuleItem } from "async-validator";
+import type { UploadFile, UploadRawFile, UploadUserFile, FormItemRule } from "element-plus";
 
 declare module "@smallwei/avue" {
   export type FormType = "add" | "edit" | "view";
@@ -8,9 +7,6 @@ declare module "@smallwei/avue" {
   // export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
   //   [key in K]?: AvueFormColumn<T>;
   // };
-  export interface FormItemRule extends RuleItem {
-    trigger?: Arrayable<string>;
-  }
 
   export interface AvueFormColumn<T = any, K = keyof T extends string ? keyof T : string> {
     /** 标题名称 */
@@ -173,6 +169,10 @@ declare module "@smallwei/avue" {
     span?: number;
     /** 间隔 */
     gutter?: number;
+    /** 表单只读 */
+    readonly?: boolean;
+    /** 表单禁用 */
+    disabled?: boolean;
   }
 
   export interface AvueFormProps<T = any> {
@@ -214,7 +214,7 @@ declare module "@smallwei/avue" {
     /** 对整个表单进行重置 */
     resetForm: () => void;
     /** 更新字典 */
-    updateDic: (props: string) => void;
+    updateDic: (prop?: string, list?: DicItem[]) => void;
     /** 获取prop的ref对象 */
     getPropRef: (prop: string) => void;
     /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */

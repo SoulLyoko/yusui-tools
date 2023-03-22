@@ -6,7 +6,8 @@ module.exports = {
     jest: true
   },
   globals: {
-    uni: "readonly"
+    uni: "readonly",
+    globalThis: "readonly"
   },
   parser: "vue-eslint-parser",
   parserOptions: {
@@ -39,6 +40,8 @@ module.exports = {
     "vue/attribute-hyphenation": 0,
     "vue/v-on-event-hyphenation": 0,
     "vue/no-unused-vars": 1,
+    "no-empty": 0,
+    "import/namespace": 0,
     "import/no-unresolved": 0,
     "import/order": [
       "warn",

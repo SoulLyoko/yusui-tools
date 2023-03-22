@@ -1,0 +1,65 @@
+.lf-container {
+  height: 100%;
+}
+.lf-main {
+  height: 100%;
+  padding: 0;
+  padding-right: 20px;
+}
+.lf-aside {
+  .avue-form {
+    .el-slider__input {
+      width: 60px;
+    }
+  }
+}
+
+.lf-drag-able {
+  cursor: unset;
+}
+
+.lf-dndpanel {
+  height: 98%;
+  // 分两列
+  width: 130px;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(10, 60px);
+  .lf-dnd-text {
+    overflow: hidden;
+  }
+  .lf-dnd-item {
+    margin-top: 0;
+  }
+}
+
+.lf-mini-map {
+  right: 0;
+  bottom: 0;
+  margin: 5px;
+}
+
+.lf-control-clear {
+  background-image: url("https://api.iconify.design/ep/delete.svg?width=20&height=20");
+}
+.lf-control-editor {
+  background-image: url("https://api.iconify.design/ep/edit.svg?width=20&height=20");
+}
+.lf-control-mini-map {
+  background-image: url("https://api.iconify.design/ep/picture.svg?width=20&height=20");
+}
+.lf-menu-item {
+  padding-left: 0 !important;
+}
+.lf-menu-select {
+  .lf-menu-item-icon {
+    background: url("https://api.iconify.design/bpmn/lasso-tool.svg?width=16&height=16") no-repeat;
+    padding-left: 16px;
+  }
+}
+.lf-menu-clear {
+  .lf-menu-item-icon {
+    background: url("https://api.iconify.design/bpmn/trash.svg?width=16&height=16") no-repeat;
+    padding-left: 16px;
+  }
+}
