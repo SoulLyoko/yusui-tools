@@ -1,3 +1,12 @@
+# [2.0.0-beta.4](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2023-03-23)
+
+
+### Bug Fixes
+
+* **form-design:** prod bug ([3c4a1fb](https://github.com/SoulLyoko/yusui-tools/commit/3c4a1fb2983628cc8d264d5dc68f4421736f39fb))
+
+
+
 # [2.0.0-beta.3](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2023-03-23)
 
 
