@@ -1,3 +1,12 @@
+# [2.0.0-beta.3](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2023-03-23)
+
+
+### Bug Fixes
+
+* **form-design:** prod json5 error ([6757a41](https://github.com/SoulLyoko/yusui-tools/commit/6757a41a2673947749c491ff243ea088f72e91e7))
+
+
+
 # [2.0.0-beta.2](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2023-03-23)
 
 
