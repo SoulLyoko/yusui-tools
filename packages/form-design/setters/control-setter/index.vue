@@ -3,7 +3,7 @@
   <el-dialog v-model="visible" title="控制字段属性">
     <avue-dynamic v-model="controlList" :children="dynamicOption"></avue-dynamic>
     代码：
-    <MonacoEditor v-model="modelValue" valueType="function" height="200px"></MonacoEditor>
+    <EditorSetter v-model="modelValue" valueType="function" height="200px"></EditorSetter>
   </el-dialog>
 </template>
 
@@ -15,7 +15,7 @@ import { generate } from "astring";
 import { flatTree } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
-import MonacoEditor from "../monaco-editor/index.vue";
+import EditorSetter from "../editor-setter/index.vue";
 import PropertySelect from "./property-select.vue";
 
 interface Control {
@@ -98,7 +98,7 @@ const dynamicOption = computed(() => {
       {
         label: "表达式/值",
         prop: "value",
-        component: MonacoEditor,
+        component: EditorSetter,
         tooltip: true
       }
     ]

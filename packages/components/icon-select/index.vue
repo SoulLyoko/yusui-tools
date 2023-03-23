@@ -46,6 +46,7 @@ const modelValue = useVModel(props);
 let interval: any;
 async function onPopShow() {
   clearInterval(interval);
+  if (!globalThis.navigator.clipboard) return;
   await globalThis.navigator.clipboard.writeText("");
   interval = setInterval(async () => {
     const text = await globalThis.navigator.clipboard.readText();

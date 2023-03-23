@@ -3,7 +3,7 @@ import type { Resource } from "../types";
 import * as icons from "@element-plus/icons-vue";
 import { kebabCase } from "lodash-unified";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const iconList = [
   {
@@ -22,7 +22,7 @@ export const icon: Resource = {
     {
       label: "图标列表",
       prop: "iconList",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "array",
       defaultValue: `[{ label: "基本图标", list: [] }]`,
       tooltip: true,

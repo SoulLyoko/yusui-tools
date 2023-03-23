@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const textarea: Resource = {
   name: "textarea",
@@ -45,7 +45,7 @@ export const textarea: Resource = {
     {
       label: "输入框样式",
       prop: "inputStyle",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: `{}`

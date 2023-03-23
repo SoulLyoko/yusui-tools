@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 import { placementDic } from "../options";
 
 export const slider: Resource = {
@@ -62,7 +62,7 @@ export const slider: Resource = {
     {
       label: "格式化提示信息",
       prop: "formatTooltip",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: "(value) => value"
@@ -88,7 +88,7 @@ export const slider: Resource = {
     {
       label: "标记",
       prop: "marks",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: `{}`,

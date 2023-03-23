@@ -2,7 +2,7 @@ import type { Resource } from "../types";
 
 import { useDicSettings } from "../options/dic";
 import { iconList } from "./icon";
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const tree: Resource = {
   name: "tree",
@@ -37,7 +37,7 @@ export const tree: Resource = {
     {
       label: "懒加载函数",
       prop: "treeLoad",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(node, resolve) => {}`
@@ -45,7 +45,7 @@ export const tree: Resource = {
     {
       label: "节点渲染函数",
       prop: "renderContent",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(h, { node, data, store }) => {}`
@@ -97,7 +97,7 @@ export const tree: Resource = {
     {
       label: "节点过滤函数",
       prop: "filterNodeMethod",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(value, data, node) => {}`
@@ -128,7 +128,7 @@ export const tree: Resource = {
     {
       label: "允许拖拽函数",
       prop: "allowDrag",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(node) => {}`
@@ -136,7 +136,7 @@ export const tree: Resource = {
     {
       label: "允许放置函数",
       prop: "allowDrop",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(draggingNode, dropNode, type) => {}`
@@ -223,7 +223,7 @@ export const tree: Resource = {
     {
       label: "搜索函数",
       prop: "filterMethod",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `() => {}`

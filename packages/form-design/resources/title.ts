@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const title: Resource = {
   name: "title",
@@ -19,7 +19,7 @@ export const title: Resource = {
     {
       label: "样式",
       prop: "styles",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       value: { textAlign: "center" }

@@ -1,7 +1,6 @@
 import type { AvueFormColumn } from "@smallwei/avue";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
-import ControlSetter from "../setters/control-setter/index.vue";
+import { EditorSetter, ControlSetter } from "../setters";
 
 export const advance: AvueFormColumn[] = [
   {
@@ -12,35 +11,35 @@ export const advance: AvueFormColumn[] = [
   {
     label: "值变化事件",
     prop: "change",
-    component: MonacoEditor,
+    component: EditorSetter,
     tooltip: true,
     defaultValue: `({ value, row }) => {}`
   },
   {
     label: "点击事件",
     prop: "click",
-    component: MonacoEditor,
+    component: EditorSetter,
     tooltip: true,
     defaultValue: `({ value, row  }) => {}`
   },
   {
     label: "获取焦点事件",
     prop: "focus",
-    component: MonacoEditor,
+    component: EditorSetter,
     tooltip: true,
     defaultValue: `({ value, row  }) => {}`
   },
   {
     label: "失去焦点事件",
     prop: "blur",
-    component: MonacoEditor,
+    component: EditorSetter,
     tooltip: true,
     defaultValue: `({ value, row  }) => {}`
   },
   {
     label: "其他属性",
     prop: "params",
-    component: MonacoEditor,
+    component: EditorSetter,
     valueType: "object",
     tooltip: true,
     defaultValue: `{}`
@@ -48,7 +47,7 @@ export const advance: AvueFormColumn[] = [
   {
     label: "其他事件",
     prop: "event",
-    component: MonacoEditor,
+    component: EditorSetter,
     valueType: "object",
     tooltip: true,
     defaultValue: `{}`

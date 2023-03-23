@@ -12,7 +12,7 @@
       :placeholder="placeholder"
       :dic="booleanDic"
     ></avue-select>
-    <MonacoEditor v-else v-model="modelValue" :valueType="valueType" tooltip></MonacoEditor>
+    <EditorSetter v-else v-model="modelValue" :valueType="valueType" tooltip></EditorSetter>
     <avue-select
       v-model="valueType"
       :dic="valueTypeDic"
@@ -28,7 +28,7 @@
 import { computed } from "vue";
 import { useVModels } from "@vueuse/core";
 
-import MonacoEditor from "../monaco-editor/index.vue";
+import EditorSetter from "../editor-setter/index.vue";
 
 const props = defineProps<{
   modelValue: any;

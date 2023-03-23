@@ -3,7 +3,7 @@
   <el-dialog v-model="visible" title="加载数据函数">
     <avue-form v-model="onLoadData" :option="option"></avue-form>
     代码：
-    <MonacoEditor v-model="modelValue" valueType="function" height="200px" disabled></MonacoEditor>
+    <EditorSetter v-model="modelValue" valueType="function" height="200px" disabled></EditorSetter>
   </el-dialog>
 </template>
 
@@ -12,7 +12,7 @@ import { ref, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 import { parse } from "acorn";
 
-import MonacoEditor from "../monaco-editor/index.vue";
+import EditorSetter from "../editor-setter/index.vue";
 
 interface OnLoadData {
   url?: string;

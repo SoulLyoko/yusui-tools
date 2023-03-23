@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 import { jsonStringify } from "../utils";
 
 export const upload: Resource = {
@@ -17,7 +17,7 @@ export const upload: Resource = {
     {
       label: "请求头",
       prop: "headers",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: `{}`
@@ -41,7 +41,7 @@ export const upload: Resource = {
     {
       label: "额外参数",
       prop: "data",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: `{}`
@@ -100,7 +100,7 @@ export const upload: Resource = {
     {
       label: "上传请求配置",
       prop: "propsHttp",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: jsonStringify({
@@ -114,7 +114,7 @@ export const upload: Resource = {
     {
       label: "图片水印配置",
       prop: "canvasOption",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: jsonStringify({

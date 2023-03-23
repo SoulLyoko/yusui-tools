@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { useDicSettings } from "../options/dic";
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const cascader: Resource = {
   name: "cascader",
@@ -102,7 +102,7 @@ export const cascader: Resource = {
       label: "搜索函数",
       prop: "filterMethod",
       type: "switch",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(node, keyword) => true`,
@@ -111,7 +111,7 @@ export const cascader: Resource = {
     {
       label: "搜索前钩子函数",
       prop: "beforeFilter",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(value) => true`,
@@ -162,7 +162,7 @@ export const cascader: Resource = {
       label: "动态加载方法",
       prop: "lazyLoad",
       labelWidth: 120,
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(node, resolve) => resolve([])`,

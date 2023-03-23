@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { iconList } from "./icon";
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const input: Resource = {
   name: "input",
@@ -45,7 +45,7 @@ export const input: Resource = {
     {
       label: "输入值格式化",
       prop: "formatter",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(value) => value`
@@ -53,7 +53,7 @@ export const input: Resource = {
     {
       label: "返回值格式化",
       prop: "parser",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(value) => value`
@@ -61,7 +61,7 @@ export const input: Resource = {
     {
       label: "输入框样式",
       prop: "inputStyle",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: `{}`

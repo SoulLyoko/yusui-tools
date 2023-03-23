@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 import OnLoadSetter from "../setters/on-load-setter/index.vue";
 import { alignDic } from "../options";
 
@@ -53,7 +53,7 @@ export const table: Resource = {
     {
       label: "键值配置",
       prop: "props",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       value: { label: "name", value: "id" }
@@ -61,7 +61,7 @@ export const table: Resource = {
     {
       label: "格式化函数",
       prop: "formatter",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(row) => row.name`

@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const time: Resource = {
   name: "time",
@@ -86,7 +86,7 @@ export const time: Resource = {
     {
       label: "禁用小时方法",
       prop: "disabledHour",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       labelWidth: 120,
@@ -95,7 +95,7 @@ export const time: Resource = {
     {
       label: "禁用分钟方法",
       prop: "disabledMinutes",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       labelWidth: 120,
@@ -104,7 +104,7 @@ export const time: Resource = {
     {
       label: "禁用秒方法",
       prop: "disabledSeconds",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       labelTip: "禁止选择部分秒选项`Function(selectedHour, selectedMinute)`"

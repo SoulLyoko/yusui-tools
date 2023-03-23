@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const rate: Resource = {
   name: "rate",
@@ -38,7 +38,7 @@ export const rate: Resource = {
     {
       label: "颜色数组",
       prop: "colors",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: "{}",
@@ -57,7 +57,7 @@ export const rate: Resource = {
     {
       label: "图标数组",
       prop: "icons",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: "{}",

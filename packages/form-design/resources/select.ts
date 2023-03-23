@@ -2,7 +2,7 @@ import type { Resource } from "../types";
 
 import { useDicSettings } from "../options/dic";
 import { iconList } from "./icon";
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 export const select: Resource = {
   name: "select",
@@ -88,7 +88,7 @@ export const select: Resource = {
     {
       label: "搜索函数",
       prop: "filterMethod",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `() => {}`

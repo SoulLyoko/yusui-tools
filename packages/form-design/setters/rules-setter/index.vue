@@ -18,7 +18,7 @@ import { useVModels } from "@vueuse/core";
 import { ElButton } from "element-plus";
 import { filterObj } from "@yusui/utils";
 
-import MonacoEditor from "../monaco-editor/index.vue";
+import EditorSetter from "../editor-setter/index.vue";
 
 const props = defineProps<{ modelValue?: FormItemRule[] }>();
 const vModels = useVModels(props);
@@ -139,7 +139,7 @@ const ruleItemOption = {
       label: "自定义校验函数",
       prop: "validator",
       labelWidth: 120,
-      component: MonacoEditor,
+      component: EditorSetter,
       tooltip: true,
       width: "400px",
       defaultValue: `(rule, value, callback, source, options) => {

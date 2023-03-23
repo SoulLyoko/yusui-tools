@@ -1,7 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
-import DicDataSetter from "../setters/dic-data-setter/index.vue";
+import { EditorSetter, DicDataSetter } from "../setters";
 import { getRandomId, jsonStringify } from "../utils";
 
 export const placementDic = [
@@ -109,7 +108,7 @@ export function useDicSettings(tree = false) {
     {
       label: "请求参数",
       prop: "dicQuery",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: "{}"
@@ -117,7 +116,7 @@ export function useDicSettings(tree = false) {
     {
       label: "请求头",
       prop: "dicHeaders",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: "{}"
@@ -125,7 +124,7 @@ export function useDicSettings(tree = false) {
     {
       label: "字典配置",
       prop: "props",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "object",
       tooltip: true,
       defaultValue: jsonStringify({
@@ -140,7 +139,7 @@ export function useDicSettings(tree = false) {
     {
       label: "字典格式化",
       prop: "dicFormatter",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: "(res) => res"

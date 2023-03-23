@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import MonacoEditor from "../setters/monaco-editor/index.vue";
+import { EditorSetter } from "../setters";
 
 const dateFormat = "YYYY-MM-DD";
 const datetimeFormat = "YYYY-MM-DD HH:mm:ss";
@@ -59,7 +59,7 @@ export const date: Resource = {
     {
       label: "禁用日期方法",
       prop: "disabledDate",
-      component: MonacoEditor,
+      component: EditorSetter,
       valueType: "function",
       tooltip: true,
       defaultValue: `(date) => false`,
