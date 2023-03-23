@@ -30,7 +30,6 @@ export const alignDic = [
 
 export function useDicSettings(tree = false) {
   const dicDataSelect = {
-    component: DicDataSetter,
     value: [
       { label: "选项一", value: "0" },
       { label: "选项二", value: "1" },
@@ -38,7 +37,6 @@ export function useDicSettings(tree = false) {
     ]
   };
   const dicDataTree = {
-    component: DicDataSetter,
     setterType: "tree",
     value: [
       {
@@ -89,6 +87,7 @@ export function useDicSettings(tree = false) {
       label: "字典数据",
       prop: "dicData",
       labelPosition: "top",
+      component: DicDataSetter,
       ...(tree ? dicDataTree : dicDataSelect)
     },
     {

@@ -50,7 +50,7 @@ import type { ElementTreeNode, HistoryType, DesignAction } from "../../types";
 
 import Draggable from "vuedraggable";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep } from "lodash-unified";
+import { cloneDeep, omitBy, isFunction } from "lodash-unified";
 
 import { useInjectState } from "../../composables";
 import Design from "./design.vue";
@@ -70,7 +70,11 @@ function getItemOption(element: ElementTreeNode): AvueFormOption {
   } else if (typeof designOption === "function") {
     return { ...common, ...designOption(element) };
   } else {
-    return { ...common, column: element.props ? [element.props] : [] };
+    const column = [];
+    if (element.props) {
+      column.push(omitBy(element.props, isFunction));
+    }
+    return { ...common, column };
   }
 }
 function getItemSpan(element: ElementTreeNode) {

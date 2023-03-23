@@ -16,7 +16,7 @@
       "@yusui/utils": ["packages/utils/index.ts"],
       "@vue/shared": ["node_modules/@vue/shared"],
       "async-validator": ["node_modules/async-validator"],
-      "preact": ["node_modules/preact"],
+      "preact": ["node_modules/preact"]
     },
     "types": ["vitest/globals", "@dcloudio/types", "element-plus/global"],
     "ignoreDeprecations": "5.0"
