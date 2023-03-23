@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { EditorSetter, DicDataSetter } from "../setters";
-import { getRandomId, jsonStringify } from "../utils";
+import { getRandomId } from "../utils";
 
 export const placementDic = [
   { label: "上", value: "top" },
@@ -127,14 +127,14 @@ export function useDicSettings(tree = false) {
       component: EditorSetter,
       valueType: "object",
       tooltip: true,
-      defaultValue: jsonStringify({
-        label: "label",
-        value: "value",
-        desc: "desc",
-        disabled: "disabled",
-        children: "children",
-        res: "res"
-      })
+      defaultValue: `{
+  label: "label",
+  value: "value",
+  desc: "desc",
+  disabled: "disabled",
+  children: "children",
+  res: "res"
+}`
     },
     {
       label: "字典格式化",

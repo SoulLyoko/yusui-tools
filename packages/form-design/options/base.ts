@@ -1,29 +1,12 @@
 import type { AvueFormOption, AvueFormGroup } from "@smallwei/avue";
 
 import { placementDic, positionDic, alignDic } from "./dic";
-import ValueSetter from "../setters/value-setter/index.vue";
-import RulesSetter from "../setters/rules-setter/index.vue";
-
-// import resources from "../resources";
-
-// const resourcesDic = resources.map(e => {
-//   return {
-//     ...e,
-//     label: e.title,
-//     value: e.name
-//   };
-// });
+import { ValueSetter, RulesSetter } from "../setters";
 
 export const base: AvueFormOption & AvueFormGroup = {
   label: "基础",
   prop: "base",
   column: [
-    // {
-    // label: "组件名称",
-    // prop: "name"
-    // type: "select",
-    // dicData: resources，
-    // },
     {
       label: "字段标识",
       prop: "prop"

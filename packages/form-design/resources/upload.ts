@@ -1,7 +1,6 @@
 import type { Resource } from "../types";
 
 import { EditorSetter } from "../setters";
-import { jsonStringify } from "../utils";
 
 export const upload: Resource = {
   name: "upload",
@@ -103,13 +102,13 @@ export const upload: Resource = {
       component: EditorSetter,
       valueType: "object",
       tooltip: true,
-      defaultValue: jsonStringify({
-        home: "",
-        res: "",
-        url: "",
-        name: "",
-        fileName: "file"
-      })
+      defaultValue: `{
+  home: "",
+  res: "",
+  url: "",
+  name: "",
+  fileName: "file"
+}`
     },
     {
       label: "图片水印配置",
@@ -117,16 +116,16 @@ export const upload: Resource = {
       component: EditorSetter,
       valueType: "object",
       tooltip: true,
-      defaultValue: jsonStringify({
-        text: "",
-        fontFamily: "microsoft yahei",
-        color: "#999",
-        fontSize: 16,
-        opacity: 100,
-        bottom: 10,
-        right: 10,
-        ratio: 1
-      })
+      defaultValue: `{
+  text: "",
+  fontFamily: "microsoft yahei",
+  color: "#999",
+  fontSize: 16,
+  opacity: 100,
+  bottom: 10,
+  right: 10,
+  ratio: 1
+}`
     }
   ]
 };

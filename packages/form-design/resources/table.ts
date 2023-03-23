@@ -1,7 +1,6 @@
 import type { Resource } from "../types";
 
-import { EditorSetter } from "../setters";
-import OnLoadSetter from "../setters/on-load-setter/index.vue";
+import { EditorSetter, OnLoadSetter } from "../setters";
 import { alignDic } from "../options";
 
 export const table: Resource = {
