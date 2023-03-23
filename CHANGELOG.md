@@ -1,3 +1,13 @@
+# [2.0.0-beta.2](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2023-03-23)
+
+
+### Bug Fixes
+
+* **form-design:** baseOption,advanceOption ([522cd31](https://github.com/SoulLyoko/yusui-tools/commit/522cd31bfb966145136edb59597b4285a5cedd66))
+* **form-design:** rename monaco-editor to editor-setter ([c9571af](https://github.com/SoulLyoko/yusui-tools/commit/c9571af8cbd4dc4fbfbce35ce0e8f12f06fe4ddd))
+
+
+
 # [2.0.0-beta.1](https://github.com/SoulLyoko/yusui-tools/compare/v1.7.0...v2.0.0-beta.1) (2023-03-22)
 
 
