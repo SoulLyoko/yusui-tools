@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AvueFormOption } from "@smallwei/avue";
+import type { AvueFormOption, AvueFormColumn, AvueFormGroup } from "@smallwei/avue";
 import type { Resource } from "./types";
 
 import { useProvideState } from "./composables";
@@ -30,6 +30,8 @@ import MainHeader from "./components/main-header/index.vue";
 const props = defineProps<{
   modelValue?: AvueFormOption;
   resources?: Resource[];
+  baseOption?: AvueFormColumn & AvueFormGroup;
+  advanceOption?: AvueFormColumn & AvueFormGroup;
   leftWidth?: string;
   rightWidth?: string;
 }>();

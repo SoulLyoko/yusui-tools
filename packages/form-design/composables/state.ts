@@ -7,6 +7,7 @@ import { cloneDeep, isEqual, omit } from "lodash-unified";
 
 import defaultResources from "../resources";
 import { adapterIn, adapterOut } from "../utils";
+import { base as defaultBaseOption, advance as defaultAdvanceOption } from "../options";
 
 const injectKey = Symbol("form-design-state");
 
@@ -18,6 +19,8 @@ export function useProvideState(props: Props, emit: Emit) {
   const resourcesMap = computed<Record<string, Resource>>(() =>
     Object.fromEntries(resources.value.map(item => [item.name, item]))
   );
+  const baseOption = computed(() => props.baseOption || defaultBaseOption);
+  const advanceOption = computed(() => props.advanceOption || defaultAdvanceOption);
 
   const elementTree = ref<ElementTreeNode>({});
   const activeElement = ref<ElementTreeNode>({});
@@ -103,6 +106,8 @@ export function useProvideState(props: Props, emit: Emit) {
     workType,
     deviceType,
     modelValue,
+    baseOption,
+    advanceOption,
     setActiveElement,
     recordHistory,
     restoreHistory,

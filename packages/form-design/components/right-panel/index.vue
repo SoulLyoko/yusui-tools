@@ -16,10 +16,9 @@ import { get, set, debounce, isEqual, cloneDeep } from "lodash-unified";
 import { filterObj } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
-import { base, advance } from "../../options";
 
 const state = useInjectState();
-const { elementTree, activeElement, recordHistory, getResource } = state;
+const { elementTree, activeElement, baseOption, advanceOption, recordHistory, getResource } = state;
 
 const formReLoading = ref(false);
 const activeTab = ref("");
@@ -35,10 +34,10 @@ watch(
     updateTimes.value = 0;
     await nextTick();
     const { settings, disabledSettings } = getResource(activeElement.value.name) ?? {};
-    const baseGroup = { ...commonOption, label: "基础", prop: "base", column: base };
+    const baseGroup = { ...commonOption, ...baseOption.value };
+    const advanceGroup = { ...commonOption, ...advanceOption.value };
     const componentGroup = { ...commonOption, label: "属性", prop: "component", column: settings ?? [] };
-    const advanceGroup = { ...commonOption, label: "高级", prop: "advance", column: advance };
-    settingsTabs.value = [baseGroup, componentGroup, advanceGroup].filter(e => !disabledSettings?.includes(e.prop));
+    settingsTabs.value = [baseGroup, componentGroup, advanceGroup].filter(e => !disabledSettings?.includes(e.prop!));
     activeTab.value = settingsTabs.value[0].prop!;
     settingsData.value = cloneDeep(activeElement.value.props);
     formReLoading.value = false;
