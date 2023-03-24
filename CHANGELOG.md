@@ -1,3 +1,12 @@
+# [2.0.0-beta.9](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2023-03-24)
+
+
+### Bug Fixes
+
+* **form-design:** disable dicDataSetter ([bfc933e](https://github.com/SoulLyoko/yusui-tools/commit/bfc933e129cd0758937b028fd10ac7fed28def9d))
+
+
+
 # [2.0.0-beta.8](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2023-03-24)
 
 
