@@ -1,3 +1,12 @@
+# [2.0.0-beta.6](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2023-03-24)
+
+
+### Features
+
+* **editor-setter:** open dialog on tooltip type ([720582c](https://github.com/SoulLyoko/yusui-tools/commit/720582c99fcb92f9aaf12e1861c5e2d1a2f2d76a))
+
+
+
 # [2.0.0-beta.5](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2023-03-24)
 
 
