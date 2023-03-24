@@ -1,3 +1,12 @@
+# [2.0.0-beta.11](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2023-03-24)
+
+
+### Bug Fixes
+
+* **form-design:** dicTreeSetter ([26f7029](https://github.com/SoulLyoko/yusui-tools/commit/26f702926d1878bd114f0c5e3015efb3453061f3))
+
+
+
 # [2.0.0-beta.10](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2023-03-24)
 
 
