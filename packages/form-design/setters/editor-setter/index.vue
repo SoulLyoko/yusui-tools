@@ -10,20 +10,12 @@
         :height="height || '200px'"
         v-bind="$attrs"
       ></Editor>
+      <el-button text icon="el-icon-full-screen" @click="visible = true"></el-button>
     </template>
   </el-tooltip>
 
   <template v-else-if="dialog">
     <el-button @click="visible = true">{{ btnText || "编辑代码" }}</el-button>
-    <el-dialog v-model="visible" :fullscreen="fullscreen" :width="width">
-      <Editor
-        v-model:value="editorValue"
-        defaultLanguage="javascript"
-        :options="options"
-        :height="height || (fullscreen ? '90vh' : '600px')"
-        v-bind="$attrs"
-      ></Editor>
-    </el-dialog>
   </template>
 
   <Editor
@@ -34,6 +26,16 @@
     :width="width"
     :height="height"
   ></Editor>
+
+  <el-dialog v-if="dialog || visible" v-model="visible" :fullscreen="fullscreen" :width="width">
+    <Editor
+      v-model:value="editorValue"
+      defaultLanguage="javascript"
+      :options="options"
+      :height="height || (fullscreen ? '90vh' : '600px')"
+      v-bind="$attrs"
+    ></Editor>
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
