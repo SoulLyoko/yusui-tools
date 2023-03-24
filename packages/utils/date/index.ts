@@ -58,15 +58,19 @@ export function dateFormat(date: ConfigType, optionsOrFormat: DateFormatOptions 
  * @param {Boolean} detail 是否显示精确的时长
  * @returns 格式化后的时长
  */
-export function durationFormat(duration: number | string, detail?: boolean) {
-  const d = dayjs.duration(Number(duration));
+export function durationFormat(duration?: number | string | null, detail?: boolean) {
+  duration = Number(duration);
+  if (!duration || isNaN(duration)) return "";
+  const d = dayjs.duration(duration);
   if (detail) {
     let format = "";
-    d.days() && (format += "DD天");
-    d.hours() && (format += "HH小时");
-    d.minutes() && (format += "mm分钟");
-    d.seconds() && (format += "ss秒");
-    return d.format(format);
+    d.years() && (format += "Y年");
+    d.months() && (format += "M个月");
+    d.days() && (format += "D天");
+    d.hours() && (format += "H小时");
+    d.minutes() && (format += "m分钟");
+    d.seconds() && (format += "s秒");
+    return format ? d.format(format) : "";
   } else {
     return d.locale("zh-cn").humanize();
   }

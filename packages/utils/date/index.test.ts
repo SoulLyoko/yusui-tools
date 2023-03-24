@@ -24,15 +24,28 @@ describe("dateFormat", () => {
 });
 
 describe("durationFormat", () => {
-  it("< 1000", () => {
-    expect(durationFormat(999)).toMatchInlineSnapshot('"几秒"');
+  it("empty data", () => {
+    expect(durationFormat(0)).toMatchInlineSnapshot('""');
+    expect(durationFormat("")).toMatchInlineSnapshot('""');
+    expect(durationFormat(undefined)).toMatchInlineSnapshot('""');
+    expect(durationFormat(null)).toMatchInlineSnapshot('""');
+    expect(durationFormat(NaN)).toMatchInlineSnapshot('""');
   });
 
   it("humanize", () => {
     expect(durationFormat(337736260)).toMatchInlineSnapshot('"4 天"');
+    expect(durationFormat("337736260")).toMatchInlineSnapshot('"4 天"');
+  });
+
+  it("humanize < 1000", () => {
+    expect(durationFormat(999)).toMatchInlineSnapshot('"几秒"');
   });
 
   it("detail", () => {
-    expect(durationFormat(337736260, true)).toMatchInlineSnapshot('"03天21小时48分钟56秒"');
+    expect(durationFormat(337736260, true)).toMatchInlineSnapshot('"3天21小时48分钟56秒"');
+  });
+
+  it("detail < 1000", () => {
+    expect(durationFormat(999, true)).toMatchInlineSnapshot('""');
   });
 });
