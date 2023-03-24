@@ -9,7 +9,7 @@ export const radio: Resource = {
   group: "表单组件",
   props: { type: "radio", label: "单选框组" },
   settings: [
-    ...dicSelect,
+    ...(dicSelect || []),
     {
       label: "边框",
       prop: "border",

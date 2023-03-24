@@ -11,7 +11,7 @@ export const tree: Resource = {
   group: "表单组件",
   props: { type: "tree", label: "树形选择" },
   settings: [
-    ...dicTree,
+    ...(dicTree || []),
     // 选择器属性
     {
       labelWidth: 0,

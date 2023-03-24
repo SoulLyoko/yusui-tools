@@ -10,7 +10,7 @@ export const cascader: Resource = {
   group: "表单组件",
   props: { type: "cascader", label: "级联选择器" },
   settings: [
-    ...dicTree,
+    ...(dicTree || []),
     {
       label: "分隔字符",
       prop: "separator"

@@ -9,7 +9,7 @@ export const checkbox: Resource = {
   group: "表单组件",
   props: { type: "checkbox", label: "多选框组" },
   settings: [
-    ...dicSelect,
+    ...(dicSelect || []),
     {
       label: "全选",
       prop: "all",
