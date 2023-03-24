@@ -1,3 +1,12 @@
+# [2.0.0-beta.5](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **form-design:** dic options ([216fb00](https://github.com/SoulLyoko/yusui-tools/commit/216fb00deed123be26237e48d5e685d300cacb0e))
+
+
+
 # [2.0.0-beta.4](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2023-03-23)
 
 
