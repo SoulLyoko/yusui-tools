@@ -5,7 +5,7 @@ import type { Plugin, ProxyOptions } from "vite";
  */
 export function transformProxy(list: string) {
   try {
-    return Object.fromEntries(
+    return Object.fromEntries<ProxyOptions>(
       JSON.parse(list).map(([prefix, target, rewrite]: [string, string, boolean]) => {
         return [
           prefix,
@@ -14,8 +14,8 @@ export function transformProxy(list: string) {
             changeOrigin: true,
             ws: true,
             secure: /^https:\/\//.test(target),
-            rewrite: path => path.replace(new RegExp(`^${rewrite ? prefix : ""}`), "")
-          } as ProxyOptions
+            rewrite: (path: string) => path.replace(new RegExp(`^${rewrite ? prefix : ""}`), "")
+          }
         ];
       })
     );

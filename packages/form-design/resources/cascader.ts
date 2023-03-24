@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { dicTree } from "../options/dic";
+import { dicTree } from "../options";
 import { EditorSetter } from "../setters";
 
 export const cascader: Resource = {

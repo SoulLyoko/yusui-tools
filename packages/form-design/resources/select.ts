@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { dic } from "../options/dic";
+import { dicSelect } from "../options";
 import { iconList } from "./icon";
 import { EditorSetter } from "../setters";
 
@@ -11,7 +11,7 @@ export const select: Resource = {
   group: "表单组件",
   props: { type: "select", label: "选择框" },
   settings: [
-    ...dic,
+    ...dicSelect,
     {
       label: "弹出层主题",
       prop: "effect",
