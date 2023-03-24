@@ -13,6 +13,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "ci": "pnpm typecheck && pnpm lint && pnpm test run && pnpm build && pnpm docs:build",
     "copy:utils": "esno scripts/copy-utils.ts",
+    "dev": "vite",
     "docs:build": "vitepress build packages",
     "docs:dev": "vitepress dev packages --host",
     "docs:serve": "vitepress serve packages",

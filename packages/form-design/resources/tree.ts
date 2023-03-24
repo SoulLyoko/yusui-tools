@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "../options/dic";
+import { dicTree } from "../options/dic";
 import { iconList } from "./icon";
 import { EditorSetter } from "../setters";
 
@@ -11,7 +11,7 @@ export const tree: Resource = {
   group: "表单组件",
   props: { type: "tree", label: "树形选择" },
   settings: [
-    ...useDicSettings(true),
+    ...dicTree,
     // 选择器属性
     {
       labelWidth: 0,

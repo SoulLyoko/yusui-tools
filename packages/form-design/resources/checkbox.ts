@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "../options/dic";
+import { dic } from "../options/dic";
 
 export const checkbox: Resource = {
   name: "checkbox",
@@ -9,7 +9,7 @@ export const checkbox: Resource = {
   group: "表单组件",
   props: { type: "checkbox", label: "多选框组" },
   settings: [
-    ...useDicSettings(),
+    ...dic,
     {
       label: "全选",
       prop: "all",

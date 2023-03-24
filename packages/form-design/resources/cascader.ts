@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { useDicSettings } from "../options/dic";
+import { dicTree } from "../options/dic";
 import { EditorSetter } from "../setters";
 
 export const cascader: Resource = {
@@ -10,7 +10,7 @@ export const cascader: Resource = {
   group: "表单组件",
   props: { type: "cascader", label: "级联选择器" },
   settings: [
-    ...useDicSettings(true),
+    ...dicTree,
     {
       label: "分隔字符",
       prop: "separator"
