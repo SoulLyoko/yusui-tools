@@ -1,3 +1,12 @@
+# [2.0.0-beta.8](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2023-03-24)
+
+
+### Bug Fixes
+
+* **form-design:** resources ([db7fc99](https://github.com/SoulLyoko/yusui-tools/commit/db7fc998309124dc5013abd351290026a3d0a14d))
+
+
+
 # [2.0.0-beta.7](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2023-03-24)
 
 
