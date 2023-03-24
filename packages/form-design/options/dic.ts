@@ -73,9 +73,9 @@ export const dic: Resource["settings"] = [
       ]
     },
     value: [
-      { label: "选项一", value: "0" },
-      { label: "选项二", value: "1" },
-      { label: "选项三", value: "2" }
+      { label: "选项一", value: "0", id: "0" },
+      { label: "选项二", value: "1", id: "1" },
+      { label: "选项三", value: "2", id: "2" }
     ]
   },
   {
