@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
-import { EditorSetter, DicDataSetter } from "../setters";
+// import { EditorSetter, DicDataSetter } from "../setters";
+import { EditorSetter } from "../setters";
 import { getRandomId } from "../utils";
 
 export const placementDic = [
@@ -63,7 +64,14 @@ export const dic: Resource["settings"] = [
     label: "字典数据",
     prop: "dicData",
     labelPosition: "top",
-    component: DicDataSetter
+    // component: DicDataSetter,
+    type: "dynamic",
+    children: {
+      column: [
+        { label: "名称", prop: "label" },
+        { label: "值", prop: "value" }
+      ]
+    }
   },
   {
     label: "字典地址",
