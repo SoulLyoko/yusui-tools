@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { dicSelect } from "../options";
+import { dic } from "../options";
 
 export const radio: Resource = {
   name: "radio",
@@ -9,7 +9,7 @@ export const radio: Resource = {
   group: "表单组件",
   props: { type: "radio", label: "单选框组" },
   settings: [
-    ...(dicSelect || []),
+    ...dic!,
     {
       label: "边框",
       prop: "border",
