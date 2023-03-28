@@ -4,6 +4,7 @@ interface StringifyOptions {
   replacer?: ((this: any, key: string, value: any) => any) | (string | number)[];
   space?: string | number;
   quote?: string;
+  /** 是否使用json5进行转换 */
   useJson5?: boolean;
 }
 

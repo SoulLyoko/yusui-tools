@@ -84,6 +84,17 @@ export function fixFormRow(code: string) {
   );
 }
 
+// 修复 dic getResData
+export function fixDicGetResData(code: string) {
+  return (
+    code
+      //prod
+      .replace(`var o,l=t.bind||"";`, `var o=e,l=t.bind||t.res||"";`)
+      //dev
+      .replace(`var o3, l3 = t4.bind || "";`, `var o3 = e4, l3 = t4.bind || t4.res || "";`)
+  );
+}
+
 export function avuePatch(): Plugin {
   return {
     name: "vite-plugin-avue-patch",
@@ -94,6 +105,7 @@ export function avuePatch(): Plugin {
         code = fixAddRow(code);
         // code = fixFormGroup(code);
         code = fixFormRow(code);
+        code = fixDicGetResData(code);
         return code;
       }
     }

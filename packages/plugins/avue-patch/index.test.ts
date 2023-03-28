@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 
-import { fixAddRow, fixBtnType, fixFormGroup, fixFormRow } from ".";
+import { fixAddRow, fixBtnType, fixFormGroup, fixFormRow, fixDicGetResData } from ".";
 
 describe("avuePatch", () => {
   it("should transform code", () => {
@@ -11,5 +11,6 @@ describe("avuePatch", () => {
     );
     expect(fixFormGroup(avue_min_js)).toMatch(`n=this.deepClone(this.tableOption.group)`);
     expect(fixFormRow(avue_min_js)).toMatch(`modelValue:e.form[t.prop],tableData:{row:e.form}`);
+    expect(fixDicGetResData(avue_min_js)).toMatch(`var o=e,l=t.bind||t.res||"";`);
   });
 });

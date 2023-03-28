@@ -36,7 +36,7 @@ watch(
     const { settings, disabledSettings } = getResource(activeElement.value.name) ?? {};
     const baseGroup = { ...commonOption, ...baseOption.value };
     const advanceGroup = { ...commonOption, ...advanceOption.value };
-    const componentGroup = { ...commonOption, label: "属性", prop: "component", column: settings ?? [] };
+    const componentGroup = { ...commonOption, label: "属性", prop: "component", column: cloneDeep(settings) ?? [] };
     settingsTabs.value = [baseGroup, componentGroup, advanceGroup].filter(e => !disabledSettings?.includes(e.prop!));
     activeTab.value = settingsTabs.value[0].prop!;
     settingsData.value = cloneDeep(activeElement.value.props);
