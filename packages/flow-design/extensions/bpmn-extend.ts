@@ -1,6 +1,6 @@
 import type { NodeConfig, GraphModel } from "@logicflow/core";
 
-import { LogicFlow, h, PolygonNodeModel, PolygonNode } from "@logicflow/core";
+import { LogicFlow, h, PolygonNodeModel, PolygonNode, HtmlNodeModel, HtmlNode } from "@logicflow/core";
 import { getBpmnId } from "@logicflow/extension/es/bpmn/getBpmnId";
 import {
   RectResize,
@@ -20,6 +20,14 @@ import {
   SequenceFlowModel as _SequenceFlowModel
 } from "@logicflow/extension";
 
+/** process */
+export class ProcessModel extends HtmlNodeModel {
+  setAttributes() {
+    this.width = 0;
+    this.height = 0;
+  }
+}
+export class ProcessView extends HtmlNode {}
 /** startEvent */
 export class StartEventModel extends _StartEventModel {}
 export class StartEventView extends _StartEventView {}
@@ -176,6 +184,7 @@ export class Group extends _Group {
 }
 
 const plugins = [
+  { type: "process", model: ProcessModel, view: ProcessView },
   { type: "startEvent", model: StartEventModel, view: StartEventView },
   { type: "endEvent", model: EndEventModel, view: EndEventView },
   { type: "exclusiveGateway", model: ExclusiveGatewayModel, view: ExclusiveGatewayView },

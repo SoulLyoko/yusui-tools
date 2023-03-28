@@ -4,13 +4,19 @@ export function defaultGraphData() {
   const StartEventId = "Event_" + getBpmnId();
   const flowId = "Flow_" + getBpmnId();
   const userTaskId = "Activity_" + getBpmnId();
+  const processId = "Process_" + getBpmnId();
   return {
+    processData: {
+      type: "process",
+      key: processId,
+      properties: {}
+    },
     flowElementList: [
       {
         incoming: [],
         outgoing: [flowId],
-        dockers: [],
         type: "startEvent",
+        key: StartEventId,
         properties: {
           name: "开始",
           x: 160,
@@ -20,27 +26,25 @@ export function defaultGraphData() {
             y: 280,
             value: "开始"
           }
-        },
-        key: StartEventId
+        }
       },
       {
         incoming: [flowId],
         outgoing: [],
-        dockers: [],
         type: "userTask",
+        key: userTaskId,
         properties: {
           name: "",
           x: 290,
           y: 240,
           text: ""
-        },
-        key: userTaskId
+        }
       },
       {
         incoming: [StartEventId],
         outgoing: [userTaskId],
         type: "sequenceFlow",
-        dockers: [],
+        key: flowId,
         properties: {
           name: "",
           text: "",
@@ -50,8 +54,7 @@ export function defaultGraphData() {
             { x: 178, y: 240 },
             { x: 240, y: 240 }
           ]
-        },
-        key: flowId
+        }
       }
     ]
   };

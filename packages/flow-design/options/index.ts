@@ -42,24 +42,24 @@ export const defaultGroup: AvueFormGroup[] = [{ label: "基本配置", prop: "ba
 export const defaultOptions: Record<string, AvueFormGroup[]> = {
   startEvent: [
     { label: "基本配置", prop: "base", column: baseColumn },
-    // { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
+    { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
   ],
   endEvent: [
     { label: "基本配置", prop: "base", column: baseColumn },
-    // { label: "表单配置", prop: "formproperty", collapse: false, column: formpropertyColumn },
-    { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
-    // { label: "执行监听", prop: "executionListener", collapse: false, column: executionListenerColumn }
+    { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
+    { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn },
+    { label: "执行监听", prop: "executionListener", collapse: false, column: executionListenerColumn }
   ],
   userTask: [
     { label: "基本配置", prop: "base", column: [...baseColumn, ...userTaskColumn] },
-    // { label: "人员配置", prop: "assignee", collapse: true, column: assigneeColumn },
+    { label: "人员配置", prop: "assignee", collapse: true, column: assigneeColumn },
     { label: "多实例配置", prop: "multiInstance", collapse: false, column: multiInstanceColumn },
-    // { label: "按钮配置", prop: "button", collapse: false, column: buttonColumn },
-    // { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
-    // { label: "任务监听", prop: "taskListener", collapse: false, column: taskListenerColumn },
-    // { label: "执行监听", prop: "executionListener", collapse: false, column: executionListenerColumn },
-    // { label: "时限控制", prop: "timelimit", collapse: false, column: timeLimitColumn },
+    { label: "按钮配置", prop: "button", collapse: false, column: buttonColumn },
+    { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
+    { label: "任务监听", prop: "taskListener", collapse: false, column: taskListenerColumn },
+    { label: "执行监听", prop: "executionListener", collapse: false, column: executionListenerColumn },
+    { label: "时限控制", prop: "timelimit", collapse: false, column: timeLimitColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
   ],
   serviceTask: [
@@ -76,11 +76,11 @@ export const defaultOptions: Record<string, AvueFormGroup[]> = {
     { label: "基本配置", prop: "base", column: baseColumn },
     { label: "网关配置", prop: "base", column: gatewayColumn }
   ],
-  // process: [
-  //   { label: "流程配置", prop: "base", column: processColumn },
-  //   { label: "流水号配置", prop: "serial", collapse: true, column: serialColumn },
-  //   { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
-  // ],
+  process: [
+    { label: "流程配置", prop: "base", column: processColumn },
+    { label: "流水号配置", prop: "serial", collapse: true, column: serialColumn },
+    { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
+  ],
   // subProcess: [
   //   { label: "基本配置", prop: "base", column: baseColumn },
   //   { label: "人员配置", prop: "assignee", collapse: true, column: assigneeColumn },

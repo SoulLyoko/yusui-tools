@@ -14,16 +14,19 @@ export function useModelerListener({
   formOptions
 }: ModelerState) {
   async function selectElement({ data }: any = { data: undefined }) {
-    if (!data) {
-      elementData!.value = undefined;
-      formOption.value.group = [];
-      formData.value = {};
-      return;
+    const processNode = lf.value?.graphModel.nodes.find(node => node.type === "process");
+    if (!data && processNode?.id) {
+      // elementData!.value = undefined;
+      // formOption.value.group = [];
+      // formData.value = {};
+      // return;
+      data = lf.value?.getNodeDataById(processNode.id);
     }
-    lf.value?.selectElementById(data.id);
+    if (data?.id === elementData.value?.id) return;
+    // lf.value?.selectElementById(data.id);
     formLoading.value = true;
-    elementData!.value = data;
-    formOption.value.group = formOptions?.value![data.type] ?? defaultGroup;
+    elementData.value = data;
+    formOption.value.group = formOptions.value?.[data.type] ?? defaultGroup;
     formData.value = { ...data.properties, id: data.id, name: data.text?.value || "" };
     await nextTick();
     formLoading.value = false;

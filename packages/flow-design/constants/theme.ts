@@ -22,5 +22,8 @@ export const defaultTheme = {
       stroke: "transparent",
       radius: 3
     }
+  },
+  nodeText: {
+    overflowMode: "autoWrap"
   }
 };

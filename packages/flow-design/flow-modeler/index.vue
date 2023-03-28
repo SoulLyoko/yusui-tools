@@ -77,7 +77,9 @@ onMounted(() => {
     graphData,
     val => {
       const eq = isEqual(val, lf.value?.getGraphData());
-      !eq && lf.value?.render(val);
+      if (eq) return;
+      lf.value?.render(val);
+      lf.value?.emit("element:click", {});
     },
     { immediate: true }
   );
