@@ -1,10 +1,12 @@
 import type { AvueFormOption } from "@smallwei/avue";
 import type { ModelerProps } from "../types";
 
-import { ref } from "vue";
+import { ref, inject, provide } from "vue";
 import { useVModels } from "@vueuse/core";
 
-export function useModelerState(props: ModelerProps) {
+export const injectionKey = Symbol("modelerState");
+
+export function useProvideModelerState(props: ModelerProps) {
   const vModels = useVModels(props, undefined, { passive: true });
   const { lf, modelValue: graphData, elementData, formData, formOptions } = vModels as Required<typeof vModels>;
   const formLoading = ref(false);
@@ -29,5 +31,11 @@ export function useModelerState(props: ModelerProps) {
     onUpdateFormData
   };
 
+  provide(injectionKey, state);
+
   return state;
+}
+
+export function useInjectModelerState() {
+  return inject<ReturnType<typeof useProvideModelerState>>(injectionKey)!;
 }

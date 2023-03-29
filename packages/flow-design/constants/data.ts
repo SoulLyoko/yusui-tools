@@ -1,10 +1,10 @@
 import { getBpmnId } from "@logicflow/extension/es/bpmn/getBpmnId";
 
 export function defaultGraphData() {
+  const processId = "Process_" + getBpmnId();
   const StartEventId = "Event_" + getBpmnId();
   const flowId = "Flow_" + getBpmnId();
   const userTaskId = "Activity_" + getBpmnId();
-  const processId = "Process_" + getBpmnId();
   return {
     processData: {
       type: "process",
@@ -34,10 +34,14 @@ export function defaultGraphData() {
         type: "userTask",
         key: userTaskId,
         properties: {
-          name: "",
+          name: "发起人",
           x: 290,
           y: 240,
-          text: ""
+          text: {
+            x: 290,
+            y: 240,
+            value: "发起人"
+          }
         }
       },
       {

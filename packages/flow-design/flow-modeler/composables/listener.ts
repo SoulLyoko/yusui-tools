@@ -11,9 +11,10 @@ export function useModelerListener({
   formData,
   formLoading,
   formOption,
-  formOptions
+  formOptions,
+  editorVisible
 }: ModelerState) {
-  async function selectElement({ data }: any = { data: undefined }) {
+  async function selectElement({ data, isForce } = { data: undefined as any, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === "process");
     if (!data && processNode?.id) {
       // elementData!.value = undefined;
@@ -22,7 +23,7 @@ export function useModelerListener({
       // return;
       data = lf.value?.getNodeDataById(processNode.id);
     }
-    if (data?.id === elementData.value?.id) return;
+    if (data?.id === elementData.value?.id && !isForce) return;
     // lf.value?.selectElementById(data.id);
     formLoading.value = true;
     elementData.value = data;
@@ -37,5 +38,8 @@ export function useModelerListener({
   lf.value?.on("node:delete", () => selectElement());
   lf.value?.on("history:change", () => {
     graphData.value = lf.value?.getGraphData();
+  });
+  lf.value?.on("custom:edit-click", () => {
+    editorVisible.value = true;
   });
 }

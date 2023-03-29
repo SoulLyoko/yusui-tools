@@ -1,4 +1,5 @@
 import { id, name, desc } from "./base";
+import FlowNodeSelect from "../flow-modeler/components/flow-node-select.vue";
 
 export const processId = { ...id, label: "流程标识" };
 export const processName = { ...name, label: "流程名称" };
@@ -10,18 +11,15 @@ export const processSkipFirstNode = {
   prop: "skipFirstNode",
   type: "switch",
   labelWidth: 100,
-  value: "true",
-  dicData: [
-    { label: "否", value: "false" },
-    { label: "是", value: "true" }
-  ]
+  value: true
 };
 export const processRollbackNode = {
   label: "默认驳回节点",
   prop: "rollbackNode",
   type: "select",
   labelWidth: 100,
-  params: { filterType: "bpmn:UserTask" }
+  component: FlowNodeSelect,
+  params: { filterType: "userTask" }
 };
 
 export const processColumn = [

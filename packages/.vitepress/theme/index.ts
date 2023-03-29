@@ -26,9 +26,7 @@ export default {
         await import("@yusui/flow-design").then(module => app.component("FlowViewer", module.FlowViewer));
         await import("@yusui/flow-design").then(module => app.component("FlowModeler", module.FlowModeler));
         await import("@yusui/form-design").then(module => app.component("FormDesign", module.FormDesign));
-        await import("@yusui/flow-pages").then(module => app.component("FlowTemplate", module.FlowTemplate));
-        await import("@yusui/flow-pages").then(module => app.component("FormTemplate", module.FormTemplate));
-        await import("@yusui/flow-pages").then(module => app.component("FlowManage", module.FlowManage));
+        await import("@yusui/flow-pages").then(module => app.use(module.default));
       }
     });
   }

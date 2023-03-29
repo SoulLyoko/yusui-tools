@@ -24,6 +24,6 @@ export const defaultTheme = {
     }
   },
   nodeText: {
-    overflowMode: "autoWrap"
+    // overflowMode: "autoWrap" // 会导致节点很难点击
   }
 };
