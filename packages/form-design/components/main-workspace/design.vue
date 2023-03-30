@@ -64,7 +64,7 @@ const { activeElement, hoverElement, formOption, setActiveElement, recordHistory
 
 function getItemOption(element: ElementTreeNode): AvueFormOption {
   const common = { ...cloneDeep(formOption.value), span: 24, menuBtn: false };
-  const designOption = getResource(element.name)?.designOption;
+  const { designOption } = getResource(element.name) ?? {};
   if (typeof designOption === "object") {
     return { ...common, ...designOption };
   } else if (typeof designOption === "function") {
@@ -72,7 +72,7 @@ function getItemOption(element: ElementTreeNode): AvueFormOption {
   } else {
     const column = [];
     if (element.props) {
-      column.push(omitBy(element.props, isFunction));
+      column.push({ ...omitBy(element.props, isFunction), span: 24 });
     }
     return { ...common, column };
   }

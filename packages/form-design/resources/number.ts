@@ -52,7 +52,7 @@ export const number: Resource = {
       type: "radio",
       button: true,
       dicData: [
-        { label: "默认", value: "default" },
+        { label: "两边", value: "default" },
         { label: "右", value: "right" }
       ]
     },

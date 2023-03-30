@@ -52,8 +52,8 @@ function handleDel(data: FormItemRule, index: number) {
 }
 
 const whetherDic = [
-  { label: "是", value: true },
-  { label: "否", value: false }
+  { label: "否", value: false },
+  { label: "是", value: true }
 ];
 
 const ruleItemOption = {
@@ -97,7 +97,8 @@ const ruleItemOption = {
     {
       label: "是否必填",
       prop: "required",
-      type: "select",
+      type: "radio",
+      button: true,
       dicData: whetherDic
     },
     {
@@ -132,7 +133,8 @@ const ruleItemOption = {
     {
       label: "禁止空白符",
       prop: "whitespace",
-      type: "select",
+      type: "radio",
+      button: true,
       dicData: whetherDic
     },
     {

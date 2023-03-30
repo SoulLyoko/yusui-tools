@@ -15,7 +15,7 @@ export const dynamic: Resource = {
   designOption: element => {
     const { label, prop } = element.props ?? {};
     return {
-      column: [{ label, prop, labelPosition: "top", type: "text" }]
+      column: [{ label, prop, type: "text" }]
     };
   },
   props: { type: "dynamic", label: "子表单", children: { column: [] } },

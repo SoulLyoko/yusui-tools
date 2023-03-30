@@ -120,7 +120,7 @@ export const dic: Resource["settings"] = [
   desc: "desc",
   disabled: "disabled",
   children: "children",
-  res: "res"
+  res: ""
 }`
   },
   {
