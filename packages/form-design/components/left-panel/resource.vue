@@ -1,8 +1,8 @@
 <template>
   <div class="resource-list">
     <el-input v-model="searchValue" suffix-icon="el-icon-search" placeholder="搜索组件"></el-input>
-    <el-collapse :model-value="resourceList.map(e => e.label)">
-      <el-collapse-item v-for="group in resourceList" :key="group.label" :title="group.label" :name="group.label">
+    <el-collapse :model-value="resourcesList.map(e => e.label)">
+      <el-collapse-item v-for="group in resourcesList" :key="group.label" :title="group.label" :name="group.label">
         <Draggable
           :list="group.children"
           :group="{ name: 'components', pull: 'clone', put: false }"
@@ -31,31 +31,31 @@ import Draggable from "vuedraggable";
 import { useInjectState } from "../../composables";
 import { checkRules, cloneItem } from "../../utils";
 
-const { resources, elementTree, workType, setActiveElement, recordHistory, getResource } = useInjectState();
+const { groupList, resources, elementTree, workType, setActiveElement, recordHistory, getResource } = useInjectState();
 
 const searchValue = ref("");
-const resourceList = computed(() => {
-  const filters = resources.value.filter(e => {
+const resourcesList = computed(() => {
+  const filters = Object.values(resources.value).filter(e => {
     const { name, title, keywords } = e;
     const searchKeys = [name, title, keywords].filter(e => e).join(",");
-    return searchKeys?.includes(searchValue.value);
+    return !e.disabled && searchKeys?.includes(searchValue.value);
   });
-  const groups = filters.map(e => e.group).filter(e => e);
-  const groupsSet = [...new Set(groups)];
-  return groupsSet.map(group => {
-    return {
-      label: group,
-      children: filters
-        .filter(e => e.group === group)
-        .map((e, i) => {
-          return {
-            ...e,
-            priority: e.priority ?? i
-          };
-        })
-        .sort((a, b) => a.priority - b.priority)
-    };
-  });
+  return groupList.value
+    .map(group => {
+      return {
+        label: group,
+        children: filters
+          .filter(e => e.group === group)
+          .map((e, i) => {
+            return {
+              ...e,
+              priority: e.priority ?? i
+            };
+          })
+          .sort((a, b) => a.priority - b.priority)
+      };
+    })
+    .filter(e => e.children.length);
 });
 
 function addElement(element: Resource) {

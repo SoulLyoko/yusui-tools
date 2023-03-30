@@ -29,7 +29,8 @@ import MainHeader from "./components/main-header/index.vue";
 
 const props = defineProps<{
   modelValue?: AvueFormOption;
-  resources?: Resource[];
+  groupList?: string[];
+  resources?: Record<string, Resource>;
   baseOption?: AvueFormColumn & AvueFormGroup;
   advanceOption?: AvueFormColumn & AvueFormGroup;
   leftWidth?: string;

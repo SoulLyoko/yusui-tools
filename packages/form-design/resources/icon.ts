@@ -1,16 +1,7 @@
 import type { Resource } from "../types";
 
-import * as icons from "@element-plus/icons-vue";
-import { kebabCase } from "lodash-unified";
-
+import { iconList } from "../options";
 import { EditorSetter } from "../setters";
-
-export const iconList = [
-  {
-    label: "基本图标",
-    list: Object.keys(icons).map(e => `el-icon-${kebabCase(e)}`)
-  }
-];
 
 export const icon: Resource = {
   name: "icon",

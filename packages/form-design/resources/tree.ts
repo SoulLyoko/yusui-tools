@@ -1,8 +1,7 @@
 import type { Resource } from "../types";
 
-import { dic } from "../options";
+import { dic, iconList } from "../options";
 import { EditorSetter, DicTreeSetter } from "../setters";
-import { iconList } from "./icon";
 
 export const tree: Resource = {
   name: "tree",

@@ -1,7 +1,6 @@
 import type { Resource } from "../types";
 
-import { dic } from "../options";
-import { iconList } from "./icon";
+import { dic, iconList } from "../options";
 import { EditorSetter } from "../setters";
 
 export const select: Resource = {

@@ -3,11 +3,11 @@ import type { ElementTreeNode, Resource, History, Props, Emit, HistoryType } fro
 
 import { ref, computed, provide, inject, watch } from "vue";
 import { useVModels } from "@vueuse/core";
-import { cloneDeep, isEqual, omit } from "lodash-unified";
+import { cloneDeep, isEqual, omit, merge } from "lodash-unified";
 
-import defaultResources from "../resources";
+import * as defaultResources from "../resources";
 import { adapterIn, adapterOut } from "../utils";
-import { base as defaultBaseOption, advance as defaultAdvanceOption } from "../options";
+import { base as defaultBaseOption, advance as defaultAdvanceOption, groupList as defaultGroupList } from "../options";
 
 const injectKey = Symbol("form-design-state");
 
@@ -15,10 +15,8 @@ export function useProvideState(props: Props, emit: Emit) {
   const vModels = useVModels(props);
   const { modelValue } = vModels as Required<typeof vModels>;
 
-  const resources = computed(() => props.resources || defaultResources);
-  const resourcesMap = computed<Record<string, Resource>>(() =>
-    Object.fromEntries(resources.value.map(item => [item.name, item]))
-  );
+  const groupList = computed(() => props.groupList || defaultGroupList);
+  const resources = computed<Record<string, Resource>>(() => merge({ ...defaultResources }, props.resources));
   const baseOption = computed(() => props.baseOption || defaultBaseOption);
   const advanceOption = computed(() => props.advanceOption || defaultAdvanceOption);
 
@@ -58,7 +56,7 @@ export function useProvideState(props: Props, emit: Emit) {
 
   function getResource(name?: string) {
     if (name) {
-      return resourcesMap.value[name];
+      return resources.value[name];
     } else {
       return;
     }
@@ -95,8 +93,8 @@ export function useProvideState(props: Props, emit: Emit) {
   }
 
   const state = {
+    groupList,
     resources,
-    resourcesMap,
     elementTree,
     activeElement,
     hoverElement,

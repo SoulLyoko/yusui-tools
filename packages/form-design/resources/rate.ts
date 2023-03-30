@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
+import { iconList } from "../options";
 import { EditorSetter } from "../setters";
-import { iconList } from "./icon";
 
 export const rate: Resource = {
   name: "rate",

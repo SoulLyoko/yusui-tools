@@ -1,7 +1,6 @@
 import type { Resource } from "../types";
 
-import { iconList } from "../resources/icon";
-import { positionDic } from "../options";
+import { positionDic, iconList } from "../options";
 
 export const form: Resource = {
   name: "form",

@@ -38,6 +38,8 @@ export interface Resource {
   isContainer?: boolean;
   /** 设计面板渲染配置 */
   designOption?: AvueFormOption | ((element: ElementTreeNode) => AvueFormOption);
+  /** 禁用组件，将不会出现在组件面板中 */
+  disabled?: boolean;
   /** 设计面板中禁用复制、删除等动作 */
   disabledActions?: DesignAction[];
   /** 属性面板中禁用的设置 */

@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { iconList } from "./icon";
+import { iconList } from "../options";
 import { EditorSetter } from "../setters";
 
 export const input: Resource = {

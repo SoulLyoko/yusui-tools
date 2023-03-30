@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { iconList } from "./icon";
+import { iconList } from "../options";
 
 export const password: Resource = {
   name: "password",
