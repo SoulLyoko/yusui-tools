@@ -28,7 +28,7 @@ import { getFlowDetail, startFlow, commitTask } from "../api/flow-task";
 import InternalForm from "./components/internal-form.vue";
 
 const props = defineProps<{
-  flowDeployId?: string;
+  flowKey?: string;
   visible?: boolean;
   flowDetail?: FlowDetail;
   processDetail?: ProcessDetail;
@@ -55,14 +55,13 @@ function clear(done?: () => void) {
 }
 
 watchEffect(() => {
-  const { flowDeployId } = props;
-  if (!flowDeployId) return;
+  const { flowKey } = props;
+  if (!flowKey) return;
   if (!visible.value) return;
   clear();
   loading.value = true;
-  getFlowDetail({ flowDeployId })
+  getFlowDetail({ flowKey })
     .then(res => {
-      console.log("🚀 ~ file: index.vue:23 ~ getFlowDetail ~ res:", res);
       flowDetail.value = res.data;
       processDetail.value = res.data.process;
       formData.value = res.data.formData || {};

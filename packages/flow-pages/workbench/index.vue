@@ -4,7 +4,7 @@
       {{ item.flowName }}
     </el-button>
   </div>
-  <FlowForm v-model:visible="flowFormVisible" :flowDeployId="flowDeployId"></FlowForm>
+  <FlowForm v-model:visible="flowFormVisible" :flowKey="flowKey"></FlowForm>
 </template>
 
 <script setup lang="ts">
@@ -20,9 +20,9 @@ getPublishFlow().then(res => {
 });
 
 const flowFormVisible = ref(false);
-const flowDeployId = ref("");
+const flowKey = ref("");
 function startFlow(item: FlowDeploy) {
-  flowDeployId.value = item.flowDeployId!;
+  flowKey.value = item.flowKey!;
   flowFormVisible.value = true;
 }
 </script>

@@ -7,25 +7,21 @@ import { request } from ".";
  */
 export interface FlowDetail {
   /**
-   * 下一个节点审核人员
-   */
-  assignee?: { [key: string]: any };
-  /**
    * 流转记录
    */
-  flowHistory?: { [key: string]: any };
+  flowHistory?: Record<string, any>[];
   /**
    * 当前表单数据
    */
-  formData?: { [key: string]: any };
-  /**
-   * 当前节点配置（含按钮配置、表单配置）
-   */
-  nodeConfig?: { [key: string]: any };
+  formData?: Record<string, any>;
   /**
    * 流程信息
    */
   process?: ProcessDetail;
+  /**
+   * 当前节点配置（含按钮配置、表单配置）
+   */
+  properties?: Record<string, any>;
 }
 
 /**
