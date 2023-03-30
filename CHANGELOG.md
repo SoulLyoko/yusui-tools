@@ -1,3 +1,21 @@
+# [2.0.0-beta.12](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2023-03-30)
+
+
+### Bug Fixes
+
+* **durationFormat:** receive empty data ([a3ebcd5](https://github.com/SoulLyoko/yusui-tools/commit/a3ebcd5157ba5bb19e19e0c70f5a86e9762a9db3))
+* **form-design:** switch type value ([392505f](https://github.com/SoulLyoko/yusui-tools/commit/392505fb5f93d695aeec4b4a2d9552bd2982c14e))
+
+
+### Features
+
+* **flow-design:** process ([8c84045](https://github.com/SoulLyoko/yusui-tools/commit/8c840458edcd281d5793f99c0bf6359403908b12))
+* **flow-pages:** workbench,flow-form ([10e60c0](https://github.com/SoulLyoko/yusui-tools/commit/10e60c03d6f8921882d710be50a384c2194faef7))
+* **form-design:** menu addNode ([b564bd9](https://github.com/SoulLyoko/yusui-tools/commit/b564bd9c3ae6d2059da2f78f17b7fc61ec3c29af))
+* **plugins:** avue-path fixDicGetResData ([45ed03c](https://github.com/SoulLyoko/yusui-tools/commit/45ed03cf3f49f62e528e8fa0aaed0e1e7ee9d543))
+
+
+
 # [2.0.0-beta.11](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2023-03-24)
 
 

@@ -83,7 +83,10 @@ onMounted(() => {
   watch(
     graphData,
     val => {
-      const eq = isEqual(val, lf.value?.getGraphData());
+      // const eq = isEqual(val, lf.value?.getGraphData());
+      const newVal = JSON.stringify(val);
+      const oldVal = JSON.stringify(lf.value?.getGraphData());
+      const eq = newVal === oldVal;
       if (eq) return;
       lf.value?.render(val);
       lf.value?.emit("element:click", { isForce: true });
