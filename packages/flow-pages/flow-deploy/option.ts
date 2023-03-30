@@ -1,6 +1,8 @@
 import type { AvueCrudOption } from "@smallwei/avue";
 import type { FlowDeploy } from "../api/flow-deploy";
 
+import { formOption } from "../components/design-steps/option";
+
 export const tableOption: AvueCrudOption<FlowDeploy> = {
   rowKey: "flowDeloyId",
   align: "center",
@@ -15,18 +17,7 @@ export const tableOption: AvueCrudOption<FlowDeploy> = {
   delBtn: false,
   menuWidth: 250,
   column: [
-    {
-      label: "流程名称",
-      prop: "flowName"
-    },
-    {
-      label: "流程KEY",
-      prop: "flowKey"
-    },
-    {
-      label: "流程分类",
-      prop: "groupId"
-    },
+    ...(formOption.column! as any),
     {
       label: "流程版本",
       prop: "version",

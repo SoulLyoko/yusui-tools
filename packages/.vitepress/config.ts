@@ -84,7 +84,8 @@ export default defineConfig({
             { text: "开始", link: "/flow-pages/index" },
             { text: "表单模板", link: "/flow-pages/form-template/index" },
             { text: "流程模板", link: "/flow-pages/flow-template/index" },
-            { text: "流程设计", link: "/flow-pages/flow-manage/index" }
+            { text: "流程设计", link: "/flow-pages/flow-manage/index" },
+            { text: "工作台", link: "/flow-pages/workbench/index" }
           ]
         }
       ],
@@ -172,7 +173,7 @@ export default defineConfig({
     },
     server: {
       proxy: {
-        "/sapier-flow": "http://flow.frp.71ic.com"
+        "/sapier-flow": "http://192.168.1.188:9922"
       }
     }
   }

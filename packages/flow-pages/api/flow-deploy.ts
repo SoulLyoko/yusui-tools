@@ -25,3 +25,7 @@ export function getDetail(params: { flowModuleId?: string; flowDeployId?: string
 export function update(data: FlowDeploy) {
   return request.post("/sapier-flow/flow-deploy/update", data);
 }
+
+export function getPublishFlow() {
+  return request.get<ResData<FlowDeploy[]>>("/sapier-flow/flow-run/queryPublishFlowList");
+}

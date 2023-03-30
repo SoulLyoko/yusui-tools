@@ -31,6 +31,8 @@ export interface FlowDefinition {
    * 分组ID
    */
   groupId?: string;
+  /** 图标 */
+  icon?: string;
   /**
    * 流程备注
    */

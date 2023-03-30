@@ -48,7 +48,7 @@ watchEffect(() => {
 
 const loading = ref(false);
 async function handleDeploy(row: FlowDefinition) {
-  await ElMessageBox.confirm("发布新版本，是否确认？", "提示");
+  await ElMessageBox.confirm("发布新版本，是否确认？", "提示", { type: "success" });
   loading.value = true;
   deploy({ flowModuleId: row.flowModuleId })
     .then(() => {

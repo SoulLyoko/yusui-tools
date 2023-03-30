@@ -10,7 +10,7 @@ export const tableOption: AvueCrudOption<FlowTemplate> = {
   searchMenuSpan: 4,
   span: 24,
   column: [
-    { label: "流程KEY", prop: "flowKey" },
+    { label: "流程标识", prop: "flowKey" },
     { label: "流程名称", prop: "flowName" },
     { label: "流程模型数据", prop: "flowData", display: false },
     { label: "流程备注", prop: "remarks" },

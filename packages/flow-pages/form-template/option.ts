@@ -10,7 +10,7 @@ export const tableOption: AvueCrudOption<FormTemplate> = {
   searchMenuSpan: 4,
   span: 24,
   column: [
-    { label: "表单KEY", prop: "formKey" },
+    { label: "表单标识", prop: "formKey" },
     { label: "表单名称", prop: "formName" },
     { label: "表单配置", prop: "formOption", display: false },
     { label: "表单备注", prop: "remarks" },

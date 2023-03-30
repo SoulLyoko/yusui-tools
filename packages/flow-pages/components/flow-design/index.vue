@@ -17,12 +17,13 @@ const emit = defineEmits(["update:modelValue"]);
 
 const graphData = computed({
   get() {
+    let getter = defaultGraphData();
     if (typeof props.modelValue === "string" && props.modelValue) {
-      return props.modelValue ? JSON.parse(props.modelValue) : defaultGraphData();
-    } else if (typeof props.modelValue === "object") {
-      return Object.keys(props.modelValue) ? props.modelValue : defaultGraphData();
+      getter = JSON.parse(props.modelValue);
+    } else if (typeof props.modelValue === "object" && Object.keys(props.modelValue)) {
+      getter = props.modelValue;
     }
-    return defaultGraphData();
+    return getter;
   },
   set(val) {
     emit("update:modelValue", JSON.stringify(val));

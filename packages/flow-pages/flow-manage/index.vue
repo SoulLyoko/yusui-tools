@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FlowCategory } from "../components/category-tree/option";
+import type { FlowCategory } from "../api/flow-category";
 import type { FlowDefinition } from "../api/flow-definition";
 import type { FlowDeploy } from "../api/flow-deploy";
 

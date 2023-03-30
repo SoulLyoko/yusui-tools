@@ -13,16 +13,18 @@
 <script setup lang="ts">
 import { useCrud } from "@yusui/composables";
 
+import { getList, create, update, remove } from "../../api/flow-category";
 import { treeOption } from "./option";
 
 const emit = defineEmits(["node-click"]);
 
 const crudOption = {
-  rowKey: "id"
-  // getList,
-  // create,
-  // update,
-  // remove,
+  rowKey: "id",
+  getList,
+  create,
+  update,
+  remove,
+  dataPath: "res.data"
 };
 const {
   crudStateRefs: { formData, tableData },

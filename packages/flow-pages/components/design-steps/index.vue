@@ -20,24 +20,22 @@
           </el-dropdown>
         </el-col>
         <el-col :span="14">
-          <el-steps :active="activeStep" simple>
-            <el-step title="流程信息" />
-            <el-step title="表单设计" />
-            <el-step title="模型设计" />
-            <el-step title="完成" />
+          <el-steps :active="activeStep" simple process-status="finish" finish-status="success">
+            <el-step v-for="(item, index) in steps" :key="index" :title="item" @click="saveAndNext(index)" />
           </el-steps>
         </el-col>
         <el-col :span="5" style="text-align: right">
           <el-button :disabled="activeStep === 0" :loading="loading" type="primary" @click="activeStep--">
             上一步
           </el-button>
-          <el-button :disabled="activeStep === 3" type="primary" :loading="loading" @click="saveAndNext">
+          <el-button :disabled="activeStep === steps.length - 1" type="primary" :loading="loading" @click="saveAndNext">
             下一步
           </el-button>
           <el-button @click="handleClose">关闭</el-button>
         </el-col>
       </el-row>
     </template>
+
     <div v-loading="loading" style="height: calc(100vh - 144px)">
       <avue-form
         v-if="activeStep === 0"
@@ -89,6 +87,8 @@ const emit = defineEmits(["close"]);
 const vModels = useVModels(props);
 const { visible, modelValue: formData } = vModels as Required<typeof vModels>;
 
+const steps = ["流程信息", "表单设计", "模型设计", "完成"];
+
 const loading = ref(false);
 watch(
   visible,
@@ -115,10 +115,8 @@ watch(
 const formTemplates = ref<any[]>([]);
 const flowTemplates = ref<any[]>([]);
 getFormTemplateList({ size: -1 }).then(res => (formTemplates.value = res.data.records));
-getFlowTemplateList({ size: -1 }).then(res => (formTemplates.value = res.data.records));
+getFlowTemplateList({ size: -1 }).then(res => (flowTemplates.value = res.data.records));
 const activeStep = ref(0);
-// const { data: formTemplates } = useFormTemplates();
-// const { data: flowTemplates } = useFlowTemplates();
 const templatesDic = computed(() => {
   if (activeStep.value === 1) {
     return formTemplates.value?.map(e => ({ label: e.formName, value: e.formOption })) ?? [];
@@ -137,7 +135,7 @@ function selectTemplate(item: (typeof templatesDic.value)[number]) {
 }
 
 const formRef = ref<AvueFormInstance>();
-async function saveAndNext() {
+async function saveAndNext(step?: number) {
   if (activeStep.value === 0) {
     await asyncValidate(formRef);
   }
@@ -158,7 +156,12 @@ async function saveAndNext() {
   } finally {
     loading.value = false;
   }
-  activeStep.value++;
+
+  if (typeof step === "number") {
+    activeStep.value = step;
+  } else {
+    activeStep.value++;
+  }
 }
 
 async function handleDeploy() {
