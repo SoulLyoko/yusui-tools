@@ -1,3 +1,13 @@
+# [2.0.0-beta.13](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2023-03-30)
+
+
+### Bug Fixes
+
+* **flow-pages:** flow-form flowKey ([1b827a8](https://github.com/SoulLyoko/yusui-tools/commit/1b827a8fbecdf038fa332d24437f3d926d0bf04c))
+* **form-design:** tree ([2a3f69e](https://github.com/SoulLyoko/yusui-tools/commit/2a3f69e1a67b40c9a6835e44b91451a7778ac224))
+
+
+
 # [2.0.0-beta.12](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2023-03-30)
 
 
