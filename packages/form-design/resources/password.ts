@@ -31,7 +31,7 @@ export const password: Resource = {
       prop: "showPassword",
       type: "switch",
       labelWidth: 130,
-      value: false
+      modelValue: false
     }
   ]
 };

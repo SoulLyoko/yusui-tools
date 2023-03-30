@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
 import { EditorSetter } from "../setters";
+import { iconList } from "./icon";
 
 export const rate: Resource = {
   name: "rate",
@@ -13,26 +14,26 @@ export const rate: Resource = {
       label: "是否允许半选",
       prop: "allowHalf",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "最大分值",
       prop: "max",
       type: "number",
-      value: 5
+      modelValue: 5
     },
     {
       label: "低分界限值",
       prop: "lowThreshold",
       type: "number",
-      value: 2,
+      modelValue: 2,
       labelTip: "低分和中等分数的界限值，值本身被划分在低分中"
     },
     {
       label: "高分界限值",
       prop: "highThreshold",
       type: "number",
-      value: 4,
+      modelValue: 4,
       labelTip: "高分和中等分数的界限值，值本身被划分在高分中"
     },
     {
@@ -47,11 +48,13 @@ export const rate: Resource = {
     },
     {
       label: "未选中颜色",
-      prop: "voidColor"
+      prop: "voidColor",
+      type: "color"
     },
     {
       label: "未选颜色(禁用)",
       prop: "disabledVoidColor",
+      type: "color",
       labelWidth: 110
     },
     {
@@ -66,18 +69,22 @@ export const rate: Resource = {
     },
     {
       label: "未选中图标",
-      prop: "voidIcon"
+      prop: "voidIcon",
+      type: "icon",
+      iconList
     },
     {
       label: "未选图标(禁用)",
       prop: "disabledVoidIcon",
+      type: "icon",
+      iconList,
       labelWidth: 110
     },
     {
       label: "显示辅助文字",
       prop: "showText",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       labelTip: "是否显示辅助文字，若为是，则会从 辅助文字数组 中选取当前分数对应的文字内容"
     },
@@ -85,7 +92,7 @@ export const rate: Resource = {
       label: "显示当前分数",
       prop: "showScore",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       labelTip: "是否显示当前分数，当前分数 和 辅助文字 不能同时显示"
     },

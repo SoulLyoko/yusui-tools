@@ -11,7 +11,7 @@ export const color: Resource = {
       label: "支持透明度选择",
       prop: "showAlpha",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120
     },
     {

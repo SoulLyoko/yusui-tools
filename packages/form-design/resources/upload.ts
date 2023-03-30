@@ -35,7 +35,7 @@ export const upload: Resource = {
       label: "是否支持多选",
       prop: "multiple",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "额外参数",
@@ -49,19 +49,19 @@ export const upload: Resource = {
       label: "显示文件列表",
       prop: "showFileList",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "拖拽排序",
       prop: "drag",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "拖拽上传",
       prop: "dragFile",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "接受上传类型",

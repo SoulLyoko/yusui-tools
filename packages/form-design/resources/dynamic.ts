@@ -58,31 +58,31 @@ export const dynamic: Resource = {
             label: "显示新增按钮",
             prop: "addBtn",
             type: "switch",
-            value: true
+            modelValue: true
           },
           {
             label: "显示删除按钮",
             prop: "delBtn",
             type: "switch",
-            value: true
+            modelValue: true
           },
           {
             label: "显示表头",
             prop: "showHeader",
             type: "switch",
-            value: true
+            modelValue: true
           },
           {
             label: "表格边框",
             prop: "border",
             type: "switch",
-            value: true
+            modelValue: true
           },
           {
             label: "斑马纹",
             prop: "stripe",
             type: "switch",
-            value: false
+            modelValue: false
           },
           {
             label: "表头对齐方式",
@@ -101,8 +101,7 @@ export const dynamic: Resource = {
           {
             label: "显示序号",
             prop: "index",
-            type: "switch",
-            value: ""
+            type: "switch"
           },
           {
             label: "表单项栅格",

@@ -41,8 +41,8 @@ export const dic: Resource["settings"] = [
     ],
     value: "static",
     control(dicType, form) {
-      const isStatic = dicType === "static";
       const isRemote = dicType === "remote";
+      const isStatic = dicType === "static";
       if (isStatic) {
         form.dicUrl = undefined;
         form.dicMethod = undefined;

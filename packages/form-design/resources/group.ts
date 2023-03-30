@@ -30,13 +30,13 @@ export const group: Resource = {
       label: "是否默认展开",
       prop: "collapse",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "是否显示箭头",
       prop: "arrow",
       type: "switch",
-      value: true
+      modelValue: true
     }
   ]
 };

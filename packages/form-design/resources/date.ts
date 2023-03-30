@@ -48,13 +48,13 @@ export const date: Resource = {
       label: "是否可输入",
       prop: "editable",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "取消日期联动",
       prop: "unlinkPanels",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "禁用日期方法",

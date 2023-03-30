@@ -28,7 +28,7 @@ export const textarea: Resource = {
       label: "显示统计字数",
       prop: "showWordLimit",
       type: "switch",
-      value: false,
+      modelValue: false,
       tip: "仅在最大长度大于0时有效"
     },
     {

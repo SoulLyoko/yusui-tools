@@ -31,14 +31,14 @@ export const cascader: Resource = {
       label: "显示完整路径",
       prop: "showAllLevels",
       type: "switch",
-      value: true,
+      modelValue: true,
       labelWidth: 120
     },
     {
       label: "下拉框插入body",
       prop: "teleported",
       type: "switch",
-      value: true,
+      modelValue: true,
       labelWidth: 120
     },
     /** 多选 */
@@ -46,13 +46,13 @@ export const cascader: Resource = {
       label: "是否多选",
       prop: "multiple",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       control(multiple) {
         return {
-          tagType: { display: multiple },
-          tags: { display: multiple },
-          collapseTagsTooltip: { display: multiple }
+          tagType: { display: !!multiple },
+          tags: { display: !!multiple },
+          collapseTagsTooltip: { display: !!multiple }
         };
       }
     },
@@ -72,7 +72,7 @@ export const cascader: Resource = {
       label: "是否折叠标签",
       prop: "tags",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       labelTip: "多选模式下是否折叠Tag"
     },
@@ -80,7 +80,7 @@ export const cascader: Resource = {
       label: "悬停显示标签",
       prop: "collapseTagsTooltip",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       labelTip: "当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签"
     },
@@ -89,13 +89,13 @@ export const cascader: Resource = {
       label: "是否可搜索",
       prop: "filterable",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       control(filterable) {
         return {
-          debounce: { display: filterable },
-          filterMethod: { display: filterable },
-          beforeFilter: { display: filterable }
+          debounce: { display: !!filterable },
+          filterMethod: { display: !!filterable },
+          beforeFilter: { display: !!filterable }
         };
       }
     },
@@ -109,7 +109,6 @@ export const cascader: Resource = {
     {
       label: "搜索函数",
       prop: "filterMethod",
-      type: "switch",
       component: EditorSetter,
       valueType: "function",
       tooltip: true,
@@ -141,7 +140,7 @@ export const cascader: Resource = {
       label: "父子不关联",
       prop: "checkStrictly",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       labelTip: "是否严格的遵守父子节点不互相关联"
     },
@@ -149,7 +148,7 @@ export const cascader: Resource = {
       label: "返回完整路径",
       prop: "emitPath",
       type: "switch",
-      value: true,
+      modelValue: true,
       labelWidth: 120,
       labelTip: "在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值"
     },
@@ -157,12 +156,12 @@ export const cascader: Resource = {
       label: "动态加载节点",
       prop: "lazy",
       type: "switch",
-      value: false,
+      modelValue: false,
       labelWidth: 120,
       labelTip: "是否动态加载子节点，需与 lazyLoad 方法结合使用",
       control(lazy) {
         return {
-          lazyLoad: { display: lazy }
+          lazyLoad: { display: !!lazy }
         };
       }
     },

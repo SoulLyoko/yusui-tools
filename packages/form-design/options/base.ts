@@ -26,7 +26,6 @@ export const base: AvueFormOption & AvueFormGroup = {
       prop: "labelPosition",
       type: "radio",
       button: true,
-      value: "left",
       dicData: positionDic
     },
     {
@@ -93,31 +92,31 @@ export const base: AvueFormOption & AvueFormGroup = {
       label: "是否可清空",
       prop: "clearable",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "详情模式",
       prop: "detail",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "是否只读",
       prop: "readonly",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "是否禁用",
       prop: "disabled",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "是否可见",
       prop: "display",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "校验规则",
@@ -149,7 +148,7 @@ export const base: AvueFormOption & AvueFormGroup = {
       label: "超长省略",
       prop: "overHidden",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "表头对齐方式",
@@ -169,13 +168,13 @@ export const base: AvueFormOption & AvueFormGroup = {
       label: "是否可搜索",
       prop: "search",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "是否隐藏",
       prop: "hide",
       type: "switch",
-      value: false
+      modelValue: false
     }
   ]
 };

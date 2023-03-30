@@ -15,19 +15,19 @@ export const table: Resource = {
       label: "显示表头",
       prop: "showHeader",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "斑马纹",
       prop: "stripe",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "表格边框",
       prop: "border",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "表头对齐方式",
@@ -46,8 +46,7 @@ export const table: Resource = {
     {
       label: "显示序号",
       prop: "index",
-      type: "switch",
-      value: ""
+      type: "switch"
     },
     {
       label: "键值配置",

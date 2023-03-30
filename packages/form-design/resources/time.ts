@@ -62,26 +62,16 @@ export const time: Resource = {
       labelTip: "晚于该时间的时间段将被禁用"
     },
     {
-      label: "时间范围选择",
-      prop: "isRange",
-      type: "switch",
-      value: false,
-      control(val, form) {
-        form.type = val ? "timerange" : "time";
-        return {};
-      }
-    },
-    {
       label: "是否可输入",
       prop: "editable",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "使用箭头选择",
       prop: "arrowControl",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "禁用小时方法",
@@ -118,5 +108,5 @@ export const timerange: Resource = {
   title: "时间范围",
   icon: "el-icon-clock",
   group: "日期时间组件",
-  props: { type: "timerange", label: "时间范围", isRange: true }
+  props: { type: "timerange", label: "时间范围" }
 };

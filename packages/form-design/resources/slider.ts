@@ -29,25 +29,25 @@ export const slider: Resource = {
       label: "显示输入框",
       prop: "showInput",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "输入控制按钮",
       prop: "showInputControls",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "显示间断点",
       prop: "showStops",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "显示提示信息",
       prop: "showTooltip",
       type: "switch",
-      value: true
+      modelValue: true
     },
     {
       label: "提示信息类名",
@@ -71,13 +71,13 @@ export const slider: Resource = {
       label: "开启选择范围",
       prop: "range",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "垂直模式",
       prop: "vertical",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "滑块高度",

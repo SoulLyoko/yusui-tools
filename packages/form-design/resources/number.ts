@@ -27,7 +27,7 @@ export const number: Resource = {
       prop: "stepStrictly",
       type: "switch",
       labelWidth: 130,
-      value: false
+      modelValue: false
     },
     {
       label: "数值精度",
@@ -42,7 +42,7 @@ export const number: Resource = {
       value: true,
       control(controls) {
         return {
-          controlsPosition: { display: controls }
+          controlsPosition: { display: !!controls }
         };
       }
     },
@@ -51,7 +51,6 @@ export const number: Resource = {
       prop: "controlsPosition",
       type: "radio",
       button: true,
-      value: "default",
       dicData: [
         { label: "默认", value: "default" },
         { label: "右", value: "right" }

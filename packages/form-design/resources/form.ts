@@ -15,7 +15,6 @@ export const form: Resource = {
       prop: "labelPosition",
       type: "radio",
       button: true,
-      value: "left",
       dicData: positionDic
     },
     {
@@ -26,56 +25,7 @@ export const form: Resource = {
     },
     {
       label: "标签后缀",
-      prop: "labelSuffix",
-      value: "："
-    },
-    {
-      label: "显示提交按钮",
-      prop: "submitBtn",
-      type: "switch",
-      value: true,
-      control(submitBtn: boolean) {
-        return {
-          submitIcon: { display: submitBtn },
-          submitText: { display: submitBtn }
-        };
-      }
-    },
-    {
-      label: "提交按钮图标",
-      prop: "submitIcon",
-      type: "icon",
-      iconList,
-      value: "el-icon-check"
-    },
-    {
-      label: "提交按钮文字",
-      prop: "submitText",
-      value: "提交"
-    },
-    {
-      label: "显示清空按钮",
-      prop: "emptyBtn",
-      type: "switch",
-      value: true,
-      control(emptyBtn: boolean) {
-        return {
-          emptyIcon: { display: emptyBtn },
-          emptyText: { display: emptyBtn }
-        };
-      }
-    },
-    {
-      label: "清空按钮图标",
-      prop: "emptyIcon",
-      type: "icon",
-      iconList,
-      value: "el-icon-delete"
-    },
-    {
-      label: "清空按钮文字",
-      prop: "emptyText",
-      value: "清空"
+      prop: "labelSuffix"
     },
     {
       label: "显示按钮",
@@ -97,17 +47,64 @@ export const form: Resource = {
       }
     },
     {
+      label: "显示提交按钮",
+      prop: "submitBtn",
+      type: "switch",
+      modelValue: true,
+      control(submitBtn: boolean) {
+        return {
+          submitIcon: { display: !!submitBtn },
+          submitText: { display: !!submitBtn }
+        };
+      }
+    },
+    {
+      label: "提交按钮图标",
+      prop: "submitIcon",
+      type: "icon",
+      iconList,
+      modelValue: "el-icon-check"
+    },
+    {
+      label: "提交按钮文字",
+      prop: "submitText",
+      modelValue: "提交"
+    },
+    {
+      label: "显示清空按钮",
+      prop: "emptyBtn",
+      type: "switch",
+      modelValue: true,
+      control(emptyBtn: boolean) {
+        return {
+          emptyIcon: { display: !!emptyBtn },
+          emptyText: { display: !!emptyBtn }
+        };
+      }
+    },
+    {
+      label: "清空按钮图标",
+      prop: "emptyIcon",
+      type: "icon",
+      iconList,
+      modelValue: "el-icon-delete"
+    },
+    {
+      label: "清空按钮文字",
+      prop: "emptyText",
+      modelValue: "清空"
+    },
+    {
       label: "按钮栅格",
       prop: "menuSpan",
       type: "number",
-      value: 24
+      modelValue: 24
     },
     {
       label: "按钮位置",
       prop: "menuPosition",
       type: "radio",
       button: true,
-      value: "center",
       dicData: [
         { label: "左", value: "left" },
         { label: "中间", value: "center" },
@@ -118,25 +115,25 @@ export const form: Resource = {
       label: "分组转标签",
       prop: "tabs",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "详情模式",
       prop: "detail",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "表单只读",
       prop: "readonly",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "表单禁用",
       prop: "disabled",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "表单项栅格",
@@ -147,8 +144,7 @@ export const form: Resource = {
     {
       label: "表单项间隔",
       prop: "gutter",
-      type: "number",
-      value: 0
+      type: "number"
     },
     {
       label: "组件尺寸",

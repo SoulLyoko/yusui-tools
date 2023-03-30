@@ -14,13 +14,13 @@ export const radio: Resource = {
       label: "边框",
       prop: "border",
       type: "switch",
-      value: false
+      modelValue: false
     },
     {
       label: "按钮",
       prop: "button",
       type: "switch",
-      value: false
+      modelValue: false
     }
   ]
 };
