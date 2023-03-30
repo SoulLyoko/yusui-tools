@@ -110,7 +110,12 @@ export class ServiceTaskModel extends _ServiceTaskModel {
 }
 export class ServiceTaskView extends _ServiceTaskView {}
 /** sequenceFlow */
-export class SequenceFlowModel extends _SequenceFlowModel {}
+export class SequenceFlowModel extends _SequenceFlowModel {
+  getTextPosition() {
+    const { x, y } = this.text;
+    return x && y ? { x, y } : this.dbClickPosition || { x: 0, y: 0 };
+  }
+}
 export class SequenceFlowView extends _SequenceFlowView {}
 /** note */
 const RectResizeModel = RectResize["model"] as any;
@@ -140,6 +145,10 @@ export class NoteFlowModel extends _SequenceFlowModel {
     const style = super.getEdgeStyle();
     style.strokeDasharray = "3 3";
     return style;
+  }
+  getTextPosition() {
+    const { x, y } = this.text;
+    return x && y ? { x, y } : this.dbClickPosition || { x: 0, y: 0 };
   }
 }
 export class NoteFlowView extends _SequenceFlowView {}
@@ -199,9 +208,10 @@ const plugins = [
 export class BpmnExtend {
   static pluginName = "bpmnExtend";
   constructor({ lf }: { lf: LogicFlow }) {
-    plugins.forEach(plugin => {
-      lf.register(plugin);
-    });
+    // plugins.forEach(plugin => {
+    //   lf.register(plugin);
+    // });
+    lf.batchRegister(plugins);
     lf.setDefaultEdgeType("sequenceFlow");
   }
 }

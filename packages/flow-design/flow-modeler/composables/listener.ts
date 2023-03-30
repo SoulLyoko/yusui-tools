@@ -24,7 +24,7 @@ export function useModelerListener({
       data = lf.value?.getNodeDataById(processNode.id);
     }
     if (data?.id === elementData.value?.id && !isForce) return;
-    // lf.value?.selectElementById(data.id);
+    data.type !== "process" && lf.value?.selectElementById(data.id);
     formLoading.value = true;
     elementData.value = data;
     formOption.value.group = formOptions.value?.[data.type] ?? defaultGroup;
@@ -35,6 +35,7 @@ export function useModelerListener({
   lf.value?.on("element:click", selectElement);
   lf.value?.on("blank:click", selectElement);
   lf.value?.on("node:add", selectElement);
+  lf.value?.on("node:dnd-add", selectElement);
   lf.value?.on("node:delete", () => selectElement());
   lf.value?.on("history:change", () => {
     graphData.value = lf.value?.getGraphData();

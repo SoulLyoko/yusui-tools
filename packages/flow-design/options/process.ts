@@ -23,11 +23,11 @@ export const processRollbackNode = {
 };
 
 export const processColumn = [
-  processId,
-  processName,
-  processDesc,
-  processCategory,
-  processIcon,
+  // processId,
+  // processName,
+  // processDesc,
+  // processCategory,
+  // processIcon,
   processSkipFirstNode,
   processRollbackNode
 ];

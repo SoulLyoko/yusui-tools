@@ -26,7 +26,8 @@ const external = [
   /monaco-editor/,
   "acorn",
   "astring",
-  "json5"
+  "json5",
+  "@antv/layout"
 ];
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),

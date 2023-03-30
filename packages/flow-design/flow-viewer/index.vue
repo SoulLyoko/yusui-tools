@@ -36,9 +36,12 @@ onMounted(() => {
     plugins: [BpmnExtend, Group, TurboAdapter]
   });
   lf.value?.setTheme(defaultTheme);
-  lf.value?.render(graphData.value);
-  watch(graphData, val => {
-    lf.value?.render(val);
-  });
+  watch(
+    graphData,
+    val => {
+      lf.value?.render(val);
+    },
+    { immediate: true }
+  );
 });
 </script>

@@ -27,7 +27,7 @@ import { SelectionSelect, MiniMap, InsertNodeInPolyline } from "@logicflow/exten
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
 
-import { BpmnExtend, TurboAdapter, Group, Control, Panel, Menu } from "../extensions";
+import { BpmnExtend, TurboAdapter, Group, Control, Panel, Menu, Dagre } from "../extensions";
 import { defaultTheme } from "../constants";
 import { useProvideModelerState, useModelerListener } from "./composables";
 import FlowEditor from "./components/flow-editor.vue";
@@ -61,7 +61,18 @@ onMounted(() => {
     edgeTextDraggable: true,
     nodeTextEdit: true,
     edgeTextEdit: true,
-    plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, Group, TurboAdapter],
+    plugins: [
+      Control,
+      Panel,
+      SelectionSelect,
+      Menu,
+      MiniMap,
+      InsertNodeInPolyline,
+      BpmnExtend,
+      Group,
+      TurboAdapter,
+      Dagre
+    ],
     edgeGenerator: (sourceNode, targetNode) => {
       if (["note", "serviceTask"].includes(targetNode.type)) return "noteFlow";
     },
