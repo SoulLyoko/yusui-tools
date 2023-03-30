@@ -1,3 +1,12 @@
+# [2.0.0-beta.14](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2023-03-30)
+
+
+### Bug Fixes
+
+* **form-design:** design item span ([aeafaf6](https://github.com/SoulLyoko/yusui-tools/commit/aeafaf644cdfa3901cc3066ed4b3c2da390ffe92))
+
+
+
 # [2.0.0-beta.13](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2023-03-30)
 
 
