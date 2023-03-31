@@ -1,11 +1,6 @@
 import type { Resource } from "../types";
 
-import { merge, cloneDeep } from "lodash-es";
-
 import { dic } from "../options";
-import { DicDataSetter } from "../setters";
-
-const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
 
 export const checkbox: Resource = {
   name: "checkbox",
@@ -14,7 +9,7 @@ export const checkbox: Resource = {
   group: "表单组件",
   props: { type: "checkbox", label: "多选框组" },
   settings: [
-    ...dicData!,
+    ...dic!,
     {
       label: "全选",
       prop: "all",

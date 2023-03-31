@@ -77,7 +77,14 @@ async function onBtnClick() {
   const variables = Object.entries(formData.value || {})
     .filter(([key]) => !key.startsWith("$"))
     .map(([key, value]) => ({ key, value }));
-  startFlow({ flowKey: props.flowKey, variables });
+  startFlow({
+    flowDeployId: processDetail.value?.flowDeployId,
+    variables,
+    assignee: {
+      Activity_1ol866b: "2"
+    },
+    outgoing: ["Flow_34q9vpo"]
+  });
 }
 </script>
 

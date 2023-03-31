@@ -1,11 +1,6 @@
 import type { Resource } from "../types";
 
-import { merge, cloneDeep } from "lodash-es";
-
 import { dic } from "../options";
-import { DicDataSetter } from "../setters";
-
-const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
 
 export const radio: Resource = {
   name: "radio",
@@ -14,7 +9,7 @@ export const radio: Resource = {
   group: "表单组件",
   props: { type: "radio", label: "单选框组" },
   settings: [
-    ...dicData!,
+    ...dic!,
     {
       label: "边框",
       prop: "border",

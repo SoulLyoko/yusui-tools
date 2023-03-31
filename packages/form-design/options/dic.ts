@@ -1,8 +1,6 @@
 import type { Resource } from "../types";
 
-import { merge, cloneDeep } from "lodash-es";
-
-import { EditorSetter, DicDataSetter, DicTreeSetter } from "../setters";
+import { EditorSetter } from "../setters";
 // import { getRandomId } from "../utils";
 
 export const placementDic = [
@@ -65,6 +63,13 @@ export const dic: Resource["settings"] = [
     label: "字典数据",
     prop: "dicData",
     labelPosition: "top",
+    type: "dynamic",
+    children: {
+      column: [
+        { label: "名称", prop: "label" },
+        { label: "值", prop: "value" }
+      ]
+    },
     value: [
       { label: "选项一", value: "0", id: "0" },
       { label: "选项二", value: "1", id: "1" },

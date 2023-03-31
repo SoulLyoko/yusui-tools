@@ -62,17 +62,18 @@ export interface StartFlowData {
   /**
    * 审批人集合
    */
-  assignee?: { [key: string]: any };
+  assignee?: Record<string, string>;
   /**
    * 流程部署id
    */
-  flowKey?: string;
+  flowDeployId?: string;
   /**
    * 是否调试模式，调试模式任务执行逻辑但不提交
    */
   isDebug?: boolean;
-
-  variables?: any;
+  /** 表单数据 */
+  variables?: { key: string; value: any }[];
+  outgoing?: string[];
 }
 
 export interface CommitTaskData {

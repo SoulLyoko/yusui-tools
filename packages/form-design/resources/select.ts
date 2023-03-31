@@ -1,11 +1,7 @@
 import type { Resource } from "../types";
 
-import { merge, cloneDeep } from "lodash-es";
-
 import { dic, iconList } from "../options";
-import { EditorSetter, DicDataSetter } from "../setters";
-
-const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
+import { EditorSetter } from "../setters";
 
 export const select: Resource = {
   name: "select",
@@ -14,7 +10,7 @@ export const select: Resource = {
   group: "表单组件",
   props: { type: "select", label: "选择框" },
   settings: [
-    ...dicData,
+    ...dic!,
     {
       label: "弹出层主题",
       prop: "effect",

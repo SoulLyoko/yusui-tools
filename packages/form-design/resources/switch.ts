@@ -1,7 +1,5 @@
 import type { Resource } from "../types";
 
-import { DicDataSetter } from "../setters";
-
 const switchs: Resource = {
   name: "switch",
   title: "开关",
@@ -12,7 +10,7 @@ const switchs: Resource = {
     {
       label: "开关数据",
       prop: "dicData",
-      component: DicDataSetter,
+      type: "dynamic",
       labelPosition: "top",
       children: {
         column: [
