@@ -11,14 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import type { AvueTreeProps } from "@smallwei/avue";
+import type { AvueTreeProps, DicItem } from "@smallwei/avue";
 
 import { ref } from "vue";
 import { useVModels } from "@vueuse/core";
 
 import { getRandomId } from "../../utils";
 
-const props = defineProps<{ modelValue?: any[] }>();
+const props = defineProps<{ modelValue?: DicItem[] }>();
 const vModels = useVModels(props);
 const { modelValue: dicData } = vModels as Required<typeof vModels>;
 

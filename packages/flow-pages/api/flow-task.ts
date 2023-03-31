@@ -66,11 +66,7 @@ export interface StartFlowData {
   /**
    * 流程部署id
    */
-  flowDeployId?: string;
-  /**
-   * 流程模型id
-   */
-  flowModuleId?: string;
+  flowKey?: string;
   /**
    * 是否调试模式，调试模式任务执行逻辑但不提交
    */

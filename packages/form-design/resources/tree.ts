@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
-import { dic, iconList } from "../options";
-import { EditorSetter, DicTreeSetter } from "../setters";
+import { dicTree, iconList } from "../options";
+import { EditorSetter } from "../setters";
 
 export const tree: Resource = {
   name: "tree",
@@ -10,15 +10,7 @@ export const tree: Resource = {
   group: "表单组件",
   props: { type: "tree", label: "树形选择" },
   settings: [
-    ...dic!.map(item => {
-      if (item.prop === "dicData") {
-        return {
-          ...item,
-          component: DicTreeSetter
-        };
-      }
-      return item;
-    }),
+    ...dicTree,
     // 树属性
     { labelWidth: 0, type: "title", modelValue: "树属性" },
     {

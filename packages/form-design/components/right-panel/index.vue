@@ -13,7 +13,7 @@ import type { ElementTreeNode } from "../../types";
 import { ref, watch, nextTick } from "vue";
 import { watchDebounced } from "@vueuse/core";
 import { get, set, debounce, isEqual, cloneDeep } from "lodash-unified";
-import { filterObj } from "@yusui/utils";
+import { filterObjDeep } from "@yusui/utils";
 
 import { useInjectState } from "../../composables";
 
@@ -50,7 +50,7 @@ const recordHistoryDebounce = debounce(() => recordHistory("property"), 1000);
 watchDebounced(
   settingsData,
   val => {
-    const temp = filterObj(val, [undefined, null, ""], ["$"]);
+    const temp = filterObjDeep(val, [undefined, null, ""], ["$"]);
     if (activeElement.value.isRoot) {
       set(elementTree.value, "props", temp);
     } else {

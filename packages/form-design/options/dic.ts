@@ -1,7 +1,8 @@
 import type { Resource } from "../types";
 
-// import { EditorSetter, DicDataSetter } from "../setters";
-import { EditorSetter } from "../setters";
+import { merge, cloneDeep } from "lodash-es";
+
+import { EditorSetter, DicDataSetter, DicTreeSetter } from "../setters";
 // import { getRandomId } from "../utils";
 
 export const placementDic = [
@@ -64,14 +65,6 @@ export const dic: Resource["settings"] = [
     label: "字典数据",
     prop: "dicData",
     labelPosition: "top",
-    // component: DicDataSetter,
-    type: "dynamic",
-    children: {
-      column: [
-        { label: "名称", prop: "label" },
-        { label: "值", prop: "value" }
-      ]
-    },
     value: [
       { label: "选项一", value: "0", id: "0" },
       { label: "选项二", value: "1", id: "1" },
@@ -139,41 +132,5 @@ export const dic: Resource["settings"] = [
   }
 ];
 
-// export const dicSelect =
-//   dic?.map(item => {
-//     if (item.prop === "dicData") {
-//       return {
-//         ...item,
-//         value: [
-//           { label: "选项一", value: "0" },
-//           { label: "选项二", value: "1" },
-//           { label: "选项三", value: "2" }
-//         ]
-//       };
-//     }
-//     return item;
-//   }) ?? [];
-
-// export const dicTree =
-//   dic?.map(item => {
-//     if (item.prop === "dicData") {
-//       return {
-//         ...item,
-//         setterType: "tree",
-//         value: [
-//           {
-//             label: "选项1",
-//             value: "1",
-//             id: getRandomId(),
-//             children: [
-//               { label: "选项1-1", value: "11", id: getRandomId() },
-//               { label: "选项1-2", value: "12", id: getRandomId() }
-//             ]
-//           },
-//           { label: "选项2", value: "2", id: getRandomId() },
-//           { label: "选项3", value: "3", id: getRandomId() }
-//         ]
-//       };
-//     }
-//     return item;
-//   }) ?? [];
+export const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
+export const dicTree = merge(cloneDeep(dic), [{}, { component: DicTreeSetter }]);

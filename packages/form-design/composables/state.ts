@@ -5,9 +5,9 @@ import { ref, computed, provide, inject, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 import { cloneDeep, isEqual, omit, merge } from "lodash-unified";
 
+import { base as defaultBaseOption, advance as defaultAdvanceOption, groupList as defaultGroupList } from "../options";
 import * as defaultResources from "../resources";
 import { adapterIn, adapterOut } from "../utils";
-import { base as defaultBaseOption, advance as defaultAdvanceOption, groupList as defaultGroupList } from "../options";
 
 const injectKey = Symbol("form-design-state");
 

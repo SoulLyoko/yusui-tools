@@ -1,6 +1,10 @@
 import type { Resource } from "../types";
 
-export const switchs: Resource = {
+import { DicDataSetter } from "../setters";
+
+export { switchs as switch };
+
+const switchs: Resource = {
   name: "switch",
   title: "开关",
   icon: "el-icon-switch",
@@ -10,7 +14,7 @@ export const switchs: Resource = {
     {
       label: "开关数据",
       prop: "dicData",
-      type: "dynamic",
+      component: DicDataSetter,
       labelPosition: "top",
       children: {
         column: [

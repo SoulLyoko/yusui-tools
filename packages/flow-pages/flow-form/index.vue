@@ -74,7 +74,10 @@ watchEffect(() => {
 const formRef = ref<InstanceType<typeof InternalForm>>();
 async function onBtnClick() {
   await formRef.value?.validate();
-  // startFlow({ variables: formData.value });
+  const variables = Object.entries(formData.value || {})
+    .filter(([key]) => !key.startsWith("$"))
+    .map(([key, value]) => ({ key, value }));
+  startFlow({ flowKey: props.flowKey, variables });
 }
 </script>
 

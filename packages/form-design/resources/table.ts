@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
-import { EditorSetter, OnLoadSetter } from "../setters";
 import { alignDic } from "../options";
+import { EditorSetter, OnLoadSetter } from "../setters";
 
 export const table: Resource = {
   name: "table",
