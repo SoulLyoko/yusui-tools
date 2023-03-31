@@ -16,9 +16,9 @@ export function useProvideState(props: Props, emit: Emit) {
   const { modelValue } = vModels as Required<typeof vModels>;
 
   const groupList = computed(() => props.groupList || defaultGroupList);
-  const resources = computed<Record<string, Resource>>(() => merge({ ...defaultResources }, props.resources));
-  const baseOption = computed(() => props.baseOption || defaultBaseOption);
-  const advanceOption = computed(() => props.advanceOption || defaultAdvanceOption);
+  const resources = computed<Record<string, Resource>>(() => merge(defaultResources, props.resources));
+  const baseOption = computed(() => merge(defaultBaseOption, props.baseOption));
+  const advanceOption = computed(() => merge(defaultAdvanceOption, props.advanceOption));
 
   const elementTree = ref<ElementTreeNode>({});
   const activeElement = ref<ElementTreeNode>({});

@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { dic } from "../options";
-import { DicTreeSetter, EditorSetter } from "../setters";
+import { EditorSetter } from "../setters";
 
 export const cascader: Resource = {
   name: "cascader",
@@ -10,15 +10,16 @@ export const cascader: Resource = {
   group: "表单组件",
   props: { type: "cascader", label: "级联选择器" },
   settings: [
-    ...dic!.map(item => {
-      if (item.prop === "dicData") {
-        return {
-          ...item,
-          component: DicTreeSetter
-        };
-      }
-      return item;
-    }),
+    ...dic!,
+    // ...dic!.map(item => {
+    //   if (item.prop === "dicData") {
+    //     return {
+    //       ...item,
+    //       component: DicTreeSetter
+    //     };
+    //   }
+    //   return item;
+    // }),
     {
       label: "分隔字符",
       prop: "separator"
