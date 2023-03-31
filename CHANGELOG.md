@@ -1,3 +1,12 @@
+# [2.0.0-beta.16](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2023-03-31)
+
+
+### Bug Fixes
+
+* **form-design:** form menuBtn display control ([0262950](https://github.com/SoulLyoko/yusui-tools/commit/0262950faedb06477fb313342708cc756585a142))
+
+
+
 # [2.0.0-beta.15](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2023-03-31)
 
 
