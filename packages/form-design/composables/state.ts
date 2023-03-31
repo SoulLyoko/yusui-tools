@@ -5,9 +5,9 @@ import { ref, computed, provide, inject, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 import { cloneDeep, isEqual, omit, merge } from "lodash-unified";
 
-import { base as defaultBaseOption, advance as defaultAdvanceOption, groupList as defaultGroupList } from "../options";
 import * as defaultResources from "../resources";
 import { adapterIn, adapterOut } from "../utils";
+import { base as defaultBaseOption, advance as defaultAdvanceOption, groupList as defaultGroupList } from "../options";
 
 const injectKey = Symbol("form-design-state");
 
@@ -16,9 +16,9 @@ export function useProvideState(props: Props, emit: Emit) {
   const { modelValue } = vModels as Required<typeof vModels>;
 
   const groupList = computed(() => props.groupList || defaultGroupList);
-  const resources = computed<Record<string, Resource>>(() => merge(defaultResources, props.resources));
-  const baseOption = computed(() => merge(defaultBaseOption, props.baseOption));
-  const advanceOption = computed(() => merge(defaultAdvanceOption, props.advanceOption));
+  const resources = computed<Record<string, Resource>>(() => merge({ ...defaultResources }, props.resources));
+  const baseOption = computed(() => props.baseOption || defaultBaseOption);
+  const advanceOption = computed(() => props.advanceOption || defaultAdvanceOption);
 
   const elementTree = ref<ElementTreeNode>({});
   const activeElement = ref<ElementTreeNode>({});

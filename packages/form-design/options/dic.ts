@@ -1,5 +1,6 @@
 import type { Resource } from "../types";
 
+// import { EditorSetter, DicDataSetter } from "../setters";
 import { EditorSetter } from "../setters";
 // import { getRandomId } from "../utils";
 
@@ -63,6 +64,7 @@ export const dic: Resource["settings"] = [
     label: "字典数据",
     prop: "dicData",
     labelPosition: "top",
+    // component: DicDataSetter,
     type: "dynamic",
     children: {
       column: [
@@ -136,3 +138,42 @@ export const dic: Resource["settings"] = [
     labelTip: "在被联动字段的字典地址中可以通过{{key}}获取到当前值"
   }
 ];
+
+// export const dicSelect =
+//   dic?.map(item => {
+//     if (item.prop === "dicData") {
+//       return {
+//         ...item,
+//         value: [
+//           { label: "选项一", value: "0" },
+//           { label: "选项二", value: "1" },
+//           { label: "选项三", value: "2" }
+//         ]
+//       };
+//     }
+//     return item;
+//   }) ?? [];
+
+// export const dicTree =
+//   dic?.map(item => {
+//     if (item.prop === "dicData") {
+//       return {
+//         ...item,
+//         setterType: "tree",
+//         value: [
+//           {
+//             label: "选项1",
+//             value: "1",
+//             id: getRandomId(),
+//             children: [
+//               { label: "选项1-1", value: "11", id: getRandomId() },
+//               { label: "选项1-2", value: "12", id: getRandomId() }
+//             ]
+//           },
+//           { label: "选项2", value: "2", id: getRandomId() },
+//           { label: "选项3", value: "3", id: getRandomId() }
+//         ]
+//       };
+//     }
+//     return item;
+//   }) ?? [];
