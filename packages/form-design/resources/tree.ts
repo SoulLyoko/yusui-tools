@@ -1,7 +1,5 @@
 import type { Resource } from "../types";
 
-import { merge, cloneDeep } from "lodash-es";
-
 import { dic, iconList } from "../options";
 import { EditorSetter, DicTreeSetter } from "../setters";
 
@@ -12,7 +10,15 @@ export const tree: Resource = {
   group: "表单组件",
   props: { type: "tree", label: "树形选择" },
   settings: [
-    ...merge(cloneDeep(dic), [{}, { component: DicTreeSetter }]),
+    ...dic!.map(item => {
+      if (item.prop === "dicData") {
+        return {
+          ...item,
+          component: DicTreeSetter
+        };
+      }
+      return item;
+    }),
     // 树属性
     { labelWidth: 0, type: "title", modelValue: "树属性" },
     {

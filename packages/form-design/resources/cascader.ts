@@ -1,7 +1,5 @@
 import type { Resource } from "../types";
 
-import { merge, cloneDeep } from "lodash-es";
-
 import { dic } from "../options";
 import { DicTreeSetter, EditorSetter } from "../setters";
 
@@ -12,7 +10,15 @@ export const cascader: Resource = {
   group: "表单组件",
   props: { type: "cascader", label: "级联选择器" },
   settings: [
-    ...merge(cloneDeep(dic), [{}, { component: DicTreeSetter }]),
+    ...dic!.map(item => {
+      if (item.prop === "dicData") {
+        return {
+          ...item,
+          component: DicTreeSetter
+        };
+      }
+      return item;
+    }),
     {
       label: "分隔字符",
       prop: "separator"
