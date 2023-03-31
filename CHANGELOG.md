@@ -1,3 +1,17 @@
+# [2.0.0-beta.15](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2023-03-31)
+
+
+### Bug Fixes
+
+* **form-design:** dicDataSetter ([9727395](https://github.com/SoulLyoko/yusui-tools/commit/9727395f6f7dfa3f738f8ef7066bb603df29e7a1))
+
+
+### Features
+
+* **utils:** filterObjDeep ([8071f20](https://github.com/SoulLyoko/yusui-tools/commit/8071f20735a259d80edb04f20d7adb8036dd3a48))
+
+
+
 # [2.0.0-beta.14](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2023-03-30)
 
 
