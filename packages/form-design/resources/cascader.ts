@@ -1,7 +1,11 @@
 import type { Resource } from "../types";
 
-import { dicTree } from "../options";
-import { EditorSetter } from "../setters";
+import { merge, cloneDeep } from "lodash-es";
+
+import { dic } from "../options";
+import { DicTreeSetter, EditorSetter } from "../setters";
+
+const dicTree = merge(cloneDeep(dic), [{}, { component: DicTreeSetter }]);
 
 export const cascader: Resource = {
   name: "cascader",

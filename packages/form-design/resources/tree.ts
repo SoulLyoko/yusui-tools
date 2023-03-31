@@ -1,7 +1,11 @@
 import type { Resource } from "../types";
 
-import { dicTree, iconList } from "../options";
-import { EditorSetter } from "../setters";
+import { merge, cloneDeep } from "lodash-es";
+
+import { dic, iconList } from "../options";
+import { EditorSetter, DicTreeSetter } from "../setters";
+
+const dicTree = merge(cloneDeep(dic), [{}, { component: DicTreeSetter }]);
 
 export const tree: Resource = {
   name: "tree",

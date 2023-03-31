@@ -2,8 +2,6 @@ import type { Resource } from "../types";
 
 import { DicDataSetter } from "../setters";
 
-export { switchs as switch };
-
 const switchs: Resource = {
   name: "switch",
   title: "开关",
@@ -55,3 +53,5 @@ const switchs: Resource = {
     }
   ]
 };
+
+export { switchs as switch };

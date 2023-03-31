@@ -131,6 +131,3 @@ export const dic: Resource["settings"] = [
     labelTip: "在被联动字段的字典地址中可以通过{{key}}获取到当前值"
   }
 ];
-
-export const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
-export const dicTree = merge(cloneDeep(dic), [{}, { component: DicTreeSetter }]);

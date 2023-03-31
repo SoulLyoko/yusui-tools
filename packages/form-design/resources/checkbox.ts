@@ -1,6 +1,11 @@
 import type { Resource } from "../types";
 
-import { dicData } from "../options";
+import { merge, cloneDeep } from "lodash-es";
+
+import { dic } from "../options";
+import { DicDataSetter } from "../setters";
+
+const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
 
 export const checkbox: Resource = {
   name: "checkbox",

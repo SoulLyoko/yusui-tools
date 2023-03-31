@@ -1,7 +1,11 @@
 import type { Resource } from "../types";
 
-import { dicData, iconList } from "../options";
-import { EditorSetter } from "../setters";
+import { merge, cloneDeep } from "lodash-es";
+
+import { dic, iconList } from "../options";
+import { EditorSetter, DicDataSetter } from "../setters";
+
+const dicData = merge(cloneDeep(dic), [{}, { component: DicDataSetter }]);
 
 export const select: Resource = {
   name: "select",
