@@ -1,4 +1,4 @@
-import { filterObj, getDataType } from ".";
+import { filterObj, filterObjDeep, getDataType } from ".";
 
 describe("object utils", () => {
   it("filterObj", () => {
@@ -6,6 +6,12 @@ describe("object utils", () => {
     expect(filterObj(testData)).toEqual({ a: 1, b: "b" });
     expect(filterObj(testData, [])).toEqual(testData);
     expect(filterObj(testData, undefined, ["a", "b"])).toEqual({});
+  });
+  it("filterObjDeep", () => {
+    const testData = { a: undefined, b: { bb: "1" }, c: [{ cc: 1 }] };
+    expect(filterObjDeep(testData)).toEqual({ b: { bb: "1" }, c: [{ cc: 1 }] });
+    expect(filterObjDeep(testData, [])).toEqual(testData);
+    expect(filterObjDeep(testData, undefined, ["cc", "bb"])).toEqual({ b: {}, c: [{}] });
   });
   it("getDataType", () => {
     expect(getDataType(true)).toBe("Boolean");

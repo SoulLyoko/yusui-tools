@@ -133,6 +133,7 @@ export default defineConfig({
               text: "object",
               items: [
                 { text: "filterObj", link: "/utils/object/filterObj" },
+                { text: "filterObjDeep", link: "/utils/object/filterObjDeep" },
                 { text: "getDataType", link: "/utils/object/getDataType" }
               ]
             },
