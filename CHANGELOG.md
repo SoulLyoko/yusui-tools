@@ -1,3 +1,12 @@
+# [2.0.0-beta.20](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2023-03-31)
+
+
+### Bug Fixes
+
+* **form-design:** treeDic ([8c1abdb](https://github.com/SoulLyoko/yusui-tools/commit/8c1abdb7758089d86fcdb8924ff46a8ac9cbd034))
+
+
+
 # [2.0.0-beta.19](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2023-03-31)
 
 
