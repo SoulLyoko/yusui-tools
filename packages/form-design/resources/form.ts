@@ -32,14 +32,15 @@ export const form: Resource = {
       type: "switch",
       value: false,
       control(menuBtn: boolean, form: any) {
-        const { submitBtn, emptyBtn } = form;
+        form.submitBtn = menuBtn;
+        form.emptyBtn = menuBtn;
         return {
           submitBtn: { display: menuBtn },
-          submitIcon: { display: menuBtn && submitBtn },
-          submitText: { display: menuBtn && submitBtn },
+          submitIcon: { display: menuBtn },
+          submitText: { display: menuBtn },
           emptyBtn: { display: menuBtn },
-          emptyIcon: { display: menuBtn && emptyBtn },
-          emptyText: { display: menuBtn && emptyBtn },
+          emptyIcon: { display: menuBtn },
+          emptyText: { display: menuBtn },
           menuSpan: { display: menuBtn },
           menuPosition: { display: menuBtn }
         };
@@ -49,7 +50,6 @@ export const form: Resource = {
       label: "显示提交按钮",
       prop: "submitBtn",
       type: "switch",
-      modelValue: true,
       control(submitBtn: boolean) {
         return {
           submitIcon: { display: !!submitBtn },
@@ -61,19 +61,16 @@ export const form: Resource = {
       label: "提交按钮图标",
       prop: "submitIcon",
       type: "icon",
-      iconList,
-      modelValue: "el-icon-check"
+      iconList
     },
     {
       label: "提交按钮文字",
-      prop: "submitText",
-      modelValue: "提交"
+      prop: "submitText"
     },
     {
       label: "显示清空按钮",
       prop: "emptyBtn",
       type: "switch",
-      modelValue: true,
       control(emptyBtn: boolean) {
         return {
           emptyIcon: { display: !!emptyBtn },
@@ -85,19 +82,16 @@ export const form: Resource = {
       label: "清空按钮图标",
       prop: "emptyIcon",
       type: "icon",
-      iconList,
-      modelValue: "el-icon-delete"
+      iconList
     },
     {
       label: "清空按钮文字",
-      prop: "emptyText",
-      modelValue: "清空"
+      prop: "emptyText"
     },
     {
       label: "按钮栅格",
       prop: "menuSpan",
-      type: "number",
-      modelValue: 24
+      type: "number"
     },
     {
       label: "按钮位置",
