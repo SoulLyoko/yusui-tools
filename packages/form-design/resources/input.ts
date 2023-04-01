@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { iconList } from "../options";
-import { EditorSetter } from "../setters";
+import { EditorSetter, SwitchSetter } from "../setters";
 
 export const input: Resource = {
   name: "input",
@@ -18,8 +18,8 @@ export const input: Resource = {
     {
       label: "显示统计字数",
       prop: "showWordLimit",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       tip: "仅在最大长度大于0时有效"
     },
     {

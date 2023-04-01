@@ -1,7 +1,7 @@
 import type { AvueFormOption, AvueFormGroup } from "@smallwei/avue";
 
-import { placementDic, positionDic, alignDic } from "./dic";
-import { ValueSetter, RulesSetter } from "../setters";
+import { placementDic, positionDic, sizeDic, alignDic } from "./dic";
+import { ValueSetter, RulesSetter, SwitchSetter } from "../setters";
 
 export const base: AvueFormOption & AvueFormGroup = {
   label: "基础",
@@ -33,11 +33,7 @@ export const base: AvueFormOption & AvueFormGroup = {
       prop: "size",
       type: "radio",
       button: true,
-      dicData: [
-        { label: "大", value: "large" },
-        { label: "默认", value: "default" },
-        { label: "小", value: "small" }
-      ]
+      dicData: sizeDic
     },
     {
       label: "数据类型",
@@ -91,32 +87,32 @@ export const base: AvueFormOption & AvueFormGroup = {
     {
       label: "是否可清空",
       prop: "clearable",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "详情模式",
       prop: "detail",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "是否只读",
       prop: "readonly",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "是否禁用",
       prop: "disabled",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "是否可见",
       prop: "display",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "校验规则",
@@ -147,8 +143,8 @@ export const base: AvueFormOption & AvueFormGroup = {
     {
       label: "超长省略",
       prop: "overHidden",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "表头对齐方式",
@@ -167,14 +163,14 @@ export const base: AvueFormOption & AvueFormGroup = {
     {
       label: "是否可搜索",
       prop: "search",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "是否隐藏",
       prop: "hide",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     }
   ]
 };

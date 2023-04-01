@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { EditorSetter } from "../setters";
+import { EditorSetter, SwitchSetter } from "../setters";
 
 export const time: Resource = {
   name: "time",
@@ -64,14 +64,14 @@ export const time: Resource = {
     {
       label: "是否可输入",
       prop: "editable",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "使用箭头选择",
       prop: "arrowControl",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "禁用小时方法",

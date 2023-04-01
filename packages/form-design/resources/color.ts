@@ -1,5 +1,7 @@
 import type { Resource } from "../types";
 
+import { SwitchSetter } from "../setters";
+
 export const color: Resource = {
   name: "color",
   title: "颜色",
@@ -10,8 +12,8 @@ export const color: Resource = {
     {
       label: "支持透明度选择",
       prop: "showAlpha",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120
     },
     {

@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
 import { iconList } from "../options";
+import { SwitchSetter } from "../setters";
 
 export const group: Resource = {
   name: "group",
@@ -29,14 +30,14 @@ export const group: Resource = {
     {
       label: "是否默认展开",
       prop: "collapse",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "是否显示箭头",
       prop: "arrow",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     }
   ]
 };

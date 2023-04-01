@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
 import { dic } from "../options";
+import { SwitchSetter } from "../setters";
 
 export const radio: Resource = {
   name: "radio",
@@ -13,14 +14,14 @@ export const radio: Resource = {
     {
       label: "边框",
       prop: "border",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "按钮",
       prop: "button",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     }
   ]
 };

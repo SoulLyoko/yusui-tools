@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { alignDic } from "../options";
-import { EditorSetter, OnLoadSetter } from "../setters";
+import { EditorSetter, OnLoadSetter, SwitchSetter } from "../setters";
 
 export const table: Resource = {
   name: "table",
@@ -14,20 +14,20 @@ export const table: Resource = {
     {
       label: "显示表头",
       prop: "showHeader",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "斑马纹",
       prop: "stripe",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "表格边框",
       prop: "border",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "表头对齐方式",

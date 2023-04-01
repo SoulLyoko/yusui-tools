@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { EditorSetter } from "../setters";
+import { EditorSetter, SwitchSetter } from "../setters";
 
 const dateFormat = "YYYY-MM-DD";
 const datetimeFormat = "YYYY-MM-DD HH:mm:ss";
@@ -47,14 +47,14 @@ export const date: Resource = {
     {
       label: "是否可输入",
       prop: "editable",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "取消日期联动",
       prop: "unlinkPanels",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "禁用日期方法",

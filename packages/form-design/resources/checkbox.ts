@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
 import { dic } from "../options";
+import { SwitchSetter } from "../setters";
 
 export const checkbox: Resource = {
   name: "checkbox",
@@ -13,20 +14,20 @@ export const checkbox: Resource = {
     {
       label: "全选",
       prop: "all",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "边框",
       prop: "border",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "按钮",
       prop: "button",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "最多可选",

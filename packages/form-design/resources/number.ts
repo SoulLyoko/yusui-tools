@@ -1,5 +1,7 @@
 import type { Resource } from "../types";
 
+import { SwitchSetter } from "../setters";
+
 export const number: Resource = {
   name: "number",
   title: "数字输入框",
@@ -25,9 +27,9 @@ export const number: Resource = {
     {
       label: "只能输入步长倍数",
       prop: "stepStrictly",
-      type: "switch",
-      labelWidth: 130,
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false,
+      labelWidth: 130
     },
     {
       label: "数值精度",
@@ -38,8 +40,8 @@ export const number: Resource = {
       label: "是否使用控制按钮",
       prop: "controls",
       type: "switch",
-      labelWidth: 130,
       value: true,
+      labelWidth: 130,
       control(controls) {
         return {
           controlsPosition: { display: !!controls }

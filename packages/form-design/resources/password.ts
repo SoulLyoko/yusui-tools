@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
 import { iconList } from "../options";
+import { SwitchSetter } from "../setters";
 
 export const password: Resource = {
   name: "password",
@@ -29,9 +30,9 @@ export const password: Resource = {
     {
       label: "是否显示切换密码",
       prop: "showPassword",
-      type: "switch",
-      labelWidth: 130,
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false,
+      labelWidth: 130
     }
   ]
 };

@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { dic, iconList } from "../options";
-import { EditorSetter, DicTreeSetter } from "../setters";
+import { EditorSetter, DicTreeSetter, SwitchSetter } from "../setters";
 
 export const tree: Resource = {
   name: "tree",
@@ -28,14 +28,14 @@ export const tree: Resource = {
     {
       label: "展开后渲染",
       prop: "renderAfterExpand",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "是否懒加载",
       prop: "lazy",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "懒加载函数",
@@ -56,32 +56,32 @@ export const tree: Resource = {
     {
       label: "高亮当前节点",
       prop: "highlightCurrent",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "默认展开全部",
       prop: "defaultExpandAll",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "点击节点展开",
       prop: "expandOnClickNode",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "点击节点选择",
       prop: "checkOnClickNode",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "自动展开父级",
       prop: "autoExpandParent",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "默认展开节点",
@@ -90,8 +90,8 @@ export const tree: Resource = {
     {
       label: "父子不关联",
       prop: "checkStrictly",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "初始选中节点",
@@ -106,10 +106,11 @@ export const tree: Resource = {
       defaultValue: `(value, data, node) => {}`
     },
     {
-      label: "手风琴",
+      label: "手风琴模式",
       prop: "accordion",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false,
+      tip: "对于同一级的节点，每次只能展开一个"
     },
     {
       label: "节点缩进",
@@ -125,8 +126,8 @@ export const tree: Resource = {
     {
       label: "是否可拖拽",
       prop: "draggable",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "允许拖拽函数",
@@ -159,9 +160,9 @@ export const tree: Resource = {
     {
       label: "是否多选",
       prop: "multiple",
-      type: "switch",
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
-      modelValue: false,
       control(multiple) {
         return {
           tags: { display: !!multiple },
@@ -174,16 +175,16 @@ export const tree: Resource = {
     {
       label: "是否折叠标签",
       prop: "tags",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "多选模式下是否折叠Tag"
     },
     {
       label: "悬停显示标签",
       prop: "collapseTagsTooltip",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签"
     },
@@ -207,15 +208,15 @@ export const tree: Resource = {
     {
       label: "是否可搜索",
       prop: "filterable",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120
     },
     {
       label: "是否允许创建",
       prop: "allowCreate",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "是否用户允许创建新条目， 只有当 filterable 设置为 true 时才会生效。"
     },
@@ -246,38 +247,38 @@ export const tree: Resource = {
     {
       label: "保留关键词",
       prop: "reserveKeyword",
-      type: "switch",
-      modelValue: true,
+      component: SwitchSetter,
+      defaultValue: true,
       labelWidth: 120,
       labelTip: "当 multiple 和 filter被设置为 true 时，是否在选中一个选项后保留当前的搜索关键词"
     },
     {
       label: "默认选择首项",
       prop: "defaultFirstOption",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "是否在输入框按下回车时，选择第一个匹配项。 需配合 filterable 或 remote 使用"
     },
     {
       label: "下拉框插入body",
       prop: "teleported",
-      type: "switch",
-      modelValue: true,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120
     },
     {
       label: "下拉框持久化",
       prop: "persistent",
-      type: "switch",
-      modelValue: true,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120
     },
     {
       label: "自动弹出",
       prop: "automaticDropdown",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "对于不可过滤的 Select 组件，此属性决定是否在输入框获得焦点后自动弹出选项菜单"
     },
@@ -296,8 +297,8 @@ export const tree: Resource = {
     {
       label: "宽度适应",
       prop: "fitInputWidth",
-      type: "switch",
-      modelValue: true,
+      component: SwitchSetter,
+      defaultValue: true,
       labelWidth: 120,
       labelTip: "下拉框的宽度是否与输入框相同"
     }

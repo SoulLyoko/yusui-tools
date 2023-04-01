@@ -4,4 +4,5 @@ export { default as DicTreeSetter } from "./dic-tree-setter/index.vue";
 export { default as EditorSetter } from "./editor-setter/index.vue";
 export { default as OnLoadSetter } from "./on-load-setter/index.vue";
 export { default as RulesSetter } from "./rules-setter/index.vue";
+export { default as SwitchSetter } from "./switch-setter/index.vue";
 export { default as ValueSetter } from "./value-setter/index.vue";

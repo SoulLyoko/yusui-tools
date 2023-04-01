@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-import { EditorSetter } from "../setters";
+import { EditorSetter, SwitchSetter } from "../setters";
 
 export const upload: Resource = {
   name: "upload",
@@ -34,8 +34,8 @@ export const upload: Resource = {
     {
       label: "是否支持多选",
       prop: "multiple",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "额外参数",
@@ -48,20 +48,20 @@ export const upload: Resource = {
     {
       label: "显示文件列表",
       prop: "showFileList",
-      type: "switch",
-      modelValue: true
+      component: SwitchSetter,
+      defaultValue: true
     },
     {
       label: "拖拽排序",
       prop: "drag",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "拖拽上传",
       prop: "dragFile",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "接受上传类型",

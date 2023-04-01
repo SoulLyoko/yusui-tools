@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
 import { iconList } from "../options";
-import { EditorSetter } from "../setters";
+import { EditorSetter, SwitchSetter } from "../setters";
 
 export const rate: Resource = {
   name: "rate",
@@ -13,8 +13,8 @@ export const rate: Resource = {
     {
       label: "是否允许半选",
       prop: "allowHalf",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "最大分值",
@@ -83,16 +83,16 @@ export const rate: Resource = {
     {
       label: "显示辅助文字",
       prop: "showText",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "是否显示辅助文字，若为是，则会从 辅助文字数组 中选取当前分数对应的文字内容"
     },
     {
       label: "显示当前分数",
       prop: "showScore",
-      type: "switch",
-      modelValue: false,
+      component: SwitchSetter,
+      defaultValue: false,
       labelWidth: 120,
       labelTip: "是否显示当前分数，当前分数 和 辅助文字 不能同时显示"
     },

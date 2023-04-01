@@ -1,6 +1,7 @@
 import type { Resource } from "../types";
 
-import { positionDic, iconList } from "../options";
+import { positionDic, alignDic, sizeDic, iconList } from "../options";
+import { SwitchSetter } from "../setters";
 
 export const form: Resource = {
   name: "form",
@@ -32,15 +33,13 @@ export const form: Resource = {
       type: "switch",
       value: false,
       control(menuBtn: boolean, form: any) {
-        form.submitBtn = menuBtn;
-        form.emptyBtn = menuBtn;
+        if (!menuBtn) {
+          form.submitBtn = false;
+          form.emptyBtn = false;
+        }
         return {
           submitBtn: { display: menuBtn },
-          submitIcon: { display: menuBtn },
-          submitText: { display: menuBtn },
           emptyBtn: { display: menuBtn },
-          emptyIcon: { display: menuBtn },
-          emptyText: { display: menuBtn },
           menuSpan: { display: menuBtn },
           menuPosition: { display: menuBtn }
         };
@@ -50,6 +49,7 @@ export const form: Resource = {
       label: "显示提交按钮",
       prop: "submitBtn",
       type: "switch",
+      value: false,
       control(submitBtn: boolean) {
         return {
           submitIcon: { display: !!submitBtn },
@@ -71,6 +71,7 @@ export const form: Resource = {
       label: "显示清空按钮",
       prop: "emptyBtn",
       type: "switch",
+      value: false,
       control(emptyBtn: boolean) {
         return {
           emptyIcon: { display: !!emptyBtn },
@@ -98,35 +99,31 @@ export const form: Resource = {
       prop: "menuPosition",
       type: "radio",
       button: true,
-      dicData: [
-        { label: "左", value: "left" },
-        { label: "中间", value: "center" },
-        { label: "右", value: "right" }
-      ]
+      dicData: alignDic
     },
     {
       label: "分组转标签",
       prop: "tabs",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "详情模式",
       prop: "detail",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "表单只读",
       prop: "readonly",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "表单禁用",
       prop: "disabled",
-      type: "switch",
-      modelValue: false
+      component: SwitchSetter,
+      defaultValue: false
     },
     {
       label: "表单项栅格",
@@ -144,11 +141,7 @@ export const form: Resource = {
       prop: "size",
       type: "radio",
       button: true,
-      dicData: [
-        { label: "大", value: "large" },
-        { label: "默认", value: "default" },
-        { label: "小", value: "small" }
-      ]
+      dicData: sizeDic
     }
   ]
 };
