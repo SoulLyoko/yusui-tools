@@ -1,7 +1,7 @@
 import type { Resource } from "../types";
 
-import { EditorSetter } from "../setters";
 import { placementDic } from "../options";
+import { EditorSetter } from "../setters";
 
 export const slider: Resource = {
   name: "slider",
