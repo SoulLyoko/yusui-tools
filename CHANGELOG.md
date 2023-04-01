@@ -1,3 +1,12 @@
+# [2.0.0-beta.23](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2023-04-01)
+
+
+### Features
+
+* **form-design:** switch-setter ([4417d4d](https://github.com/SoulLyoko/yusui-tools/commit/4417d4d3489ba582c6975de83b812d49d1f42b81))
+
+
+
 # [2.0.0-beta.22](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2023-04-01)
 
 
