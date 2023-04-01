@@ -1,6 +1,6 @@
 import type { Resource } from "../types";
 
-export const switchs: Resource = {
+const switchs: Resource = {
   name: "switch",
   title: "开关",
   icon: "el-icon-switch",
@@ -51,3 +51,5 @@ export const switchs: Resource = {
     }
   ]
 };
+
+export { switchs as switch };
