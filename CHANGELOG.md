@@ -1,3 +1,14 @@
+# [2.0.0-beta.22](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2023-04-01)
+
+
+### Bug Fixes
+
+* **form-design:** export switch ([9fa8289](https://github.com/SoulLyoko/yusui-tools/commit/9fa8289e4f318c554694b78f496de4941d106026))
+* **form-design:** form menuBtn ([eef28ee](https://github.com/SoulLyoko/yusui-tools/commit/eef28eece2f6f0a559d7067e6939c707c5c812c3))
+* **form-design:** merge option ([2dfcfaa](https://github.com/SoulLyoko/yusui-tools/commit/2dfcfaac9bd012d3c9b75ce8d0d477788a735173))
+
+
+
 # [2.0.0-beta.21](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2023-03-31)
 
 
