@@ -1,3 +1,13 @@
+# [2.0.0-beta.24](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2023-04-03)
+
+
+### Features
+
+* **flow-pages:** approval-form ([c714586](https://github.com/SoulLyoko/yusui-tools/commit/c714586a929bf8385cf648f2fc628109e264c996))
+* **form-design:** functional settings ([fd28757](https://github.com/SoulLyoko/yusui-tools/commit/fd287575fff73d1689153e6f07cae272608346c9))
+
+
+
 # [2.0.0-beta.23](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2023-04-01)
 
 
