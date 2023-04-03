@@ -17,8 +17,10 @@ export function useProvideState(props: Props, emit: Emit) {
 
   const groupList = computed(() => props.groupList || defaultGroupList);
   const resources = computed<Record<string, Resource>>(() => merge(defaultResources, props.resources));
-  const baseOption = computed(() => merge(defaultBaseOption, props.baseOption));
-  const advanceOption = computed(() => merge(defaultAdvanceOption, props.advanceOption));
+  const baseOption = computed(() => merge(resolveSettings(defaultBaseOption), resolveSettings(props.baseOption)));
+  const advanceOption = computed(() =>
+    merge(resolveSettings(defaultAdvanceOption), resolveSettings(props.advanceOption))
+  );
 
   const elementTree = ref<ElementTreeNode>({});
   const activeElement = ref<ElementTreeNode>({});
@@ -66,6 +68,15 @@ export function useProvideState(props: Props, emit: Emit) {
     activeElement.value = element ?? elementTree.value ?? {};
   }
 
+  function resolveSettings(settings: Resource["settings"]) {
+    if (typeof settings === "function") {
+      const context = { elementTree: elementTree.value, activeElement: activeElement.value };
+      return cloneDeep(settings(context) ?? []);
+    } else {
+      return cloneDeep(settings ?? []);
+    }
+  }
+
   async function recordHistory(type: HistoryType) {
     // await nextTick();
     historyList.value.push({
@@ -106,6 +117,7 @@ export function useProvideState(props: Props, emit: Emit) {
     modelValue,
     baseOption,
     advanceOption,
+    resolveSettings,
     setActiveElement,
     recordHistory,
     restoreHistory,

@@ -1,7 +1,10 @@
 import type { AvueFormOption, AvueFormColumn, AvueFormGroup } from "@smallwei/avue";
 import type FormDesign from "../index.vue";
+import type { useProvideState } from "../composables";
 
 export type ComponentProps = AvueFormOption & AvueFormGroup & AvueFormColumn & { name?: string; id?: string };
+
+export type FormDesignState = ReturnType<typeof useProvideState>;
 
 /** 中间拖拽元素 */
 export interface ElementTreeNode {
@@ -47,7 +50,9 @@ export interface Resource {
   /** 配置面板的默认值 */
   props?: ComponentProps;
   /** 配置面板 */
-  settings?: AvueFormColumn[];
+  settings?:
+    | AvueFormColumn[]
+    | ((context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[]);
   /** 拖放规则 */
   rules?: {
     parentWhiteList?: string[];

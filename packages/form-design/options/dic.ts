@@ -1,4 +1,4 @@
-import type { Resource } from "../types";
+import type { AvueFormColumn } from "@smallwei/avue";
 
 import { EditorSetter } from "../setters";
 
@@ -32,7 +32,7 @@ export const sizeDic = [
   { label: "小", value: "small" }
 ];
 
-export const dic: Resource["settings"] = [
+export const dic: AvueFormColumn[] = [
   {
     label: "字典类型",
     prop: "dicType",

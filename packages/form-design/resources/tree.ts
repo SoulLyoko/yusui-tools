@@ -10,7 +10,7 @@ export const tree: Resource = {
   group: "表单组件",
   props: { type: "tree", label: "树形选择" },
   settings: [
-    ...dic!.map(item => {
+    ...dic.map(item => {
       if (item.prop === "dicData") {
         return {
           ...item,

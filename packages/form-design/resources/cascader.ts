@@ -10,7 +10,7 @@ export const cascader: Resource = {
   group: "表单组件",
   props: { type: "cascader", label: "级联选择器" },
   settings: [
-    ...dic!.map(item => {
+    ...dic.map(item => {
       if (item.prop === "dicData") {
         return {
           ...item,

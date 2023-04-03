@@ -18,7 +18,7 @@ import { filterObjDeep } from "@yusui/utils";
 import { useInjectState } from "../../composables";
 
 const state = useInjectState();
-const { elementTree, activeElement, baseOption, advanceOption, recordHistory, getResource } = state;
+const { elementTree, activeElement, baseOption, advanceOption, resolveSettings, recordHistory, getResource } = state;
 
 const formReLoading = ref(false);
 const activeTab = ref("");
@@ -34,9 +34,9 @@ watch(
     updateTimes.value = 0;
     await nextTick();
     const { settings, disabledSettings } = getResource(activeElement.value.name) ?? {};
-    const baseGroup = { ...commonOption, ...baseOption.value };
-    const advanceGroup = { ...commonOption, ...advanceOption.value };
-    const componentGroup = { ...commonOption, label: "属性", prop: "component", column: cloneDeep(settings) ?? [] };
+    const baseGroup = { ...commonOption, label: "基础", prop: "base", column: baseOption.value };
+    const advanceGroup = { ...commonOption, label: "高级", prop: "advance", column: advanceOption.value };
+    const componentGroup = { ...commonOption, label: "属性", prop: "component", column: resolveSettings(settings) };
     settingsTabs.value = [baseGroup, componentGroup, advanceGroup].filter(e => !disabledSettings?.includes(e.prop!));
     activeTab.value = settingsTabs.value[0].prop!;
     settingsData.value = cloneDeep(activeElement.value.props);

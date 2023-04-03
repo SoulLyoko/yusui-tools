@@ -10,7 +10,7 @@ export const select: Resource = {
   group: "表单组件",
   props: { type: "select", label: "选择框" },
   settings: [
-    ...dic!,
+    ...dic,
     {
       label: "弹出层主题",
       prop: "effect",

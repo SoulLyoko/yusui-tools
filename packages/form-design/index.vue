@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AvueFormOption, AvueFormGroup } from "@smallwei/avue";
+import type { AvueFormOption } from "@smallwei/avue";
 import type { Resource } from "./types";
 
 import { useProvideState } from "./composables";
@@ -31,8 +31,8 @@ const props = defineProps<{
   modelValue?: AvueFormOption;
   groupList?: string[];
   resources?: Record<string, Resource>;
-  baseOption?: AvueFormOption & AvueFormGroup;
-  advanceOption?: AvueFormOption & AvueFormGroup;
+  baseOption?: Resource["settings"];
+  advanceOption?: Resource["settings"];
   leftWidth?: string;
   rightWidth?: string;
 }>();

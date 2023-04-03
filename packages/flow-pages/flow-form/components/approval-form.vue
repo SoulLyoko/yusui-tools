@@ -221,13 +221,3 @@ function updateFormData() {
   // }
 }
 </script>
-
-<style lang="scss" scoped>
-.approval-tree {
-  :deep(.is-single > .el-tree-node__content) {
-    .el-checkbox__inner {
-      border-radius: 50%;
-    }
-  }
-}
-</style>
