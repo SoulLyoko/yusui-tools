@@ -14,6 +14,13 @@
         </el-tabs>
       </el-main>
     </el-container>
+
+    <ApprovalForm
+      v-model="formData"
+      v-model:visible="approvalVisible"
+      :flowDetail="flowDetail!"
+      @confirm="onSubmit"
+    ></ApprovalForm>
   </el-drawer>
 </template>
 
@@ -21,18 +28,19 @@
 import type { AvueFormOption } from "@smallwei/avue";
 import type { FlowDetail, ProcessDetail } from "../api/flow-task";
 
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, computed } from "vue";
 import { useVModels } from "@vueuse/core";
 
-import { getFlowDetail, startFlow, commitTask } from "../api/flow-task";
+import { getFlowDetail, startFlow, commitTask, getStartApprovalNodes } from "../api/flow-task";
 import InternalForm from "./components/internal-form.vue";
+import ApprovalForm from "./components/approval-form.vue";
 
 const props = defineProps<{
   flowKey?: string;
   visible?: boolean;
   flowDetail?: FlowDetail;
   processDetail?: ProcessDetail;
-  modelValue?: object;
+  modelValue?: any;
   formOption?: AvueFormOption;
   loading?: boolean;
   activeTab?: string;
@@ -71,19 +79,27 @@ watchEffect(() => {
     });
 });
 
+const approvalVisible = ref(false);
+
+const variables = computed(() => {
+  return Object.entries(formData.value || {})
+    .filter(([key]) => !key.startsWith("$"))
+    .map(([key, value]) => ({ key, value }));
+});
+
 const formRef = ref<InstanceType<typeof InternalForm>>();
 async function onBtnClick() {
   await formRef.value?.validate();
-  const variables = Object.entries(formData.value || {})
-    .filter(([key]) => !key.startsWith("$"))
-    .map(([key, value]) => ({ key, value }));
+  approvalVisible.value = true;
+}
+
+function onSubmit() {
   startFlow({
     flowDeployId: processDetail.value?.flowDeployId,
-    variables,
-    assignee: {
-      Activity_1ol866b: "2"
-    },
-    outgoing: ["Flow_34q9vpo"]
+    variables: variables.value,
+    assignee: formData.value?.assignee,
+    outgoing: formData.value?.outgoing,
+    incoming: formData.value?.incoming
   });
 }
 </script>

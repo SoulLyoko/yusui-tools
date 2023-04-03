@@ -56,6 +56,10 @@ export interface ProcessDetail {
    * 版本号
    */
   version?: number;
+  /**
+   * 任务id
+   */
+  taskId?: string;
 }
 
 export interface StartFlowData {
@@ -67,13 +71,16 @@ export interface StartFlowData {
    * 流程部署id
    */
   flowDeployId?: string;
+  /** 流程key */
+  flowKey?: string;
   /**
    * 是否调试模式，调试模式任务执行逻辑但不提交
    */
   isDebug?: boolean;
   /** 表单数据 */
-  variables?: { key: string; value: any }[];
-  outgoing?: string[];
+  variables?: { key?: string; value?: any; type?: string }[];
+  outgoing?: string;
+  incoming?: string;
 }
 
 export interface CommitTaskData {
@@ -85,16 +92,30 @@ export interface CommitTaskData {
    * 流程实例ID
    */
   flowInstanceId?: string;
-  /**
-   * 是否调试模式，调试模式任务执行逻辑但不提交
-   */
-  isDebug?: boolean;
+  /** 流程key */
+  flowKey?: string;
   /**
    * 流程任务ID
    */
   taskId?: string;
+  /**
+   * 是否调试模式，调试模式任务执行逻辑但不提交
+   */
+  isDebug?: boolean;
+  /** 表单数据 */
+  variables?: { key: string; value: any; type?: string }[];
+}
 
-  variables?: any;
+export interface ApprovalNode {
+  id?: string;
+  title?: string;
+  type?: string;
+  parentId?: string;
+  taskNodeKey?: string;
+  incoming?: string;
+  outgoing?: string;
+  userId?: string;
+  children?: ApprovalNode[];
 }
 
 export function getFlowDetail(params: FlowDeploy) {
@@ -107,4 +128,8 @@ export function startFlow(data: StartFlowData) {
 
 export function commitTask(data: CommitTaskData) {
   return request.post("/sapier-flow/flow-run/commitTask", data);
+}
+
+export function getStartApprovalNodes(data: Pick<CommitTaskData, "flowKey" | "variables">) {
+  return request.post("/sapier-flow/flow-run/queryApprovalNode", data);
 }
