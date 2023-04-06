@@ -98,8 +98,9 @@ export default defineConfig({
             { text: "avuePatch", link: "/plugins/avue-patch/index" },
             { text: "createEnvDts", link: "/plugins/env-dts/index" },
             { text: "loadProxy", link: "/plugins/load-proxy/index" },
-            { text: "uviewPatch", link: "/plugins/uview-patch/index" },
-            { text: "uniUIPatch", link: "/plugins/uni-ui-patch/index" }
+            { text: "uniPages", link: "/plugins/uni-pages/index" },
+            { text: "uniUIPatch", link: "/plugins/uni-ui-patch/index" },
+            { text: "uviewPatch", link: "/plugins/uview-patch/index" }
           ]
         }
       ],
