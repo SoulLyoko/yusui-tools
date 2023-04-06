@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "@smallwei/avue": "^3.2.12",
-    "element-plus": "^2.3.0",
-    "sass": "^1.59.3",
+    "element-plus": "^2.3.2",
+    "sass": "^1.60.0",
     "vue": "^3.2.47"
   }
 }

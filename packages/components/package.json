@@ -27,11 +27,11 @@
     "@iconify/vue": "4.0.0",
     "@vueuse/core": "^9.13.0",
     "@yusui/types": "workspace:*",
-    "@yusui/utils": "workspace:*",
-    "element-plus": "^2.3.0"
+    "@yusui/utils": "workspace:*"
   },
   "devDependencies": {
-    "sass": "^1.59.3",
+    "element-plus": "^2.3.2",
+    "sass": "^1.60.0",
     "vue": "^3.2.47"
   }
 }
