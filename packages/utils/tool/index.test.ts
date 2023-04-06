@@ -1,4 +1,4 @@
-import { sleep, to } from ".";
+import { sleep, to, enumToDic } from ".";
 
 describe("tool utils", () => {
   it("sleep", async () => {
@@ -22,5 +22,27 @@ describe("tool utils", () => {
       return res;
     };
     await expect(success()).resolves.toBe("success");
+  });
+
+  it("enumToDic", () => {
+    enum Status {
+      "失败" = 0,
+      "成功" = 1
+    }
+    expect(enumToDic(Status)).toEqual([
+      { label: "失败", value: 0 },
+      { label: "成功", value: 1 }
+    ]);
+  });
+
+  it("enumToDic props", () => {
+    enum Status {
+      "失败" = 0,
+      "成功" = 1
+    }
+    expect(enumToDic(Status, { label: "name", value: "id" })).toEqual([
+      { name: "失败", id: 0 },
+      { name: "成功", id: 1 }
+    ]);
   });
 });
