@@ -3,52 +3,30 @@ import type { Page, ResData, ResRecords } from "@yusui/types";
 import { request } from ".";
 
 export interface FlowDefinition {
-  /**
-   * 流程定义数据
-   */
+  /** 流程定义数据 */
   flowData?: string;
-  /**
-   * 流程KEY
-   */
+  /** 流程KEY */
   flowKey?: string;
-  /**
-   * 流程定义ID
-   */
+  /** 流程定义ID */
   flowModuleId?: string;
-  /**
-   * 流程名称
-   */
+  /** 流程名称 */
   flowName?: string;
-  /**
-   * 表单配置数据
-   */
+  /** 表单配置数据 */
   formOption?: string;
-  /**
-   * 表单路径
-   */
+  /** 表单路径 */
   formPath?: string;
-  /**
-   * 分组ID
-   */
+  /** 分组ID */
   groupId?: string;
   /** 图标 */
   icon?: string;
-  /**
-   * 流程备注
-   */
+  /** 流程备注 */
   remarks?: string;
-  /**
-   * 排序
-   */
+  /** 排序 */
   sort?: number;
   status?: number;
-  /**
-   * 版本号
-   */
+  /** 版本号 */
   version?: number;
-  /**
-   * 主版本
-   */
+  /** 主版本 */
   mainVersion?: number;
 }
 

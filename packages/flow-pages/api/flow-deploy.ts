@@ -3,15 +3,16 @@ import type { FlowDefinition } from "./flow-definition";
 
 import { request } from ".";
 
+export enum IsMainVersion {
+  "否" = 0,
+  "是" = 1
+}
+
 export interface FlowDeploy extends FlowDefinition {
-  /**
-   * 部署id
-   */
+  /** 部署id */
   flowDeployId?: string;
-  /**
-   * 是否主版本
-   */
-  mainVersion?: 0 | 1;
+  /** 是否主版本 */
+  mainVersion?: IsMainVersion;
 }
 
 export function getList(params: Page & FlowDeploy) {

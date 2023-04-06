@@ -3,41 +3,23 @@ import type { Page, ResRecords } from "@yusui/types";
 import { request } from ".";
 
 export interface FormTemplate {
-  /**
-   * 表单KEY
-   */
+  /** 表单KEY */
   formKey?: string;
-  /**
-   * 表单名称
-   */
+  /** 表单名称 */
   formName?: string;
-  /**
-   * 表单配置
-   */
+  /** 表单配置 */
   formOption?: string;
-  /**
-   * 分组ID
-   */
+  /** 分组ID */
   groupId?: string;
-  /**
-   * 主键id
-   */
+  /** 主键id */
   id?: string;
-  /**
-   * 表单备注
-   */
+  /** 表单备注 */
   remarks?: string;
-  /**
-   * 排序
-   */
+  /** 排序 */
   sort?: number;
-  /**
-   * 业务状态
-   */
+  /** 业务状态 */
   status?: number;
-  /**
-   * 版本号
-   */
+  /** 版本号 */
   version?: number;
 }
 

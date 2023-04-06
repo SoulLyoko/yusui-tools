@@ -3,41 +3,23 @@ import type { Page, ResRecords } from "@yusui/types";
 import { request } from ".";
 
 export interface FlowTemplate {
-  /**
-   * 流程模型数据
-   */
+  /** 流程模型数据 */
   flowData?: string;
-  /**
-   * 流程KEY
-   */
+  /** 流程KEY */
   flowKey?: string;
-  /**
-   * 流程名称
-   */
+  /** 流程名称 */
   flowName?: string;
-  /**
-   * 分组ID
-   */
+  /** 分组ID */
   groupId?: string;
-  /**
-   * 主键id
-   */
+  /** 主键id */
   id?: string;
-  /**
-   * 流程备注
-   */
+  /** 流程备注 */
   remarks?: string;
-  /**
-   * 排序
-   */
+  /** 排序 */
   sort?: number;
-  /**
-   * 业务状态
-   */
+  /** 业务状态 */
   status?: number;
-  /**
-   * 版本号
-   */
+  /** 版本号 */
   version?: number;
 }
 

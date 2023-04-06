@@ -3,12 +3,12 @@
     <template #menu-left>
       <el-button :loading="loading" type="primary" icon="el-icon-arrow-left" @click="emit('back')">返回</el-button>
     </template>
-    <template #menu="{ row }">
+    <template #menu="{ row }: { row: FlowDeploy }">
       <el-button :loading="loading" type="text" icon="el-icon-view" @click="emit('view', row)"> 查看 </el-button>
       <el-button :loading="loading" type="text" icon="el-icon-edit" @click="emit('edit', row)"> 编辑 </el-button>
       <el-button
         :loading="loading"
-        :disabled="row.mainVersion === 1"
+        :disabled="row.mainVersion === IsMainVersion['是']"
         type="text"
         icon="el-icon-switch"
         @click="handleSwitchMainVersion(row)"
@@ -23,11 +23,11 @@
 import type { FlowDeploy } from "../api/flow-deploy";
 
 import { ref, watchEffect } from "vue";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
-import { getList, update } from "../api/flow-deploy";
+import { getList, update, IsMainVersion } from "../api/flow-deploy";
 
 const props = defineProps<{ flowModuleId?: string }>();
 const emit = defineEmits(["back", "view", "edit"]);
@@ -53,7 +53,10 @@ watchEffect(() => {
 });
 
 const loading = ref(false);
-function handleSwitchMainVersion(row: FlowDeploy) {
+async function handleSwitchMainVersion(row: FlowDeploy) {
+  await ElMessageBox.confirm(`确定将 ${row.flowName}(${row.flowKey}:v${row.version}) 设为主版本?`, "提示", {
+    type: "warning"
+  });
   loading.value = true;
   update({
     flowDeployId: row.flowDeployId,

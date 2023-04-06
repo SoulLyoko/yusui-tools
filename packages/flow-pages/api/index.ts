@@ -1,12 +1,17 @@
 import type { Res } from "@yusui/types";
 import type { AxiosRequestConfig, AxiosInstance } from "axios";
 
+import { ElMessage } from "element-plus";
 import axios from "axios";
 
 export const request = axios.create() as RequestInstance;
 
 request.interceptors.response.use(response => {
-  return response.data;
+  const res = response.data;
+  if (res.code !== 200) {
+    ElMessage.error(res.msg);
+  }
+  return res;
 });
 
 export interface RequestInstance extends AxiosInstance {

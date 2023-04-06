@@ -3,25 +3,15 @@ import type { Page, ResData } from "@yusui/types";
 import { request } from ".";
 
 export interface FlowCategory {
-  /**
-   * 主键id
-   */
+  /** 主键id */
   id?: string;
-  /**
-   * 分类名称
-   */
+  /** 分类名称 */
   name?: string;
-  /**
-   * 上级id
-   */
+  /** 上级id */
   parentId?: number;
-  /**
-   * 分类备注
-   */
+  /** 分类备注 */
   remark?: string;
-  /**
-   * 排序
-   */
+  /** 排序 */
   sort?: number;
 }
 

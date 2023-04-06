@@ -14,6 +14,7 @@
           show-checkbox
           check-on-click-node
           :data="approvalNodes"
+          style="max-height: 600px; overflow: auto"
           @check-change="onCheckChange"
         >
           <template #default="{ data }">
@@ -42,14 +43,14 @@
 
     <template #footer>
       <el-button @click="visible = false">取 消</el-button>
-      <el-button type="primary" :loading="submitLoading" @click="onConfirm">确 定</el-button>
+      <el-button type="primary" @click="onConfirm">确 定</el-button>
     </template>
   </el-dialog>
 </template>
 
 <script setup lang="ts" name="approval-form">
 import type { AvueFormInstance, AvueFormDefaults } from "@smallwei/avue";
-import type { ApprovalNode, FlowDetail } from "../../api/flow-task";
+import type { ApprovalNode, FlowDetail, FlowVariable } from "../../api/flow-task";
 import type { ElTree } from "element-plus";
 
 import { ref, watchEffect, nextTick, computed } from "vue";
@@ -59,7 +60,7 @@ import { differenceBy } from "lodash-es";
 import { treeMap, findTree, uuid } from "@yusui/utils";
 import { Icon } from "@iconify/vue";
 
-import { getStartApprovalNodes } from "../../api/flow-task";
+import { getApprovalNodes } from "../../api/flow-task";
 import { asyncValidate } from "../../utils";
 
 // import CommonComments from "./common-comments.vue";
@@ -74,6 +75,7 @@ const iconMap: Record<string, string> = {
 const props = defineProps<{
   modelValue?: any;
   visible?: boolean;
+  variables?: FlowVariable[];
   flowDetail?: FlowDetail;
 }>();
 const emit = defineEmits(["confirm"]);
@@ -112,16 +114,11 @@ function approvalValidator(rule: any, value: ApprovalNode[], callback: (error?: 
 // const showApproval = computed(() => activeBtnConfig.value?.approval?.includes("approver"));
 const showApproval = ref(true);
 const submitLoading = ref(false);
-const variables = computed(() => {
-  return Object.entries(formData.value || {})
-    .filter(([key]) => !key.startsWith("$"))
-    .map(([key, value]) => ({ key, value }));
-});
-const rootApprovalNode = computed(() => approvalNodes.value[0]);
 
 watchEffect(async () => {
   if (!visible.value || !formRef.value) return;
-  const { taskId, flowKey } = flowDetail.value?.process || {};
+  const { flowKey } = flowDetail.value?.process || {};
+  const { taskId } = flowDetail.value?.task || {};
   const defaultComment = taskId ? "" : "发起";
   approvalNodes.value = [];
   approvalFormData.value = { approver: [], copyUser: "", comment: formData.value.comment || defaultComment };
@@ -133,11 +130,13 @@ watchEffect(async () => {
   });
 
   if (showApproval.value) {
-    await getStartApprovalNodes({ flowKey, variables: variables.value }).then(res => {
-      approvalNodes.value = treeMap(res.data ?? [], item => {
-        const id = item.id || uuid();
-        return { ...item, id, disabled: item.type !== "user" };
-      });
+    console.log("🚀 ~ file: approval-form.vue:120 ~ watchEffect ~ flowDetail:", flowDetail);
+    const res = await getApprovalNodes({ flowKey, variables: props.variables, taskId });
+    approvalNodes.value = treeMap(res.data ?? [], (item, index, parent) => {
+      const id = item.id || uuid();
+      item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey;
+      item.incoming = parent?.incoming ?? item.incoming;
+      return { ...item, id, disabled: item.type !== "user" };
     });
     await nextTick();
     // 只有一个节点时自动选择
@@ -183,8 +182,9 @@ async function onConfirm() {
   const { approver, copyUser, comment } = approvalFormData.value;
   const conditionSet: Record<string, Set<string>> = {};
   const conditionData: Record<string, string> = {};
-  const { taskNodeKey, outgoing, incoming } = rootApprovalNode.value;
+  const outgoing = new Set<string>();
   approver.forEach(item => {
+    const { taskNodeKey, incoming } = item;
     if (!conditionSet[taskNodeKey!]) {
       conditionSet[taskNodeKey!] = new Set();
     }
@@ -195,12 +195,12 @@ async function onConfirm() {
     // conditionSet["condition"].add(item.condition);
     conditionData[taskNodeKey!] = [...conditionSet[taskNodeKey!]].join(",");
     // conditionData["condition"] = [...conditionSet["condition"]].join(",");
+    outgoing.add(incoming!);
   });
   formData.value.assignee = conditionData;
   // formData.value.copyUser = copyUser;
   formData.value.comment = comment;
-  formData.value.outgoing = outgoing;
-  formData.value.incoming = incoming;
+  formData.value.outgoing = [...outgoing];
   console.log("🚀 ~ file: approval-form.vue:210 ~ onConfirm ~ formData:", formData);
   // updateFormData();
   emit("confirm");
