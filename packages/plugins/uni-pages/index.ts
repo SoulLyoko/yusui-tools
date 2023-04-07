@@ -6,6 +6,24 @@ import fs from "fs";
 
 import { parse } from "@vue/compiler-sfc";
 
+export interface UniPagesOptions {
+  /** pages目录 */
+  pagesDir?: string;
+  /** pages.json路径 */
+  pagesJsonPath?: string;
+  /** pages.default.json路径 */
+  defaultConfigPath?: string;
+  /** 注入page-style */
+  pageStyle?: {
+    isStatic?: boolean;
+    value?: string;
+  };
+}
+interface Page {
+  path?: string;
+  style?: Record<string, unknown>;
+}
+
 function traverse(dir: string, files: string[] = []) {
   fs.existsSync(dir) &&
     fs.readdirSync(dir).forEach(name => {
@@ -19,17 +37,25 @@ function traverse(dir: string, files: string[] = []) {
   return files;
 }
 
-export function generatePages(src: string) {
-  const files = traverse(path.resolve(src, "pages"));
-  const defaultConfigPath = path.resolve(src, "pages.default.json");
-  const configStr = fs.existsSync(defaultConfigPath) && fs.readFileSync(defaultConfigPath, "utf-8");
-  const defaultConfig = (configStr && JSON.parse(configStr as string)) || {};
-  const pages = files
+function matchPageMeta(code: string) {
+  return code.match(/<page-meta(([\s\S])*?)<\/page-meta>/)?.[0];
+}
+
+export function generatePages(options: UniPagesOptions) {
+  const { pagesDir, pagesJsonPath, defaultConfigPath } = options;
+  if (!pagesDir || !pagesJsonPath) return;
+  const files = traverse(pagesDir);
+  const defaultConfigStr =
+    (defaultConfigPath && fs.existsSync(defaultConfigPath) && fs.readFileSync(defaultConfigPath, "utf-8")) || "{}";
+  const defaultConfig = JSON.parse(defaultConfigStr as string);
+  const defaultPages: Page[] = defaultConfig.pages ?? [];
+  const generatedPages: Page[] = [];
+  files
     .filter(e => e.endsWith(".vue"))
-    .map(filepath => {
+    .forEach(filepath => {
       const file = fs.readFileSync(filepath, "utf-8");
       // 匹配<page-meta>标签
-      const pageMeta = file.match(/<page-meta(([\s\S])*?)<\/page-meta>/)?.[0];
+      const pageMeta = matchPageMeta(file);
       if (!pageMeta) return;
       // 页面路径path
       const path = filepath.replace(/\\/g, "/").replace(/.*(pages\/.*).vue/, "$1");
@@ -44,47 +70,64 @@ export function generatePages(src: string) {
           prop = prop as AttributeNode;
           const key = prop.name;
           let value: any = prop.value?.content;
+          // 转换数字和布尔值
+          if (!isNaN(Number(value))) value = Number(value);
           if (value === "true") value = true;
           if (value === "false") value = false;
           return [key, value];
         })
       );
-      // 合并style数据
-      const existPageConfig = defaultConfig.pages?.find((e: any) => e.path === path);
-      if (existPageConfig) {
-        return {
-          path,
-          style: { ...existPageConfig.style, ...pageStyle }
-        };
-      } else {
-        return {
-          path,
-          style: { ...pageStyle }
-        };
-      }
-    })
-    .filter(e => e);
+      const existPageConfig = defaultPages.find(e => e.path === path);
+      generatedPages.push({
+        path,
+        style: { ...existPageConfig?.style, ...pageStyle }
+      });
+    });
+
   const pageJson = {
     ...defaultConfig,
-    pages
+    pages: generatedPages.sort(a => {
+      return defaultPages.findIndex(e => e.path === a.path) == -1 ? 1 : -1;
+    })
   };
+  const oldJsonStr = (fs.existsSync(pagesJsonPath) && fs.readFileSync(pagesJsonPath, "utf-8")) || "{}";
+  if (JSON.stringify(JSON.parse(oldJsonStr)) === JSON.stringify(pageJson)) return;
   // 写入pages.json
-  fs.existsSync(src) && fs.writeFileSync(path.resolve(src, "pages.json"), JSON.stringify(pageJson, null, 2));
+  fs.writeFileSync(pagesJsonPath, JSON.stringify(pageJson, null, 2));
+}
+
+export function injectPageStyle(code: string, pageStyle?: UniPagesOptions["pageStyle"]) {
+  if (!pageStyle) return;
+  const { isStatic, value } = pageStyle;
+  const replacedContent = isStatic ? `<page-meta page-style="${value}"` : `<page-meta :page-style="${value}"`;
+  code = code.replace(`<page-meta`, replacedContent);
+  return code;
 }
 
 /**
  * 扩展page-meta功能,自动生成pages.json
- * @param src 项目src目录
+ * @param options 配置
  */
-export function uniPages(src: string): Plugin {
+export function uniPages(options: UniPagesOptions): Plugin {
+  const { pagesJsonPath } = options;
+  if (pagesJsonPath && !fs.existsSync(pagesJsonPath)) {
+    fs.writeFileSync(pagesJsonPath, "{}");
+  }
   return {
     name: "vite-plugin-uni-pages",
     enforce: "pre",
     config() {
-      generatePages(src);
+      generatePages(options);
     },
     handleHotUpdate() {
-      generatePages(src);
+      generatePages(options);
+    },
+    transform(code, id) {
+      const { pageStyle } = options;
+      if (!pageStyle) return;
+      if (!id.endsWith(".vue")) return;
+      if (!matchPageMeta(code)) return;
+      return injectPageStyle(code, pageStyle);
     }
   };
 }

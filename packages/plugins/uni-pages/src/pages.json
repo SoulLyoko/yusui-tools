@@ -12,9 +12,18 @@
   },
   "pages": [
     {
-      "path": "pages/hello/index",
+      "path": "pages/world/world",
       "style": {
-        "navigationBarTextStyle": "black"
+        "navigationBarBackgroundColor": "#eee",
+        "navigationBarTitleText": "world"
+      }
+    },
+    {
+      "path": "pages/hello/hello",
+      "style": {
+        "navigationBarTitleText": "hello",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 100
       }
     }
   ]

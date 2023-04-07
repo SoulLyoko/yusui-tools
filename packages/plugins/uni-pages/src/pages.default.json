@@ -12,16 +12,10 @@
   },
   "pages": [
     {
-      "path": "pages/hello/index",
+      "path": "pages/world/world",
       "style": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "hello"
-      }
-    },
-    {
-      "path": "pages/world/index",
-      "style": {
-        "navigationBarTitleText": "world"
+        "navigationBarBackgroundColor": "#eee",
+        "navigationBarTitleText": "被覆盖"
       }
     }
   ]
