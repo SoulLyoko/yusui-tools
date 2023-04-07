@@ -1,14 +1,17 @@
 # avuePatch
 
-A vite plugin for fixing `@smallwei/avue`'s bug.
+修复 `@smallwei/avue` 的 bug.
 
 ## Usage
 
-```js
-// vite.config.js
+:::code-group
+
+```js [vite.config.js]
 import { avuePatch } from "@yusui/plugins";
 
 export default {
   plugins: [avuePatch()]
 };
 ```
+
+:::

@@ -151,7 +151,8 @@ export default defineConfig({
               text: "tool",
               items: [
                 { text: "awaitTo", link: "/utils/tool/awaitTo" },
-                { text: "sleep", link: "/utils/tool/sleep" }
+                { text: "sleep", link: "/utils/tool/sleep" },
+                { text: "enumToDic", link: "/utils/tool/enumToDic" }
               ]
             },
             {

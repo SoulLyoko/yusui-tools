@@ -4,13 +4,9 @@
 
 ## 基础用法
 
-<script setup>
-import Demo from "./demo.vue"
-</script>
-
-<Demo></Demo>
-
-<<< @/composables/use-crud/demo.vue
+:::demo
+./demo
+:::
 
 ## Options
 

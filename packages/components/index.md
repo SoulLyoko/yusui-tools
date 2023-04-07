@@ -8,20 +8,9 @@ npm i @yusui/components
 
 ## Usage
 
-```vue
-<template>
-  <BasicContainer></BasicContainer>
-</template>
+:::code-group
 
-<script setup>
-import { BasicContainer } from "@yusui/components";
-</script>
-```
-
-or
-
-```js
-// main.js
+```js [main.js]
 import { createApp } from "vue";
 import App from "./App.vue";
 import YSComponents from "@yusui/components";
@@ -30,8 +19,4 @@ const app = createApp(App);
 app.use(YSComponents);
 ```
 
-```vue
-<template>
-  <BasicContainer></BasicContainer>
-</template>
-```
+:::

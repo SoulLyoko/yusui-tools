@@ -1,16 +1,12 @@
 # loadProxy
 
+只需要通过配置 `.env` 就可以为 vite 开发服务添加代理配置
+
 ## Usage
 
-```sh
-# .env.development
+:::code-group
 
-# VITE_PROXY=[[prefix,target,rewrite?]]
-VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:8081"]]
-```
-
-```js
-// vite.config.js
+```js [vite.config.js]
 import { loadProxy } from "@yusui/plugins";
 
 export default {
@@ -19,11 +15,19 @@ export default {
 };
 ```
 
+:::
+
+:::code-group
+
+```sh [.env.development]
+VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:8081"]]
+```
+
+:::
+
 ## How It Works
 
 ```sh
-# .env.development
-
 # VITE_PROXY=[[prefix,target,rewrite?]]
 VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:8081"]]
 ```

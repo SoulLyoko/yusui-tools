@@ -31,6 +31,10 @@ export interface LoadProxyOptions {
   key: string;
 }
 
+/**
+ * 为 vite 开发服务添加代理配置
+ * @param options { key: 'VITE_PROXY' }
+ */
 export function loadProxy(options?: LoadProxyOptions): Plugin {
   const { key = "VITE_PROXY" } = options || {};
   return {

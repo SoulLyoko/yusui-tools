@@ -7,6 +7,7 @@
 <script setup lang="ts">
 /**
  * 基础容器
+ * @deprecated 即将弃用
  * @prop {String} type 容器模式:card卡片|full高度填满主区域|ghost透明背景
  */
 import type { PropType } from "vue";

@@ -4,7 +4,7 @@
       <slot name="demo"></slot>
     </div>
     <details class="code-details">
-      <summary>View source</summary>
+      <summary>View Source</summary>
       <slot name="code"></slot>
     </details>
   </div>
@@ -16,7 +16,7 @@ export default { name: "demo" };
 
 <style lang="scss" scoped>
 .demo {
-  border: 1px solid var(--vp-c-divider-light);
+  border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
 
   .code-demo {
@@ -25,7 +25,7 @@ export default { name: "demo" };
 
   .code-details {
     text-align: center;
-    border-top: 1px solid var(--vp-c-divider-light);
+    border-top: 1px solid var(--vp-c-divider);
 
     summary {
       padding: 10px 0;

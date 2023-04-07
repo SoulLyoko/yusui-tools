@@ -8,24 +8,28 @@ npm i -D eslint prettier @yusui/eslint-config @yusui/prettier-config
 
 ## Usage
 
-```js
-// .eslintrc.js
+:::code-group
+
+```js [.eslintrc.js]
 module.exports = {
   extends: "@yusui/eslint-config"
 };
+```
 
-// .prettierrc.js
+```js [.prettierrc.js]
 module.exports = {
   ...require("@yusui/prettier-config")
 };
 ```
 
+:::
+
 ## Preview
 
-### eslint-config
+:::code-group
 
-<<< @/eslint-config/index.js
+<<< @/eslint-config/index.js[eslint-config]
 
-### prettier-config
+<<< @/prettier-config/index.js[prettier-config]
 
-<<< @/prettier-config/index.js
+:::

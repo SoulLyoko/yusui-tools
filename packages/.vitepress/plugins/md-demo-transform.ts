@@ -55,7 +55,13 @@ export function mdDemoTransform(): Plugin {
       const importSript = `<script setup>\n${importComponents}\n</script>\n`;
       demoMatches?.forEach(match => {
         const { componentName, sourcePath } = parseComponent(match, id);
-        const demoTemplate = `<demo>
+        //         const demoTemplate = `<${componentName}></${componentName}>
+
+        // :::details View Source
+        // <<< ${sourcePath}.vue
+        // :::`;
+        const demoTemplate = `
+<demo>
   <template #demo>
     <${componentName}></${componentName}>
   </template>

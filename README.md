@@ -16,16 +16,3 @@
 | [@yusui/prettier-config](https://soullyoko.github.io/yusui-tools/prettier-config/index.html) |
 | [@yusui/types](https://soullyoko.github.io/yusui-tools/types/index.html)                     |
 | [@yusui/utils](https://soullyoko.github.io/yusui-tools/utils/index.html)                     |
-
-## Install
-
-```bash
-npm i @yusui/utils
-```
-
-## Usage
-
-```ts
-import { storage } from "utils";
-storage.set("key", "value");
-```

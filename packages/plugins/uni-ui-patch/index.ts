@@ -12,6 +12,7 @@ export function uniCalendarSlot(code: string, component?: string) {
   );
 }
 
+/** 修复选择器值变化事件 */
 export function fixUniDataSelectChange(code: string, component?: string) {
   if (component !== "uni-data-select") return code;
   code = code

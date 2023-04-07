@@ -34,3 +34,18 @@ export function awaitTo<T, U = Error>(promise: Promise<T>, errorExt?: object): P
  * ```
  */
 export const to = awaitTo;
+
+/**
+ * 将枚举转换为字典数组
+ * @param {Object} enumme 枚举对象
+ * @param {Object} props {label: 'label', value: 'value'}
+ */
+export function enumToDic<T extends object>(
+  enumme: T,
+  props?: { label?: string; value?: string }
+): { label?: string; value?: any; [x: string]: any }[] {
+  const { label: labelKey = "label", value: valueKey = "value" } = props || {};
+  return Object.entries(enumme)
+    .map(([key, value]) => ({ [labelKey]: key, [valueKey]: value }))
+    .filter(item => isNaN(Number(item[labelKey])));
+}
