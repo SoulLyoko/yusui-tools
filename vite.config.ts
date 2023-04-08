@@ -27,7 +27,8 @@ const external = [
   "acorn",
   "astring",
   "json5",
-  "@antv/layout"
+  "@antv/layout",
+  "@vue/compiler-sfc"
 ];
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),
