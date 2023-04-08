@@ -1,6 +1,6 @@
 {
   "name": "@yusui/plugins",
-  "version": "2.0.0-beta.24",
+  "version": "2.0.0-beta.25",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@dcloudio/uni-ui":"^1.4.26",
+    "@dcloudio/uni-ui": "^1.4.26",
     "@vue/compiler-core": "^3.2.47",
     "@vue/compiler-sfc": "^3.2.47",
     "uview-plus": "^3.1.29"
