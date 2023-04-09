@@ -12,6 +12,7 @@ dist
 dist-ssr
 .history
 */.vitepress/cache
+pages.json
 
 # Editor directories and files
 .vscode

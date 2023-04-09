@@ -57,9 +57,6 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias
     },
-    server: {
-      port: 5174
-    },
     build: {
       lib: {
         entry: input
