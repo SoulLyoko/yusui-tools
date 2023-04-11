@@ -48,6 +48,7 @@ export interface CrudState<T, P> {
   searchForm: P;
   queryForm: any;
   formData: T;
+  formType: FormType;
   mockData: T[];
   mockCache: string;
 }

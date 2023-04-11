@@ -43,6 +43,7 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
         searchForm: {}, // 搜索条件
         queryForm: {}, // 固定查询条件,不会被清空重置
         formData: {}, // 表单数据
+        formType: "", // 弹窗表单类型
         mockData: [], // 假数据
         mockCache: "" // 将假数据存在缓存中使用的key
       },

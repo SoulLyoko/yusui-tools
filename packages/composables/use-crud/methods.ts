@@ -263,6 +263,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const beforeOpen =
     options.beforeOpen ??
     (async (done: () => void, type: FormType) => {
+      crudState.formType = type;
       await emitter.emitAsync("beforeOpen", type);
       done();
       await emitter.emitAsync("afterOpen", type);
@@ -275,6 +276,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const beforeClose =
     options.beforeClose ??
     (async (done: () => void, type: FormType) => {
+      crudState.formType = type;
       await emitter.emitAsync("beforeClose", type);
       done();
       await emitter.emitAsync("afterClose", type);
