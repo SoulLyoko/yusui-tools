@@ -1,15 +1,18 @@
-export const id = {
-  label: "节点id",
-  prop: "id",
-  readonly: true
-};
-export const name = {
-  label: "节点名称",
-  prop: "name"
-};
-export const desc = {
-  label: "节点描述",
-  prop: "desc"
-};
+import type { AvueFormColumn } from "@smallwei/avue";
+import type { FlowFormData } from "../types";
 
-export const baseColumn = [id, name, desc];
+export const baseColumn: AvueFormColumn<FlowFormData>[] = [
+  {
+    label: "节点id",
+    prop: "id",
+    readonly: true
+  },
+  {
+    label: "节点名称",
+    prop: "name"
+  },
+  {
+    label: "节点描述",
+    prop: "desc"
+  }
+];

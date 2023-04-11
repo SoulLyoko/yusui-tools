@@ -1,13 +1,15 @@
-export const className = {
-  label: "类",
-  prop: "className"
-};
+import type { AvueFormColumn } from "@smallwei/avue";
+import type { FlowFormData } from "../types";
 
-export const isAsync = {
-  label: "异步",
-  prop: "isAsync",
-  type: "switch",
-  value: false
-};
-
-export const serviceTaskColumn = [className, isAsync];
+export const serviceTaskColumn: AvueFormColumn<FlowFormData>[] = [
+  {
+    label: "类",
+    prop: "className"
+  },
+  {
+    label: "异步",
+    prop: "isAsync",
+    type: "switch",
+    value: false
+  }
+];

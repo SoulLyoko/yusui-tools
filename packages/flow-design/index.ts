@@ -5,3 +5,4 @@ export { FlowModeler, FlowViewer };
 export * from "./constants";
 export * from "./extensions";
 export * from "./options";
+export * from "./types";

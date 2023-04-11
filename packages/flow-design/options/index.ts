@@ -1,4 +1,5 @@
 import type { AvueFormGroup } from "@smallwei/avue";
+import type { FlowFormData } from "../types";
 
 import {
   assigneeColumn,
@@ -25,7 +26,6 @@ export * from "./button";
 export * from "./executionListener";
 export * from "./formProperty";
 export * from "./gateway";
-export * from "./listener";
 export * from "./multiInstance";
 export * from "./note";
 export * from "./process";
@@ -37,17 +37,17 @@ export * from "./taskListener";
 export * from "./timeLimit";
 export * from "./userTask";
 
-export const defaultGroup: AvueFormGroup[] = [{ label: "基本配置", prop: "base", column: baseColumn }];
+export const defaultGroup: AvueFormGroup<FlowFormData>[] = [{ label: "基本配置", prop: "base", column: baseColumn }];
 
-export const defaultOptions: Record<string, AvueFormGroup[]> = {
+export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   startEvent: [
     { label: "基本配置", prop: "base", column: baseColumn },
-    { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
+    { label: "表单配置", prop: "formProperty", collapse: false, column: formPropertyColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
   ],
   endEvent: [
     { label: "基本配置", prop: "base", column: baseColumn },
-    { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
+    { label: "表单配置", prop: "formProperty", collapse: false, column: formPropertyColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn },
     { label: "执行监听", prop: "executionListener", collapse: false, column: executionListenerColumn }
   ],
@@ -56,10 +56,10 @@ export const defaultOptions: Record<string, AvueFormGroup[]> = {
     { label: "人员配置", prop: "assignee", collapse: true, column: assigneeColumn },
     { label: "多实例配置", prop: "multiInstance", collapse: false, column: multiInstanceColumn },
     { label: "按钮配置", prop: "button", collapse: false, column: buttonColumn },
-    { label: "表单配置", prop: "formproperty", collapse: false, column: formPropertyColumn },
+    { label: "表单配置", prop: "formProperty", collapse: false, column: formPropertyColumn },
     { label: "任务监听", prop: "taskListener", collapse: false, column: taskListenerColumn },
     { label: "执行监听", prop: "executionListener", collapse: false, column: executionListenerColumn },
-    { label: "时限控制", prop: "timelimit", collapse: false, column: timeLimitColumn },
+    { label: "时限控制", prop: "timeLimit", collapse: false, column: timeLimitColumn },
     { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
   ],
   serviceTask: [

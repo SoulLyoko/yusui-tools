@@ -208,9 +208,6 @@ const plugins = [
 export class BpmnExtend {
   static pluginName = "bpmnExtend";
   constructor({ lf }: { lf: LogicFlow }) {
-    // plugins.forEach(plugin => {
-    //   lf.register(plugin);
-    // });
     lf.batchRegister(plugins);
     lf.setDefaultEdgeType("sequenceFlow");
   }

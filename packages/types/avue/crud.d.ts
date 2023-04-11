@@ -299,6 +299,8 @@ declare module "@smallwei/avue" {
     editTitle?: string;
     /** 查看窗口标题 */
     viewTitle?: string;
+    /** 表格弹窗是否插入到body */
+    dialogAppendToBody?: boolean;
     /** 表格弹窗是否可以拖拽 */
     dialogDrag?: boolean;
     /** 表格弹窗是否为全屏 */
