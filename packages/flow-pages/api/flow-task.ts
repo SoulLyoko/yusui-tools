@@ -1,22 +1,25 @@
 import type { Page, ResData, ResRecords } from "@yusui/types";
 import type { FlowDeploy } from "./flow-deploy";
+import type { FlowFormData } from "@yusui/flow-design";
 
 import { request } from ".";
+
 /**
  * 流程信息
  */
 export interface FlowDetail {
   /** 流转记录 */
-  flowHistory?: Record<string, any>[];
+  flowHistory?: TaskDetail[];
   /** 当前表单数据 */
   formData?: Record<string, any>;
   /** 流程详情 */
   process?: ProcessDetail;
   /** 当前节点配置 */
-  properties?: Record<string, any>;
-  /** 任务详情 */
+  properties?: FlowFormData;
+  /** 当前任务详情 */
   task?: TaskDetail;
 }
+
 /**
  * 流程详情
  */
@@ -44,6 +47,8 @@ export enum TaskStatus {
 export interface TaskDetail {
   /** 审批人 */
   assignee: string;
+  /** 审批人名 */
+  assigneeName: string;
   createTime: string;
   createUser: string;
   /** 流程部署id */

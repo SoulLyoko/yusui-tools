@@ -5,7 +5,7 @@
     </template>
   </avue-crud>
   <el-dialog v-model="dialogVisible" :title="`表单设计-${formData.formName}`" fullscreen destroy-on-close>
-    <FormDesign v-model="formData.formOption" style="height: calc(100vh - 177px)"></FormDesign>
+    <FormDesignWrapper v-model="formData.formOption" style="height: calc(100vh - 177px)"></FormDesignWrapper>
     <template #footer>
       <el-button type="primary" @click="handleSaveLayout">保存</el-button>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -20,7 +20,7 @@ import { ref } from "vue";
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
-import FormDesign from "../components/form-design/index.vue";
+import FormDesignWrapper from "../components/form-design-wrapper/index.vue";
 import { getList, create, update, remove } from "../api/form-template";
 
 const crudOption = {

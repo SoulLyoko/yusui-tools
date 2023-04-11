@@ -11,6 +11,10 @@
           <el-tab-pane v-else label="审批信息" name="form">
             <InternalForm ref="formRef" v-model="formData" :flowDetail="flowDetail"></InternalForm>
           </el-tab-pane>
+
+          <el-tab-pane label="流程跟踪" name="track" lazy>
+            <FlowTrack :flowDetail="flowDetail"></FlowTrack>
+          </el-tab-pane>
         </el-tabs>
       </el-main>
     </el-container>
@@ -36,6 +40,7 @@ import { ElMessage } from "element-plus";
 import { getFlowDetail, startFlow, commitTask } from "../api/flow-task";
 import InternalForm from "./components/internal-form.vue";
 import ApprovalForm from "./components/approval-form.vue";
+import FlowTrack from "./components/flow-track.vue";
 
 const props = defineProps<{
   flowKey?: string;
@@ -47,6 +52,7 @@ const props = defineProps<{
   formOption?: AvueFormOption;
   loading?: boolean;
   activeTab?: string;
+  debug?: boolean;
 }>();
 const vModels = useVModels(props, undefined, { passive: true, deep: true });
 const { visible, flowDetail, modelValue: formData, loading, activeTab } = vModels as Required<typeof vModels>;
@@ -97,6 +103,7 @@ async function onSubmit() {
     taskId,
     flowInstanceId,
     variables: variables.value,
+    debug: props.debug,
     ...approvalFormData.value
   };
   await (taskId && flowInstanceId ? commitTask(data) : startFlow(data));

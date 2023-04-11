@@ -18,19 +18,27 @@ export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
     },
     {
       label: "流程分类",
-      prop: "groupId",
+      prop: "categoryId",
       type: "select",
       dicUrl: "/sapier-flow/flow-category/list",
       props: { label: "name", value: "id" }
     },
     {
       label: "流程图标",
-      prop: "icon",
+      prop: "flowIcon",
       component: "icon-select"
     },
     {
       label: "流程描述",
       prop: "remarks"
+    },
+    {
+      label: "关联表",
+      prop: "formDataTable",
+      type: "select",
+      dicUrl: "/sapier-flow/dev-table/list",
+      dicQuery: { size: -1 },
+      props: { label: "tableComment", value: "tableName", desc: "tableName", res: "data.records" }
     }
   ]
 };

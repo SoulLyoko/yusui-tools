@@ -1,6 +1,6 @@
 import type { Page, ResRecords } from "@yusui/types";
 
-import { request } from ".";
+import { request, useRequest } from ".";
 
 export interface FlowTemplate {
   /** 流程模型数据 */
@@ -9,8 +9,8 @@ export interface FlowTemplate {
   flowKey?: string;
   /** 流程名称 */
   flowName?: string;
-  /** 分组ID */
-  groupId?: string;
+  /** 分类ID */
+  categoryId?: string;
   /** 主键id */
   id?: string;
   /** 流程备注 */
@@ -25,6 +25,12 @@ export interface FlowTemplate {
 
 export function getList(params: Page & FlowTemplate) {
   return request.get<ResRecords<FlowTemplate[]>>("/sapier-flow/dev-flow/list", { params });
+}
+export function useFlowTemplateList() {
+  return useRequest<FlowTemplate[]>("/sapier-flow/dev-flow/list", {
+    params: { size: -1 },
+    dataPath: "res.data.records"
+  });
 }
 
 export function create(data: FlowTemplate) {

@@ -13,10 +13,11 @@ export const tableOption: AvueCrudOption<FlowOps> = {
   stripe: true,
   searchMenuSpan: 4,
   menu: false,
+  addBtn: false,
   column: [
     { label: "流程名称", prop: "flowName" },
     { label: "流程标识", prop: "flowKey" },
-    { label: "流程分类", prop: "groupId" },
+    { label: "流程分类", prop: "categoryId" },
     { label: "标题", prop: "processTitle" },
     { label: "流水号", prop: "serialNumber" },
     { label: "当前节点", prop: "taskNodeName" },

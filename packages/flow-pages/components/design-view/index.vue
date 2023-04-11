@@ -8,15 +8,15 @@
 
     <el-tabs v-model="activeTab" v-loading="loading">
       <el-tab-pane label="查看表单" name="form" style="height: 600px; overflow-y: auto">
-        <FormDesign
+        <FormDesignWrapper
           v-if="activeTab === 'form' && formData.formOption"
           ref="formRef"
           v-model="formData.formOption"
           view
-        ></FormDesign>
+        ></FormDesignWrapper>
       </el-tab-pane>
       <el-tab-pane label="查看流程" name="flow" style="height: 600px">
-        <FlowDesign v-if="activeTab === 'flow'" v-model="formData.flowData" view></FlowDesign>
+        <FlowDesignWrapper v-if="activeTab === 'flow'" v-model="formData.flowData" view></FlowDesignWrapper>
       </el-tab-pane>
     </el-tabs>
   </el-dialog>
@@ -29,8 +29,8 @@ import type { FlowDeploy } from "../../api/flow-deploy";
 import { ref, watch } from "vue";
 import { useVModels } from "@vueuse/core";
 
-import FormDesign from "../form-design/index.vue";
-import FlowDesign from "../flow-design/index.vue";
+import FormDesignWrapper from "../form-design-wrapper/index.vue";
+import FlowDesignWrapper from "../flow-design-wrapper/index.vue";
 import { getDetail as getDefinitionDetail } from "../../api/flow-definition";
 import { getDetail as getDeployDetail } from "../../api/flow-deploy";
 

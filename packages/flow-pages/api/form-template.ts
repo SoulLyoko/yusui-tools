@@ -1,6 +1,6 @@
 import type { Page, ResRecords } from "@yusui/types";
 
-import { request } from ".";
+import { request, useRequest } from ".";
 
 export interface FormTemplate {
   /** 表单KEY */
@@ -9,8 +9,8 @@ export interface FormTemplate {
   formName?: string;
   /** 表单配置 */
   formOption?: string;
-  /** 分组ID */
-  groupId?: string;
+  /** 分类ID */
+  categoryId?: string;
   /** 主键id */
   id?: string;
   /** 表单备注 */
@@ -25,6 +25,12 @@ export interface FormTemplate {
 
 export function getList(params: Page & FormTemplate) {
   return request.get<ResRecords<FormTemplate[]>>("/sapier-flow/dev-form/list", { params });
+}
+export function useFormTemplateList() {
+  return useRequest<FormTemplate[]>("/sapier-flow/dev-form/list", {
+    params: { size: -1 },
+    dataPath: "res.data.records"
+  });
 }
 
 export function create(data: FormTemplate) {

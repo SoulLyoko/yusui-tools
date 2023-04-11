@@ -40,13 +40,14 @@ const {
 });
 getDataList();
 
-function handleTreeSave(parent: any, data: any, done: () => void, loading: () => void) {
+function handleTreeSave(node: any, data: any, done: () => void, loading: () => void) {
   handleSave(data, done, loading);
 }
-function handleTreeUpdate(parent: any, data: any, done: () => void, loading: () => void) {
+function handleTreeUpdate(node: any, data: any, done: () => void, loading: () => void) {
   handleUpdate(data, NaN, done, loading);
 }
-function handleTreeDel(row: any) {
-  handleDel(row, NaN);
+async function handleTreeDel(node: any, done: () => void) {
+  await handleDel(node.data, NaN);
+  done();
 }
 </script>

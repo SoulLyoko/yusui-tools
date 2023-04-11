@@ -21,7 +21,7 @@ export interface FlowOps {
   flowInstanceId?: string;
   flowKey?: string;
   flowName?: string;
-  groupId?: string;
+  categoryId?: string;
   instanceVariableId?: string;
   processStartTime?: string;
   processStatus?: number;

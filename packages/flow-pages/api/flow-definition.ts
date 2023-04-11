@@ -15,10 +15,12 @@ export interface FlowDefinition {
   formOption?: string;
   /** 表单路径 */
   formPath?: string;
-  /** 分组ID */
-  groupId?: string;
+  /** 关联表 */
+  formDataTable?: string;
+  /** 分类ID */
+  categoryId?: string;
   /** 图标 */
-  icon?: string;
+  flowIcon?: string;
   /** 流程备注 */
   remarks?: string;
   /** 排序 */
@@ -46,6 +48,6 @@ export function update(data: FlowDefinition) {
   return request.post("/sapier-flow/flow-definition/update", data);
 }
 
-export function deploy(data: { flowModuleId?: string }) {
+export function deploy(data: Pick<FlowDefinition, "flowModuleId">) {
   return request.post("/sapier-flow/flow-definition/deployFlow", data);
 }

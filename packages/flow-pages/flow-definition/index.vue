@@ -11,6 +11,9 @@
         版本管理
       </el-button>
     </template>
+    <template #flowIcon="{ row }">
+      <Icon :icon="row.flowIcon" width="25" style="display: inline" />
+    </template>
   </avue-crud>
 </template>
 
@@ -18,13 +21,14 @@
 import type { FlowDefinition } from "../api/flow-definition";
 
 import { ref, watchEffect } from "vue";
+import { Icon } from "@iconify/vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
 import { getList, deploy } from "../api/flow-definition";
 
-const props = defineProps<{ groupId?: string }>();
+const props = defineProps<{ categoryId?: string }>();
 const emit = defineEmits(["add", "view", "edit", "version"]);
 
 const crudOption = {
@@ -39,10 +43,10 @@ const {
 } = useCrud({
   crudOption,
   tableOption,
-  searchForm: { groupId: props.groupId }
+  searchForm: { categoryId: props.categoryId }
 });
 watchEffect(() => {
-  searchForm.value.groupId = props.groupId ?? "";
+  searchForm.value.categoryId = props.categoryId ?? "";
   getDataList();
 });
 
@@ -52,7 +56,7 @@ async function handleDeploy(row: FlowDefinition) {
   loading.value = true;
   deploy({ flowModuleId: row.flowModuleId })
     .then(() => {
-      ElMessage.success("部署成功");
+      ElMessage.success("发布成功");
       getDataList();
     })
     .finally(() => {

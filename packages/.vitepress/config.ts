@@ -86,6 +86,8 @@ export default defineConfig({
             { text: "流程模板", link: "/flow-pages/flow-template/index" },
             { text: "流程设计", link: "/flow-pages/flow-manage/index" },
             { text: "流程运维", link: "/flow-pages/flow-ops/index" },
+            { text: "流程参数", link: "/flow-pages/flow-param/index" },
+            { text: "建表设计", link: "/flow-pages/table-template/index" },
             { text: "工作台", link: "/flow-pages/workbench/index" }
           ]
         }

@@ -33,7 +33,6 @@ const external = [
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),
   "flow-design": path.resolve(__dirname, "packages/flow-design/index.ts"),
-  "flow-pages": path.resolve(__dirname, "packages/flow-pages/index.ts"),
   components: path.resolve(__dirname, "packages/components/index.ts"),
   composables: path.resolve(__dirname, "packages/composables/index.ts"),
   plugins: path.resolve(__dirname, "packages/plugins/index.ts"),
@@ -42,7 +41,10 @@ const input = {
   "uni-utils": path.resolve(__dirname, "packages/uni-utils/index.ts"),
   utils: path.resolve(__dirname, "packages/utils/index.ts")
 };
-export const alias = Object.entries(input).map(([name, path]) => ({ find: `@yusui/${name}`, replacement: path }));
+export const alias = Object.entries(input)
+  .map(([name, path]) => ({ find: `@yusui/${name}`, replacement: path }))
+  // flow-pages 不打包
+  .concat({ find: "@yusui/flow-pages", replacement: path.resolve(__dirname, "packages/flow-pages/index.ts") });
 
 export default defineConfig(({ mode }) => {
   if (mode === "production") {

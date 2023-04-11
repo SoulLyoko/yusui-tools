@@ -6,7 +6,7 @@
     <el-col :span="20">
       <FlowDefinitionCrud
         v-if="showType === 'definition'"
-        :groupId="currentGroupId"
+        :categoryId="currentCategoryId"
         @add="handleAdd"
         @edit="handleEdit"
         @view="handleView"
@@ -40,14 +40,14 @@ import FlowDeployCrud from "../flow-deploy/index.vue";
 
 const showType = ref("definition");
 const currentFlow = ref<FlowDefinition | FlowDeploy>({});
-const currentGroupId = ref("");
+const currentCategoryId = ref("");
 const currentFlowModuleId = ref("");
 
 function nodeClick(data: FlowCategory) {
-  if (currentGroupId.value === data.id) {
-    currentGroupId.value = "";
+  if (currentCategoryId.value === data.id) {
+    currentCategoryId.value = "";
   } else {
-    currentGroupId.value = data.id!;
+    currentCategoryId.value = data.id!;
   }
 }
 

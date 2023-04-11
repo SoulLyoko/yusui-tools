@@ -1,3 +1,3 @@
 import { defaultOptions } from "@yusui/flow-design";
 
-export const formOptions = defaultOptions;
+export const options = defaultOptions;

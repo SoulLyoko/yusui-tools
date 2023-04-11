@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="visible" fullscreen :show-close="false" @close="handleClose">
+  <el-dialog v-model="visible" fullscreen :show-close="false" destroy-on-close @close="handleClose">
     <template #header>
       <el-row align="center" justify="center">
         <el-col :span="5">
@@ -44,8 +44,16 @@
         :option="formOption"
         style="width: 50%; magin: 0 auto"
       ></avue-form>
-      <FormDesign v-if="activeStep === 1" v-model="formData.formOption"></FormDesign>
-      <FlowDesign v-if="activeStep === 2" v-model="formData.flowData"></FlowDesign>
+      <FormDesignWrapper
+        v-if="activeStep === 1"
+        v-model="formData.formOption"
+        :fields="tableFields"
+      ></FormDesignWrapper>
+      <FlowDesignWrapper
+        v-if="activeStep === 2"
+        v-model="formData.flowData"
+        :formOption="formData.formOption"
+      ></FlowDesignWrapper>
       <el-result v-if="activeStep === 3" icon="success" title="流程设计完成">
         <template #extra>
           <el-button v-if="!(formData as FlowDeploy).flowDeployId" type="primary" @click="handleDeploy">发布</el-button>
@@ -65,8 +73,8 @@ import { ref, watch, computed } from "vue";
 import { useVModels } from "@vueuse/core";
 import { ElMessageBox, ElMessage } from "element-plus";
 
-import FormDesign from "../form-design/index.vue";
-import FlowDesign from "../flow-design/index.vue";
+import FormDesignWrapper from "../form-design-wrapper/index.vue";
+import FlowDesignWrapper from "../flow-design-wrapper/index.vue";
 import { formOption } from "./option";
 import {
   create as createDefinition,
@@ -75,8 +83,9 @@ import {
   deploy
 } from "../../api/flow-definition";
 import { update as updateDeploy, getDetail as getDeployDetail } from "../../api/flow-deploy";
-import { getList as getFormTemplateList } from "../../api/form-template";
-import { getList as getFlowTemplateList } from "../../api/flow-template";
+import { useFormTemplateList } from "../../api/form-template";
+import { useFlowTemplateList } from "../../api/flow-template";
+import { useTableTemplateList } from "../../api/table-template";
 import { asyncValidate } from "../../utils";
 
 const props = defineProps<{
@@ -112,10 +121,14 @@ watch(
   { immediate: true }
 );
 
-const formTemplates = ref<any[]>([]);
-const flowTemplates = ref<any[]>([]);
-getFormTemplateList({ size: -1 }).then(res => (formTemplates.value = res.data.records));
-getFlowTemplateList({ size: -1 }).then(res => (flowTemplates.value = res.data.records));
+const { data: formTemplates } = useFormTemplateList();
+const { data: flowTemplates } = useFlowTemplateList();
+const { data: tableTemplates } = useTableTemplateList();
+
+const tableFields = computed(() => {
+  return tableTemplates.value?.find(e => e.tableName === formData.value.formDataTable)?.tableFields as string;
+});
+
 const activeStep = ref(0);
 const templatesDic = computed(() => {
   if (activeStep.value === 1) {

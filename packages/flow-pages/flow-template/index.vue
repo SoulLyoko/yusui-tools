@@ -5,7 +5,7 @@
     </template>
   </avue-crud>
   <el-dialog v-model="dialogVisible" :title="`模型设计-${formData.flowName}`" fullscreen destroy-on-close>
-    <FlowDesign v-model="formData.flowData" style="height: calc(100vh - 177px)"></FlowDesign>
+    <FlowDesignWrapper v-model="formData.flowData" style="height: calc(100vh - 177px)"></FlowDesignWrapper>
     <template #footer>
       <el-button type="primary" @click="handleSaveLayout">保存</el-button>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -20,7 +20,7 @@ import { ref } from "vue";
 import { useCrud } from "@yusui/composables";
 
 import { tableOption } from "./option";
-import FlowDesign from "../components/flow-design/index.vue";
+import FlowDesignWrapper from "../components/flow-design-wrapper/index.vue";
 import { getList, create, update, remove } from "../api/flow-template";
 
 const crudOption = {
