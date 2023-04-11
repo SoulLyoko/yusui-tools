@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Definition } from "@logicflow/core";
+import type { Definition, ShapeStyleAttribute } from "@logicflow/core";
 import type { TurboData } from "../extensions";
 
 import { onMounted, watch } from "vue";
@@ -23,6 +23,8 @@ const props = defineProps<{
   initOptions?: Definition;
   /** 流程图数据 */
   modelValue?: TurboData;
+  /** 设置节点的样式 */
+  styles?: Record<string, ShapeStyleAttribute>;
 }>();
 const vModels = useVModels(props, undefined, { passive: true });
 const { lf, modelValue: graphData } = vModels as Required<typeof vModels>;
@@ -33,13 +35,23 @@ onMounted(() => {
     container: document.querySelector(`#${containerId}`)!,
     grid: { type: "dot", size: 10 },
     isSilentMode: true,
-    plugins: [BpmnExtend, Group, TurboAdapter]
+    plugins: [BpmnExtend, Group, TurboAdapter],
+    ...props.initOptions
   });
   lf.value?.setTheme(defaultTheme);
   watch(
     graphData,
     val => {
       lf.value?.render(val);
+    },
+    { immediate: true }
+  );
+  watch(
+    () => props.styles,
+    val => {
+      Object.entries(val ?? {}).forEach(([key, value]) => {
+        lf.value?.graphModel?.updateAttributes(key, { style: value });
+      });
     },
     { immediate: true }
   );
