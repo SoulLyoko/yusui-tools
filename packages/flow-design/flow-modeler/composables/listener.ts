@@ -12,7 +12,9 @@ export function useModelerListener({
   formLoading,
   formOption,
   formOptions,
-  editorVisible
+  editorVisible,
+  formOptionFormat,
+  formDataFormat
 }: ModelerState) {
   async function selectElement({ data, isForce } = { data: undefined as any, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === "process");
@@ -26,9 +28,15 @@ export function useModelerListener({
     if (data?.id === elementData.value?.id && !isForce) return;
     data.type !== "process" && lf.value?.selectElementById(data.id);
     formLoading.value = true;
+    await nextTick();
     elementData.value = data;
-    formOption.value.group = formOptions.value?.[data.type] ?? defaultGroup;
-    formData.value = { ...data.properties, id: data.id, name: data.text?.value || "" };
+    formOption.value = await formOptionFormat({
+      menuBtn: false,
+      span: 24,
+      labelPosition: "left",
+      group: formOptions.value?.[data.type] ?? defaultGroup
+    });
+    formData.value = await formDataFormat({ ...data.properties, id: data.id, name: data.text?.value || "" });
     await nextTick();
     formLoading.value = false;
   }

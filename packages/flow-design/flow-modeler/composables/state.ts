@@ -1,4 +1,3 @@
-import type { AvueFormOption } from "@smallwei/avue";
 import type { ModelerProps } from "../types";
 
 import { ref, inject, provide } from "vue";
@@ -8,9 +7,15 @@ export const injectionKey = Symbol("modelerState");
 
 export function useProvideModelerState(props: ModelerProps) {
   const vModels = useVModels(props, undefined, { passive: true });
-  const { lf, modelValue: graphData, elementData, formData, formOptions } = vModels as Required<typeof vModels>;
+  const {
+    lf,
+    modelValue: graphData,
+    elementData,
+    formData,
+    formOption,
+    formOptions
+  } = vModels as Required<typeof vModels>;
   const formLoading = ref(false);
-  const formOption = ref<AvueFormOption>({ menuBtn: false, span: 24, labelPosition: "left", group: [] });
   const editorVisible = ref(false);
 
   function onUpdateFormData(val: any) {
@@ -28,7 +33,9 @@ export function useProvideModelerState(props: ModelerProps) {
     formOption,
     formOptions,
     editorVisible,
-    onUpdateFormData
+    onUpdateFormData,
+    formOptionFormat: props.formOptionFormat ?? (option => option),
+    formDataFormat: props.formDataFormat ?? (data => data)
   };
 
   provide(injectionKey, state);

@@ -2,7 +2,7 @@
   <el-container class="lf-container">
     <el-main :id="containerId" class="lf-main"> </el-main>
     <el-aside :width="formWidth" class="lf-aside">
-      <el-empty v-if="!formOption.group?.length" description="选择元素以编辑数据"></el-empty>
+      <el-empty v-if="!formOption?.group?.length" description="选择元素以编辑数据"></el-empty>
       <avue-form
         v-else-if="!formLoading"
         v-model="formData"
@@ -17,11 +17,11 @@
 
 <script setup lang="ts">
 import type { NodeConfig, EdgeConfig, Definition } from "@logicflow/core";
-import type { AvueFormGroup } from "@smallwei/avue";
+import type { AvueFormOption, AvueFormGroup } from "@smallwei/avue";
 import type { TurboData } from "../extensions";
 
 import { onMounted, watch } from "vue";
-import { uniqueId, isEqual } from "lodash-unified";
+import { uniqueId } from "lodash-unified";
 import LogicFlow from "@logicflow/core";
 import { SelectionSelect, MiniMap, InsertNodeInPolyline } from "@logicflow/extension";
 import "@logicflow/core/dist/style/index.css";
@@ -43,10 +43,13 @@ const props = defineProps<{
   elementData?: NodeConfig | EdgeConfig;
   /** 当前选中元素的表单数据 */
   formData?: object;
+  formOption?: AvueFormOption;
   /** 表单配置 */
   formOptions?: Record<string, AvueFormGroup[]>;
   /** 表单宽度 */
   formWidth?: string;
+  formOptionFormat?: (option: AvueFormOption) => AvueFormOption | Promise<AvueFormOption>;
+  formDataFormat?: (data: object) => object | Promise<object>;
 }>();
 
 const state = useProvideModelerState(props);
