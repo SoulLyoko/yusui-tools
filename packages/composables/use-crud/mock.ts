@@ -3,17 +3,18 @@ import type { CrudState } from "./types";
 
 import { watch } from "vue";
 import { orderBy, omit } from "lodash-unified";
-import { storage, uuid } from "@yusui/utils";
+import { uuid } from "@yusui/utils";
 
 export function useMock<T extends Data, P extends Data>({ crudState }: { crudState: CrudState<T, P> }) {
   if (crudState.mockCache) {
     try {
       const cachePrefix = "mock";
       const cacheKey = `${cachePrefix}-${crudState.mockCache}`;
-      crudState.mockData = storage.get(cacheKey) ?? crudState.mockData;
+      const cacheData = localStorage.getItem(cacheKey);
+      crudState.mockData = cacheData ? JSON.parse(cacheData) : crudState.mockData;
       watch(
         () => crudState.mockData,
-        () => storage.set(cacheKey, crudState.mockData),
+        () => localStorage.setItem(cacheKey, JSON.stringify(crudState.mockData)),
         { immediate: true, deep: true }
       );
     } catch (error) {

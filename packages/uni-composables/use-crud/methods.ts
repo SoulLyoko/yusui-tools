@@ -1,7 +1,7 @@
 import type { CrudState, Emitter, UseCrudMethodsOptions } from "./types";
 
 import { cloneDeep, get, pick } from "lodash-unified";
-import { filterObj, to } from "@yusui/uni-utils";
+import { filterObj, to } from "@yusui/utils";
 
 export function useCrudMethods<T extends object = object, P extends object = object>({
   crudState,

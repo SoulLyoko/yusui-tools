@@ -1,7 +1,5 @@
-export * from "./cache";
 export * from "./date";
 export * from "./emitter";
-export * from "./file";
 export * from "./math";
 export * from "./object";
 export * from "./string";

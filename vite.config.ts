@@ -13,9 +13,7 @@ const external = [
   "@vueuse/core",
   "@dcloudio/uni-app",
   /dayjs/,
-  "file-saver",
   "@iconify/vue",
-  "js-cookie",
   "mitt",
   "fs",
   "path",
@@ -27,8 +25,7 @@ const external = [
   "acorn",
   "astring",
   "json5",
-  "@antv/layout",
-  "@vue/compiler-sfc"
+  "@antv/layout"
 ];
 const input = {
   "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),
@@ -38,7 +35,6 @@ const input = {
   plugins: path.resolve(__dirname, "packages/plugins/index.ts"),
   types: path.resolve(__dirname, "packages/types/index.ts"),
   "uni-composables": path.resolve(__dirname, "packages/uni-composables/index.ts"),
-  "uni-utils": path.resolve(__dirname, "packages/uni-utils/index.ts"),
   utils: path.resolve(__dirname, "packages/utils/index.ts")
 };
 export const alias = Object.entries(input)
@@ -53,7 +49,6 @@ export default defineConfig(({ mode }) => {
       fs.removeSync(path.join("packages", name, "dist"));
     });
   }
-  execSync("pnpm copy:utils");
   return {
     plugins: [Vue()],
     resolve: {

@@ -24,8 +24,6 @@
   ],
   "devDependencies": {
     "@dcloudio/uni-ui": "^1.4.26",
-    "@vue/compiler-core": "^3.2.47",
-    "@vue/compiler-sfc": "^3.2.47",
     "uview-plus": "^3.1.29"
   }
 }

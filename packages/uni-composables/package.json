@@ -26,7 +26,7 @@
     "@dcloudio/uni-app": "*",
     "@yusui/composables": "workspace:*",
     "@yusui/types": "workspace:*",
-    "@yusui/uni-utils": "workspace:*",
+    "@yusui/utils": "workspace:*",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "lodash-unified": "1.0.3"

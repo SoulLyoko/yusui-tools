@@ -49,6 +49,7 @@ importers:
       vitepress: 1.0.0-alpha.65
       vitest: ^0.29.8
       vue: ^3.2.47
+      vue-router: ^4.1.6
       vue-tsc: ^1.2.0
     devDependencies:
       '@commitlint/cli': 17.5.1
@@ -96,6 +97,7 @@ importers:
       vitepress: 1.0.0-alpha.65_4q5mxzltflcgkzvnigcbiggbqa
       vitest: 0.29.8_jsdom@21.1.1+sass@1.61.0
       vue: 3.2.47
+      vue-router: 4.1.6_vue@3.2.47
       vue-tsc: 1.2.0_typescript@5.0.4
 
   packages/components:
@@ -265,13 +267,9 @@ importers:
   packages/plugins:
     specifiers:
       '@dcloudio/uni-ui': ^1.4.26
-      '@vue/compiler-core': ^3.2.47
-      '@vue/compiler-sfc': ^3.2.47
       uview-plus: ^3.1.29
     devDependencies:
       '@dcloudio/uni-ui': 1.4.26
-      '@vue/compiler-core': 3.2.47
-      '@vue/compiler-sfc': 3.2.47
       uview-plus: 3.1.29
 
   packages/prettier-config:
@@ -290,7 +288,7 @@ importers:
       '@dcloudio/uni-app': '*'
       '@yusui/composables': workspace:*
       '@yusui/types': workspace:*
-      '@yusui/uni-utils': workspace:*
+      '@yusui/utils': workspace:*
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.3
@@ -301,36 +299,13 @@ importers:
       '@dcloudio/uni-app': 2.0.2-3070920230324001
       '@yusui/composables': link:../composables
       '@yusui/types': link:../types
-      '@yusui/uni-utils': link:../uni-utils
+      '@yusui/utils': link:../utils
       lodash: 4.17.21
       lodash-es: 4.17.21
       lodash-unified: 1.0.3_x2wgbdn67su72qcpoerjuvxru4
     devDependencies:
       postcss: 8.4.21
       uvue-crud: 2.0.5
-      vue: 3.2.47
-
-  packages/uni-utils:
-    specifiers:
-      '@dcloudio/uni-app': '*'
-      '@yusui/types': workspace:*
-      dayjs: ^1.11.7
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      lodash-unified: 1.0.3
-      mitt: ^3.0.0
-      postcss: ^8.4.21
-      vue: ^3.2.47
-    dependencies:
-      '@dcloudio/uni-app': 2.0.2-3070920230324001
-      '@yusui/types': link:../types
-      dayjs: 1.11.7
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      lodash-unified: 1.0.3_x2wgbdn67su72qcpoerjuvxru4
-      mitt: 3.0.0
-    devDependencies:
-      postcss: 8.4.21
       vue: 3.2.47
 
   packages/utils:
@@ -11293,7 +11268,6 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.5.0
       vue: 3.2.47
-    dev: false
 
   /vue-template-compiler/2.7.14:
     resolution: {integrity: sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ==}
