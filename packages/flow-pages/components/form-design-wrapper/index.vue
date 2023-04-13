@@ -1,11 +1,11 @@
 <template>
-  <avue-form v-if="view" :modelValue="{}" :option="formDesignOptions"></avue-form>
-  <FormDesign v-else v-model="formDesignOptions" :baseOption="baseOption"></FormDesign>
+  <avue-form v-if="view" :class="formDesignOptions.class" :modelValue="{}" :option="formDesignOptions"></avue-form>
+  <FormDesign v-else v-model="formDesignOptions" :baseOption="baseOption" :resources="resourcesToMerge"></FormDesign>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { FormDesign, jsonStringify, jsonParse } from "@yusui/form-design";
+import { FormDesign, jsonStringify, jsonParse, form } from "@yusui/form-design";
 
 const props = defineProps<{
   modelValue?: string;
@@ -40,4 +40,12 @@ const baseOption = computed(() => {
     { ...common, props: { label: "comment", value: "comment", desc: "name" } }
   ];
 });
+
+const resourcesToMerge: Record<string, any> = {
+  form: {
+    settings: Array.from({ length: form.settings?.length ?? 0 })
+      .fill({})
+      .concat({ label: "样式类", prop: "class" })
+  }
+};
 </script>

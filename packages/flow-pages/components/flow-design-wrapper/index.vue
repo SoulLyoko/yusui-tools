@@ -8,13 +8,14 @@
     v-model:formOption="modelerFormOption"
     :formOptions="options"
     :formDataFormat="formDataFormat"
+    :formOptionFormat="formOptionFormat"
     formWidth="30%"
   ></FlowModeler>
 </template>
 
 <script setup lang="ts">
 import type { AvueFormOption, AvueFormColumn } from "@smallwei/avue";
-import type { FormPropertyItem } from "@yusui/flow-design";
+import type { FormPropertyItem, FlowFormData } from "@yusui/flow-design";
 import type { TaskDetail } from "../../api/flow-task";
 
 import { ref, computed, nextTick, shallowRef } from "vue";
@@ -46,7 +47,7 @@ function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[])
   });
 }
 
-async function formDataFormat(data: any) {
+async function formDataFormat(data: FlowFormData) {
   await nextTick();
   if (!modelerFormOption.value.group?.some(e => e.prop === "formProperty")) return data;
   const { column = [], group = [] }: AvueFormOption = JSON.parse(props.formOption || "{}");
@@ -55,6 +56,36 @@ async function formDataFormat(data: any) {
     data.formProperty || []
   );
   return { ...data, formProperty };
+}
+
+function formOptionFormat(option: AvueFormOption) {
+  const { column = [], group = [] }: AvueFormOption = JSON.parse(props.formOption || "{}");
+  const allColumn = [...column, ...group.map(g => g.column ?? []).flat()];
+  const fieldsDic = allColumn.map(item => {
+    return { label: item.label, value: `$\{${item.prop}}`, desc: `$\{${item.prop}}` };
+  });
+  option.group?.forEach(group => {
+    if (group.prop !== "base") return;
+    group.column?.forEach(col => {
+      if (col.prop === "priority") {
+        col.type = "select";
+        col.filterable = true;
+        col.allowCreate = true;
+        col.defaultFirstOption = true;
+        col.dicData = fieldsDic;
+      }
+      if (col.prop === "formTitle") {
+        col.type = "select";
+        col.dataType = "string";
+        col.multiple = true;
+        col.filterable = true;
+        col.allowCreate = true;
+        col.defaultFirstOption = true;
+        col.dicData = fieldsDic;
+      }
+    });
+  });
+  return option;
 }
 
 const graphData = computed({

@@ -3,10 +3,6 @@ import type { FlowFormData } from "../types";
 
 export const userTaskColumn: AvueFormColumn<FlowFormData>[] = [
   {
-    label: "优先级",
-    prop: "priority"
-  },
-  {
     label: "驳回节点",
     prop: "rollbackNode",
     type: "select",

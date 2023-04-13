@@ -60,6 +60,8 @@ export interface FlowFormData {
   rollbackNode?: string;
   /** 优先级 */
   priority?: number;
+  /** 表单标题 */
+  formTitle?: string;
   /** 回到驳回人 */
   backToRejecter?: boolean;
   /** 多实例类型 */

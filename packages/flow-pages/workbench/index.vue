@@ -1,7 +1,7 @@
 <template>
   <div class="flow-list">
     <div v-for="item in flowList" :key="item.flowKey" class="flow-item" @click="startFlow(item)">
-      <Icon class="flow-icon" :icon="item.flowIcon" width="60" />
+      <v-icon class="flow-icon" :icon="item.flowIcon" width="60" />
       <div class="flow-name">{{ item.flowName }}</div>
     </div>
   </div>
@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { Icon } from "@iconify/vue";
 
 import { getPublishFlow, type FlowDeploy } from "../api/flow-deploy";
 import FlowForm from "../flow-form/index.vue";

@@ -28,7 +28,11 @@ export function jsonStringify(json: any, options?: StringifyOptions) {
 export function jsonParse(str: string, reviver?: (key: string, value: any) => any) {
   const parseReviver = (key: string, value: any) => {
     if (typeof value === "string" && value.includes("=>")) {
-      return eval(value);
+      try {
+        return eval(value);
+      } catch {
+        return value;
+      }
     } else if (typeof value === "string" && value.startsWith("/") && value.endsWith("/")) {
       return new RegExp(value.slice(1, -1));
     }

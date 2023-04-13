@@ -7,6 +7,7 @@ import ElementPlus from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import "element-plus/dist/index.css";
 import "@smallwei/avue/lib/index.css";
+import { Icon } from "@iconify/vue";
 
 import components from "../components";
 import YSComponents from "../../components/index";
@@ -20,6 +21,7 @@ export default {
     app.use(components);
     app.use(ElementPlus, { locale: zhCn });
     app.use(YSComponents);
+    app.component("v-icon", Icon);
     app.mixin({
       async beforeCreate() {
         await import("@smallwei/avue").then(module => app.use(module.default, { appendToBody: true }));

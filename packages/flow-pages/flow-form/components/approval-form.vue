@@ -19,7 +19,7 @@
         >
           <template #default="{ data }">
             <div>
-              <Icon :icon="iconMap[data.type]" style="display: inline-block"></Icon>
+              <v-icon :icon="iconMap[data.type]" style="display: inline-block" />
               <span>{{ data.title }}</span>
             </div>
           </template>
@@ -58,7 +58,6 @@ import { ElMessage } from "element-plus";
 import { useVModels } from "@vueuse/core";
 import { differenceBy } from "lodash-es";
 import { treeMap, findTree, uuid } from "@yusui/utils";
-import { Icon } from "@iconify/vue";
 
 import { getApprovalNodes } from "../../api/flow-task";
 import { asyncValidate } from "../../utils";

@@ -18,5 +18,13 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
     labelWidth: 100,
     component: FlowNodeSelect,
     params: { filterType: "userTask" }
+  },
+  {
+    label: "优先级",
+    prop: "priority"
+  },
+  {
+    label: "表单标题",
+    prop: "formTitle"
   }
 ];

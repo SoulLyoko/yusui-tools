@@ -1,7 +1,7 @@
 <template>
   <el-radio-group v-model="activeType">
     <el-radio-button v-for="item in typeList" :key="item.label" :label="item.label">
-      <Icon :icon="item.icon"></Icon>
+      <v-icon :icon="item.icon" />
     </el-radio-button>
   </el-radio-group>
   <div style="height: 700px">
@@ -18,7 +18,6 @@
 import type { FlowDetail } from "../../api/flow-task";
 
 import { ref } from "vue";
-import { Icon } from "@iconify/vue";
 
 import FormDesignWrapper from "../../components/flow-design-wrapper/index.vue";
 

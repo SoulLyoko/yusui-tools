@@ -12,7 +12,7 @@
       </el-button>
     </template>
     <template #flowIcon="{ row }">
-      <Icon :icon="row.flowIcon" width="25" style="display: inline" />
+      <v-icon :icon="row.flowIcon" width="25" style="display: inline" />
     </template>
   </avue-crud>
 </template>
@@ -21,7 +21,6 @@
 import type { FlowDefinition } from "../api/flow-definition";
 
 import { ref, watchEffect } from "vue";
-import { Icon } from "@iconify/vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { useCrud } from "@yusui/composables";
 

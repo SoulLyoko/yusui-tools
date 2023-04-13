@@ -88,18 +88,21 @@ const dynamicOption = computed(() => {
         label: "受控字段",
         prop: "field",
         type: "select",
-        dicData: fieldDic.value
+        dicData: fieldDic.value,
+        rules: { required: true }
       },
       {
         label: "受控属性",
         prop: "property",
-        component: PropertySelect
+        component: PropertySelect,
+        rules: { required: true }
       },
       {
         label: "表达式/值",
         prop: "value",
         component: EditorSetter,
-        tooltip: true
+        tooltip: true,
+        rules: { required: true }
       }
     ]
   };
