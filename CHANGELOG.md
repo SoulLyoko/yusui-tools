@@ -1,3 +1,26 @@
+# [2.0.0-beta.27](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.24...v2.0.0-beta.27) (2023-04-13)
+
+
+### Bug Fixes
+
+* remove some packages ([d06a84a](https://github.com/SoulLyoko/yusui-tools/commit/d06a84aba7135b32c746523f0836108682fde921))
+
+
+### Features
+
+* **flow-design:** add type FlowFormData ([460c7a7](https://github.com/SoulLyoko/yusui-tools/commit/460c7a78cd685c34839c661e3790723a05c6d91c))
+* **flow-modeler:** add formatter props ([17ff1d6](https://github.com/SoulLyoko/yusui-tools/commit/17ff1d685db0d7229cd583e5803d542f582e78e1))
+* **flow-page:** flow-param,table-template ([2b9f25a](https://github.com/SoulLyoko/yusui-tools/commit/2b9f25a469dc8d737802cc7ab96791694ad8c604))
+* **flow-pages:** flow-button ([33d303a](https://github.com/SoulLyoko/yusui-tools/commit/33d303accb5a74e2af7f24f7996da9db19a5a422))
+* **flow-pages:** flow-ops ([d8243f9](https://github.com/SoulLyoko/yusui-tools/commit/d8243f92a5523d0f1c46bf8344dcec0bf5a2adb2))
+* **flow-viewer:** add props styles ([3a301c6](https://github.com/SoulLyoko/yusui-tools/commit/3a301c6741e7b0116d30ed6450ee764e55768b31))
+* **plugins:** uni-pages ([c9af82b](https://github.com/SoulLyoko/yusui-tools/commit/c9af82bbc73cddf91c53169c78d56e2dfba6318a))
+* **plugins:** uni-pages injectPageStyle ([ce8837a](https://github.com/SoulLyoko/yusui-tools/commit/ce8837a36dd57dab02a85f907c88e0407aa4dd5a))
+* **use-crud:** add formType to crudState ([fa5d74b](https://github.com/SoulLyoko/yusui-tools/commit/fa5d74b4f0bb7298778ef90a5161fc0bc9d1d667))
+* **utils:** enumToDic ([a8cd9a5](https://github.com/SoulLyoko/yusui-tools/commit/a8cd9a532ccd9457c536f20b1f7959aee9f726e9))
+
+
+
 # [2.0.0-beta.26](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2023-04-08)
 
 
