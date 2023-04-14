@@ -1,5 +1,13 @@
 <template>
-  <FlowViewer v-if="view" v-model:lf="lf" :modelValue="graphData" :styles="flowHistoryStyles"></FlowViewer>
+  <div v-if="view" class="flow-viewer">
+    <div class="flow-status-legend">
+      <div v-for="item in flowTaskStatus" :key="item.name" class="legend-item">
+        <div class="legend-color" :style="{ backgroundColor: item.style?.fill }"></div>
+        <span>{{ item.name }}</span>
+      </div>
+    </div>
+    <FlowViewer v-model:lf="lf" :modelValue="graphData" :styles="flowHistoryStyles"></FlowViewer>
+  </div>
   <FlowModeler
     v-else
     v-model="graphData"
@@ -22,6 +30,7 @@ import { ref, computed, nextTick, shallowRef } from "vue";
 import { FlowModeler, FlowViewer, defaultGraphData } from "@yusui/flow-design";
 
 import { options } from "./options";
+import { getParam } from "../../api/flow-param";
 
 const props = defineProps<{
   modelValue?: string;
@@ -103,18 +112,18 @@ const graphData = computed({
   }
 });
 
-const fillColorMap = {
-  1: "lightgreen",
-  2: "lightblue"
-};
+const flowTaskStatus = ref<
+  { name?: string; status?: number; style?: { fill?: string; stroke?: string; strokeWidth?: number } }[]
+>([]);
+getParam("flow.task.status").then(res => {
+  flowTaskStatus.value = res.data;
+});
 
 const flowHistoryStyles = computed(() => {
-  const entries =
-    props.flowHistory?.map(item => {
-      const style = { fill: fillColorMap[item.status] };
-      return [item.taskNodeKey, style];
-    }) ?? [];
-  return Object.fromEntries(entries);
+  return props.flowHistory?.map(item => {
+    const style = flowTaskStatus.value.find(e => e.status === item.status);
+    return { id: item.taskNodeKey, style };
+  });
 });
 
 const lf = shallowRef();
@@ -128,3 +137,25 @@ const lf = shallowRef();
 // });
 // });
 </script>
+
+<style lang="scss" scoped>
+.flow-viewer {
+  height: 100%;
+  .flow-status-legend {
+    position: absolute;
+    left: 4px;
+    z-index: 1;
+    display: flex;
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      .legend-color {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+</style>

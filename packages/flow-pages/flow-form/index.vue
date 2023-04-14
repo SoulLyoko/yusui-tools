@@ -1,11 +1,11 @@
 <template>
   <el-drawer v-model="visible" :title="flowDetail?.process?.flowName" destroy-on-close :before-close="clear" size="60%">
     <el-skeleton v-if="loading" />
-    <el-container v-else>
-      <el-header height="40px" style="padding: 0">
+    <el-container v-else class="flow-form">
+      <el-header class="flow-form-header">
         <el-button type="primary" @click="onBtnClick">发送</el-button>
       </el-header>
-      <el-main style="padding: 0">
+      <el-main class="flow-form-main">
         <el-tabs v-model="activeTab">
           <slot v-if="flowDetail?.process?.formPath"></slot>
           <el-tab-pane v-else label="审批信息" name="form">
@@ -113,4 +113,30 @@ async function onSubmit() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.flow-form {
+  height: 100%;
+
+  .flow-form-header {
+    height: 32px;
+    padding: 0;
+  }
+
+  .flow-form-main {
+    padding: 0;
+
+    .el-tabs {
+      height: 100%;
+
+      .el-tabs__content {
+        height: calc(100% - var(--el-tabs-header-height) - 15px);
+
+        .el-tab-pane {
+          height: 100%;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+}
+</style>

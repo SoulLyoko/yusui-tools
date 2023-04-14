@@ -9,7 +9,7 @@ import { request } from ".";
  */
 export interface FlowDetail {
   /** 流转记录 */
-  flowHistory?: TaskDetail[];
+  flowHistory?: FlowHistory[];
   /** 当前表单数据 */
   formData?: Record<string, any>;
   /** 流程详情 */
@@ -46,36 +46,92 @@ export enum TaskStatus {
 /** 任务详情 */
 export interface TaskDetail {
   /** 审批人 */
-  assignee: string;
+  assignee?: string;
   /** 审批人名 */
-  assigneeName: string;
-  createTime: string;
-  createUser: string;
+  assigneeName?: string;
+  createTime?: string;
+  createUser?: string;
   /** 流程部署id */
-  flowDeployId: string;
+  flowDeployId?: string;
   /** 流程实例id */
-  flowInstanceId: string;
+  flowInstanceId?: string;
   /** 表单id */
-  instanceVariableId: string;
+  instanceVariableId?: string;
   /** 来源任务id */
-  sourceTaskId: string;
+  sourceTaskId?: string;
   /** 来源节点key */
-  sourceTaskNodeKey: string;
+  sourceTaskNodeKey?: string;
   /** 任务状态 */
-  status: TaskStatus;
+  status?: TaskStatus;
   /** 子流程id */
-  subProcessId: string;
+  subProcessId?: string;
   /** 任务id */
-  taskId: string;
+  taskId?: string;
   /** 任务节点key */
-  taskNodeKey: string;
+  taskNodeKey?: string;
   /** 任务节点名称 */
-  taskNodeName: string;
+  taskNodeName?: string;
   /** 任务节点类型 */
-  taskNodeType: string;
-  tenantId: string;
-  updateTime: string;
-  updateUser: string;
+  taskNodeType?: string;
+  tenantId?: string;
+  updateTime?: string;
+  updateUser?: string;
+}
+export interface FlowHistory {
+  id?: string;
+  createUser?: string;
+  createTime?: string;
+  updateUser?: string;
+  updateTime?: string;
+  status?: number;
+  isDeleted?: number;
+  tenantId?: string;
+  /** 任务id */
+  taskId?: string;
+  /** 流程实例id */
+  flowInstanceId?: string;
+  /** 流程部署id */
+  flowDeployId?: string;
+  /** 子流程id */
+  subProcessId?: string;
+  /** 表单id */
+  instanceVariableId?: string;
+  /** 来源任务id */
+  sourceTaskId?: string;
+  /** 来源节点key */
+  sourceTaskNodeKey?: string;
+  /** 任务节点key */
+  taskNodeKey?: string;
+  /** 任务节点名称 */
+  taskNodeName?: string;
+  /** 任务节点类型 */
+  taskNodeType?: string;
+  type?: number;
+  /** 审批人 */
+  assignee?: string;
+  /** 审批人名 */
+  assigneeName?: string;
+  /** 审批意见 */
+  comment?: FlowComment;
+}
+export interface FlowComment {
+  id?: string;
+  createUser?: string;
+  createTime?: string;
+  updateUser?: string;
+  updateTime?: string;
+  status?: number;
+  isDeleted?: number;
+  tenantId?: string;
+  /** 任务id */
+  taskId?: string;
+  /** 流程实例id */
+  flowInstanceId?: string;
+  type?: number;
+  /** 审批人 */
+  assignee?: string;
+  /** 意见 */
+  comment?: string;
 }
 
 export interface CommitTaskData {

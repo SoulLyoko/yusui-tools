@@ -27,10 +27,7 @@ export function getList(params: Page & FormTemplate) {
   return request.get<ResRecords<FormTemplate[]>>("/sapier-flow/dev-form/list", { params });
 }
 export function useFormTemplateList() {
-  return useRequest<FormTemplate[]>("/sapier-flow/dev-form/list", {
-    params: { size: -1 },
-    dataPath: "res.data.records"
-  });
+  return useRequest(() => getList({ size: -1 }).then(res => res.data.records));
 }
 
 export function create(data: FormTemplate) {

@@ -69,10 +69,7 @@ export function getList(params: Page & TableTemplate) {
   return request.get<ResRecords<TableTemplate[]>>("/sapier-flow/dev-table/list", { params });
 }
 export function useTableTemplateList() {
-  return useRequest<TableTemplate[]>("/sapier-flow/dev-table/list", {
-    params: { size: -1 },
-    dataPath: "res.data.records"
-  });
+  return useRequest(() => getList({ size: -1 }).then(res => res.data.records));
 }
 
 export function create(data: TableTemplate) {

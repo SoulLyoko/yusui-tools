@@ -24,7 +24,7 @@ const props = defineProps<{
   /** 流程图数据 */
   modelValue?: TurboData;
   /** 设置节点的样式 */
-  styles?: Record<string, ShapeStyleAttribute>;
+  styles?: { id?: string; style?: ShapeStyleAttribute }[];
 }>();
 const vModels = useVModels(props, undefined, { passive: true });
 const { lf, modelValue: graphData } = vModels as Required<typeof vModels>;
@@ -49,8 +49,8 @@ onMounted(() => {
   watch(
     () => props.styles,
     val => {
-      Object.entries(val ?? {}).forEach(([key, value]) => {
-        lf.value?.graphModel?.updateAttributes(key, { style: value });
+      val?.forEach(({ id, style }) => {
+        id && lf.value?.graphModel?.updateAttributes(id, { style });
       });
     },
     { immediate: true }
