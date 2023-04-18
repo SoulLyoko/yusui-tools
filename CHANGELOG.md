@@ -1,3 +1,20 @@
+# [2.0.0-beta.28](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2023-04-18)
+
+
+### Bug Fixes
+
+* **flow-form:** useProvideState ([16251ea](https://github.com/SoulLyoko/yusui-tools/commit/16251eabc2ab74d8580d93912561598d87b35ede))
+* **flow-pages:** buttonHandler ([0716577](https://github.com/SoulLyoko/yusui-tools/commit/0716577f4083278f0468f55b92f4b20cd123c600))
+* remove packages ([e6bbc29](https://github.com/SoulLyoko/yusui-tools/commit/e6bbc293ddca1443889cbbb7349fba35d47ea877))
+
+
+### Features
+
+* **flow-pages:** flow-track ([8f0abbc](https://github.com/SoulLyoko/yusui-tools/commit/8f0abbc6204b785e68a8d7a14f8079e7318ba40c))
+* **useCrud:** add `defaults` ([d2ba6bb](https://github.com/SoulLyoko/yusui-tools/commit/d2ba6bb93de72ed17084a90021650932c03fab2c))
+
+
+
 # [2.0.0-beta.27](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.24...v2.0.0-beta.27) (2023-04-13)
 
 
