@@ -4,7 +4,8 @@ import { commitTask, startTask } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { flowDetail, formVariables, approvalFormData, debug } = state
-  const { taskId, flowInstanceId, flowDeployId } = flowDetail.value.task ?? {}
+  const { flowDeployId } = flowDetail.value.process ?? {}
+  const { taskId, flowInstanceId } = flowDetail.value.task ?? {}
   return {
     // 保存
     // flow_draft() {

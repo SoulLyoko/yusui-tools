@@ -12,7 +12,6 @@ import FlowTrack from './components/flow-track.vue'
 const props = defineProps(useProps())
 const emit = defineEmits(useEmits())
 const state = useProvideState(props, emit)
-const buttonHandler = useButtonHandler(state)
 
 const {
   visible,
@@ -39,6 +38,7 @@ async function onButtonClick(key: FlowButtonKey) {
 }
 
 async function onSubmit() {
+  const buttonHandler = useButtonHandler(state)
   try {
     submitLoading.value = true
     await props.beforeSubmit?.(activeButtonKey.value!)
