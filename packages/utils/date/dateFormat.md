@@ -5,18 +5,18 @@
 ## 示例
 
 ```js
-const date = "2022-02-22 22:22:22";
-dateFormat(date); // 2022-02-22
+const date = '2022-02-22 22:22:22'
+dateFormat(date) // 2022-02-22
 
-dateFormat(date, { date: true, time: false }); // 2022-02-22
+dateFormat(date, { date: true, time: false }) // 2022-02-22
 
-dateFormat(date, { date: false, time: true }); // 22:22:22
+dateFormat(date, { date: false, time: true }) // 22:22:22
 
-dateFormat(date, { date: true, time: true }); // 2022-02-22 22:22:22
+dateFormat(date, { date: true, time: true }) // 2022-02-22 22:22:22
 
-dateFormat(date, { locale: "zh" }); // 2022年2月22日 22点22时22分
+dateFormat(date, { locale: 'zh' }) // 2022年2月22日 22点22时22分
 
-dateFormat(date, "YYYY/MM/DD"); // 2022/02/22
+dateFormat(date, 'YYYY/MM/DD') // 2022/02/22
 ```
 
 ## 参数

@@ -1,50 +1,50 @@
-import type { Resource } from "../types";
+import type { Resource } from '../types'
 
-import { dic } from "../options";
-import { EditorSetter, DicTreeSetter, SwitchSetter } from "../setters";
+import { dic } from '../options'
+import { DicTreeSetter, EditorSetter, SwitchSetter } from '../setters'
 
 export const cascader: Resource = {
-  name: "cascader",
-  title: "级联选择器",
-  icon: "el-icon-connection",
-  group: "表单组件",
-  props: { type: "cascader", label: "级联选择器" },
+  name: 'cascader',
+  title: '级联选择器',
+  icon: 'el-icon-connection',
+  group: '表单组件',
+  props: { type: 'cascader', label: '级联选择器' },
   settings: [
-    ...dic.map(item => {
-      if (item.prop === "dicData") {
+    ...dic.map((item) => {
+      if (item.prop === 'dicData') {
         return {
           ...item,
-          component: DicTreeSetter
-        };
+          component: DicTreeSetter,
+        }
       }
-      return item;
+      return item
     }),
     {
-      label: "分隔字符",
-      prop: "separator"
+      label: '分隔字符',
+      prop: 'separator',
     },
     {
-      label: "弹出层类名",
-      prop: "popperClass"
+      label: '弹出层类名',
+      prop: 'popperClass',
     },
     {
-      label: "显示完整路径",
-      prop: "showAllLevels",
+      label: '显示完整路径',
+      prop: 'showAllLevels',
       component: SwitchSetter,
       defaultValue: true,
-      labelWidth: 120
+      labelWidth: 120,
     },
     {
-      label: "下拉框插入body",
-      prop: "teleported",
+      label: '下拉框插入body',
+      prop: 'teleported',
       component: SwitchSetter,
       defaultValue: true,
-      labelWidth: 120
+      labelWidth: 120,
     },
     /** 多选 */
     {
-      label: "是否多选",
-      prop: "multiple",
+      label: '是否多选',
+      prop: 'multiple',
       component: SwitchSetter,
       defaultValue: false,
       labelWidth: 120,
@@ -52,42 +52,42 @@ export const cascader: Resource = {
         return {
           tagType: { display: !!multiple },
           tags: { display: !!multiple },
-          collapseTagsTooltip: { display: !!multiple }
-        };
-      }
+          collapseTagsTooltip: { display: !!multiple },
+        }
+      },
     },
     {
-      label: "标签类型",
-      prop: "tagType",
-      type: "select",
+      label: '标签类型',
+      prop: 'tagType',
+      type: 'select',
       dicData: [
-        { label: "默认", value: "info" },
-        { label: "主色", value: "primary" },
-        { label: "成功色", value: "success" },
-        { label: "警告色", value: "warning" },
-        { label: "危险色", value: "danger" }
-      ]
+        { label: '默认', value: 'info' },
+        { label: '主色', value: 'primary' },
+        { label: '成功色', value: 'success' },
+        { label: '警告色', value: 'warning' },
+        { label: '危险色', value: 'danger' },
+      ],
     },
     {
-      label: "是否折叠标签",
-      prop: "tags",
+      label: '是否折叠标签',
+      prop: 'tags',
       component: SwitchSetter,
       defaultValue: false,
       labelWidth: 120,
-      labelTip: "多选模式下是否折叠Tag"
+      labelTip: '多选模式下是否折叠Tag',
     },
     {
-      label: "悬停显示标签",
-      prop: "collapseTagsTooltip",
+      label: '悬停显示标签',
+      prop: 'collapseTagsTooltip',
       component: SwitchSetter,
       defaultValue: false,
       labelWidth: 120,
-      labelTip: "当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签"
+      labelTip: '当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签',
     },
     /** 搜索 */
     {
-      label: "是否可搜索",
-      prop: "filterable",
+      label: '是否可搜索',
+      prop: 'filterable',
       component: SwitchSetter,
       defaultValue: false,
       labelWidth: 120,
@@ -95,85 +95,85 @@ export const cascader: Resource = {
         return {
           debounce: { display: !!filterable },
           filterMethod: { display: !!filterable },
-          beforeFilter: { display: !!filterable }
-        };
-      }
+          beforeFilter: { display: !!filterable },
+        }
+      },
     },
     {
-      label: "搜索去抖延迟",
-      prop: "debounce",
-      type: "number",
+      label: '搜索去抖延迟',
+      prop: 'debounce',
+      type: 'number',
       labelWidth: 120,
-      labelTip: "搜索关键词正在输入时的去抖延迟，单位为毫秒"
+      labelTip: '搜索关键词正在输入时的去抖延迟，单位为毫秒',
     },
     {
-      label: "搜索函数",
-      prop: "filterMethod",
+      label: '搜索函数',
+      prop: 'filterMethod',
       component: EditorSetter,
-      valueType: "function",
+      valueType: 'function',
       tooltip: true,
-      defaultValue: `(node, keyword) => true`,
-      labelTip: "自定义搜索逻辑，第一个参数是node，第二个参数是keyword，返回的布尔值表示是否保留该选项"
+      defaultValue: '(node, keyword) => true',
+      labelTip: '自定义搜索逻辑，第一个参数是node，第二个参数是keyword，返回的布尔值表示是否保留该选项',
     },
     {
-      label: "搜索前钩子函数",
-      prop: "beforeFilter",
+      label: '搜索前钩子函数',
+      prop: 'beforeFilter',
       component: EditorSetter,
-      valueType: "function",
+      valueType: 'function',
       tooltip: true,
-      defaultValue: `(value) => true`,
+      defaultValue: '(value) => true',
       labelTip:
-        "过滤函数调用前，所要调用的钩子函数，该函数接收要过滤的值作为参数。 如果该函数的返回值是 false 或者是一个被拒绝的 Promise，那么接下来的过滤逻辑便不会执行。"
+        '过滤函数调用前，所要调用的钩子函数，该函数接收要过滤的值作为参数。 如果该函数的返回值是 false 或者是一个被拒绝的 Promise，那么接下来的过滤逻辑便不会执行。',
     },
     /** props */
     {
-      label: "子项展开方式",
-      prop: "expandTrigger",
-      type: "radio",
+      label: '子项展开方式',
+      prop: 'expandTrigger',
+      type: 'radio',
       button: true,
       dicData: [
-        { label: "点击", value: "click" },
-        { label: "悬停", value: "hover" }
-      ]
+        { label: '点击', value: 'click' },
+        { label: '悬停', value: 'hover' },
+      ],
     },
     {
-      label: "父子不关联",
-      prop: "checkStrictly",
+      label: '父子不关联',
+      prop: 'checkStrictly',
       component: SwitchSetter,
       defaultValue: false,
       labelWidth: 120,
-      labelTip: "是否严格的遵守父子节点不互相关联"
+      labelTip: '是否严格的遵守父子节点不互相关联',
     },
     {
-      label: "返回完整路径",
-      prop: "emitPath",
+      label: '返回完整路径',
+      prop: 'emitPath',
       component: SwitchSetter,
       defaultValue: true,
       labelWidth: 120,
-      labelTip: "在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值"
+      labelTip: '在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值',
     },
     {
-      label: "动态加载节点",
-      prop: "lazy",
+      label: '动态加载节点',
+      prop: 'lazy',
       component: SwitchSetter,
       defaultValue: false,
       labelWidth: 120,
-      labelTip: "是否动态加载子节点，需与 lazyLoad 方法结合使用",
+      labelTip: '是否动态加载子节点，需与 lazyLoad 方法结合使用',
       control(lazy) {
         return {
-          lazyLoad: { display: !!lazy }
-        };
-      }
+          lazyLoad: { display: !!lazy },
+        }
+      },
     },
     {
-      label: "动态加载方法",
-      prop: "lazyLoad",
+      label: '动态加载方法',
+      prop: 'lazyLoad',
       labelWidth: 120,
       component: EditorSetter,
-      valueType: "function",
+      valueType: 'function',
       tooltip: true,
-      defaultValue: `(node, resolve) => resolve([])`,
-      labelTip: "加载动态数据的方法，仅在 lazy 为 true 时有效"
-    }
-  ]
-};
+      defaultValue: '(node, resolve) => resolve([])',
+      labelTip: '加载动态数据的方法，仅在 lazy 为 true 时有效',
+    },
+  ],
+}

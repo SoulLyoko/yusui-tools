@@ -5,13 +5,13 @@
 ## 示例
 
 ```js
-const exampleData = { a: undefined, b: { bb: "1" }, c: [{ cc: 1 }] };
+const exampleData = { a: undefined, b: { bb: '1' }, c: [{ cc: 1 }] }
 
-filterObjDeep(testData); // { b: { bb: "1" }, c: [{ cc: 1 }] }
+filterObjDeep(testData) // { b: { bb: "1" }, c: [{ cc: 1 }] }
 
-filterObjDeep(testData, []); // { a: undefined, b: { bb: "1" }, c: [{ cc: 1 }] }
+filterObjDeep(testData, []) // { a: undefined, b: { bb: "1" }, c: [{ cc: 1 }] }
 
-filterObjDeep(testData, undefined, ["bb", "cc"]); // { b: {}, c: [{}] }
+filterObjDeep(testData, undefined, ['bb', 'cc']) // { b: {}, c: [{}] }
 ```
 
 ## 参数

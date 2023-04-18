@@ -1,3 +1,58 @@
+<script setup lang="ts">
+import type { FlowButtonKey } from '../api/flow-button'
+
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
+
+import { useButtonHandler, useEmits, useProps, useProvideState } from './composables'
+import InternalForm from './components/internal-form.vue'
+import ApprovalForm from './components/approval-form.vue'
+import FlowTrack from './components/flow-track.vue'
+
+const props = defineProps(useProps())
+const emit = defineEmits(useEmits())
+const state = useProvideState(props, emit)
+const buttonHandler = useButtonHandler(state)
+
+const {
+  visible,
+  flowDetail,
+  modelValue: formData,
+  approvalFormData,
+  formVariables,
+  buttonList,
+  activeButtonKey,
+  activeButton,
+  approvalVisible,
+  submitLoading,
+} = state
+
+const formRef = ref<InstanceType<typeof InternalForm>>()
+async function onButtonClick(key: FlowButtonKey) {
+  await formRef.value?.validate()
+  await props.beforeClick?.(key)
+  activeButtonKey.value = key
+  if (activeButton.value?.approval)
+    approvalVisible.value = true
+  else
+    onSubmit()
+}
+
+async function onSubmit() {
+  try {
+    submitLoading.value = true
+    await props.beforeSubmit?.(activeButtonKey.value!)
+    await buttonHandler[activeButtonKey.value!]?.()
+    ElMessage.success('操作成功')
+    approvalVisible.value = false
+    emit('complete', activeButtonKey.value)
+  }
+  finally {
+    submitLoading.value = false
+  }
+}
+</script>
+
 <template>
   <el-drawer v-model="visible" title="我是标题" size="60%">
     <el-skeleton v-if="formLoading" />
@@ -15,15 +70,15 @@
       </el-header>
       <el-main class="flow-form__main">
         <el-tabs v-model="activeTab">
-          <slot v-if="flowDetail?.process?.formPath"></slot>
+          <slot v-if="flowDetail?.process?.formPath" />
           <el-tab-pane v-else label="审批信息" name="form">
-            <InternalForm ref="formRef" v-model="formData" :flowDetail="flowDetail"></InternalForm>
+            <InternalForm ref="formRef" v-model="formData" :flow-detail="flowDetail" />
           </el-tab-pane>
 
-          <el-tab-pane label="附件资料" name="file" lazy> </el-tab-pane>
+          <el-tab-pane label="附件资料" name="file" lazy />
 
           <el-tab-pane label="流程跟踪" name="track" lazy>
-            <FlowTrack :flowDetail="flowDetail"></FlowTrack>
+            <FlowTrack :flow-detail="flowDetail" />
           </el-tab-pane>
         </el-tabs>
       </el-main>
@@ -32,67 +87,12 @@
         v-model="approvalFormData"
         v-model:visible="approvalVisible"
         :variables="formVariables"
-        :flowDetail="flowDetail"
+        :flow-detail="flowDetail"
         @confirm="onSubmit"
-      ></ApprovalForm>
+      />
     </el-container>
   </el-drawer>
 </template>
-
-<script setup lang="ts">
-import type { FlowButtonKey } from "../api/flow-button";
-
-import { ref } from "vue";
-import { ElMessage } from "element-plus";
-
-import { useProps, useEmits, useProvideState, useButtonHandler } from "./composables";
-import InternalForm from "./components/internal-form.vue";
-import ApprovalForm from "./components/approval-form.vue";
-import FlowTrack from "./components/flow-track.vue";
-
-const props = defineProps(useProps());
-const emit = defineEmits(useEmits());
-const state = useProvideState(props, emit);
-const buttonHandler = useButtonHandler(state);
-
-const {
-  visible,
-  flowDetail,
-  modelValue: formData,
-  approvalFormData,
-  formVariables,
-  buttonList,
-  activeButtonKey,
-  activeButton,
-  approvalVisible,
-  submitLoading
-} = state;
-
-const formRef = ref<InstanceType<typeof InternalForm>>();
-async function onButtonClick(key: FlowButtonKey) {
-  await formRef.value?.validate();
-  await props.beforeClick?.(key);
-  activeButtonKey.value = key;
-  if (activeButton.value?.approval) {
-    approvalVisible.value = true;
-  } else {
-    onSubmit();
-  }
-}
-
-async function onSubmit() {
-  try {
-    submitLoading.value = true;
-    await props.beforeSubmit?.(activeButtonKey.value!);
-    await buttonHandler[activeButtonKey.value!]?.();
-    ElMessage.success("操作成功");
-    approvalVisible.value = false;
-    emit("complete", activeButtonKey.value);
-  } finally {
-    submitLoading.value = false;
-  }
-}
-</script>
 
 <style lang="scss">
 .flow-form {

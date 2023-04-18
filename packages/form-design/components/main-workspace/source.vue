@@ -1,10 +1,10 @@
-<template>
-  <EditorSetter v-model="modelValue" valueType="object" />
-</template>
-
 <script setup lang="ts">
-import { useInjectState } from "../../composables";
-import { EditorSetter } from "../../setters";
+import { useInjectState } from '../../composables'
+import { EditorSetter } from '../../setters'
 
-const { modelValue } = useInjectState();
+const { modelValue } = useInjectState()
 </script>
+
+<template>
+  <EditorSetter v-model="modelValue" value-type="object" />
+</template>

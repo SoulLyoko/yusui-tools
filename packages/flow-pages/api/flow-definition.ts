@@ -1,53 +1,53 @@
-import type { Page, ResData, ResRecords } from "@yusui/types";
+import type { Page, ResData, ResRecords } from '@yusui/types'
 
-import { request } from ".";
+import { request } from '.'
 
 export interface FlowDefinition {
   /** 流程定义数据 */
-  flowData?: string;
+  flowData?: string
   /** 流程KEY */
-  flowKey?: string;
+  flowKey?: string
   /** 流程定义ID */
-  flowModuleId?: string;
+  flowModuleId?: string
   /** 流程名称 */
-  flowName?: string;
+  flowName?: string
   /** 表单配置数据 */
-  formOption?: string;
+  formOption?: string
   /** 表单路径 */
-  formPath?: string;
+  formPath?: string
   /** 关联表 */
-  formDataTable?: string;
+  formDataTable?: string
   /** 分类ID */
-  categoryId?: string;
+  categoryId?: string
   /** 图标 */
-  flowIcon?: string;
+  flowIcon?: string
   /** 流程备注 */
-  remarks?: string;
+  remarks?: string
   /** 排序 */
-  sort?: number;
-  status?: number;
+  sort?: number
+  status?: number
   /** 版本号 */
-  version?: number;
+  version?: number
   /** 主版本 */
-  mainVersion?: number;
+  mainVersion?: number
 }
 
 export function getList(params: Page & FlowDefinition) {
-  return request.get<ResRecords<FlowDefinition[]>>("/sapier-flow/flow-definition/list", { params });
+  return request.get<ResRecords<FlowDefinition[]>>('/sapier-flow/flow-definition/list', { params })
 }
 
 export function getDetail(params: { flowModuleId?: string; flowDeployId?: string }) {
-  return request.get("/sapier-flow/flow-definition/detail", { params });
+  return request.get('/sapier-flow/flow-definition/detail', { params })
 }
 
-export function create(data: Pick<FlowDefinition, "flowKey" | "flowName" | "remarks">) {
-  return request.post<ResData<{ flowModuleId?: string }>>("/sapier-flow/flow-definition/save", data);
+export function create(data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) {
+  return request.post<ResData<{ flowModuleId?: string }>>('/sapier-flow/flow-definition/save', data)
 }
 
 export function update(data: FlowDefinition) {
-  return request.post("/sapier-flow/flow-definition/update", data);
+  return request.post('/sapier-flow/flow-definition/update', data)
 }
 
-export function deploy(data: Pick<FlowDefinition, "flowModuleId">) {
-  return request.post("/sapier-flow/flow-definition/deployFlow", data);
+export function deploy(data: Pick<FlowDefinition, 'flowModuleId'>) {
+  return request.post('/sapier-flow/flow-definition/deployFlow', data)
 }

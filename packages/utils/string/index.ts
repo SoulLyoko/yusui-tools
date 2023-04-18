@@ -1,4 +1,4 @@
-import type { Data } from "@yusui/types";
+import type { Data } from '@yusui/types'
 
 /**
  * 生成uuid
@@ -6,13 +6,13 @@ import type { Data } from "@yusui/types";
  * @param {Number} radix 基数长度
  */
 export function uuid(length = 16, radix?: number) {
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const randomNum = radix || chars.length;
-  const result = [];
-  for (let i = 0; i < length; i++) {
-    result[i] = chars.charAt(Math.random() * randomNum);
-  }
-  return result.join("");
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  const randomNum = radix || chars.length
+  const result = []
+  for (let i = 0; i < length; i++)
+    result[i] = chars.charAt(Math.random() * randomNum)
+
+  return result.join('')
 }
 
 /**
@@ -21,11 +21,11 @@ export function uuid(length = 16, radix?: number) {
  * @returns 序列化后的字符串
  */
 export function serialize<T extends Data>(data: T) {
-  const res: string[] = [];
-  Object.keys(data).forEach(key => {
-    res.push(`${key}=${data[key]}`);
-  });
-  return res.join("&");
+  const res: string[] = []
+  Object.keys(data).forEach((key) => {
+    res.push(`${key}=${data[key]}`)
+  })
+  return res.join('&')
 }
 
 /**
@@ -34,13 +34,12 @@ export function serialize<T extends Data>(data: T) {
  * @returns 反序列化后的对象
  */
 export function deserialize<T = Data>(url: string): T {
-  const string = url.split("&");
-  const res: Data = {};
+  const string = url.split('&')
+  const res: Data = {}
   for (let i = 0; i < string.length; i++) {
-    const str = string[i].split("=");
-    if (str[0] != "") {
-      res[str[0]] = str[1];
-    }
+    const str = string[i].split('=')
+    if (str[0] != '')
+      res[str[0]] = str[1]
   }
-  return res as T;
+  return res as T
 }

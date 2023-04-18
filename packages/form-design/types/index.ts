@@ -1,92 +1,92 @@
-import type { AvueFormOption, AvueFormColumn, AvueFormGroup } from "@smallwei/avue";
-import type FormDesign from "../index.vue";
-import type { useProvideState } from "../composables";
+import type { AvueFormColumn, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
+import type FormDesign from '../index.vue'
+import type { useProvideState } from '../composables'
 
-export type ComponentProps = AvueFormOption & AvueFormGroup & AvueFormColumn & { name?: string; id?: string };
+export type ComponentProps = AvueFormOption & AvueFormGroup & AvueFormColumn & { name?: string; id?: string }
 
-export type FormDesignState = ReturnType<typeof useProvideState>;
+export type FormDesignState = ReturnType<typeof useProvideState>
 
 /** 中间拖拽元素 */
 export interface ElementTreeNode {
-  name?: string;
-  id?: string;
-  isRoot?: boolean;
-  props?: Record<string, any>;
-  children?: ElementTreeNode[];
+  name?: string
+  id?: string
+  isRoot?: boolean
+  props?: Record<string, any>
+  children?: ElementTreeNode[]
 }
 
 /** 左侧物料组件 */
 export interface Resource {
   /** 组件名称 */
-  name?: string;
+  name?: string
   /** 组件中文名称 */
-  title?: string;
+  title?: string
   /** 组件图标 */
-  icon?: string;
+  icon?: string
   /** 组件描述 */
-  description?: string;
+  description?: string
   /** 文档链接 */
-  docUrl?: string;
+  docUrl?: string
   /** 组件关键词，用于搜索联想 */
-  keywords?: string;
+  keywords?: string
   /** 用于描述组件位于组件面板哪个分组 */
-  group?: string;
+  group?: string
   // /** 用于描述当前组件位于组件面板的哪个 tab */
   // group?: string;
   // /** 用于描述组件位于组件面板同一 tab 的哪个区域 */
   // category?: string;
   /** 用于描述组件在同一分组中的排序 */
-  priority?: number;
+  priority?: number
   /** 是否容器组件 */
-  isContainer?: boolean;
+  isContainer?: boolean
   /** 设计面板渲染配置 */
-  designOption?: AvueFormOption | ((element: ElementTreeNode) => AvueFormOption);
+  designOption?: AvueFormOption | ((element: ElementTreeNode) => AvueFormOption)
   /** 禁用组件，将不会出现在组件面板中 */
-  disabled?: boolean;
+  disabled?: boolean
   /** 设计面板中禁用复制、删除等动作 */
-  disabledActions?: DesignAction[];
+  disabledActions?: DesignAction[]
   /** 属性面板中禁用的设置 */
-  disabledSettings?: string[];
+  disabledSettings?: string[]
   /** 配置面板的默认值 */
-  props?: ComponentProps;
+  props?: ComponentProps
   /** 配置面板 */
   settings?:
-    | AvueFormColumn[]
-    | ((context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[]);
+  | AvueFormColumn[]
+  | ((context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[])
   /** 拖放规则 */
   rules?: {
-    parentWhiteList?: string[];
-    parentBlackList?: string[];
-    childWhiteList?: string[];
-    childBlackList?: string[];
-  };
+    parentWhiteList?: string[]
+    parentBlackList?: string[]
+    childWhiteList?: string[]
+    childBlackList?: string[]
+  }
 }
 
-export const HistoryType = {
-  init: "初始化",
-  added: "添加组件",
-  moved: "移动组件",
-  removed: "删除组件",
-  property: "修改属性",
-  clear: "清空子组件"
-};
-export type HistoryType = keyof typeof HistoryType;
+export const HistoryTypeMap = {
+  init: '初始化',
+  added: '添加组件',
+  moved: '移动组件',
+  removed: '删除组件',
+  property: '修改属性',
+  clear: '清空子组件',
+}
+export type HistoryType = keyof typeof HistoryTypeMap
 
 /** 历史记录 */
 export interface History {
-  type: HistoryType;
-  timestamp: number;
-  active: ElementTreeNode;
-  tree: ElementTreeNode;
-  option: AvueFormOption;
+  type: HistoryType
+  timestamp: number
+  active: ElementTreeNode
+  tree: ElementTreeNode
+  option: AvueFormOption
 }
 
-export const DesignAction = {
-  copy: "复制",
-  delete: "删除",
-  clear: "清空"
-};
-export type DesignAction = keyof typeof DesignAction;
+export const DesignActionMap = {
+  copy: '复制',
+  delete: '删除',
+  clear: '清空',
+}
+export type DesignAction = keyof typeof DesignActionMap
 
-export type Props = InstanceType<typeof FormDesign>["$props"];
-export type Emit = InstanceType<typeof FormDesign>["$emit"];
+export type Props = InstanceType<typeof FormDesign>['$props']
+export type Emit = InstanceType<typeof FormDesign>['$emit']

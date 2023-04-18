@@ -1,9 +1,9 @@
-import type { Emitter, EventType, EventHandlerMap } from "mitt";
+import type { Emitter, EventHandlerMap, EventType } from 'mitt'
 
-import mitt from "mitt";
+import mitt from 'mitt'
 
 export interface EmitterAsync<Events extends Record<EventType, unknown>> extends Emitter<Events> {
-  emitAsync<Key extends keyof Events>(type: Key, event: Events[Key]): Promise<any>;
+  emitAsync<Key extends keyof Events>(type: Key, event: Events[Key]): Promise<any>
 }
 
 /**
@@ -16,14 +16,16 @@ export interface EmitterAsync<Events extends Record<EventType, unknown>> extends
  * ```
  */
 export function mittAsync<Events extends Record<EventType, unknown>>(all?: EventHandlerMap<Events>) {
-  const inst = mitt<Events>(all) as EmitterAsync<Events>;
+  const inst = mitt<Events>(all) as EmitterAsync<Events>
   inst.emitAsync = async function (type, e) {
-    const typeHandlers = this.all.get(type);
-    // @ts-ignore
-    if (typeHandlers) for (const f of typeHandlers) await f(e);
-    const anyHandlers = this.all.get("*");
-    // @ts-ignore
-    if (anyHandlers) for (const f of anyHandlers) await f(type, e);
-  };
-  return inst;
+    const typeHandlers = this.all.get(type)
+    if (typeHandlers)
+      // @ts-ignore
+      for (const f of typeHandlers) await f(e)
+    const anyHandlers = this.all.get('*')
+    if (anyHandlers)
+      // @ts-ignore
+      for (const f of anyHandlers) await f(type, e)
+  }
+  return inst
 }

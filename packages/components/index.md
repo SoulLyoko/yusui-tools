@@ -11,12 +11,13 @@ npm i @yusui/components
 :::code-group
 
 ```js [main.js]
-import { createApp } from "vue";
-import App from "./App.vue";
-import YSComponents from "@yusui/components";
+import { createApp } from 'vue'
+import YSComponents from '@yusui/components'
 
-const app = createApp(App);
-app.use(YSComponents);
+import App from './App.vue'
+
+const app = createApp(App)
+app.use(YSComponents)
 ```
 
 :::

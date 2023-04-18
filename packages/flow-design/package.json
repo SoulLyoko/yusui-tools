@@ -6,19 +6,19 @@
   "license": "MIT",
   "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "unpkg": "dist/index.umd.js",
   "jsdelivr": "dist/index.umd.js",
   "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    },
-    "./*": "./*"
-  },
   "files": [
     "dist"
   ],

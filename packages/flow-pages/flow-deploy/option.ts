@@ -1,11 +1,11 @@
-import type { AvueCrudOption } from "@smallwei/avue";
-import type { FlowDeploy } from "../api/flow-deploy";
+import type { AvueCrudOption } from '@smallwei/avue'
+import type { FlowDeploy } from '../api/flow-deploy'
 
-import { formOption } from "../components/design-steps/option";
+import { formOption } from '../components/design-steps/option'
 
 export const tableOption: AvueCrudOption<FlowDeploy> = {
-  rowKey: "flowDeloyId",
-  align: "center",
+  rowKey: 'flowDeloyId',
+  align: 'center',
   index: true,
   border: true,
   stripe: true,
@@ -19,20 +19,20 @@ export const tableOption: AvueCrudOption<FlowDeploy> = {
   column: [
     ...(formOption.column! as any),
     {
-      label: "流程版本",
-      prop: "version",
+      label: '流程版本',
+      prop: 'version',
       formatter(row, value) {
-        return value ? `V${value || ""}` : "";
-      }
+        return value ? `V${value || ''}` : ''
+      },
     },
     {
-      label: "是否主版本",
-      prop: "mainVersion",
-      type: "select",
+      label: '是否主版本',
+      prop: 'mainVersion',
+      type: 'select',
       dicData: [
-        { label: "否", value: 0 },
-        { label: "是", value: 1 }
-      ]
-    }
-  ]
-};
+        { label: '否', value: 0 },
+        { label: '是', value: 1 },
+      ],
+    },
+  ],
+}

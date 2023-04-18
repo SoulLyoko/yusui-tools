@@ -1,3 +1,3 @@
-import { defaultOptions } from "@yusui/flow-design";
+import { defaultOptions } from '@yusui/flow-design'
 
-export const options = defaultOptions;
+export const options = defaultOptions

@@ -1,3 +1,45 @@
+<script setup lang="ts">
+import { useCrud } from '@yusui/composables'
+
+import { create, getList, remove, update } from '../../api/flow-category'
+import { treeOption } from './option'
+
+const emit = defineEmits(['node-click'])
+
+const crudOption = {
+  rowKey: 'id',
+  getList,
+  create,
+  update,
+  remove,
+  dataPath: 'res.data',
+}
+const {
+  crudStateRefs: { formData, tableData },
+  getDataList,
+  handleSave,
+  handleUpdate,
+  handleDel,
+} = useCrud({
+  crudOption,
+  tableOption: treeOption,
+  pageOption: { pageSize: 20 },
+  mockCache: 'flow-category',
+})
+getDataList()
+
+function handleTreeSave(node: any, data: any, done: () => void, loading: () => void) {
+  handleSave(data, done, loading)
+}
+function handleTreeUpdate(node: any, data: any, done: () => void, loading: () => void) {
+  handleUpdate(data, NaN, done, loading)
+}
+async function handleTreeDel(node: any, done: () => void) {
+  await handleDel(node.data, NaN)
+  done()
+}
+</script>
+
 <template>
   <avue-tree
     v-model="formData"
@@ -7,47 +49,5 @@
     @save="handleTreeSave"
     @update="handleTreeUpdate"
     @del="handleTreeDel"
-  ></avue-tree>
+  />
 </template>
-
-<script setup lang="ts">
-import { useCrud } from "@yusui/composables";
-
-import { getList, create, update, remove } from "../../api/flow-category";
-import { treeOption } from "./option";
-
-const emit = defineEmits(["node-click"]);
-
-const crudOption = {
-  rowKey: "id",
-  getList,
-  create,
-  update,
-  remove,
-  dataPath: "res.data"
-};
-const {
-  crudStateRefs: { formData, tableData },
-  getDataList,
-  handleSave,
-  handleUpdate,
-  handleDel
-} = useCrud({
-  crudOption,
-  tableOption: treeOption,
-  pageOption: { pageSize: 20 },
-  mockCache: "flow-category"
-});
-getDataList();
-
-function handleTreeSave(node: any, data: any, done: () => void, loading: () => void) {
-  handleSave(data, done, loading);
-}
-function handleTreeUpdate(node: any, data: any, done: () => void, loading: () => void) {
-  handleUpdate(data, NaN, done, loading);
-}
-async function handleTreeDel(node: any, done: () => void) {
-  await handleDel(node.data, NaN);
-  done();
-}
-</script>

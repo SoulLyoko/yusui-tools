@@ -1,72 +1,72 @@
-import type { Res } from "@yusui/types";
+import type { Res } from '@yusui/types'
 
-import { useCrud } from ".";
+import { useCrud } from '.'
 
-vi.mock("./lifeCycle", async () => {
-  const useLifeCycle = () => {};
-  return { useLifeCycle };
-});
+vi.mock('./lifeCycle', async () => {
+  const useLifeCycle = () => { }
+  return { useLifeCycle }
+})
 
 interface RowData {
-  id?: string;
-  name?: string;
-  age?: number;
+  id?: string
+  name?: string
+  age?: number
 }
 function resolve<T>(data?: T) {
-  return Promise.resolve({ code: 200, msg: "success", data });
+  return Promise.resolve({ code: 200, msg: 'success', data })
 }
 
 function useRows(): RowData[] {
   return [
-    { id: "1", name: "刘一", age: 10 },
-    { id: "2", name: "陈二", age: 20 },
-    { id: "3", name: "张三", age: 30 },
-    { id: "4", name: "李四", age: 40 },
-    { id: "5", name: "王五", age: 50 }
-  ];
+    { id: '1', name: '刘一', age: 10 },
+    { id: '2', name: '陈二', age: 20 },
+    { id: '3', name: '张三', age: 30 },
+    { id: '4', name: '李四', age: 40 },
+    { id: '5', name: '王五', age: 50 },
+  ]
 }
 
-window.console.log = () => {};
+window.console.log = () => { }
 window.uni = {
-  stopPullDownRefresh() {},
+  stopPullDownRefresh() { },
   showModal({ success }: any) {
-    success({ confirm: true });
+    success({ confirm: true })
   },
-  showToast() {}
-};
+  showToast() { },
+}
 
-describe.skip("useCrud", () => {
-  const rows = useRows();
+describe.skip('useCrud', () => {
+  const rows = useRows()
   function getList() {
-    return resolve({ rows: rows, size: 10, current: 1, total: rows.length });
+    return resolve({ rows, size: 10, current: 1, total: rows.length })
   }
   function create(row: RowData) {
-    rows.push({ id: rows.length + 1 + "", ...row });
-    return resolve(row);
+    rows.push({ id: `${rows.length + 1}`, ...row })
+    return resolve(row)
   }
   function update(row: RowData) {
-    const index = rows.findIndex(e => e.id == row.id);
-    rows.splice(index, 1, row);
-    return resolve(row);
+    const index = rows.findIndex(e => e.id == row.id)
+    rows.splice(index, 1, row)
+    return resolve(row)
   }
   function remove(ids: string) {
-    const idsArr = ids.split(",");
-    idsArr.forEach(id => {
-      const index = rows.findIndex(e => id == e.id);
-      index >= 0 && rows.splice(index, 1);
-    });
-    return resolve(ids);
+    const idsArr = ids.split(',')
+    idsArr.forEach((id) => {
+      const index = rows.findIndex(e => id == e.id)
+      index >= 0 && rows.splice(index, 1)
+    })
+    return resolve(ids)
   }
 
   const crudOption = {
-    rowKey: "id",
+    rowKey: 'id',
     getList,
     create,
     update,
     remove,
-    dataPath: "res.data.rows",
-    totalPath: "res.data.total"
-  };
+    dataPath: 'res.data.rows',
+    totalPath: 'res.data.total',
+  }
   const {
     crudState,
     getDataList,
@@ -77,59 +77,59 @@ describe.skip("useCrud", () => {
     afterSubmit,
     handleDel,
     beforeDel,
-    afterDel
+    afterDel,
   } = useCrud({
-    crudOption
-  });
+    crudOption,
+  })
 
-  it("getDataList success", async () => {
-    let searchParams, getListRes;
-    beforeGetList(params => (searchParams = params));
-    afterGetList(res => (getListRes = res));
-    await getDataList();
-    expect(searchParams).not.toBeUndefined();
-    expect(getListRes).not.toBeUndefined();
-    expect(crudState.listData).toEqual(rows);
-    expect(crudState.pageOption.total).toBe(rows.length);
-  });
+  it('getDataList success', async () => {
+    let searchParams, getListRes
+    beforeGetList(params => (searchParams = params))
+    afterGetList(res => (getListRes = res))
+    await getDataList()
+    expect(searchParams).not.toBeUndefined()
+    expect(getListRes).not.toBeUndefined()
+    expect(crudState.listData).toEqual(rows)
+    expect(crudState.pageOption.total).toBe(rows.length)
+  })
 
-  it("handleSubmit add success", async () => {
-    crudState.formType = "add";
-    const saveRow = { name: "赵六", age: 0 };
-    const newAge = 60;
-    let saveRes: Res = {};
-    beforeSubmit(row => (row.age = newAge));
-    afterSubmit(res => (saveRes = res));
-    await handleSubmit(saveRow);
-    expect(saveRes.msg).toBe("success");
-    expect(saveRes.data.age).toEqual(newAge);
-    expect(crudState.listData).toEqual([...useRows(), { id: "6", name: "赵六", age: 60 }]);
-  });
+  it('handleSubmit add success', async () => {
+    crudState.formType = 'add'
+    const saveRow = { name: '赵六', age: 0 }
+    const newAge = 60
+    let saveRes: Res = {}
+    beforeSubmit(row => (row.age = newAge))
+    afterSubmit(res => (saveRes = res))
+    await handleSubmit(saveRow)
+    expect(saveRes.msg).toBe('success')
+    expect(saveRes.data.age).toEqual(newAge)
+    expect(crudState.listData).toEqual([...useRows(), { id: '6', name: '赵六', age: 60 }])
+  })
 
-  it("handleSubmit edit success", async () => {
-    crudState.formType = "edit";
-    const updateRow = { id: "6", name: "赵六", age: 60 };
-    const newAge = 66;
-    let updateRes: Res = {};
-    beforeSubmit(row => (row.age = newAge));
-    afterSubmit(res => (updateRes = res));
-    await handleSubmit(updateRow);
-    expect(updateRes.msg).toBe("success");
-    expect(updateRes.data.age).toEqual(newAge);
-    expect(crudState.listData).toEqual([...useRows(), { ...updateRow, age: newAge }]);
-  });
+  it('handleSubmit edit success', async () => {
+    crudState.formType = 'edit'
+    const updateRow = { id: '6', name: '赵六', age: 60 }
+    const newAge = 66
+    let updateRes: Res = {}
+    beforeSubmit(row => (row.age = newAge))
+    afterSubmit(res => (updateRes = res))
+    await handleSubmit(updateRow)
+    expect(updateRes.msg).toBe('success')
+    expect(updateRes.data.age).toEqual(newAge)
+    expect(crudState.listData).toEqual([...useRows(), { ...updateRow, age: newAge }])
+  })
 
-  it("handleDel success", async () => {
-    const delRow = { id: "10" };
-    const newDelId = "6";
-    let delRes: Res = {};
-    beforeDel(row => (row.id = newDelId));
-    afterDel(res => (delRes = res));
-    await handleDel(delRow);
-    expect(delRes.msg).toBe("success");
-    expect(delRes.data).toEqual(newDelId);
-    expect(crudState.listData.length).toBe(useRows().length);
-  });
+  it('handleDel success', async () => {
+    const delRow = { id: '10' }
+    const newDelId = '6'
+    let delRes: Res = {}
+    beforeDel(row => (row.id = newDelId))
+    afterDel(res => (delRes = res))
+    await handleDel(delRow)
+    expect(delRes.msg).toBe('success')
+    expect(delRes.data).toEqual(newDelId)
+    expect(crudState.listData.length).toBe(useRows().length)
+  })
 
   // it("batchDel success", async () => {
   //   const delRows = [{ id: "9" }, { id: "10" }];
@@ -147,31 +147,31 @@ describe.skip("useCrud", () => {
   //   expect(crudState.tableData.length).toBe(useRows().length - 2);
   // });
 
-  it("getDataList reject", async () => {
+  it('getDataList reject', async () => {
     beforeGetList(() => {
-      crudState.listData = [];
-      crudState.pageOption.total = 0;
-      return Promise.reject();
-    });
-    await getDataList();
-    expect(crudState.listData).toEqual([]);
-    expect(crudState.pageOption.total).toBe(0);
-  });
+      crudState.listData = []
+      crudState.pageOption.total = 0
+      return Promise.reject('reject')
+    })
+    await getDataList()
+    expect(crudState.listData).toEqual([])
+    expect(crudState.pageOption.total).toBe(0)
+  })
 
-  it("handleSubmit reject", async () => {
-    let isReject = false;
-    beforeSubmit(() => Promise.reject());
-    await handleSubmit({}, () => (isReject = true));
-    expect(isReject).toBeTruthy();
-  });
+  it('handleSubmit reject', async () => {
+    let isReject = false
+    beforeSubmit(() => Promise.reject('reject'))
+    await handleSubmit({}, () => (isReject = true))
+    expect(isReject).toBeTruthy()
+  })
 
-  it("handleDel reject", async () => {
-    let isReject = true;
-    beforeDel(() => Promise.reject());
-    afterDel(() => (isReject = false));
-    await handleDel({});
-    expect(isReject).toBeTruthy();
-  });
+  it('handleDel reject', async () => {
+    let isReject = true
+    beforeDel(() => Promise.reject('reject'))
+    afterDel(() => (isReject = false))
+    await handleDel({})
+    expect(isReject).toBeTruthy()
+  })
 
   // it("batchDel reject", async () => {
   //   let isReject = true;
@@ -180,7 +180,7 @@ describe.skip("useCrud", () => {
   //   await batchDel();
   //   expect(isReject).toBeTruthy();
   // });
-});
+})
 
 // describe("useCrud mock", () => {
 //   const rows = useRows();

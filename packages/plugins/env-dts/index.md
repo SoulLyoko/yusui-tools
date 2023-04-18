@@ -7,11 +7,11 @@
 :::code-group
 
 ```ts [vite.config.ts]
-import { createEnvDts } from "@yusui/plugins";
+import { createEnvDts } from '@yusui/plugins'
 
 export default {
   plugins: [createEnvDts()]
-};
+}
 ```
 
 :::
@@ -31,7 +31,7 @@ VITE_TEST=test
  * 弹出提示：
  * VITE_TEST=test
  */
-import.meta.env.VITE_TEST;
+import.meta.env.VITE_TEST
 ```
 
 :::
@@ -53,13 +53,13 @@ VITE_API_URL=http://localhost:3000
 
 ```ts [node_modules/@types/env-dts/index.d.ts]
 interface ImportMeta {
-  readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnv
 }
 interface ImportMetaEnv {
   /** VITE_TEST=test */
-  VITE_TEST: string;
+  VITE_TEST: string
   /** VITE_API_URL=http://localhost:3000 */
-  VITE_API_URL: string;
+  VITE_API_URL: string
 }
 ```
 

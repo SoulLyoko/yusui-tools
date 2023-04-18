@@ -1,10 +1,10 @@
-import type { ButtonHandler, FlowFormState } from "../types";
+import type { ButtonHandler, FlowFormState } from '../types'
 
-import { startTask, commitTask } from "../../api/flow-task";
+import { commitTask, startTask } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
-  const { flowDetail, formVariables, approvalFormData, debug } = state;
-  const { taskId, flowInstanceId, flowDeployId } = flowDetail.value.task ?? {};
+  const { flowDetail, formVariables, approvalFormData, debug } = state
+  const { taskId, flowInstanceId, flowDeployId } = flowDetail.value.task ?? {}
   return {
     // 保存
     // flow_draft() {
@@ -27,14 +27,13 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
         flowInstanceId,
         variables: formVariables.value,
         debug: debug.value,
-        ...approvalFormData.value
-      };
-      if (taskId && flowInstanceId) {
-        return commitTask(data);
-      } else {
-        return startTask(data);
+        ...approvalFormData.value,
       }
-    }
+      if (taskId && flowInstanceId)
+        return commitTask(data)
+      else
+        return startTask(data)
+    },
     // // 退回
     // flow_reject() {
     //   if (!taskId || !flowInstanceId) return;
@@ -58,5 +57,5 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     //   if (!taskId) return;
     //   return withdrawProcess({ taskId, comment: formData.value.comment });
     // }
-  };
+  }
 }

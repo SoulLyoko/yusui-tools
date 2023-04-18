@@ -11,21 +11,21 @@ const output = mapTree(
     ...node,
     context: { ...node, index, depth }
   }),
-  { childrenKey: "children" }
-);
+  { childrenKey: 'children' }
+)
 ```
 
 ```js
 // input
 [
   {
-    id: "1",
-    parentId: "0",
+    id: '1',
+    parentId: '0',
     children: [
       {
-        id: "1-1",
-        parentId: "1",
-        children: [{ id: "1-1-1", parentId: "1-1" }]
+        id: '1-1',
+        parentId: '1',
+        children: [{ id: '1-1-1', parentId: '1-1' }]
       }
     ]
   }
@@ -34,31 +34,31 @@ const output = mapTree(
 // output:
 [
   {
-    id: "1",
-    parentId: "0",
+    id: '1',
+    parentId: '0',
     context: {
-      id: "1",
-      parentId: "0",
+      id: '1',
+      parentId: '0',
       index: 0,
       depth: 0
     },
     children: [
       {
-        id: "1-1",
-        parentId: "1",
+        id: '1-1',
+        parentId: '1',
         context: {
-          id: "1-1",
-          parentId: "1",
+          id: '1-1',
+          parentId: '1',
           index: 0,
           depth: 1
         },
         children: [
           {
-            id: "1-1-1",
-            parentId: "1-1",
+            id: '1-1-1',
+            parentId: '1-1',
             context: {
-              id: "1-1-1",
-              parentId: "1-1",
+              id: '1-1-1',
+              parentId: '1-1',
               index: 0,
               depth: 2
             }
@@ -67,7 +67,7 @@ const output = mapTree(
       }
     ]
   }
-];
+]
 ```
 
 ## 参数

@@ -7,12 +7,12 @@
 ::: code-group
 
 ```js [vite.config.js]
-import uni from "@dcloudio/vite-plugin-uni";
-import { uniUIPatch } from "@yusui/plugins";
+import uni from '@dcloudio/vite-plugin-uni'
+import { uniUIPatch } from '@yusui/plugins'
 
 export default {
   plugins: [uni(), uniUIPatch()]
-};
+}
 ```
 
 :::

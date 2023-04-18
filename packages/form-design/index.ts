@@ -1,9 +1,9 @@
-import FormDesign from "./index.vue";
+import FormDesign from './index.vue'
 
-export { FormDesign };
+export { FormDesign }
 
-export * from "./options";
-export * from "./resources";
-export * from "./setters";
-export * from "./types";
-export * from "./utils";
+export * from './options'
+export * from './resources'
+export * from './setters'
+export * from './types'
+export * from './utils'

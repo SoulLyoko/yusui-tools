@@ -1,5 +1,5 @@
-<template>
-  <FormTemplate></FormTemplate>
-</template>
-
 <script setup lang="ts"></script>
+
+<template>
+  <FormTemplate />
+</template>

@@ -1,11 +1,11 @@
-import type { AvueCrudOption } from "@smallwei/avue";
-import type { FlowDefinition } from "../api/flow-definition";
+import type { AvueCrudOption } from '@smallwei/avue'
+import type { FlowDefinition } from '../api/flow-definition'
 
-import { formOption } from "../components/design-steps/option";
+import { formOption } from '../components/design-steps/option'
 
 export const tableOption: AvueCrudOption<FlowDefinition> = {
-  rowKey: "flowModuleId",
-  align: "center",
+  rowKey: 'flowModuleId',
+  align: 'center',
   index: true,
   border: true,
   stripe: true,
@@ -19,11 +19,11 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
   column: [
     ...formOption.column!,
     {
-      label: "流程主版本",
-      prop: "mainVersion",
+      label: '流程主版本',
+      prop: 'mainVersion',
       formatter(row, value) {
-        return value ? `V${value || ""}` : "";
-      }
-    }
-  ]
-};
+        return value ? `V${value || ''}` : ''
+      },
+    },
+  ],
+}

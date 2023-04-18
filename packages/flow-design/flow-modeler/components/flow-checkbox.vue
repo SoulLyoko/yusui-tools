@@ -1,13 +1,13 @@
-<template>
-  <el-checkbox v-bind="$attrs" label=""></el-checkbox>
-</template>
-
 <script lang="ts">
 export default {
-  inheritAttrs: false
-};
+  inheritAttrs: false,
+}
 </script>
 
 <script setup lang="ts">
 /** */
 </script>
+
+<template>
+  <el-checkbox v-bind="$attrs" label="" />
+</template>

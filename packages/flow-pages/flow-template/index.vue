@@ -1,47 +1,32 @@
-<template>
-  <avue-crud v-bind="bindVal">
-    <template #flowData="{ row }">
-      <el-button type="primary" text icon="el-icon-crop" @click="openDesign(row)">设计</el-button>
-    </template>
-  </avue-crud>
-  <el-dialog v-model="dialogVisible" :title="`模型设计-${formData.flowName}`" fullscreen destroy-on-close>
-    <FlowDesignWrapper v-model="formData.flowData" style="height: calc(100vh - 177px)"></FlowDesignWrapper>
-    <template #footer>
-      <el-button type="primary" @click="handleSaveLayout">保存</el-button>
-      <el-button @click="dialogVisible = false">取消</el-button>
-    </template>
-  </el-dialog>
-</template>
-
 <script setup lang="ts">
-import type { FlowTemplate } from "../api/flow-template";
+import type { FlowTemplate } from '../api/flow-template'
 
-import { ref } from "vue";
-import { useCrud } from "@yusui/composables";
+import { ref } from 'vue'
+import { useCrud } from '@yusui/composables'
 
-import { tableOption } from "./option";
-import FlowDesignWrapper from "../components/flow-design-wrapper/index.vue";
-import { getList, create, update, remove } from "../api/flow-template";
+import { tableOption } from './option'
+import FlowDesignWrapper from '../components/flow-design-wrapper/index.vue'
+import { create, getList, remove, update } from '../api/flow-template'
 
 const crudOption = {
-  rowKey: "id",
+  rowKey: 'id',
   getList,
   create,
   update,
-  remove
-};
+  remove,
+}
 const {
   bindVal,
   crudStateRefs: { formData },
   getDataList,
-  handleUpdate
-} = useCrud({ crudOption, tableOption, mockCache: "model-template" });
-getDataList();
+  handleUpdate,
+} = useCrud({ crudOption, tableOption, mockCache: 'model-template' })
+getDataList()
 
-const dialogVisible = ref(false);
+const dialogVisible = ref(false)
 async function openDesign(row: FlowTemplate) {
-  formData.value = row;
-  dialogVisible.value = true;
+  formData.value = row
+  dialogVisible.value = true
 }
 
 async function handleSaveLayout() {
@@ -49,7 +34,28 @@ async function handleSaveLayout() {
     formData.value,
     NaN,
     () => (dialogVisible.value = false),
-    () => {}
-  );
+    () => {},
+  )
 }
 </script>
+
+<template>
+  <avue-crud v-bind="bindVal">
+    <template #flowData="{ row }">
+      <el-button type="primary" text icon="el-icon-crop" @click="openDesign(row)">
+        设计
+      </el-button>
+    </template>
+  </avue-crud>
+  <el-dialog v-model="dialogVisible" :title="`模型设计-${formData.flowName}`" fullscreen destroy-on-close>
+    <FlowDesignWrapper v-model="formData.flowData" style="height: calc(100vh - 177px)" />
+    <template #footer>
+      <el-button type="primary" @click="handleSaveLayout">
+        保存
+      </el-button>
+      <el-button @click="dialogVisible = false">
+        取消
+      </el-button>
+    </template>
+  </el-dialog>
+</template>

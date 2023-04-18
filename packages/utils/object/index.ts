@@ -5,15 +5,14 @@
  * @param {Array} fields 被过滤字段
  */
 export function filterObj<R = any, T = any>(obj: T, values: any[] = [undefined, null], fields: string[] = []): R {
-  const temp: any = {};
+  const temp: any = {}
   for (const key in obj) {
-    const valuesValid = values.every(val => obj[key] !== val);
-    const fieldsValid = fields.every(str => !key.includes(str));
-    if (valuesValid && fieldsValid) {
-      temp[key] = obj[key];
-    }
+    const valuesValid = values.every(val => obj[key] !== val)
+    const fieldsValid = fields.every(str => !key.includes(str))
+    if (valuesValid && fieldsValid)
+      temp[key] = obj[key]
   }
-  return temp as R;
+  return temp as R
 }
 
 /**
@@ -24,25 +23,26 @@ export function filterObj<R = any, T = any>(obj: T, values: any[] = [undefined, 
  */
 export function filterObjDeep<R = any, T = any>(obj: T, values: any[] = [undefined, null], fields: string[] = []): R {
   if (Array.isArray(obj)) {
-    return obj.map(e => filterObjDeep(e, values, fields)) as R;
-  } else {
-    const temp: any = {};
+    return obj.map(e => filterObjDeep(e, values, fields)) as R
+  }
+  else {
+    const temp: any = {}
     for (const key in obj) {
-      if (typeof obj[key] === "object") {
-        temp[key] = filterObjDeep(obj[key], values, fields);
-      } else {
-        const valuesValid = values.every(val => obj[key] !== val);
-        const fieldsValid = fields.every(str => !key.includes(str));
-        if (valuesValid && fieldsValid) {
-          temp[key] = obj[key];
-        }
+      if (typeof obj[key] === 'object') {
+        temp[key] = filterObjDeep(obj[key], values, fields)
+      }
+      else {
+        const valuesValid = values.every(val => obj[key] !== val)
+        const fieldsValid = fields.every(str => !key.includes(str))
+        if (valuesValid && fieldsValid)
+          temp[key] = obj[key]
       }
     }
-    return temp as R;
+    return temp as R
   }
 }
 
 /** 获取数据类型 */
 export function getDataType(data: any) {
-  return Object.prototype.toString.call(data).match(/\[object (.*)\]/)?.[1] ?? "";
+  return Object.prototype.toString.call(data).match(/\[object (.*)\]/)?.[1] ?? ''
 }

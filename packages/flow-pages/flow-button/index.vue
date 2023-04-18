@@ -1,7 +1,33 @@
+<script setup lang="ts">
+import { useCrud } from '@yusui/composables'
+
+import { tableOption } from './option'
+import { create, getList, remove, update } from '../api/flow-button'
+
+const {
+  bindVal,
+  crudStateRefs: { formData },
+  getDataList,
+} = useCrud({
+  crudOption: {
+    rowKey: 'id',
+    getList,
+    create,
+    update,
+    remove,
+  },
+  tableOption,
+  sortOption: {
+    ascs: 'sort',
+  },
+})
+getDataList()
+</script>
+
 <template>
   <avue-crud v-bind="bindVal">
     <template #icon="{ row }">
-      <v-icon :icon="row.icon" style="display: inline"></v-icon>
+      <v-icon :icon="row.icon" style="display: inline" />
     </template>
     <template #buttonPreview="{ row }">
       <el-button :type="row.buttonType">
@@ -17,29 +43,3 @@
     </template>
   </avue-crud>
 </template>
-
-<script setup lang="ts">
-import { useCrud } from "@yusui/composables";
-
-import { tableOption } from "./option";
-import { getList, create, update, remove } from "../api/flow-button";
-
-const {
-  bindVal,
-  crudStateRefs: { formData },
-  getDataList
-} = useCrud({
-  crudOption: {
-    rowKey: "id",
-    getList,
-    create,
-    update,
-    remove
-  },
-  tableOption,
-  sortOption: {
-    ascs: "sort"
-  }
-});
-getDataList();
-</script>

@@ -1,18 +1,18 @@
+<script lang="ts">
+export default { name: 'Demo' }
+</script>
+
 <template>
   <div class="demo">
     <div class="code-demo">
-      <slot name="demo"></slot>
+      <slot name="demo" />
     </div>
     <details class="code-details">
       <summary>View Source</summary>
-      <slot name="code"></slot>
+      <slot name="code" />
     </details>
   </div>
 </template>
-
-<script lang="ts">
-export default { name: "demo" };
-</script>
 
 <style lang="scss" scoped>
 .demo {

@@ -1,11 +1,11 @@
-<template>
-  <IconSelect v-model="icon"></IconSelect>
-  <br />
-  preview：<IconSelect v-model="icon" preview width="32px"></IconSelect>
-</template>
-
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
-const icon = ref("");
+const icon = ref('')
 </script>
+
+<template>
+  <IconSelect v-model="icon" />
+  <br>
+  preview：<IconSelect v-model="icon" preview width="32px" />
+</template>

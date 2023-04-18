@@ -16,7 +16,7 @@
       "@vue/shared": ["node_modules/@vue/shared"],
       "async-validator": ["node_modules/async-validator"],
       "preact": ["node_modules/preact"],
-      "vue-router": ["node_modules/vue-router"],
+      "vue-router": ["node_modules/vue-router"]
     },
     "types": ["vitest/globals", "@dcloudio/types", "element-plus/global"],
     "ignoreDeprecations": "5.0"

@@ -1,14 +1,14 @@
-<template>
-  <ElText>{{ modelValue }}</ElText>
-</template>
-
 <script setup lang="ts">
-import { ElText } from "element-plus";
+import { ElText } from 'element-plus'
 
 /**
  * extends ElText
  */
 defineProps({
-  modelValue: { type: String }
-});
+  modelValue: { type: String },
+})
 </script>
+
+<template>
+  <ElText>{{ modelValue }}</ElText>
+</template>

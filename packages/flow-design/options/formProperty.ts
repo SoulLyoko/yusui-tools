@@ -1,15 +1,13 @@
-import type { AvueFormColumn } from "@smallwei/avue";
-import type { FlowFormData } from "../types";
+import type { AvueFormColumn } from '@smallwei/avue'
+import type { FlowFormData } from '../types'
 
-import FlowFormProperty from "../flow-modeler/components/flow-form-property.vue";
-import FlowCheckbox from "../flow-modeler/components/flow-checkbox.vue";
-import FlowText from "../flow-modeler/components/flow-text.vue";
+import FlowFormProperty from '../flow-modeler/components/flow-form-property.vue'
 
 export const formPropertyColumn: AvueFormColumn<FlowFormData>[] = [
   {
-    label: "",
+    label: '',
     labelWidth: 0,
-    prop: "formProperty",
+    prop: 'formProperty',
     component: FlowFormProperty,
     // type: "dynamic",
     // children: {
@@ -27,6 +25,6 @@ export const formPropertyColumn: AvueFormColumn<FlowFormData>[] = [
     //     { label: "必填", prop: "required", width: 40, component: FlowCheckbox }
     //   ]
     // },
-    value: []
-  }
-];
+    value: [],
+  },
+]

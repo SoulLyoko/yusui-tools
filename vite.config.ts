@@ -1,61 +1,61 @@
-import path from "path";
+import path from 'node:path'
 
-import { defineConfig } from "vite";
-import Vue from "@vitejs/plugin-vue";
-import fs from "fs-extra";
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import fs from 'fs-extra'
 
 const external = [
   /@yusui/,
   /lodash/,
-  "vue",
+  'vue',
   /element-plus/,
-  "@vueuse/core",
-  "@dcloudio/uni-app",
+  '@vueuse/core',
+  '@dcloudio/uni-app',
   /dayjs/,
-  "@iconify/vue",
-  "mitt",
-  "fs",
-  "path",
+  '@iconify/vue',
+  'mitt',
+  'node:fs',
+  'node:path',
   /@logicflow/,
-  "vuedraggable",
-  "@smallwei/avue",
-  "axios",
+  'vuedraggable',
+  '@smallwei/avue',
+  'axios',
   /monaco-editor/,
-  "acorn",
-  "astring",
-  "json5",
-  "@antv/layout"
-];
+  'acorn',
+  'astring',
+  'json5',
+  '@antv/layout',
+]
 const input = {
-  "form-design": path.resolve(__dirname, "packages/form-design/index.ts"),
-  "flow-design": path.resolve(__dirname, "packages/flow-design/index.ts"),
-  components: path.resolve(__dirname, "packages/components/index.ts"),
-  composables: path.resolve(__dirname, "packages/composables/index.ts"),
-  plugins: path.resolve(__dirname, "packages/plugins/index.ts"),
-  types: path.resolve(__dirname, "packages/types/index.ts"),
-  "uni-composables": path.resolve(__dirname, "packages/uni-composables/index.ts"),
-  utils: path.resolve(__dirname, "packages/utils/index.ts")
-};
+  'form-design': path.resolve(__dirname, 'packages/form-design/index.ts'),
+  'flow-design': path.resolve(__dirname, 'packages/flow-design/index.ts'),
+  'components': path.resolve(__dirname, 'packages/components/index.ts'),
+  'composables': path.resolve(__dirname, 'packages/composables/index.ts'),
+  'plugins': path.resolve(__dirname, 'packages/plugins/index.ts'),
+  'types': path.resolve(__dirname, 'packages/types/index.ts'),
+  'uni-composables': path.resolve(__dirname, 'packages/uni-composables/index.ts'),
+  'utils': path.resolve(__dirname, 'packages/utils/index.ts'),
+}
 export const alias = Object.entries(input)
   .map(([name, path]) => ({ find: `@yusui/${name}`, replacement: path }))
   // flow-pages 不打包
-  .concat({ find: "@yusui/flow-pages", replacement: path.resolve(__dirname, "packages/flow-pages/index.ts") });
+  .concat({ find: '@yusui/flow-pages', replacement: path.resolve(__dirname, 'packages/flow-pages/index.ts') })
 
 export default defineConfig(({ mode }) => {
-  if (mode === "production") {
-    fs.removeSync("dist");
-    Object.keys(input).forEach(name => {
-      fs.removeSync(path.join("packages", name, "dist"));
-    });
+  if (mode === 'production') {
+    fs.removeSync('dist')
+    Object.keys(input).forEach((name) => {
+      fs.removeSync(path.join('packages', name, 'dist'))
+    })
   }
   return {
     plugins: [Vue()],
     resolve: {
-      alias
+      alias,
     },
     build: {
       lib: {
-        entry: input
+        entry: input,
       },
       rollupOptions: {
         external,
@@ -69,25 +69,25 @@ export default defineConfig(({ mode }) => {
           // },
           {
             preserveModules: true,
-            preserveModulesRoot: "dist",
+            preserveModulesRoot: 'dist',
             entryFileNames(chunkInfo) {
-              return chunkInfo.isEntry ? "[name]/index.mjs" : "[name].mjs";
+              return chunkInfo.isEntry ? '[name]/index.mjs' : '[name].mjs'
             },
-            format: "es",
-            dir: "dist"
+            format: 'es',
+            dir: 'dist',
           },
           {
             preserveModules: true,
-            preserveModulesRoot: "dist",
+            preserveModulesRoot: 'dist',
             entryFileNames(chunkInfo) {
-              return chunkInfo.isEntry ? "[name]/index.cjs" : "[name].cjs";
+              return chunkInfo.isEntry ? '[name]/index.cjs' : '[name].cjs'
             },
-            exports: "named",
-            format: "cjs",
-            dir: "dist"
-          }
-        ]
-      }
-    }
-  };
-});
+            exports: 'named',
+            format: 'cjs',
+            dir: 'dist',
+          },
+        ],
+      },
+    },
+  }
+})

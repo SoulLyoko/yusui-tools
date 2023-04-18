@@ -1,20 +1,20 @@
-import type { MaybeRef } from "@vueuse/core";
-import type { AvueFormInstance } from "@smallwei/avue";
+import type { MaybeRef } from '@vueuse/core'
+import type { AvueFormInstance } from '@smallwei/avue'
 
-import { isRef } from "vue";
+import { isRef } from 'vue'
 
 export function formJsonToOption(json: string) {
   const option = JSON.parse(json, (key, value) => {
-    return /=>/.test(String(value)) ? eval(value) : value;
-  });
-  return option;
+    return /=>/.test(String(value)) ? eval(value) : value
+  })
+  return option
 }
 
 export function formOptionToJson(option: Object) {
   const json = JSON.stringify(option, (key, value) => {
-    return typeof value === "function" ? String(value) : value;
-  });
-  return json;
+    return typeof value === 'function' ? String(value) : value
+  })
+  return json
 }
 
 /**
@@ -30,14 +30,15 @@ export function formOptionToJson(option: Object) {
  */
 export function asyncValidate(formRef: MaybeRef<any>) {
   return new Promise<boolean>((resolve, reject) => {
-    const form: AvueFormInstance = isRef(formRef) ? formRef.value : formRef;
+    const form: AvueFormInstance = isRef(formRef) ? formRef.value : formRef
     form.validate((valid, done) => {
       if (valid) {
-        done();
-        resolve(valid);
-      } else {
-        reject(valid);
+        done()
+        resolve(valid)
       }
-    });
-  });
+      else {
+        reject(valid)
+      }
+    })
+  })
 }

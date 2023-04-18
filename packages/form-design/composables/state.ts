@@ -1,108 +1,107 @@
-import type { AvueFormOption } from "@smallwei/avue";
-import type { ElementTreeNode, Resource, History, Props, Emit, HistoryType } from "../types";
+import type { AvueFormOption } from '@smallwei/avue'
+import type { ElementTreeNode, Emit, History, HistoryType, Props, Resource } from '../types'
 
-import { ref, computed, provide, inject, watch } from "vue";
-import { useVModels } from "@vueuse/core";
-import { cloneDeep, isEqual, omit, merge } from "lodash-unified";
+import { computed, inject, provide, ref, watch } from 'vue'
+import { useVModels } from '@vueuse/core'
+import { cloneDeep, isEqual, merge, omit } from 'lodash-unified'
 
-import * as defaultResources from "../resources";
-import { adapterIn, adapterOut } from "../utils";
-import { base as defaultBaseOption, advance as defaultAdvanceOption, groupList as defaultGroupList } from "../options";
+import * as defaultResources from '../resources'
+import { adapterIn, adapterOut } from '../utils'
+import { advance as defaultAdvanceOption, base as defaultBaseOption, groupList as defaultGroupList } from '../options'
 
-const injectKey = Symbol("form-design-state");
+const injectKey = Symbol('form-design-state')
 
 export function useProvideState(props: Props, emit: Emit) {
-  const vModels = useVModels(props);
-  const { modelValue } = vModels as Required<typeof vModels>;
+  const vModels = useVModels(props)
+  const { modelValue } = vModels as Required<typeof vModels>
 
-  const groupList = computed(() => props.groupList || defaultGroupList);
+  const groupList = computed(() => props.groupList || defaultGroupList)
   const resources = computed<Record<string, Resource>>(() =>
-    merge(cloneDeep({ ...defaultResources }), props.resources)
-  );
-  const baseOption = computed(() => merge(resolveSettings(defaultBaseOption), resolveSettings(props.baseOption)));
+    merge(cloneDeep({ ...defaultResources }), props.resources),
+  )
+  const baseOption = computed(() => merge(resolveSettings(defaultBaseOption), resolveSettings(props.baseOption)))
   const advanceOption = computed(() =>
-    merge(resolveSettings(defaultAdvanceOption), resolveSettings(props.advanceOption))
-  );
+    merge(resolveSettings(defaultAdvanceOption), resolveSettings(props.advanceOption)),
+  )
 
-  const elementTree = ref<ElementTreeNode>({});
-  const activeElement = ref<ElementTreeNode>({});
-  const hoverElement = ref<ElementTreeNode>({});
+  const elementTree = ref<ElementTreeNode>({})
+  const activeElement = ref<ElementTreeNode>({})
+  const hoverElement = ref<ElementTreeNode>({})
 
-  const formOption = computed<AvueFormOption>(() => omit(elementTree.value?.props, ["column", "group"]) ?? {});
+  const formOption = computed<AvueFormOption>(() => omit(elementTree.value?.props, ['column', 'group']) ?? {})
 
-  const historyList = ref<History[]>([]);
-  const historyIndex = ref(0);
+  const historyList = ref<History[]>([])
+  const historyIndex = ref(0)
 
-  const workType = ref("design");
-  const deviceType = ref("pc");
+  const workType = ref('design')
+  const deviceType = ref('pc')
 
   watch(
     modelValue,
-    val => {
-      if (isEqual(elementTree.value, adapterIn(val || {}))) return;
-      elementTree.value = adapterIn(val || {});
-      if (!Object.keys(activeElement.value).length) {
-        setActiveElement();
-      }
-      if (!historyList.value.length) {
-        recordHistory("init");
-      }
+    (val) => {
+      if (isEqual(elementTree.value, adapterIn(val || {})))
+        return
+      elementTree.value = adapterIn(val || {})
+      if (!Object.keys(activeElement.value).length)
+        setActiveElement()
+
+      if (!historyList.value.length)
+        recordHistory('init')
     },
-    { immediate: true, deep: true }
-  );
+    { immediate: true, deep: true },
+  )
   watch(
     elementTree,
     () => {
-      modelValue.value = adapterOut(elementTree.value);
+      modelValue.value = adapterOut(elementTree.value)
     },
-    { deep: true }
-  );
+    { deep: true },
+  )
 
   function getResource(name?: string) {
-    if (name) {
-      return resources.value[name];
-    } else {
-      return;
-    }
+    if (name)
+      return resources.value[name]
   }
 
   function setActiveElement(element?: ElementTreeNode) {
-    activeElement.value = element ?? elementTree.value ?? {};
+    activeElement.value = element ?? elementTree.value ?? {}
   }
 
-  function resolveSettings(settings: Resource["settings"]) {
-    if (typeof settings === "function") {
-      const context = { elementTree: elementTree.value, activeElement: activeElement.value };
-      return cloneDeep(settings(context) ?? []);
-    } else {
-      return cloneDeep(settings ?? []);
+  function resolveSettings(settings: Resource['settings']) {
+    if (typeof settings === 'function') {
+      const context = { elementTree: elementTree.value, activeElement: activeElement.value }
+      return cloneDeep(settings(context) ?? [])
+    }
+    else {
+      return cloneDeep(settings ?? [])
     }
   }
 
   async function recordHistory(type: HistoryType) {
     // await nextTick();
     historyList.value.push({
-      type: type,
+      type,
       timestamp: Date.now(),
       active: cloneDeep(activeElement.value),
       tree: cloneDeep(elementTree.value),
-      option: cloneDeep(modelValue.value ?? {})
-    });
-    historyIndex.value = historyList.value.length - 1;
+      option: cloneDeep(modelValue.value ?? {}),
+    })
+    historyIndex.value = historyList.value.length - 1
   }
   function restoreHistory(index: number) {
-    const find = historyList.value.find((e, i) => i === index);
-    if (!find) return;
-    elementTree.value = cloneDeep(find.tree);
-    activeElement.value = cloneDeep(find.active);
-    historyIndex.value = index;
+    const find = historyList.value.find((e, i) => i === index)
+    if (!find)
+      return
+    elementTree.value = cloneDeep(find.tree)
+    activeElement.value = cloneDeep(find.active)
+    historyIndex.value = index
   }
   function resetHistory() {
-    historyList.value = [];
-    historyIndex.value = 0;
-    elementTree.value = {};
-    activeElement.value = {};
-    emit("reset");
+    historyList.value = []
+    historyIndex.value = 0
+    elementTree.value = {}
+    activeElement.value = {}
+    emit('reset')
   }
 
   const state = {
@@ -124,14 +123,14 @@ export function useProvideState(props: Props, emit: Emit) {
     recordHistory,
     restoreHistory,
     resetHistory,
-    getResource
-  };
+    getResource,
+  }
 
-  provide(injectKey, state);
+  provide(injectKey, state)
 
-  return state;
+  return state
 }
 
 export function useInjectState() {
-  return inject<ReturnType<typeof useProvideState>>(injectKey)!;
+  return inject<ReturnType<typeof useProvideState>>(injectKey)!
 }

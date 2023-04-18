@@ -1,22 +1,22 @@
-import type { Data } from "@yusui/types";
-import type { UseCrudOptions } from "./types";
+import type { Data } from '@yusui/types'
+import type { UseCrudOptions } from './types'
 
-import { ref, computed, toRefs } from "vue";
+import { computed, ref, toRefs } from 'vue'
 
-import { useCrudState } from "./state";
-import { useHooks } from "./hooks";
-import { useCrudMethods } from "./methods";
-import { useLifeCycle } from "./life-cycle";
+import { useCrudState } from './state'
+import { useHooks } from './hooks'
+import { useCrudMethods } from './methods'
+import { useLifeCycle } from './life-cycle'
 
 export function useCrud<T extends Data = Data, P extends Data = Data>(options: UseCrudOptions<T, P>) {
   /** listRef.value等同于this.$refs.listRef */
-  const listRef = ref();
+  const listRef = ref()
   /** formRef.value等同于this.$refs.formRef */
-  const formRef = ref();
+  const formRef = ref()
 
   /** state */
-  const crudState = useCrudState(options);
-  const crudStateRefs = toRefs(crudState);
+  const crudState = useCrudState(options)
+  const crudStateRefs = toRefs(crudState)
 
   /** hooks */
   const {
@@ -28,8 +28,8 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     beforeGetInfo,
     afterGetInfo,
     beforeSubmit,
-    afterSubmit
-  } = useHooks<T, P>();
+    afterSubmit,
+  } = useHooks<T, P>()
 
   /** methods */
   const {
@@ -47,39 +47,39 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     encodeData,
     decodeData,
     getFormUrl,
-    openForm
-  } = useCrudMethods<T, P>({ crudState, emitter, options });
+    openForm,
+  } = useCrudMethods<T, P>({ crudState, emitter, options })
 
   /** 使用v-bind绑定的值 */
   const bindList = computed(() => ({
     // 属性
-    ref: "listRef",
-    data: crudState.listData,
-    option: crudState.listOption ?? {},
-    filterForm: crudState.searchForm,
-    status: crudState.loadStatus,
-    scrollTop: crudState.scrollTop,
-    searchValue: crudState.searchForm[crudState.crudOption.searchKey] ?? "",
+    'ref': 'listRef',
+    'data': crudState.listData,
+    'option': crudState.listOption ?? {},
+    'filterForm': crudState.searchForm,
+    'status': crudState.loadStatus,
+    'scrollTop': crudState.scrollTop,
+    'searchValue': crudState.searchForm[crudState.crudOption.searchKey] ?? '',
     // 事件
-    onSearch: handleSearch,
-    onLoadmore: loadMore,
-    onFilterChange: filterChange,
-    "onUpdate:filterForm": (form: any) => Object.assign(crudState.searchForm, form),
-    "onUpdate:searchValue": (val: any) => (crudState.searchForm[crudState.crudOption.searchKey as keyof P] = val)
-  }));
+    'onSearch': handleSearch,
+    'onLoadmore': loadMore,
+    'onFilterChange': filterChange,
+    'onUpdate:filterForm': (form: any) => Object.assign(crudState.searchForm, form),
+    'onUpdate:searchValue': (val: any) => (crudState.searchForm[crudState.crudOption.searchKey as keyof P] = val),
+  }))
   const bindForm = computed(() => ({
     // 属性
-    ref: "formRef",
-    option: crudState.formOption ?? {},
-    modelValue: crudState.formData,
-    formType: crudState.formType,
+    'ref': 'formRef',
+    'option': crudState.formOption ?? {},
+    'modelValue': crudState.formData,
+    'formType': crudState.formType,
     // 事件
-    "onUpdate:modelValue": (form: T) => (crudState.formData = form),
-    onSubmit: handleSubmit
-  }));
+    'onUpdate:modelValue': (form: T) => (crudState.formData = form),
+    'onSubmit': handleSubmit,
+  }))
 
   /** 使用一些默认的生命周期 */
-  useLifeCycle({ crudState, loadMore, handleRefresh });
+  useLifeCycle({ crudState, loadMore, handleRefresh })
 
   return {
     listRef,
@@ -110,6 +110,6 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     beforeGetInfo,
     afterGetInfo,
     beforeSubmit,
-    afterSubmit
-  };
+    afterSubmit,
+  }
 }

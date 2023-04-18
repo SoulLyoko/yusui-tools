@@ -1,7 +1,7 @@
-import type { PropType } from "vue";
-import type { FlowDetail } from "../../api/flow-task";
-import type { FlowButtonKey } from "../../api/flow-button";
-import type { Permission } from "../types";
+import type { PropType } from 'vue'
+import type { FlowDetail } from '../../api/flow-task'
+import type { FlowButtonKey } from '../../api/flow-button'
+import type { Permission } from '../types'
 
 export function useProps() {
   return {
@@ -15,7 +15,7 @@ export function useProps() {
     /** 提交加载,按钮loading,v-model */
     submitLoading: { type: Boolean },
     /** 当前激活的标签,v-model */
-    activeTab: { type: String, default: "form" },
+    activeTab: { type: String, default: 'form' },
     /** 流程key */
     flowKey: { type: String },
     /** 任务id,与实例id传其一即可 */
@@ -33,12 +33,12 @@ export function useProps() {
     /** 详情模式,为true则禁用表单并隐藏按钮 */
     detail: { type: Boolean },
     /** 调试模式 */
-    debug: { type: Boolean }
-  };
+    debug: { type: Boolean },
+  }
 }
 
 export function useEmits() {
   return {
-    complete: (key?: FlowButtonKey) => key
-  };
+    complete: (key?: FlowButtonKey) => key,
+  }
 }

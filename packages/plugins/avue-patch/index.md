@@ -7,11 +7,11 @@
 :::code-group
 
 ```js [vite.config.js]
-import { avuePatch } from "@yusui/plugins";
+import { avuePatch } from '@yusui/plugins'
 
 export default {
   plugins: [avuePatch()]
-};
+}
 ```
 
 :::

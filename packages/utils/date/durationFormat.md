@@ -5,9 +5,9 @@
 ## 示例
 
 ```js
-const duration = 337736260; // ms
-durationFormat(duration); // 4天
-durationFormat(duration, true); // 03天21小时48分钟56秒
+const duration = 337736260 // ms
+durationFormat(duration) // 4天
+durationFormat(duration, true) // 03天21小时48分钟56秒
 ```
 
 ## 参数

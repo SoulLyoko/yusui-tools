@@ -1,55 +1,55 @@
-import type { Resource } from "../types";
+import type { Resource } from '../types'
 
-import { EditorSetter, ControlSetter } from "../setters";
+import { ControlSetter, EditorSetter } from '../setters'
 
-export const advance: Resource["settings"] = [
+export const advance: Resource['settings'] = [
   {
-    label: "控制其它字段",
-    prop: "control",
-    component: ControlSetter
+    label: '控制其它字段',
+    prop: 'control',
+    component: ControlSetter,
   },
   {
-    label: "值变化事件",
-    prop: "change",
+    label: '值变化事件',
+    prop: 'change',
     component: EditorSetter,
     tooltip: true,
-    defaultValue: `({ value, row }) => {}`
+    defaultValue: '({ value, row }) => {}',
   },
   {
-    label: "点击事件",
-    prop: "click",
+    label: '点击事件',
+    prop: 'click',
     component: EditorSetter,
     tooltip: true,
-    defaultValue: `({ value, row  }) => {}`
+    defaultValue: '({ value, row  }) => {}',
   },
   {
-    label: "获取焦点事件",
-    prop: "focus",
+    label: '获取焦点事件',
+    prop: 'focus',
     component: EditorSetter,
     tooltip: true,
-    defaultValue: `({ value, row  }) => {}`
+    defaultValue: '({ value, row  }) => {}',
   },
   {
-    label: "失去焦点事件",
-    prop: "blur",
+    label: '失去焦点事件',
+    prop: 'blur',
     component: EditorSetter,
     tooltip: true,
-    defaultValue: `({ value, row  }) => {}`
+    defaultValue: '({ value, row  }) => {}',
   },
   {
-    label: "其他属性",
-    prop: "params",
+    label: '其他属性',
+    prop: 'params',
     component: EditorSetter,
-    valueType: "object",
+    valueType: 'object',
     tooltip: true,
-    defaultValue: `{}`
+    defaultValue: '{}',
   },
   {
-    label: "其他事件",
-    prop: "event",
+    label: '其他事件',
+    prop: 'event',
     component: EditorSetter,
-    valueType: "object",
+    valueType: 'object',
     tooltip: true,
-    defaultValue: `{}`
-  }
-];
+    defaultValue: '{}',
+  },
+]

@@ -5,25 +5,25 @@
 ## 示例
 
 ```js
-getDataType(true); // "Boolean"
+getDataType(true) // "Boolean"
 
-getDataType(null); // "Null"
+getDataType(null) // "Null"
 
-getDataType(undefined); // "Undefined"
+getDataType(undefined) // "Undefined"
 
-getDataType(123); // "Number"
+getDataType(123) // "Number"
 
-getDataType("123"); // "String"
+getDataType('123') // "String"
 
-getDataType(Symbol()); // "Symbol"
+getDataType(Symbol('s')) // "Symbol"
 
-getDataType([]); // "Array"
+getDataType([]) // "Array"
 
-getDataType({}); // "Object"
+getDataType({}) // "Object"
 
-getDataType(() => {}); // "Function"
+getDataType(() => {}) // "Function"
 
-getDataType(new Date()); // "Date"
+getDataType(new Date()) // "Date"
 
-getDataType(new RegExp("")); // "RegExp"
+getDataType(new RegExp('')) // "RegExp"
 ```

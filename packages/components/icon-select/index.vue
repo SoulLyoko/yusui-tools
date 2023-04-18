@@ -1,3 +1,38 @@
+<script setup lang="ts">
+/**
+ * 图标选择组件
+ * @prop {String} modelValue v-icon 的icon值
+ */
+import { onUnmounted } from 'vue'
+import { useVModel } from '@vueuse/core'
+import { Icon } from '@iconify/vue'
+
+const props = defineProps({
+  modelValue: { type: String },
+  preview: { type: Boolean },
+})
+const modelValue = useVModel(props)
+
+let interval: any
+async function onPopShow() {
+  clearInterval(interval)
+  if (!globalThis.navigator.clipboard)
+    return
+  await globalThis.navigator.clipboard.writeText('')
+  interval = setInterval(async () => {
+    const text = await globalThis.navigator.clipboard.readText()
+    if (text && modelValue.value !== text)
+      modelValue.value = text
+  })
+}
+function onPopHide() {
+  clearInterval(interval)
+}
+onUnmounted(() => {
+  clearInterval(interval)
+})
+</script>
+
 <template>
   <Icon v-if="preview" class="icon-select-preview" :icon="modelValue" v-bind="$attrs" />
   <el-popover
@@ -24,41 +59,6 @@
       </el-input>
     </template>
     <el-divider>在iconify中查找图标，复制名称到输入框中</el-divider>
-    <iframe src="https://icon-sets.iconify.design/" frameborder="0" width="100%" height="600px"></iframe>
+    <iframe src="https://icon-sets.iconify.design/" frameborder="0" width="100%" height="600px" />
   </el-popover>
 </template>
-
-<script setup lang="ts">
-/**
- * 图标选择组件
- * @prop {String} modelValue v-icon 的icon值
- */
-import { onUnmounted } from "vue";
-import { useVModel } from "@vueuse/core";
-import { Icon } from "@iconify/vue";
-
-const props = defineProps({
-  modelValue: { type: String },
-  preview: { type: Boolean }
-});
-const modelValue = useVModel(props);
-
-let interval: any;
-async function onPopShow() {
-  clearInterval(interval);
-  if (!globalThis.navigator.clipboard) return;
-  await globalThis.navigator.clipboard.writeText("");
-  interval = setInterval(async () => {
-    const text = await globalThis.navigator.clipboard.readText();
-    if (text && modelValue.value !== text) {
-      modelValue.value = text;
-    }
-  });
-}
-function onPopHide() {
-  clearInterval(interval);
-}
-onUnmounted(() => {
-  clearInterval(interval);
-});
-</script>

@@ -1,18 +1,18 @@
-import { defineConfig } from "vite";
-import Vue from "@vitejs/plugin-vue";
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
 
-import { alias } from "./vite.config";
+import { alias } from './vite.config'
 
 export default defineConfig(() => {
   return {
     plugins: [Vue()],
     resolve: {
-      alias
+      alias,
     },
     test: {
       globals: true,
-      environment: "jsdom",
-      setupFiles: ["./vitest.setup.ts"]
-    }
-  };
-});
+      environment: 'jsdom',
+      setupFiles: ['./vitest.setup.ts'],
+    },
+  }
+})

@@ -1,110 +1,114 @@
-<template>
-  <el-button @click="visible = true">编辑代码</el-button>
-  <el-dialog v-model="visible" title="控制字段属性">
-    <avue-dynamic v-model="controlList" :children="dynamicOption"></avue-dynamic>
-    代码：
-    <EditorSetter v-model="modelValue" valueType="function" height="200px"></EditorSetter>
-  </el-dialog>
-</template>
-
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
-import { useVModels } from "@vueuse/core";
-import { parse } from "acorn";
-import { generate } from "astring";
-import { flatTree } from "@yusui/utils";
+import { computed, ref, watch } from 'vue'
+import { useVModels } from '@vueuse/core'
+import { parse } from 'acorn'
+import { generate } from 'astring'
+import { flatTree } from '@yusui/utils'
 
-import { useInjectState } from "../../composables";
-import EditorSetter from "../editor-setter/index.vue";
-import PropertySelect from "./property-select.vue";
+import { useInjectState } from '../../composables'
+import EditorSetter from '../editor-setter/index.vue'
+import PropertySelect from './property-select.vue'
 
 interface Control {
-  field?: string;
-  property?: string;
-  value?: string;
+  field?: string
+  property?: string
+  value?: string
 }
 
-const props = defineProps<{ modelValue?: string }>();
-const vModels = useVModels(props);
-const { modelValue } = vModels as Required<typeof vModels>;
-const { elementTree } = useInjectState();
+const props = defineProps<{ modelValue?: string }>()
+const vModels = useVModels(props)
+const { modelValue } = vModels as Required<typeof vModels>
+const { elementTree } = useInjectState()
 
-const visible = ref(false);
-const controlList = ref<Control[]>([]);
+const visible = ref(false)
+const controlList = ref<Control[]>([])
 watch(
   modelValue,
   () => {
     if (!modelValue.value) {
-      controlList.value = [];
-      return;
+      controlList.value = []
+      return
     }
     try {
-      const ast = parse(modelValue.value, { ecmaVersion: "latest" }) as any;
-      const returnObject = ast.body[0]?.expression?.body?.properties ?? [];
+      const ast = parse(modelValue.value, { ecmaVersion: 'latest' }) as any
+      const returnObject = ast.body[0]?.expression?.body?.properties ?? []
       if (returnObject?.length) {
         controlList.value = returnObject
           .map((p: any) => {
             return p.value.properties.map((p2: any) => {
-              const value = generate(p2.value);
-              return { field: p.key.name, property: p2.key.name, value };
-            });
+              const value = generate(p2.value)
+              return { field: p.key.name, property: p2.key.name, value }
+            })
           })
-          .flat();
+          .flat()
       }
-    } catch {}
+    }
+    catch {}
   },
-  { immediate: true }
-);
+  { immediate: true },
+)
 watch(
   controlList,
   () => {
-    if (!visible.value) return;
-    const fieldSet = [...new Set(controlList.value?.map(e => e.field))];
+    if (!visible.value)
+      return
+    const fieldSet = [...new Set(controlList.value?.map(e => e.field))]
     const fn = `(val, form) => ({
     ${fieldSet
-      .map(field => {
-        const result = controlList.value?.filter(e => e.field === field);
-        return `${field}: { ${result?.map(f => `${f.property}: ${f.value}`).join(", ")} }`;
+      .map((field) => {
+        const result = controlList.value?.filter(e => e.field === field)
+        return `${field}: { ${result?.map(f => `${f.property}: ${f.value}`).join(', ')} }`
       })
-      .join(",\n    ")}
-})`;
-    modelValue.value = fn;
+      .join(',\n    ')}
+})`
+    modelValue.value = fn
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
 const fieldDic = computed(() => {
-  const allElementList = flatTree(elementTree.value?.children ?? []);
-  return allElementList.map(e => {
-    const { label, prop } = e.props ?? {};
-    return { label, value: prop, desc: prop };
-  });
-});
+  const allElementList = flatTree(elementTree.value?.children ?? [])
+  return allElementList.map((e) => {
+    const { label, prop } = e.props ?? {}
+    return { label, value: prop, desc: prop }
+  })
+})
 
 const dynamicOption = computed(() => {
   return {
     column: [
       {
-        label: "受控字段",
-        prop: "field",
-        type: "select",
+        label: '受控字段',
+        prop: 'field',
+        type: 'select',
         dicData: fieldDic.value,
-        rules: { required: true }
+        rules: { required: true },
       },
       {
-        label: "受控属性",
-        prop: "property",
+        label: '受控属性',
+        prop: 'property',
         component: PropertySelect,
-        rules: { required: true }
+        rules: { required: true },
       },
       {
-        label: "表达式/值",
-        prop: "value",
+        label: '表达式/值',
+        prop: 'value',
         component: EditorSetter,
         tooltip: true,
-        rules: { required: true }
-      }
-    ]
-  };
-});
+        rules: { required: true },
+      },
+    ],
+  }
+})
 </script>
+
+<template>
+  <el-button @click="visible = true">
+    编辑代码
+  </el-button>
+  <el-dialog v-model="visible" title="控制字段属性">
+    <avue-dynamic v-model="controlList" :children="dynamicOption" />
+    代码：
+    <EditorSetter v-model="modelValue" value-type="function" height="200px" />
+  </el-dialog>
+</template>

@@ -1,29 +1,29 @@
 export const defaultTheme = {
   rect: {
     radius: 5,
-    stroke: "black"
+    stroke: 'black',
   },
   circle: {
     r: 18,
-    stroke: "black"
+    stroke: 'black',
   },
   polygon: {
-    stroke: "black"
+    stroke: 'black',
   },
   polyline: {
-    stroke: "black",
-    hoverStroke: "black",
-    selectedStroke: "black"
+    stroke: 'black',
+    hoverStroke: 'black',
+    selectedStroke: 'black',
   },
   edgeText: {
     background: {
-      fill: "white",
+      fill: 'white',
       height: 14,
-      stroke: "transparent",
-      radius: 3
-    }
+      stroke: 'transparent',
+      radius: 3,
+    },
   },
   nodeText: {
     // overflowMode: "autoWrap" // 会导致节点很难点击
-  }
-};
+  },
+}

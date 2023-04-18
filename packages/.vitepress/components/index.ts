@@ -1,11 +1,11 @@
-import type { App } from "vue";
+import type { App } from 'vue'
 
 export default {
   install: (app: App) => {
-    const components = import.meta.glob("./**/*.vue", { eager: true });
+    const components = import.meta.glob('./**/*.vue', { eager: true })
     Object.values(components).forEach((module: any) => {
-      const component = module.default;
-      app.component(component.name, component);
-    });
-  }
-};
+      const component = module.default
+      app.component(component.name, component)
+    })
+  },
+}

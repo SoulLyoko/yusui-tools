@@ -6,13 +6,13 @@
   "license": "MIT",
   "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts"
     },
     "./*": "./*"
   },
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "avue"

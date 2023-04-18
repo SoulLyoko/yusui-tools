@@ -1,14 +1,14 @@
-import path from "path";
+import path from 'node:path'
 
-import { defineConfig } from "vite";
-import Vue from "@vitejs/plugin-vue";
-import { avuePatch } from "@yusui/plugins";
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import { avuePatch } from '@yusui/plugins'
 
 export default defineConfig({
   plugins: [Vue(), avuePatch()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src")
-    }
-  }
-});
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+})

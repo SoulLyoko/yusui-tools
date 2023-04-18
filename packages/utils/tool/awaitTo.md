@@ -6,8 +6,9 @@ try catch 的替代方案
 
 ```js
 // to = awaitTo
-const [err, res] = await to(getList());
-if (err) return ElMessage.error(err);
+const [err, res] = await to(getList())
+if (err)
+  return ElMessage.error(err)
 ```
 
 ## 参数

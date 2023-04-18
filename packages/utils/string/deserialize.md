@@ -5,7 +5,7 @@ url 反序列化
 ## 示例
 
 ```js
-deserialize("a=1&b=2"); // { a: "1", b: "2" }
+deserialize('a=1&b=2') // { a: "1", b: "2" }
 ```
 
 ## 参数

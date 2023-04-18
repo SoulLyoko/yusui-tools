@@ -1,14 +1,14 @@
-<template>
-  <FlowViewer class="demo" :modelValue="graphData"></FlowViewer>
-</template>
-
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
-import { defaultGraphData } from "../constants";
+import { defaultGraphData } from '../constants'
 
-const graphData = ref(defaultGraphData());
+const graphData = ref(defaultGraphData())
 </script>
+
+<template>
+  <FlowViewer class="demo" :model-value="graphData" />
+</template>
 
 <style lang="scss" scoped>
 .demo {
