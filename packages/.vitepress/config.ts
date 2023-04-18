@@ -18,11 +18,9 @@ export default defineConfig({
         items: [
           { text: '@yusui/components', link: '/components/index' },
           { text: '@yusui/composables', link: '/composables/index' },
-          { text: '@yusui/eslint-config', link: '/eslint-config/index' },
           { text: '@yusui/form-design表单设计器', link: '/form-design/index' },
           { text: '@yusui/flow-design流程设计器', link: '/flow-design/index' },
           { text: '@yusui/flow-pages工作流页面', link: '/flow-pages/index' },
-          { text: '@yusui/prettier-config', link: '/prettier-config/index' },
           { text: '@yusui/plugins', link: '/plugins/index' },
           { text: '@yusui/utils', link: '/utils/index' },
         ],
