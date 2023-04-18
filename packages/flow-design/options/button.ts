@@ -1,6 +1,8 @@
 import type { AvueFormColumn } from "@smallwei/avue";
 import type { FlowFormData } from "../types";
 
+import flowText from "../flow-modeler/components/flow-text.vue";
+
 export const flowButtonDisplayDict = [
   { label: "显示", value: "true" },
   { label: "隐藏", value: "false" },
@@ -31,8 +33,8 @@ export const buttonColumn: AvueFormColumn<FlowFormData>[] = [
       delBtn: false,
       column: [
         { prop: "_index", hide: true },
-        { label: "字段名", prop: "label", width: 100, detail: true },
-        { label: "字段值", prop: "prop", width: 100, detail: true },
+        { label: "按钮名", prop: "name", width: 100, component: flowText },
+        { label: "按钮值", prop: "buttonKey", width: 100, component: flowText },
         {
           label: "显示条件",
           prop: "display",

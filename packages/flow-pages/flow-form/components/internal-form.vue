@@ -8,7 +8,7 @@ import { useVModels } from "@vueuse/core";
 import { jsonParse } from "@yusui/form-design";
 
 import { asyncValidate } from "../../utils";
-// import { useFormDefaults } from "../composables";
+import { useFormDefaults } from "../composables";
 
 export default defineComponent({
   props: {
@@ -18,8 +18,7 @@ export default defineComponent({
   },
   setup(props) {
     const { modelValue: form } = useVModels(props, undefined, { passive: true, deep: true });
-    // const defaults = useFormDefaults(props.processDetail);
-    const defaults = ref({});
+    const defaults = useFormDefaults(props.flowDetail);
     const { proxy } = getCurrentInstance()!;
 
     const option = ref<AvueFormOption>({});

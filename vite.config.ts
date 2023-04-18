@@ -1,5 +1,4 @@
 import path from "path";
-import { execSync } from "child_process";
 
 import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";

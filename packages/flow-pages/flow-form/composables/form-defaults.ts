@@ -1,19 +1,16 @@
 import type { MaybeRef } from "@vueuse/core";
+import type { AvueFormDefaults } from "@smallwei/avue";
 import type { FlowDetail } from "../../api/flow-task";
-import type { AvueFormColumn } from "@smallwei/avue";
 
 import { ref, watchEffect, nextTick, isRef } from "vue";
 
-// import { sleep } from "@/utils";
-
-export function useFormDefaults(flowDetail: MaybeRef<FlowDetail>) {
-  const defaults = ref<Record<string, AvueFormColumn>>({});
+export function useFormDefaults(flowDetailRef: MaybeRef<FlowDetail>) {
+  const defaults = ref<AvueFormDefaults>({});
   watchEffect(async () => {
-    const detail = isRef(flowDetail) ? flowDetail.value : flowDetail;
-    const { formProperty } = detail?.properties || {};
+    const flowDetail = isRef(flowDetailRef) ? flowDetailRef.value : flowDetailRef;
+    const { formProperty } = flowDetail?.properties || {};
     if (!formProperty?.length) return;
     await nextTick();
-    // await sleep();
     Object.keys(defaults.value).forEach(prop => {
       const label = defaults.value[prop]?.label || "";
       const find = formProperty?.find(e => e.prop === prop);

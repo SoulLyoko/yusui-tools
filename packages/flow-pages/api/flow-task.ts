@@ -177,7 +177,7 @@ export function getFlowDetail(params: { flowKey?: string; taskId?: string; flowI
   return request.get<ResData<FlowDetail>>("/sapier-flow/flow-run/queryPublishFlowDetail", { params });
 }
 
-export function startFlow(data: CommitTaskData) {
+export function startTask(data: CommitTaskData) {
   return request.post("/sapier-flow/flow-run/startProcess", data);
 }
 

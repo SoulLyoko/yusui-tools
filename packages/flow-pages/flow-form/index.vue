@@ -1,115 +1,96 @@
 <template>
-  <el-drawer v-model="visible" :title="flowDetail?.process?.flowName" destroy-on-close :before-close="clear" size="60%">
-    <el-skeleton v-if="loading" />
+  <el-drawer v-model="visible" title="我是标题" size="60%">
+    <el-skeleton v-if="formLoading" />
     <el-container v-else class="flow-form">
-      <el-header class="flow-form-header">
-        <el-button type="primary" @click="onBtnClick">发送</el-button>
+      <el-header class="flow-form__header">
+        <el-button
+          v-for="btn in buttonList"
+          :key="btn.buttonKey"
+          :type="btn.buttonType"
+          @click="onButtonClick(btn.buttonKey as FlowButtonKey)"
+        >
+          <v-icon :icon="btn.icon" />
+          {{ btn.name }}
+        </el-button>
       </el-header>
-      <el-main class="flow-form-main">
+      <el-main class="flow-form__main">
         <el-tabs v-model="activeTab">
           <slot v-if="flowDetail?.process?.formPath"></slot>
           <el-tab-pane v-else label="审批信息" name="form">
             <InternalForm ref="formRef" v-model="formData" :flowDetail="flowDetail"></InternalForm>
           </el-tab-pane>
 
+          <el-tab-pane label="附件资料" name="file" lazy> </el-tab-pane>
+
           <el-tab-pane label="流程跟踪" name="track" lazy>
             <FlowTrack :flowDetail="flowDetail"></FlowTrack>
           </el-tab-pane>
         </el-tabs>
       </el-main>
-    </el-container>
 
-    <ApprovalForm
-      v-model="approvalFormData"
-      v-model:visible="approvalVisible"
-      :variables="variables"
-      :flowDetail="flowDetail!"
-      @confirm="onSubmit"
-    ></ApprovalForm>
+      <ApprovalForm
+        v-model="approvalFormData"
+        v-model:visible="approvalVisible"
+        :variables="formVariables"
+        :flowDetail="flowDetail"
+        @confirm="onSubmit"
+      ></ApprovalForm>
+    </el-container>
   </el-drawer>
 </template>
 
 <script setup lang="ts">
-import type { AvueFormOption } from "@smallwei/avue";
-import type { FlowDetail } from "../api/flow-task";
+import type { FlowButtonKey } from "../api/flow-button";
 
-import { ref, watchEffect, computed } from "vue";
-import { useVModels } from "@vueuse/core";
+import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
-import { getFlowDetail, startFlow, commitTask } from "../api/flow-task";
+import { useProps, useEmits, useProvideState, useButtonHandler } from "./composables";
 import InternalForm from "./components/internal-form.vue";
 import ApprovalForm from "./components/approval-form.vue";
 import FlowTrack from "./components/flow-track.vue";
 
-const props = defineProps<{
-  flowKey?: string;
-  taskId?: string;
-  instanceId?: string;
-  visible?: boolean;
-  flowDetail?: FlowDetail;
-  modelValue?: any;
-  formOption?: AvueFormOption;
-  loading?: boolean;
-  activeTab?: string;
-  debug?: boolean;
-}>();
-const vModels = useVModels(props, undefined, { passive: true, deep: true });
-const { visible, flowDetail, modelValue: formData, loading, activeTab } = vModels as Required<typeof vModels>;
+const props = defineProps(useProps());
+const emit = defineEmits(useEmits());
+const state = useProvideState(props, emit);
+const buttonHandler = useButtonHandler(state);
 
-function clear(done?: () => void) {
-  activeTab.value = "form";
-  flowDetail.value = {};
-  formData.value = {};
-  done?.();
-}
-
-watchEffect(() => {
-  const { flowKey, taskId, instanceId } = props;
-  if (!flowKey && !taskId && !instanceId) return;
-  if (!visible.value) return;
-  clear();
-  loading.value = true;
-  getFlowDetail({ flowKey, taskId, flowInstanceId: instanceId })
-    .then(res => {
-      flowDetail.value = res.data;
-      formData.value = res.data.formData || {};
-    })
-    .finally(() => {
-      loading.value = false;
-    });
-});
-
-const approvalVisible = ref(false);
-
-const variables = computed(() => {
-  return Object.entries(formData.value || {})
-    .filter(([key]) => !key.startsWith("$"))
-    .map(([key, value]) => ({ key, value }));
-});
+const {
+  visible,
+  flowDetail,
+  modelValue: formData,
+  approvalFormData,
+  formVariables,
+  buttonList,
+  activeButtonKey,
+  activeButton,
+  approvalVisible,
+  submitLoading
+} = state;
 
 const formRef = ref<InstanceType<typeof InternalForm>>();
-async function onBtnClick() {
+async function onButtonClick(key: FlowButtonKey) {
   await formRef.value?.validate();
-  approvalVisible.value = true;
+  await props.beforeClick?.(key);
+  activeButtonKey.value = key;
+  if (activeButton.value?.approval) {
+    approvalVisible.value = true;
+  } else {
+    onSubmit();
+  }
 }
 
-const approvalFormData = ref({});
 async function onSubmit() {
-  const { flowDeployId } = flowDetail.value?.process ?? {};
-  const { taskId, flowInstanceId } = flowDetail.value?.task ?? {};
-  const data = {
-    flowDeployId,
-    taskId,
-    flowInstanceId,
-    variables: variables.value,
-    debug: props.debug,
-    ...approvalFormData.value
-  };
-  await (taskId && flowInstanceId ? commitTask(data) : startFlow(data));
-  ElMessage.success("操作成功");
-  approvalVisible.value = false;
-  visible.value = false;
+  try {
+    submitLoading.value = true;
+    await props.beforeSubmit?.(activeButtonKey.value!);
+    await buttonHandler[activeButtonKey.value!]?.();
+    ElMessage.success("操作成功");
+    approvalVisible.value = false;
+    emit("complete", activeButtonKey.value);
+  } finally {
+    submitLoading.value = false;
+  }
 }
 </script>
 
@@ -117,12 +98,12 @@ async function onSubmit() {
 .flow-form {
   height: 100%;
 
-  .flow-form-header {
+  .flow-form__header {
     height: 32px;
     padding: 0;
   }
 
-  .flow-form-main {
+  .flow-form__main {
     padding: 0;
 
     .el-tabs {

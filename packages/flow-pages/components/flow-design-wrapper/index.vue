@@ -23,14 +23,16 @@
 
 <script setup lang="ts">
 import type { AvueFormOption, AvueFormColumn } from "@smallwei/avue";
-import type { FormPropertyItem, FlowFormData } from "@yusui/flow-design";
+import type { FormPropertyItem, FlowFormData, ButtonItem } from "@yusui/flow-design";
 import type { TaskDetail } from "../../api/flow-task";
+import type { FlowButton } from "../../api/flow-button";
 
 import { ref, computed, nextTick, shallowRef } from "vue";
 import { FlowModeler, FlowViewer, defaultGraphData } from "@yusui/flow-design";
 
 import { options } from "./options";
 import { getParam } from "../../api/flow-param";
+import { useFlowButtonList } from "../../api/flow-button";
 
 const props = defineProps<{
   modelValue?: string;
@@ -55,16 +57,31 @@ function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[])
     return result;
   });
 }
+function mergeButton(button: FlowButton[], source: ButtonItem[]) {
+  return button.map(btn => {
+    const findSource = source.find(e => e.buttonKey === btn.buttonKey);
+    const result = { ...btn, ...findSource };
+    return result;
+  });
+}
+
+const { data: buttonList } = useFlowButtonList();
 
 async function formDataFormat(data: FlowFormData) {
   await nextTick();
-  if (!modelerFormOption.value.group?.some(e => e.prop === "formProperty")) return data;
-  const { column = [], group = [] }: AvueFormOption = JSON.parse(props.formOption || "{}");
-  const formProperty = mergeFormProperty(
-    [...column, ...group.map(g => g.column ?? []).flat()],
-    data.formProperty || []
-  );
-  return { ...data, formProperty };
+  if (modelerFormOption.value.group?.some(e => e.prop === "formProperty")) {
+    const { column = [], group = [] }: AvueFormOption = JSON.parse(props.formOption || "{}");
+    const formProperty = mergeFormProperty(
+      [...column, ...group.map(g => g.column ?? []).flat()],
+      data.formProperty || []
+    );
+    data.formProperty = formProperty;
+  }
+  if (modelerFormOption.value.group?.some(e => e.prop === "button")) {
+    const button = mergeButton(buttonList.value || [], data.button || []);
+    data.button = button;
+  }
+  return data;
 }
 
 function formOptionFormat(option: AvueFormOption) {
@@ -74,25 +91,26 @@ function formOptionFormat(option: AvueFormOption) {
     return { label: item.label, value: `$\{${item.prop}}`, desc: `$\{${item.prop}}` };
   });
   option.group?.forEach(group => {
-    if (group.prop !== "base") return;
-    group.column?.forEach(col => {
-      if (col.prop === "priority") {
-        col.type = "select";
-        col.filterable = true;
-        col.allowCreate = true;
-        col.defaultFirstOption = true;
-        col.dicData = fieldsDic;
-      }
-      if (col.prop === "formTitle") {
-        col.type = "select";
-        col.dataType = "string";
-        col.multiple = true;
-        col.filterable = true;
-        col.allowCreate = true;
-        col.defaultFirstOption = true;
-        col.dicData = fieldsDic;
-      }
-    });
+    if (group.prop === "base") {
+      group.column?.forEach(col => {
+        if (col.prop === "priority") {
+          col.type = "select";
+          col.filterable = true;
+          col.allowCreate = true;
+          col.defaultFirstOption = true;
+          col.dicData = fieldsDic;
+        }
+        if (col.prop === "formTitle") {
+          col.type = "select";
+          col.dataType = "string";
+          col.multiple = true;
+          col.filterable = true;
+          col.allowCreate = true;
+          col.defaultFirstOption = true;
+          col.dicData = fieldsDic;
+        }
+      });
+    }
   });
   return option;
 }
@@ -141,15 +159,18 @@ const lf = shallowRef();
 <style lang="scss" scoped>
 .flow-viewer {
   height: 100%;
+
   .flow-status-legend {
     position: absolute;
     left: 4px;
     z-index: 1;
     display: flex;
+
     .legend-item {
       display: flex;
       align-items: center;
       margin-right: 10px;
+
       .legend-color {
         width: 16px;
         height: 16px;

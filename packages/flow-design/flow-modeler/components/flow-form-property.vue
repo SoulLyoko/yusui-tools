@@ -1,5 +1,5 @@
 <template>
-  <avue-crud class="hide_menu" :data="tableData" :option="tableOption">
+  <avue-crud :data="tableData" :option="tableOption">
     <template #display="{ row }">
       <el-checkbox v-model="row.display"></el-checkbox>
     </template>
@@ -30,14 +30,17 @@ const tableOption = {
   rowKey: "prop",
   menu: false,
   defaultExpandAll: true,
+  addBtn: false,
+  refreshBtn: false,
+  columnBtn: false,
   column: [
-    { label: "字段", prop: "label", cell: true },
-    { label: "属性", prop: "prop", cell: true },
-    { label: "显示", prop: "display", width: 40, cell: true },
-    { label: "禁用", prop: "disabled", width: 40, cell: true },
-    { label: "详情", prop: "detail", width: 40, cell: true },
-    { label: "只读", prop: "readonly", width: 40, cell: true },
-    { label: "必填", prop: "required", width: 40, cell: true }
+    { label: "字段", prop: "label" },
+    { label: "属性", prop: "prop" },
+    { label: "显示", prop: "display", width: 40 },
+    { label: "禁用", prop: "disabled", width: 40 },
+    { label: "详情", prop: "detail", width: 40 },
+    { label: "只读", prop: "readonly", width: 40 },
+    { label: "必填", prop: "required", width: 40 }
   ]
 };
 </script>

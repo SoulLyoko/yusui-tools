@@ -3,10 +3,14 @@ export interface AssigneeItem {
   value?: string;
 }
 export interface ButtonItem {
-  label?: string;
-  prop?: string;
+  name?: string;
+  buttonKey?: string;
+  buttonType?: string;
+  icon?: string;
   display?: string;
   approval?: string;
+  status?: number;
+  sort?: number;
 }
 export interface ListenerItem {
   eventName?: string;

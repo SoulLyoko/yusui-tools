@@ -1,7 +1,7 @@
 import type { ButtonType } from "element-plus";
 import type { Page, ResRecords } from "@yusui/types";
 
-import { request } from ".";
+import { request, useRequest } from ".";
 
 export enum FlowButtonType {
   "默认" = "default",
@@ -46,8 +46,8 @@ export enum FlowButtonApproval {
 }
 
 export enum FlowButtonStatus {
-  "禁用" = 1,
-  "正常" = 0
+  "禁用" = 0,
+  "正常" = 1
 }
 
 /** 按钮配置 */
@@ -74,6 +74,9 @@ export interface FlowButton {
 // 获取按钮列表
 export function getList(params: Page & FlowButton) {
   return request.get<ResRecords<FlowButton[]>>("/sapier-flow/dev-button/list", { params });
+}
+export function useFlowButtonList() {
+  return useRequest(() => getList({ size: -1, ascs: "sort" }).then(res => res.data.records));
 }
 
 // 新增
