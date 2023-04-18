@@ -5,6 +5,7 @@ declare module "vue" {
     AvueTree: typeof import("@smallwei/avue")["AvueTree"];
   }
   interface ComponentCustomProperties {
+    $AVUE: Required<import("@smallwei/avue").AvueConfig>;
     $Clipboard: (arg: { text: string }) => Promise<void>;
     $ImagePreview: (list: { url?: string; thumbUrl?: string }[], index?: number) => void;
     $Print: (selector: string | HTMLElement) => void;

@@ -4,7 +4,7 @@
 /// <reference types="./tree" />
 
 declare module "@smallwei/avue" {
-  const AvueConfig: {
+  const avueConfig: {
     size?: "large" | "default" | "small";
     menuType?: MenuType;
     theme?: "dark";
@@ -12,7 +12,8 @@ declare module "@smallwei/avue" {
     appendToBody?: boolean;
   };
   const Avue: {
-    install(app: import("vue").App, config?: typeof AvueConfig): void;
+    install(app: import("vue").App, config?: AvueConfig): void;
   };
+  export type AvueConfig = typeof avueConfig;
   export default Avue;
 }

@@ -1,4 +1,4 @@
-import type { AvueCrudInstance, PageOption } from "@smallwei/avue";
+import type { AvueCrudInstance, PageOption, AvueCrudDefaults } from "@smallwei/avue";
 import type { Data } from "@yusui/types";
 import type { UseCrudOptions } from "./types";
 
@@ -78,6 +78,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     data: crudState.tableData,
     page: crudState.pageOption,
     search: crudState.searchForm,
+    defaults: crudState.defaults,
     "before-open": beforeOpen,
     "before-close": beforeClose,
     /** 事件 */
@@ -93,7 +94,8 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     onSearchReset: searchReset,
     "onUpdate:search": (form: P) => (crudState.searchForm = form),
     "onUpdate:page": (page: PageOption) => (crudState.pageOption = page as Required<PageOption>),
-    "onUpdate:modelValue": (form: T) => (crudState.formData = form)
+    "onUpdate:modelValue": (form: T) => (crudState.formData = form),
+    "onUpdate:defaults": (defaults: AvueCrudDefaults) => (crudState.defaults = defaults)
   }));
 
   return {

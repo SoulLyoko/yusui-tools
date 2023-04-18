@@ -1,4 +1,4 @@
-import type { AvueCrudOption, AvueCrudProps, PageOption, FormType } from "@smallwei/avue";
+import type { AvueCrudOption, AvueCrudProps, PageOption, FormType, AvueCrudDefaults } from "@smallwei/avue";
 import type { EmitterAsync } from "@yusui/utils";
 
 export interface CrudOption<T, P> {
@@ -49,6 +49,7 @@ export interface CrudState<T, P> {
   queryForm: any;
   formData: T;
   formType: FormType;
+  defaults: AvueCrudDefaults;
   mockData: T[];
   mockCache: string;
 }
