@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { FlowDeploy } from '../api/flow-deploy'
-import type { FlowFormProps } from '../flow-form/composables'
+import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowFormProps } from '../../flow-form/composables'
 
 import { ref } from 'vue'
 
-import { getPublishFlow } from '../api/flow-deploy'
-import { useFlowForm } from '../flow-form/composables'
+import { getPublishFlow } from '../../api/flow-deploy'
+import { useFlowForm } from '../../flow-form/composables'
 
 const flowList = ref<FlowDeploy[]>([])
 
@@ -33,7 +33,6 @@ function openFlow(row: FlowDeploy) {
       </div>
     </div>
   </div>
-  <!-- <FlowForm v-model:visible="flowFormVisible" :flow-key="flowKey" /> -->
 </template>
 
 <style lang="scss" scoped>

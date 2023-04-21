@@ -1,7 +1,7 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowDeploy } from '../api/flow-deploy'
+import type { FlowDeploy } from '../../api/flow-deploy'
 
-import { formOption } from '../components/design-steps/option'
+import { formOption } from '../../components/design-steps/option'
 
 export const tableOption: AvueCrudOption<FlowDeploy> = {
   rowKey: 'flowDeloyId',

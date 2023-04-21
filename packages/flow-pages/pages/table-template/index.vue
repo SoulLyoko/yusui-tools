@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { TableTemplate } from '../api/table-template'
+import type { TableTemplate } from '../../api/table-template'
 
 import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { create, deploy, getList, remove, update } from '../api/table-template'
-import { getParam } from '../api/flow-param'
+import { create, deploy, getList, remove, update } from '../../api/table-template'
+import { getParam } from '../../api/flow-param'
 
 const {
   bindVal,

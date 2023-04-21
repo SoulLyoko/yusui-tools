@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { FlowCategory } from '../api/flow-category'
-import type { FlowDefinition } from '../api/flow-definition'
-import type { FlowDeploy } from '../api/flow-deploy'
+import type { FlowCategory } from '../../api/flow-category'
+import type { FlowDefinition } from '../../api/flow-definition'
+import type { FlowDeploy } from '../../api/flow-deploy'
 
 import { nextTick, ref } from 'vue'
 
-import CategoryTree from '../components/category-tree/index.vue'
-import DesignSteps from '../components/design-steps/index.vue'
-import DesignView from '../components/design-view/index.vue'
+import CategoryTree from '../../components/category-tree/index.vue'
+import DesignSteps from '../../components/design-steps/index.vue'
+import DesignView from '../../components/design-view/index.vue'
 import FlowDefinitionCrud from '../flow-definition/index.vue'
 import FlowDeployCrud from '../flow-deploy/index.vue'
 

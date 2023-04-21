@@ -1,9 +1,9 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowOps } from '../api/flow-ops'
+import type { FlowOps } from '../../api/flow-ops'
 
 import { enumToDic } from '@yusui/utils'
 
-import { TaskStatus } from '../api/flow-ops'
+import { TaskStatus } from '../../api/flow-ops'
 
 export const tableOption: AvueCrudOption<FlowOps> = {
   rowKey: 'id',

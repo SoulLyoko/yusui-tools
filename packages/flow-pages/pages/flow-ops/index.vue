@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import type { FlowFormProps } from '../flow-form/composables'
-import type { FlowOps } from '../api/flow-ops'
+import type { FlowFormProps } from '../../flow-form/composables'
+import type { FlowOps } from '../../api/flow-ops'
 
 import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
-import { pick } from 'lodash-es'
 
 import { tableOption } from './option'
-import { getFlowList } from '../api/flow-ops'
-import { useFlowForm } from '../flow-form/composables'
+import { getFlowList } from '../../api/flow-ops'
+import { useFlowForm } from '../../flow-form/composables'
 
 const debugMode = useStorage('debugMode', false)
 
@@ -31,7 +30,9 @@ const flowProps = ref<FlowFormProps>({})
 const { open, close } = useFlowForm(flowProps, { type: 'drawer' })
 function openFlow(row: FlowOps) {
   flowProps.value = {
-    ...pick(row, ['flowKey', 'taskId', 'instanceId']),
+    flowKey: row.flowKey,
+    taskId: row.taskId,
+    instanceId: row.flowInstanceId,
     debug: debugMode.value,
     onComplete: () => {
       close()

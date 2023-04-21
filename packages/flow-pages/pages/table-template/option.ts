@@ -1,10 +1,10 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { TableTemplate } from '../api/table-template'
+import type { TableTemplate } from '../../api/table-template'
 
 import { enumToDic } from '@yusui/utils'
 
-import { FieldType } from '../api/table-template'
-import { whetherDic } from '../constants'
+import { FieldType } from '../../api/table-template'
+import { whetherDic } from '../../constants'
 
 export const tableOption: AvueCrudOption<TableTemplate> = {
   rowKey: 'id',

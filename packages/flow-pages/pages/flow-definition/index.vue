@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { FlowDefinition } from '../api/flow-definition'
+import type { FlowDefinition } from '../../api/flow-definition'
 
 import { ref, watchEffect } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { deploy, getList } from '../api/flow-definition'
+import { deploy, getList } from '../../api/flow-definition'
 
 const props = defineProps<{ categoryId?: string }>()
 const emit = defineEmits(['add', 'view', 'edit', 'version'])

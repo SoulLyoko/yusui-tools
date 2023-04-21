@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { FlowTemplate } from '../api/flow-template'
+import type { FormTemplate } from '../../api/form-template'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import FlowDesignWrapper from '../components/flow-design-wrapper/index.vue'
-import { create, getList, remove, update } from '../api/flow-template'
+import FormDesignWrapper from '../../components/form-design-wrapper/index.vue'
+import { create, getList, remove, update } from '../../api/form-template'
 
 const {
   bindVal,
@@ -21,12 +21,13 @@ const {
     update,
     remove,
   },
+  mockCache: 'form-template',
 })
 getDataList()
 
 const dialogVisible = ref(false)
-async function openDesign(row: FlowTemplate) {
-  formData.value = row
+async function openDesign(row: FormTemplate) {
+  formData.value = { ...row }
   dialogVisible.value = true
 }
 
@@ -42,14 +43,14 @@ async function handleSaveLayout() {
 
 <template>
   <avue-crud v-bind="bindVal">
-    <template #flowData="{ row }">
+    <template #formOption="{ row }">
       <el-button type="primary" text icon="el-icon-crop" @click="openDesign(row)">
         设计
       </el-button>
     </template>
   </avue-crud>
-  <el-dialog v-model="dialogVisible" :title="`模型设计-${formData.flowName}`" fullscreen destroy-on-close>
-    <FlowDesignWrapper v-model="formData.flowData" style="height: calc(100vh - 177px)" />
+  <el-dialog v-model="dialogVisible" :title="`表单设计-${formData.formName}`" fullscreen destroy-on-close>
+    <FormDesignWrapper v-model="formData.formOption" style="height: calc(100vh - 177px)" />
     <template #footer>
       <el-button type="primary" @click="handleSaveLayout">
         保存

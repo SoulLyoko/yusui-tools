@@ -1,5 +1,5 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FormTemplate } from '../api/form-template'
+import type { FormTemplate } from '../../api/form-template'
 
 export const tableOption: AvueCrudOption<FormTemplate> = {
   rowKey: 'id',

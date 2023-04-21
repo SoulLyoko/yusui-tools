@@ -1,7 +1,7 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowDefinition } from '../api/flow-definition'
+import type { FlowDefinition } from '../../api/flow-definition'
 
-import { formOption } from '../components/design-steps/option'
+import { formOption } from '../../components/design-steps/option'
 
 export const tableOption: AvueCrudOption<FlowDefinition> = {
   rowKey: 'flowModuleId',
