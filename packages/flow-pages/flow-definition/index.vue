@@ -11,18 +11,16 @@ import { deploy, getList } from '../api/flow-definition'
 const props = defineProps<{ categoryId?: string }>()
 const emit = defineEmits(['add', 'view', 'edit', 'version'])
 
-const crudOption = {
-  rowKey: 'flowModuleId',
-  getList,
-  // remove
-}
 const {
   bindVal,
   crudStateRefs: { searchForm },
   getDataList,
 } = useCrud({
-  crudOption,
   tableOption,
+  crudOption: {
+    getList,
+    // remove
+  },
   searchForm: { categoryId: props.categoryId },
 })
 watchEffect(() => {

@@ -5,14 +5,13 @@ import { tableOption } from './option'
 import { create, getList, remove, update } from '../api/flow-param'
 
 const { bindVal, getDataList } = useCrud({
+  tableOption,
   crudOption: {
-    rowKey: 'id',
     getList,
     create,
     update,
     remove,
   },
-  tableOption,
 })
 getDataList()
 </script>

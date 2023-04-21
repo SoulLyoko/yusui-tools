@@ -28,6 +28,7 @@ export interface FlowOps {
   serialNumber?: string
   sourceTaskId?: string
   sourceTaskNodeKey?: string
+  startTime?: string
   status?: TaskStatus
   subProcessId?: string
   taskId?: string

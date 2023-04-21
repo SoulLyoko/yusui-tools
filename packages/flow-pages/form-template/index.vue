@@ -8,19 +8,21 @@ import { tableOption } from './option'
 import FormDesignWrapper from '../components/form-design-wrapper/index.vue'
 import { create, getList, remove, update } from '../api/form-template'
 
-const crudOption = {
-  rowKey: 'id',
-  getList,
-  create,
-  update,
-  remove,
-}
 const {
   bindVal,
   crudStateRefs: { formData },
   getDataList,
   handleUpdate,
-} = useCrud({ crudOption, tableOption, mockCache: 'form-template' })
+} = useCrud({
+  tableOption,
+  crudOption: {
+    getList,
+    create,
+    update,
+    remove,
+  },
+  mockCache: 'form-template',
+})
 getDataList()
 
 const dialogVisible = ref(false)

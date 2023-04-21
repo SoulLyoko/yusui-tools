@@ -21,8 +21,8 @@ export function useFormDefaults(flowDetailRef: MaybeRef<FlowDetail>) {
       defaults.value[prop].readonly = find?.readonly
       defaults.value[prop].rules = defaults.value[prop].rules ?? []
       if (find?.required && defaults.value[prop].rules?.some(e => e.required))
-        return
-      if (find?.required)
+        return null
+      else if (find?.required)
         defaults.value[prop].rules?.push({ required: true, message: `${label}为必填项` })
       else
         defaults.value[prop].rules = defaults.value[prop].rules?.filter(e => !e.required)

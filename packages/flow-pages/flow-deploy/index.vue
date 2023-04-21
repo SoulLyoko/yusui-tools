@@ -11,18 +11,16 @@ import { IsMainVersion, getList, update } from '../api/flow-deploy'
 const props = defineProps<{ flowModuleId?: string }>()
 const emit = defineEmits(['back', 'view', 'edit'])
 
-const crudOption = {
-  rowKey: 'flowDeloyId',
-  getList,
-  dataPath: 'res.data',
-}
 const {
   bindVal,
   crudStateRefs: { searchForm },
   getDataList,
 } = useCrud({
-  crudOption,
   tableOption,
+  crudOption: {
+    getList,
+    dataPath: 'res.data',
+  },
 })
 
 watchEffect(() => {

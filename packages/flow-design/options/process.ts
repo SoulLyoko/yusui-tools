@@ -20,11 +20,24 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
     params: { filterType: 'userTask' },
   },
   {
-    label: '优先级',
+    label: '优先级字段',
     prop: 'priority',
   },
   {
     label: '表单标题',
     prop: 'formTitle',
+    separator: '-',
+  },
+  {
+    label: '标题分隔符',
+    prop: 'formTitleSeparator',
+    value: '-',
+    control(val) {
+      return {
+        formTitle: {
+          separator: val,
+        },
+      }
+    },
   },
 ]

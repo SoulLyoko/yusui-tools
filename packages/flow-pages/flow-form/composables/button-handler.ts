@@ -1,35 +1,29 @@
 import type { ButtonHandler, FlowFormState } from '../types'
 
-import { commitTask, startTask } from '../../api/flow-task'
+import { commitTask, saveDraft, startTask } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { flowDetail, formVariables, approvalFormData, debug } = state
   const { flowDeployId } = flowDetail.value.process ?? {}
   const { taskId, flowInstanceId } = flowDetail.value.task ?? {}
+  const data = {
+    flowDeployId,
+    taskId,
+    flowInstanceId,
+    variables: formVariables.value,
+    debug: debug.value,
+    ...approvalFormData.value,
+  }
   return {
     // 保存
-    // flow_draft() {
-    //   if (taskId && flowInstanceId) {
-    //     return handleProcess({
-    //       taskId,
-    //       flowInstanceId,
-    //       pass: "true",
-    //       variables: { ...formData.value, save_draft: true }
-    //     });
-    //   } else {
-    //     return startProcess({ ...formData.value, save_draft: true, procDefKey: flowKey! });
-    //   }
-    // },
+    flow_draft() {
+      if (taskId && flowInstanceId)
+        return saveDraft(data)
+      // else
+        // return startProcess({ ...formData.value, save_draft: true, procDefKey: flowKey! })
+    },
     // 发送
     flow_pass() {
-      const data = {
-        flowDeployId,
-        taskId,
-        flowInstanceId,
-        variables: formVariables.value,
-        debug: debug.value,
-        ...approvalFormData.value,
-      }
       if (taskId && flowInstanceId)
         return commitTask(data)
       else

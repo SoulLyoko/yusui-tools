@@ -19,7 +19,6 @@ const {
   beforeUpdate,
 } = useCrud({
   crudOption: {
-    rowKey: 'id',
     getList,
     create,
     update,

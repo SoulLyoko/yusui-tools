@@ -9,14 +9,13 @@ const {
   crudStateRefs: { formData },
   getDataList,
 } = useCrud({
+  tableOption,
   crudOption: {
-    rowKey: 'id',
     getList,
     create,
     update,
     remove,
   },
-  tableOption,
   sortOption: {
     ascs: 'sort',
   },

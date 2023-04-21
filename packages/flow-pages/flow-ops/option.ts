@@ -23,7 +23,7 @@ export const tableOption: AvueCrudOption<FlowOps> = {
     { label: '当前节点', prop: 'taskNodeName' },
     { label: '审批人', prop: 'assigneeName' },
     { label: '申请人', prop: 'applyUserName' },
-    { label: '接收时间', prop: 'createTime' },
+    { label: '接收时间', prop: 'startTime' },
     {
       label: '任务状态',
       prop: 'status',

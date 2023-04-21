@@ -19,6 +19,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['update:modelValue'])
 
+const modelerFormData = ref<FlowFormData>({})
 const modelerFormOption = ref<AvueFormOption>({})
 const elementData = ref()
 
@@ -37,7 +38,8 @@ function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[])
 function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   return button.map((btn) => {
     const findSource = source.find(e => e.buttonKey === btn.buttonKey)
-    const result = { ...btn, ...findSource }
+    const { name, buttonKey, display, approval } = btn
+    const result = { name, buttonKey, display, approval, ...findSource }
     return result
   })
 }
@@ -85,6 +87,18 @@ function formOptionFormat(option: AvueFormOption) {
           col.allowCreate = true
           col.defaultFirstOption = true
           col.dicData = fieldsDic
+          // col.click = (e) => {
+          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.click ~ e:', e)
+          // }
+          // col.change = (e) => {
+          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.change ~ e:', e)
+          // }
+          // col.focus = (e) => {
+          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.focus ~ e:', e)
+          // }
+          // col.blur = (e) => {
+          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.blur ~ e:', e)
+          // }
         }
       })
     }
@@ -148,6 +162,7 @@ const lf = shallowRef()
     v-model="graphData"
     v-model:lf="lf"
     v-model:elementData="elementData"
+    v-model:formData="modelerFormData"
     v-model:formOption="modelerFormOption"
     :form-options="options"
     :form-data-format="formDataFormat"

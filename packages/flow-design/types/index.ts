@@ -5,12 +5,8 @@ export interface AssigneeItem {
 export interface ButtonItem {
   name?: string
   buttonKey?: string
-  buttonType?: string
-  icon?: string
   display?: string
   approval?: string
-  status?: number
-  sort?: number
 }
 export interface ListenerItem {
   eventName?: string
@@ -66,6 +62,8 @@ export interface FlowFormData {
   priority?: number
   /** 表单标题 */
   formTitle?: string
+  /** 表单标题分隔符 */
+  formTitleSeparator?: string
   /** 回到驳回人 */
   backToRejecter?: boolean
   /** 多实例类型 */

@@ -112,6 +112,12 @@ export interface FlowHistory {
   assigneeName?: string
   /** 审批意见 */
   comment?: FlowComment
+  /** 办理时长 */
+  duration?: number
+  /** 接收时间 */
+  startTime?: string
+  /** 处理时间 */
+  endTime?: string
 }
 export interface FlowComment {
   id?: string
@@ -186,4 +192,8 @@ export function commitTask(data: CommitTaskData) {
 
 export function getApprovalNodes(data: { flowKey?: string; variables?: FlowVariable[]; taskId?: string }) {
   return request.post<ResData<ApprovalNode[]>>('/sapier-flow/flow-run/queryApprovalNode', data)
+}
+
+export function saveDraft(data: CommitTaskData) {
+  return request.post('/sapier-flow/flow-run/saveDraft', data)
 }

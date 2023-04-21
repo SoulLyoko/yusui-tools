@@ -8,19 +8,20 @@ import { tableOption } from './option'
 import FlowDesignWrapper from '../components/flow-design-wrapper/index.vue'
 import { create, getList, remove, update } from '../api/flow-template'
 
-const crudOption = {
-  rowKey: 'id',
-  getList,
-  create,
-  update,
-  remove,
-}
 const {
   bindVal,
   crudStateRefs: { formData },
   getDataList,
   handleUpdate,
-} = useCrud({ crudOption, tableOption, mockCache: 'model-template' })
+} = useCrud({
+  tableOption,
+  crudOption: {
+    getList,
+    create,
+    update,
+    remove,
+  },
+})
 getDataList()
 
 const dialogVisible = ref(false)

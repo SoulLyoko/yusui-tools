@@ -1,31 +1,44 @@
 <script setup lang="ts">
+import type { FlowFormProps } from '../flow-form/composables'
 import type { FlowOps } from '../api/flow-ops'
 
 import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
+import { pick } from 'lodash-es'
 
 import { tableOption } from './option'
 import { getFlowList } from '../api/flow-ops'
-import FlowForm from '../flow-form/index.vue'
+import { useFlowForm } from '../flow-form/composables'
 
 const debugMode = useStorage('debugMode', false)
 
-const crudOption = {
-  rowKey: 'id',
-  getList: getFlowList,
-}
 const {
   bindVal,
-  crudStateRefs: { formData },
   getDataList,
-} = useCrud({ crudOption, tableOption })
+} = useCrud({
+  tableOption,
+  crudOption: {
+    getList: getFlowList,
+  },
+  sortOption: {
+    descs: 'start_time',
+  },
+})
 getDataList()
 
-const flowFormVisible = ref(false)
-async function openFlowForm(row: FlowOps) {
-  formData.value = row
-  flowFormVisible.value = true
+const flowProps = ref<FlowFormProps>({})
+const { open, close } = useFlowForm(flowProps, { type: 'drawer' })
+function openFlow(row: FlowOps) {
+  flowProps.value = {
+    ...pick(row, ['flowKey', 'taskId', 'instanceId']),
+    debug: debugMode.value,
+    onComplete: () => {
+      close()
+      getDataList()
+    },
+  }
+  open()
 }
 </script>
 
@@ -37,15 +50,9 @@ async function openFlowForm(row: FlowOps) {
       </el-button>
     </template>
     <template #processTitle="{ row }">
-      <el-link type="primary" :underline="false" @click="openFlowForm(row)">
+      <el-link type="primary" :underline="false" @click="openFlow(row)">
         {{ row.processTitle || "无标题" }}
       </el-link>
     </template>
   </avue-crud>
-  <FlowForm
-    v-model:visible="flowFormVisible"
-    :task-id="formData.taskId"
-    :instance-id="formData.flowInstanceId"
-    :debug="debugMode"
-  />
 </template>

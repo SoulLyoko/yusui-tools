@@ -17,6 +17,4 @@ export interface Permission {
   button?: Record<FlowButtonKey, boolean>
 }
 
-export type ButtonHandler = {
-  [K in FlowButtonKey]?: () => Promise<void> | void;
-}
+export type ButtonHandler = Record<string, () => Promise<void> | void>

@@ -1,11 +1,10 @@
 import type { PropType } from 'vue'
 import type { FlowDetail } from '../../api/flow-task'
-import type { FlowButtonKey } from '../../api/flow-button'
 import type { Permission } from '../types'
+import type { FlowButton } from '../../api/flow-button'
 
 export function useProps() {
   return {
-    visible: { type: Boolean },
     /** 表单绑定,v-model */
     modelValue: { type: Object, default: () => ({}) },
     /** 流程详情,v-model */
@@ -27,9 +26,9 @@ export function useProps() {
     /** 控制内部组件的显隐 */
     permission: { type: Object as PropType<Permission> },
     /** 弹出审批窗口前 */
-    beforeClick: { type: Function as PropType<(key: FlowButtonKey) => any> },
+    beforeClick: { type: Function as PropType<(btn: FlowButton) => any> },
     /** 审批提交前 */
-    beforeSubmit: { type: Function as PropType<(key: FlowButtonKey) => any> },
+    beforeSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
     /** 详情模式,为true则禁用表单并隐藏按钮 */
     detail: { type: Boolean },
     /** 调试模式 */
@@ -39,6 +38,6 @@ export function useProps() {
 
 export function useEmits() {
   return {
-    complete: (key?: FlowButtonKey) => key,
+    complete: (btn?: FlowButton) => btn,
   }
 }

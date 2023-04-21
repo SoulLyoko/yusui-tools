@@ -1,5 +1,4 @@
 import type { Emit, Props } from '../types'
-import type { FlowButtonKey } from '../../api/flow-button'
 import type { InjectionKey } from 'vue'
 
 import { computed, inject, provide, ref, watchEffect } from 'vue'
@@ -29,6 +28,11 @@ export function useProvideState(props: Props, emit: Emit) {
       })
   })
 
+  // 标题
+  const formTitle = computed(
+    () => flowDetail.value.formData?.flow_form_title || flowDetail.value.process?.flowName,
+  )
+
   // 显示权限
   const permission = computed(() => ({ fileTab: true, trackTab: true, ...props.permission }))
   const showFileTab = computed(
@@ -42,30 +46,6 @@ export function useProvideState(props: Props, emit: Emit) {
       && flowDetail.value?.properties?.formProperty?.find(e => e.prop === 'trackTab')?.display,
   )
 
-  // 按钮
-  const buttonList = computed(() => {
-    // const { userInfo } = useUserStore();
-    const userInfo = { userId: '1' }
-    // const { processIsFinished, startUser, assignee, flowInstanceId } = flowDetail.value.task || {};
-    const { assignee, flowInstanceId } = flowDetail.value.task || {}
-    const buttonCondition: Record<string, boolean> = {
-      true: true,
-      false: false,
-      // startUser: startUser == userInfo.userId,
-      assignee: assignee == userInfo.userId,
-      notstarted: !flowInstanceId,
-      started: !!flowInstanceId,
-      // unfinished: processIsFinished === "unfinished",
-      // finished: processIsFinished === "finished"
-    }
-    const filterBtn = flowDetail.value?.properties?.button?.filter((item) => {
-      return item.display?.split(',')?.every(condition => buttonCondition[condition])
-    })
-    return filterBtn ?? []
-  })
-  const activeButtonKey = ref<FlowButtonKey>()
-  const activeButton = computed(() => buttonList.value.find(e => e.buttonKey === activeButtonKey.value))
-
   // 审批表单
   const approvalFormData = ref({})
   const approvalVisible = ref(false)
@@ -77,15 +57,13 @@ export function useProvideState(props: Props, emit: Emit) {
 
   const state = {
     ...vModels,
+    formTitle,
     formVariables,
     approvalFormData,
     approvalVisible,
     showFileTab,
     showTrackTab,
     permission,
-    activeButtonKey,
-    activeButton,
-    buttonList,
     emit,
   }
 

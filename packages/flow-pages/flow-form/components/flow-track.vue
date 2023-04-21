@@ -25,7 +25,8 @@ const tableOption = {
   column: [
     { label: '节点名称', prop: 'taskNodeName' },
     { label: '处理人', prop: 'assigneeName' },
-    { label: '处理时间', prop: 'createTime' },
+    { label: '接收时间', prop: 'startTime' },
+    { label: '处理时间', prop: 'endTime' },
     { label: '办理时长', prop: 'duration' },
     { label: '操作类型', prop: 'type' },
     { label: '审批意见', prop: 'comment', bind: 'comment.comment' },
@@ -55,10 +56,14 @@ const tableOption = {
         placement="top"
       >
         <el-card>
-          <div>{{ item.assigneeName }} 开始处理 [{{ item.taskNodeName }}] 环节</div>
-          <!-- <div v-if="item.duration">办理时长：{{ item.duration }}</div> -->
-          <!-- <div v-if="item.handleType">{{ findDict(item.handleType)?.label }}意见：{{ item.comment?.comment }}</div> -->
+          <div>
+            {{ item.assigneeName }} 开始处理 [{{ item.taskNodeName }}] 环节
+          </div>
+          <div v-if="item.duration">
+            办理时长：{{ item.duration }}
+          </div>
           <div v-if="item.type">
+            <!-- {{ findDict(item.type)?.label }}意见：{{ item.comment?.comment }} -->
             {{ item.type }}意见：{{ item.comment?.comment }}
           </div>
         </el-card>
