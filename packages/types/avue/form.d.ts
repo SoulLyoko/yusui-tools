@@ -95,18 +95,20 @@ declare module "@smallwei/avue" {
     } & AvueCrudOption;
     /** 数据类型用于数组和字符串之间的转化 */
     dataType?: string;
+    /** 分隔符 */
+    separator?: string;
     /** 等同于<component :is=""> */
     component?: string | Component;
     /** 传递给组件的参数 */
     params?: object;
-    /** 点击事件 */
-    click?: (args: { column: Array<AvueFormColumn<T>>; row: T; index: number; label: any; value: any }) => void;
     /** 值改变事件 */
-    change?: (args: { column: Array<AvueFormColumn<T>>; row: T; index: number; label: any; value: any }) => void;
+    change?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item:DicItem }) => void;
+    /** 点击事件 */
+    click?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 聚焦事件 */
-    focus?: (args: { column: Array<AvueFormColumn<T>>; row: T; index: number; label: any; value: any }) => void;
+    focus?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 失焦事件 */
-    blur?: (args: { column: Array<AvueFormColumn<T>>; row: T; index: number; label: any; value: any }) => void;
+    blur?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 其它属性根据type查看对应的文档 */
     [x: string]: any;
   }

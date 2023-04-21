@@ -4,8 +4,8 @@ module.exports = {
   rules: {
     'no-console': 'off', // 允许console.log
     'no-eval': 'off', // 允许eval
-    'eqeqeq': 'off',
-    'vue/eqeqeq': 'off',
+    'eqeqeq': 'off', // 允许==
+    'vue/eqeqeq': 'off', // 允许==
     'prefer-regex-literals': 'off',
     'prefer-promise-reject-errors': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
