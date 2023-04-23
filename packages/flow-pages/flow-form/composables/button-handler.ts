@@ -1,6 +1,6 @@
 import type { ButtonHandler, FlowFormState } from '../types'
 
-import { commitTask, saveDraft, startTask } from '../../api/flow-task'
+import { commitTask, revokeTask, saveDraft, startTask } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { flowDetail, formVariables, approvalFormData, debug } = state
@@ -28,6 +28,11 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
         return commitTask(data)
       else
         return startTask(data)
+    },
+    // 撤销
+    flow_revoke() {
+      if (taskId && flowInstanceId)
+        return revokeTask(data)
     },
     // // 退回
     // flow_reject() {

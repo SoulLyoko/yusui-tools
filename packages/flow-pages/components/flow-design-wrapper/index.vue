@@ -1,110 +1,30 @@
 <script setup lang="ts">
-import type { AvueFormColumn, AvueFormOption } from '@smallwei/avue'
+import type { AvueFormColumn, AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
 import type { ButtonItem, FlowFormData, FormPropertyItem } from '@yusui/flow-design'
 import type { TaskDetail } from '../../api/flow-task'
 import type { FlowButton } from '../../api/flow-button'
 
-import { computed, nextTick, ref, shallowRef } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { FlowModeler, FlowViewer, defaultGraphData } from '@yusui/flow-design'
+import { enumToDic } from '@yusui/utils'
 
-import { options } from './options'
+import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonList } from '../../api/flow-button'
 import { getParam } from '../../api/flow-param'
-import { useFlowButtonList } from '../../api/flow-button'
+import { options } from './options'
+import AssigneeSetter from './assignee-setter.vue'
 
 const props = defineProps<{
   modelValue?: string
   view?: boolean
-  formOption?: string
+  flowFormOption?: string
   flowHistory?: TaskDetail[]
 }>()
 const emit = defineEmits(['update:modelValue'])
 
-const modelerFormData = ref<FlowFormData>({})
-const modelerFormOption = ref<AvueFormOption>({})
+const formData = ref<FlowFormData>({})
+const formOption = ref<AvueFormOption>({})
+const formDefaults = ref<AvueFormDefaults>({})
 const elementData = ref()
-
-function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[]): FormPropertyItem[] {
-  return column.map((col) => {
-    const findSource = source.find(e => e.prop === col.prop)
-    const { label, prop, display = true, disabled = false, detail = false, readonly = false, rules } = col
-    const required = rules?.some(e => e.required) ?? false
-    const result = { label, prop, display, disabled, detail, readonly, required, ...findSource }
-    if (col.type === 'dynamic' && col.children?.column?.length)
-      result.children = mergeFormProperty(col.children.column, findSource?.children ?? [])
-
-    return result
-  })
-}
-function mergeButton(button: FlowButton[], source: ButtonItem[]) {
-  return button.map((btn) => {
-    const findSource = source.find(e => e.buttonKey === btn.buttonKey)
-    const { name, buttonKey, display, approval } = btn
-    const result = { name, buttonKey, display, approval, ...findSource }
-    return result
-  })
-}
-
-const { data: buttonList } = useFlowButtonList()
-
-async function formDataFormat(data: FlowFormData) {
-  await nextTick()
-  if (modelerFormOption.value.group?.some(e => e.prop === 'formProperty')) {
-    const { column = [], group = [] }: AvueFormOption = JSON.parse(props.formOption || '{}')
-    const formProperty = mergeFormProperty(
-      [...column, ...group.map(g => g.column ?? []).flat()],
-      data.formProperty || [],
-    )
-    data.formProperty = formProperty
-  }
-  if (modelerFormOption.value.group?.some(e => e.prop === 'button')) {
-    const button = mergeButton(buttonList.value || [], data.button || [])
-    data.button = button
-  }
-  return data
-}
-
-function formOptionFormat(option: AvueFormOption) {
-  const { column = [], group = [] }: AvueFormOption = JSON.parse(props.formOption || '{}')
-  const allColumn = [...column, ...group.map(g => g.column ?? []).flat()]
-  const fieldsDic = allColumn.map((item) => {
-    return { label: item.label, value: `$\{${item.prop}}`, desc: `$\{${item.prop}}` }
-  })
-  option.group?.forEach((group) => {
-    if (group.prop === 'base') {
-      group.column?.forEach((col) => {
-        if (col.prop === 'priority') {
-          col.type = 'select'
-          col.filterable = true
-          col.allowCreate = true
-          col.defaultFirstOption = true
-          col.dicData = fieldsDic
-        }
-        if (col.prop === 'formTitle') {
-          col.type = 'select'
-          col.dataType = 'string'
-          col.multiple = true
-          col.filterable = true
-          col.allowCreate = true
-          col.defaultFirstOption = true
-          col.dicData = fieldsDic
-          // col.click = (e) => {
-          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.click ~ e:', e)
-          // }
-          // col.change = (e) => {
-          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.change ~ e:', e)
-          // }
-          // col.focus = (e) => {
-          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.focus ~ e:', e)
-          // }
-          // col.blur = (e) => {
-          //   console.log('🚀 ~ file: index.vue:93 ~ group.column?.blur ~ e:', e)
-          // }
-        }
-      })
-    }
-  })
-  return option
-}
 
 const graphData = computed({
   get() {
@@ -121,8 +41,73 @@ const graphData = computed({
   },
 })
 
+const allColumn = computed(() => {
+  const { column = [], group = [] }: AvueFormOption = JSON.parse(props.flowFormOption || '{}')
+  const all = [...column, ...group.map(g => g.column ?? []).flat()]
+  return all
+})
+
+const fieldsDic = computed(() => {
+  const dic = allColumn.value.map((item) => {
+    return { label: item.label, value: `$\{${item.prop}}`, desc: `$\{${item.prop}}` }
+  })
+  return dic
+})
+const flowButtonDisplayDic = enumToDic(FlowButtonDisplay)
+const flowButtonApprovalDic = enumToDic(FlowButtonApproval)
+
+const { data: buttonList } = useFlowButtonList()
+
+watch(formDefaults, (defaults) => {
+  if (!defaults)
+    return
+
+  if (defaults.priority)
+    defaults.priority.dicData = fieldsDic.value
+  if (defaults.formTitle)
+    defaults.formTitle.dicData = fieldsDic.value
+  if (defaults.assignee?.children?.column?.[1])
+    defaults.assignee.children.column[1].component = AssigneeSetter
+
+  if (defaults.formProperty)
+    formData.value.formProperty = mergeFormProperty(allColumn.value, formData.value.formProperty || [])
+
+  if (defaults.button) {
+    defaults.button.children?.column?.forEach((col) => {
+      if (col.prop === 'display')
+        col.dicData = flowButtonDisplayDic
+      if (col.prop === 'approval')
+        col.dicData = flowButtonApprovalDic
+    })
+    console.log(111)
+
+    formData.value.button = mergeButton(buttonList.value || [], formData.value.button || [])
+  }
+})
+
+function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[]): FormPropertyItem[] {
+  return column.map((col) => {
+    const findSource = source.find(e => e.prop === col.prop)
+    const { label, prop, display = true, disabled = false, detail = false, readonly = false, rules } = col
+    const required = rules?.some(e => e.required) ?? false
+    const result = { label, prop, display, disabled, detail, readonly, required, ...findSource }
+    if (col.type === 'dynamic' && col.children?.column?.length)
+      result.children = mergeFormProperty(col.children.column, findSource?.children ?? [])
+
+    return result
+  })
+}
+function mergeButton(button: FlowButton[], source: ButtonItem[]) {
+  return button.filter(e => e.status === 1).map((btn) => {
+    const findSource = source.find(e => e.buttonKey === btn.buttonKey)
+    const { name, buttonKey, display, approval } = btn
+    const result = { name, buttonKey, display, approval, ...findSource }
+    return result
+  })
+}
+
 const flowTaskStatus = ref<
-  { name?: string; status?: number; style?: { fill?: string; stroke?: string; strokeWidth?: number } }[]
+  { label?: string; value?: number; style?: { fill?: string; stroke?: string; strokeWidth?: number } }[]
 >([])
 getParam('flow.task.status').then((res) => {
   flowTaskStatus.value = res.data
@@ -130,12 +115,27 @@ getParam('flow.task.status').then((res) => {
 
 const flowHistoryStyles = computed(() => {
   return props.flowHistory?.map((item) => {
-    const style = flowTaskStatus.value.find(e => e.status === item.status)
+    const style = flowTaskStatus.value.find(e => e.value === item.status)
     return { id: item.taskNodeKey, style }
   })
 })
 
-const lf = shallowRef()
+function resetButton() {
+  graphData.value?.flowElementList?.forEach((item) => {
+    if (item.properties?.button)
+      item.properties.button = mergeButton(buttonList.value || [], [])
+  })
+  graphData.value = { ...graphData.value }
+}
+function resetFormProperty() {
+  graphData.value?.flowElementList?.forEach((item) => {
+    if (item.properties?.formProperty)
+      item.properties.formProperty = mergeFormProperty(allColumn.value, [])
+  })
+  graphData.value = { ...graphData.value }
+}
+
+// const lf = shallowRef()
 // watchEffect(() => {
 /** 解决在弹窗中连接锚点，画布会发生移动的问题 */
 // lf.value?.on("anchor:dragstart", () => {
@@ -150,25 +150,27 @@ const lf = shallowRef()
 <template>
   <div v-if="view" class="flow-viewer">
     <div class="flow-status-legend">
-      <div v-for="item in flowTaskStatus" :key="item.name" class="legend-item">
+      <div v-for="item in flowTaskStatus" :key="item.label" class="legend-item">
         <div class="legend-color" :style="{ backgroundColor: item.style?.fill }" />
-        <span>{{ item.name }}</span>
+        <span>{{ item.label }}</span>
       </div>
     </div>
-    <FlowViewer v-model:lf="lf" :model-value="graphData" :styles="flowHistoryStyles" />
+    <FlowViewer :model-value="graphData" :styles="flowHistoryStyles" />
   </div>
   <FlowModeler
-    v-else
-    v-model="graphData"
-    v-model:lf="lf"
-    v-model:elementData="elementData"
-    v-model:formData="modelerFormData"
-    v-model:formOption="modelerFormOption"
-    :form-options="options"
-    :form-data-format="formDataFormat"
-    :form-option-format="formOptionFormat"
+    v-else v-model="graphData" v-model:elementData="elementData" v-model:formData="formData"
+    v-model:formDefaults="formDefaults" v-model:formOption="formOption" :form-options="options"
     form-width="30%"
-  />
+  >
+    <template #form-top>
+      <el-button type="default" @click="resetButton">
+        重置所有按钮配置
+      </el-button>
+      <el-button type="default" @click="resetFormProperty">
+        重置所有表单配置
+      </el-button>
+    </template>
+  </FlowModeler>
 </template>
 
 <style lang="scss" scoped>

@@ -1,12 +1,10 @@
 import type { Res } from '@yusui/types'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
-// import type { UseAxiosOptions } from "@vueuse/integrations/useAxios";
 
 import { ElMessage } from 'element-plus'
 import axios from 'axios'
-// import { useAxios } from "@vueuse/integrations/useAxios";
-// import { get } from "lodash-es";
-export { useRequest } from 'vue-request'
+
+export * from 'vue-request'
 
 export const request = axios.create() as RequestInstance
 
@@ -31,23 +29,3 @@ export interface RequestInstance extends AxiosInstance {
   put<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
   patch<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
 }
-
-// export function useRequest<T>(
-//   url: string,
-//   config?: AxiosRequestConfig<T> & { dataPath?: string },
-//   options?: UseAxiosOptions<T>
-// ) {
-//   const instance = request as RequestInstance;
-//   if (config?.dataPath) {
-//     config.transformResponse = res => {
-//       res = JSON.parse(res);
-//       return { ...res, data: get({ res }, config.dataPath!) };
-//     };
-//   }
-//   const args = [];
-//   args.push(url);
-//   config && args.push(config);
-//   args.push(instance);
-//   options && args.push(options);
-//   return useAxios<T>(...(args as Parameters<typeof useAxios>));
-// }

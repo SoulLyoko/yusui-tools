@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { FlowDetail } from '../../api/flow-task'
+import type { CommitTaskData, FlowDetail } from '../../api/flow-task'
 import type { Permission } from '../types'
 import type { FlowButton } from '../../api/flow-button'
 
@@ -15,6 +15,13 @@ export function useProps() {
     submitLoading: { type: Boolean },
     /** 当前激活的标签,v-model */
     activeTab: { type: String, default: 'form' },
+    /** 当前点击的按钮 */
+    activeBtn: { type: Object as PropType<FlowButton>, default: () => ({}) },
+    /** 审批表单 */
+    approvalFormData: {
+      type: Object as PropType<Pick<CommitTaskData, 'assignee' | 'outgoing' | 'comment'>>,
+      default: () => ({}),
+    },
     /** 流程key */
     flowKey: { type: String },
     /** 任务id,与实例id传其一即可 */

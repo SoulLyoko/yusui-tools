@@ -29,15 +29,15 @@ export function formOptionToJson(option: Object) {
  * ```
  */
 export function asyncValidate(formRef: MaybeRef<any>) {
-  return new Promise<boolean>((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     const form: AvueFormInstance = isRef(formRef) ? formRef.value : formRef
-    form.validate((valid, done) => {
+    form.validate((valid, done, msg) => {
       if (valid) {
         done()
-        resolve(valid)
+        resolve(msg)
       }
       else {
-        reject(valid)
+        reject(msg)
       }
     })
   })

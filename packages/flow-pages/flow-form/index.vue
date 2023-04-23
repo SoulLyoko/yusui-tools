@@ -17,34 +17,34 @@ const state = useProvideState(props, emit)
 const {
   flowDetail,
   modelValue: formData,
+  activeTab,
+  activeBtn,
   formLoading,
-  formTitle,
-  approvalFormData,
-  formVariables,
   approvalVisible,
   submitLoading,
 } = state
 
 const formRef = ref<InstanceType<typeof InternalForm>>()
 async function onButtonClick(btn: FlowButton) {
+  activeBtn.value = btn
   await formRef.value?.validate()
   await props.beforeClick?.(btn)
   if (btn?.approval !== 'false')
     approvalVisible.value = true
   else
-    onSubmit(btn)
+    onSubmit()
 }
 
-async function onSubmit(btn: FlowButton) {
+async function onSubmit() {
   const buttonHandler = useButtonHandler(state)
   try {
-    const { buttonKey } = btn
+    const { buttonKey } = activeBtn.value
     submitLoading.value = true
-    await props.beforeSubmit?.(btn!)
+    await props.beforeSubmit?.(activeBtn.value!)
     await buttonHandler[buttonKey!]?.()
     ElMessage.success('操作成功')
     approvalVisible.value = false
-    emit('complete', btn!)
+    emit('complete', activeBtn.value!)
   }
   finally {
     submitLoading.value = false
@@ -58,9 +58,9 @@ async function onSubmit(btn: FlowButton) {
   </el-main>
   <el-container v-else class="flow-form">
     <el-header class="flow-form__header">
-      <h3 class="flow-form__title">
-        {{ formTitle }}
-      </h3>
+      <div class="flow-form__title">
+        {{ flowDetail.flowInstance?.title }}
+      </div>
       <ButtonList :flow-detail="flowDetail" @click="onButtonClick" />
     </el-header>
     <el-main class="flow-form__main">
@@ -78,10 +78,7 @@ async function onSubmit(btn: FlowButton) {
       </el-tabs>
     </el-main>
 
-    <ApprovalForm
-      v-model="approvalFormData" v-model:visible="approvalVisible" :variables="formVariables"
-      :flow-detail="flowDetail" @confirm="onSubmit"
-    />
+    <ApprovalForm @confirm="onSubmit" />
   </el-container>
 </template>
 

@@ -26,16 +26,19 @@ const displayButtonList = computed(() => {
   // const { userInfo } = useUserStore();
   const userInfo = { userId: '1' }
   // const { processIsFinished, startUser, assignee, flowInstanceId } = props.flowDetail.task || {};
-  const { assignee, flowInstanceId } = props.flowDetail?.task || {}
+  const { assignee, status: taskStatus } = props.flowDetail?.task || {}
+  const { createUser, flowInstanceId, status: flowStatus } = props.flowDetail?.flowInstance || {}
   const buttonCondition: Record<string, boolean> = {
     true: true,
     false: false,
-    // startUser: startUser == userInfo.userId,
+    startUser: createUser == userInfo.userId,
     assignee: assignee == userInfo.userId,
+    todo: taskStatus == 2,
+    done: taskStatus == 1,
     notstarted: !flowInstanceId,
     started: !!flowInstanceId,
-    // unfinished: processIsFinished === "unfinished",
-    // finished: processIsFinished === "finished"
+    finished: flowStatus === 1,
+    unfinished: flowStatus === 2,
   }
 
   const filterBtn = mergeButton(allButtonList.value ?? [], props.flowDetail?.properties?.button ?? [])

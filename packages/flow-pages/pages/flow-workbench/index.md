@@ -2,9 +2,9 @@
 aside: false
 ---
 
-# FLowWorkbench
+# FlowWorkbench
 
-FLowWorkbench
+FlowWorkbench
 
 ## 基础用法
 

@@ -20,6 +20,9 @@ const {
   crudOption: {
     getList: getFlowList,
   },
+  searchForm: {
+    status: 2,
+  },
   sortOption: {
     descs: 'start_time',
   },

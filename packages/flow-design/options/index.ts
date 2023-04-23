@@ -5,7 +5,6 @@ import {
   assigneeColumn,
   baseColumn,
   buttonColumn,
-  executionListenerColumn,
   formPropertyColumn,
   gatewayColumn,
   multiInstanceColumn,
@@ -15,8 +14,6 @@ import {
   sequenceFlowColumn,
   serialColumn,
   serviceTaskColumn,
-  taskListenerColumn,
-  timeLimitColumn,
   userTaskColumn,
 } from '.'
 
@@ -49,7 +46,7 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '基本配置', prop: 'base', column: baseColumn },
     { label: '表单配置', prop: 'formProperty', collapse: false, column: formPropertyColumn },
     { label: '扩展属性', prop: 'property', collapse: false, column: propertyColumn },
-    { label: '执行监听', prop: 'executionListener', collapse: false, column: executionListenerColumn },
+    // { label: '执行监听', prop: 'executionListener', collapse: false, column: executionListenerColumn },
   ],
   userTask: [
     { label: '基本配置', prop: 'base', column: [...baseColumn, ...userTaskColumn] },
@@ -57,9 +54,9 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '多实例配置', prop: 'multiInstance', collapse: false, column: multiInstanceColumn },
     { label: '按钮配置', prop: 'button', collapse: false, column: buttonColumn },
     { label: '表单配置', prop: 'formProperty', collapse: false, column: formPropertyColumn },
-    { label: '任务监听', prop: 'taskListener', collapse: false, column: taskListenerColumn },
-    { label: '执行监听', prop: 'executionListener', collapse: false, column: executionListenerColumn },
-    { label: '时限控制', prop: 'timeLimit', collapse: false, column: timeLimitColumn },
+    // { label: '任务监听', prop: 'taskListener', collapse: false, column: taskListenerColumn },
+    // { label: '执行监听', prop: 'executionListener', collapse: false, column: executionListenerColumn },
+    // { label: '时限控制', prop: 'timeLimit', collapse: false, column: timeLimitColumn },
     { label: '扩展属性', prop: 'property', collapse: false, column: propertyColumn },
   ],
   serviceTask: [

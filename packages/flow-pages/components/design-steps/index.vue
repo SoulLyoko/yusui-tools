@@ -192,7 +192,7 @@ function handleClose() {
       <FlowDesignWrapper
         v-if="activeStep === 2"
         v-model="formData.flowData"
-        :form-option="formData.formOption"
+        :flow-form-option="formData.formOption"
       />
       <el-result v-if="activeStep === 3" icon="success" title="流程设计完成">
         <template #extra>

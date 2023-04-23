@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { TurboData } from '../../extensions'
+
 import { ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'
 
 const props = defineProps<{
   /** 流程图数据 */
-  modelValue?: object
+  modelValue?: TurboData
   visible?: boolean
 }>()
 const emit = defineEmits(['confirm'])
@@ -27,7 +29,7 @@ watchEffect(() => {
   <el-drawer v-model="visible">
     <template #header>
       <span>编辑JSON</span>
-      <el-button type="primary" size="default" @click="confirmUpdateJson">
+      <el-button type="primary" @click="confirmUpdateJson">
         确定
       </el-button>
     </template>

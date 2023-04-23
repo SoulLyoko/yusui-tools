@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useVModels } from '@vueuse/core'
 
-const props = defineProps<{
-  modelValue: any[]
-}>()
+const props = defineProps<{ modelValue: any[] }>()
 const { modelValue: tableData } = useVModels(props)
 
 const tableOption = {
@@ -26,7 +24,7 @@ const tableOption = {
 </script>
 
 <template>
-  <avue-crud :data="tableData" :option="tableOption">
+  <avue-crud :data="tableData || []" :option="tableOption">
     <template #display="{ row }">
       <el-checkbox v-model="row.display" />
     </template>

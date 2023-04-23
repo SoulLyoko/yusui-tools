@@ -32,6 +32,8 @@ export enum FlowButtonDisplay {
   '隐藏' = 'false',
   '发起人' = 'startUser',
   '处理人' = 'assignee',
+  '已办' = 'done',
+  '待办' = 'todo',
   '未发起' = 'notstarted',
   '已发起' = 'started',
   '未办结' = 'unfinished',
@@ -40,7 +42,7 @@ export enum FlowButtonDisplay {
 
 export enum FlowButtonApproval {
   '不显示' = 'false',
-  '审批人' = 'approver',
+  '审批人' = 'assignee',
   '抄送人' = 'copyUser',
   '意见' = 'comment',
 }

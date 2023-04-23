@@ -28,11 +28,6 @@ export function useProvideState(props: Props, emit: Emit) {
       })
   })
 
-  // 标题
-  const formTitle = computed(
-    () => flowDetail.value.formData?.flow_form_title || flowDetail.value.process?.flowName,
-  )
-
   // 显示权限
   const permission = computed(() => ({ fileTab: true, trackTab: true, ...props.permission }))
   const showFileTab = computed(
@@ -47,7 +42,6 @@ export function useProvideState(props: Props, emit: Emit) {
   )
 
   // 审批表单
-  const approvalFormData = ref({})
   const approvalVisible = ref(false)
   const formVariables = computed(() => {
     return Object.entries(formData.value || {})
@@ -57,9 +51,8 @@ export function useProvideState(props: Props, emit: Emit) {
 
   const state = {
     ...vModels,
-    formTitle,
+    formData,
     formVariables,
-    approvalFormData,
     approvalVisible,
     showFileTab,
     showTrackTab,

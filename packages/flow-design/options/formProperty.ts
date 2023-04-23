@@ -9,7 +9,7 @@ export const formPropertyColumn: AvueFormColumn<FlowFormData>[] = [
     labelWidth: 0,
     prop: 'formProperty',
     component: FlowFormProperty,
-    // type: "dynamic",
+    type: 'dynamic',
     // children: {
     //   addBtn: false,
     //   delBtn: false,

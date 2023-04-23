@@ -2,11 +2,6 @@ import type { Page, ResRecords } from '@yusui/types'
 
 import { request } from '.'
 
-export enum TaskStatus {
-  '已办' = 1,
-  '待办' = 2,
-}
-
 /**
  * 流程运维信息
  */
@@ -29,7 +24,7 @@ export interface FlowOps {
   sourceTaskId?: string
   sourceTaskNodeKey?: string
   startTime?: string
-  status?: TaskStatus
+  status?: number
   subProcessId?: string
   taskId?: string
   taskNodeKey?: string

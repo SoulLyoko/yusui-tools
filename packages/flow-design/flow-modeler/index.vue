@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Definition, EdgeConfig, NodeConfig } from '@logicflow/core'
-import type { AvueFormGroup, AvueFormOption } from '@smallwei/avue'
+import type { AvueFormDefaults, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
 import type { TurboData } from '../extensions'
+import type { FlowFormData } from '../types'
 
 import { onMounted, watch } from 'vue'
 import { uniqueId } from 'lodash-unified'
@@ -24,11 +25,14 @@ const props = defineProps<{
   modelValue?: TurboData
   /** 当前选中元素的数据 */
   elementData?: NodeConfig | EdgeConfig
-  /** 当前选中元素的表单数据 */
-  formData?: object
-  formOption?: AvueFormOption
-  /** 表单配置 */
+  /** 所有表单配置 */
   formOptions?: Record<string, AvueFormGroup[]>
+  /** 当前选中元素的表单数据 */
+  formData?: FlowFormData
+  /** 当前选中元素的表单配置 */
+  formOption?: AvueFormOption
+  /** 当前表单控制配置 */
+  formDefaults?: AvueFormDefaults
   /** 表单宽度 */
   formWidth?: string
   formOptionFormat?: (option: AvueFormOption) => AvueFormOption | Promise<AvueFormOption>
@@ -36,7 +40,7 @@ const props = defineProps<{
 }>()
 
 const state = useProvideModelerState(props)
-const { lf, graphData, formData, formLoading, formOption, editorVisible, onUpdateFormData } = state
+const { lf, graphData, formData, formOption, formDefaults, formLoading, editorVisible, onUpdateFormData } = state
 
 const containerId = uniqueId('container')
 onMounted(() => {
@@ -88,10 +92,13 @@ onMounted(() => {
   <el-container class="lf-container">
     <el-main :id="containerId" class="lf-main" />
     <el-aside :width="formWidth" class="lf-aside">
+      <slot name="form-top" />
       <el-empty v-if="!formOption?.group?.length" description="选择元素以编辑数据" />
+      <el-skeleton v-else-if="formLoading" />
       <avue-form
-        v-else-if="!formLoading"
+        v-else
         v-model="formData"
+        v-model:defaults="formDefaults"
         :option="formOption"
         @update:model-value="onUpdateFormData"
       />

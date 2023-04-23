@@ -22,11 +22,21 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
   {
     label: '优先级字段',
     prop: 'priority',
+    type: 'select',
+    filterable: true,
+    allowCreate: true,
+    defaultFirstOption: true,
   },
   {
     label: '表单标题',
     prop: 'formTitle',
     separator: '-',
+    type: 'select',
+    dataType: 'string',
+    multiple: true,
+    filterable: true,
+    allowCreate: true,
+    defaultFirstOption: true,
   },
   {
     label: '标题分隔符',

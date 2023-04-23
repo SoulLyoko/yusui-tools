@@ -1,24 +1,27 @@
 import type { AvueCrudOption } from '@smallwei/avue'
 import type { FlowOps } from '../../api/flow-ops'
 
-import { enumToDic } from '@yusui/utils'
-
-import { TaskStatus } from '../../api/flow-ops'
-
 export const tableOption: AvueCrudOption<FlowOps> = {
   rowKey: 'id',
   align: 'center',
   index: true,
   border: true,
   stripe: true,
-  searchMenuSpan: 4,
+  searchMenuSpan: 6,
   menu: false,
   addBtn: false,
   column: [
     { label: '流程名称', prop: 'flowName' },
     { label: '流程标识', prop: 'flowKey' },
-    { label: '流程分类', prop: 'categoryId' },
-    { label: '标题', prop: 'processTitle' },
+    {
+      label: '流程分类',
+      prop: 'categoryId',
+      type: 'select',
+      search: true,
+      dicUrl: '/sapier-flow/flow-category/list',
+      props: { label: 'name', value: 'id' },
+    },
+    { label: '标题', prop: 'processTitle', search: true },
     { label: '流水号', prop: 'serialNumber' },
     { label: '当前节点', prop: 'taskNodeName' },
     { label: '审批人', prop: 'assigneeName' },
@@ -28,7 +31,10 @@ export const tableOption: AvueCrudOption<FlowOps> = {
       label: '任务状态',
       prop: 'status',
       type: 'select',
-      dicData: enumToDic(TaskStatus),
+      search: true,
+      searchValue: 2,
+      dicUrl: '/sapier-flow/flow-param/getParam',
+      dicQuery: { paramKey: 'flow.task.status' },
     },
   ],
 }

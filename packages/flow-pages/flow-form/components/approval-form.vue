@@ -1,25 +1,17 @@
-<script setup lang="ts" name="approval-form">
+<script setup lang="ts">
 import type { AvueFormDefaults, AvueFormInstance } from '@smallwei/avue'
-import type { ApprovalNode, FlowDetail, FlowVariable } from '../../api/flow-task'
+import type { ApprovalNode } from '../../api/flow-task'
 
 import { ElTree } from 'element-plus'
-import { nextTick, ref, watchEffect } from 'vue'
-import { useVModels } from '@vueuse/core'
+import { computed, nextTick, ref, watchEffect } from 'vue'
 import { findTree, treeMap, uuid } from '@yusui/utils'
 
 import { getApprovalNodes } from '../../api/flow-task'
 import { asyncValidate } from '../../utils'
-
-const props = defineProps<{
-  modelValue?: any
-  visible?: boolean
-  variables?: FlowVariable[]
-  flowDetail?: FlowDetail
-}>()
+import { useInjectState } from '../composables'
+import CommonComments from './common-comments.vue'
 
 const emit = defineEmits(['confirm'])
-
-// import CommonComments from "./common-comments.vue";
 
 const iconMap: Record<string, string> = {
   element: 'ep:flag',
@@ -28,30 +20,28 @@ const iconMap: Record<string, string> = {
   user: 'ep:user',
 }
 
-const vModels = useVModels(props)
-const { modelValue: formData, visible, flowDetail } = vModels as Required<typeof vModels>
-// const { processDetail, activeBtn, activeBtnConfig, submitLoading } = useInject();
+const { formData, approvalFormData, activeBtn, approvalVisible, formVariables, flowDetail } = useInjectState()
 
 const approvalNodes = ref<ApprovalNode[]>([])
-const approvalFormData = ref({ approver: [] as ApprovalNode[], copyUser: '', comment: '' })
+const checkedApprovalNodes = ref<ApprovalNode[]>([])
 const formRef = ref<AvueFormInstance>()
 const defaults = ref<AvueFormDefaults>({})
 const formOption = {
   menuBtn: false,
   labelWidth: 70,
   column: [
-    { label: '审批人', prop: 'approver', span: 24, rules: [{ required: true, validator: approvalValidator }] },
-    // { label: "抄送人", prop: "copyUser", span: 24, rules: [{ required: true, message: "请选择抄送人" }] },
+    { label: '审批人', prop: 'assignee', span: 24, rules: [{ required: true, validator: approvalValidator }] },
+    { label: '抄送人', prop: 'copyUser', span: 24, rules: [{ required: true, message: '请选择抄送人' }] },
     { label: '意见', prop: 'comment', span: 24, rules: [{ required: true, message: '请填写意见' }] },
   ],
 }
 
-function approvalValidator(rule: any, value: ApprovalNode[], callback: (error?: string) => void) {
+function approvalValidator(rule: any, value: any, callback: (error?: string) => void) {
   const isParallelGateway = approvalNodes.value[0].type === 'ParallelGateway'
   const isAllChecked = approvalNodes.value[0].children?.every((node) => {
-    return findTree([node], item => value.some(e => e.id === item.id))
+    return findTree([node], item => checkedApprovalNodes.value.some(e => e.id === item.id))
   })
-  if (!value.length) {
+  if (!checkedApprovalNodes.value.length) {
     return callback('请选择审批人')
   }
   else if (isParallelGateway && !isAllChecked) {
@@ -63,28 +53,32 @@ function approvalValidator(rule: any, value: ApprovalNode[], callback: (error?: 
 
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
-// const showApproval = computed(() => activeBtnConfig.value?.approval?.includes("approver"));
-const showApproval = ref(true)
+const showApproval = computed(() => activeBtn.value?.approval?.includes('assignee'))
 const submitLoading = ref(false)
 
 watchEffect(async () => {
-  if (!visible.value || !formRef.value)
+  if (!approvalVisible.value || !formRef.value)
     return
   const { flowKey } = flowDetail.value?.process || {}
   const { taskId } = flowDetail.value?.task || {}
-  const defaultComment = taskId ? '' : '发起'
   approvalNodes.value = []
-  approvalFormData.value = { approver: [], copyUser: '', comment: formData.value.comment || defaultComment }
+  checkedApprovalNodes.value = []
+  const defaultComment = taskId ? '' : '发起'
+  approvalFormData.value = {
+    assignee: {},
+    outgoing: [],
+    comment: formData.value.comment || defaultComment,
+  }
 
   nextTick(() => {
-    // defaults.value.approver!.display = showApproval.value;
-    // defaults.value.copyUser!.display = activeBtnConfig.value?.approval?.includes("copyUser");
-    // defaults.value.comment!.display = activeBtnConfig.value?.approval?.includes("comment");
+    defaults.value.assignee!.display = showApproval.value
+    defaults.value.copyUser!.display = activeBtn.value?.approval?.includes('copyUser')
+    defaults.value.comment!.display = activeBtn.value?.approval?.includes('comment')
   })
 
   if (showApproval.value) {
     console.log('🚀 ~ file: approval-form.vue:120 ~ watchEffect ~ flowDetail:', flowDetail)
-    const res = await getApprovalNodes({ flowKey, variables: props.variables, taskId })
+    const res = await getApprovalNodes({ flowKey, variables: formVariables.value, taskId })
     approvalNodes.value = treeMap(res.data ?? [], (item, index, parent) => {
       const id = item.id || uuid()
       item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
@@ -114,7 +108,7 @@ async function onCheckChange(data: ApprovalNode, isChecked: boolean) {
   await nextTick()
   await nextTick()
   const checkedNodes = treeRef.value?.getCheckedNodes() as ApprovalNode[]
-  approvalFormData.value.approver = checkedNodes.filter(e => e.type === 'user')
+  checkedApprovalNodes.value = checkedNodes.filter(e => e.type === 'user')
   // if (!data.isMultiInstance && isChecked) {
   //   // 排除掉兄弟节点
   //   const currentNode = treeRef.value?.getNode(data);
@@ -126,17 +120,16 @@ async function onCheckChange(data: ApprovalNode, isChecked: boolean) {
   //   const commonParentNodeData = approvalFormData.value.approver.filter(e => e.parentId === data.parentId);
   //   approvalFormData.value.approver = commonParentNodeData;
   // }
-  treeRef.value?.setCheckedNodes(approvalFormData.value.approver as any)
+  treeRef.value?.setCheckedNodes(checkedApprovalNodes.value as any)
 }
 
 async function onConfirm() {
   await asyncValidate(formRef)
   submitLoading.value = true
-  const { approver, copyUser, comment } = approvalFormData.value
   const conditionSet: Record<string, Set<string>> = {}
   const conditionData: Record<string, string> = {}
   const outgoing = new Set<string>()
-  approver.forEach((item) => {
+  checkedApprovalNodes.value.forEach((item) => {
     const { taskNodeKey, incoming } = item
     if (!conditionSet[taskNodeKey!])
       conditionSet[taskNodeKey!] = new Set()
@@ -150,10 +143,8 @@ async function onConfirm() {
     // conditionData["condition"] = [...conditionSet["condition"]].join(",");
     outgoing.add(incoming!)
   })
-  formData.value.assignee = conditionData
-  // formData.value.copyUser = copyUser;
-  formData.value.comment = comment
-  formData.value.outgoing = [...outgoing]
+  approvalFormData.value.assignee = conditionData
+  approvalFormData.value.outgoing = [...outgoing]
   console.log('🚀 ~ file: approval-form.vue:210 ~ onConfirm ~ formData:', formData)
   // updateFormData();
   emit('confirm')
@@ -176,7 +167,7 @@ function updateFormData() {
 </script>
 
 <template>
-  <el-dialog v-model="visible" :width="showApproval ? '800px' : '500px'" append-to-body>
+  <el-dialog v-model="approvalVisible" :width="showApproval ? '800px' : '500px'" append-to-body>
     <el-row :gutter="20">
       <el-col v-if="showApproval" :span="10">
         <ElTree
@@ -204,24 +195,23 @@ function updateFormData() {
       </el-col>
       <el-col :span="showApproval ? 14 : 24">
         <avue-form ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" :option="formOption">
-          <template #approver>
-            <el-tag v-for="item in approvalFormData.approver" :key="item.id" type="info">
+          <template #assignee>
+            <el-tag v-for="item in checkedApprovalNodes" :key="item.id" type="info">
               {{ item.title }}
             </el-tag>
           </template>
           <template #copyUser>
-            <!-- <user-select v-model="approvalFormData.c opyUser" w-full multiple></user-select> -->
+            <!-- <user-select v-model="approvalFormData.copyUser" w-full multiple></user-select> -->
           </template>
           <template #comment>
-            <el-input v-model="approvalFormData.comment" type="textarea" />
-            <!-- <common-comments v-model="approvalFormData.comment"></common-comments> -->
+            <CommonComments v-model="approvalFormData.comment" />
           </template>
         </avue-form>
       </el-col>
     </el-row>
 
     <template #footer>
-      <el-button @click="visible = false">
+      <el-button @click="approvalVisible = false">
         取 消
       </el-button>
       <el-button type="primary" @click="onConfirm">

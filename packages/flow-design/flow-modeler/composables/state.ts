@@ -11,9 +11,10 @@ export function useProvideModelerState(props: ModelerProps) {
     lf,
     modelValue: graphData,
     elementData,
+    formOptions,
     formData,
     formOption,
-    formOptions,
+    formDefaults,
   } = vModels as Required<typeof vModels>
   const formLoading = ref(false)
   const editorVisible = ref(false)
@@ -29,6 +30,7 @@ export function useProvideModelerState(props: ModelerProps) {
     graphData,
     elementData,
     formData,
+    formDefaults,
     formLoading,
     formOption,
     formOptions,

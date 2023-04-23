@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FlowDetail } from '../../api/flow-task'
 
-import { computed, ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 import FormDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 
@@ -28,9 +28,24 @@ const tableOption = {
     { label: '接收时间', prop: 'startTime' },
     { label: '处理时间', prop: 'endTime' },
     { label: '办理时长', prop: 'duration' },
-    { label: '操作类型', prop: 'type' },
-    { label: '审批意见', prop: 'comment', bind: 'comment.comment' },
+    {
+      label: '操作类型',
+      prop: 'type',
+      dicUrl: '/sapier-flow/flow-param/getParam',
+      dicQuery: { paramKey: 'flow.handle.type' },
+    },
+    { label: '办理意见', prop: 'comment', bind: 'comment.comment' },
   ],
+}
+
+const crudRef = ref()
+const handleTypeDic = ref<any[]>([])
+watchEffect(() => {
+  if (crudRef?.value?.DIC?.type?.length)
+    handleTypeDic.value = crudRef?.value?.DIC?.type
+})
+function findHandleTypeDicItem(value: number) {
+  return handleTypeDic.value?.find(e => e.value === value)
 }
 </script>
 
@@ -41,18 +56,14 @@ const tableOption = {
     </el-radio-button>
   </el-radio-group>
   <div class="flow-track">
-    <avue-crud v-if="activeType === 'table'" class="hide-menu" :data="tableData" :option="tableOption" />
+    <avue-crud v-if="activeType === 'table'" ref="crudRef" class="hide-menu" :data="tableData" :option="tableOption" />
     <FormDesignWrapper
-      v-if="activeType === 'graph'"
-      :model-value="flowDetail?.process?.flowData"
-      :flow-history="flowDetail?.flowHistory"
-      view
+      v-if="activeType === 'graph'" :model-value="flowDetail?.process?.flowData"
+      :flow-history="flowDetail?.flowHistory" view
     />
     <el-timeline v-if="activeType === 'timeline'">
       <el-timeline-item
-        v-for="item in [...tableData].reverse()"
-        :key="item.id"
-        :timestamp="item.createTime"
+        v-for="item in [...tableData].reverse()" :key="item.id" :timestamp="item.createTime"
         placement="top"
       >
         <el-card>
@@ -63,8 +74,7 @@ const tableOption = {
             办理时长：{{ item.duration }}
           </div>
           <div v-if="item.type">
-            <!-- {{ findDict(item.type)?.label }}意见：{{ item.comment?.comment }} -->
-            {{ item.type }}意见：{{ item.comment?.comment }}
+            {{ findHandleTypeDicItem(item.type)?.label }}意见：{{ item.comment?.comment }}
           </div>
         </el-card>
       </el-timeline-item>

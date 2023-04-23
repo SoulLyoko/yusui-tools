@@ -1,6 +1,8 @@
+import type { TurboData } from '../extensions'
+
 import { getBpmnId } from '@logicflow/extension/es/bpmn/getBpmnId'
 
-export function defaultGraphData() {
+export function defaultGraphData(): TurboData {
   const processId = `Process_${getBpmnId()}`
   const StartEventId = `Event_${getBpmnId()}`
   const flowId = `Flow_${getBpmnId()}`
