@@ -24,7 +24,7 @@ const tableOption = {
 </script>
 
 <template>
-  <avue-crud :data="tableData || []" :option="tableOption">
+  <avue-crud class="hide-menu" :data="tableData || []" :option="tableOption">
     <template #display="{ row }">
       <el-checkbox v-model="row.display" />
     </template>
