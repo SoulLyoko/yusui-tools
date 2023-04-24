@@ -25,7 +25,6 @@ function mergeButton(button: FlowButton[], source: ButtonItem[]) {
 const displayButtonList = computed(() => {
   // const { userInfo } = useUserStore();
   const userInfo = { userId: '1' }
-  // const { processIsFinished, startUser, assignee, flowInstanceId } = props.flowDetail.task || {};
   const { assignee, status: taskStatus } = props.flowDetail?.task || {}
   const { createUser, flowInstanceId, status: flowStatus } = props.flowDetail?.flowInstance || {}
   const buttonCondition: Record<string, boolean> = {

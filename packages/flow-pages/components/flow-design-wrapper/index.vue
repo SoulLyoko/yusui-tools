@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AvueFormColumn, AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
 import type { ButtonItem, FlowFormData, FormPropertyItem } from '@yusui/flow-design'
-import type { TaskDetail } from '../../api/flow-task'
+import type { FlowHistory } from '../../api/flow-task'
 import type { FlowButton } from '../../api/flow-button'
 
 import { computed, ref, watch } from 'vue'
@@ -9,7 +9,7 @@ import { FlowModeler, FlowViewer, defaultGraphData } from '@yusui/flow-design'
 import { enumToDic } from '@yusui/utils'
 
 import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonList } from '../../api/flow-button'
-import { getParam } from '../../api/flow-param'
+import { useFlowParam } from '../../api/flow-param'
 import { options } from './options'
 import AssigneeSetter from './assignee-setter.vue'
 
@@ -17,7 +17,7 @@ const props = defineProps<{
   modelValue?: string
   view?: boolean
   flowFormOption?: string
-  flowHistory?: TaskDetail[]
+  flowHistory?: FlowHistory[]
 }>()
 const emit = defineEmits(['update:modelValue'])
 
@@ -79,7 +79,6 @@ watch(formDefaults, (defaults) => {
       if (col.prop === 'approval')
         col.dicData = flowButtonApprovalDic
     })
-    console.log(111)
 
     formData.value.button = mergeButton(buttonList.value || [], formData.value.button || [])
   }
@@ -106,16 +105,11 @@ function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   })
 }
 
-const flowTaskStatus = ref<
-  { label?: string; value?: number; style?: { fill?: string; stroke?: string; strokeWidth?: number } }[]
->([])
-getParam('flow.task.status').then((res) => {
-  flowTaskStatus.value = res.data
-})
+const { data: flowTaskStatus } = useFlowParam('flow.task.status' as const)
 
 const flowHistoryStyles = computed(() => {
   return props.flowHistory?.map((item) => {
-    const style = flowTaskStatus.value.find(e => e.value === item.status)
+    const style = flowTaskStatus.value?.find(e => e.value === item.status)?.style
     return { id: item.taskNodeKey, style }
   })
 })

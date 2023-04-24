@@ -55,6 +55,7 @@ const treeRef = ref<InstanceType<typeof ElTree>>()
 
 const showApproval = computed(() => activeBtn.value?.approval?.includes('assignee'))
 const submitLoading = ref(false)
+const treeLoading = ref(false)
 
 watchEffect(async () => {
   if (!approvalVisible.value || !formRef.value)
@@ -77,18 +78,23 @@ watchEffect(async () => {
   })
 
   if (showApproval.value) {
-    console.log('🚀 ~ file: approval-form.vue:120 ~ watchEffect ~ flowDetail:', flowDetail)
-    const res = await getApprovalNodes({ flowKey, variables: formVariables.value, taskId })
-    approvalNodes.value = treeMap(res.data ?? [], (item, index, parent) => {
-      const id = item.id || uuid()
-      item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
-      item.incoming = parent?.incoming ?? item.incoming
-      return { ...item, id, disabled: item.type !== 'user' }
-    })
-    await nextTick()
-    // 只有一个节点时自动选择
-    const checkedNode = getUniqueNode(approvalNodes.value)
-    checkedNode && treeRef.value?.setCheckedNodes([checkedNode] as any)
+    try {
+      treeLoading.value = true
+      const res = await getApprovalNodes({ flowKey, variables: formVariables.value, taskId })
+      approvalNodes.value = treeMap(res.data ?? [], (item, index, parent) => {
+        const id = item.id || uuid()
+        item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
+        item.incoming = parent?.incoming ?? item.incoming
+        return { ...item, id, disabled: item.type !== 'user' }
+      })
+      await nextTick()
+      // 只有一个节点时自动选择
+      const checkedNode = getUniqueNode(approvalNodes.value)
+      checkedNode && treeRef.value?.setCheckedNodes([checkedNode] as any)
+    }
+    finally {
+      treeLoading.value = false
+    }
   }
 })
 
@@ -167,22 +173,20 @@ function updateFormData() {
 </script>
 
 <template>
-  <el-dialog v-model="approvalVisible" :width="showApproval ? '800px' : '500px'" append-to-body>
+  <el-dialog v-model="approvalVisible" :title="activeBtn.name" :width="showApproval ? '800px' : '500px'" append-to-body>
     <el-row :gutter="20">
       <el-col v-if="showApproval" :span="10">
         <ElTree
           ref="treeRef"
+          v-loading="treeLoading"
           class="approval-tree"
-          w-full
-          h-400px
-          overflow-y-scroll
           node-key="id"
           empty-text="无需选择审批人"
           default-expand-all
           show-checkbox
           check-on-click-node
           :data="approvalNodes"
-          style="max-height: 600px; overflow: auto"
+          style="max-height: 500px; overflow: auto"
           @check-change="onCheckChange"
         >
           <template #default="{ data }">

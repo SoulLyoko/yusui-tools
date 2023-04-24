@@ -7,13 +7,12 @@ import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
 import { create, deploy, getList, remove, update } from '../../api/table-template'
-import { getParam } from '../../api/flow-param'
+import { useFlowParam } from '../../api/flow-param'
 
 const {
   bindVal,
   crudStateRefs: { formData },
   getDataList,
-  afterGetList,
   beforeOpen,
   beforeSave,
   beforeUpdate,
@@ -27,12 +26,7 @@ const {
   tableOption,
 })
 
-const defaultFields = ref([])
-afterGetList(() => {
-  getParam('table.default.fields').then((res) => {
-    defaultFields.value = res.data
-  })
-})
+const { data: defaultFields } = useFlowParam('table.default.fields' as const)
 
 getDataList()
 
@@ -40,7 +34,7 @@ beforeOpen((type) => {
   if (type === 'add')
     formData.value.tableFields = defaultFields.value
   else
-    formData.value.tableFields = JSON.parse(formData.value.tableFields as any)
+    formData.value.tableFields = JSON.parse(formData.value.tableFields as string)
 })
 beforeSave((row) => {
   row.tableFields = JSON.stringify(row.tableFields)

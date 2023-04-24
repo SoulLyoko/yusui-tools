@@ -1,22 +1,28 @@
 <script setup lang="ts">
 import type { FlowDetail } from '../../api/flow-task'
 
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref } from 'vue'
+import { durationFormat } from '@yusui/utils'
 
 import FormDesignWrapper from '../../components/flow-design-wrapper/index.vue'
+import { useFlowParam } from '../../api/flow-param'
 
-const props = defineProps<{
-  flowDetail?: FlowDetail
-}>()
+const props = defineProps<{ flowDetail?: FlowDetail }>()
+
+const activeType = ref('table')
 const typeList = [
   { label: 'table', icon: 'ep:grid' },
   { label: 'graph', icon: 'ep:picture' },
   { label: 'timeline', icon: 'ep:finished' },
 ]
-const activeType = ref('table')
 
 const tableData = computed(() => {
-  return props.flowDetail?.flowHistory?.filter(e => e.taskNodeType === 'userTask') ?? []
+  return props.flowDetail?.flowHistory?.filter(e => e.taskNodeType === 'userTask')?.map((e) => {
+    return {
+      ...e,
+      duration: durationFormat(e.duration),
+    }
+  }) ?? []
 })
 const tableOption = {
   addBtn: false,
@@ -38,12 +44,7 @@ const tableOption = {
   ],
 }
 
-const crudRef = ref()
-const handleTypeDic = ref<any[]>([])
-watchEffect(() => {
-  if (crudRef?.value?.DIC?.type?.length)
-    handleTypeDic.value = crudRef?.value?.DIC?.type
-})
+const { data: handleTypeDic } = useFlowParam('flow.handle.type' as const)
 function findHandleTypeDicItem(value: number) {
   return handleTypeDic.value?.find(e => e.value === value)
 }
@@ -56,29 +57,29 @@ function findHandleTypeDicItem(value: number) {
     </el-radio-button>
   </el-radio-group>
   <div class="flow-track">
-    <avue-crud v-if="activeType === 'table'" ref="crudRef" class="hide-menu" :data="tableData" :option="tableOption" />
+    <avue-crud v-if="activeType === 'table'" :data="tableData" :option="tableOption" />
     <FormDesignWrapper
       v-if="activeType === 'graph'" :model-value="flowDetail?.process?.flowData"
       :flow-history="flowDetail?.flowHistory" view
     />
-    <el-timeline v-if="activeType === 'timeline'">
-      <el-timeline-item
-        v-for="item in [...tableData].reverse()" :key="item.id" :timestamp="item.createTime"
-        placement="top"
-      >
-        <el-card>
-          <div>
-            {{ item.assigneeName }} 开始处理 [{{ item.taskNodeName }}] 环节
-          </div>
-          <div v-if="item.duration">
-            办理时长：{{ item.duration }}
-          </div>
-          <div v-if="item.type">
-            {{ findHandleTypeDicItem(item.type)?.label }}意见：{{ item.comment?.comment }}
-          </div>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
+    <template v-if="activeType === 'timeline'">
+      <el-timeline v-if="tableData.length">
+        <el-timeline-item v-for="item in [...tableData].reverse()" :key="item.id" :timestamp="item.endTime" placement="top">
+          <el-card>
+            <div>
+              {{ item.assigneeName }} 开始处理 [{{ item.taskNodeName }}] 环节
+            </div>
+            <div v-if="item.duration">
+              办理时长：{{ item.duration }}
+            </div>
+            <div v-if="item.type && item.comment?.comment">
+              {{ findHandleTypeDicItem(item.type)?.label }}意见：{{ item.comment?.comment }}
+            </div>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
+      <el-empty v-else />
+    </template>
   </div>
 </template>
 

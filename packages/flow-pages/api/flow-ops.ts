@@ -1,35 +1,22 @@
 import type { Page, ResRecords } from '@yusui/types'
+import type { FlowTask } from './flow-task'
 
 import { request } from '.'
 
 /**
  * 流程运维信息
  */
-export interface FlowOps {
+export interface FlowOps extends FlowTask {
+  /** 申请人 */
   applyUserId?: string
   applyUserName?: string
-  assignee?: string
-  assigneeName?: string
-  createTime?: string
-  flowDeployId?: string
-  flowInstanceId?: string
   flowKey?: string
   flowName?: string
   categoryId?: string
-  instanceVariableId?: string
   processStartTime?: string
   processStatus?: number
   processTitle?: string
   serialNumber?: string
-  sourceTaskId?: string
-  sourceTaskNodeKey?: string
-  startTime?: string
-  status?: number
-  subProcessId?: string
-  taskId?: string
-  taskNodeKey?: string
-  taskNodeName?: string
-  taskNodeType?: string
   version?: number
 }
 
