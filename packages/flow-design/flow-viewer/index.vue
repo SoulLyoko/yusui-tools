@@ -5,7 +5,7 @@ import type { TooltipItem, TurboData } from '../extensions'
 import { onMounted, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { uniqueId } from 'lodash-unified'
-import LogicFlow from '@logicflow/core'
+import { LogicFlow } from '@logicflow/core'
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
 

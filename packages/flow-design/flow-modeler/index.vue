@@ -6,7 +6,7 @@ import type { FlowFormData } from '../types'
 
 import { onMounted, watch } from 'vue'
 import { uniqueId } from 'lodash-unified'
-import LogicFlow from '@logicflow/core'
+import { LogicFlow } from '@logicflow/core'
 import { InsertNodeInPolyline, MiniMap, SelectionSelect } from '@logicflow/extension'
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
