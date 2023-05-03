@@ -1,3 +1,20 @@
+# [2.0.0-beta.29](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2023-05-03)
+
+
+### Bug Fixes
+
+* **flow-pages:** useFlowParam ([2f00585](https://github.com/SoulLyoko/yusui-tools/commit/2f00585e456aaa114cee8052422c51f1c531377b))
+* **types:** avueFormColumn ([709373c](https://github.com/SoulLyoko/yusui-tools/commit/709373c158b231761338b2101deead8e3872b982))
+
+
+### Features
+
+* **flow-design:** tootip ([449c3f7](https://github.com/SoulLyoko/yusui-tools/commit/449c3f7821de6df48045131a03bbf05c6d8d3616))
+* **flow-pages:** add features ([80608cc](https://github.com/SoulLyoko/yusui-tools/commit/80608cc1ff07c86c5748076a2b20ef0ec4e8f5fc))
+* **flow-pages:** useFlowForm ([d1eece1](https://github.com/SoulLyoko/yusui-tools/commit/d1eece128c4af012a2a88c365a7482a28e15ce01))
+
+
+
 # [2.0.0-beta.28](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.27...v2.0.0-beta.28) (2023-04-18)
 
 
