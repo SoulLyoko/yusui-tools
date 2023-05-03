@@ -1,3 +1,7 @@
+# [2.0.0-beta.30](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.29...v2.0.0-beta.30) (2023-05-03)
+
+
+
 # [2.0.0-beta.29](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.28...v2.0.0-beta.29) (2023-05-03)
 
 
