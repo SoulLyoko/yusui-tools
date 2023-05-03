@@ -4,7 +4,7 @@ import type { FlowDetail } from '../../api/flow-task'
 import { computed, ref } from 'vue'
 import { durationFormat } from '@yusui/utils'
 
-import FormDesignWrapper from '../../components/flow-design-wrapper/index.vue'
+import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 import { useFlowParam } from '../../api/flow-param'
 
 const props = defineProps<{ flowDetail?: FlowDetail }>()
@@ -58,7 +58,7 @@ function findHandleTypeDicItem(value: number) {
   </el-radio-group>
   <div class="flow-track">
     <avue-crud v-if="activeType === 'table'" :data="tableData" :option="tableOption" />
-    <FormDesignWrapper
+    <FlowDesignWrapper
       v-if="activeType === 'graph'" :model-value="flowDetail?.process?.flowData"
       :flow-history="flowDetail?.flowHistory" view
     />

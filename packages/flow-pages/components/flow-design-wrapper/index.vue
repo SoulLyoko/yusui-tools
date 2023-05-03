@@ -22,9 +22,7 @@ const props = defineProps<{
 const emit = defineEmits(['update:modelValue'])
 
 const formData = ref<FlowFormData>({})
-const formOption = ref<AvueFormOption>({})
 const formDefaults = ref<AvueFormDefaults>({})
-const elementData = ref()
 
 const graphData = computed({
   get() {
@@ -113,6 +111,17 @@ const flowHistoryStyles = computed(() => {
     return { id: item.taskNodeKey, style }
   })
 })
+const flowHistoryToolTips = computed(() => {
+  return props.flowHistory?.filter(item => item.taskNodeType === 'userTask')?.map((item) => {
+    return {
+      id: item.taskNodeKey,
+      content:
+        `<div>${item.assigneeName}</div>
+        <div>${item.endTime ?? ''}</div>
+        <div>${item.comment?.comment ?? ''}</div>`,
+    }
+  })
+})
 
 function resetButton() {
   graphData.value?.flowElementList?.forEach((item) => {
@@ -149,12 +158,11 @@ function resetFormProperty() {
         <span>{{ item.label }}</span>
       </div>
     </div>
-    <FlowViewer :model-value="graphData" :styles="flowHistoryStyles" />
+    <FlowViewer :model-value="graphData" :styles="flowHistoryStyles" :tooltips="flowHistoryToolTips" />
   </div>
   <FlowModeler
-    v-else v-model="graphData" v-model:elementData="elementData" v-model:formData="formData"
-    v-model:formDefaults="formDefaults" v-model:formOption="formOption" :form-options="options"
-    form-width="30%"
+    v-else v-model="graphData" v-model:formData="formData" v-model:formDefaults="formDefaults"
+    :form-options="options" form-width="30%"
   >
     <template #form-top>
       <el-button type="default" @click="resetButton">

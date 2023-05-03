@@ -65,9 +65,6 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
   const { appContext } = getCurrentInstance()!
 
   let container: HTMLElement
-  const close = () => {
-    container && document.body.removeChild(container)
-  }
   const open = () => {
     container = document.createElement('div')
     container.className = 'flow-form-wrapper'
@@ -78,14 +75,14 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
     const overlay = h(
       options.type === 'dialog' ? ElDialog : ElDrawer,
       {
-        'customClass': 'flow-form-overlay',
-        'modelValue': true,
-        'width': '80%',
-        'size': '80%',
-        'top': '100px',
-        'fullscreen': true,
-        'destroyOnClose': true,
-        'onUpdate:modelValue': val => !val && close,
+        customClass: 'flow-form-overlay',
+        modelValue: true,
+        width: '80%',
+        size: '80%',
+        top: '100px',
+        fullscreen: true,
+        destroyOnClose: true,
+        onClose: close,
         ...options.overlay,
       },
       vnode,
@@ -93,6 +90,9 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
     overlay.appContext = appContext!
     render(overlay, container)
     document.body.appendChild(container)
+  }
+  const close = () => {
+    container && document.body.removeChild(container)
   }
 
   return { open, close }
