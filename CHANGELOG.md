@@ -1,3 +1,12 @@
+# [2.0.0-beta.31](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.30...v2.0.0-beta.31) (2023-05-04)
+
+
+### Bug Fixes
+
+* **flow-pages:** workbench ([0f57707](https://github.com/SoulLyoko/yusui-tools/commit/0f5770741e1d7846a2614d265499ecbb2c92dac2))
+
+
+
 # [2.0.0-beta.30](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.29...v2.0.0-beta.30) (2023-05-03)
 
 
