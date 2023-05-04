@@ -7,7 +7,7 @@ import { useStorage } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { getFlowList } from '../../api/flow-ops'
+import { getFlowOpsList } from '../../api/flow-ops'
 import { useFlowForm } from '../../flow-form/composables'
 
 const debugMode = useStorage('debugMode', false)
@@ -18,7 +18,7 @@ const {
 } = useCrud({
   tableOption,
   crudOption: {
-    getList: getFlowList,
+    getList: getFlowOpsList,
   },
   searchForm: {
     status: 2,

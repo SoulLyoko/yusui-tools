@@ -20,6 +20,15 @@ export interface FlowOps extends FlowTask {
   version?: number
 }
 
-export function getFlowList(params: Page & FlowOps) {
+export interface FlowTodo extends FlowOps {
+}
+
+/** 获取流程运维列表 */
+export function getFlowOpsList(params: Page & FlowOps) {
   return request.get<ResRecords<FlowOps>>('/sapier-flow/flow-ops/list', { params })
+}
+
+/** 获取待办列表 */
+export function getTodoList(params: Page & FlowTodo) {
+  return request.get<ResRecords<FlowTodo>>('/sapier-flow/flow-run/userTaskList', { params })
 }
