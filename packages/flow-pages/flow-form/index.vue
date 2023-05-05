@@ -41,10 +41,16 @@ async function onSubmit() {
     const { buttonKey } = activeBtn.value
     submitLoading.value = true
     await props.beforeSubmit?.(activeBtn.value!)
-    await buttonHandler[buttonKey!]?.()
-    ElMessage.success('操作成功')
-    approvalVisible.value = false
-    emit('complete', activeBtn.value!)
+    const handler = buttonHandler[buttonKey!]?.()
+    if (handler instanceof Promise) {
+      await handler
+      ElMessage.success('操作成功')
+      approvalVisible.value = false
+      emit('complete', activeBtn.value!)
+    }
+    else {
+      ElMessage.error('操作失败')
+    }
   }
   finally {
     submitLoading.value = false

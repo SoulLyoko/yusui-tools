@@ -1,6 +1,6 @@
 import type { ButtonHandler, FlowFormState } from '../types'
 
-import { commitTask, revokeTask, saveDraft, startTask } from '../../api/flow-task'
+import { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { flowDetail, formVariables, approvalFormData, debug } = state
@@ -19,8 +19,6 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     flow_draft() {
       if (taskId && flowInstanceId)
         return saveDraft(data)
-      // else
-        // return startProcess({ ...formData.value, save_draft: true, procDefKey: flowKey! })
     },
     // 发送
     flow_pass() {
@@ -34,6 +32,11 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
       if (taskId && flowInstanceId)
         return revokeTask(data)
     },
+    // 撤回到发起
+    flow_withdraw() {
+      if (taskId && flowInstanceId)
+        return withdrawTask(data)
+    },
     // // 退回
     // flow_reject() {
     //   if (!taskId || !flowInstanceId) return;
@@ -44,18 +47,15 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     //     variables: { ...formData.value, save_draft: false }
     //   });
     // },
-    // // 终止
-    // flow_terminate() {
-    //   if (!flowInstanceId) return;
-    //   return terminateProcess({
-    //     flowInstanceId,
-    //     comment: formData.value.comment
-    //   });
-    // },
-    // // 撤回
-    // flow_withdraw() {
-    //   if (!taskId) return;
-    //   return withdrawProcess({ taskId, comment: formData.value.comment });
-    // }
+    // 终止
+    flow_terminate() {
+      if (taskId && flowInstanceId)
+        return terminateTask(data)
+    },
+    // 转办
+    flow_transfer() {
+      if (taskId && flowInstanceId)
+        return transferTask(data)
+    },
   }
 }

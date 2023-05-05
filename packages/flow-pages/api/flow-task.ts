@@ -188,3 +188,18 @@ export function saveDraft(data: CommitTaskData) {
 export function revokeTask(data: CommitTaskData) {
   return request.post('/sapier-flow/flow-run/revokeTask', data)
 }
+
+/** 终止 */
+export function terminateTask(data: CommitTaskData) {
+  return request.post('/sapier-flow/flow-run/terminateFlow', data)
+}
+
+/** 撤回到发起 */
+export function withdrawTask(data: CommitTaskData) {
+  return request.post('/sapier-flow/flow-run/withdrawToStart', data)
+}
+
+/** 转办 */
+export function transferTask(data: CommitTaskData) {
+  return request.post('/sapier-flow/flow-run/transferTask', data)
+}
