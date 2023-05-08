@@ -35,8 +35,8 @@ async function onButtonClick(btn: FlowButton) {
     onSubmit()
 }
 
+const buttonHandler = useButtonHandler(state)
 async function onSubmit() {
-  const buttonHandler = useButtonHandler(state)
   try {
     const { buttonKey } = activeBtn.value
     submitLoading.value = true

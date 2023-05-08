@@ -60,6 +60,12 @@ export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = 
       labelTip: '不显示:不显示审批窗口;审批人:显示审批人选择框;抄送人:显示抄送人选择框;意见:显示意见输入框;',
     },
     {
+      label: '排序',
+      prop: 'sort',
+      type: 'number',
+      value: 0,
+    },
+    {
       label: '状态',
       prop: 'status',
       type: 'switch',
@@ -67,15 +73,9 @@ export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = 
       dicData: enumToDic(FlowButtonStatus),
     },
     {
-      label: '排序',
-      prop: 'sort',
-      type: 'number',
-      value: 0,
-    },
-    {
       label: '按钮预览',
       prop: 'buttonPreview',
-      width: 200,
+      width: 150,
     },
   ],
 }

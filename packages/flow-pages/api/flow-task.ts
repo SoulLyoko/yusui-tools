@@ -10,6 +10,7 @@ export const enum TaskStatus {
   '待办' = 2,
   '失败' = 3,
   '撤销' = 4,
+  '终止' = 5,
 }
 export const enum FlowStatus {
   '已办结' = 1,
@@ -20,6 +21,8 @@ export const enum HandleType {
   '用户办理' = 2,
   '任务撤销' = 3,
   '任务退回' = 4,
+  '流程终止' = 5,
+  '任务转办' = 6,
 }
 
 /** 流程详情 */

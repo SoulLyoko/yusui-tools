@@ -1,42 +1,47 @@
 import type { ButtonHandler, FlowFormState } from '../types'
 
+import { computed } from 'vue'
+
 import { useFlowTaskApi } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask } = useFlowTaskApi()
-  const { flowDetail, formVariables, approvalFormData, debug } = state
-  const { flowDeployId } = flowDetail.value.process ?? {}
-  const { taskId, flowInstanceId } = flowDetail.value.task ?? {}
-  const data = {
-    flowDeployId,
-    taskId,
-    flowInstanceId,
-    variables: formVariables.value,
-    debug: debug.value,
-    ...approvalFormData.value,
-  }
+  const data = computed(() => {
+    const { flowDetail, formVariables, approvalFormData, debug } = state
+    const { flowDeployId } = flowDetail.value.process ?? {}
+    const { taskId, flowInstanceId } = flowDetail.value.task ?? {}
+    return {
+      flowDeployId,
+      taskId,
+      flowInstanceId,
+      variables: formVariables.value,
+      debug: debug.value,
+      ...approvalFormData.value,
+    }
+  })
+  const isInstance = () => data.value.taskId && data.value.flowInstanceId
   return {
     // 保存
     flow_draft() {
-      if (taskId && flowInstanceId)
-        return saveDraft(data)
+      if (isInstance())
+        return saveDraft(data.value)
     },
     // 发送
     flow_pass() {
-      if (taskId && flowInstanceId)
-        return commitTask(data)
+      if (isInstance())
+        return commitTask(data.value)
       else
-        return startTask(data)
+        return startTask(data.value)
     },
     // 撤销
     flow_revoke() {
-      if (taskId && flowInstanceId)
-        return revokeTask(data)
+      if (isInstance())
+        return revokeTask(data.value)
     },
     // 撤回到发起
     flow_withdraw() {
-      if (taskId && flowInstanceId)
-        return withdrawTask(data)
+      if (isInstance())
+        return withdrawTask(data.value)
     },
     // // 退回
     // flow_reject() {
@@ -50,13 +55,13 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     // },
     // 终止
     flow_terminate() {
-      if (taskId && flowInstanceId)
-        return terminateTask(data)
+      if (isInstance())
+        return terminateTask(data.value)
     },
     // 转办
     flow_transfer() {
-      if (taskId && flowInstanceId)
-        return transferTask(data)
+      if (isInstance())
+        return transferTask(data.value)
     },
   }
 }
