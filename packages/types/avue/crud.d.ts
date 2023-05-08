@@ -557,6 +557,8 @@ declare module "@smallwei/avue" {
     selectClear: () => void;
     /** 清空搜索栏目的值 */
     searchReset: () => void;
+    /** 关闭弹窗 */
+    closeDialog: () => void;
   }
 
   export interface AvueCrudSlots<T = any> {
