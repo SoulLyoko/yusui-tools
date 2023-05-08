@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import { useCrud } from '@yusui/composables'
 
-import { create, getList, remove, update } from '../../api/flow-category'
+import { useFlowCategoryApi } from '../../api'
 import { treeOption } from './option'
 
 const emit = defineEmits(['node-click'])
 
-const crudOption = {
-  rowKey: 'id',
-  getList,
-  create,
-  update,
-  remove,
-  dataPath: 'res.data',
-}
 const {
   crudStateRefs: { formData, tableData },
   getDataList,
@@ -21,10 +13,13 @@ const {
   handleUpdate,
   handleDel,
 } = useCrud({
-  crudOption,
+  crudOption: {
+    rowKey: 'id',
+    ...useFlowCategoryApi(),
+    dataPath: 'res.data',
+  },
   tableOption: treeOption,
   pageOption: { pageSize: 20 },
-  mockCache: 'flow-category',
 })
 getDataList()
 

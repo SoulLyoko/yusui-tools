@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FlowButton } from '../api/flow-button'
+import type { FlowButton } from '../api'
 
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'

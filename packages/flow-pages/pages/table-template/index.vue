@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import type { TableTemplate } from '../../api/table-template'
+import type { TableTemplate } from '../../api'
 
 import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { create, deploy, getList, remove, update } from '../../api/table-template'
-import { useFlowParam } from '../../api/flow-param'
+import { useFlowParamApi, useTableTemplateApi } from '../../api'
 
 const {
   bindVal,
@@ -17,19 +16,13 @@ const {
   beforeSave,
   beforeUpdate,
 } = useCrud({
-  crudOption: {
-    getList,
-    create,
-    update,
-    remove,
-  },
+  crudOption: useTableTemplateApi(),
   tableOption,
 })
 
-const { data: defaultFields } = useFlowParam('table.default.fields' as const)
-
 getDataList()
 
+const { data: defaultFields } = useFlowParamApi().useParam('table.default.fields' as const)
 beforeOpen((type) => {
   if (type === 'add')
     formData.value.tableFields = defaultFields.value
@@ -43,6 +36,7 @@ beforeUpdate((row) => {
   row.tableFields = JSON.stringify(row.tableFields)
 })
 
+const { deploy } = useTableTemplateApi()
 const loading = ref(false)
 async function handleDeploy(row: TableTemplate) {
   await ElMessageBox.confirm('部署将自动生成数据库表，是否确认？', '提示', { type: 'success' })

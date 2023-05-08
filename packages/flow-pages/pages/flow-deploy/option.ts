@@ -1,5 +1,5 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowDeploy } from '../../api'
 
 import { formOption } from '../../components/design-steps/option'
 

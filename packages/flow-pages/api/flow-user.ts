@@ -1,6 +1,8 @@
 import type { ResData } from '@yusui/types'
 
-import { request, useRequest } from '.'
+import { useRequest } from 'vue-request'
+
+import { useConfigProvider } from '../composables'
 
 export interface FlowUserTree {
   id?: string
@@ -9,10 +11,17 @@ export interface FlowUserTree {
   children?: FlowUserTree[]
 }
 
-// 获取用户/部门/岗位列表
-export function getUserList(filter?: string) {
-  return request.get<ResData<FlowUserTree[]>>('/sapier-flow/flow-user/tree', { params: { filter } })
-}
-export function useUserList() {
-  return useRequest(() => getUserList().then(res => res.data))
+export function useFlowUserApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 用户树 */
+    tree: '/sapier-flow/flow-user/tree',
+  }
+  const getUserTree = (filter?: string) => request.get<ResData<FlowUserTree[]>>(url.tree, { params: { filter } })
+  const useUserTree = () => useRequest(() => getUserTree().then(res => res.data))
+  return {
+    url,
+    getUserTree,
+    useUserTree,
+  }
 }

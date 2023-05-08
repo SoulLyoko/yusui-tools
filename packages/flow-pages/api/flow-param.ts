@@ -3,7 +3,9 @@ import type { Whether } from '../constants'
 import type { FlowStatus, HandleType, TaskStatus } from './flow-task'
 import type { TableField } from './table-template'
 
-import { request, useRequest } from '.'
+import { useRequest } from 'vue-request'
+
+import { useConfigProvider } from '../composables'
 
 export interface FlowParam {
   id?: string
@@ -41,29 +43,39 @@ export interface FlowParamMap {
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any
 
-export function getList(params: Page & FlowParam) {
-  return request.get<ResRecords<FlowParam[]>>('/sapier-flow/flow-param/list', { params })
-}
-export function getAllParams() {
-  return request.get<ResData<FlowParamMap>>('/sapier-flow/flow-param/getAllParam')
-}
-
-/** 根据key获取流程参数 */
-export function getParam<K>(key: K) {
-  return request.get<ResData<FlowParamValue<K>>>('/sapier-flow/flow-param/getParam', { params: { paramKey: key } })
-}
-export function useFlowParam<K>(key: K) {
-  return useRequest(() => getParam<K>(key).then(res => res.data))
-}
-
-export function create(data: FlowParam) {
-  return request.post('/sapier-flow/flow-param/save', data)
-}
-
-export function update(data: FlowParam) {
-  return request.post('/sapier-flow/flow-param/update', data)
-}
-
-export function remove(ids: string) {
-  return request.post('/sapier-flow/flow-param/remove', {}, { params: { ids } })
+export function useFlowParamApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 流程参数列表 */
+    list: '/sapier-flow/flow-param/list',
+    /** 新增流程参数 */
+    save: '/sapier-flow/flow-param/save',
+    /** 更新流程参数 */
+    update: '/sapier-flow/flow-param/update',
+    /** 删除流程参数 */
+    remove: '/sapier-flow/flow-param/remove',
+    /** 获取所有流程参数键值对 */
+    all: '/sapier-flow/flow-param/getAllParam',
+    /** 根据key获取流程参数 */
+    key: '/sapier-flow/flow-param/getParam',
+  }
+  const getList = (params: Page & FlowParam) => request.get<ResRecords<FlowParam[]>>(url.list, { params })
+  /** 获取所有流程参数键值对 */
+  const getAllParam = () => request.get<ResData<FlowParamMap>>(url.all)
+  /** 根据key获取流程参数 */
+  const getParam = <K>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
+  const useParam = <K>(key: K) => useRequest(() => getParam<K>(key).then(res => res.data))
+  const create = (data: FlowParam) => request.post(url.save, data)
+  const update = (data: FlowParam) => request.post(url.update, data)
+  const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
+  return {
+    url,
+    getList,
+    getAllParam,
+    getParam,
+    useParam,
+    create,
+    update,
+    remove,
+  }
 }

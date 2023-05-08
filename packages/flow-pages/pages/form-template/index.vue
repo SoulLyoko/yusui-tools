@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { FormTemplate } from '../../api/form-template'
+import type { FormTemplate } from '../../api'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
 import FormDesignWrapper from '../../components/form-design-wrapper/index.vue'
-import { create, getList, remove, update } from '../../api/form-template'
+import { useFormTemplateApi } from '../../api'
 
 const {
   bindVal,
@@ -15,13 +15,7 @@ const {
   handleUpdate,
 } = useCrud({
   tableOption,
-  crudOption: {
-    getList,
-    create,
-    update,
-    remove,
-  },
-  mockCache: 'form-template',
+  crudOption: useFormTemplateApi(),
 })
 getDataList()
 

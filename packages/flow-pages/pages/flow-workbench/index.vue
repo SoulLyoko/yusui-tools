@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowDeploy, FlowTask } from '../../api'
 import type { FlowFormProps } from '../../flow-form/composables'
-import type { FlowTask } from '../../api/flow-task'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
 
-import { getPublishFlow } from '../../api/flow-deploy'
-import { getTodoList } from '../../api/flow-ops'
+import { useFlowTaskApi } from '../../api'
 import { useFlowForm } from '../../flow-form/composables'
 import { tableOption } from './option'
 
 const flowList = ref<FlowDeploy[]>([])
+
+const { getPublishFlow, getTodoList } = useFlowTaskApi()
 
 getPublishFlow().then((res) => {
   flowList.value = res.data

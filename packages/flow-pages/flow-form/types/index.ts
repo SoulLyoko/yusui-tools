@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, SetupContext } from 'vue'
 import type { useEmits, useProps, useProvideState } from '../composables'
-import type { FlowButtonKey } from '../../api/flow-button'
+import type { FlowButtonKey } from '../../api'
 
 export type FlowFormState = ReturnType<typeof useProvideState>
 

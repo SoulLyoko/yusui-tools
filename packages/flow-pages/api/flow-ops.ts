@@ -1,7 +1,7 @@
 import type { Page, ResRecords } from '@yusui/types'
 import type { FlowTask } from './flow-task'
 
-import { request } from '.'
+import { useConfigProvider } from '../composables'
 
 /**
  * 流程运维信息
@@ -20,15 +20,15 @@ export interface FlowOps extends FlowTask {
   version?: number
 }
 
-export interface FlowTodo extends FlowOps {
-}
-
-/** 获取流程运维列表 */
-export function getFlowOpsList(params: Page & FlowOps) {
-  return request.get<ResRecords<FlowOps>>('/sapier-flow/flow-ops/list', { params })
-}
-
-/** 获取待办列表 */
-export function getTodoList(params: Page & FlowTodo) {
-  return request.get<ResRecords<FlowTodo>>('/sapier-flow/flow-run/userTaskList', { params })
+export function useFlowOpsApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 流程运维列表 */
+    list: '/sapier-flow/flow-ops/list',
+  }
+  const getList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.list, { params })
+  return {
+    url,
+    getList,
+  }
 }

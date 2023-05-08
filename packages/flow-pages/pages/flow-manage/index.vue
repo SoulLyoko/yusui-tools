@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { FlowCategory } from '../../api/flow-category'
-import type { FlowDefinition } from '../../api/flow-definition'
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowCategory, FlowDefinition, FlowDeploy } from '../../api'
 
 import { nextTick, ref } from 'vue'
 

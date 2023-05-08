@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 import { alias } from '../../vite.config'
 import pkg from '../../package.json'
 import { mdDemoTransform } from './plugins/md-demo-transform'
-import { avuePatch } from '../plugins'
+import { avuePatch, loadProxy } from '../plugins'
 
 export default defineConfig({
   base: `/${pkg.name}/`,
@@ -164,14 +164,9 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [mdDemoTransform(), avuePatch()],
+    plugins: [mdDemoTransform(), avuePatch(), loadProxy()],
     resolve: {
       alias,
-    },
-    server: {
-      proxy: {
-        '/sapier-flow': 'http://192.168.1.188:9922',
-      },
     },
   },
 })

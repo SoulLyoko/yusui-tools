@@ -2,7 +2,7 @@
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { create, getList, remove, update } from '../../api/flow-button'
+import { useFlowButtonApi } from '../../api'
 
 const {
   bindVal,
@@ -10,12 +10,7 @@ const {
   getDataList,
 } = useCrud({
   tableOption,
-  crudOption: {
-    getList,
-    create,
-    update,
-    remove,
-  },
+  crudOption: useFlowButtonApi(),
   sortOption: {
     ascs: 'sort',
   },

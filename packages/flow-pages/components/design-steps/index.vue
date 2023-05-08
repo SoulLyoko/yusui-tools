@@ -1,26 +1,22 @@
 <script setup lang="ts">
 import type { AvueFormInstance } from '@smallwei/avue'
-import type { FlowDefinition } from '../../api/flow-definition'
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowDefinition, FlowDeploy } from '../../api'
 
 import { computed, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
-import { getDetail as getDeployDetail, update as updateDeploy } from '../../api/flow-deploy'
+import {
+  useFlowDefinitionApi,
+  useFlowDeployApi,
+  useFlowTemplateApi,
+  useFormTemplateApi,
+  useTableTemplateApi,
+} from '../../api'
+import { formOption } from './option'
+import { asyncValidate } from '../../utils'
 import FormDesignWrapper from '../form-design-wrapper/index.vue'
 import FlowDesignWrapper from '../flow-design-wrapper/index.vue'
-import { formOption } from './option'
-import {
-  create as createDefinition,
-  deploy,
-  getDetail as getDefinitionDetail,
-  update as updateDefinition,
-} from '../../api/flow-definition'
-import { useFormTemplateList } from '../../api/form-template'
-import { useFlowTemplateList } from '../../api/flow-template'
-import { useTableTemplateList } from '../../api/table-template'
-import { asyncValidate } from '../../utils'
 
 const props = defineProps<{
   modelValue: FlowDefinition | FlowDeploy
@@ -29,6 +25,14 @@ const props = defineProps<{
 const emit = defineEmits(['close'])
 const vModels = useVModels(props)
 const { visible, modelValue: formData } = vModels as Required<typeof vModels>
+
+const {
+  create: createDefinition,
+  deploy,
+  getDetail: getDefinitionDetail,
+  update: updateDefinition,
+} = useFlowDefinitionApi()
+const { getDetail: getDeployDetail, update: updateDeploy } = useFlowDeployApi()
 
 const steps = ['流程信息', '表单设计', '模型设计', '完成']
 
@@ -57,9 +61,9 @@ watch(
   { immediate: true },
 )
 
-const { data: formTemplates } = useFormTemplateList()
-const { data: flowTemplates } = useFlowTemplateList()
-const { data: tableTemplates } = useTableTemplateList()
+const { data: formTemplates } = useFormTemplateApi().useList()
+const { data: flowTemplates } = useFlowTemplateApi().useList()
+const { data: tableTemplates } = useTableTemplateApi().useList()
 
 const tableFields = computed(() => {
   return tableTemplates.value?.find(e => e.tableName === formData.value.formDataTable)?.tableFields as string

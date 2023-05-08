@@ -1,5 +1,5 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowParam } from '../../api/flow-param'
+import type { FlowParam } from '../../api'
 
 import { whetherDic } from '../../constants'
 

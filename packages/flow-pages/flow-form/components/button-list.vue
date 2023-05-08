@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import type { FlowDetail } from '../../api/flow-task'
-import type { FlowButton } from '../../api/flow-button'
+import type { FlowButton, FlowDetail } from '../../api'
 import type { ButtonItem } from '@yusui/flow-design/types'
 
 import { computed } from 'vue'
 import { pick } from 'lodash-es'
 
-import { useFlowButtonList } from '../../api/flow-button'
+import { useFlowButtonApi } from '../../api'
 
 const props = defineProps<{ flowDetail?: FlowDetail }>()
 const emit = defineEmits<{ (e: 'click', btn: FlowButton): void }>()
 
-const { data: allButtonList } = useFlowButtonList()
+const { data: allButtonList } = useFlowButtonApi().useList()
 
 function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   return button.map((btn) => {

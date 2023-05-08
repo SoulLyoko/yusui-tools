@@ -1,7 +1,9 @@
 import type { Page, ResRecords } from '@yusui/types'
 import type { Whether } from '../constants'
 
-import { request, useRequest } from '.'
+import { useRequest } from 'vue-request'
+
+import { useConfigProvider } from '../composables'
 
 export interface TableTemplate {
   id?: string
@@ -65,25 +67,33 @@ export enum FieldType {
   year = 'year',
 }
 
-export function getList(params: Page & TableTemplate) {
-  return request.get<ResRecords<TableTemplate[]>>('/sapier-flow/dev-table/list', { params })
-}
-export function useTableTemplateList() {
-  return useRequest(() => getList({ size: -1 }).then(res => res.data.records))
-}
-
-export function create(data: TableTemplate) {
-  return request.post('/sapier-flow/dev-table/save', data)
-}
-
-export function update(data: TableTemplate) {
-  return request.post('/sapier-flow/dev-table/update', data)
-}
-
-export function remove(ids: string) {
-  return request.post('/sapier-flow/dev-table/remove', {}, { params: { ids } })
-}
-
-export function deploy(data: Pick<TableTemplate, 'id'>) {
-  return request.post('/sapier-flow/dev-table/deploy', data)
+export function useTableTemplateApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 数据库表列表 */
+    list: '/sapier-flow/dev-table/list',
+    /** 新增数据库表 */
+    save: '/sapier-flow/dev-table/save',
+    /** 更新数据库表 */
+    update: '/sapier-flow/dev-table/update',
+    /** 删除数据库表 */
+    remove: '/sapier-flow/dev-table/remove',
+    /** 部署数据库表 */
+    deploy: '/sapier-flow/dev-table/deploy',
+  }
+  const getList = (params: Page & TableTemplate) => request.get<ResRecords<TableTemplate[]>>(url.list, { params })
+  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
+  const create = (data: TableTemplate) => request.post(url.save, data)
+  const update = (data: TableTemplate) => request.post(url.update, data)
+  const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
+  const deploy = (data: { id?: string }) => request.post(url.deploy, data)
+  return {
+    url,
+    getList,
+    useList,
+    create,
+    update,
+    remove,
+    deploy,
+  }
 }

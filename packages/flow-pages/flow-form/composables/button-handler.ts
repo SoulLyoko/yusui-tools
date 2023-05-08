@@ -1,8 +1,9 @@
 import type { ButtonHandler, FlowFormState } from '../types'
 
-import { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask } from '../../api/flow-task'
+import { useFlowTaskApi } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
+  const { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask } = useFlowTaskApi()
   const { flowDetail, formVariables, approvalFormData, debug } = state
   const { flowDeployId } = flowDetail.value.process ?? {}
   const { taskId, flowInstanceId } = flowDetail.value.task ?? {}

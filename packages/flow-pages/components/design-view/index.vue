@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import type { FlowDefinition } from '../../api/flow-definition'
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowDefinition, FlowDeploy } from '../../api'
 
 import { ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 
 import FormDesignWrapper from '../form-design-wrapper/index.vue'
 import FlowDesignWrapper from '../flow-design-wrapper/index.vue'
-import { getDetail as getDefinitionDetail } from '../../api/flow-definition'
-import { getDetail as getDeployDetail } from '../../api/flow-deploy'
+import { useFlowDefinitionApi, useFlowDeployApi } from '../../api'
 
 const props = defineProps<{
   modelValue: FlowDefinition | FlowDeploy
@@ -16,6 +14,9 @@ const props = defineProps<{
 }>()
 const vModels = useVModels(props)
 const { visible, modelValue: formData } = vModels as Required<typeof vModels>
+
+const { getDetail: getDefinitionDetail } = useFlowDefinitionApi()
+const { getDetail: getDeployDetail } = useFlowDeployApi()
 
 const activeTab = ref('form')
 const loading = ref(false)

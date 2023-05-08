@@ -1,7 +1,7 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowTodo } from '../../api/flow-ops'
+import type { FlowOps } from '../../api'
 
-export const tableOption: AvueCrudOption<FlowTodo> = {
+export const tableOption: AvueCrudOption<FlowOps> = {
   rowKey: 'id',
   align: 'center',
   index: true,

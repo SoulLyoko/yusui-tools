@@ -1,7 +1,9 @@
 import type { ButtonType } from 'element-plus'
 import type { Page, ResRecords } from '@yusui/types'
 
-import { request, useRequest } from '.'
+import { useRequest } from 'vue-request'
+
+import { useConfigProvider } from '../composables'
 
 export enum FlowButtonType {
   '默认' = 'default',
@@ -73,25 +75,29 @@ export interface FlowButton {
   status?: FlowButtonStatus
 }
 
-// 获取按钮列表
-export function getList(params: Page & FlowButton) {
-  return request.get<ResRecords<FlowButton[]>>('/sapier-flow/dev-button/list', { params })
-}
-export function useFlowButtonList() {
-  return useRequest(() => getList({ size: -1, ascs: 'sort' }).then(res => res.data.records))
-}
-
-// 新增
-export function create(data: FlowButton) {
-  return request.post('/sapier-flow/dev-button/save', data)
-}
-
-// 修改
-export function update(data: FlowButton) {
-  return request.post('/sapier-flow/dev-button/update', data)
-}
-
-// 删除
-export function remove(ids: string) {
-  return request.post('/sapier-flow/dev-button/remove', {}, { params: { ids } })
+export function useFlowButtonApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 按钮列表 */
+    list: '/sapier-flow/dev-button/list',
+    /** 新增按钮 */
+    save: '/sapier-flow/dev-button/save',
+    /** 更新按钮 */
+    update: '/sapier-flow/dev-button/update',
+    /** 删除按钮 */
+    remove: '/sapier-flow/dev-button/remove',
+  }
+  const getList = (params: Page & FlowButton) => request.get<ResRecords<FlowButton[]>>(url.list, { params })
+  const useList = () => useRequest(() => getList({ size: -1, ascs: 'sort' }).then(res => res.data.records))
+  const create = (data: FlowButton) => request.post(url.save, data)
+  const update = (data: FlowButton) => request.post(url.update, data)
+  const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
+  return {
+    url,
+    getList,
+    useList,
+    create,
+    update,
+    remove,
+  }
 }

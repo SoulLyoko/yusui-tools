@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import type { AvueFormDefaults, AvueFormInstance } from '@smallwei/avue'
-import type { ApprovalNode } from '../../api/flow-task'
+import type { ApprovalNode } from '../../api'
 
 import { ElTree } from 'element-plus'
 import { computed, nextTick, ref, watchEffect } from 'vue'
 import { findTree, treeMap, uuid } from '@yusui/utils'
 
-import { getApprovalNodes } from '../../api/flow-task'
+import { useFlowTaskApi } from '../../api'
 import { asyncValidate } from '../../utils'
 import { useInjectState } from '../composables'
 import CommonComments from './common-comments.vue'
 
 const emit = defineEmits(['confirm'])
+
+const { getApprovalNode } = useFlowTaskApi()
 
 const iconMap: Record<string, string> = {
   element: 'ep:flag',
@@ -80,7 +82,7 @@ watchEffect(async () => {
   if (showApproval.value) {
     try {
       treeLoading.value = true
-      const res = await getApprovalNodes({ flowKey, variables: formVariables.value, taskId })
+      const res = await getApprovalNode({ flowKey, variables: formVariables.value, taskId })
       approvalNodes.value = treeMap(res.data ?? [], (item, index, parent) => {
         const id = item.id || uuid()
         item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey

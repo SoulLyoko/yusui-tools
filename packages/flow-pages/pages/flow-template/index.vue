@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { FlowTemplate } from '../../api/flow-template'
+import type { FlowTemplate } from '../../api'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
+import { useFlowTemplateApi } from '../../api'
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
-import { create, getList, remove, update } from '../../api/flow-template'
 
 const {
   bindVal,
@@ -15,12 +15,7 @@ const {
   handleUpdate,
 } = useCrud({
   tableOption,
-  crudOption: {
-    getList,
-    create,
-    update,
-    remove,
-  },
+  crudOption: useFlowTemplateApi(),
 })
 getDataList()
 

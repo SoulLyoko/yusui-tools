@@ -1,9 +1,9 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { TableTemplate } from '../../api/table-template'
+import type { TableTemplate } from '../../api'
 
 import { enumToDic } from '@yusui/utils'
 
-import { FieldType } from '../../api/table-template'
+import { FieldType } from '../../api'
 import { whetherDic } from '../../constants'
 
 export const tableOption: AvueCrudOption<TableTemplate> = {

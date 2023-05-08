@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { FlowDetail } from '../../api/flow-task'
+import type { FlowDetail } from '../../api'
 
 import { computed, ref } from 'vue'
 import { durationFormat } from '@yusui/utils'
 
+import { useFlowParamApi } from '../../api'
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
-import { useFlowParam } from '../../api/flow-param'
 
 const props = defineProps<{ flowDetail?: FlowDetail }>()
 
@@ -44,7 +44,7 @@ const tableOption = {
   ],
 }
 
-const { data: handleTypeDic } = useFlowParam('flow.handle.type' as const)
+const { data: handleTypeDic } = useFlowParamApi().useParam('flow.handle.type' as const)
 function findHandleTypeDicItem(value: number) {
   return handleTypeDic.value?.find(e => e.value === value)
 }

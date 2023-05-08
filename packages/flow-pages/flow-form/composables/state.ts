@@ -4,13 +4,15 @@ import type { InjectionKey } from 'vue'
 import { computed, inject, provide, ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'
 
-import { getFlowDetail } from '../../api/flow-task'
+import { useFlowTaskApi } from '../../api'
 
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
 export function useProvideState(props: Props, emit: Emit) {
   const vModels = useVModels(props, undefined, { passive: true, deep: true })
   const { flowDetail, modelValue: formData, formLoading } = vModels
+
+  const { getFlowDetail } = useFlowTaskApi()
 
   // 获取流程详情
   watchEffect(() => {

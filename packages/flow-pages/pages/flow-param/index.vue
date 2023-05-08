@@ -2,16 +2,11 @@
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { create, getList, remove, update } from '../../api/flow-param'
+import { useFlowParamApi } from '../../api'
 
 const { bindVal, getDataList } = useCrud({
   tableOption,
-  crudOption: {
-    getList,
-    create,
-    update,
-    remove,
-  },
+  crudOption: useFlowParamApi(),
 })
 getDataList()
 </script>

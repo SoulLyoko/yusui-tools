@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import type { AvueFormColumn, AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
 import type { ButtonItem, FlowFormData, FormPropertyItem } from '@yusui/flow-design'
-import type { FlowHistory } from '../../api/flow-task'
-import type { FlowButton } from '../../api/flow-button'
+import type { FlowButton, FlowHistory } from '../../api'
 
 import { computed, ref, watch } from 'vue'
 import { FlowModeler, FlowViewer, defaultGraphData } from '@yusui/flow-design'
 import { enumToDic } from '@yusui/utils'
 
-import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonList } from '../../api/flow-button'
-import { useFlowParam } from '../../api/flow-param'
+import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonApi, useFlowParamApi } from '../../api'
 import { options } from './options'
 import AssigneeSetter from './assignee-setter.vue'
 
@@ -54,7 +52,7 @@ const fieldsDic = computed(() => {
 const flowButtonDisplayDic = enumToDic(FlowButtonDisplay)
 const flowButtonApprovalDic = enumToDic(FlowButtonApproval)
 
-const { data: buttonList } = useFlowButtonList()
+const { data: buttonList } = useFlowButtonApi().useList()
 
 watch(formDefaults, (defaults) => {
   if (!defaults)
@@ -103,7 +101,7 @@ function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   })
 }
 
-const { data: flowTaskStatus } = useFlowParam('flow.task.status' as const)
+const { data: flowTaskStatus } = useFlowParamApi().useParam('flow.task.status' as const)
 
 const flowHistoryStyles = computed(() => {
   return props.flowHistory?.map((item) => {

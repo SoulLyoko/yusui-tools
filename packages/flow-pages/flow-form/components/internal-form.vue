@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import type { AvueFormOption } from '@smallwei/avue'
-import type { FlowDetail } from '../../api/flow-task'
+import type { FlowDetail } from '../../api'
 
 import { defineComponent, getCurrentInstance, h, ref, resolveComponent, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'

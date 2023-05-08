@@ -1,12 +1,12 @@
 <script setup lang="ts" name="common-comments">
-import type { Comment } from '../../api/common-comments'
+import type { CommonComment } from '../../api'
 import type Node from 'element-plus/es/components/tree/src/model/node'
 
 import { computed, nextTick, ref } from 'vue'
 import { useVModel } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
 
-import { batchUpdate, create, remove, useCommentList } from '../../api/common-comments'
+import { useCommonCommentApi } from '../../api'
 import { useInjectState } from '../composables'
 
 const props = defineProps({
@@ -14,10 +14,12 @@ const props = defineProps({
 })
 const modelValue = useVModel(props, 'modelValue')
 
+const { batchUpdate, create, remove, useList } = useCommonCommentApi()
+
 const popoverVisible = ref(false)
 const { activeBtn } = useInjectState()
 const activeBtnKey = computed(() => activeBtn.value?.buttonKey)
-const { data: commentList, refresh } = useCommentList(activeBtnKey)
+const { data: commentList, refresh } = useList(activeBtnKey)
 
 const commentTreeData = computed(() => {
   const content = modelValue.value
@@ -28,18 +30,18 @@ const commentTreeData = computed(() => {
   return commentList.value
 })
 
-async function addComment(data: Comment) {
+async function addComment(data: CommonComment) {
   await create({ ...data, type: activeBtn.value?.buttonKey })
   ElMessage.success('添加成功')
   refresh()
 }
-async function delComment(data: Comment) {
+async function delComment(data: CommonComment) {
   await remove(data.id!)
   ElMessage.success('删除成功')
   refresh()
 }
 async function nodeDrop(draggingNode: Node, dropNode: Node) {
-  let data = dropNode.parent.data as Comment[]
+  let data = dropNode.parent.data as CommonComment[]
   data = data.map((item, index) => {
     return { id: item.id, sort: index + 1 }
   })
@@ -52,7 +54,7 @@ function nodeDragStart() {
   popoverVisible.value = true
 }
 const inputRef = ref()
-async function nodeClick(data: Comment) {
+async function nodeClick(data: CommonComment) {
   modelValue.value = data.content
   await nextTick()
   inputRef.value?.blur()

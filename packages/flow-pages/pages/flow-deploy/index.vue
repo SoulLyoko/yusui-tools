@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowDeploy } from '../../api'
 
 import { ref, watchEffect } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { IsMainVersion, getList, update } from '../../api/flow-deploy'
+import { IsMainVersion, useFlowDeployApi } from '../../api'
 
 const props = defineProps<{ flowModuleId?: string }>()
 const emit = defineEmits(['back', 'view', 'edit'])
+
+const { getList, update } = useFlowDeployApi()
 
 const {
   bindVal,

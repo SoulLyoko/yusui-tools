@@ -1,6 +1,5 @@
 import type { AvueFormOption } from '@smallwei/avue'
-import type { FlowDefinition } from '../../api/flow-definition'
-import type { FlowDeploy } from '../../api/flow-deploy'
+import type { FlowDefinition, FlowDeploy } from '../../api'
 
 export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
   menuBtn: false,

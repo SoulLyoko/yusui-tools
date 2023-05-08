@@ -1,6 +1,8 @@
 import type { Page, ResRecords } from '@yusui/types'
 
-import { request, useRequest } from '.'
+import { useRequest } from 'vue-request'
+
+import { useConfigProvider } from '../composables'
 
 export interface FormTemplate {
   /** 表单KEY */
@@ -23,21 +25,29 @@ export interface FormTemplate {
   version?: number
 }
 
-export function getList(params: Page & FormTemplate) {
-  return request.get<ResRecords<FormTemplate[]>>('/sapier-flow/dev-form/list', { params })
-}
-export function useFormTemplateList() {
-  return useRequest(() => getList({ size: -1 }).then(res => res.data.records))
-}
-
-export function create(data: FormTemplate) {
-  return request.post('/sapier-flow/dev-form/submit', data)
-}
-
-export function update(data: FormTemplate) {
-  return request.post('/sapier-flow/dev-form/submit', data)
-}
-
-export function remove(ids: string) {
-  return request.post('/sapier-flow/dev-form/remove', {}, { params: { ids } })
+export function useFormTemplateApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 表单模板列表 */
+    list: '/sapier-flow/dev-form/list',
+    /** 新增表单模板 */
+    save: '/sapier-flow/dev-form/save',
+    /** 更新表单模板 */
+    update: '/sapier-flow/dev-form/update',
+    /** 删除表单模板 */
+    remove: '/sapier-flow/dev-form/remove',
+  }
+  const getList = (params: Page & FormTemplate) => request.get<ResRecords<FormTemplate[]>>(url.list, { params })
+  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
+  const create = (data: FormTemplate) => request.post(url.save, data)
+  const update = (data: FormTemplate) => request.post(url.update, data)
+  const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
+  return {
+    url,
+    getList,
+    useList,
+    create,
+    update,
+    remove,
+  }
 }

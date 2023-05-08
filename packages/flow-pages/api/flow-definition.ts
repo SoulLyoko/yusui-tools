@@ -1,6 +1,6 @@
 import type { Page, ResData, ResRecords } from '@yusui/types'
 
-import { request } from '.'
+import { useConfigProvider } from '../composables'
 
 export interface FlowDefinition {
   /** 流程定义数据 */
@@ -32,22 +32,31 @@ export interface FlowDefinition {
   mainVersion?: number
 }
 
-export function getList(params: Page & FlowDefinition) {
-  return request.get<ResRecords<FlowDefinition[]>>('/sapier-flow/flow-definition/list', { params })
-}
-
-export function getDetail(params: { flowModuleId?: string; flowDeployId?: string }) {
-  return request.get('/sapier-flow/flow-definition/detail', { params })
-}
-
-export function create(data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) {
-  return request.post<ResData<{ flowModuleId?: string }>>('/sapier-flow/flow-definition/save', data)
-}
-
-export function update(data: FlowDefinition) {
-  return request.post('/sapier-flow/flow-definition/update', data)
-}
-
-export function deploy(data: Pick<FlowDefinition, 'flowModuleId'>) {
-  return request.post('/sapier-flow/flow-definition/deployFlow', data)
+export function useFlowDefinitionApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 流程定义列表 */
+    list: '/sapier-flow/flow-definition/list',
+    /** 新增流程 */
+    save: '/sapier-flow/flow-definition/save',
+    /** 更新流程 */
+    update: '/sapier-flow/flow-definition/update',
+    /** 流程定义详情 */
+    detail: '/sapier-flow/flow-definition/detail',
+    /** 部署流程 */
+    deploy: '/sapier-flow/flow-definition/deployFlow',
+  }
+  const getList = (params: Page & FlowDefinition) => request.get<ResRecords<FlowDefinition[]>>(url.list, { params })
+  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get(url.detail, { params })
+  const create = (data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) => request.post<ResData<{ flowModuleId?: string }>>(url.save, data)
+  const update = (data: FlowDefinition) => request.post(url.update, data)
+  const deploy = (data: Pick<FlowDefinition, 'flowModuleId'>) => request.post(url.deploy, data)
+  return {
+    url,
+    getList,
+    create,
+    update,
+    deploy,
+    getDetail,
+  }
 }

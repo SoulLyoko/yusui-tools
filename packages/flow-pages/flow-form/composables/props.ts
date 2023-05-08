@@ -1,7 +1,6 @@
 import type { PropType } from 'vue'
-import type { CommitTaskData, FlowDetail } from '../../api/flow-task'
+import type { CommitTaskData, FlowButton, FlowDetail } from '../../api'
 import type { Permission } from '../types'
-import type { FlowButton } from '../../api/flow-button'
 
 export function useProps() {
   return {

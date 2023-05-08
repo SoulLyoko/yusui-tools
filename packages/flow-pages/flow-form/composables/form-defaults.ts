@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import type { AvueFormDefaults } from '@smallwei/avue'
-import type { FlowDetail } from '../../api/flow-task'
+import type { FlowDetail } from '../../api'
 
 import { isRef, nextTick, ref, watchEffect } from 'vue'
 

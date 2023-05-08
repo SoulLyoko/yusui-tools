@@ -4,10 +4,15 @@ import type { AssigneeItem } from '@yusui/flow-design'
 import { computed, ref, watch } from 'vue'
 import { treeMap } from '@yusui/utils'
 
-import { getUserList } from '../../api/flow-user'
+import { useFlowUserApi } from '../../api'
 
-const props = defineProps<{ modelValue: string | string[]; tableData?: { row?: AssigneeItem } }>()
+const props = defineProps<{
+  modelValue: string | string[]
+  tableData?: { row?: AssigneeItem }
+}>()
 const emit = defineEmits(['update:modelValue'])
+
+const { getUserTree } = useFlowUserApi()
 
 const selectValue = computed({
   get() {
@@ -42,7 +47,7 @@ watch(
     if (!['dept', 'post', 'user'].includes(val!))
       return
     loading.value = true
-    getUserList(val === 'user' ? '' : val).then((res) => {
+    getUserTree(val === 'user' ? '' : val).then((res) => {
       treeData.value = treeMap(res.data, (node) => {
         return {
           label: node.title,

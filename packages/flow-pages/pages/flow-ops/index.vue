@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import type { FlowFormProps } from '../../flow-form/composables'
-import type { FlowOps } from '../../api/flow-ops'
+import type { FlowOps } from '../../api'
 
 import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { getFlowOpsList } from '../../api/flow-ops'
+import { useFlowOpsApi } from '../../api'
 import { useFlowForm } from '../../flow-form/composables'
 
 const debugMode = useStorage('debugMode', false)
+
+const { getList } = useFlowOpsApi()
 
 const {
   bindVal,
@@ -18,7 +20,7 @@ const {
 } = useCrud({
   tableOption,
   crudOption: {
-    getList: getFlowOpsList,
+    getList,
   },
   searchForm: {
     status: 2,

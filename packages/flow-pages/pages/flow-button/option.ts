@@ -1,9 +1,9 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowButton } from '../../api/flow-button'
+import type { FlowButton } from '../../api'
 
 import { enumToDic } from '@yusui/utils'
 
-import { FlowButtonApproval, FlowButtonDisplay, FlowButtonStatus, FlowButtonType } from '../../api/flow-button'
+import { FlowButtonApproval, FlowButtonDisplay, FlowButtonStatus, FlowButtonType } from '../../api'
 
 export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = {
   rowKey: 'id',

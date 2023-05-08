@@ -1,31 +1,12 @@
-import type { Res } from '@yusui/types'
-import type { AxiosInstance, AxiosRequestConfig } from 'axios'
-
-import { ElMessage } from 'element-plus'
-import axios from 'axios'
-
-export * from 'vue-request'
-
-export const request = axios.create() as RequestInstance
-
-request.interceptors.response.use((response) => {
-  const res = response.data
-  if (res.code !== 200) {
-    ElMessage.error(res.msg)
-    return Promise.reject(res.msg)
-  }
-  return res
-})
-
-export interface RequestInstance extends AxiosInstance {
-  <T = Res>(config: AxiosRequestConfig): Promise<T>
-  <T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  request<T = Res>(config: AxiosRequestConfig): Promise<T>
-  get<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  delete<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  head<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  options<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  post<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  put<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  patch<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-}
+export * from './flow-button'
+export * from './flow-category'
+export * from './common-comment'
+export * from './flow-definition'
+export * from './flow-deploy'
+export * from './flow-ops'
+export * from './flow-param'
+export * from './flow-task'
+export * from './flow-template'
+export * from './flow-user'
+export * from './form-template'
+export * from './table-template'

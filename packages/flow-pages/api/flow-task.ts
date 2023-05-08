@@ -1,8 +1,9 @@
-import type { ResData } from '@yusui/types'
+import type { Page, ResData, ResRecords } from '@yusui/types'
 import type { FlowFormData } from '@yusui/flow-design'
 import type { FlowDeploy } from './flow-deploy'
+import type { FlowOps } from './flow-ops'
 
-import { request } from '.'
+import { useConfigProvider } from '../composables'
 
 export const enum TaskStatus {
   '已办' = 1,
@@ -159,47 +160,66 @@ export interface ApprovalNode {
   children?: ApprovalNode[]
 }
 
-/** 获取流程详情 */
-export function getFlowDetail(params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) {
-  return request.get<ResData<FlowDetail>>('/sapier-flow/flow-run/queryPublishFlowDetail', { params })
-}
-
-/** 获取审批节点 */
-export function getApprovalNodes(data: { flowKey?: string; variables?: FlowVariable[]; taskId?: string }) {
-  return request.post<ResData<ApprovalNode[]>>('/sapier-flow/flow-run/queryApprovalNode', data)
-}
-
-/** 发起 */
-export function startTask(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/startProcess', data)
-}
-
-/** 发送 */
-export function commitTask(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/commitTask', data)
-}
-
-/** 保存草稿 */
-export function saveDraft(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/saveDraft', data)
-}
-
-/** 撤销 */
-export function revokeTask(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/revokeTask', data)
-}
-
-/** 终止 */
-export function terminateTask(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/terminateFlow', data)
-}
-
-/** 撤回到发起 */
-export function withdrawTask(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/withdrawToStart', data)
-}
-
-/** 转办 */
-export function transferTask(data: CommitTaskData) {
-  return request.post('/sapier-flow/flow-run/transferTask', data)
+export function useFlowTaskApi() {
+  const { request } = useConfigProvider()
+  const url = {
+    /** 任务详情 */
+    detail: '/sapier-flow/flow-run/queryPublishFlowDetail',
+    /** 获取审批人节点树 */
+    approvalNode: '/sapier-flow/flow-run/queryApprovalNode',
+    /** 发起任务 */
+    start: '/sapier-flow/flow-run/startProcess',
+    /** 提交任务 */
+    commit: '/sapier-flow/flow-run/commitTask',
+    /** 保存草稿 */
+    draft: '/sapier-flow/flow-run/saveDraft',
+    /** 撤销 */
+    revoke: '/sapier-flow/flow-run/revokeTask',
+    /** 终止 */
+    terminate: '/sapier-flow/flow-run/terminateFlow',
+    /** 撤回到发起 */
+    withdraw: '/sapier-flow/flow-run/withdrawToStart',
+    /** 转办 */
+    transfer: '/sapier-flow/flow-run/transferTask',
+    /** 获取已部署流程 */
+    publish: '/sapier-flow/flow-run/queryPublishFlowList',
+    /** 待办/已办列表 */
+    todo: '/sapier-flow/flow-run/userTaskList',
+  }
+  /** 获取流程详情 */
+  const getFlowDetail = (params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
+  /** 获取审批节点 */
+  const getApprovalNode = (data: { flowKey?: string; variables?: FlowVariable[]; taskId?: string }) => request.post<ResData<ApprovalNode[]>>(url.approvalNode, data)
+  /** 发起 */
+  const startTask = (data: CommitTaskData) => request.post(url.start, data)
+  /** 发送 */
+  const commitTask = (data: CommitTaskData) => request.post(url.commit, data)
+  /** 保存草稿 */
+  const saveDraft = (data: CommitTaskData) => request.post(url.draft, data)
+  /** 撤销 */
+  const revokeTask = (data: CommitTaskData) => request.post(url.revoke, data)
+  /** 终止 */
+  const terminateTask = (data: CommitTaskData) => request.post(url.terminate, data)
+  /** 撤回到发起 */
+  const withdrawTask = (data: CommitTaskData) => request.post(url.withdraw, data)
+  /** 转办 */
+  const transferTask = (data: CommitTaskData) => request.post(url.transfer, data)
+  /** 已部署列表 */
+  const getPublishFlow = () => request.get<ResData<FlowDeploy[]>>(url.publish)
+  /** 待办列表 */
+  const getTodoList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.todo, { params })
+  return {
+    url,
+    getFlowDetail,
+    getApprovalNode,
+    startTask,
+    commitTask,
+    saveDraft,
+    revokeTask,
+    terminateTask,
+    withdrawTask,
+    transferTask,
+    getPublishFlow,
+    getTodoList,
+  }
 }

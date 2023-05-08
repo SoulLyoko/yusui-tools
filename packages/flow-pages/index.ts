@@ -1,4 +1,5 @@
 import type { App } from 'vue'
+import type { FlowPagesConfig } from './types'
 
 import {
   FlowButton,
@@ -13,6 +14,7 @@ import {
   FormTemplate,
   TableTemplate,
 } from '.'
+import { CONFIG_PROVIDE_KEY } from './constants'
 
 export { default as FlowButton } from './pages/flow-button/index.vue'
 export { default as FlowDefinition } from './pages/flow-definition/index.vue'
@@ -27,7 +29,7 @@ export { default as TableTemplate } from './pages/table-template/index.vue'
 export { default as FlowForm } from './flow-form/index.vue'
 
 export default {
-  install(app: App) {
+  install(app: App, config: FlowPagesConfig) {
     app.component('FlowButton', FlowButton)
     app.component('FlowDefinition', FlowDefinition)
     app.component('FlowDeploy', FlowDeploy)
@@ -39,5 +41,6 @@ export default {
     app.component('FormTemplate', FormTemplate)
     app.component('TableTemplate', TableTemplate)
     app.component('FlowWorkbench', FlowWorkbench)
+    app.provide(CONFIG_PROVIDE_KEY, config)
   },
 }
