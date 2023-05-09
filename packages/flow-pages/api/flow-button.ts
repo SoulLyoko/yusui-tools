@@ -46,6 +46,7 @@ export enum FlowButtonDisplay {
 export enum FlowButtonApproval {
   '不显示' = 'false',
   '审批人' = 'assignee',
+  '传阅人' = 'circulate',
   '抄送人' = 'copyUser',
   '意见' = 'comment',
 }

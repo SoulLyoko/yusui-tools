@@ -36,6 +36,7 @@ const formOption = {
   labelWidth: 70,
   column: [
     { label: '审批人', prop: 'assignee', span: 24, rules: [{ required: true, validator: approvalValidator }] },
+    { label: '传阅人', prop: 'circulate', span: 24 },
     { label: '抄送人', prop: 'copyUser', span: 24 /** rules: [{ required: true, message: '请选择抄送人' }] */ },
     { label: '意见', prop: 'comment', span: 24, rules: [{ required: true, message: '请填写意见' }] },
   ],
@@ -58,7 +59,8 @@ function approvalValidator(rule: any, value: any, callback: (error?: string) => 
 
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
-const showApproval = computed(() => activeBtn.value?.approval?.includes('assignee'))
+const showApprover = computed(() => activeBtn.value?.approval?.includes('assignee'))
+const showCirculator = computed(() => activeBtn.value?.approval?.includes('circulate'))
 const showCopyUser = computed(() => activeBtn.value?.approval?.includes('copyUser'))
 const submitLoading = ref(false)
 const treeLoading = ref(false)
@@ -76,17 +78,19 @@ watchEffect(async () => {
   approvalFormData.value = {
     assignee: {},
     outgoing: [],
+    circulate: '',
     copyUser: '',
     comment: formData.value.comment || defaultComment,
   }
 
   nextTick(() => {
-    defaults.value.assignee!.display = showApproval.value
-    defaults.value.copyUser!.display = activeBtn.value?.approval?.includes('copyUser')
+    defaults.value.assignee!.display = showApprover.value
+    defaults.value.circulator!.display = showCirculator.value
+    defaults.value.copyUser!.display = showCopyUser.value
     defaults.value.comment!.display = activeBtn.value?.approval?.includes('comment')
   })
 
-  if (showApproval.value) {
+  if (showApprover.value) {
     try {
       treeLoading.value = true
       const loadFromConfig = activeBtn.value.buttonKey !== 'flow_transfer'
@@ -193,9 +197,9 @@ function updateFormData() {
 </script>
 
 <template>
-  <el-dialog v-model="approvalVisible" :title="activeBtn.name" :width="showApproval ? '800px' : '500px'" append-to-body>
+  <el-dialog v-model="approvalVisible" :title="activeBtn.name" :width="showApprover ? '800px' : '500px'" append-to-body>
     <el-row :gutter="20">
-      <el-col v-if="showApproval" :span="10">
+      <el-col v-if="showApprover" :span="10">
         <ElTree
           ref="treeRef"
           v-loading="treeLoading"
@@ -217,7 +221,7 @@ function updateFormData() {
           </template>
         </ElTree>
       </el-col>
-      <el-col :span="showApproval ? 14 : 24">
+      <el-col :span="showApprover ? 14 : 24">
         <avue-form ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" :option="formOption">
           <template #assignee>
             <el-tag v-for="item in checkedApprovalNodes" :key="item.id" type="info">

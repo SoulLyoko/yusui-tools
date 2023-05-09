@@ -57,17 +57,22 @@ const { data: buttonList } = useFlowButtonApi().useList()
 watch(formDefaults, (defaults) => {
   if (!defaults)
     return
-
+  // 优先级字段
   if (defaults.priority)
     defaults.priority.dicData = fieldsDic.value
+  // 表单标题字段
   if (defaults.formTitle)
     defaults.formTitle.dicData = fieldsDic.value
+  // 审批人选择
   if (defaults.assignee?.children?.column?.[1])
     defaults.assignee.children.column[1].component = AssigneeSetter
-
+  // 传阅人选择
+  if (defaults.circulate?.children?.column?.[1]?.children?.column?.[1])
+    defaults.circulate.children.column[1].children.column[1].component = AssigneeSetter
+  // 表单配置
   if (defaults.formProperty)
     formData.value.formProperty = mergeFormProperty(allColumn.value, formData.value.formProperty || [])
-
+  // 按钮配置
   if (defaults.button) {
     defaults.button.children?.column?.forEach((col) => {
       if (col.prop === 'display')
@@ -75,7 +80,6 @@ watch(formDefaults, (defaults) => {
       if (col.prop === 'approval')
         col.dicData = flowButtonApprovalDic
     })
-
     formData.value.button = mergeButton(buttonList.value || [], formData.value.button || [])
   }
 })

@@ -122,6 +122,8 @@ export interface FlowComment {
 export interface CommitTaskData {
   /** 审批人集合 */
   assignee?: Record<string, string>
+  /** 传阅人集合 */
+  circulate?: string
   /** 审批意见 */
   comment?: string
   /** 抄送人 */
