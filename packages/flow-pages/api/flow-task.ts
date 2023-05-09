@@ -124,6 +124,8 @@ export interface CommitTaskData {
   assignee?: Record<string, string>
   /** 审批意见 */
   comment?: string
+  /** 抄送人 */
+  copyUser?: string
   /** 流程部署id */
   flowDeployId?: string
   /** 流程实例ID */
@@ -136,6 +138,16 @@ export interface CommitTaskData {
   variables?: FlowVariable[]
   /** 流向 */
   outgoing?: string[]
+}
+
+/** 获取审批节点的请求参数 */
+export interface GetApprovalNodeParams {
+  flowKey?: string
+  /** 表单数据 */
+  variables?: FlowVariable[]
+  taskId?: string
+  /** 是否从流程配置加载,false则返回全部 */
+  loadConfig?: boolean
 }
 
 /** 转换的表单数据 */
@@ -192,7 +204,7 @@ export function useFlowTaskApi() {
   /** 获取流程详情 */
   const getFlowDetail = (params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
   /** 获取审批节点 */
-  const getApprovalNode = (data: { flowKey?: string; variables?: FlowVariable[]; taskId?: string }) => request.post<ResData<ApprovalNode[]>>(url.approvalNode, data)
+  const getApprovalNode = (data: GetApprovalNodeParams) => request.post<ResData<ApprovalNode[]>>(url.approvalNode, data)
   /** 发起 */
   const startTask = (data: CommitTaskData) => request.post(url.start, data)
   /** 发送 */

@@ -4,8 +4,6 @@ import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 import axios from 'axios'
 
-export * from 'vue-request'
-
 export const request = axios.create({ baseURL: '/api' }) as RequestInstance
 export const dicRequest = axios.create({ baseURL: '/api' }) as RequestInstance
 

@@ -13,8 +13,7 @@ const {
   crudStateRefs: { formData },
   getDataList,
   beforeOpen,
-  beforeSave,
-  beforeUpdate,
+  beforeSubmit,
 } = useCrud({
   crudOption: useTableTemplateApi(),
   tableOption,
@@ -29,10 +28,7 @@ beforeOpen((type) => {
   else
     formData.value.tableFields = JSON.parse(formData.value.tableFields as string)
 })
-beforeSave((row) => {
-  row.tableFields = JSON.stringify(row.tableFields)
-})
-beforeUpdate((row) => {
+beforeSubmit((row) => {
   row.tableFields = JSON.stringify(row.tableFields)
 })
 

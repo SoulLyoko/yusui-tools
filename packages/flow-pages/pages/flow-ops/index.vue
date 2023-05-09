@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FlowFormProps } from '../../flow-form/composables'
+import type { FlowFormProps } from '../../composables'
 import type { FlowOps } from '../../api'
 
 import { ref } from 'vue'
@@ -8,7 +8,7 @@ import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
 import { useFlowOpsApi } from '../../api'
-import { useFlowForm } from '../../flow-form/composables'
+import { useFlowForm } from '../../composables'
 
 const debugMode = useStorage('debugMode', false)
 

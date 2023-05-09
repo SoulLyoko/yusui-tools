@@ -9,6 +9,7 @@ import InternalForm from './components/internal-form.vue'
 import ApprovalForm from './components/approval-form.vue'
 import FlowTrack from './components/flow-track.vue'
 import ButtonList from './components/button-list.vue'
+import UploadTable from './components/upload-table.vue'
 
 const props = defineProps(useProps())
 const emit = defineEmits(useEmits())
@@ -76,7 +77,9 @@ async function onSubmit() {
           <InternalForm ref="formRef" v-model="formData" :flow-detail="flowDetail" />
         </el-tab-pane>
 
-        <el-tab-pane label="附件资料" name="file" lazy />
+        <el-tab-pane label="附件资料" name="file" lazy>
+          <UploadTable :flow-detail="flowDetail" />
+        </el-tab-pane>
 
         <el-tab-pane label="流程跟踪" name="track" lazy>
           <FlowTrack :flow-detail="flowDetail" />

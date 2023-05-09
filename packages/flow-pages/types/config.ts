@@ -1,8 +1,22 @@
 import type { Res } from '@yusui/types'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
+import type { FlowFile } from '../api'
 
 export interface FlowPagesConfig {
   request: RequestInstance
+  upload: {
+    action?: string
+    headers?: object
+    preview?: (row: FlowFile, list: FlowFile[]) => void
+    download?: (row: FlowFile, list: FlowFile[]) => void
+    props?: {
+      fileName?: string
+      fileType?: string
+      fileSize?: string
+      fileUrl?: string
+      res?: string
+    }
+  }
 }
 
 export interface RequestInstance extends AxiosInstance {
@@ -16,4 +30,7 @@ export interface RequestInstance extends AxiosInstance {
   post<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
   put<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
   patch<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
+  postForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
+  putForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
+  patchForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
 }

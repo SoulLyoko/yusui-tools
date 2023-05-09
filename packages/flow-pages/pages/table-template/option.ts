@@ -34,7 +34,7 @@ export const tableOption: AvueCrudOption<TableTemplate> = {
             prop: 'type',
             type: 'select',
             filterable: true,
-            allowCreated: true,
+            allowCreate: true,
             defaultFirstOption: true,
             dicData: enumToDic(FieldType),
           },

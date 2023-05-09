@@ -5,6 +5,7 @@ import type { ApprovalNode } from '../../api'
 import { ElTree } from 'element-plus'
 import { computed, nextTick, ref, watchEffect } from 'vue'
 import { findTree, treeMap, uuid } from '@yusui/utils'
+import { Icon } from '@iconify/vue'
 
 import { useFlowTaskApi } from '../../api'
 import { asyncValidate } from '../../utils'
@@ -26,6 +27,8 @@ const { formData, approvalFormData, activeBtn, approvalVisible, formVariables, f
 
 const approvalNodes = ref<ApprovalNode[]>([])
 const checkedApprovalNodes = ref<ApprovalNode[]>([])
+const copyUserNodes = ref<ApprovalNode[]>([])
+const selectedCopyUser = ref<string[]>([])
 const formRef = ref<AvueFormInstance>()
 const defaults = ref<AvueFormDefaults>({})
 const formOption = {
@@ -33,7 +36,7 @@ const formOption = {
   labelWidth: 70,
   column: [
     { label: '审批人', prop: 'assignee', span: 24, rules: [{ required: true, validator: approvalValidator }] },
-    { label: '抄送人', prop: 'copyUser', span: 24, rules: [{ required: true, message: '请选择抄送人' }] },
+    { label: '抄送人', prop: 'copyUser', span: 24 /** rules: [{ required: true, message: '请选择抄送人' }] */ },
     { label: '意见', prop: 'comment', span: 24, rules: [{ required: true, message: '请填写意见' }] },
   ],
 }
@@ -56,6 +59,7 @@ function approvalValidator(rule: any, value: any, callback: (error?: string) => 
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
 const showApproval = computed(() => activeBtn.value?.approval?.includes('assignee'))
+const showCopyUser = computed(() => activeBtn.value?.approval?.includes('copyUser'))
 const submitLoading = ref(false)
 const treeLoading = ref(false)
 
@@ -66,10 +70,13 @@ watchEffect(async () => {
   const { taskId } = flowDetail.value?.task || {}
   approvalNodes.value = []
   checkedApprovalNodes.value = []
+  copyUserNodes.value = []
+  selectedCopyUser.value = []
   const defaultComment = taskId ? '' : '发起'
   approvalFormData.value = {
     assignee: {},
     outgoing: [],
+    copyUser: '',
     comment: formData.value.comment || defaultComment,
   }
 
@@ -82,7 +89,8 @@ watchEffect(async () => {
   if (showApproval.value) {
     try {
       treeLoading.value = true
-      const res = await getApprovalNode({ flowKey, variables: formVariables.value, taskId })
+      const loadFromConfig = activeBtn.value.buttonKey !== 'flow_transfer'
+      const res = await getApprovalNode({ flowKey, variables: formVariables.value, taskId, loadConfig: loadFromConfig })
       approvalNodes.value = treeMap(res.data ?? [], (item, index, parent) => {
         const id = item.id || uuid()
         item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
@@ -97,6 +105,16 @@ watchEffect(async () => {
     finally {
       treeLoading.value = false
     }
+  }
+
+  if (showCopyUser.value) {
+    const res = await getApprovalNode({ flowKey, variables: formVariables.value, taskId, loadConfig: false })
+    copyUserNodes.value = treeMap(res.data?.[0]?.children ?? [], (item) => {
+      // TODO: 改用userId
+      // const id = item.type === 'user' ? item.userId : (item.id || uuid())
+      const id = item.id || uuid()
+      return { ...item, label: item.title, disabled: item.type !== 'user' && !item.children?.length }
+    })
   }
 })
 
@@ -193,7 +211,7 @@ function updateFormData() {
         >
           <template #default="{ data }">
             <div>
-              <v-icon :icon="iconMap[data.type]" style="display: inline-block" />
+              <Icon :icon="iconMap[data.type]" style="display: inline-block" />
               <span>{{ data.title }}</span>
             </div>
           </template>
@@ -207,7 +225,15 @@ function updateFormData() {
             </el-tag>
           </template>
           <template #copyUser>
-            <!-- <user-select v-model="approvalFormData.copyUser" w-full multiple></user-select> -->
+            <el-tree-select
+              v-model="selectedCopyUser"
+              :data="copyUserNodes"
+              node-key="id"
+              multiple
+              show-checkbox
+              clearable
+              @update:modelValue="approvalFormData.copyUser = $event.join(',')"
+            />
           </template>
           <template #comment>
             <CommonComments v-model="approvalFormData.comment" />

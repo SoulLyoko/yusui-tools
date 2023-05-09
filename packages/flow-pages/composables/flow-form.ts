@@ -1,12 +1,12 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Emits, Props } from '../types'
+import type { Emits, Props } from '../flow-form/types'
 
 import { computed, defineAsyncComponent, getCurrentInstance, h, ref, render, unref } from 'vue'
 import { isFunction, isNil, omitBy, overSome } from 'lodash-es'
 import { ElDialog, ElDrawer } from 'element-plus'
 import { serialize } from '@yusui/utils'
 
-import FlowForm from '../index.vue'
+import FlowForm from '../flow-form/index.vue'
 
 export type UseFlowFormType = 'dialog' | 'drawer' | 'window'
 

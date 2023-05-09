@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@iconify/vue": "4.0.0",
-    "@smallwei/avue": "^3.2.12",
+    "@smallwei/avue": "^3.2.15",
     "@vueuse/core": "^9.13.0",
     "element-plus": "^2.3.3",
     "lodash-es": "^4.17.21",

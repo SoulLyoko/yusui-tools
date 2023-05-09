@@ -24,7 +24,7 @@
     "vue-request": "^2.0.0-rc.4"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.12",
+    "@smallwei/avue": "^3.2.15",
     "element-plus": "^2.3.2",
     "sass": "^1.60.0",
     "vue": "^3.2.47"

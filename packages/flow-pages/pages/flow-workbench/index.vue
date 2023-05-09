@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { FlowDeploy, FlowTask } from '../../api'
-import type { FlowFormProps } from '../../flow-form/composables'
+import type { FlowFormProps } from '../../composables'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
 
 import { useFlowTaskApi } from '../../api'
-import { useFlowForm } from '../../flow-form/composables'
+import { useFlowForm } from '../../composables'
 import { tableOption } from './option'
 
 const flowList = ref<FlowDeploy[]>([])

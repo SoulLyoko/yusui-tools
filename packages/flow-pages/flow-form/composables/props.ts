@@ -18,7 +18,7 @@ export function useProps() {
     activeBtn: { type: Object as PropType<FlowButton>, default: () => ({}) },
     /** 审批表单 */
     approvalFormData: {
-      type: Object as PropType<Pick<CommitTaskData, 'assignee' | 'outgoing' | 'comment'>>,
+      type: Object as PropType<Pick<CommitTaskData, 'assignee' | 'outgoing' | 'comment' | 'copyUser'>>,
       default: () => ({}),
     },
     /** 流程key */

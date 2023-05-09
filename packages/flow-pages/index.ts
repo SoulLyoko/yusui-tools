@@ -1,6 +1,8 @@
 import type { App } from 'vue'
 import type { FlowPagesConfig } from './types'
 
+import { merge } from 'lodash-es'
+
 import {
   FlowButton,
   FlowDefinition,
@@ -14,7 +16,7 @@ import {
   FormTemplate,
   TableTemplate,
 } from '.'
-import { CONFIG_PROVIDE_KEY } from './constants'
+import { CONFIG_DEFAULT, CONFIG_PROVIDE_KEY } from './constants'
 
 export { default as FlowButton } from './pages/flow-button/index.vue'
 export { default as FlowDefinition } from './pages/flow-definition/index.vue'
@@ -41,6 +43,6 @@ export default {
     app.component('FormTemplate', FormTemplate)
     app.component('TableTemplate', TableTemplate)
     app.component('FlowWorkbench', FlowWorkbench)
-    app.provide(CONFIG_PROVIDE_KEY, config)
+    app.provide(CONFIG_PROVIDE_KEY, merge(CONFIG_DEFAULT, config))
   },
 }
