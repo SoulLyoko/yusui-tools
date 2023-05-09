@@ -24,6 +24,9 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
           isSort: true, // 是否携带排序参数
           delConfirm: true, // 删除前是否提示确认
           clearSelection: true, // 获取数据后是否清除选择
+          saveSuccessMsg: '保存成功',
+          updateSuccessMsg: '保存成功',
+          delSuccessMsg: '删除成功',
         },
         pageOption: {
           total: 0, // 总条数

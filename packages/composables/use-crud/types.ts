@@ -21,13 +21,19 @@ export interface CrudOption<T, P> {
   /** 每页条数key */
   sizeKey: string
   /** 是否携带分页参数 */
-  isPage: Boolean
+  isPage: boolean
   /** 是否携带排序参数 */
-  isSort: Boolean
+  isSort: boolean
   /** 删除前是否提示确认 */
-  delConfirm: Boolean
+  delConfirm: boolean
   /** 获取数据后是否清除选择 */
-  clearSelection: Boolean
+  clearSelection: boolean
+  /** 新增成功提示 */
+  saveSuccessMsg: string
+  /** 编辑成功提示 */
+  updateSuccessMsg: string
+  /** 删除成功提示 */
+  delSuccessMsg: string
 }
 
 export interface SortOption {
@@ -61,6 +67,8 @@ export type Emitter<T, P> = EmitterAsync<{
   afterSave: any
   beforeUpdate: T
   afterUpdate: any
+  beforeSubmit: T
+  afterSubmit: any
   beforeDel: T
   afterDel: any
   beforeBatchDel: T[]

@@ -30,6 +30,14 @@ export function useHooks<T, P>() {
   const afterUpdate = (cb: (res: any) => Promise<any> | any | void) => {
     emitter.on('afterUpdate', async (...arg) => await cb?.(...arg))
   }
+  /** 新增和更新数据前，可对row内的数据进行修改 beforeSubmit((row)=>{})  */
+  const beforeSubmit = (cb: (row: T) => Promise<any> | any | void) => {
+    emitter.on('beforeSubmit', async (...arg) => await cb?.(...arg))
+  }
+  /** 新增和更新数据后 afterSubmit((res)=>{})  */
+  const afterSubmit = (cb: (res: any) => Promise<any> | any | void) => {
+    emitter.on('afterSubmit', async (...arg) => await cb?.(...arg))
+  }
   /** 删除数据前 beforeDel((row)=>{})  */
   const beforeDel = (cb: (row: T) => Promise<any> | any | void) => {
     emitter.on('beforeDel', async (...arg) => await cb?.(...arg))
@@ -87,6 +95,8 @@ export function useHooks<T, P>() {
     afterSave,
     beforeUpdate,
     afterUpdate,
+    beforeSubmit,
+    afterSubmit,
     beforeDel,
     afterDel,
     beforeBatchDel,

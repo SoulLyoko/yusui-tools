@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * 图标选择组件
- * @prop {String} modelValue v-icon 的icon值
+ * @prop {String} modelValue Icon 的icon值
  */
 import { onUnmounted } from 'vue'
 import { useVModel } from '@vueuse/core'

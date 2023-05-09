@@ -77,6 +77,8 @@ describe('useCrud', () => {
     handleUpdate,
     beforeUpdate,
     afterUpdate,
+    beforeSubmit,
+    afterSubmit,
     handleDel,
     beforeDel,
     afterDel,
@@ -103,7 +105,9 @@ describe('useCrud', () => {
     const newAge = 60
     let saveRes: Res = {}
     beforeSave(row => (row.age = newAge))
+    beforeSubmit(row => (row.age = newAge))
     afterSave(res => (saveRes = res))
+    afterSubmit(res => (saveRes = res))
     await handleSave(saveRow, done, loading)
     expect(saveRes.msg).toBe('success')
     expect(saveRes.data.age).toEqual(newAge)
@@ -115,7 +119,9 @@ describe('useCrud', () => {
     const newAge = 66
     let updateRes: Res = {}
     beforeUpdate(row => (row.age = newAge))
+    beforeSubmit(row => (row.age = newAge))
     afterUpdate(res => (updateRes = res))
+    afterSubmit(res => (updateRes = res))
     await handleUpdate(updateRow, 0, done, loading)
     expect(updateRes.msg).toBe('success')
     expect(updateRes.data.age).toEqual(newAge)

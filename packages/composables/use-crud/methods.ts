@@ -65,17 +65,19 @@ export function useCrudMethods<T extends Data, P extends Data>({
     = options.handleSave
     ?? (async (row: T, done?: () => void, loading?: () => void) => {
       const data = cloneDeep({ ...crudState.formData, ...row })
-      const [err] = await to(emitter.emitAsync('beforeSave', data))
-      if (err !== null)
+      const [err1] = await to(emitter.emitAsync('beforeSave', data))
+      const [err2] = await to(emitter.emitAsync('beforeSubmit', data))
+      if (err1 !== null || err2 !== null)
         return loading?.()
-      const { rowKey, create } = crudState.crudOption
+      const { rowKey, create, saveSuccessMsg } = crudState.crudOption
       if (!create)
         return loading?.()
       delete data[rowKey]
       try {
         const res = await create(filterRow(data))
-        ElMessage.success('保存成功')
+        saveSuccessMsg && ElMessage.success(saveSuccessMsg)
         await emitter.emitAsync('afterSave', res)
+        await emitter.emitAsync('afterSubmit', res)
         done?.()
         return getDataList()
       }
@@ -95,16 +97,18 @@ export function useCrudMethods<T extends Data, P extends Data>({
     = options.handleUpdate
     ?? (async (row: T, index?: number, done?: () => void, loading?: () => void) => {
       const data = cloneDeep({ ...crudState.formData, ...row })
-      const [err] = await to(emitter.emitAsync('beforeUpdate', data))
-      if (err !== null)
+      const [err1] = await to(emitter.emitAsync('beforeUpdate', data))
+      const [err2] = await to(emitter.emitAsync('beforeSubmit', data))
+      if (err1 !== null || err2 !== null)
         return loading?.()
-      const { update } = crudState.crudOption
+      const { update, updateSuccessMsg } = crudState.crudOption
       if (!update)
         return loading?.()
       try {
         const res = await update(filterRow(data))
-        ElMessage.success('保存成功')
+        updateSuccessMsg && ElMessage.success(updateSuccessMsg)
         await emitter.emitAsync('afterUpdate', res)
+        await emitter.emitAsync('afterSubmit', res)
         done?.()
         return getDataList()
       }
@@ -124,13 +128,13 @@ export function useCrudMethods<T extends Data, P extends Data>({
       const [err] = await to(emitter.emitAsync('beforeDel', data))
       if (err !== null)
         return
-      const { rowKey, remove, delConfirm } = crudState.crudOption
+      const { rowKey, remove, delConfirm, delSuccessMsg } = crudState.crudOption
       if (!remove)
         return
       delConfirm && (await ElMessageBox.confirm('确认进行删除操作？', '提示', { type: 'warning' }))
       try {
         const res = await remove(data[rowKey])
-        ElMessage.success('删除成功')
+        delSuccessMsg && ElMessage.success(delSuccessMsg)
         await emitter.emitAsync('afterDel', res)
         return getDataList()
       }
@@ -148,7 +152,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
       const [err] = await to(emitter.emitAsync('beforeBatchDel', data))
       if (err !== null)
         return
-      const { rowKey, remove, delConfirm } = crudState.crudOption
+      const { rowKey, remove, delConfirm, delSuccessMsg } = crudState.crudOption
       if (!remove)
         return
       const length = data.length
@@ -161,7 +165,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
         .join(',')
       try {
         const res = await remove(ids)
-        ElMessage.success('删除成功')
+        delSuccessMsg && ElMessage.success(delSuccessMsg)
         await emitter.emitAsync('afterBatchDel', res)
         return getDataList()
       }
