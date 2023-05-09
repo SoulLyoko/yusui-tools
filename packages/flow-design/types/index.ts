@@ -2,6 +2,10 @@ export interface AssigneeItem {
   type?: string
   value?: string
 }
+export interface CirculateItem {
+  name?: string
+  assignee?: AssigneeItem[]
+}
 export interface ButtonItem {
   name?: string
   buttonKey?: string
@@ -84,6 +88,7 @@ export interface FlowFormData {
   inout?: string
   /** 人员配置 */
   assignee?: AssigneeItem[]
+  circulate?: CirculateItem[]
   /** 按钮配置 */
   button?: ButtonItem[]
   /** 执行监听 */

@@ -5,6 +5,7 @@ import {
   assigneeColumn,
   baseColumn,
   buttonColumn,
+  circulateColumn,
   formPropertyColumn,
   gatewayColumn,
   multiInstanceColumn,
@@ -20,6 +21,7 @@ import {
 export * from './assignee'
 export * from './base'
 export * from './button'
+export * from './circulate'
 export * from './executionListener'
 export * from './formProperty'
 export * from './gateway'
@@ -50,7 +52,8 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   ],
   userTask: [
     { label: '基本配置', prop: 'base', column: [...baseColumn, ...userTaskColumn] },
-    { label: '人员配置', prop: 'assignee', collapse: true, column: assigneeColumn },
+    { label: '人员配置', prop: 'assignee', column: assigneeColumn },
+    { label: '传阅配置', prop: 'circulate', collapse: false, column: circulateColumn },
     { label: '多实例配置', prop: 'multiInstance', collapse: false, column: multiInstanceColumn },
     { label: '按钮配置', prop: 'button', collapse: false, column: buttonColumn },
     { label: '表单配置', prop: 'formProperty', collapse: false, column: formPropertyColumn },
@@ -61,12 +64,12 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   ],
   serviceTask: [
     { label: '基本配置', prop: 'base', column: baseColumn },
-    { label: '服务配置', prop: 'service', collapse: true, column: serviceTaskColumn },
+    { label: '服务配置', prop: 'service', column: serviceTaskColumn },
     { label: '扩展属性', prop: 'property', collapse: false, column: propertyColumn },
   ],
   sequenceFlow: [
     { label: '基本配置', prop: 'base', column: baseColumn },
-    { label: '条件配置', prop: 'sequenceFlow', collapse: true, column: sequenceFlowColumn },
+    { label: '条件配置', prop: 'sequenceFlow', column: sequenceFlowColumn },
     { label: '扩展属性', prop: 'property', collapse: false, column: propertyColumn },
   ],
   parallelGateway: [
@@ -75,12 +78,12 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   ],
   process: [
     { label: '流程配置', prop: 'base', column: processColumn },
-    { label: '流水号配置', prop: 'serial', collapse: true, column: serialColumn },
+    { label: '流水号配置', prop: 'serial', column: serialColumn },
     { label: '扩展属性', prop: 'property', collapse: false, column: propertyColumn },
   ],
   // subProcess: [
   //   { label: "基本配置", prop: "base", column: baseColumn },
-  //   { label: "人员配置", prop: "assignee", collapse: true, column: assigneeColumn },
+  //   { label: "人员配置", prop: "assignee", column: assigneeColumn },
   //   { label: "多实例配置", prop: "multiInstance", collapse: false, column: multiInstanceColumn },
   //   { label: "扩展属性", prop: "property", collapse: false, column: propertyColumn }
   // ],
