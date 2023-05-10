@@ -41,7 +41,6 @@ export default defineConfig({
           text: 'Components',
           items: [
             { text: 'Start', link: '/components/index' },
-            { text: 'BasicContainer', link: '/components/basic-container/index' },
             { text: 'IconSelect', link: '/components/icon-select/index' },
             { text: 'VText', link: '/components/v-text/index' },
           ],

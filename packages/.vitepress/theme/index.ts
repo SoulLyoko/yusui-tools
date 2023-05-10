@@ -11,7 +11,6 @@ import { Icon } from '@iconify/vue'
 
 import components from '../components'
 import YSComponents from '../../components/index'
-import '../../components/styles/index.scss'
 import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'
 import { dicRequest, request } from './request'

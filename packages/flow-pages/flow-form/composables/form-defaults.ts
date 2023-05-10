@@ -2,13 +2,13 @@ import type { MaybeRef } from '@vueuse/core'
 import type { AvueFormDefaults } from '@smallwei/avue'
 import type { FlowDetail } from '../../api'
 
-import { isRef, nextTick, ref, watchEffect } from 'vue'
+import { nextTick, ref, unref, watchEffect } from 'vue'
 
-export function useFormDefaults(flowDetailRef: MaybeRef<FlowDetail>) {
+export function useFormDefaults(flowDetail: MaybeRef<FlowDetail>) {
   const defaults = ref<AvueFormDefaults>({})
+
   watchEffect(async () => {
-    const flowDetail = isRef(flowDetailRef) ? flowDetailRef.value : flowDetailRef
-    const { formProperty } = flowDetail?.properties || {}
+    const { formProperty } = unref(flowDetail)?.properties || {}
     if (!formProperty?.length)
       return
     await nextTick()

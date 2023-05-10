@@ -59,8 +59,8 @@ function approvalValidator(rule: any, value: any, callback: (error?: string) => 
 
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
-const showApprover = computed(() => activeBtn.value?.approval?.includes('assignee'))
-const showCirculator = computed(() => activeBtn.value?.approval?.includes('circulate'))
+const showAssignee = computed(() => activeBtn.value?.approval?.includes('assignee'))
+const showCirculate = computed(() => activeBtn.value?.approval?.includes('circulate'))
 const showCopyUser = computed(() => activeBtn.value?.approval?.includes('copyUser'))
 const submitLoading = ref(false)
 const treeLoading = ref(false)
@@ -84,13 +84,13 @@ watchEffect(async () => {
   }
 
   nextTick(() => {
-    defaults.value.assignee!.display = showApprover.value
-    defaults.value.circulator!.display = showCirculator.value
+    defaults.value.assignee!.display = showAssignee.value
+    defaults.value.circulate!.display = showCirculate.value
     defaults.value.copyUser!.display = showCopyUser.value
     defaults.value.comment!.display = activeBtn.value?.approval?.includes('comment')
   })
 
-  if (showApprover.value) {
+  if (showAssignee.value) {
     try {
       treeLoading.value = true
       const loadFromConfig = activeBtn.value.buttonKey !== 'flow_transfer'
@@ -197,9 +197,9 @@ function updateFormData() {
 </script>
 
 <template>
-  <el-dialog v-model="approvalVisible" :title="activeBtn.name" :width="showApprover ? '800px' : '500px'" append-to-body>
+  <el-dialog v-model="approvalVisible" :title="activeBtn.name" :width="showAssignee ? '800px' : '500px'" append-to-body>
     <el-row :gutter="20">
-      <el-col v-if="showApprover" :span="10">
+      <el-col v-if="showAssignee" :span="10">
         <ElTree
           ref="treeRef"
           v-loading="treeLoading"
@@ -221,7 +221,7 @@ function updateFormData() {
           </template>
         </ElTree>
       </el-col>
-      <el-col :span="showApprover ? 14 : 24">
+      <el-col :span="showAssignee ? 14 : 24">
         <avue-form ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" :option="formOption">
           <template #assignee>
             <el-tag v-for="item in checkedApprovalNodes" :key="item.id" type="info">
