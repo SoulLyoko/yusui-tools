@@ -1,3 +1,23 @@
+# [2.0.0-beta.32](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.31...v2.0.0-beta.32) (2023-05-10)
+
+
+### Bug Fixes
+
+* **components:** remove basic-container ([1d43d46](https://github.com/SoulLyoko/yusui-tools/commit/1d43d4651ccd755401a93ebdca859de947211465))
+* **flow-pages:** button handler ([c510f29](https://github.com/SoulLyoko/yusui-tools/commit/c510f2953bc78dc89cad5fe158930983d812af62))
+* **types:** avue-crud closeDialog ([7ad9aa9](https://github.com/SoulLyoko/yusui-tools/commit/7ad9aa916eb93ced4a9a4a58cf667bf779c132ff))
+
+
+### Features
+
+* **flow-design:** circulate option ([b8f9ee3](https://github.com/SoulLyoko/yusui-tools/commit/b8f9ee307e6377da9ed27420131f5be0e7b5e6be))
+* **flow-pages:** circulate ([e9b886f](https://github.com/SoulLyoko/yusui-tools/commit/e9b886f087d1d11230d3227fdfae25e7362b3e42))
+* **flow-pages:** flow file ([23c204b](https://github.com/SoulLyoko/yusui-tools/commit/23c204b09f268c3b3d69573180bcb058fcb3a6f4))
+* **flow-pages:** terminate,withdraw,transfer ([b6a8c49](https://github.com/SoulLyoko/yusui-tools/commit/b6a8c492fef2519017c6a5d4dc7e5a4210a5ca4c))
+* **useCrud:** beforeSubmit hook, successMsg ([36101ea](https://github.com/SoulLyoko/yusui-tools/commit/36101eaee77957a67c56ab295339b354dcd90be6))
+
+
+
 # [2.0.0-beta.31](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.30...v2.0.0-beta.31) (2023-05-04)
 
 
