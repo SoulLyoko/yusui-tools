@@ -1,3 +1,12 @@
+# [2.0.0-beta.33](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2023-05-10)
+
+
+### Bug Fixes
+
+* **plugins:** change env-dts output dir ([1bc3667](https://github.com/SoulLyoko/yusui-tools/commit/1bc36679dfa31c59f7b07a59f02d177352c28f3a))
+
+
+
 # [2.0.0-beta.32](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.31...v2.0.0-beta.32) (2023-05-10)
 
 
