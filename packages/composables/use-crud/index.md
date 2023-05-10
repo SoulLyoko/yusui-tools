@@ -82,6 +82,8 @@
 | afterSave      | Function | `afterSave((res)=>{})`             | 新增数据后                                   |
 | beforeUpdate   | Function | `beforeUpdate((row)=>{})`          | 更新数据前，可对 row 内的数据进行修改        |
 | afterUpdate    | Function | `afterUpdate((res)=>{})`           | 更新数据后                                   |
+| beforeSubmit   | Function | `beforeSubmit((row)=>{})`          | 新增/更新数据前，可对 row 内的数据进行修改   |
+| afterSubmit    | Function | `afterSubmit((res)=>{})`           | 新增/更新数据后                              |
 | beforeDel      | Function | `beforeDel((row)=>{})`             | 删除数据前                                   |
 | afterDel       | Function | `afterDel((res)=>{})`              | 删除数据后                                   |
 | beforeBatchDel | Function | `beforeBatchDel((selections)=>{})` | 批量删除前                                   |

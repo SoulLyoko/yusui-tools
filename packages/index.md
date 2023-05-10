@@ -4,7 +4,7 @@ layout: home
 hero:
   name: YusuiTools
   text: Collection Of Development Tools
-  tagline: Vue Components, Vite Plugins, JavaScript Utils, TypeScript Definitions
+  tagline: Vue Components, Vite Plugins, JavaScript Utils, TypeScript Definitions...
   actions:
     - theme: brand
       text: Get Started

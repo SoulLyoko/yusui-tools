@@ -23,7 +23,7 @@ VITE_TEST=test
 ```
 
 ```ts [env.d.ts]
-/// <reference types="@types/env-dts/index" />
+/// <reference types="@yusui/plugins/env" />
 ```
 
 ```ts [xxx.ts]
@@ -51,7 +51,7 @@ VITE_API_URL=http://localhost:3000
 
 :::code-group
 
-```ts [node_modules/@types/env-dts/index.d.ts]
+```ts [node_modules/@yusui/plugins/env.d.ts]
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }

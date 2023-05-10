@@ -25,8 +25,8 @@ export function createEnvDts(): Plugin {
     configResolved(config) {
       const { env, root } = config
       const template = generateTemplate(env)
-      const dtsPath = path.resolve(root, 'node_modules/@types/env-dts')
-      const filePath = path.resolve(dtsPath, 'index.d.ts')
+      const dtsPath = path.resolve(root, 'node_modules/@yusui/plugins')
+      const filePath = path.resolve(dtsPath, 'env.d.ts')
       if (!fs.existsSync(dtsPath))
         fs.mkdirSync(dtsPath, { recursive: true })
 
