@@ -1,3 +1,13 @@
+# [2.0.0-beta.35](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2023-05-11)
+
+
+### Bug Fixes
+
+* **plugins:** dependencies ([6555c62](https://github.com/SoulLyoko/yusui-tools/commit/6555c6289c007e91c0926c01692c65c2c9288a24))
+* **plugins:** export setup-extend ([9806713](https://github.com/SoulLyoko/yusui-tools/commit/9806713e28dd89bde9e888c09501aad0ddf31b64))
+
+
+
 # [2.0.0-beta.34](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2023-05-11)
 
 
