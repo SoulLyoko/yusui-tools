@@ -1,3 +1,18 @@
+# [2.0.0-beta.34](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.33...v2.0.0-beta.34) (2023-05-11)
+
+
+### Bug Fixes
+
+* **avuePatch:** remove some methods ([07ed565](https://github.com/SoulLyoko/yusui-tools/commit/07ed5659bb1fc79d5e1b1b07844e545f71de7de7))
+* **plugins:** rename script-extend to setup-extend ([5cef39e](https://github.com/SoulLyoko/yusui-tools/commit/5cef39eed5cbe74135cb0ffec092a8c9072383d5))
+
+
+### Features
+
+* **plugins:** scriptExtend ([c6bc4c0](https://github.com/SoulLyoko/yusui-tools/commit/c6bc4c03aac19837fc679f353e98eb220d6e4aaf))
+
+
+
 # [2.0.0-beta.33](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.32...v2.0.0-beta.33) (2023-05-10)
 
 
