@@ -1,3 +1,12 @@
+# [2.0.0-beta.36](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.35...v2.0.0-beta.36) (2023-05-11)
+
+
+### Bug Fixes
+
+* **setup-extend:** fix transform error ([dbf100f](https://github.com/SoulLyoko/yusui-tools/commit/dbf100f4242f36251e95574a44f56413bd191363))
+
+
+
 # [2.0.0-beta.35](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.34...v2.0.0-beta.35) (2023-05-11)
 
 
