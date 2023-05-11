@@ -32,7 +32,7 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.23",
     "uvue-crud": "^2.0.5",
     "vue": "^3.2.47"
   }

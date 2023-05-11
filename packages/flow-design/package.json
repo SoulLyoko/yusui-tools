@@ -23,11 +23,11 @@
     "dist"
   ],
   "dependencies": {
-    "@antv/layout": "^0.3.18",
+    "@antv/layout": "^0.3.20",
     "@iconify/vue": "4.0.0",
-    "@logicflow/core": "^1.2.1",
-    "@logicflow/extension": "^1.2.1",
-    "@vueuse/core": "^9.13.0",
+    "@logicflow/core": "^1.2.5",
+    "@logicflow/extension": "^1.2.5",
+    "@vueuse/core": "^10.1.2",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "dagre": "^0.8.5",
@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@smallwei/avue": "^3.2.15",
-    "element-plus": "^2.3.2",
-    "sass": "^1.60.0",
+    "element-plus": "^2.3.4",
+    "sass": "^1.62.1",
     "vue": "^3.2.47"
   }
 }
