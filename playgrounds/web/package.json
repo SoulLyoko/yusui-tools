@@ -10,7 +10,7 @@
     "@vueuse/core": "^9.13.0",
     "element-plus": "^2.3.3",
     "lodash-es": "^4.17.21",
-    "vue": "^3.2.47"
+    "vue": "^3.3.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
