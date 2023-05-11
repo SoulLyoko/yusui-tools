@@ -1,4 +1,4 @@
-# scriptExtend
+# setupExtend
 
 支持在 script setup 上定义 `name` 和 `inheritAttrs`
 
@@ -8,10 +8,10 @@
 
 ```js [vite.config.js]
 import Vue from '@vitejs/plugin-vue'
-import { scriptExtend } from '@yusui/plugins'
+import { setupExtend } from '@yusui/plugins'
 
 export default {
-  plugins: [Vue(), scriptExtend()]
+  plugins: [Vue(), setupExtend()]
 }
 ```
 

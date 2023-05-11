@@ -3,7 +3,7 @@ import type { Plugin } from 'vite'
 import { compileScript, parse } from '@vue/compiler-sfc'
 import MagicString from 'magic-string'
 
-export function transformScriptExtend(code: string, id: string) {
+export function transformSetupExtend(code: string, id: string) {
   const { descriptor } = parse(code)
   if (descriptor.script && !descriptor.scriptSetup)
     return null
@@ -37,14 +37,14 @@ export default defineComponent({
   }
 }
 
-export function scriptExtend(): Plugin {
+export function setupExtend(): Plugin {
   return {
-    name: 'vite:setup-name-support',
+    name: 'vite-plugin-setup-extend',
     enforce: 'pre',
     async transform(code, id) {
       if (!/\.vue$/.test(id))
         return null
-      return transformScriptExtend.call(this, code, id)
+      return transformSetupExtend(code, id)
     },
   }
 }
