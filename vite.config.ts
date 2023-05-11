@@ -1,8 +1,8 @@
 import path from 'node:path'
+import { execSync } from 'node:child_process'
 
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import fs from 'fs-extra'
 
 const external = [
   /@yusui/,
@@ -25,6 +25,8 @@ const external = [
   'astring',
   'json5',
   '@antv/layout',
+  '@vue/compiler-sfc',
+  'magic-string',
 ]
 const input = {
   'form-design': path.resolve(__dirname, 'packages/form-design/index.ts'),
@@ -42,12 +44,9 @@ export const alias = Object.entries(input)
   .concat({ find: '@yusui/flow-pages', replacement: path.resolve(__dirname, 'packages/flow-pages/index.ts') })
 
 export default defineConfig(({ mode }) => {
-  if (mode === 'production') {
-    fs.removeSync('dist')
-    Object.keys(input).forEach((name) => {
-      fs.removeSync(path.join('packages', name, 'dist'))
-    })
-  }
+  if (mode === 'production')
+    execSync('pnpm remove:dist')
+
   return {
     plugins: [Vue()],
     resolve: {

@@ -21,6 +21,7 @@
     "lint": "eslint .",
     "postinstall": "npx simple-git-hooks",
     "release": "bump && esno scripts/release.ts",
+    "remove:dist": "esno scripts/remove-dist.ts",
     "test": "vitest",
     "typecheck": "vue-tsc --noEmit",
     "uvm": "pnpm -F app uvm"
