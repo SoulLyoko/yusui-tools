@@ -5,7 +5,7 @@ import MagicString from 'magic-string'
 
 export function transformSetupExtend(code: string, id: string) {
   const { descriptor } = parse(code)
-  if (descriptor.script && !descriptor.scriptSetup)
+  if (descriptor.script || !descriptor.scriptSetup)
     return null
 
   let s: MagicString | undefined
