@@ -29,7 +29,12 @@ export default {
         await import('@yusui/flow-design').then(module => app.component('FlowViewer', module.FlowViewer))
         await import('@yusui/flow-design').then(module => app.component('FlowModeler', module.FlowModeler))
         await import('@yusui/form-design').then(module => app.component('FormDesign', module.FormDesign))
+        const { FormDesign } = await import('@yusui/form-design')
+        const { FlowModeler, FlowViewer } = await import('@yusui/flow-design')
         await import('@yusui/flow-pages').then(module => app.use(module.default, {
+          FlowModeler,
+          FlowViewer,
+          FormDesign,
           request,
           upload: {
             action: import.meta.env.VITE_UPLOAD_URL,

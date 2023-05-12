@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { FormDesign, form, jsonParse, jsonStringify } from '@yusui/form-design'
+import { form, jsonParse, jsonStringify } from '@yusui/form-design'
+
+import { useConfigProvider } from '../../composables'
 
 const props = defineProps<{
   modelValue?: string
@@ -8,6 +10,8 @@ const props = defineProps<{
   fields?: string
 }>()
 const emit = defineEmits(['update:modelValue'])
+
+const { FormDesign } = useConfigProvider()
 
 const formDesignOptions = computed({
   get() {

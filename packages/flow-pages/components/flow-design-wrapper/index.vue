@@ -4,10 +4,11 @@ import type { ButtonItem, FlowFormData, FormPropertyItem } from '@yusui/flow-des
 import type { FlowButton, FlowHistory } from '../../api'
 
 import { computed, ref, watch } from 'vue'
-import { FlowModeler, FlowViewer, defaultGraphData } from '@yusui/flow-design'
+import { defaultGraphData } from '@yusui/flow-design'
 import { enumToDic } from '@yusui/utils'
 
 import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonApi, useFlowParamApi } from '../../api'
+import { useConfigProvider } from '../../composables'
 import { options } from './options'
 import AssigneeSetter from './assignee-setter.vue'
 
@@ -18,6 +19,8 @@ const props = defineProps<{
   flowHistory?: FlowHistory[]
 }>()
 const emit = defineEmits(['update:modelValue'])
+
+const { FlowViewer, FlowModeler } = useConfigProvider()
 
 const formData = ref<FlowFormData>({})
 const formDefaults = ref<AvueFormDefaults>({})
