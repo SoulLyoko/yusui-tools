@@ -1,3 +1,12 @@
+# [2.0.0-beta.37](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.36...v2.0.0-beta.37) (2023-05-12)
+
+
+### Bug Fixes
+
+* **flow-pages:** update flowPagesConfig ([2bdfb80](https://github.com/SoulLyoko/yusui-tools/commit/2bdfb804bbdd96ede68c8b0b6c2dd9d0f7ac100e))
+
+
+
 # [2.0.0-beta.36](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.35...v2.0.0-beta.36) (2023-05-11)
 
 
