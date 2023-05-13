@@ -18,7 +18,7 @@
       "preact": ["node_modules/preact"],
       "vue-router": ["node_modules/vue-router"]
     },
-    "types": ["vitest/globals", "@dcloudio/types", "element-plus/global"]
+    "types": ["vitest/globals", "@dcloudio/types"]
   },
   "include": ["packages", "packages/.vitepress/**/*"],
   "exclude": ["playgrounds"]

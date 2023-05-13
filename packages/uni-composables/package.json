@@ -34,6 +34,6 @@
   "devDependencies": {
     "postcss": "^8.4.23",
     "uvue-crud": "^2.0.5",
-    "vue": "^3.3.0"
+    "vue": "^3.3.2"
   }
 }

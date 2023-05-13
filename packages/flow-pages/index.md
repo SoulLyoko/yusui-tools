@@ -8,7 +8,9 @@ pnpm i @yusui/flow-pages @yusui/flow-design @yusui/form-design
 
 ## Usage
 
-```ts
+:::code-group
+
+```ts [main.ts]
 import FlowPages from '@yusui/flow-pages'
 import { FlowModeler, FlowViewer } from '@yusui/flow-design'
 import { FormDesign } from '@yusui/form-design'
@@ -31,6 +33,19 @@ app.use(FlowPages, {
   },
 })
 ```
+
+```ts [vite.config.ts]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  optimizeDeps: {
+    exclude: ['@yusui/flow-pages'],
+  }
+})
+```
+
+:::
+
 
 
 ## TypeDefinition

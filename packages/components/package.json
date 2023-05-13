@@ -32,6 +32,6 @@
   "devDependencies": {
     "element-plus": "^2.3.4",
     "sass": "^1.62.1",
-    "vue": "^3.3.0"
+    "vue": "^3.3.2"
   }
 }
