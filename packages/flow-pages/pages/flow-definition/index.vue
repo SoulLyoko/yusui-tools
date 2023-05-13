@@ -4,6 +4,7 @@ import type { FlowDefinition } from '../../api'
 import { ref, watchEffect } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
+import { Icon } from '@iconify/vue'
 
 import { tableOption } from './option'
 import { useFlowDefinitionApi } from '../../api'
@@ -67,7 +68,7 @@ async function handleDeploy(row: FlowDefinition) {
       </el-button>
     </template>
     <template #flowIcon="{ row }">
-      <v-icon :icon="row.flowIcon" width="25" style="display: inline" />
+      <Icon :icon="row.flowIcon" width="25" style="display: inline" />
     </template>
   </avue-crud>
 </template>

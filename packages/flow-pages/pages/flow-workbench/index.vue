@@ -4,6 +4,7 @@ import type { FlowFormProps } from '../../composables'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
+import { Icon } from '@iconify/vue'
 
 import { useFlowTaskApi } from '../../api'
 import { useFlowForm } from '../../composables'
@@ -62,7 +63,7 @@ const flowStatusDic = [
         </template>
         <div class="flow-list">
           <div v-for="item in flowList" :key="item.flowKey" class="flow-item" @click="openFlow(item)">
-            <v-icon class="flow-icon" :icon="item.flowIcon" width="60" />
+            <Icon class="flow-icon" :icon="item.flowIcon" width="60" />
             <div class="flow-name">
               {{ item.flowName }}
             </div>

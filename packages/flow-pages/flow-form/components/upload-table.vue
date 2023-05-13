@@ -71,7 +71,7 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
         :action="action"
         :headers="headers"
         :show-file-list="false"
-        @success="onUploadSuccess"
+        @success="onUploadSuccess($event)"
       >
         <el-button type="primary" icon="el-icon-upload">
           点击上传

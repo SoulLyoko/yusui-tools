@@ -141,7 +141,7 @@ function handleClose() {
 <template>
   <el-dialog v-model="visible" fullscreen :show-close="false" destroy-on-close @close="handleClose">
     <template #header>
-      <el-row align="center" justify="center">
+      <el-row justify="center">
         <el-col :span="5">
           <div>
             <span>流程设计</span>
@@ -170,7 +170,7 @@ function handleClose() {
           <el-button :disabled="activeStep === 0" :loading="loading" type="primary" @click="activeStep--">
             上一步
           </el-button>
-          <el-button :disabled="activeStep === steps.length - 1" type="primary" :loading="loading" @click="saveAndNext">
+          <el-button :disabled="activeStep === steps.length - 1" type="primary" :loading="loading" @click="saveAndNext()">
             下一步
           </el-button>
           <el-button @click="handleClose">

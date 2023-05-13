@@ -3,6 +3,7 @@ import type { FlowDetail } from '../../api'
 
 import { computed, ref } from 'vue'
 import { durationFormat } from '@yusui/utils'
+import { Icon } from '@iconify/vue'
 
 import { useFlowParamApi } from '../../api'
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
@@ -53,7 +54,7 @@ function findHandleTypeDicItem(value: number) {
 <template>
   <el-radio-group v-model="activeType">
     <el-radio-button v-for="item in typeList" :key="item.label" :label="item.label">
-      <v-icon :icon="item.icon" />
+      <Icon :icon="item.icon" />
     </el-radio-button>
   </el-radio-group>
   <div class="flow-track">

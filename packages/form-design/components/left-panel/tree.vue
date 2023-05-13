@@ -69,9 +69,9 @@ function onNodeDrop() {
 }
 
 const actions = [
-  { name: 'copy', type: 'primary', icon: 'el-icon-copy-document', handler: onCopy },
-  { name: 'delete', type: 'danger', icon: 'el-icon-delete', handler: onRemove },
-  { name: 'clear', type: 'warning', icon: 'el-icon-folder-delete', handler: onClearChildren },
+  { name: 'copy', type: 'primary' as const, icon: 'el-icon-copy-document', handler: onCopy },
+  { name: 'delete', type: 'danger' as const, icon: 'el-icon-delete', handler: onRemove },
+  { name: 'clear', type: 'warning' as const, icon: 'el-icon-folder-delete', handler: onClearChildren },
 ]
 function getActionList(element: ElementTreeNode) {
   return actions.filter(e => showActions(element, e.name as DesignAction))
@@ -108,8 +108,8 @@ function showActions(element: ElementTreeNode, type: DesignAction) {
           <el-link
             v-for="action in getActionList(data)"
             :key="action.name"
-            v-bind="action"
             :underline="false"
+            v-bind="action"
             @click.stop="action.handler(node)"
           />
         </div>

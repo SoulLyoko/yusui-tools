@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { FlowButton, FlowDetail } from '../../api'
-import type { ButtonItem } from '@yusui/flow-design/types'
+import type { ButtonItem } from '@yusui/flow-design'
 
 import { computed } from 'vue'
 import { pick } from 'lodash-es'
+import { Icon } from '@iconify/vue'
 
 import { useFlowButtonApi } from '../../api'
 
@@ -49,7 +50,7 @@ const displayButtonList = computed(() => {
 
 <template>
   <el-button v-for="btn in displayButtonList" :key="btn.buttonKey" :type="btn.buttonType" @click="emit('click', btn)">
-    <v-icon :icon="btn.icon" />
+    <Icon :icon="btn.icon" />
     {{ btn.name }}
   </el-button>
 </template>
