@@ -1,35 +1,36 @@
 import type { VNode } from "vue";
+import Node from "element-plus/es/components/tree/src/model/node"
 
 declare module "@smallwei/avue" {
   export interface AvueTreeOption<T = any> {
-    // 是否展开节点
+    /** 是否展开节点 */
     defaultExpandAll?: boolean;
-    // 弹出框宽度
+    /** 弹出框宽度 */
     dialogWidth?: string;
-    // 自定义form表单，具体参考avue-form
+    /** 自定义form表单，具体参考avue-form*/
     formOption?: AvueFormOption<T>;
-    // 菜单栏
+    /** 菜单栏 */
     menu?: boolean;
-    // 新增按钮
+    /** 新增按钮 */
     addBtn?: boolean;
-    // 编辑按钮
+    /** 编辑按钮 */
     editBtn?: boolean;
-    // 修改按钮
+    /** 修改按钮 */
     delBtn?: boolean;
-    // 配置选项
+    /** 配置选项 */
     props?: TreeProps;
-    // 是否显示搜索框
+    /** 是否显示搜索框 */
     filter?: boolean;
   }
 
   export interface TreeProps {
-    // 指定节点标签为节点对象的某个属性值
+    /** 指定节点标签为节点对象的某个属性值 */
     label?: string;
-    // 弹窗添加节点的名称
+    /** 弹窗添加节点的名称 */
     labelText?: string;
-    // 指定子树为节点对象的某个属性值
+    /** 指定子树为节点对象的某个属性值 */
     children?: string;
-    // 指定节点选择框的值也作为节点的nodeKey
+    /** 指定节点选择框的值也作为节点的nodeKey */
     value?: string;
   }
 
@@ -47,14 +48,12 @@ declare module "@smallwei/avue" {
   }
   export interface AvueTreeSlots<T = any> {
     addBtn: () => VNode[];
-    menu: (arg: { node: { data: T } }) => VNode[];
-    default: (arg: { node: { data: T }; data: T }) => VNode[];
+    menu: (arg: { node: Node & { data: T } }) => VNode[];
+    default: (arg: { node: Node & { data: T }; data: T }) => VNode[];
   }
 
-  export const AvueTree: new () => {
-    $props: AvueTreeProps;
-    $slots: AvueTreeSlots;
-  };
+  export const AvueTree: new <T = any>(props: AvueTreeProps<T>) =>
+    { $slots: AvueTreeSlots<T> };
 
-  export type AvueTreeInstance = InstanceType<typeof AvueTree>;
+  export type AvueTreeInstance<T = any> = InstanceType<typeof AvueTree<T>>;
 }

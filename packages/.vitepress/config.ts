@@ -22,6 +22,7 @@ export default defineConfig({
           { text: '@yusui/flow-design流程设计器', link: '/flow-design/index' },
           { text: '@yusui/flow-pages工作流页面', link: '/flow-pages/index' },
           { text: '@yusui/plugins', link: '/plugins/index' },
+          { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
         ],
       },
@@ -101,6 +102,15 @@ export default defineConfig({
             { text: 'setupExtend', link: '/plugins/setup-extend/index' },
             { text: 'uniUIPatch', link: '/plugins/uni-ui-patch/index' },
             { text: 'uviewPatch', link: '/plugins/uview-patch/index' },
+          ],
+        },
+      ],
+      '/types': [
+        {
+          text: 'Types',
+          items: [
+            { text: 'Start', link: '/types/index' },
+            { text: 'avue', link: '/types/avue/index' },
           ],
         },
       ],

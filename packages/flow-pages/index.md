@@ -48,6 +48,6 @@ export default defineConfig({
 
 
 
-## TypeDefinition
+## Type Definitions
 
 <<< @/flow-pages/types/config.ts

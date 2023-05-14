@@ -12,10 +12,10 @@ declare module "@smallwei/avue" {
   export type CellEvent<T> = (row: any, column: TableColumnCtx<T>, cell: any, event: Event) => void;
   export type RowEvent<T> = (row: any, column: TableColumnCtx<T>, event: Event) => void;
   export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
-  export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
-  // export type AvueCrudDefaults<T = any, K = T extends object ? keyof T : string> = {
-  //   [key in K]?: AvueCrudColumn<T>;
-  // };
+  export type TableRow<T> = T & { $cellEdit: boolean, $index: number }
+  // export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
+  export type AvueCrudDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueCrudColumn<T>>;
+
   export interface PageOption {
     /** 总条数,如果为0的话不显示分页 */
     total?: number;
@@ -563,37 +563,50 @@ declare module "@smallwei/avue" {
 
   export interface AvueCrudSlots<T = any> {
     empty: () => VNode[];
-    expand: (arg: { row: T; index: number }) => VNode[];
-    menu: (arg: { row: T; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
-    "menu-form": (arg: { disabled: boolean; size: Size; type: FormType }) => VNode[];
+    expand: (props: { row: TableRow<T>; index: number }) => VNode[];
+    menu: (props: { row: TableRow<T>; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
+    "menu-form": (props: { disabled: boolean; size: Size; type: FormType }) => VNode[];
     header: () => VNode[];
     footer: () => VNode[];
     page: () => VNode[];
     "menu-btn": () => VNode[];
-    "menu-left": (arg: { size: Size }) => VNode[];
-    "menu-right": (arg: { size: Size }) => VNode[];
-    search: (arg: { row: T; search: T; size: Size }) => VNode[];
-    "search-menu": (arg: { row: T; search: T; disabled: boolean; size: Size }) => VNode[];
-    [x: `${string}-search`]: (arg: {
+    "menu-left": (props: { size: Size }) => VNode[];
+    "menu-right": (props: { size: Size }) => VNode[];
+    search: (props: { row: T; search: T; size: Size }) => VNode[];
+    "search-menu": (props: { row: T; search: T; disabled: boolean; size: Size }) => VNode[];
+    [x: `${string}-form` | `${string}-label`]: (props: {
+      value: any;
+      column: AvueCrudColumn<T>;
+      size: Size;
+      disabled: boolean;
+      dic: DicItem[];
+      type: FormType
+    }) => VNode[];
+    [x: `${string}-error`]: (props: {
+      error: string;
+      column: AvueFormColumn<T>;
+      value: any;
+      disabled: boolean;
+      size: Size;
+      dic: DicItem[];
+      type: FormType
+    }) => VNode[];
+    [x: `${string}-search` | `${string}-search-label`]: (props: {
       value: any;
       column: AvueCrudColumn<T>;
       size: Size;
       disabled: boolean;
       dic: DicItem[];
     }) => VNode[];
-    [x: `${string}-header`]: (arg: { column: AvueCrudColumn<T> }) => VNode[];
-    [x: `${string}-form`]: (arg: {
-      row: T;
-      value: any;
-      column: AvueCrudColumn<T>;
-      label: string;
-      size: Size;
-      readonly: boolean;
-      disabled: boolean;
+    [x: `${string}-header`]: (props: { column: AvueCrudColumn<T> }) => VNode[];
+    [x: string]: (props: {
+      row: TableRow<T>;
+      index: number;
       dic: DicItem[];
+      size: Size;
+      label: string
     }) => VNode[];
-    [x: string]: (arg: { row: T; index: number; dic: DicItem[]; size: Size; label: string }) => VNode[];
-    // [x: string]: (arg: {
+    // [x: string]: (props: {
     //   value?: any;
     //   row?: T;
     //   type?: FormType | string;
@@ -608,10 +621,8 @@ declare module "@smallwei/avue" {
     // }) => VNode[];
   }
 
-  export const AvueCrud: new () => {
-    $props: AvueCrudProps;
-    $slots: AvueCrudSlots;
-  };
+  export const AvueCrud: new <T = any>(props: AvueCrudProps<T>) =>
+    { $slots: AvueCrudSlots<T> } & AvueCrudMethods<T>
 
-  export type AvueCrudInstance = InstanceType<typeof AvueCrud> & AvueCrudMethods;
+  export type AvueCrudInstance<T = any> = InstanceType<typeof AvueCrud<T>>
 }

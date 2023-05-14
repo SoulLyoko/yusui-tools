@@ -3,12 +3,11 @@ import type { UploadFile, UploadRawFile, UploadUserFile, FormItemRule } from "el
 
 declare module "@smallwei/avue" {
   export type FormType = "add" | "edit" | "view";
-  export type AvueFormDefaults = Record<string, AvueFormColumn>;
-  // export type AvueFormDefaults<T = any, K = T extends object ? keyof T : string> = {
-  //   [key in K]?: AvueFormColumn<T>;
-  // };
+  // export type AvueFormDefaults = Record<string, AvueFormColumn>;
+  export type PropKeyType<T> = T extends object ? keyof T : string;
+  export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>;
 
-  export interface AvueFormColumn<T = any, K = keyof T extends string ? keyof T : string> {
+  export interface AvueFormColumn<T = any, K = PropKeyType<T>> {
     /** 标题名称 */
     label?: string;
     /** 列字段(唯一不重复) */
@@ -102,7 +101,7 @@ declare module "@smallwei/avue" {
     /** 传递给组件的参数 */
     params?: object;
     /** 值改变事件 */
-    change?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item:DicItem }) => void;
+    change?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem }) => void;
     /** 点击事件 */
     click?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 聚焦事件 */
@@ -210,7 +209,7 @@ declare module "@smallwei/avue" {
     /** 更新配置项结构 */
     "onUpdate:defaults"?: (defaluts: AvueFormDefaults) => any;
   }
-  export interface AvueFormMethods {
+  export interface AvueFormMethods<T = any> {
     /** 对整个表单进行提交 */
     submit: () => void;
     /** 对整个表单进行重置 */
@@ -233,32 +232,34 @@ declare module "@smallwei/avue" {
     dicInit: () => void;
   }
   export interface AvueFormSlots<T = any> {
-    "menu-form": (arg: { disabled: boolean; size: Size }) => VNode[];
-    [x: `${string}-label`]: (arg: { column: AvueFormColumn<T> }) => VNode[];
-    [x: `${string}-header`]: (arg: { column: AvueFormColumn<T> }) => VNode[];
-    [x: `${string}-error`]: (arg: {
+    "menu-form": (props: { disabled: boolean; size: Size }) => VNode[];
+    [x: `${string}-header`]: (props: { column: AvueFormColumn<T> }) => VNode[];
+    [x: `${string}-label`]: (props: {
       column: AvueFormColumn<T>;
       value: any;
-      readonly: boolean;
       disabled: boolean;
       size: Size;
       dic: DicItem[];
     }) => VNode[];
-    [x: string]: (arg: {
+    [x: `${string}-error`]: (props: {
+      error: string;
+      column: AvueFormColumn<T>;
+      value: any;
+      disabled: boolean;
+      size: Size;
+      dic: DicItem[];
+    }) => VNode[];
+    [x: string]: (props: {
       value: any;
       column: AvueFormColumn<T>;
-      label: string;
       size: Size;
-      readonly: boolean;
       disabled: boolean;
       dic: DicItem[];
     }) => VNode[];
   }
 
-  export const AvueForm: new () => {
-    $props: AvueFormProps;
-    $slots: AvueFormSlots;
-  };
+  export const AvueForm: new <T = any>(props: AvueFormProps<T>) =>
+    { $slots: AvueFormSlots<T>; } & AvueFormMethods<T>
 
-  export type AvueFormInstance = InstanceType<typeof AvueForm> & AvueFormMethods;
+  export type AvueFormInstance<T = any> = InstanceType<typeof AvueForm<T>>
 }
