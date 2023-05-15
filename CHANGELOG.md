@@ -1,3 +1,14 @@
+# [2.0.0-beta.38](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.37...v2.0.0-beta.38) (2023-05-15)
+
+
+### Bug Fixes
+
+* **flow:** type error ([fbb17b7](https://github.com/SoulLyoko/yusui-tools/commit/fbb17b7c5a18b407180cbce14cf090368be03208))
+* **types:** support slotProps type ([1126c43](https://github.com/SoulLyoko/yusui-tools/commit/1126c43b3ab85b47bc51e48abb59af3016308d99))
+* **use-crud:** update Avue type ([b0c0c71](https://github.com/SoulLyoko/yusui-tools/commit/b0c0c710722d31753aca09205c8aac9ca1a56c50))
+
+
+
 # [2.0.0-beta.37](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.36...v2.0.0-beta.37) (2023-05-12)
 
 
