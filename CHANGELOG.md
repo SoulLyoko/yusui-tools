@@ -1,3 +1,14 @@
+# [2.0.0-beta.39](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.38...v2.0.0-beta.39) (2023-05-15)
+
+
+### Bug Fixes
+
+* **plugins-env-dts:** dts path use the args ([84b7e3b](https://github.com/SoulLyoko/yusui-tools/commit/84b7e3b46634fba7c7018fb47093e7565fe667cb))
+* **types-avue:** add TableRowData, FormRowData ([d18e9f2](https://github.com/SoulLyoko/yusui-tools/commit/d18e9f2bf7be458ed9451aad3ddc2a832994652e))
+* **types-avue:** fix PropKeyType error ([701c514](https://github.com/SoulLyoko/yusui-tools/commit/701c5149c9179902d9dae3a698a804694dda20b1))
+
+
+
 # [2.0.0-beta.38](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.37...v2.0.0-beta.38) (2023-05-15)
 
 
