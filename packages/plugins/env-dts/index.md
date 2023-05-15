@@ -10,26 +10,25 @@
 import { createEnvDts } from '@yusui/plugins'
 
 export default {
-  plugins: [createEnvDts()]
+  plugins: [createEnvDts({
+    // default is 'vite-env.d.ts'
+    dts: 'vite-env.d.ts'
+  })]
 }
 ```
 
-:::
-
-:::code-group
 
 ```sh [.env]
 VITE_TEST=test
 ```
 
-```ts [env.d.ts]
-/// <reference types="@yusui/plugins/env" />
-```
-
 ```ts [xxx.ts]
 /**
  * 弹出提示：
+ * ---
+ * ImportMetaEnv.VITE_TEST: string
  * VITE_TEST=test
+ * ---
  */
 import.meta.env.VITE_TEST
 ```
@@ -51,7 +50,7 @@ VITE_API_URL=http://localhost:3000
 
 :::code-group
 
-```ts [node_modules/@yusui/plugins/env.d.ts]
+```ts [vite-env.d.ts]
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }

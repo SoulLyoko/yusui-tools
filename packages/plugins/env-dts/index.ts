@@ -17,7 +17,17 @@ interface ImportMetaEnv {
   return template
 }
 
-export function createEnvDts(): Plugin {
+interface Options {
+  /**
+   * 生成d.ts的文件路径
+   * @default 'vite-env.d.ts'
+   */
+  dts?: string
+}
+
+const defaultDtsPath = 'vite-env.d.ts'
+
+export function createEnvDts(options?: Options): Plugin {
   return {
     name: 'vite-plugin-env-dts',
     enforce: 'pre',
@@ -25,12 +35,10 @@ export function createEnvDts(): Plugin {
     configResolved(config) {
       const { env, root } = config
       const template = generateTemplate(env)
-      const dtsPath = path.resolve(root, 'node_modules/@yusui/plugins')
-      const filePath = path.resolve(dtsPath, 'env.d.ts')
+      const dtsPath = path.resolve(root, options?.dts ?? defaultDtsPath)
       if (!fs.existsSync(dtsPath))
         fs.mkdirSync(dtsPath, { recursive: true })
-
-      fs.writeFileSync(filePath, template)
+      fs.writeFileSync(dtsPath, template)
     },
   }
 }
