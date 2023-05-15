@@ -36,9 +36,12 @@ export function createEnvDts(options?: Options): Plugin {
       const { env, root } = config
       const template = generateTemplate(env)
       const dtsPath = path.resolve(root, options?.dts ?? defaultDtsPath)
-      if (!fs.existsSync(dtsPath))
-        fs.mkdirSync(dtsPath, { recursive: true })
-      fs.writeFileSync(dtsPath, template)
+      try {
+        fs.writeFileSync(dtsPath, template)
+      }
+      catch (err) {
+        console.error(err)
+      }
     },
   }
 }
