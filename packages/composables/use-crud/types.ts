@@ -55,7 +55,7 @@ export interface CrudState<T, P> {
   queryForm: any
   formData: T
   formType: FormType
-  defaults: AvueCrudDefaults
+  defaults: AvueCrudDefaults<T>
   mockData: T[]
   mockCache: string
 }

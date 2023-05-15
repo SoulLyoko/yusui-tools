@@ -17,7 +17,7 @@ export * from './types'
 /** T:FormData P:GetListParams */
 export function useCrud<T extends Data = Data, P extends Data = Data>(options: UseCrudOptions<T, P>) {
   /** crudRef.value等同于this.$refs.crudRef */
-  const crudRef = ref<AvueCrudInstance>()
+  const crudRef = ref<AvueCrudInstance<T>>()
 
   /** state */
   const crudState = useCrudState(options)
