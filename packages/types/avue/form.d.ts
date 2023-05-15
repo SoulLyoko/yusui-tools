@@ -4,7 +4,7 @@ import type { UploadFile, UploadRawFile, UploadUserFile, FormItemRule } from "el
 declare module "@smallwei/avue" {
   export type FormType = "add" | "edit" | "view";
   // export type AvueFormDefaults = Record<string, AvueFormColumn>;
-  export type PropKeyType<T> = T extends object ? keyof T : string;
+  export type PropKeyType<T> = keyof T extends string ? keyof T : string;
   export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>;
 
   export interface AvueFormColumn<T = any, K = PropKeyType<T>> {
