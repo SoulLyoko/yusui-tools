@@ -12,10 +12,10 @@ import type {
 import { ref, watchEffect } from 'vue'
 
 interface User {
-  userName?: string
+  name?: string
 }
 
-const data = ref<User[]>([{ userName: 'admin' }])
+const data = ref<User[]>([{ name: 'admin' }])
 const crudOption: AvueCrudOption<User> = {
   searchBtn: false,
   emptyBtn: false,
@@ -26,14 +26,14 @@ const crudOption: AvueCrudOption<User> = {
   columnBtn: false,
   searchShowBtn: false,
   column: [{
-    label: '用户名',
-    prop: 'userName',
+    label: '名称',
+    prop: 'name',
     labelWidth: 400,
     search: true,
     searchLabelWidth: 300,
     searchSpan: 24,
     span: 24,
-    dicData: [],
+    dicData: [{ label: '管理员', value: 'admin' }],
     rules: [{ required: true }],
   }],
 }
@@ -43,17 +43,17 @@ const crudDefaults = ref<AvueCrudDefaults<User>>()
 watchEffect(() => {
   if (!crudDefaults.value)
     return
-  crudDefaults.value.userName.prop = 'userName'
+  crudDefaults.value.name.prop = 'name'
 })
 
-const form = ref<User>({ userName: 'admin' })
+const form = ref<User>({ name: 'admin' })
 const formOption: AvueFormOption<User> = {
   column: [{
-    label: '用户名',
-    prop: 'userName',
+    label: '名称',
+    prop: 'name',
     labelWidth: 300,
     span: 24,
-    dicData: [],
+    dicData: [{ label: '管理员', value: 'admin' }],
     rules: [{ required: true }],
   }],
 }
@@ -63,15 +63,16 @@ const formDefaults = ref<AvueFormDefaults<User>>()
 watchEffect(() => {
   if (!formDefaults.value)
     return
-  formDefaults.value.userName.prop = 'userName'
+  formDefaults.value.name.prop = 'name'
 })
 
-const tree = ref<User[]>([{ userName: 'admin' }])
+const tree = ref<User[]>([{ name: 'admin' }])
 const treeOption: AvueTreeOption<User> = {
   formOption: {
     column: [{
-      label: '用户名',
-      prop: 'userName',
+      label: '名称',
+      prop: 'name',
+      dicData: [{ label: '管理员', value: 'admin' }],
     }],
   },
 }
@@ -84,11 +85,11 @@ const treeOption: AvueTreeOption<User> = {
     <template #search="props">
       #search: {{ props }}
     </template>
-    <template #userName-search="props">
-      #userName-search: {{ props }}
+    <template #name-search="props">
+      #name-search: {{ props }}
     </template>
-    <template #userName-search-label="props">
-      #userName-search-label: {{ props }}
+    <template #name-search-label="props">
+      #name-search-label: {{ props }}
     </template>
     <template #search-menu="props">
       #search-menu: {{ props }}
@@ -101,24 +102,24 @@ const treeOption: AvueTreeOption<User> = {
       #menu-right: {{ props }}
     </template>
 
-    <template #userName-header="props">
-      #userName-header: {{ props }}
+    <template #name-header="props">
+      #name-header: {{ props }}
     </template>
-    <template #userName="props">
-      #userName: {{ props }}
+    <template #name="props">
+      #name: {{ props.row.$name }}
     </template>
     <template #menu="props">
       #menu {{ props }}
     </template>
 
-    <template #userName-label="props">
-      #userName-label: {{ props }}
+    <template #name-label="props">
+      #name-label: {{ props }}
     </template>
-    <template #userName-form="props">
-      #userName-form: {{ props }}
+    <template #name-form="props">
+      #name-form: {{ props }}
     </template>
-    <template #userName-error="props">
-      #userName-error: {{ props }}
+    <template #name-error="props">
+      #name-error: {{ props }}
     </template>
     <template #menu-form="props">
       #menu-form: {{ props }}
@@ -126,16 +127,17 @@ const treeOption: AvueTreeOption<User> = {
   </avue-crud>
 
   <h2>AvueForm</h2>
+  formData: {{ form }}
   formDefaults: {{ formDefaults }}
   <avue-form ref="formRef" v-model="form" v-model:defaults="formDefaults" :option="formOption">
-    <template #userName-label="props">
-      #userName-label: {{ props }}
+    <template #name-label="props">
+      #name-label: {{ props }}
     </template>
-    <template #userName="props">
-      #userName: {{ props }}
+    <template #name="props">
+      #name: {{ props }}
     </template>
-    <template #userName-error="props">
-      #userName-error: {{ props }}
+    <template #name-error="props">
+      #name-error: {{ props }}
     </template>
     <template #menu-form="props">
       #menu-form: {{ props }}

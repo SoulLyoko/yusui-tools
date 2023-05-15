@@ -9,12 +9,12 @@ declare module "@smallwei/avue" {
   export type LabelPosition = "left" | "right" | "top";
   export type MenuType = "button" | "icon" | "text" | "menu";
   export type Size = "large" | "default" | "small";
-  export type CellEvent<T> = (row: any, column: TableColumnCtx<T>, cell: any, event: Event) => void;
-  export type RowEvent<T> = (row: any, column: TableColumnCtx<T>, event: Event) => void;
+  export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Partial<Record<`$${keyof T}`, any>>
+  export type CellEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, cell: any, event: Event) => void;
+  export type RowEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, event: Event) => void;
   export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
-  export type TableRow<T> = T & { $cellEdit: boolean, $index: number }
-  // export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
   export type AvueCrudDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueCrudColumn<T>>;
+  // export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
 
   export interface PageOption {
     /** 总条数,如果为0的话不显示分页 */
@@ -50,7 +50,7 @@ declare module "@smallwei/avue" {
     /** 对应列是否可以排序，如果设置为 'custom'，则代表用户希望远程排序，需要监听 Table 的 sort-change 事件 */
     sortable?: boolean | "custom";
     /** 用来格式化内容 */
-    formatter?: (row: T, value: any, label: string, column: Array<AvueCrudColumn<T>>) => string;
+    formatter?: (row: TableRowData<T>, value: any, label: string, column: Array<AvueCrudColumn<T>>) => string;
     /** 当内容过长被隐藏时显示 tooltip */
     overHidden?: boolean;
     /** 表格内容对齐方式 */
@@ -94,7 +94,7 @@ declare module "@smallwei/avue" {
     /** 是否可以输入搜索。 */
     searchFilterable?: boolean;
     /** 数据过滤使用的方法，如果是多选的筛选项，对每一条数据会执行多次，任意一次返回true就会显示。 */
-    searchFilterMethod?: (value: any, row: T, column: Array<AvueCrudColumn<T>>) => boolean;
+    searchFilterMethod?: (value: any, row: TableRowData<T>, column: Array<AvueCrudColumn<T>>) => boolean;
     /** 表单新增时是否禁止 */
     addDisabled?: boolean;
     /** 表单编辑时是否禁止 */
@@ -120,7 +120,7 @@ declare module "@smallwei/avue" {
     /** 数据过滤的选项是否多选 */
     filterMultiple?: boolean;
     /** 数据过滤使用的方法，如果是多选的筛选项，对每一条数据会执行多次，任意一次返回true就会显示 */
-    filterMethod?: (value: any, row: T, column: Array<AvueCrudColumn<T>>) => boolean;
+    filterMethod?: (value: any, row: TableRowData<T>, column: Array<AvueCrudColumn<T>>) => boolean;
     /** 是否加入动态现隐列 */
     showColumn?: boolean;
     /** 隐藏列 */
@@ -192,7 +192,7 @@ declare module "@smallwei/avue" {
     /** 仅对 selection为true 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 rowKey） */
     reserveSelection?: boolean;
     /** selection为true 的列有效，类型为 Function，Function 的返回值用来决定这一行的 CheckBox 是否可以勾选 */
-    selectable?: (row: T) => boolean;
+    selectable?: (row: TableRowData<T>) => boolean;
     /** 展开折叠行 */
     expand?: boolean;
     /** 展开折叠行宽度 */
@@ -391,7 +391,7 @@ declare module "@smallwei/avue" {
     /** 表格配置属性 */
     option?: AvueCrudOption<T>;
     /** 表格多个按钮权限控制，采用函数方式可以精确到行控制 */
-    permission?: AvueCrudOption<T> | ((key: string, row: T, index: number) => boolean);
+    permission?: AvueCrudOption<T> | ((key: string, row: TableRowData<T>, index: number) => boolean);
     /** 表格搜索的表单的变量 v-model */
     search?: any;
     /** 表格的分页数据 v-model */
@@ -433,11 +433,11 @@ declare module "@smallwei/avue" {
     "upload-exceed"?: (limit: number, files: File[], fileList: UploadUserFile[], column: AvueCrudColumn<T>) => void;
 
     /** 新增数据后点击确定触发该事件 */
-    onRowSave?: (row: T, done: () => void, loading: () => void) => any;
+    onRowSave?: (row: TableRowData<T>, done: () => void, loading: () => void) => any;
     /** 编辑数据后确定触发该事件 */
-    onRowUpdate?: (row: T, index: number, done: () => void, loading: () => void) => any;
+    onRowUpdate?: (row: TableRowData<T>, index: number, done: () => void, loading: () => void) => any;
     /** 行数据删除时触发该事件 */
-    onRowDel?: (row: T, index: number) => any;
+    onRowDel?: (row: TableRowData<T>, index: number) => any;
     /** 点击刷新按钮触发该事件 */
     onRefreshChange?: () => any;
     /** 点击搜索后触发该事件 */
@@ -447,13 +447,13 @@ declare module "@smallwei/avue" {
     /** dateBtn为true时的选择日期回调方法 */
     onDateChange?: (data: { value: string[] }) => any;
     /** 加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
-    onTreeLoad?: (row: T, treeNode: any, resolve: (data: T[]) => void) => any;
+    onTreeLoad?: (row: TableRowData<T>, treeNode: any, resolve: (data: T[]) => void) => any;
     /** 分页页码改变时会触发 */
     onCurrentChange?: (current: number) => any;
     /** 分页条数改变时会触发 */
     onSizeChange?: (size: number) => any;
     /** 当用户手动勾选数据行的Checkbox时触发的事件 */
-    onSelect?: (selection: T[], row: T) => any;
+    onSelect?: (selection: T[], row: TableRowData<T>) => any;
     /** 当选择所有项时会触发该事件 */
     onSelectAll?: (selection: T[]) => any;
     /** 当选择项发生变化时会触发该事件 */
@@ -483,9 +483,9 @@ declare module "@smallwei/avue" {
     /** 当表格的筛选条件发生变化的时候会触发该事件 */
     onFilterChange?: (filters: Record<string, any[]>) => any;
     /** 当用户对某一行展开或者关闭的时候会触发该事件（展开行时，回调的第二个参数为 expandedRows；树形表格时第二参数为 expanded） */
-    onExpandChange?: (row: T, expanded: T[] | boolean) => any;
+    onExpandChange?: (row: TableRowData<T>, expanded: TableRowData<T>[] | boolean) => any;
     /** 更新表单值 */
-    "onUpdate:modelValue"?: (row: T) => any;
+    "onUpdate:modelValue"?: (row: TableRowData<T>) => any;
     /** 更新搜索表单 */
     "onUpdate:search"?: (form: any) => any;
     /** 更新分页数据 */
@@ -497,9 +497,9 @@ declare module "@smallwei/avue" {
     /** 打开表单新增窗口 */
     rowAdd: () => void;
     /** 打开表单编辑窗口 */
-    rowEdit: (row: T, index?: number) => void;
+    rowEdit: (row: TableRowData<T>, index?: number) => void;
     /** 打开表单查看窗口 */
-    rowView: (row: T, index?: number) => void;
+    rowView: (row: TableRowData<T>, index?: number) => void;
     /** 更新字典 */
     updateDic: (prop?: string, list?: DicItem[]) => void;
     /** 获取prop的ref对象 */
@@ -540,15 +540,15 @@ declare module "@smallwei/avue" {
     /** 重新初始化字典 */
     dicInit: () => void;
     /** 表单保存调用 */
-    rowSave: (row: T) => void;
+    rowSave: (row: TableRowData<T>) => void;
     /** 表单更新调用 */
-    rowUpdate: (row: T) => void;
+    rowUpdate: (row: TableRowData<T>) => void;
     /** 行新增 */
-    rowCellAdd: (row: T) => void;
+    rowCellAdd: (row: TableRowData<T>) => void;
     /** 行编辑 */
-    rowCell: (row: T, index?: number) => void;
+    rowCell: (row: TableRowData<T>, index?: number) => void;
     /** 行删除 */
-    rowDel: (row: T, index?: number) => void;
+    rowDel: (row: TableRowData<T>, index?: number) => void;
     /** 打印表格 */
     rowPrint: () => void;
     /** 导出表格 */
@@ -563,8 +563,8 @@ declare module "@smallwei/avue" {
 
   export interface AvueCrudSlots<T = any> {
     empty: () => VNode[];
-    expand: (props: { row: TableRow<T>; index: number }) => VNode[];
-    menu: (props: { row: TableRow<T>; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
+    expand: (props: { row: TableRowData<T>; index: number }) => VNode[];
+    menu: (props: { row: TableRowData<T>; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
     "menu-form": (props: { disabled: boolean; size: Size; type: FormType }) => VNode[];
     header: () => VNode[];
     footer: () => VNode[];
@@ -600,7 +600,7 @@ declare module "@smallwei/avue" {
     }) => VNode[];
     [x: `${string}-header`]: (props: { column: AvueCrudColumn<T> }) => VNode[];
     [x: string]: (props: {
-      row: TableRow<T>;
+      row: TableRowData<T>;
       index: number;
       dic: DicItem[];
       size: Size;

@@ -3,9 +3,10 @@ import type { UploadFile, UploadRawFile, UploadUserFile, FormItemRule } from "el
 
 declare module "@smallwei/avue" {
   export type FormType = "add" | "edit" | "view";
-  // export type AvueFormDefaults = Record<string, AvueFormColumn>;
+  export type FormRowData<T> = T & Partial<Record<`$${keyof T}`, any>>
   export type PropKeyType<T> = keyof T extends string ? keyof T : string;
   export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>;
+  // export type AvueFormDefaults = Record<string, AvueFormColumn>;
 
   export interface AvueFormColumn<T = any, K = PropKeyType<T>> {
     /** 标题名称 */
@@ -13,7 +14,7 @@ declare module "@smallwei/avue" {
     /** 列字段(唯一不重复) */
     prop?: K;
     /** 字段控制器 */
-    control?: (val: any, form: T) => Record<string, AvueFormColumn<T>>;
+    control?: (val: any, form: FormRowData<T>) => Record<string, AvueFormColumn<T>>;
     /** 深结构数据绑定值 */
     bind?: string;
     /** 验证规则可以参考 [async-validator](https://github.com/yiminghe/async-validator) */
@@ -101,13 +102,13 @@ declare module "@smallwei/avue" {
     /** 传递给组件的参数 */
     params?: object;
     /** 值改变事件 */
-    change?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem }) => void;
+    change?: (args: { column: Array<AvueFormColumn<T>>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem }) => void;
     /** 点击事件 */
-    click?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
+    click?: (args: { column: Array<AvueFormColumn<T>>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 聚焦事件 */
-    focus?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
+    focus?: (args: { column: Array<AvueFormColumn<T>>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 失焦事件 */
-    blur?: (args: { column: Array<AvueFormColumn<T>>; row: T; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
+    blur?: (args: { column: Array<AvueFormColumn<T>>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
     /** 其它属性根据type查看对应的文档 */
     [x: string]: any;
   }
