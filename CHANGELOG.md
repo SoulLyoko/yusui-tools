@@ -1,3 +1,13 @@
+# [2.0.0-beta.40](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.39...v2.0.0-beta.40) (2023-05-16)
+
+
+### Bug Fixes
+
+* **plusing-env-dts:** write file error ([dcd111a](https://github.com/SoulLyoko/yusui-tools/commit/dcd111a292689b3a141484a1379301bbf36c119e))
+* **types-avue:** update some types ([04165b7](https://github.com/SoulLyoko/yusui-tools/commit/04165b76e7a5d32c015292291b7a30d217c3b30d))
+
+
+
 # [2.0.0-beta.39](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.38...v2.0.0-beta.39) (2023-05-15)
 
 
