@@ -53,7 +53,7 @@ declare module "@smallwei/avue" {
   }
 
   export const AvueTree: new <T = any>(props: AvueTreeProps<T>) =>
-    { $slots: AvueTreeSlots<T> };
+    { $props: AvueTreeProps; $slots: AvueTreeSlots<T> };
 
   export type AvueTreeInstance<T = any> = InstanceType<typeof AvueTree<T>>;
 }

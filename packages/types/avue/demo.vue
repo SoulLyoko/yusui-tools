@@ -80,6 +80,7 @@ const treeOption: AvueTreeOption<User> = {
 
 <template>
   <h2>AvueCrud</h2>
+  tableData: {{ data }}
   crudDefaults: {{ crudDefaults }}
   <avue-crud ref="crudRef" v-model:defaults="crudDefaults" :data="data" :option="crudOption">
     <template #search="props">
@@ -106,7 +107,7 @@ const treeOption: AvueTreeOption<User> = {
       #name-header: {{ props }}
     </template>
     <template #name="props">
-      #name: {{ props.row.$name }}
+      #name: {{ props }}
     </template>
     <template #menu="props">
       #menu {{ props }}

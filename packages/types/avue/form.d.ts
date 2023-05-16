@@ -3,7 +3,8 @@ import type { UploadFile, UploadRawFile, UploadUserFile, FormItemRule } from "el
 
 declare module "@smallwei/avue" {
   export type FormType = "add" | "edit" | "view";
-  export type FormRowData<T> = T & Partial<Record<`$${keyof T}`, any>>
+  // export type FormRowData<T> = T & Partial<Record<`$${keyof T}`, any>>
+  export type FormRowData<T> = T & Partial<Record<string, any>>
   export type PropKeyType<T> = keyof T extends string ? keyof T : string;
   export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>;
   // export type AvueFormDefaults = Record<string, AvueFormColumn>;
@@ -259,8 +260,10 @@ declare module "@smallwei/avue" {
     }) => VNode[];
   }
 
+
   export const AvueForm: new <T = any>(props: AvueFormProps<T>) =>
-    { $slots: AvueFormSlots<T>; } & AvueFormMethods<T>
+    { $props: AvueFormProps; $slots: AvueFormSlots<T>; } & AvueFormMethods<T>
+
 
   export type AvueFormInstance<T = any> = InstanceType<typeof AvueForm<T>>
 }

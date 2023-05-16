@@ -9,7 +9,8 @@ declare module "@smallwei/avue" {
   export type LabelPosition = "left" | "right" | "top";
   export type MenuType = "button" | "icon" | "text" | "menu";
   export type Size = "large" | "default" | "small";
-  export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Partial<Record<`$${keyof T}`, any>>
+  // export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Partial<Record<`$${keyof T}`, any>>
+  export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Record<string, any>
   export type CellEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, cell: any, event: Event) => void;
   export type RowEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, event: Event) => void;
   export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void;
@@ -622,7 +623,7 @@ declare module "@smallwei/avue" {
   }
 
   export const AvueCrud: new <T = any>(props: AvueCrudProps<T>) =>
-    { $slots: AvueCrudSlots<T> } & AvueCrudMethods<T>
+    { $props: AvueCrudProps; $slots: AvueCrudSlots<T> } & AvueCrudMethods<T>
 
   export type AvueCrudInstance<T = any> = InstanceType<typeof AvueCrud<T>>
 }
