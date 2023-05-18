@@ -16,7 +16,7 @@ export interface FlowPagesConfig {
     /** 上传地址 */
     action?: string
     /** 请求头携带的参数，如token */
-    headers?: object
+    headers?: object | (() => any)
     /** 预览实现函数 */
     preview?: (row: FlowFile, list: FlowFile[]) => void
     /** 下载实现函数 */

@@ -12,6 +12,8 @@ const props = defineProps<{ flowDetail?: FlowDetail }>()
 
 const { upload: { action, headers, preview, download, props: uploadProps } } = useConfigProvider()
 
+const uploadHeaders = typeof headers === 'function' ? headers() : headers
+
 const tableOption: AvueCrudOption<FlowFile> = {
   rowKey: 'id',
   align: 'center',
@@ -69,7 +71,7 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
     <template #menu-left>
       <el-upload
         :action="action"
-        :headers="headers"
+        :headers="uploadHeaders"
         :show-file-list="false"
         @success="onUploadSuccess($event)"
       >
@@ -87,7 +89,7 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
       </el-button>
       <el-upload
         :action="action"
-        :headers="headers"
+        :headers="uploadHeaders"
         :show-file-list="false"
         style="display:inline;vertical-align:middle;margin-right:10px"
         @success="onUploadSuccess($event, row)"
