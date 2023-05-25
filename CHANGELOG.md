@@ -1,3 +1,17 @@
+# [2.0.0-beta.41](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.40...v2.0.0-beta.41) (2023-05-25)
+
+
+### Bug Fixes
+
+* **flow-form:** functional uploadHeaders ([befc5a0](https://github.com/SoulLyoko/yusui-tools/commit/befc5a030f335e98c90e8f22ec2567a8bd1e7192))
+
+
+### Features
+
+* **flow-pages:** flow-form add fileIds ([31e8495](https://github.com/SoulLyoko/yusui-tools/commit/31e8495ffd215183be39a1dc73354d20a9c4f492))
+
+
+
 # [2.0.0-beta.40](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.39...v2.0.0-beta.40) (2023-05-16)
 
 
