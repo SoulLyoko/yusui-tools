@@ -23,6 +23,7 @@ const {
   formLoading,
   approvalVisible,
   submitLoading,
+  fileIds,
 } = state
 
 const formRef = ref<InstanceType<typeof InternalForm>>()
@@ -78,7 +79,7 @@ async function onSubmit() {
         </el-tab-pane>
 
         <el-tab-pane label="附件资料" name="file" lazy>
-          <UploadTable :flow-detail="flowDetail" />
+          <UploadTable v-model="fileIds" :flow-detail="flowDetail" />
         </el-tab-pane>
 
         <el-tab-pane label="流程跟踪" name="track" lazy>

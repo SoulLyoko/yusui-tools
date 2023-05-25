@@ -140,6 +140,8 @@ export interface CommitTaskData {
   variables?: FlowVariable[]
   /** 流向 */
   outgoing?: string[]
+  /** 发起时携带文件ids */
+  fileIds?: string
 }
 
 /** 获取审批节点的请求参数 */

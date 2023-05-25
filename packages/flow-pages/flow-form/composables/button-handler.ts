@@ -7,7 +7,7 @@ import { useFlowTaskApi } from '../../api/flow-task'
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask } = useFlowTaskApi()
   const data = computed(() => {
-    const { flowDetail, formVariables, approvalFormData, debug } = state
+    const { flowDetail, formVariables, approvalFormData, debug, fileIds } = state
     const { flowDeployId } = flowDetail.value.process ?? {}
     const { taskId, flowInstanceId } = flowDetail.value.task ?? {}
     return {
@@ -16,6 +16,7 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
       flowInstanceId,
       variables: formVariables.value,
       debug: debug.value,
+      fileIds: fileIds.value,
       ...approvalFormData.value,
     }
   })

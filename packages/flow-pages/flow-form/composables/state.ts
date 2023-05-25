@@ -51,6 +51,8 @@ export function useProvideState(props: Props, emit: Emit) {
       .map(([key, value]) => ({ key, value }))
   })
 
+  const fileIds = ref<string>()
+
   const state = {
     ...vModels,
     formData,
@@ -59,6 +61,7 @@ export function useProvideState(props: Props, emit: Emit) {
     showFileTab,
     showTrackTab,
     permission,
+    fileIds,
     emit,
   }
 

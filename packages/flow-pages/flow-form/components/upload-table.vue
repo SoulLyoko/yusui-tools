@@ -4,15 +4,20 @@ import type { FlowDetail, FlowFile } from '../../api'
 
 import { useCrud } from '@yusui/composables'
 import { get } from 'lodash-es'
+import { uuid } from '@yusui/utils'
+import { computed } from 'vue'
+import { useVModels } from '@vueuse/core'
 
 import { useFlowFileApi } from '../../api'
 import { useConfigProvider } from '../../composables'
 
-const props = defineProps<{ flowDetail?: FlowDetail }>()
+const props = defineProps<{ flowDetail?: FlowDetail; modelValue?: string }>()
+const { modelValue: fileIds } = useVModels(props, undefined, { passive: true })
 
 const { upload: { action, headers, preview, download, props: uploadProps } } = useConfigProvider()
 
 const uploadHeaders = typeof headers === 'function' ? headers() : headers
+const flowInstanceId = computed(() => props.flowDetail?.task?.flowInstanceId ?? uuid())
 
 const tableOption: AvueCrudOption<FlowFile> = {
   rowKey: 'id',
@@ -37,16 +42,20 @@ const {
   getDataList,
   handleDel,
   handleSave,
+  afterGetList,
   crudStateRefs: { tableData },
 } = useCrud({
   crudOption: { ...useFlowFileApi(), saveSuccessMsg: '上传成功' },
   tableOption,
   queryForm: {
     isLatest: 1,
-    flowInstanceId: props.flowDetail?.task?.flowInstanceId,
+    flowInstanceId: flowInstanceId.value,
   },
 })
 
+afterGetList(() => {
+  fileIds!.value = tableData.value.map(item => item.id).join(',')
+})
 getDataList()
 
 async function onUploadSuccess(response: any, row?: FlowFile) {
@@ -57,7 +66,7 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
     fileSize: get({ res: response }, `${res}.${fileSize}`),
     fileUrl: get({ res: response }, `${res}.${fileUrl}`),
     taskId: props.flowDetail?.task?.taskId,
-    flowInstanceId: props.flowDetail?.task?.flowInstanceId,
+    flowInstanceId: flowInstanceId.value,
     // 更新版本
     rootMark: row?.rootMark || '',
     version: typeof row?.version === 'number' ? row.version + 1 : 1,
