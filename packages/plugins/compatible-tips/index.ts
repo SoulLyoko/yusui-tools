@@ -86,7 +86,7 @@ const htmlStr = `<div id="compatible-body">
 </div>`
 
 const jsStr = `<script>
-if (window.navigator.userAgent.indexOf('Chrome') == -1) {
+if (window.navigator.userAgent.indexOf('Chrome') == -1 && window.navigator.userAgent.indexOf('Firefox') == -1) {
   window.onload = function (){
     document.getElementById("compatible-body").style.display = 'block';
   }

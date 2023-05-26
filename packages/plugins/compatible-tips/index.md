@@ -1,6 +1,6 @@
 # compatibleTips
 
-非谷歌内核兼容提示.
+非谷歌、火狐内核兼容提示.
 
 ## Usage
 
