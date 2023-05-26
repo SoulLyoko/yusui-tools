@@ -1,6 +1,6 @@
 # compatibleTips
 
-非谷歌内核兼容提示.
+IE浏览器兼容提示.
 
 ## Usage
 

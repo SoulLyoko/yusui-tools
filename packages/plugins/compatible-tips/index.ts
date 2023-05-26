@@ -1,7 +1,7 @@
 import type { Plugin } from 'vite'
 
 const styleStr = `<style>
-#compatible-body { display: none; cursor: default; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 798px; height: 598px; border-radius: 5px; background: #ffffe0; border: 1px solid #ee2c2c; text-align: center; font-family:  Helvetica, '微软雅黑'; user-select: none; box-sizing: border-box; }
+#compatible-body { display: none; cursor: default; position: fixed; left: 50%; top: 50%; margin: -300px 0 0 -400px; width: 798px; height: 598px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; background: #ffffe0; border: 1px solid #ee2c2c; text-align: center; font-family: Helvetica, '微软雅黑'; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; box-sizing: border-box; -webkit-touch-callout: none; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-tap-highlight-color: transparent }
 #compatible-body p{margin:0;letter-spacing:1px}
 #compatible-body img{border-style:none}
 #compatible-body .upgrade-danger{height:80px;padding:30px 0 20px}
@@ -86,7 +86,7 @@ const htmlStr = `<div id="compatible-body">
 </div>`
 
 const jsStr = `<script>
-if (window.navigator.userAgent.indexOf('Chrome') == -1) {
+if (window.navigator.userAgent.indexOf('MSIE') != -1 || window.navigator.userAgent.indexOf('Trident') != -1) {
   window.onload = function (){
     document.getElementById("compatible-body").style.display = 'block';
   }
