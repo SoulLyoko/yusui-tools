@@ -1,3 +1,12 @@
+# [2.0.0-beta.42](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.41...v2.0.0-beta.42) (2023-05-25)
+
+
+### Features
+
+* 增加非谷歌内核兼容提示 ([39d72ab](https://github.com/SoulLyoko/yusui-tools/commit/39d72ab7435018ab5b7cb82e53a4a099be4e7437))
+
+
+
 # [2.0.0-beta.41](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.40...v2.0.0-beta.41) (2023-05-25)
 
 
