@@ -15,9 +15,3 @@ export default {
 ```
 
 :::
-
-## 测试示例
-
-:::demo
-./test
-:::
