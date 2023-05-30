@@ -1,3 +1,13 @@
+# [2.0.0-beta.44](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2023-05-30)
+
+
+### Bug Fixes
+
+* **flow-pages:** flowDesign fields dicData ([d365f19](https://github.com/SoulLyoko/yusui-tools/commit/d365f19a2858e4876b04a11d378ab58ae06b7eba))
+* **plugins:** 修改兼容图标 ([94c7bf5](https://github.com/SoulLyoko/yusui-tools/commit/94c7bf5ce10cf7dc97c0e8dd0b1fcb10ca14ab26))
+
+
+
 # [2.0.0-beta.43](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.42...v2.0.0-beta.43) (2023-05-26)
 
 
