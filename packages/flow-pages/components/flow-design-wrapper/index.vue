@@ -61,11 +61,19 @@ watch(formDefaults, (defaults) => {
   if (!defaults)
     return
   // 优先级字段
-  if (defaults.priority)
-    defaults.priority.dicData = fieldsDic.value
+  if (defaults.priority) {
+    // defaults.priority.dicData = fieldsDic.value
+    defaults.priority.control = () => {
+      return { priority: { dicData: fieldsDic.value } }
+    }
+  }
   // 表单标题字段
-  if (defaults.formTitle)
-    defaults.formTitle.dicData = fieldsDic.value
+  if (defaults.formTitle) {
+    // defaults.formTitle.dicData = fieldsDic.value
+    defaults.formTitle.control = () => {
+      return { formTitle: { dicData: fieldsDic.value } }
+    }
+  }
   // 审批人选择
   if (defaults.assignee?.children?.column?.[1])
     defaults.assignee.children.column[1].component = AssigneeSetter
