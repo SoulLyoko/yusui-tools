@@ -2,7 +2,6 @@ import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
 
 import flowText from '../flow-modeler/components/flow-text.vue'
-// import FlowButton from '../flow-modeler/components/flow-button.vue'
 
 export const buttonColumn: AvueFormColumn<FlowFormData>[] = [
   {
@@ -10,7 +9,6 @@ export const buttonColumn: AvueFormColumn<FlowFormData>[] = [
     labelWidth: 0,
     prop: 'button',
     value: [],
-    // component: FlowButton,
     type: 'dynamic',
     children: {
       addBtn: false,

@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { useVModels } from '@vueuse/core'
-import { useAttrs } from 'vue'
 
 const props = defineProps<{ modelValue: any[] }>()
 const { modelValue: tableData } = useVModels(props)
-
-const attrs = useAttrs()
-console.log('🚀 ~ file: flow-button.vue:9 ~ attrs:', attrs)
 
 const tableOption = {
   rowKey: 'prop',

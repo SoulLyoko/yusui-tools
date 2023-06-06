@@ -29,10 +29,11 @@ watchEffect(() => {
   <el-drawer v-model="visible">
     <template #header>
       <span>编辑JSON</span>
-      <el-button type="primary" @click="confirmUpdateJson">
-        确定
-      </el-button>
+      <slot name="header" />
     </template>
     <el-input v-model="jsonForEdit" class="flow-editor__textarea" type="textarea" />
+    <el-button class="flow-editor__confirm-btn" type="primary" @click="confirmUpdateJson">
+      确定
+    </el-button>
   </el-drawer>
 </template>

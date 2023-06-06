@@ -24,12 +24,12 @@
 }
 
 .lf-dndpanel {
-  height: 98%;
   // 分两列
-  width: 130px;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(10, 60px);
+  // height: 98%;
+  // width: 130px;
+  // display: grid;
+  // grid-template-columns: repeat(2, 50%);
+  // grid-template-rows: repeat(10, 60px);
   .lf-dnd-text {
     overflow: hidden;
   }
@@ -52,6 +52,9 @@
 }
 .lf-control-mini-map {
   background-image: url("https://api.iconify.design/ep/picture.svg?width=20&height=20");
+}
+.lf-control-reset {
+  background-image: url("https://api.iconify.design/ep/refresh.svg?width=20&height=20");
 }
 
 .lf-menu {

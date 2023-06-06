@@ -1,7 +1,7 @@
 <script setup lang="ts">
+// import { parse } from "acorn";
 import { ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
-// import { parse } from "acorn";
 
 import EditorSetter from '../editor-setter/index.vue'
 
