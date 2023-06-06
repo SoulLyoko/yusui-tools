@@ -1,3 +1,14 @@
+# [2.0.0-beta.45](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2023-06-06)
+
+
+### Bug Fixes
+
+* **flow-design:** dataOptions prop ([aaba271](https://github.com/SoulLyoko/yusui-tools/commit/aaba27122c4af2a7beb3251f8e8cccda5be6bc98))
+* **flow-pages:** add search prop ([946a116](https://github.com/SoulLyoko/yusui-tools/commit/946a116901ea592f96f27ad9bd3e32119d0a02d6))
+* **form-design:** clear dicData when dicType is remote ([5d24619](https://github.com/SoulLyoko/yusui-tools/commit/5d24619d584e984f728a3c2e73c99463262b275d))
+
+
+
 # [2.0.0-beta.44](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.43...v2.0.0-beta.44) (2023-05-30)
 
 
