@@ -49,8 +49,13 @@ export const dic: AvueFormColumn[] = [
       if (isStatic) {
         form.dicUrl = undefined
         form.dicMethod = undefined
+        form.dicQuery = undefined
+        form.dicHeaders = undefined
         form.props = undefined
         form.dicFormatter = undefined
+      }
+      else if (isRemote) {
+        form.dicData = undefined
       }
       return {
         dicData: { display: isStatic },
