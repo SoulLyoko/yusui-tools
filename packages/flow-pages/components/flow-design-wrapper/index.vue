@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { AvueFormColumn, AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
-import type { ButtonItem, FlowFormData, FormPropertyItem } from '@yusui/flow-design'
-import type { FlowButton, FlowHistory } from '../../api'
+import type { AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
+import type { FlowFormData } from '@yusui/flow-design'
+import type { FlowHistory } from '../../api'
 
 import { computed, ref, watch } from 'vue'
 import { defaultGraphData } from '@yusui/flow-design'
@@ -45,6 +45,8 @@ const allColumn = computed(() => {
   const all = [...column, ...group.map(g => g.column ?? []).flat()]
   return all
 })
+const { data: buttonListData } = useFlowButtonApi().useList()
+const buttonList = computed(() => buttonListData.value?.filter(e => e.status === 1))
 
 const fieldsDic = computed(() => {
   const dic = allColumn.value.map((item) => {
@@ -54,8 +56,6 @@ const fieldsDic = computed(() => {
 })
 const flowButtonDisplayDic = enumToDic(FlowButtonDisplay)
 const flowButtonApprovalDic = enumToDic(FlowButtonApproval)
-
-const { data: buttonList } = useFlowButtonApi().useList()
 
 watch(formDefaults, (defaults) => {
   if (!defaults)
@@ -80,10 +80,7 @@ watch(formDefaults, (defaults) => {
   // 传阅人选择
   if (defaults.circulate?.children?.column?.[1]?.children?.column?.[1])
     defaults.circulate.children.column[1].children.column[1].component = AssigneeSetter
-  // 表单配置
-  if (defaults.formProperty)
-    formData.value.formProperty = mergeFormProperty(allColumn.value, formData.value.formProperty || [])
-  // 按钮配置
+  // 按钮
   if (defaults.button) {
     defaults.button.children?.column?.forEach((col) => {
       if (col.prop === 'display')
@@ -91,30 +88,8 @@ watch(formDefaults, (defaults) => {
       if (col.prop === 'approval')
         col.dicData = flowButtonApprovalDic
     })
-    formData.value.button = mergeButton(buttonList.value || [], formData.value.button || [])
   }
 })
-
-function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[]): FormPropertyItem[] {
-  return column.map((col) => {
-    const findSource = source.find(e => e.prop === col.prop)
-    const { label, prop, display = true, disabled = false, detail = false, readonly = false, rules } = col
-    const required = rules?.some(e => e.required) ?? false
-    const result = { label, prop, display, disabled, detail, readonly, required, ...findSource }
-    if (col.type === 'dynamic' && col.children?.column?.length)
-      result.children = mergeFormProperty(col.children.column, findSource?.children ?? [])
-
-    return result
-  })
-}
-function mergeButton(button: FlowButton[], source: ButtonItem[]) {
-  return button.filter(e => e.status === 1).map((btn) => {
-    const findSource = source.find(e => e.buttonKey === btn.buttonKey)
-    const { name, buttonKey, display, approval } = btn
-    const result = { name, buttonKey, display, approval, ...findSource }
-    return result
-  })
-}
 
 const { data: flowTaskStatus } = useFlowParamApi().useParam('flow.task.status' as const)
 
@@ -135,21 +110,6 @@ const flowHistoryToolTips = computed(() => {
     }
   })
 })
-
-function resetButton() {
-  graphData.value?.flowElementList?.forEach((item) => {
-    if (item.properties?.button)
-      item.properties.button = mergeButton(buttonList.value || [], [])
-  })
-  graphData.value = { ...graphData.value }
-}
-function resetFormProperty() {
-  graphData.value?.flowElementList?.forEach((item) => {
-    if (item.properties?.formProperty)
-      item.properties.formProperty = mergeFormProperty(allColumn.value, [])
-  })
-  graphData.value = { ...graphData.value }
-}
 
 // const lf = shallowRef()
 // watchEffect(() => {
@@ -175,17 +135,8 @@ function resetFormProperty() {
   </div>
   <FlowModeler
     v-else v-model="graphData" v-model:formData="formData" v-model:formDefaults="formDefaults"
-    :form-options="options" form-width="30%"
-  >
-    <template #form-top>
-      <el-button type="default" @click="resetButton">
-        重置所有按钮配置
-      </el-button>
-      <el-button type="default" @click="resetFormProperty">
-        重置所有表单配置
-      </el-button>
-    </template>
-  </FlowModeler>
+    :form-options="options" :data-options="{ formPropertyColumn: allColumn, buttonList }" form-width="30%"
+  />
 </template>
 
 <style lang="scss" scoped>

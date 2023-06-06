@@ -15,6 +15,7 @@ export function useProvideModelerState(props: ModelerProps) {
     formData,
     formOption,
     formDefaults,
+    dataOptions,
   } = vModels as Required<typeof vModels>
   const formLoading = ref(false)
   const editorVisible = ref(false)
@@ -35,6 +36,7 @@ export function useProvideModelerState(props: ModelerProps) {
     formOption,
     formOptions,
     editorVisible,
+    dataOptions,
     onUpdateFormData,
     formOptionFormat: props.formOptionFormat ?? (option => option),
     formDataFormat: props.formDataFormat ?? (data => data),

@@ -75,7 +75,6 @@ const templatesDic = computed(() => {
     return formTemplates.value?.map(e => ({ label: e.formName, value: e.formOption })) ?? []
   else if (activeStep.value === 2)
     return flowTemplates.value?.map(e => ({ label: e.flowName, value: e.flowData })) ?? []
-
   return []
 })
 

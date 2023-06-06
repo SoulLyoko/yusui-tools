@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Definition, EdgeConfig, NodeConfig } from '@logicflow/core'
-import type { AvueFormDefaults, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
+import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
 import type { TurboData } from '../extensions'
-import type { FlowFormData } from '../types'
+import type { ButtonItem, FlowFormData } from '../types'
 
 import { onMounted, watch } from 'vue'
 import { uniqueId } from 'lodash-unified'
@@ -37,6 +37,10 @@ const props = defineProps<{
   formWidth?: string
   formOptionFormat?: (option: AvueFormOption) => AvueFormOption | Promise<AvueFormOption>
   formDataFormat?: (data: object) => object | Promise<object>
+  dataOptions?: {
+    buttonList?: ButtonItem[]
+    formPropertyColumn?: AvueFormColumn[]
+  }
 }>()
 
 const state = useProvideModelerState(props)
@@ -104,6 +108,10 @@ onMounted(() => {
       />
     </el-aside>
 
-    <FlowEditor v-model="graphData" v-model:visible="editorVisible" @confirm="lf?.render($event)" />
+    <FlowEditor v-model="graphData" v-model:visible="editorVisible" @confirm="lf?.render($event)">
+      <template v-if="$slots['editor-header']" #header>
+        <slot name="editor-header" />
+      </template>
+    </FlowEditor>
   </el-container>
 </template>
