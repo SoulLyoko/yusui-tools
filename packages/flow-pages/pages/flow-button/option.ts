@@ -15,25 +15,10 @@ export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = 
   labelWidth: 150,
   span: 24,
   column: [
-    {
-      label: '按钮名称',
-      prop: 'name',
-    },
-    {
-      label: '按钮标识',
-      prop: 'buttonKey',
-    },
-    {
-      label: '按钮图标',
-      prop: 'icon',
-      component: 'icon-select',
-    },
-    {
-      label: '按钮类型',
-      prop: 'buttonType',
-      type: 'select',
-      dicData: enumToDic(FlowButtonType),
-    },
+    { label: '按钮名称', prop: 'name', search: true },
+    { label: '按钮标识', prop: 'buttonKey', search: true },
+    { label: '按钮图标', prop: 'icon', component: 'icon-select' },
+    { label: '按钮类型', prop: 'buttonType', type: 'select', dicData: enumToDic(FlowButtonType) },
     {
       label: '默认显示条件',
       prop: 'display',
@@ -61,23 +46,8 @@ export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = 
       审批人: 显示审批人选择框;<br/>传阅人: 显示传阅人选择框;<br/>
       抄送人: 显示抄送人选择框;<br/>意见: 显示意见输入框;`,
     },
-    {
-      label: '排序',
-      prop: 'sort',
-      type: 'number',
-      value: 0,
-    },
-    {
-      label: '状态',
-      prop: 'status',
-      type: 'switch',
-      value: 1,
-      dicData: enumToDic(FlowButtonStatus),
-    },
-    {
-      label: '按钮预览',
-      prop: 'buttonPreview',
-      width: 150,
-    },
+    { label: '排序', prop: 'sort', type: 'number', value: 0 },
+    { label: '状态', prop: 'status', type: 'switch', value: 1, dicData: enumToDic(FlowButtonStatus) },
+    { label: '按钮预览', prop: 'buttonPreview', width: 150 },
   ],
 }

@@ -9,7 +9,7 @@ export const tableOption: AvueCrudOption<FlowDeploy> = {
   index: true,
   border: true,
   stripe: true,
-  searchMenuSpan: 4,
+  searchMenuSpan: 6,
   tabs: true,
   dialogFullscreen: true,
   addBtn: false,

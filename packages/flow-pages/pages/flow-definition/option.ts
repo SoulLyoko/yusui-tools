@@ -9,7 +9,7 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
   index: true,
   border: true,
   stripe: true,
-  searchMenuSpan: 4,
+  searchMenuSpan: 6,
   tabs: true,
   dialogFullscreen: true,
   addBtn: false,
@@ -17,7 +17,12 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
   delBtn: false,
   menuWidth: 300,
   column: [
-    ...formOption.column!,
+    ...formOption.column!.map((col, index) => {
+      return {
+        ...col,
+        search: index <= 2,
+      }
+    }),
     {
       label: '流程主版本',
       prop: 'mainVersion',

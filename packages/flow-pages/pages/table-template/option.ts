@@ -12,12 +12,12 @@ export const tableOption: AvueCrudOption<TableTemplate> = {
   index: true,
   border: true,
   stripe: true,
-  searchMenuSpan: 4,
+  searchMenuSpan: 6,
   span: 24,
   dialogFullscreen: true,
   column: [
-    { label: '表名', prop: 'tableName' },
-    { label: '表注释', prop: 'tableComment' },
+    { label: '表名', prop: 'tableName', search: true },
+    { label: '表注释', prop: 'tableComment', search: true },
     { label: '表引擎', prop: 'tableEngine' },
     { label: '表主键策略', prop: 'tablePrimary' },
     {
