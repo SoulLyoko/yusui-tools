@@ -1,1 +1,0 @@
-import{cf as o,dx as s}from"../composables_use-crud_index.md.79b7ceb4.js";import{b1 as t}from"./framework.22a77fa2.js";var m=o(function(e,r,a){return e+(a?"-":"")+r.toLowerCase()});const c=m,b=s(t);export{c as k,b as r};
