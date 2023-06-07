@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Definition, EdgeConfig, NodeConfig } from '@logicflow/core'
-import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
+import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption, DicItem } from '@smallwei/avue'
 import type { TurboData } from '../extensions'
 import type { ButtonItem, FlowFormData } from '../types'
 
@@ -39,12 +39,15 @@ const props = defineProps<{
   formDataFormat?: (data: object) => object | Promise<object>
   dataOptions?: {
     buttonList?: ButtonItem[]
-    formPropertyColumn?: AvueFormColumn[]
+    formPropertyList?: AvueFormColumn[]
+    fieldsDic?: DicItem[]
+    flowButtonDisplayDic?: DicItem[]
+    flowButtonApprovalDic?: DicItem[]
   }
 }>()
 
 const state = useProvideModelerState(props)
-const { lf, graphData, formData, formOption, formDefaults, formLoading, editorVisible, onUpdateFormData } = state
+const { lf, graphData, formRef, formData, formOption, formDefaults, formLoading, editorVisible, onUpdateFormData } = state
 
 const containerId = uniqueId('container')
 onMounted(() => {
@@ -101,6 +104,7 @@ onMounted(() => {
       <el-skeleton v-else-if="formLoading" />
       <avue-form
         v-else
+        ref="formRef"
         v-model="formData"
         v-model:defaults="formDefaults"
         :option="formOption"

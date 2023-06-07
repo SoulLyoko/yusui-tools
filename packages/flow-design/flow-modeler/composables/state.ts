@@ -1,4 +1,5 @@
 import type { ModelerProps } from '../types'
+import type { AvueFormInstance } from '@smallwei/avue'
 
 import { inject, provide, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
@@ -26,10 +27,12 @@ export function useProvideModelerState(props: ModelerProps) {
     id && lf.value?.updateText(id, val.name)
   }
 
+  const formRef = ref<AvueFormInstance>()
   const state = {
     lf,
     graphData,
     elementData,
+    formRef,
     formData,
     formDefaults,
     formLoading,

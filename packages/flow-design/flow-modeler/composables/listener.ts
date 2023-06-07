@@ -1,5 +1,4 @@
 import type { ModelerState } from '../types'
-import type { AvueFormOption } from '@smallwei/avue'
 
 import { nextTick } from 'vue'
 
@@ -18,6 +17,8 @@ export function useModelerListener({
   formOptionFormat,
   formDataFormat,
   dataOptions,
+  formRef,
+  formDefaults,
 }: ModelerState) {
   async function selectElement({ data, isForce } = { data: undefined as any, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === 'process')
@@ -31,9 +32,9 @@ export function useModelerListener({
     if (data?.id === elementData.value?.id && !isForce)
       return
     data.type !== 'process' && lf.value?.selectElementById(data.id)
+
     formLoading.value = true
     await nextTick()
-
     elementData.value = data
     formOption.value = {
       menuBtn: false,
@@ -41,6 +42,7 @@ export function useModelerListener({
       labelPosition: 'left',
       group: formOptions.value?.[data.type] ?? defaultGroup,
     }
+    formData.value = { ...data.properties, id: data.id, name: data.text?.value || '' }
     // formOption.value = await formOptionFormat({
     //   menuBtn: false,
     //   span: 24,
@@ -48,23 +50,32 @@ export function useModelerListener({
     //   group: formOptions.value?.[data.type] ?? defaultGroup,
     // })
     // formData.value = await formDataFormat({ ...data.properties, id: data.id, name: data.text?.value || '' })
-
-    const dataToSet = { ...data.properties, id: data.id, name: data.text?.value || '' }
-    // 表单配置
-    if (hasProp('formProperty', formOption.value))
-      dataToSet!.formProperty = mergeFormProperty(dataOptions.value?.formPropertyColumn || [], dataToSet?.formProperty || [])
-    // 按钮配置
-    if (hasProp('button', formOption.value))
-      dataToSet!.button = mergeButton(dataOptions.value?.buttonList || [], dataToSet?.button || [])
-
-    formData.value = dataToSet
-
-    await nextTick()
     formLoading.value = false
+    await nextTick()
+    handleDataOptions()
   }
 
-  function hasProp(prop: string, option: AvueFormOption) {
-    return option.group?.some(g => g.column?.some(c => c.prop === prop))
+  async function handleDataOptions() {
+    const { formPropertyList, buttonList, fieldsDic, flowButtonDisplayDic, flowButtonApprovalDic } = dataOptions.value ?? {}
+    const hasProp = (prop: string) => formOption.value?.group?.some(g => g.column?.some(c => c.prop === prop)) // 按钮配置
+    if (hasProp('button')) {
+      formData.value!.button = mergeButton(buttonList || [], formData.value?.button || [])
+      formDefaults.value?.button.children?.column?.forEach((col) => {
+        if (col.prop === 'display')
+          col.dicData = flowButtonDisplayDic
+        if (col.prop === 'approval')
+          col.dicData = flowButtonApprovalDic
+      })
+    }
+    // 表单配置
+    if (hasProp('formProperty'))
+      formData.value!.formProperty = mergeFormProperty(formPropertyList || [], formData.value?.formProperty || [])
+    // 优先级字段
+    if (hasProp('priority'))
+      formRef.value?.updateDic('priority', fieldsDic)
+    // 表单标题字段
+    if (hasProp('formTitle'))
+      formRef.value?.updateDic('formTitle', fieldsDic)
   }
 
   lf.value?.on('element:click', selectElement)
@@ -82,7 +93,7 @@ export function useModelerListener({
   lf.value?.on('custom:reset-form-property', () => {
     graphData.value?.flowElementList?.forEach((item) => {
       if (item.properties?.formProperty)
-        item.properties.formProperty = mergeFormProperty(dataOptions.value?.formPropertyColumn || [], [])
+        item.properties.formProperty = mergeFormProperty(dataOptions.value?.formPropertyList || [], [])
     })
     graphData.value = { ...graphData.value }
   })
