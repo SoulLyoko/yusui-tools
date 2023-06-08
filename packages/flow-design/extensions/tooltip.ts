@@ -11,7 +11,6 @@ export class Tooltip {
   lf: LogicFlow
   container?: HTMLElement
   __tooltipDOM: HTMLElement
-  __currentData?: any
   __tooltips: TooltipItem[] = []
 
   constructor({ lf }: { lf: LogicFlow }) {

@@ -1,7 +1,7 @@
 import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
 
-import FlowNodeSelect from '../flow-modeler/components/flow-node-select.vue'
+import FlowNodeSelect from '../components/flow-node-select.vue'
 
 export const processColumn: AvueFormColumn<FlowFormData>[] = [
   {

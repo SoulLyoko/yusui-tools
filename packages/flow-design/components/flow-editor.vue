@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TurboData } from '../../extensions'
+import type { TurboData } from '../extensions'
 
 import { ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useInjectModelerState } from '../composables'
+import { useInjectState } from '../composables/state'
 
 const props = defineProps<{ filterType?: string | string[]; dic?: any[] }>()
 
-const { lf } = useInjectModelerState()
+const { lf } = useInjectState()
 
 const nodesDic = computed(() => {
   return lf.value?.graphModel.nodes

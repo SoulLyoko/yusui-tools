@@ -1,9 +1,9 @@
-import type { ModelerState } from '../types'
+import type { FlowDesignState } from '../types'
 
 import { nextTick } from 'vue'
 
-import { defaultGroup } from '../../options'
-import { mergeButton, mergeFormProperty } from '../../utils'
+import { defaultGroup } from '../options'
+import { mergeButton, mergeFormProperty } from '../utils'
 
 export function useModelerListener({
   lf,
@@ -19,7 +19,7 @@ export function useModelerListener({
   dataOptions,
   formRef,
   formDefaults,
-}: ModelerState) {
+}: FlowDesignState) {
   async function selectElement({ data, isForce } = { data: undefined as any, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === 'process')
     if (!data && processNode?.id) {
@@ -57,7 +57,8 @@ export function useModelerListener({
 
   async function handleDataOptions() {
     const { formPropertyList, buttonList, fieldsDic, flowButtonDisplayDic, flowButtonApprovalDic } = dataOptions.value ?? {}
-    const hasProp = (prop: string) => formOption.value?.group?.some(g => g.column?.some(c => c.prop === prop)) // 按钮配置
+    const hasProp = (prop: string) => formOption.value?.group?.some(g => g.column?.some(c => c.prop === prop))
+    // 按钮配置
     if (hasProp('button')) {
       formData.value!.button = mergeButton(buttonList || [], formData.value?.button || [])
       formDefaults.value?.button.children?.column?.forEach((col) => {
@@ -87,9 +88,11 @@ export function useModelerListener({
     graphData.value = lf.value?.getGraphData()
   })
 
+  /** 编辑 */
   lf.value?.on('custom:edit-click', () => {
     editorVisible.value = true
   })
+  /** 重置表单配置 */
   lf.value?.on('custom:reset-form-property', () => {
     graphData.value?.flowElementList?.forEach((item) => {
       if (item.properties?.formProperty)
@@ -97,6 +100,7 @@ export function useModelerListener({
     })
     graphData.value = { ...graphData.value }
   })
+  /** 重置按钮配置 */
   lf.value?.on('custom:reset-button', () => {
     graphData.value?.flowElementList?.forEach((item) => {
       if (item.properties?.button)

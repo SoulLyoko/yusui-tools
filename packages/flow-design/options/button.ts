@@ -1,7 +1,7 @@
 import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
 
-import flowText from '../flow-modeler/components/flow-text.vue'
+import flowText from '../components/flow-text.vue'
 
 export const buttonColumn: AvueFormColumn<FlowFormData>[] = [
   {

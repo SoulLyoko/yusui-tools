@@ -5,9 +5,7 @@ import type { FlowFile } from '../api'
 
 export interface FlowPagesConfig {
   /** 流程设计器 */
-  FlowModeler: Component
-  /** 流程查看器 */
-  FlowViewer: Component
+  FlowDesign: Component
   /** 表单设计器 */
   FormDesign: Component
   /** axios实例 */

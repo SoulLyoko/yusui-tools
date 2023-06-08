@@ -12,7 +12,8 @@
       width: 60px;
     }
     .avue-crud.hide-menu {
-      .avue-crud__menu{
+      .avue-crud__menu,
+      .avue-crud__header {
         display: none;
       }
     }

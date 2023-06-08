@@ -4,8 +4,7 @@ import type { InjectionKey } from 'vue'
 export const CONFIG_PROVIDE_KEY: InjectionKey<FlowPagesConfig> = Symbol('flowPagesConfig')
 
 export const CONFIG_DEFAULT: FlowPagesConfig = {
-  FlowModeler: null as any,
-  FlowViewer: null as any,
+  FlowDesign: null as any,
   FormDesign: null as any,
   request: (() => {}) as any,
   upload: {

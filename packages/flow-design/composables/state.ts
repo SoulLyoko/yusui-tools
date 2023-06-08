@@ -1,12 +1,12 @@
-import type { ModelerProps } from '../types'
 import type { AvueFormInstance } from '@smallwei/avue'
+import type { FlowDesignProps } from '../types'
 
 import { inject, provide, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
 
-export const injectionKey = Symbol('modelerState')
+export const injectionKey = Symbol('flowDesignState')
 
-export function useProvideModelerState(props: ModelerProps) {
+export function useProvideState(props: FlowDesignProps) {
   const vModels = useVModels(props, undefined, { passive: true })
   const {
     lf,
@@ -50,6 +50,6 @@ export function useProvideModelerState(props: ModelerProps) {
   return state
 }
 
-export function useInjectModelerState() {
-  return inject<ReturnType<typeof useProvideModelerState>>(injectionKey)!
+export function useInjectState() {
+  return inject<ReturnType<typeof useProvideState>>(injectionKey)!
 }

@@ -18,9 +18,9 @@ export default defineConfig({
         items: [
           { text: '@yusui/components', link: '/components/index' },
           { text: '@yusui/composables', link: '/composables/index' },
-          { text: '@yusui/form-design表单设计器', link: '/form-design/index' },
-          { text: '@yusui/flow-design流程设计器', link: '/flow-design/index' },
-          { text: '@yusui/flow-pages工作流页面', link: '/flow-pages/index' },
+          { text: '@yusui/form-design 表单设计器', link: '/form-design/index' },
+          { text: '@yusui/flow-design 流程设计器', link: '/flow-design/index' },
+          { text: '@yusui/flow-pages 工作流页面', link: '/flow-pages/index' },
           { text: '@yusui/plugins', link: '/plugins/index' },
           { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
@@ -70,8 +70,7 @@ export default defineConfig({
           text: '流程设计器',
           items: [
             { text: '开始', link: '/flow-design/index' },
-            { text: '流程模型设计', link: '/flow-design/flow-modeler/index' },
-            { text: '流程查看', link: '/flow-design/flow-viewer/index' },
+            { text: '流程设计器', link: '/flow-design/demo' },
           ],
         },
       ],

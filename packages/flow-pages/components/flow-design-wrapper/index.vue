@@ -21,7 +21,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['update:modelValue'])
 
-const { FlowViewer, FlowModeler } = useConfigProvider()
+const { FlowDesign } = useConfigProvider()
 
 const graphData = computed({
   get() {
@@ -104,9 +104,9 @@ const flowHistoryToolTips = computed(() => {
         <span>{{ item.label }}</span>
       </div>
     </div>
-    <FlowViewer :model-value="graphData" :styles="flowHistoryStyles" :tooltips="flowHistoryToolTips" />
+    <FlowDesign :model-value="graphData" :styles="flowHistoryStyles" :tooltips="flowHistoryToolTips" type="viewer" />
   </div>
-  <FlowModeler
+  <FlowDesign
     v-else v-model="graphData" v-model:formData="formData" v-model:formDefaults="formDefaults"
     :form-options="options" :data-options="dataOptions" form-width="30%"
   />

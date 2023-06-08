@@ -12,7 +12,7 @@ pnpm i @yusui/flow-pages @yusui/flow-design @yusui/form-design
 
 ```ts [main.ts]
 import FlowPages from '@yusui/flow-pages'
-import { FlowModeler, FlowViewer } from '@yusui/flow-design'
+import { FlowDesign } from '@yusui/flow-design'
 import { FormDesign } from '@yusui/form-design'
 import '@yusui/flow-design/dist/styles/index.css'
 import '@yusui/form-design/dist/styles/index.css'
@@ -20,8 +20,7 @@ import '@yusui/form-design/dist/styles/index.css'
 import { request } from '@/api/request'
 
 app.use(FlowPages, {
-  FlowModeler,
-  FlowViewer,
+  FlowDesign,
   FormDesign,
   request,
   upload: {
