@@ -29,6 +29,8 @@ export default {
         const { FlowDesign } = await import('@yusui/flow-design')
         const { FormDesign } = await import('@yusui/form-design')
         const { default: FlowPages } = await import('@yusui/flow-pages')
+        app.component('FlowDesign', FlowDesign)
+        app.component('FormDesign', FormDesign)
         app.use(FlowPages, {
           FlowDesign,
           FormDesign,

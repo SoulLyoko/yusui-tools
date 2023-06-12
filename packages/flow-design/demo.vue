@@ -3,7 +3,6 @@ import { computed, ref, watchEffect } from 'vue'
 
 import { defaultGraphData } from './constants'
 import { defaultOptions } from './options'
-import FlowDesign from './index.vue'
 
 const graphData = ref(defaultGraphData())
 
