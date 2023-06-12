@@ -47,113 +47,161 @@ export class Menu extends _Menu {
       text: '清空',
       icon: true,
       className: 'lf-menu-clear',
-      callback() {
-        lf.clearData()
-      },
-    }
-
-    const add = {
-      text: '添加',
-      icon: true,
-      className: 'lf-menu-add',
-      callback: (ele: NodeConfig) => {
-        console.log('🚀 ~ file: menu.ts:66 ~ Menu ~ constructor ~ ele:', ele)
-        if (['endEvent', 'serviceTask', 'note'].includes(ele.type))
-          changeMenuItem(ele, [back])
-        else
-          changeMenuItem(ele, additionMenuConfig.nodeMenu)
-      },
+      callback: () => lf.clearData(),
     }
     const back = {
       text: '',
       icon: true,
       className: 'lf-menu-back',
+      callback: (ele: NodeConfig) => this.changeMenuList(ele, defaultMenuConfig.nodeMenu),
+    }
+
+    // 添加节点
+    const add = {
+      text: '添加',
+      icon: true,
+      className: 'lf-menu-add',
       callback: (ele: NodeConfig) => {
-        changeMenuItem(ele, defaultMenuConfig.nodeMenu)
+        let menuList: MenuItem[] = []
+        switch (ele.type) {
+          case 'startEvent':
+          case 'userTask':
+          case 'exclusiveGateway':
+          case 'parallelGateway':
+            menuList = [back, addUserTask, addServiceTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
+            break
+          case 'endEvent':
+          case 'sequenceFlow':
+          case 'group':
+          case 'serviceTask':
+            menuList = [back, addNote]
+            break
+          default:
+            menuList = [back]
+        }
+        this.changeMenuList(ele, menuList)
       },
     }
     const addUserTask = {
       text: '用户任务',
       icon: true,
       className: 'lf-menu-user-task',
-      callback: (ele: NodeConfig) => {
-        const { x, y } = ele
-        const addedNode = lf.addNode({ type: 'userTask', x: x + 200, y })
-        lf.addEdge({ sourceNodeId: ele.id!, targetNodeId: addedNode.id })
-      },
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'userTask', x: ele.x + 200, y: ele.y }),
     }
     const addServiceTask = {
       text: '服务任务',
       icon: true,
       className: 'lf-menu-service-task',
-      callback: (ele: NodeConfig) => {
-        const { x, y } = ele
-        const addedNode = lf.addNode({ type: 'serviceTask', x: x + 200, y })
-        lf.addEdge({ type: 'noteFlow', sourceNodeId: ele.id!, targetNodeId: addedNode.id })
-      },
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'serviceTask', x: ele.x + 200, y: ele.y }),
     }
     const addEndEvent = {
       text: '结束',
       icon: true,
       className: 'lf-menu-end-event',
-      callback: (ele: NodeConfig) => {
-        const { x, y } = ele
-        const addedNode = lf.addNode({ type: 'endEvent', x: x + 150, y })
-        lf.addEdge({ sourceNodeId: ele.id!, targetNodeId: addedNode.id })
-      },
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'endEvent', x: ele.x + 150, y: ele.y }),
     }
     const addExclusiveGateway = {
       text: '互斥网关',
       icon: true,
       className: 'lf-menu-exclusive-gateway',
-      callback: (ele: NodeConfig) => {
-        const { x, y } = ele
-        const addedNode = lf.addNode({ type: 'exclusiveGateway', x: x + 150, y })
-        lf.addEdge({ sourceNodeId: ele.id!, targetNodeId: addedNode.id })
-      },
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'exclusiveGateway', x: ele.x + 150, y: ele.y }),
     }
     const addParallelGateway = {
       text: '并行网关',
       icon: true,
       className: 'lf-menu-parallel-gateway',
-      callback: (ele: NodeConfig) => {
-        const { x, y } = ele
-        const addedNode = lf.addNode({ type: 'parallelGateway', x: x + 150, y })
-        lf.addEdge({ sourceNodeId: ele.id!, targetNodeId: addedNode.id })
-      },
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'parallelGateway', x: ele.x + 150, y: ele.y }),
     }
     const addNote = {
       text: '注释',
       icon: true,
       className: 'lf-menu-note',
-      callback: (ele: NodeConfig) => {
-        const { x, y } = ele
-        const addedNode = lf.addNode({ type: 'note', x, y: y - 150 })
-        lf.addEdge({ type: 'noteFlow', sourceNodeId: ele.id!, targetNodeId: addedNode.id })
-      },
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'note', x: ele.x, y: ele.y - 150 }),
     }
 
-    const changeMenuItem = (ele: NodeConfig | EdgeConfig, menuList: MenuItem[]) => {
-      setTimeout(() => {
-        // @ts-ignore
-        this.__currentData = ele
-        // @ts-ignore
-        const { left, top } = this.__menuDOM.style
-        // @ts-ignore
-        this.showMenu(left, top, menuList)
-      })
+    // 修改节点类型
+    const change = {
+      text: '切换类型',
+      icon: true,
+      className: 'lf-menu-switch',
+      callback: (ele: NodeConfig) => {
+        let menuList: MenuItem[] = []
+        switch (ele.type) {
+          case 'exclusiveGateway':
+            menuList = [back, changeToParallelGateway]
+            break
+          case 'parallelGateway':
+            menuList = [back, changeToExclusiveGateway]
+            break
+          case 'startEvent':
+            menuList = [back, changeToEndEvent]
+            break
+          case 'endEvent':
+            menuList = [back, changeToStartEvent]
+            break
+          default:
+            menuList = [back]
+        }
+        this.changeMenuList(ele, menuList)
+      },
+    }
+    const changeToStartEvent = {
+      text: '开始',
+      icon: true,
+      className: 'lf-menu-start-event',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'startEvent'),
+    }
+    const changeToEndEvent = {
+      text: '结束',
+      icon: true,
+      className: 'lf-menu-end-event',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'endEvent'),
+    }
+    const changeToParallelGateway = {
+      text: '并行网关',
+      icon: true,
+      className: 'lf-menu-parallel-gateway',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'parallelGateway'),
+    }
+    const changeToExclusiveGateway = {
+      text: '互斥网关',
+      icon: true,
+      className: 'lf-menu-exclusive-gateway',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'exclusiveGateway'),
     }
 
     const defaultMenuConfig = {
-      nodeMenu: [add, copy, remove, editText, removeText],
+      nodeMenu: [add, copy, remove, change, editText, removeText],
       edgeMenu: [remove, editText, removeText],
       graphMenu: [select, clear],
     }
 
-    const additionMenuConfig = {
-      nodeMenu: [back, addUserTask, addServiceTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote],
-    }
-
     this.setMenuConfig(defaultMenuConfig)
+  }
+
+  /** 改变当前显示的菜单 */
+  changeMenuList(ele: NodeConfig | EdgeConfig, menuList: MenuItem[]) {
+    setTimeout(() => {
+      // @ts-ignore
+      this.__currentData = ele
+      // @ts-ignore
+      const { left, top } = this.__menuDOM.style
+      // @ts-ignore
+      this.showMenu(left, top, menuList)
+    })
+  }
+
+  /** 添加节点 */
+  addNode(ele: NodeConfig, addConfig: NodeConfig) {
+    const addedNode = this.lf.addNode(addConfig)
+    const isNoteFlow = ['serviceTask', 'note'].includes(addConfig.type)
+    this.lf.addEdge({ type: isNoteFlow ? 'noteFlow' : undefined, sourceNodeId: ele.id!, targetNodeId: addedNode.id })
+  }
+
+  /** 修改节点类型 */
+  changeNodeType(ele: NodeConfig | EdgeConfig, type: string) {
+    this.lf.changeNodeType(ele.id!, type)
+    Object.keys(ele.properties || {}).forEach(key => this.lf.deleteProperty(ele.id!, key))
+    this.lf.emit('element:click', { data: { ...ele, type, properties: {} } })
   }
 }

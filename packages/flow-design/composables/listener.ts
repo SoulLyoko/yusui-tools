@@ -1,3 +1,4 @@
+import type { EdgeConfig, NodeConfig, TextConfig } from '@logicflow/core'
 import type { FlowDesignState } from '../types'
 
 import { nextTick } from 'vue'
@@ -20,18 +21,18 @@ export function useModelerListener({
   formRef,
   formDefaults,
 }: FlowDesignState) {
-  async function selectElement({ data, isForce } = { data: undefined as any, isForce: false }) {
+  async function selectElement({ data, isForce } = { data: {} as EdgeConfig | NodeConfig, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === 'process')
     if (!data && processNode?.id) {
       // elementData!.value = undefined;
       // formOption.value.group = [];
       // formData.value = {};
       // return;
-      data = lf.value?.getNodeDataById(processNode.id)
+      data = lf.value?.getNodeDataById(processNode.id) as NodeConfig
     }
-    if (data?.id === elementData.value?.id && !isForce)
+    if (data?.id === elementData.value?.id && data?.type === elementData.value?.type && !isForce)
       return
-    data.type !== 'process' && lf.value?.selectElementById(data.id)
+    data.type !== 'process' && lf.value?.selectElementById(data.id!)
 
     formLoading.value = true
     await nextTick()
@@ -40,9 +41,9 @@ export function useModelerListener({
       menuBtn: false,
       span: 24,
       labelPosition: 'left',
-      group: formOptions.value?.[data.type] ?? defaultGroup,
+      group: formOptions.value?.[data.type!] ?? defaultGroup,
     }
-    formData.value = { ...data.properties, id: data.id, name: data.text?.value || '' }
+    formData.value = { ...data.properties, id: data.id, name: (data.text as TextConfig)?.value || '' }
     // formOption.value = await formOptionFormat({
     //   menuBtn: false,
     //   span: 24,
