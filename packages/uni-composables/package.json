@@ -32,8 +32,8 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "postcss": "^8.4.23",
-    "uvue-crud": "^2.0.5",
-    "vue": "^3.3.2"
+    "postcss": "^8.4.24",
+    "uvue-crud": "^2.0.8",
+    "vue": "^3.3.4"
   }
 }

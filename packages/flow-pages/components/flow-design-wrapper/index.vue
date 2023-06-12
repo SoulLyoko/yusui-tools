@@ -4,13 +4,12 @@ import type { FlowFormData } from '@yusui/flow-design'
 import type { FlowHistory } from '../../api'
 
 import { computed, ref } from 'vue'
-import { defaultGraphData } from '@yusui/flow-design'
+import { defaultGraphData, defaultOptions } from '@yusui/flow-design'
 import { enumToDic } from '@yusui/utils'
 import { watchDebounced } from '@vueuse/core'
 
 import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonApi, useFlowParamApi } from '../../api'
 import { useConfigProvider } from '../../composables'
-import { options } from './options'
 import AssigneeSetter from './assignee-setter.vue'
 
 const props = defineProps<{
@@ -108,7 +107,7 @@ const flowHistoryToolTips = computed(() => {
   </div>
   <FlowDesign
     v-else v-model="graphData" v-model:formData="formData" v-model:formDefaults="formDefaults"
-    :form-options="options" :data-options="dataOptions" form-width="30%"
+    :form-options="defaultOptions" :data-options="dataOptions" form-width="30%"
   />
 </template>
 

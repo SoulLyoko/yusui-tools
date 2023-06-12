@@ -23,11 +23,11 @@
     "dist"
   ],
   "dependencies": {
-    "@vue/compiler-sfc": "^3.3.2",
+    "@vue/compiler-sfc": "^3.3.4",
     "magic-string": "^0.30.0"
   },
   "devDependencies": {
     "@dcloudio/uni-ui": "^1.4.27",
-    "uview-plus": "^3.1.30"
+    "uview-plus": "^3.1.31"
   }
 }

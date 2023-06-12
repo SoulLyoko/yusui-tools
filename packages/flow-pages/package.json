@@ -14,7 +14,7 @@
   "main": "index.ts",
   "module": "index.ts",
   "dependencies": {
-    "@iconify/vue": "4.0.0",
+    "@iconify/vue": "^4.1.1",
     "@vueuse/core": "^10.1.2",
     "@yusui/composables": "workspace:*",
     "@yusui/flow-design": "workspace:*",
@@ -22,12 +22,12 @@
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "axios": "^1.4.0",
-    "vue-request": "^2.0.0-rc.4"
+    "vue-request": "^2.0.2"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.15",
-    "element-plus": "^2.3.4",
-    "sass": "^1.62.1",
-    "vue": "^3.3.2"
+    "@smallwei/avue": "^3.2.16",
+    "element-plus": "^2.3.6",
+    "sass": "^1.63.2",
+    "vue": "^3.3.4"
   }
 }

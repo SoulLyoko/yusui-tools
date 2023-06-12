@@ -100,7 +100,7 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
 
 export function resolveFlowFormComponent(formPath?: string) {
   if (formPath)
-    return defineAsyncComponent(() => import(formPath))
+    return defineAsyncComponent(() => import(/* @vite-ignore */formPath))
   else
     return FlowForm
 }

@@ -41,8 +41,8 @@ export function useProvideState(props: FlowDesignProps) {
     editorVisible,
     dataOptions,
     onUpdateFormData,
-    formOptionFormat: props.formOptionFormat ?? (option => option),
-    formDataFormat: props.formDataFormat ?? (data => data),
+    // formOptionFormat: props.formOptionFormat ?? (option => option),
+    // formDataFormat: props.formDataFormat ?? (data => data),
   }
 
   provide(injectionKey, state)

@@ -10,6 +10,9 @@ export default defineConfig({
   title: pkg.upperName,
   description: pkg.description,
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
     socialLinks: [{ icon: 'github', link: pkg.homepage }],
     nav: [
       { text: 'Guide', link: '/guide/start' },
