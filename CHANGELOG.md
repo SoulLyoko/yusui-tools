@@ -1,3 +1,14 @@
+# [2.0.0-beta.46](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.45...v2.0.0-beta.46) (2023-06-12)
+
+
+### Bug Fixes
+
+* **flow-design:** add `dataOptions` handler ([407bb89](https://github.com/SoulLyoko/yusui-tools/commit/407bb892309090c7512a8069e11e34c4d7126b46))
+* **flow-design:** merge components ([09688d6](https://github.com/SoulLyoko/yusui-tools/commit/09688d6e08501e242899fa32c44af4131dd782b9))
+* **types-avue:** param `column` in change event is an object ([cfba8d1](https://github.com/SoulLyoko/yusui-tools/commit/cfba8d14b8f4f139d0c19cbceab07fe8e2124a1f))
+
+
+
 # [2.0.0-beta.45](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.44...v2.0.0-beta.45) (2023-06-06)
 
 
