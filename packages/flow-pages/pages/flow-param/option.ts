@@ -10,12 +10,11 @@ export const tableOption: AvueCrudOption<FlowParam> = {
   border: true,
   stripe: true,
   searchMenuSpan: 6,
-  span: 24,
   column: [
     { label: '配置名称', prop: 'paramName', search: true },
     { label: '配置Key', prop: 'paramKey', search: true },
-    { label: '配置值', prop: 'paramValue', type: 'textarea', overHidden: true },
-    { label: '系统内置', prop: 'paramType', type: 'switch', dicData: whetherDic },
     { label: '备注', prop: 'remark' },
+    { label: '系统内置', prop: 'paramType', type: 'switch', dicData: whetherDic },
+    { label: '配置值', prop: 'paramValue', type: 'textarea', maxRows: 20, span: 24, overHidden: true },
   ],
 }

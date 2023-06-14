@@ -3,10 +3,10 @@ import type { AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
 import type { FlowFormData } from '@yusui/flow-design'
 import type { FlowHistory } from '../../api'
 
-import { computed, ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import { defaultGraphData, defaultOptions } from '@yusui/flow-design'
 import { enumToDic } from '@yusui/utils'
-import { watchDebounced } from '@vueuse/core'
+import { watchDebounced, watchOnce } from '@vueuse/core'
 
 import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonApi, useFlowParamApi } from '../../api'
 import { useConfigProvider } from '../../composables'
@@ -17,10 +17,16 @@ const props = defineProps<{
   view?: boolean
   flowFormOption?: string
   flowHistory?: FlowHistory[]
+  showLegend?: boolean
 }>()
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'nodeClick'])
 
 const { FlowDesign } = useConfigProvider()
+
+const lf = shallowRef()
+watchOnce(lf, () => {
+  lf.value?.on('node:click', (e: any) => emit('nodeClick', e))
+})
 
 const graphData = computed({
   get() {
@@ -53,16 +59,20 @@ const dataOptions = computed(() => ({
 
 const formData = ref<FlowFormData>({})
 const formDefaults = ref<AvueFormDefaults>({})
-watchDebounced(formDefaults, async (defaults) => {
-  if (!defaults)
-    return
-  // 审批人选择
-  if (defaults.assignee?.children?.column?.[1])
-    defaults.assignee.children.column[1].component = AssigneeSetter
-  // 传阅人选择
-  if (defaults.circulate?.children?.column?.[1]?.children?.column?.[1])
-    defaults.circulate.children.column[1].children.column[1].component = AssigneeSetter
-}, { debounce: 1 })
+watchDebounced(
+  formDefaults,
+  (defaults) => {
+    if (!defaults)
+      return
+    // 审批人选择
+    if (defaults.assignee?.children?.column?.[1])
+      defaults.assignee.children.column[1].component = AssigneeSetter
+    // 传阅人选择
+    if (defaults.circulate?.children?.column?.[1]?.children?.column?.[1])
+      defaults.circulate.children.column[1].children.column[1].component = AssigneeSetter
+  },
+  { debounce: 1 },
+)
 
 const { data: flowTaskStatus } = useFlowParamApi().useParam('flow.task.status' as const)
 const flowHistoryStyles = computed(() => {
@@ -97,13 +107,16 @@ const flowHistoryToolTips = computed(() => {
 
 <template>
   <div v-if="view" class="flow-viewer">
-    <div class="flow-status-legend">
+    <div v-if="showLegend !== false" class="flow-status-legend">
       <div v-for="item in flowTaskStatus" :key="item.label" class="legend-item">
         <div class="legend-color" :style="{ backgroundColor: item.style?.fill }" />
         <span>{{ item.label }}</span>
       </div>
     </div>
-    <FlowDesign :model-value="graphData" :styles="flowHistoryStyles" :tooltips="flowHistoryToolTips" type="viewer" />
+    <FlowDesign
+      v-model:lf="lf" :model-value="graphData" :styles="flowHistoryStyles" :tooltips="flowHistoryToolTips"
+      type="viewer"
+    />
   </div>
   <FlowDesign
     v-else v-model="graphData" v-model:formData="formData" v-model:formDefaults="formDefaults"

@@ -23,6 +23,7 @@ export const enum HandleType {
   '任务退回' = 4,
   '流程终止' = 5,
   '任务转办' = 6,
+  '绿色通道' = 7,
 }
 
 /** 流程详情 */
@@ -119,15 +120,7 @@ export interface FlowComment {
 }
 
 /** 提交任务数据 */
-export interface CommitTaskData {
-  /** 审批人集合 */
-  assignee?: Record<string, string>
-  /** 传阅人集合 */
-  circulate?: string
-  /** 审批意见 */
-  comment?: string
-  /** 抄送人 */
-  copyUser?: string
+export interface CommitTaskData extends ApprovalFormData {
   /** 流程部署id */
   flowDeployId?: string
   /** 流程实例ID */
@@ -138,10 +131,21 @@ export interface CommitTaskData {
   isDebug?: boolean
   /** 表单数据 */
   variables?: FlowVariable[]
-  /** 流向 */
-  outgoing?: string[]
   /** 发起时携带文件ids */
   fileIds?: string
+}
+
+export interface ApprovalFormData {
+  /** 指定节点key */
+  jumpTaskNodeKey?: string
+  /** 审批人集合 */
+  assignee?: Record<Required<ApprovalNode>['taskNodeKey'], Required<ApprovalNode>['userId']>
+  /** 传阅人集合 */
+  circulate?: Record<Required<ApprovalNode>['taskNodeKey'], Required<ApprovalNode>['userId']>
+  /** 审批意见 */
+  comment?: string
+  /** 流向 */
+  outgoing?: string[]
 }
 
 /** 获取审批节点的请求参数 */
@@ -152,6 +156,10 @@ export interface GetApprovalNodeParams {
   taskId?: string
   /** 是否从流程配置加载,false则返回全部 */
   loadConfig?: boolean
+  /** 按钮key */
+  buttonType?: string
+  /** 指定节点key */
+  jumpTaskNodeKey?: string
 }
 
 /** 转换的表单数据 */
@@ -174,10 +182,14 @@ export interface ApprovalNode {
   taskNodeProperties?: any
   /** 流进线id，只有一级节点有 */
   incoming?: string
-  /** 用户id只有用户节点有 */
+  /** 是否多选，只有一级节点有 */
+  multiple?: boolean
+  /** 用户id，只有用户节点有 */
   userId?: string
   children?: ApprovalNode[]
 }
+
+export type GetApprovalNodeResData = ResData<{ approvalNodeList: ApprovalNode[]; circulateNodeList: ApprovalNode[] }>
 
 export function useFlowTaskApi() {
   const { request } = useConfigProvider()
@@ -200,6 +212,10 @@ export function useFlowTaskApi() {
     withdraw: '/sapier-flow/flow-run/withdrawToStart',
     /** 转办 */
     transfer: '/sapier-flow/flow-run/transferTask',
+    /** 退回 */
+    reject: '/sapier-flow/flow-run/rollbackTask',
+    /** 绿色通道 */
+    green: '/sapier-flow/flow-run/greenTask',
     /** 获取已部署流程 */
     publish: '/sapier-flow/flow-run/queryPublishFlowList',
     /** 待办/已办列表 */
@@ -208,7 +224,7 @@ export function useFlowTaskApi() {
   /** 获取流程详情 */
   const getFlowDetail = (params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
   /** 获取审批节点 */
-  const getApprovalNode = (data: GetApprovalNodeParams) => request.post<ResData<ApprovalNode[]>>(url.approvalNode, data)
+  const getApprovalNode = (data: GetApprovalNodeParams) => request.post<GetApprovalNodeResData>(url.approvalNode, data)
   /** 发起 */
   const startTask = (data: CommitTaskData) => request.post(url.start, data)
   /** 发送 */
@@ -223,6 +239,10 @@ export function useFlowTaskApi() {
   const withdrawTask = (data: CommitTaskData) => request.post(url.withdraw, data)
   /** 转办 */
   const transferTask = (data: CommitTaskData) => request.post(url.transfer, data)
+  /** 退回 */
+  const rejectTask = (data: CommitTaskData) => request.post(url.reject, data)
+  /** 绿色通道 */
+  const greenChannel = (data: CommitTaskData) => request.post(url.green, data)
   /** 已部署列表 */
   const getPublishFlow = () => request.get<ResData<FlowDeploy[]>>(url.publish)
   /** 待办列表 */
@@ -238,6 +258,8 @@ export function useFlowTaskApi() {
     terminateTask,
     withdrawTask,
     transferTask,
+    rejectTask,
+    greenChannel,
     getPublishFlow,
     getTodoList,
   }

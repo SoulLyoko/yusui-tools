@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { CommitTaskData, FlowButton, FlowDetail } from '../../api'
+import type { ApprovalFormData, FlowButton, FlowDetail } from '../../api'
 import type { Permission } from '../types'
 
 export function useProps() {
@@ -17,10 +17,7 @@ export function useProps() {
     /** 当前点击的按钮 */
     activeBtn: { type: Object as PropType<FlowButton>, default: () => ({}) },
     /** 审批表单 */
-    approvalFormData: {
-      type: Object as PropType<Pick<CommitTaskData, 'assignee' | 'outgoing' | 'comment' | 'copyUser' | 'circulate'>>,
-      default: () => ({}),
-    },
+    approvalFormData: { type: Object as PropType<ApprovalFormData>, default: () => ({}) },
     /** 流程key */
     flowKey: { type: String },
     /** 任务id,与实例id传其一即可 */

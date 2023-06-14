@@ -22,10 +22,12 @@
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "axios": "^1.4.0",
+    "lodash-es": "^4.17.21",
     "vue-request": "^2.0.2"
   },
   "devDependencies": {
     "@smallwei/avue": "^3.2.16",
+    "@types/lodash-es": "^4.17.7",
     "element-plus": "^2.3.6",
     "sass": "^1.63.2",
     "vue": "^3.3.4"

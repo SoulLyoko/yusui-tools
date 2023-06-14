@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import type { TableTemplate } from '../../api'
 
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
+import { differenceBy } from 'lodash-es'
 
 import { tableOption } from './option'
 import { useFlowParamApi, useTableTemplateApi } from '../../api'
 
 const {
   bindVal,
-  crudStateRefs: { formData },
+  crudStateRefs: { formData, defaults },
   getDataList,
-  beforeOpen,
+  afterOpen,
   beforeSubmit,
 } = useCrud({
   crudOption: useTableTemplateApi(),
@@ -22,14 +23,22 @@ const {
 getDataList()
 
 const { data: defaultFields } = useFlowParamApi().useParam('table.default.fields' as const)
-beforeOpen((type) => {
-  if (type === 'add')
-    formData.value.tableFields = defaultFields.value
-  else
-    formData.value.tableFields = JSON.parse(formData.value.tableFields as string)
+afterOpen((type) => {
+  formData.value.defaultFields = defaultFields.value ?? []
+  if (type === 'edit') {
+    const tableFields: any[] = JSON.parse(formData.value.tableFields as string)
+    formData.value.editFields = differenceBy(tableFields, defaultFields.value ?? [], 'name')
+  }
 })
 beforeSubmit((row) => {
-  row.tableFields = JSON.stringify(row.tableFields)
+  const tableFields = [...row.defaultFields, ...row.editFields]
+  row.tableFields = JSON.stringify(tableFields)
+})
+
+const showDefaultFields = ref(false)
+watchEffect(() => {
+  if (defaults.value?.defaultFields)
+    defaults.value.defaultFields.display = showDefaultFields.value
 })
 
 const { deploy } = useTableTemplateApi()
@@ -54,6 +63,15 @@ async function handleDeploy(row: TableTemplate) {
       <el-button type="text" icon="el-icon-upload" @click="handleDeploy(row)">
         部署
       </el-button>
+    </template>
+    <template #editFields-label>
+      <div>
+        数据库字段
+        <br>
+        <el-tooltip content="显示默认字段">
+          <el-switch v-model="showDefaultFields" />
+        </el-tooltip>
+      </div>
     </template>
   </avue-crud>
 </template>

@@ -3,16 +3,14 @@ import type { CommonComment } from '../../api'
 import type Node from 'element-plus/es/components/tree/src/model/node'
 
 import { computed, nextTick, ref } from 'vue'
-import { useVModel } from '@vueuse/core'
+import { useVModels } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
 
 import { useCommonCommentApi } from '../../api'
 import { useInjectState } from '../composables'
 
-const props = defineProps({
-  modelValue: { type: String },
-})
-const modelValue = useVModel(props, 'modelValue')
+const props = defineProps<{ modelValue: string }>()
+const { modelValue } = useVModels(props)
 
 const { batchUpdate, create, remove, useList } = useCommonCommentApi()
 
@@ -55,7 +53,7 @@ function nodeDragStart() {
 }
 const inputRef = ref()
 async function nodeClick(data: CommonComment) {
-  modelValue.value = data.content
+  modelValue.value = data.content ?? ''
   await nextTick()
   inputRef.value?.blur()
 }

@@ -5,7 +5,7 @@ import { computed } from 'vue'
 import { useFlowTaskApi } from '../../api/flow-task'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
-  const { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask } = useFlowTaskApi()
+  const { commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask, withdrawTask, rejectTask, greenChannel } = useFlowTaskApi()
   const data = computed(() => {
     const { flowDetail, formVariables, approvalFormData, debug, fileIds } = state
     const { flowDeployId } = flowDetail.value.process ?? {}
@@ -44,16 +44,6 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
       if (isInstance())
         return withdrawTask(data.value)
     },
-    // // 退回
-    // flow_reject() {
-    //   if (!taskId || !flowInstanceId) return;
-    //   return handleProcess({
-    //     taskId,
-    //     flowInstanceId,
-    //     pass: "false",
-    //     variables: { ...formData.value, save_draft: false }
-    //   });
-    // },
     // 终止
     flow_terminate() {
       if (isInstance())
@@ -63,6 +53,16 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     flow_transfer() {
       if (isInstance())
         return transferTask(data.value)
+    },
+    // 退回
+    flow_reject() {
+      if (isInstance())
+        return rejectTask(data.value)
+    },
+    // 退回
+    flow_green() {
+      if (isInstance())
+        return greenChannel(data.value)
     },
   }
 }

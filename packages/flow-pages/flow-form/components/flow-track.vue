@@ -61,7 +61,7 @@ function findHandleTypeDicItem(value: number) {
     <avue-crud v-if="activeType === 'table'" :data="tableData" :option="tableOption" />
     <FlowDesignWrapper
       v-if="activeType === 'graph'" :model-value="flowDetail?.process?.flowData"
-      :flow-history="flowDetail?.flowHistory" view
+      :flow-history="flowDetail?.flowHistory" view show-legend
     />
     <template v-if="activeType === 'timeline'">
       <el-timeline v-if="tableData.length">

@@ -6,7 +6,26 @@ import { enumToDic } from '@yusui/utils'
 import { FieldType } from '../../api'
 import { whetherDic } from '../../constants'
 
-export const tableOption: AvueCrudOption<TableTemplate> = {
+const fieldsColumn = [
+  { label: '字段名称', prop: 'name' },
+  { label: '字段备注', prop: 'comment' },
+  {
+    label: '字段类型',
+    prop: 'type',
+    type: 'select',
+    filterable: true,
+    allowCreate: true,
+    defaultFirstOption: true,
+    dicData: enumToDic(FieldType),
+  },
+  { label: '字段长度', prop: 'size', type: 'number' },
+  { label: '小数位', prop: 'point', type: 'number' },
+  { label: '默认值', prop: 'default' },
+  { label: '是否主键', prop: 'primary', type: 'switch', dicData: whetherDic, value: 0 },
+  { label: '是否允许为空', prop: 'permitNull', type: 'switch', dicData: whetherDic, value: 1 },
+]
+
+export const tableOption: AvueCrudOption<TableTemplate & { defaultFields: any[];editFields: any[] }> = {
   rowKey: 'id',
   align: 'center',
   index: true,
@@ -22,28 +41,22 @@ export const tableOption: AvueCrudOption<TableTemplate> = {
     { label: '表主键策略', prop: 'tablePrimary' },
     {
       label: '数据库字段',
-      prop: 'tableFields',
+      prop: 'editFields',
       hide: true,
       type: 'dynamic',
       children: {
-        column: [
-          { label: '字段名称', prop: 'name' },
-          { label: '字段备注', prop: 'comment' },
-          {
-            label: '字段类型',
-            prop: 'type',
-            type: 'select',
-            filterable: true,
-            allowCreate: true,
-            defaultFirstOption: true,
-            dicData: enumToDic(FieldType),
-          },
-          { label: '字段长度', prop: 'size', type: 'number' },
-          { label: '小数位', prop: 'point', type: 'number' },
-          { label: '默认值', prop: 'default' },
-          { label: '是否主键', prop: 'primary', type: 'switch', dicData: whetherDic, value: 0 },
-          { label: '是否允许为空', prop: 'permitNull', type: 'switch', dicData: whetherDic, value: 1 },
-        ],
+        column: fieldsColumn,
+      },
+    },
+    {
+      label: '默认字段',
+      prop: 'defaultFields',
+      hide: true,
+      type: 'dynamic',
+      children: {
+        addBtn: false,
+        delBtn: false,
+        column: fieldsColumn,
       },
     },
   ],
