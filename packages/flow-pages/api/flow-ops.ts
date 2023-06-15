@@ -3,9 +3,7 @@ import type { FlowTask } from './flow-task'
 
 import { useConfigProvider } from '../composables'
 
-/**
- * 流程运维信息
- */
+/** 流程运维 */
 export interface FlowOps extends FlowTask {
   /** 申请人 */
   applyUserId?: string
@@ -26,9 +24,9 @@ export function useFlowOpsApi() {
     /** 流程运维列表 */
     list: '/sapier-flow/flow-ops/list',
   }
-  const getList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.list, { params })
+  const getTaskOpsList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.list, { params })
   return {
     url,
-    getList,
+    getTaskOpsList,
   }
 }

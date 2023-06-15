@@ -7,6 +7,7 @@ export const CONFIG_DEFAULT: FlowPagesConfig = {
   FlowDesign: null as any,
   FormDesign: null as any,
   request: (() => {}) as any,
+  userInfo: {},
   upload: {
     props: {
       fileName: 'fileOriginalName',

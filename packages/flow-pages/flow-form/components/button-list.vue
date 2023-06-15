@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FlowButton, FlowDetail } from '../../api'
+import type { FlowButton } from '../../api'
 import type { ButtonItem } from '@yusui/flow-design'
 
 import { computed } from 'vue'
@@ -7,11 +7,14 @@ import { pick } from 'lodash-es'
 import { Icon } from '@iconify/vue'
 
 import { useFlowButtonApi } from '../../api'
+import { useInjectState } from '../composables'
+import { useConfigProvider } from '../../composables'
 
-const props = defineProps<{ flowDetail?: FlowDetail }>()
 const emit = defineEmits<{ (e: 'click', btn: FlowButton): void }>()
 
+const { flowDetail, circulateId } = useInjectState()
 const { data: allButtonList } = useFlowButtonApi().useList()
+const { userInfo } = useConfigProvider()
 
 function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   return button.map((btn) => {
@@ -23,15 +26,18 @@ function mergeButton(button: FlowButton[], source: ButtonItem[]) {
 
 // 显示的按钮
 const displayButtonList = computed(() => {
-  // const { userInfo } = useUserStore();
-  const userInfo = { userId: '1' }
-  const { assignee, status: taskStatus } = props.flowDetail?.task || {}
-  const { createUser, flowInstanceId, status: flowStatus } = props.flowDetail?.flowInstance || {}
+  if (circulateId?.value) {
+    const circulateBtn = allButtonList.value?.find(e => e.buttonKey === 'flow_circulate')
+    return circulateBtn ? [circulateBtn] : []
+  }
+  const user = typeof userInfo === 'function' ? userInfo() : userInfo
+  const { assignee, status: taskStatus } = flowDetail.value?.task || {}
+  const { createUser, flowInstanceId, status: flowStatus } = flowDetail.value?.flowInstance || {}
   const buttonCondition: Record<string, boolean> = {
     true: true,
     false: false,
-    startUser: createUser == userInfo.userId,
-    assignee: assignee == userInfo.userId,
+    startUser: createUser == user?.userId,
+    assignee: assignee == user?.userId,
     todo: taskStatus == 2,
     done: taskStatus == 1,
     notstarted: !flowInstanceId,
@@ -40,7 +46,8 @@ const displayButtonList = computed(() => {
     unfinished: flowStatus === 2,
   }
 
-  const filterBtn = mergeButton(allButtonList.value ?? [], props.flowDetail?.properties?.button ?? [])
+  const { button: buttonProperties } = flowDetail.value?.properties || {}
+  const filterBtn = mergeButton(allButtonList.value ?? [], buttonProperties ?? [])
     ?.filter((item) => {
       return item.display?.split(',')?.every(condition => buttonCondition[condition])
     })

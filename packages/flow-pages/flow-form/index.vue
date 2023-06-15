@@ -65,11 +65,11 @@ async function onSubmit() {
     <el-skeleton />
   </el-main>
   <el-container v-else class="flow-form">
-    <el-header class="flow-form__header">
+    <el-header class="flow-form__header" height="auto">
       <div class="flow-form__title">
         {{ flowDetail.flowInstance?.title }}
       </div>
-      <ButtonList :flow-detail="flowDetail" @click="onButtonClick" />
+      <ButtonList v-if="!detail" @click="onButtonClick" />
     </el-header>
     <el-main class="flow-form__main">
       <el-tabs v-model="activeTab">

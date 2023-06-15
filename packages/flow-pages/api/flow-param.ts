@@ -7,6 +7,7 @@ import { useRequest } from 'vue-request'
 
 import { useConfigProvider } from '../composables'
 
+/** 流程参数 */
 export interface FlowParam {
   id?: string
   /** 配置Key */
@@ -40,6 +41,7 @@ export interface FlowParamMap {
   'flow.handle.type': FlowParamHandleType[]
   'flow.status': FlowParamFlowStatus[]
   'table.default.fields': TableField[]
+  'flow.default.comment': string
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any
 
@@ -63,8 +65,8 @@ export function useFlowParamApi() {
   /** 获取所有流程参数键值对 */
   const getAllParam = () => request.get<ResData<FlowParamMap>>(url.all)
   /** 根据key获取流程参数 */
-  const getParam = <K>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
-  const useParam = <K>(key: K) => useRequest(() => getParam<K>(key).then(res => res.data))
+  const getParam = <K extends string = keyof FlowParamMap>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
+  const useParam = <K extends string = keyof FlowParamMap>(key: K) => useRequest(() => getParam<K>(key).then(res => res.data))
   const create = (data: FlowParam) => request.post(url.save, data)
   const update = (data: FlowParam) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

@@ -2,6 +2,7 @@ import type { Page, ResData, ResRecords } from '@yusui/types'
 
 import { useConfigProvider } from '../composables'
 
+/** 流程定义 */
 export interface FlowDefinition {
   /** 流程定义数据 */
   flowData?: string

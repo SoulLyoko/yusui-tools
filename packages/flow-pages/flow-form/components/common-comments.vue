@@ -60,7 +60,7 @@ async function nodeClick(data: CommonComment) {
 </script>
 
 <template>
-  <el-popover :visible="popoverVisible" placement="bottom" title="常用意见" :width="300">
+  <el-popover :visible="popoverVisible" placement="bottom" title="常用意见" :width="600">
     <template #reference>
       <el-input
         ref="inputRef"
@@ -83,13 +83,13 @@ async function nodeClick(data: CommonComment) {
       @node-drag-start="nodeDragStart"
     >
       <template #default="{ data }">
-        <el-row style="width: 250px;">
-          <el-col :span="20">
+        <el-row style="width: 600px;">
+          <el-col :span="22">
             <el-text truncated :title="data.content">
               {{ data.content }}
             </el-text>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="2">
             <el-button
               v-if="data.id"
               type="danger"

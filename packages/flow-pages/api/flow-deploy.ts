@@ -8,6 +8,7 @@ export enum IsMainVersion {
   '是' = 1,
 }
 
+/** 已部署流程 */
 export interface FlowDeploy extends FlowDefinition {
   /** 部署id */
   flowDeployId?: string

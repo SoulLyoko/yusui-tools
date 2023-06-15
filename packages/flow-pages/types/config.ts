@@ -10,6 +10,9 @@ export interface FlowPagesConfig {
   FormDesign: Component
   /** axios实例 */
   request: RequestInstance
+  /** 用户信息 */
+  userInfo: { userId?: string } | (() => { userId?: string })
+  /** 上传配置 */
   upload: {
     /** 上传地址 */
     action?: string

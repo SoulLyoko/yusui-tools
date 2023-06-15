@@ -5,6 +5,7 @@ import { useRequest } from 'vue-request'
 
 import { useConfigProvider } from '../composables'
 
+/** 常用意见 */
 export interface CommonComment {
   id?: string
   content?: string

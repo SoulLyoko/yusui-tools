@@ -4,6 +4,7 @@ import { useRequest } from 'vue-request'
 
 import { useConfigProvider } from '../composables'
 
+/** 流程模板 */
 export interface FlowTemplate {
   /** 流程模型数据 */
   flowData?: string

@@ -36,6 +36,8 @@ export function useProps() {
     detail: { type: Boolean },
     /** 调试模式 */
     debug: { type: Boolean },
+    /** 传阅id */
+    circulateId: { type: String },
   }
 }
 

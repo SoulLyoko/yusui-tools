@@ -1,5 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import type { Emits, Props } from '../flow-form/types'
+import type { DialogProps, DrawerProps } from 'element-plus'
 
 import { computed, defineAsyncComponent, getCurrentInstance, h, ref, render, unref } from 'vue'
 import { isFunction, isNil, omitBy, overSome } from 'lodash-es'
@@ -19,13 +20,12 @@ export type FlowFormProps = Partial<Props> & UseFlowFormEvents
 
 export interface UseFlowFormOptions {
   type: UseFlowFormType
+  /** 外置表单路径 */
   formPath?: string
-  window?: {
-    url?: string
-    name?: string
-    features?: string
-  }
-  overlay?: any
+  /** window.open参数 */
+  window?: Parameters<typeof window.open>
+  /** 弹窗组件属性 */
+  overlay?: Partial<DialogProps | DrawerProps>
   [key: string]: any
 }
 
@@ -39,21 +39,21 @@ export function useFlowForm(props: MaybeRef<FlowFormProps>, options: UseFlowForm
     case 'drawer':
       return useFlowFormOverlay(props, options as UseFlowFormOptions)
     default:
-      return { open: () => {}, close: () => {} }
+      return { open: (mergeProps?: MaybeRef<FlowFormProps>) => {}, close: () => {} }
   }
 }
 
 export function useFlowFormWindow(props: MaybeRef<FlowFormProps>, options: UseFlowFormOptions) {
-  const { window: { url = '', name = 'flow-form', features = 'left=0,top=0,width=1600,height=900' } = {} } = options
+  const { window: [url = '', name = 'flow-form', features = 'left=0,top=0,width=1600,height=900'] = [] } = options
   const openedWindow = ref<Window | null>(null)
   const openUrl = computed(() => {
     return `${url}?${serialize(omitBy(props, overSome(isFunction, isNil)))}`
   })
-  const open = () => {
+  const open = (mergeProps?: MaybeRef<FlowFormProps>) => {
     openedWindow.value = window.open(openUrl.value, name, features)
     openedWindow.value?.addEventListener('message', (e) => {
       const { event } = e.data
-      const fn = unref(props)[event as keyof FlowFormProps]
+      const fn = { ...unref(props), ...unref(mergeProps) }[event as keyof FlowFormProps]
       typeof fn === 'function' && fn(e.data)
     })
   }
@@ -65,13 +65,13 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
   const { appContext } = getCurrentInstance()!
 
   let container: HTMLElement
-  const open = () => {
+  const open = (mergeProps?: MaybeRef<FlowFormProps>) => {
     container = document.createElement('div')
     container.className = 'flow-form-wrapper'
 
     const renderComponent = resolveFlowFormComponent(options.formPath)
 
-    const vnode = h(renderComponent, { ...unref(props) })
+    const vnode = h(renderComponent, { ...unref(props), ...unref(mergeProps) })
     const overlay = h(
       options.type === 'dialog' ? ElDialog : ElDrawer,
       {

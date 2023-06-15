@@ -35,6 +35,7 @@ export default {
           FlowDesign,
           FormDesign,
           request,
+          userInfo: { userId: '1' },
           upload: {
             action: import.meta.env.VITE_UPLOAD_URL,
             headers: { Authorization: import.meta.env.VITE_TOKEN },

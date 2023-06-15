@@ -20,7 +20,7 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
     ...formOption.column!.map((col, index) => {
       return {
         ...col,
-        search: index <= 2,
+        search: index < 2,
       }
     }),
     {

@@ -1,55 +1,66 @@
 <script setup lang="ts">
-import type { FlowFormProps } from '../../composables'
-import type { FlowOps } from '../../api'
+import type { FlowCirculateOps, FlowOps } from '../../api'
 
 import { ref } from 'vue'
-import { useStorage } from '@vueuse/core'
+import { useStorage, watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 
 import { tableOption } from './option'
-import { useFlowOpsApi } from '../../api'
+import { useFlowCirculateApi, useFlowOpsApi } from '../../api'
 import { useFlowForm } from '../../composables'
 
 const debugMode = useStorage('debugMode', false)
 
-const { getList } = useFlowOpsApi()
+const { getTaskOpsList } = useFlowOpsApi()
+const { getCirculateOpsList, updateCirculate, removeCirculate } = useFlowCirculateApi()
 
 const {
   bindVal,
   getDataList,
+  crudStateRefs: { searchForm, crudOption },
 } = useCrud({
   tableOption,
   crudOption: {
-    getList,
+    getList: getTaskOpsList,
   },
-  searchForm: {
-    status: 2,
-  },
-  sortOption: {
-    descs: 'start_time',
-  },
+  searchForm: { status: 2 },
+  sortOption: { descs: 'start_time' },
 })
-getDataList()
 
-const flowProps = ref<FlowFormProps>({})
-const { open, close } = useFlowForm(flowProps, { type: 'drawer' })
-function openFlow(row: FlowOps) {
-  flowProps.value = {
+watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })
+
+const activeTab = ref('task')
+const tabs = [
+  { label: '任务', name: 'task', getList: getTaskOpsList },
+  { label: '传阅', name: 'circulate', getList: getCirculateOpsList, update: updateCirculate, remove: removeCirculate },
+]
+function onTabClick({ paneName }: { paneName: string }) {
+  const findTab = tabs.find(tab => tab.name === paneName)
+  crudOption.value.getList = findTab!.getList
+  crudOption.value.update = findTab!.update!
+  crudOption.value.remove = findTab!.remove!
+  getDataList()
+}
+
+// eslint-disable-next-line no-sequences
+const { open, close } = useFlowForm({ onComplete: () => (close(), getDataList()) }, { type: 'drawer' })
+function openFlow(row: FlowOps | FlowCirculateOps) {
+  open({
     flowKey: row.flowKey,
     taskId: row.taskId,
     instanceId: row.flowInstanceId,
     debug: debugMode.value,
-    onComplete: () => {
-      close()
-      getDataList()
-    },
-  }
-  open()
+    circulateId: (row as FlowCirculateOps).id,
+  })
 }
 </script>
 
 <template>
-  <avue-crud v-bind="bindVal">
+  <el-tabs v-model="activeTab" @tab-click="onTabClick">
+    <el-tab-pane v-for="tab in tabs" :key="tab.name" :label="tab.label" :name="tab.name" />
+  </el-tabs>
+
+  <avue-crud v-bind="bindVal" :permission="{ menu: activeTab === 'circulate' }">
     <template #menu-right>
       <el-button type="text">
         <el-switch v-model="debugMode" inline-prompt active-text="debug" inactive-text="debug" />

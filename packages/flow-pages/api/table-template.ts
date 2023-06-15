@@ -5,6 +5,7 @@ import { useRequest } from 'vue-request'
 
 import { useConfigProvider } from '../composables'
 
+/** 建表设计 */
 export interface TableTemplate {
   id?: string
   /** 表名 */

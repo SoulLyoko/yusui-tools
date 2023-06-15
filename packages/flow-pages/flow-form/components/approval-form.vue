@@ -5,7 +5,7 @@ import type { ApprovalNode } from '../../api'
 import { nextTick, ref, watchEffect } from 'vue'
 import { findTree } from '@yusui/utils'
 
-import { useFlowTaskApi } from '../../api'
+import { useFlowParamApi, useFlowTaskApi } from '../../api'
 import { asyncValidate } from '../../utils'
 import { useInjectState } from '../composables'
 import CommonComments from './common-comments.vue'
@@ -15,6 +15,7 @@ import NodeSelect from './node-select.vue'
 const emit = defineEmits(['confirm'])
 
 const { getApprovalNode } = useFlowTaskApi()
+const { useParam } = useFlowParamApi()
 
 const { formData, approvalFormData, activeBtn, approvalVisible, formVariables, flowDetail } = useInjectState()
 
@@ -54,6 +55,8 @@ function approvalValidator(rule: any, value: any, callback: (msg?: string) => vo
   return true
 }
 
+const { data: defaultComment } = useParam('flow.default.comment')
+
 watchEffect(async () => {
   /** 弹窗表单未加载完成 */
   if (!approvalVisible.value || !formRef.value || !defaults.value)
@@ -66,8 +69,7 @@ watchEffect(async () => {
 
   nextTick(() => {
     formRef.value!.resetFields()
-    const defaultComment = taskId ? '' : '发起'
-    approvalFormData.value.comment = formData.value.comment || defaultComment
+    approvalFormData.value.comment = formData.value.comment || (taskId ? '' : defaultComment.value)
 
     defaults.value!.jumpTaskNodeKey.display = checkField('specifyNode')
     defaults.value!.assignee.display = checkField('assignee')
@@ -76,13 +78,14 @@ watchEffect(async () => {
   })
 })
 watchEffect(async () => {
+  /** 弹窗表单未加载完成 */
   if (!approvalVisible.value)
     return
 
   /** 不显示审批人 */
   if (!checkField('assignee'))
     return
-  /** 显示指定节点但没有选择节点 */
+  /** 显示指定节点但未选择节点 */
   if (checkField('specifyNode') && !approvalFormData.value.jumpTaskNodeKey)
     return
 

@@ -5,6 +5,7 @@ import type { FlowOps } from './flow-ops'
 
 import { useConfigProvider } from '../composables'
 
+/** 任务状态 */
 export const enum TaskStatus {
   '已办' = 1,
   '待办' = 2,
@@ -12,10 +13,13 @@ export const enum TaskStatus {
   '撤销' = 4,
   '终止' = 5,
 }
+/** 流程状态 */
 export const enum FlowStatus {
   '已办结' = 1,
   '未办结' = 2,
+  '已终止' = 3,
 }
+/** 操作类型 */
 export const enum HandleType {
   '系统执行' = 1,
   '用户办理' = 2,
@@ -133,8 +137,11 @@ export interface CommitTaskData extends ApprovalFormData {
   variables?: FlowVariable[]
   /** 发起时携带文件ids */
   fileIds?: string
+  /** 传阅id */
+  id?: string
 }
 
+/** 审批窗口表单数据 */
 export interface ApprovalFormData {
   /** 指定节点key */
   jumpTaskNodeKey?: string
@@ -194,6 +201,10 @@ export type GetApprovalNodeResData = ResData<{ approvalNodeList: ApprovalNode[];
 export function useFlowTaskApi() {
   const { request } = useConfigProvider()
   const url = {
+    /** 获取已部署流程 */
+    publishList: '/sapier-flow/flow-run/queryPublishFlowList',
+    /** 待办/已办列表 */
+    taskList: '/sapier-flow/flow-run/userTaskList',
     /** 任务详情 */
     detail: '/sapier-flow/flow-run/queryPublishFlowDetail',
     /** 获取审批人节点树 */
@@ -216,10 +227,8 @@ export function useFlowTaskApi() {
     reject: '/sapier-flow/flow-run/rollbackTask',
     /** 绿色通道 */
     green: '/sapier-flow/flow-run/greenTask',
-    /** 获取已部署流程 */
-    publish: '/sapier-flow/flow-run/queryPublishFlowList',
-    /** 待办/已办列表 */
-    todo: '/sapier-flow/flow-run/userTaskList',
+    /** 传阅 */
+    circulate: '/sapier-flow/flow-circulate/commitTask',
   }
   /** 获取流程详情 */
   const getFlowDetail = (params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
@@ -241,14 +250,18 @@ export function useFlowTaskApi() {
   const transferTask = (data: CommitTaskData) => request.post(url.transfer, data)
   /** 退回 */
   const rejectTask = (data: CommitTaskData) => request.post(url.reject, data)
+  /** 传阅 */
+  const circulateTask = (data: CommitTaskData) => request.post(url.circulate, data)
   /** 绿色通道 */
   const greenChannel = (data: CommitTaskData) => request.post(url.green, data)
   /** 已部署列表 */
-  const getPublishFlow = () => request.get<ResData<FlowDeploy[]>>(url.publish)
-  /** 待办列表 */
-  const getTodoList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.todo, { params })
+  const getPublishList = () => request.get<ResData<FlowDeploy[]>>(url.publishList)
+  /** 待办/已办列表 */
+  const getTaskList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.taskList, { params })
   return {
     url,
+    getPublishList,
+    getTaskList,
     getFlowDetail,
     getApprovalNode,
     startTask,
@@ -260,7 +273,6 @@ export function useFlowTaskApi() {
     transferTask,
     rejectTask,
     greenChannel,
-    getPublishFlow,
-    getTodoList,
+    circulateTask,
   }
 }

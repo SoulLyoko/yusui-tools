@@ -2,6 +2,7 @@ import type { Page, ResData } from '@yusui/types'
 
 import { useConfigProvider } from '../composables'
 
+/** 流程分类 */
 export interface FlowCategory {
   /** 主键id */
   id?: string

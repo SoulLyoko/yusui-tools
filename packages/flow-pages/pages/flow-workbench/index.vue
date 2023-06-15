@@ -1,55 +1,65 @@
 <script setup lang="ts">
-import type { FlowDeploy, FlowTask } from '../../api'
-import type { FlowFormProps } from '../../composables'
+import type { FlowCirculate, FlowDeploy, FlowTask } from '../../api'
 
 import { ref } from 'vue'
+import { watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 import { Icon } from '@iconify/vue'
 
-import { useFlowTaskApi } from '../../api'
+import { TaskStatus, useFlowCirculateApi, useFlowTaskApi } from '../../api'
 import { useFlowForm } from '../../composables'
 import { tableOption } from './option'
 
 const flowList = ref<FlowDeploy[]>([])
 
-const { getPublishFlow, getTodoList } = useFlowTaskApi()
+const { getPublishList, getTaskList } = useFlowTaskApi()
+const { getCirculateList } = useFlowCirculateApi()
 
-getPublishFlow().then((res) => {
+getPublishList().then((res) => {
   flowList.value = res.data
 })
 
-const flowProps = ref<FlowFormProps>({})
-const { open, close } = useFlowForm(flowProps, { type: 'drawer' })
-function openFlow(row: FlowDeploy | FlowTask) {
-  flowProps.value = {
-    flowKey: (row as FlowDeploy).flowKey,
-    taskId: (row as FlowTask).taskId,
-    instanceId: (row as FlowTask).flowInstanceId,
-    onComplete: () => {
-      close()
-      getDataList()
-    },
-  }
-  open()
-}
-
-const {
-  bindVal,
-  getDataList,
-  crudStateRefs: { searchForm },
-} = useCrud({
-  tableOption,
-  crudOption: {
-    getList: getTodoList,
-  },
-  searchForm: {
-    status: 2,
-  },
-})
 const flowStatusDic = [
   { label: '待办', value: 2 },
   { label: '已办', value: 1 },
 ]
+
+const {
+  bindVal,
+  getDataList,
+  crudStateRefs: { searchForm, crudOption },
+} = useCrud({
+  tableOption,
+  crudOption: {
+    getList: getTaskList,
+  },
+  searchForm: { status: 2 },
+})
+
+watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })
+
+const activeTab = ref('task')
+const tabs = [
+  { label: '任务', name: 'task', getList: getTaskList },
+  { label: '传阅', name: 'circulate', getList: getCirculateList },
+]
+function onTabClick({ paneName }: { paneName: string }) {
+  const findTab = tabs.find(tab => tab.name === paneName)
+  crudOption.value.getList = findTab!.getList
+  getDataList()
+}
+
+// eslint-disable-next-line no-sequences
+const { open, close } = useFlowForm({ onComplete: () => (close(), getDataList()) }, { type: 'drawer' })
+function openFlow(row: FlowDeploy | FlowTask | FlowCirculate) {
+  open({
+    flowKey: (row as FlowDeploy).flowKey,
+    taskId: (row as FlowTask).taskId,
+    instanceId: (row as FlowTask).flowInstanceId,
+    circulateId: (row as FlowCirculate).id,
+    detail: row.status === TaskStatus['已办'],
+  })
+}
 </script>
 
 <template>
@@ -74,9 +84,13 @@ const flowStatusDic = [
   </el-card>
   <el-divider direction="horizontal" content-position="left" />
 
+  <el-tabs v-model="activeTab" @tab-click="onTabClick">
+    <el-tab-pane v-for="tab in tabs" :key="tab.name" :label="tab.label" :name="tab.name" />
+  </el-tabs>
+
   <avue-crud v-bind="bindVal">
     <template #menu-left>
-      <avue-radio v-model="searchForm.status" button :dic="flowStatusDic" @update:model-value="getDataList" />
+      <avue-radio v-model="searchForm.status" button :dic="flowStatusDic" />
     </template>
     <template #processTitle="{ row }">
       <el-link type="primary" :underline="false" @click="openFlow(row)">

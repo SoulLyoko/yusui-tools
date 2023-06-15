@@ -2,6 +2,7 @@ import type { Page, ResData } from '@yusui/types'
 
 import { useConfigProvider } from '../composables'
 
+/** 流程文件 */
 export interface FlowFile {
   id?: string
   /** 附件目录 */

@@ -4,6 +4,7 @@ import { useRequest } from 'vue-request'
 
 import { useConfigProvider } from '../composables'
 
+/** 表单模板 */
 export interface FormTemplate {
   /** 表单KEY */
   formKey?: string
