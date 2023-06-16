@@ -1,3 +1,19 @@
+# [2.0.0-beta.47](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.46...v2.0.0-beta.47) (2023-06-16)
+
+
+### Features
+
+* **flow-design:** add change node type menu ([00ac153](https://github.com/SoulLyoko/yusui-tools/commit/00ac153bbcc184ea37cd58f5c3f84e997e99925b))
+* **flow-pages:** approval-tree,greenChannel ([8aee512](https://github.com/SoulLyoko/yusui-tools/commit/8aee5125ea6cc9e436a629e17209dbd60000edf7))
+* **flow-pages:** flow-circulate ([19956f8](https://github.com/SoulLyoko/yusui-tools/commit/19956f85e074f96707bd305c3398256a7f42583d))
+
+
+### Performance Improvements
+
+* **flow-form:** approval-tree ([163a754](https://github.com/SoulLyoko/yusui-tools/commit/163a75446bed7cefd2755f264039d449c275c069))
+
+
+
 # [2.0.0-beta.46](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.45...v2.0.0-beta.46) (2023-06-12)
 
 
