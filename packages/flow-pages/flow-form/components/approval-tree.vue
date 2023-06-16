@@ -2,9 +2,9 @@
 import type { ElTree } from 'element-plus'
 import type { ApprovalNode } from '../../api'
 
-import { computed, ref, watchEffect } from 'vue'
-import { useVModels } from '@vueuse/core'
-import { treeMap, uuid } from '@yusui/utils'
+import { computed, ref } from 'vue'
+import { useVModels, watchDebounced } from '@vueuse/core'
+import { filterTree, sleep, treeMap, uuid } from '@yusui/utils'
 import { differenceBy } from 'lodash-es'
 
 const props = defineProps<{ modelValue: ApprovalNode[]; data: ApprovalNode[] }>()
@@ -13,12 +13,12 @@ const { modelValue } = useVModels(props)
 const treeRef = ref<InstanceType<typeof ElTree>>()
 const treeProps = {
   class(data: ApprovalNode) {
-    return data.type === 'user' ? 'node-user' : ''
+    return `node-${data.type}`
   },
 }
 const treeData = computed(() => {
   return treeMap(props.data ?? [], (item, index, parent) => {
-    const id = item.id || uuid()
+    const id = uuid()
     item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
     item.incoming = parent?.incoming ?? item.incoming
     item.multiple = parent?.multiple ?? item.multiple
@@ -33,11 +33,24 @@ const iconMap: Record<string, string> = {
   user: 'ep:user',
 }
 
-watchEffect(() => {
-  // 只有一个节点时自动选择
-  const checkedNode = getUniqueNode(treeData.value)
-  checkedNode && setCheckedNodes([checkedNode])
-})
+watchDebounced(
+  () => [treeData.value, treeRef.value],
+  async () => {
+    if (!treeRef.value || !treeData.value.length)
+      return
+    // 只有一个节点时自动选择
+    const checkedNode = getUniqueNode(treeData.value)
+    checkedNode && setCheckedNodes([checkedNode])
+    // 展开节点
+    const expandedNodes = filterTree(treeData.value, e => !!e.children?.length)
+    expandedNodes.map(async (data) => {
+      await sleep(100)
+      const node = treeRef.value?.getNode(data)
+      node?.expand()
+    })
+  },
+  { immediate: true, debounce: 100 },
+)
 
 // 获取唯一的子节点
 function getUniqueNode(data: ApprovalNode[]): ApprovalNode | undefined {
@@ -62,6 +75,22 @@ async function onCheck(data: ApprovalNode, { checkedNodes }: { checkedNodes: App
     nodes = differenceBy(nodes, siblingNodes, 'id')
   }
   setCheckedNodes(nodes)
+
+  // let nodes = checkedNodes.filter(e => e.type === 'user')
+  // const isChecked = nodes.some(e => e.id === data.id)
+  // if (!data.multiple && isChecked) {
+  //   // 排除掉兄弟节点
+  //   const currentNode = treeRef.value?.getNode(data)
+  //   const currentChildren = currentNode!.parent.data.children as ApprovalNode[]
+  //   const siblingNodes = currentChildren.filter(e => e.id !== data.id)
+  //   nodes = differenceBy(nodes, siblingNodes, 'id')
+  // }
+  // if (treeData.value[0].type === 'exclusiveGateway' && isChecked) {
+  //   // 互斥网关，排除掉非相同父节点的节点
+  //   const commonParentNodes = nodes.filter(e => e.parentId === data.parentId)
+  //   nodes = commonParentNodes
+  // }
+  // setCheckedNodes(nodes)
 }
 
 function onTagClose(data: ApprovalNode) {
@@ -80,12 +109,12 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
     {{ item.title }}
   </el-tag>
   <el-tree
-    ref="treeRef" class="approval-tree" :data="treeData" :props="treeProps" node-key="id" check-on-click-node
-    default-expand-all show-checkbox @check="onCheck"
+    ref="treeRef" class="approval-tree" :data="treeData" :props="treeProps"
+    node-key="id" check-on-click-node show-checkbox @check="onCheck"
   >
     <template #default="{ data }">
       <div>
-        <Icon :icon="iconMap[data.type]" style="display: inline-block" />
+        <Icon :icon="iconMap[data.type] || iconMap.element" style="display: inline-block" />
         <span>{{ data.title }}</span>
       </div>
     </template>
@@ -97,14 +126,23 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
   max-height: 300px;
   overflow-x: auto;
 
-  :deep(.el-tree-node__children:has(>.node-user)) {
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 60px;
+  :deep(.el-tree-node__children) {
+    white-space: normal;
 
-    .el-tree-node__content {
-      padding-left: 0 !important;
-      padding-right: 20px;
+    .node-user {
+      display: inline-block;
+      min-width: 130px;
+
+      .el-tree-node__content {
+        padding-right: 20px;
+      }
+
+      &:not(:first-child, :nth-child(6n)) {
+        .el-tree-node__content {
+          padding-left: 0 !important;
+        }
+      }
+
     }
   }
 }

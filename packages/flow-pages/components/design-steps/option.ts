@@ -32,6 +32,10 @@ export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
       prop: 'remarks',
     },
     {
+      label: '自定义表单',
+      prop: 'formPath',
+    },
+    {
       label: '关联表',
       prop: 'formDataTable',
       type: 'select',

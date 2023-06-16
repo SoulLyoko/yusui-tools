@@ -88,6 +88,14 @@ export class Dagre {
       data.x = node.x
       // @ts-ignore: pass node data
       data.y = node.y
+      // 文字放在节点中间
+      if (data.text && data.text.value) {
+        data.text = {
+          x: data.x,
+          y: data.y + 10,
+          value: data.text.value,
+        }
+      }
       newGraphData.nodes.push(data)
     })
     layoutData.edges.forEach((edge) => {
@@ -100,9 +108,11 @@ export class Dagre {
         const last = data.pointsList[data.pointsList.length - 1]
         data.startPoint = { x: first.x, y: first.y }
         data.endPoint = { x: last.x, y: last.y }
+        // 文字放在线中间
         if (data.text && data.text.value) {
           data.text = {
-            x: last.x - this.getBytesLength(data.text.value) * 6 - 10,
+            // x: last.x - this.getBytesLength(data.text.value) * 6 - 10,
+            x: (first.x + last.x) / 2,
             y: last.y,
             value: data.text.value,
           }

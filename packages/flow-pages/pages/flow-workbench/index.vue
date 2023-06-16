@@ -57,7 +57,7 @@ function openFlow(row: FlowDeploy | FlowTask | FlowCirculate) {
     taskId: (row as FlowTask).taskId,
     instanceId: (row as FlowTask).flowInstanceId,
     circulateId: (row as FlowCirculate).id,
-    detail: row.status === TaskStatus['已办'],
+    detail: (row as FlowTask).taskId ? row.status === TaskStatus['已办'] : false,
   })
 }
 </script>

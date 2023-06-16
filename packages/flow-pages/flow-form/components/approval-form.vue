@@ -41,7 +41,7 @@ const formOption: AvueFormOption<typeof approvalFormData.value> = {
 }
 
 function approvalValidator(rule: any, value: any, callback: (msg?: string) => void) {
-  const isParallelGateway = approvalNodes.value[0].type === 'ParallelGateway'
+  const isParallelGateway = approvalNodes.value[0].type === 'parallelGateway'
   const isAllChecked = approvalNodes.value[0].children?.every((node) => {
     return findTree([node], item => checkedApprovalNodes.value.some(e => e.id === item.id))
   })
@@ -151,18 +151,18 @@ function getApprovalSetData(nodes: ApprovalNode[]) {
 </script>
 
 <template>
-  <el-dialog v-model="approvalVisible" class="approlval-form" :title="activeBtn.name" width="50%" append-to-body>
+  <el-dialog v-model="approvalVisible" class="approlval-form" :title="activeBtn.name" width="900px" append-to-body>
     <avue-form ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" :option="formOption">
       <template #jumpTaskNodeKey>
         <NodeSelect v-model="approvalFormData.jumpTaskNodeKey" />
       </template>
       <template #assignee>
         <el-skeleton v-if="treeLoading" />
-        <ApprovalTree v-else v-model="checkedApprovalNodes" :data="approvalNodes" />
+        <ApprovalTree v-else key="AssigneeTree" v-model="checkedApprovalNodes" :data="approvalNodes" />
       </template>
       <template #circulate>
         <el-skeleton v-if="treeLoading" />
-        <ApprovalTree v-else v-model="checkedCirculateNodes" :data="circulateNodes" />
+        <ApprovalTree v-else key="CirculateTree" v-model="checkedCirculateNodes" :data="circulateNodes" />
       </template>
       <template #comment>
         <CommonComments v-model="approvalFormData.comment" />
@@ -179,12 +179,3 @@ function getApprovalSetData(nodes: ApprovalNode[]) {
     </template>
   </el-dialog>
 </template>
-
-<style lang="scss">
-.approlval-form {
-  .el-form-item__label {
-    align-items: center;
-  }
-
-}
-</style>

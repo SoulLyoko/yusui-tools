@@ -21,7 +21,7 @@ function onFlowNodeClick({ data }: { data: any }) {
 </script>
 
 <template>
-  <el-popover v-model:visible="popoverVisible" placement="bottom" width="800px" trigger="click">
+  <el-popover v-model:visible="popoverVisible" placement="right" width="800px" trigger="click">
     <template #reference>
       <el-button>
         点击选择节点
