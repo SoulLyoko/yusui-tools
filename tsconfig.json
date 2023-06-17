@@ -1,7 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "@yusui/form-design": ["packages/form-design/index.ts"],

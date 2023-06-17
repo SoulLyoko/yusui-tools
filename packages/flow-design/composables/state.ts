@@ -7,7 +7,7 @@ import { useVModels } from '@vueuse/core'
 export const injectionKey = Symbol('flowDesignState')
 
 export function useProvideState(props: FlowDesignProps) {
-  const vModels = useVModels(props)
+  const vModels = useVModels(props, undefined, { passive: true })
   const {
     lf,
     modelValue: graphData,

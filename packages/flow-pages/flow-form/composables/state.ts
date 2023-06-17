@@ -10,7 +10,7 @@ import { useConfigProvider } from '../../composables'
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
 export function useProvideState(props: Props, emit: Emit) {
-  const vModels = useVModels(props, undefined, { deep: true })
+  const vModels = useVModels(props, undefined, { passive: true, deep: true })
   const { flowDetail, modelValue: formData, formLoading } = vModels
 
   const { getFlowDetail } = useFlowTaskApi()
