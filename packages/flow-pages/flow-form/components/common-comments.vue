@@ -9,7 +9,7 @@ import { ElMessage } from 'element-plus'
 import { useCommonCommentApi } from '../../api'
 import { useInjectState } from '../composables'
 
-const props = defineProps<{ modelValue: string }>()
+const props = defineProps<{ modelValue?: string }>()
 const { modelValue } = useVModels(props)
 
 const { batchUpdate, create, remove, useList } = useCommonCommentApi()
@@ -20,7 +20,7 @@ const activeBtnKey = computed(() => activeBtn.value?.buttonKey)
 const { data: commentList, refresh } = useList(activeBtnKey)
 
 const commentTreeData = computed(() => {
-  const content = modelValue.value
+  const content = modelValue!.value
   if (content && !commentList.value?.some(e => e.content === content)) {
     const limitSort = (commentList.value?.[0]?.sort || 1) - 1
     return [{ content, sort: limitSort }, ...(commentList.value || [])]
@@ -53,7 +53,7 @@ function nodeDragStart() {
 }
 const inputRef = ref()
 async function nodeClick(data: CommonComment) {
-  modelValue.value = data.content ?? ''
+  modelValue!.value = data.content ?? ''
   await nextTick()
   inputRef.value?.blur()
 }

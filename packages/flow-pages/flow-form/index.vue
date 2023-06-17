@@ -5,11 +5,9 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
 import { useButtonHandler, useEmits, useProps, useProvideState } from './composables'
-import InternalForm from './components/internal-form.vue'
-import ApprovalForm from './components/approval-form.vue'
-import FlowTrack from './components/flow-track.vue'
 import ButtonList from './components/button-list.vue'
-import UploadTable from './components/upload-table.vue'
+import ApprovalForm from './components/approval-form.vue'
+import InternalForm from './components/internal-form.vue'
 
 const props = defineProps(useProps())
 const emit = defineEmits(useEmits())
@@ -17,13 +15,12 @@ const state = useProvideState(props, emit)
 
 const {
   flowDetail,
-  modelValue: formData,
+  tabList,
   activeTab,
   activeBtn,
   formLoading,
   approvalVisible,
   submitLoading,
-  fileIds,
 } = state
 
 const formRef = ref<InstanceType<typeof InternalForm>>()
@@ -67,23 +64,19 @@ async function onSubmit() {
   <el-container v-else class="flow-form">
     <el-header class="flow-form__header" height="auto">
       <div class="flow-form__title">
-        {{ flowDetail.flowInstance?.title }}
+        {{ props.title ?? flowDetail.flowInstance?.title }}
       </div>
       <ButtonList v-if="!detail" @click="onButtonClick" />
+      <slot name="button" />
     </el-header>
     <el-main class="flow-form__main">
       <el-tabs v-model="activeTab">
-        <slot v-if="flowDetail?.process?.formPath" />
-        <el-tab-pane v-else label="审批信息" name="form">
-          <InternalForm ref="formRef" v-model="formData" :flow-detail="flowDetail" />
-        </el-tab-pane>
-
-        <el-tab-pane label="附件资料" name="file" lazy>
-          <UploadTable v-model="fileIds" :flow-detail="flowDetail" />
-        </el-tab-pane>
-
-        <el-tab-pane label="流程跟踪" name="track" lazy>
-          <FlowTrack :flow-detail="flowDetail" />
+        <el-tab-pane v-for="tab in tabList" :key="tab.prop" :label="tab.label" :name="tab.prop" lazy>
+          <component
+            :is="$slots.default ?? tab.component" v-if="tab.prop === 'formTab'"
+            :ref="(el: any) => formRef = el"
+          />
+          <component :is="tab.component" v-else />
         </el-tab-pane>
       </el-tabs>
     </el-main>

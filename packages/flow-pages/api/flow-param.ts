@@ -42,6 +42,7 @@ export interface FlowParamMap {
   'flow.status': FlowParamFlowStatus[]
   'table.default.fields': TableField[]
   'flow.default.comment': string
+  'flow.approval.autocheck': 'true' | 'fasle'
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any
 

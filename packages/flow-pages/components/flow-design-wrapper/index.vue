@@ -21,7 +21,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['update:modelValue', 'nodeClick'])
 
-const { FlowDesign } = useConfigProvider()
+const { FlowDesign, tabs } = useConfigProvider()
 
 const lf = shallowRef()
 watchOnce(lf, () => {
@@ -49,8 +49,11 @@ const allColumn = computed(() => {
   return all
 })
 const { data: buttonList } = useFlowButtonApi().useList()
+const tabList = computed(() => {
+  return tabs?.map(e => ({ ...e, display: true })) ?? []
+})
 const dataOptions = computed(() => ({
-  formPropertyList: allColumn.value,
+  formPropertyList: [...allColumn.value, ...tabList.value],
   buttonList: buttonList.value?.filter(e => e.status === 1),
   fieldsDic: allColumn.value.map(e => ({ label: e.label, value: `$\{${e.prop}}`, desc: `$\{${e.prop}}` })),
   flowButtonDisplayDic: enumToDic(FlowButtonDisplay),
@@ -92,17 +95,6 @@ const flowHistoryToolTips = computed(() => {
     }
   })
 })
-
-// const lf = shallowRef()
-// watchEffect(() => {
-/** 解决在弹窗中连接锚点，画布会发生移动的问题 */
-// lf.value?.on("anchor:dragstart", () => {
-//   lf.value?.updateEditConfig({ stopMoveGraph: true });
-// });
-// lf.value?.on("anchor:dragend", () => {
-//   lf.value?.updateEditConfig({ stopMoveGraph: false });
-// });
-// });
 </script>
 
 <template>

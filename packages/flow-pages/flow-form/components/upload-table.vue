@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowDetail, FlowFile } from '../../api'
+import type { FlowFile } from '../../api'
 
 import { useCrud } from '@yusui/composables'
 import { get } from 'lodash-es'
 import { uuid } from '@yusui/utils'
 import { computed } from 'vue'
-import { useVModels } from '@vueuse/core'
 
 import { useFlowFileApi } from '../../api'
 import { useConfigProvider } from '../../composables'
+import { useInjectState } from '../composables'
 
-const props = defineProps<{ flowDetail?: FlowDetail; modelValue?: string }>()
-const { modelValue: fileIds } = useVModels(props, undefined, { passive: true })
+const { flowDetail, fileIds } = useInjectState()
 
-const { upload: { action, headers, preview, download, props: uploadProps } } = useConfigProvider()
+const { upload: { action, headers, preview, download, props: uploadProps } = {} } = useConfigProvider()
 
 const uploadHeaders = typeof headers === 'function' ? headers() : headers
-const flowInstanceId = computed(() => props.flowDetail?.task?.flowInstanceId ?? uuid())
+const flowInstanceId = computed(() => flowDetail.value?.task?.flowInstanceId ?? uuid())
 
 const tableOption: AvueCrudOption<FlowFile> = {
   rowKey: 'id',
@@ -65,7 +64,7 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
     fileType: get({ res: response }, `${res}.${fileType}`),
     fileSize: get({ res: response }, `${res}.${fileSize}`),
     fileUrl: get({ res: response }, `${res}.${fileUrl}`),
-    taskId: props.flowDetail?.task?.taskId,
+    taskId: flowDetail.value?.task?.taskId,
     flowInstanceId: flowInstanceId.value,
     // 更新版本
     rootMark: row?.rootMark || '',

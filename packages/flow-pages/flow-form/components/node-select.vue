@@ -5,7 +5,7 @@ import { useVModels } from '@vueuse/core'
 import { useInjectState } from '../composables'
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 
-const props = defineProps<{ modelValue: string }>()
+const props = defineProps<{ modelValue?: string }>()
 const { modelValue } = useVModels(props)
 
 const { flowDetail } = useInjectState()
@@ -16,12 +16,12 @@ function onFlowNodeClick({ data }: { data: any }) {
   if (data.type !== 'userTask')
     return
   popoverVisible.value = false
-  modelValue.value = data.id
+  modelValue!.value = data.id
 }
 </script>
 
 <template>
-  <el-popover v-model:visible="popoverVisible" placement="right" width="800px" trigger="click">
+  <el-popover v-model:visible="popoverVisible" placement="bottom-start" width="800px" trigger="click">
     <template #reference>
       <el-button>
         点击选择节点

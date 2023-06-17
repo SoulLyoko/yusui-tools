@@ -7,7 +7,7 @@ import { useVModels, watchDebounced } from '@vueuse/core'
 import { filterTree, sleep, treeMap, uuid } from '@yusui/utils'
 import { differenceBy } from 'lodash-es'
 
-const props = defineProps<{ modelValue: ApprovalNode[]; data: ApprovalNode[] }>()
+const props = defineProps<{ modelValue: ApprovalNode[]; data: ApprovalNode[]; autoCheck?: boolean }>()
 const { modelValue } = useVModels(props)
 
 const treeRef = ref<InstanceType<typeof ElTree>>()
@@ -38,9 +38,11 @@ watchDebounced(
   async () => {
     if (!treeRef.value || !treeData.value.length)
       return
-    // 只有一个节点时自动选择
-    const checkedNode = getUniqueNode(treeData.value)
-    checkedNode && setCheckedNodes([checkedNode])
+    if (props.autoCheck) {
+      // 只有一个节点时自动选择
+      const checkedNode = getUniqueNode(treeData.value)
+      checkedNode && setCheckedNodes([checkedNode])
+    }
     // 展开节点
     const expandedNodes = filterTree(treeData.value, e => !!e.children?.length)
     expandedNodes.map(async (data) => {

@@ -5,6 +5,7 @@ import { computed, inject, provide, ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'
 
 import { useFlowTaskApi } from '../../api'
+import { useConfigProvider } from '../../composables'
 
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
@@ -13,6 +14,14 @@ export function useProvideState(props: Props, emit: Emit) {
   const { flowDetail, modelValue: formData, formLoading } = vModels
 
   const { getFlowDetail } = useFlowTaskApi()
+
+  const { tabs } = useConfigProvider()
+  const tabList = computed(() => {
+    return tabs?.filter((tab) => {
+      const tabProperty = flowDetail.value?.properties?.formProperty?.find(e => e.prop === tab.prop)
+      return tabProperty?.display !== false
+    }) ?? []
+  })
 
   // 获取流程详情
   watchEffect(() => {
@@ -30,21 +39,10 @@ export function useProvideState(props: Props, emit: Emit) {
       })
   })
 
-  // 显示权限
-  const permission = computed(() => ({ fileTab: true, trackTab: true, ...props.permission }))
-  const showFileTab = computed(
-    () =>
-      permission.value.fileTab === true
-      && flowDetail.value?.properties?.formProperty?.find(e => e.prop === 'fileTab')?.display,
-  )
-  const showTrackTab = computed(
-    () =>
-      permission.value.trackTab === true
-      && flowDetail.value?.properties?.formProperty?.find(e => e.prop === 'trackTab')?.display,
-  )
-
   // 审批表单
   const approvalVisible = ref(false)
+
+  // 表单变量
   const formVariables = computed(() => {
     return Object.entries(formData.value || {})
       .filter(([key]) => !key.startsWith('$'))
@@ -58,9 +56,7 @@ export function useProvideState(props: Props, emit: Emit) {
     formData,
     formVariables,
     approvalVisible,
-    showFileTab,
-    showTrackTab,
-    permission,
+    tabList,
     fileIds,
     emit,
   }

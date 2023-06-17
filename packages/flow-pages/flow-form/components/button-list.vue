@@ -46,18 +46,18 @@ const displayButtonList = computed(() => {
     unfinished: flowStatus === 2,
   }
 
+  const buttonList = allButtonList.value?.filter(e => e.buttonKey !== 'flow_circulate') ?? []
   const { button: buttonProperties } = flowDetail.value?.properties || {}
-  const filterBtn = mergeButton(allButtonList.value ?? [], buttonProperties ?? [])
-    ?.filter((item) => {
-      return item.display?.split(',')?.every(condition => buttonCondition[condition])
-    })
+  const filterBtn = mergeButton(buttonList, buttonProperties ?? [])?.filter((item) => {
+    return item.display?.split(',')?.every(condition => buttonCondition[condition])
+  })
   return filterBtn ?? []
 })
 </script>
 
 <template>
   <el-button v-for="btn in displayButtonList" :key="btn.buttonKey" :type="btn.buttonType" @click="emit('click', btn)">
-    <Icon :icon="btn.icon" />
+    <Icon :icon="btn.icon!" />
     {{ btn.name }}
   </el-button>
 </template>

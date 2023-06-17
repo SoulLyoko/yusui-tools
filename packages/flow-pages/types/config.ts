@@ -5,15 +5,19 @@ import type { FlowFile } from '../api'
 
 export interface FlowPagesConfig {
   /** 流程设计器 */
-  FlowDesign: Component
+  FlowDesign?: Component
   /** 表单设计器 */
-  FormDesign: Component
+  FormDesign?: Component
+  /** 流程表单 */
+  FlowForm?: Component
+  /** 流程表单标签 */
+  tabs?: { label?: string; prop?: string; component?: Component }[]
   /** axios实例 */
   request: RequestInstance
   /** 用户信息 */
-  userInfo: { userId?: string } | (() => { userId?: string })
+  userInfo?: { userId?: string } | (() => { userId?: string })
   /** 上传配置 */
-  upload: {
+  upload?: {
     /** 上传地址 */
     action?: string
     /** 请求头携带的参数，如token */

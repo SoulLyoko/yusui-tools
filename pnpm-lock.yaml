@@ -11,7 +11,7 @@ importers:
       '@dcloudio/uni-ui': ^1.4.27
       '@iconify/vue': 4.0.0
       '@jsdevtools/version-bump-prompt': ^6.1.0
-      '@smallwei/avue': ^3.2.15
+      '@smallwei/avue': ^3.2.16
       '@types/fs-extra': ^11.0.1
       '@types/lodash': ^4.14.194
       '@types/lodash-es': ^4.17.7
@@ -59,7 +59,7 @@ importers:
       '@dcloudio/uni-ui': 1.4.27
       '@iconify/vue': 4.0.0_vue@3.3.4
       '@jsdevtools/version-bump-prompt': 6.1.0
-      '@smallwei/avue': 3.2.15_eobu5smqbl4wgg2f5lvmq66w2u
+      '@smallwei/avue': 3.2.16_eobu5smqbl4wgg2f5lvmq66w2u
       '@types/fs-extra': 11.0.1
       '@types/lodash': 4.14.194
       '@types/lodash-es': 4.17.7
@@ -820,15 +820,15 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@smallwei/avue/3.2.15_eobu5smqbl4wgg2f5lvmq66w2u:
-    resolution: {integrity: sha512-x6zDmCmvG1ZK/pbY2ZZv57bbJSlygcrSxP3+aaRnZuQ1UAxNkFrSUBuxgJcJGbV2n7YI1HuIiTD5R2PXs2DF0A==}
+  /@smallwei/avue/3.2.16_eobu5smqbl4wgg2f5lvmq66w2u:
+    resolution: {integrity: sha512-JphvhNuUU9b+gQ15bIYHZ4O/LPXIGmOL+mUvzINzjflMHNBhPaJUlWA+YGqGHU+ILr64dT50Zp9zzl6LNGEdFA==}
     peerDependencies:
       element-plus: '>=2.2.0'
       vue: '>=3.2.0'
     dependencies:
       '@element-plus/icons-vue': 2.1.0_vue@3.3.4
       countup.js: 1.9.3
-      dayjs: 1.11.7
+      dayjs: 1.11.8
       element-plus: registry.npmmirror.com/element-plus/2.3.6_vue@3.3.4
       vue: registry.npmmirror.com/vue/3.3.4
     dev: true
@@ -1873,10 +1873,6 @@ packages:
 
   /dateformat/3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
-    dev: true
-
-  /dayjs/1.11.7:
-    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
     dev: true
 
   /dayjs/1.11.8:

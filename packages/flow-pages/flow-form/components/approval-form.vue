@@ -41,8 +41,8 @@ const formOption: AvueFormOption<typeof approvalFormData.value> = {
 }
 
 function approvalValidator(rule: any, value: any, callback: (msg?: string) => void) {
-  const isParallelGateway = approvalNodes.value[0].type === 'parallelGateway'
-  const isAllChecked = approvalNodes.value[0].children?.every((node) => {
+  const isParallelGateway = approvalNodes.value[0]?.type === 'parallelGateway'
+  const isAllChecked = approvalNodes.value[0]?.children?.every((node) => {
     return findTree([node], item => checkedApprovalNodes.value.some(e => e.id === item.id))
   })
   if (!checkedApprovalNodes.value.length) {
@@ -56,6 +56,7 @@ function approvalValidator(rule: any, value: any, callback: (msg?: string) => vo
 }
 
 const { data: defaultComment } = useParam('flow.default.comment')
+const { data: autoCheck } = useParam('flow.approval.autocheck')
 
 watchEffect(async () => {
   /** 弹窗表单未加载完成 */
@@ -158,7 +159,7 @@ function getApprovalSetData(nodes: ApprovalNode[]) {
       </template>
       <template #assignee>
         <el-skeleton v-if="treeLoading" />
-        <ApprovalTree v-else key="AssigneeTree" v-model="checkedApprovalNodes" :data="approvalNodes" />
+        <ApprovalTree v-else key="AssigneeTree" v-model="checkedApprovalNodes" :data="approvalNodes" :auto-check="autoCheck === 'true'" />
       </template>
       <template #circulate>
         <el-skeleton v-if="treeLoading" />

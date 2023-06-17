@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import type { FlowDetail } from '../../api'
-
 import { computed, ref } from 'vue'
 import { durationFormat } from '@yusui/utils'
 import { Icon } from '@iconify/vue'
 
 import { useFlowParamApi } from '../../api'
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
+import { useInjectState } from '../composables'
 
-const props = defineProps<{ flowDetail?: FlowDetail }>()
+const { flowDetail } = useInjectState()
 
 const activeType = ref('table')
 const typeList = [
@@ -18,7 +17,7 @@ const typeList = [
 ]
 
 const tableData = computed(() => {
-  return props.flowDetail?.flowHistory?.filter(e => e.taskNodeType === 'userTask')?.map((e) => {
+  return flowDetail.value?.flowHistory?.filter(e => e.taskNodeType === 'userTask')?.map((e) => {
     return {
       ...e,
       duration: durationFormat(e.duration),

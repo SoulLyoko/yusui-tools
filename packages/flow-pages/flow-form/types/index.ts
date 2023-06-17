@@ -9,10 +9,8 @@ export type Emits = ReturnType<typeof useEmits>
 export type Emit = SetupContext<ReturnType<typeof useEmits>>['emit']
 
 export interface Permission {
-  /** 附件标签页的显隐 */
-  fileTab?: boolean
-  /** 流程跟踪页的显隐 */
-  trackTab?: boolean
+  /** 标签的显隐 */
+  tabs?: Record<string, boolean>
   /** 按钮的显隐 */
   button?: Record<FlowButtonKey, boolean>
 }

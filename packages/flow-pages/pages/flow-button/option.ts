@@ -42,9 +42,8 @@ export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = 
       dataType: 'string',
       value: 'false',
       dicData: enumToDic(FlowButtonApproval),
-      labelTip: `不显示: 不显示审批窗口;<br/>指定节点: 可以在流程图中选择指定的节点;<br/>
-      审批人: 显示审批人选择框;<br/>传阅人: 显示传阅人选择框;<br/>
-      抄送人: 显示抄送人选择框;<br/>意见: 显示意见输入框;`,
+      labelTip: `不显示: 不显示审批窗口;<br/>指定节点: 显示指定节点选择框(常用于绿色通道等);<br/>
+      审批人: 显示审批人选择框;<br/>传阅人: 显示传阅人选择框;<br/>意见: 显示意见输入框;`,
     },
     { label: '排序', prop: 'sort', type: 'number', value: 0 },
     { label: '状态', prop: 'status', type: 'switch', value: 1, dicData: enumToDic(FlowButtonStatus) },

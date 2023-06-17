@@ -49,7 +49,6 @@ export enum FlowButtonApproval {
   '指定节点' = 'specifyNode',
   '审批人' = 'assignee',
   '传阅人' = 'circulate',
-  '抄送人' = 'copyUser',
   '意见' = 'comment',
 }
 

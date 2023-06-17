@@ -1,31 +1,23 @@
 <script lang="ts">
-import type { PropType } from 'vue'
 import type { AvueFormOption } from '@smallwei/avue'
-import type { FlowDetail } from '../../api'
 
 import { defineComponent, getCurrentInstance, h, ref, resolveComponent, watchEffect } from 'vue'
-import { useVModels } from '@vueuse/core'
 import { jsonParse } from '@yusui/form-design'
 
 import { asyncValidate } from '../../utils'
-import { useFormDefaults } from '../composables'
+import { useFormDefaults, useInjectState } from '../composables'
 
 export default defineComponent({
-  props: {
-    modelValue: { type: Object, default: () => ({}) },
-    flowDetail: { type: Object as PropType<FlowDetail>, default: () => ({}) },
-    detail: { type: Boolean },
-  },
-  setup(props) {
-    const { modelValue: form } = useVModels(props, undefined, { passive: true, deep: true })
-    const defaults = useFormDefaults(props.flowDetail)
+  setup() {
+    const { flowDetail, formData: form, detail } = useInjectState()
+    const defaults = useFormDefaults(flowDetail.value)
     const { proxy } = getCurrentInstance()!
 
     const option = ref<AvueFormOption>({})
     watchEffect(() => {
-      const { formOption } = props.flowDetail.process ?? {}
+      const { formOption } = flowDetail.value.process ?? {}
       option.value = jsonParse.bind(proxy)(formOption || '{"menuBtn":false}')
-      option.value.detail = Boolean(props.detail)
+      option.value.detail = Boolean(detail.value)
     })
 
     const formRef = ref()

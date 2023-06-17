@@ -6,6 +6,8 @@ export function useProps() {
   return {
     /** 表单绑定,v-model */
     modelValue: { type: Object, default: () => ({}) },
+    /** 标题 */
+    title: { type: String },
     /** 流程详情,v-model */
     flowDetail: { type: Object as PropType<FlowDetail>, default: () => ({}) },
     /** 表单加载,会出现骨架屏,v-model */
@@ -13,7 +15,7 @@ export function useProps() {
     /** 提交加载,按钮loading,v-model */
     submitLoading: { type: Boolean },
     /** 当前激活的标签,v-model */
-    activeTab: { type: String, default: 'form' },
+    activeTab: { type: String, default: 'formTab' },
     /** 当前点击的按钮 */
     activeBtn: { type: Object as PropType<FlowButton>, default: () => ({}) },
     /** 审批表单 */
@@ -26,7 +28,7 @@ export function useProps() {
     instanceId: { type: String },
     /** 业务表单id,与业务关联时使用 */
     formId: { type: String },
-    /** 控制内部组件的显隐 */
+    /** TODO:控制内部组件的显隐 */
     permission: { type: Object as PropType<Permission> },
     /** 弹出审批窗口前 */
     beforeClick: { type: Function as PropType<(btn: FlowButton) => any> },

@@ -73,7 +73,7 @@ function openFlow(row: FlowDeploy | FlowTask | FlowCirculate) {
         </template>
         <div class="flow-list">
           <div v-for="item in flowList" :key="item.flowKey" class="flow-item" @click="openFlow(item)">
-            <Icon class="flow-icon" :icon="item.flowIcon" width="60" />
+            <Icon class="flow-icon" :icon="item.flowIcon!" width="60" />
             <div class="flow-name">
               {{ item.flowName }}
             </div>
