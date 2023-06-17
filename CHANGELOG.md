@@ -1,3 +1,13 @@
+# [2.0.0-beta.48](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.47...v2.0.0-beta.48) (2023-06-17)
+
+
+### Bug Fixes
+
+* **flow-pages:** support tabs config ([a97d335](https://github.com/SoulLyoko/yusui-tools/commit/a97d335088851d0839068e8a2f87734ee4724f57))
+* type errors ([80d504e](https://github.com/SoulLyoko/yusui-tools/commit/80d504eaeeddf6b2098f65fba101a1d52d8b4856))
+
+
+
 # [2.0.0-beta.47](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.46...v2.0.0-beta.47) (2023-06-16)
 
 
