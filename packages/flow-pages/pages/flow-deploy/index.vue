@@ -79,7 +79,7 @@ async function handleSwitchMainVersion(row: FlowDeploy) {
       </el-button>
     </template>
     <template #flowIcon="{ row }">
-      <Icon :icon="row.flowIcon" width="25" style="display: inline" />
+      <Icon :icon="row.flowIcon!" width="25" style="display: inline" />
     </template>
   </avue-crud>
 </template>

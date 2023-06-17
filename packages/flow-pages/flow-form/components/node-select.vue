@@ -29,7 +29,7 @@ function onFlowNodeClick({ data }: { data: any }) {
     </template>
     <FlowDesignWrapper
       :model-value="flowDetail?.process?.flowData" view style="height:600px"
-      @nodeClick="onFlowNodeClick"
+      @node-click="onFlowNodeClick"
     />
   </el-popover>
 </template>

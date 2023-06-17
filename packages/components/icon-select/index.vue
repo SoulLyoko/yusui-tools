@@ -34,7 +34,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Icon v-if="preview" class="icon-select-preview" :icon="modelValue" v-bind="$attrs" />
+  <Icon v-if="preview" class="icon-select-preview" :icon="modelValue!" v-bind="$attrs" />
   <el-popover
     v-else
     popper-class="icon-select-popper"
@@ -54,7 +54,7 @@ onUnmounted(() => {
         v-bind="$attrs"
       >
         <template #suffix>
-          <Icon class="el-input__icon" :icon="modelValue" />
+          <Icon class="el-input__icon" :icon="modelValue!" />
         </template>
       </el-input>
     </template>

@@ -43,7 +43,7 @@ const tabs = [
   { label: '任务', name: 'task', getList: getTaskList },
   { label: '传阅', name: 'circulate', getList: getCirculateList },
 ]
-function onTabClick({ paneName }: { paneName: string }) {
+function onTabClick({ paneName }: any) {
   const findTab = tabs.find(tab => tab.name === paneName)
   crudOption.value.getList = findTab!.getList
   getDataList()

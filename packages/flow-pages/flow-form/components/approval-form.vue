@@ -65,7 +65,6 @@ watchEffect(async () => {
 
   resetNodes()
 
-  const { flowKey } = flowDetail.value?.process || {}
   const { taskId } = flowDetail.value?.task || {}
 
   nextTick(() => {

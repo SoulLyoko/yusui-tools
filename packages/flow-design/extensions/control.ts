@@ -45,13 +45,13 @@ export class Control extends _Control {
             })
         },
       },
-      {
-        key: 'layout',
-        iconClass: 'lf-control-layout',
-        title: '自动布局',
-        text: '自动布局',
-        onClick: () => lf.extension.dagre.layout(),
-      },
+      // {
+      //   key: 'layout',
+      //   iconClass: 'lf-control-layout',
+      //   title: '自动布局',
+      //   text: '自动布局',
+      //   onClick: () => lf.extension.dagre.layout(),
+      // },
     ]
     controls.forEach(item => this.addItem(item))
   }

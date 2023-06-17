@@ -47,5 +47,5 @@ export function enumToDic<T extends object>(
   const { label: labelKey = 'label', value: valueKey = 'value' } = props || {}
   return Object.entries(enumme)
     .map(([key, value]) => ({ [labelKey]: key, [valueKey]: value }))
-    .filter(item => isNaN(Number(item[labelKey])))
+    .filter(item => Number.isNaN(Number(item[labelKey])))
 }

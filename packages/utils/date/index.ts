@@ -60,7 +60,7 @@ export function dateFormat(date: ConfigType, optionsOrFormat: DateFormatOptions 
  */
 export function durationFormat(duration?: number | string | null, detail?: boolean) {
   duration = Number(duration)
-  if (!duration || isNaN(duration))
+  if (!duration || Number.isNaN(duration))
     return ''
   const d = dayjs.duration(duration)
   if (detail) {

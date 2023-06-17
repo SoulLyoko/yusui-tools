@@ -68,7 +68,7 @@ async function handleDeploy(row: FlowDefinition) {
       </el-button>
     </template>
     <template #flowIcon="{ row }">
-      <Icon :icon="row.flowIcon" width="25" style="display: inline" />
+      <Icon :icon="row.flowIcon!" width="25" style="display: inline" />
     </template>
   </avue-crud>
 </template>

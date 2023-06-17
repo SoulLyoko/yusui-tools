@@ -22,17 +22,17 @@ getDataList()
 <template>
   <avue-crud v-bind="bindVal">
     <template #icon="{ row }">
-      <Icon :icon="row.icon" style="display: inline" />
+      <Icon :icon="row.icon!" style="display: inline" />
     </template>
     <template #buttonPreview="{ row }">
       <el-button :type="row.buttonType">
-        <Icon :icon="row.icon" />
+        <Icon :icon="row.icon!" />
         {{ row.name }}
       </el-button>
     </template>
     <template #buttonPreview-form>
       <el-button :type="formData.buttonType">
-        <Icon :icon="formData.icon" />
+        <Icon :icon="formData.icon!" />
         {{ formData.name }}
       </el-button>
     </template>

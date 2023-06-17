@@ -12,7 +12,7 @@ import { checkRules, copyItem } from '../../utils'
 
 const props = defineProps<{ list: ElementTreeNode[]; componentData: ElementTreeNode }>()
 const emit = defineEmits(['update:active', 'update:list'])
-const { list } = useVModels(props, emit, { passive: true, deep: true })
+const { list } = useVModels(props, emit, { deep: true })
 
 const { activeElement, hoverElement, formOption, setActiveElement, recordHistory, getResource } = useInjectState()
 
