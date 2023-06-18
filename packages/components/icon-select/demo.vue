@@ -5,7 +5,9 @@ const icon = ref('')
 </script>
 
 <template>
-  <IconSelect v-model="icon" />
+  指定图标集: <IconSelect v-model="icon" collections="ant-design,ep" />
   <br>
-  preview：<IconSelect v-model="icon" preview width="32px" />
+  从iconify获取: <IconSelect v-model="icon" />
+  <br>
+  从icones获取: <IconSelect v-model="icon" source="icones" />
 </template>

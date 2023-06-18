@@ -18,9 +18,4 @@ describe('IconSelect', () => {
     await wrapper.find('.icon-select-input').trigger('click')
     expect(document.querySelector('.icon-select-popper')).not.toBeNull()
   })
-
-  it('preview mode', async () => {
-    await wrapper.setProps({ preview: true })
-    expect(wrapper.classes()).toContain('icon-select-preview')
-  })
 })
