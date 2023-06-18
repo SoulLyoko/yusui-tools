@@ -49,9 +49,10 @@ const isInputFocus = ref(false)
 const searchValue = ref('')
 const showInput = computed(() => isInputFocus.value || searchValue.value)
 
+type FetchCollectionsResult = Record<string, { name: string; total: number }>
 const activeTab = ref('')
 const fetchColectionsUrl = computed(() => `https://api.iconify.design/collections?prefixes=${props.collections}`)
-const { data: collectionsData, execute: fetchColections, onFetchResponse } = useFetch(fetchColectionsUrl, { immediate: false }).json<Object>()
+const { data: collectionsData, execute: fetchColections, onFetchResponse } = useFetch(fetchColectionsUrl, { immediate: false }).json<FetchCollectionsResult>()
 onFetchResponse(() => {
   activeTab.value = Object.keys(collectionsData.value ?? {})[0]
 })
@@ -61,14 +62,18 @@ watchEffect(() => {
   fetchColections()
 })
 
+interface FetchIconsResult { prefix: string ;categories?: Record<string, string[]>; uncategorized?: string[] }
 const fetchIconsUrl = computed(() => `https://api.iconify.design/collection?prefix=${activeTab.value}`)
-const { data: iconsData, isFetching: fetchingIcons, execute: fetchIcons } = useFetch(fetchIconsUrl, { immediate: false }).json<any>()
+const { data: iconsData, isFetching: fetchingIcons, execute: fetchIcons } = useFetch(fetchIconsUrl, { immediate: false }).json<FetchIconsResult>()
 const iconList = computed<string[]>(() => {
   const { categories, uncategorized, prefix } = iconsData.value ?? {}
-  if (uncategorized)
+  if (uncategorized) {
     return uncategorized?.map((icon: string) => `${prefix}:${icon}`)
-  else if (categories)
-    return new Set([...Object.values(categories)?.flat().map(icon => `${prefix}:${icon}`)])
+  }
+  else if (categories) {
+    const flatedIcons = Object.values(categories)?.flat().map(icon => `${prefix}:${icon}`) ?? []
+    return [...new Set(flatedIcons)]
+  }
   return []
 })
 const icons = computed(() => {
