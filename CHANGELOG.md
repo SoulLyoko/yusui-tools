@@ -1,3 +1,12 @@
+# [2.0.0-beta.51](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.50...v2.0.0-beta.51) (2023-06-18)
+
+
+### Bug Fixes
+
+* **icon-select:** fix error code ([210cf00](https://github.com/SoulLyoko/yusui-tools/commit/210cf00d1d4619dab1a594f988b9b76b051663b1))
+
+
+
 # [2.0.0-beta.50](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.48...v2.0.0-beta.50) (2023-06-18)
 
 
