@@ -1,3 +1,17 @@
+# [2.0.0-beta.50](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.48...v2.0.0-beta.50) (2023-06-18)
+
+
+### Bug Fixes
+
+* revert `@vueuse/core` to `v10.1.2` ([721c2dc](https://github.com/SoulLyoko/yusui-tools/commit/721c2dc0ef8da6b668668a1c36f6c04c09004675))
+
+
+### Features
+
+* **icon-select:** support custom collections ([6457fdf](https://github.com/SoulLyoko/yusui-tools/commit/6457fdf112c85b078e1eb3f5e2bbc267ec8077a2))
+
+
+
 # 2.0.0-beta.49 (2023-06-17)
 
 
