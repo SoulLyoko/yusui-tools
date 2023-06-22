@@ -15,10 +15,10 @@ Iconify 的图标选择器
 
 ## 属性
 
-| 名称        | 说明                       | 类型   | 可选值                | 默认值    |
-| ----------- | -------------------------- | ------ | --------------------- | --------- |
-| v-model     | 绑定的值                   | String | -                     | -         |
-| source      | 图标来源网站               | String | "iconify" \| "icones" | "iconify" |
-| collections | 指定图标集，多个用逗号分隔 | String | -                     | -         |
-| width       | 弹出层宽度                 | Number | -                     | 800       |
-| height      | 弹出层高度                 | Number | -                     | 400       |
+| 名称        | 说明                         | 类型            | 可选值                | 默认值    |
+| ----------- | ---------------------------- | --------------- | --------------------- | --------- |
+| v-model     | 绑定的值                     | String          | -                     | -         |
+| source      | 图标来源网站                 | String          | "iconify" \| "icones" | "iconify" |
+| collections | 指定图标集字符串或本地图标集 | String \| Array | -                     | -         |
+| width       | 弹出层宽度                   | Number          | -                     | 800       |
+| height      | 弹出层高度                   | Number          | -                     | 400       |

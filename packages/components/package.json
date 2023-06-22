@@ -30,6 +30,7 @@
     "@yusui/utils": "workspace:*"
   },
   "devDependencies": {
+    "@iconify/types": "^2.0.0",
     "element-plus": "^2.3.6",
     "sass": "^1.63.4",
     "vue": "^3.3.4"
