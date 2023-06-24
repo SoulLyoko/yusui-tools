@@ -1,0 +1,1 @@
+import{a2 as i,N as n,O as s,Q as a}from"./index.daca2715.js";var o="[object String]";function u(r){return typeof r=="string"||!i(r)&&n(r)&&s(r)==o}var e=0;function c(r){var t=++e;return a(r)+t}export{u as i,c as u};
