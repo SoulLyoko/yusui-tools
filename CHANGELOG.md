@@ -1,3 +1,12 @@
+# [2.0.0-beta.52](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.51...v2.0.0-beta.52) (2023-06-24)
+
+
+### Features
+
+* **components:** input-tree ([7f1a3d5](https://github.com/SoulLyoko/yusui-tools/commit/7f1a3d5a0dca3aa7a9037790d1103eccb13f4407))
+
+
+
 # [2.0.0-beta.51](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.50...v2.0.0-beta.51) (2023-06-18)
 
 
