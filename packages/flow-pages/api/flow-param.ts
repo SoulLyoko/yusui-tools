@@ -1,4 +1,5 @@
 import type { Page, ResData, ResRecords } from '@yusui/types'
+import type { DicItem } from '@smallwei/avue'
 import type { Whether } from '../constants'
 import type { FlowStatus, HandleType, TaskStatus } from './flow-task'
 import type { TableField } from './table-template'
@@ -43,6 +44,7 @@ export interface FlowParamMap {
   'table.default.fields': TableField[]
   'flow.default.comment': string
   'flow.approval.autocheck': 'true' | 'fasle'
+  'flow.trends.user': DicItem[]
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any
 

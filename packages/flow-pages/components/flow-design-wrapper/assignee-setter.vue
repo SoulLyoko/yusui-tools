@@ -3,16 +3,15 @@ import type { AssigneeItem } from '@yusui/flow-design'
 
 import { computed, ref, watch } from 'vue'
 import { treeMap } from '@yusui/utils'
+import { FlowNodeSelect } from '@yusui/flow-design'
 
-import { useFlowUserApi } from '../../api'
+import { useFlowParamApi, useFlowUserApi } from '../../api'
 
 const props = defineProps<{
   modelValue: string | string[]
   tableData?: { row?: AssigneeItem }
 }>()
 const emit = defineEmits(['update:modelValue'])
-
-const { getUserTree } = useFlowUserApi()
 
 const selectValue = computed({
   get() {
@@ -38,23 +37,32 @@ const inputValue = computed({
   },
 })
 
-const treeData = ref<any[]>([])
 const loading = ref(false)
 const type = computed(() => props.tableData?.row?.type)
+
+const treeData = ref<any[]>([])
+const dynamicDic = ref<any[]>([])
+
+const { getUserTree } = useFlowUserApi()
+const { getParam } = useFlowParamApi()
+
 watch(
   type,
   (val) => {
-    if (!['dept', 'post', 'user'].includes(val!))
-      return
-    loading.value = true
-    getUserTree(val === 'user' ? '' : val).then((res) => {
-      treeData.value = treeMap(res.data, (node) => {
-        return {
-          label: node.title,
-          value: node.id,
-        }
-      })
-    }).finally(() => loading.value = false)
+    if (['dept', 'post', 'user'].includes(val!)) {
+      loading.value = true
+      getUserTree(val === 'user' ? '' : val).then((res) => {
+        treeData.value = treeMap(res.data, (e) => {
+          return { label: e.title, value: e.id }
+        })
+      }).finally(() => loading.value = false)
+    }
+    else if (type.value === 'dynamic') {
+      loading.value = true
+      getParam('flow.trends.user').then((res) => {
+        dynamicDic.value = res.data
+      }).finally(() => loading.value = false)
+    }
   },
   { immediate: true },
 )
@@ -63,7 +71,9 @@ watch(
 <template>
   <el-tree-select
     v-if="['dept', 'post', 'user'].includes(type!)" v-model="selectValue" :data="treeData" :loading="loading"
-    multiple check-on-click-node show-checkbox check-strictly :expand-on-click-node="false"
+    :expand-on-click-node="false" multiple check-on-click-node show-checkbox check-strictly clearable
   />
+  <el-tree-select v-else-if="type === 'dynamic'" v-model="inputValue" :data="dynamicDic" :loading="loading" clearable />
+  <FlowNodeSelect v-else-if="type === 'userTask'" v-model="inputValue" filter-type="userTask" />
   <el-input v-else v-model="inputValue" />
 </template>

@@ -8,7 +8,7 @@
 ./demo
 :::
 
-## Options/CrudState
+## UseCrudOptions / CrudState
 
 | 名称              | 类型     | 默认值 | 说明                                       |
 | ----------------- | -------- | ------ | ------------------------------------------ |
@@ -71,32 +71,36 @@
 
 ## Returns
 
-| 名称           | 类型     | 使用                               | 说明                                         |
-| -------------- | -------- | ---------------------------------- | -------------------------------------------- |
-| crudRef        | Ref      | `crudRef.value.rowEdit(row)`       | crudRef.value 等同于 vm.$refs.crudRef        |
-| crudState      | Reactive | `crudState.tableData=[]`           | [crudState](#options/crudstate)              |
-| crudStateRefs  | ToRefs   | `const {formData} = crudStateRefs` | [toRefs(crudState)](#options/crudstate)      |
-| bindVal        | Computed | `<avue-crud v-bind="bindVal">`     | 使用 v-bind 绑定的值                         |
-| getDataList    | Function | `getDataList()`                    | 获取数据列表方法,可被 options 中同名函数覆盖 |
-| handleSave     | Function | `handleSave(row)`                  | 数据添加方法,可被 options 中同名函数覆盖     |
-| handleUpdate   | Function | `handleUpdate(row)`                | 数据更新方法,可被 options 中同名函数覆盖     |
-| handleDel      | Function | `handleDel(row)`                   | 删除行方法,可被 options 中同名函数覆盖       |
-| batchDel       | Function | `handleDel(rows)`                  | 批量删除方法,可被 options 中同名函数覆盖     |
-| beforeGetList  | Function | `beforeGetList((params)=>{})`      | 获取数据前                                   |
-| afterGetList   | Function | `afterGetList((res)=>{})`          | 获取数据后                                   |
-| beforeSave     | Function | `beforeSave((row)=>{})`            | 新增数据前，可对 row 内的数据进行修改        |
-| afterSave      | Function | `afterSave((res)=>{})`             | 新增数据后                                   |
-| beforeUpdate   | Function | `beforeUpdate((row)=>{})`          | 更新数据前，可对 row 内的数据进行修改        |
-| afterUpdate    | Function | `afterUpdate((res)=>{})`           | 更新数据后                                   |
-| beforeSubmit   | Function | `beforeSubmit((row)=>{})`          | 新增/更新数据前，可对 row 内的数据进行修改   |
-| afterSubmit    | Function | `afterSubmit((res)=>{})`           | 新增/更新数据后                              |
-| beforeDel      | Function | `beforeDel((row)=>{})`             | 删除数据前                                   |
-| afterDel       | Function | `afterDel((res)=>{})`              | 删除数据后                                   |
-| beforeBatchDel | Function | `beforeBatchDel((selections)=>{})` | 批量删除前                                   |
-| afterBatchDel  | Function | `afterBatchDel((res)=>{})`         | 批量删除后                                   |
-| beforeSearch   | Function | `beforeSearch((isReset)=>{})`      | 搜索前(是否重置)                             |
-| afterSearch    | Function | `afterSearch((isReset)=>{})`       | 搜索后(是否重置)                             |
-| beforeOpen     | Function | `beforeOpen((type)=>{})`           | 打开表单弹窗前(弹窗表单类型)                 |
-| afterOpen      | Function | `afterOpen((type)=>{})`            | 打开表单弹窗后(弹窗表单类型)                 |
-| beforeClose    | Function | `beforeClose((type)=>{})`          | 关闭表单弹窗前(弹窗表单类型)                 |
-| afterClose     | Function | `afterClose((type)=>{})`           | 关闭表单弹窗后(弹窗表单类型)                 |
+| 名称           | 类型                    | 使用                               | 说明                                           |
+| -------------- | ----------------------- | ---------------------------------- | ---------------------------------------------- |
+| crudRef        | Ref\<AvueCrudInstance\> | `crudRef.value.rowEdit(row)`       | crudRef.value 等同于 vm.$refs.crudRef          |
+| crudState      | Reactive\<CrudState\>   | `crudState.tableData=[]`           | [crudState](#usecrudoptions-crudstate)         |
+| crudStateRefs  | ToRefs\<CrudState\>     | `const {formData} = crudStateRefs` | [toRefs(crudState)](#usecrudoptions-crudstate) |
+| bindVal        | Computed                | `<avue-crud v-bind="bindVal">`     | 使用 v-bind 绑定的值                           |
+| getDataList    | Function                | `getDataList()`                    | 获取数据列表方法,可被 options 中同名函数覆盖   |
+| handleSave     | Function                | `handleSave(row)`                  | 数据添加方法,可被 options 中同名函数覆盖       |
+| handleUpdate   | Function                | `handleUpdate(row)`                | 数据更新方法,可被 options 中同名函数覆盖       |
+| handleDel      | Function                | `handleDel(row)`                   | 删除行方法,可被 options 中同名函数覆盖         |
+| batchDel       | Function                | `handleDel(rows)`                  | 批量删除方法,可被 options 中同名函数覆盖       |
+| beforeGetList  | Function                | `beforeGetList((params)=>{})`      | 获取数据前                                     |
+| afterGetList   | Function                | `afterGetList((res)=>{})`          | 获取数据后                                     |
+| beforeSave     | Function                | `beforeSave((row)=>{})`            | 新增数据前，可对 row 内的数据进行修改          |
+| afterSave      | Function                | `afterSave((res)=>{})`             | 新增数据后                                     |
+| beforeUpdate   | Function                | `beforeUpdate((row)=>{})`          | 更新数据前，可对 row 内的数据进行修改          |
+| afterUpdate    | Function                | `afterUpdate((res)=>{})`           | 更新数据后                                     |
+| beforeSubmit   | Function                | `beforeSubmit((row)=>{})`          | 新增/更新数据前，可对 row 内的数据进行修改     |
+| afterSubmit    | Function                | `afterSubmit((res)=>{})`           | 新增/更新数据后                                |
+| beforeDel      | Function                | `beforeDel((row)=>{})`             | 删除数据前                                     |
+| afterDel       | Function                | `afterDel((res)=>{})`              | 删除数据后                                     |
+| beforeBatchDel | Function                | `beforeBatchDel((selections)=>{})` | 批量删除前                                     |
+| afterBatchDel  | Function                | `afterBatchDel((res)=>{})`         | 批量删除后                                     |
+| beforeSearch   | Function                | `beforeSearch((isReset)=>{})`      | 搜索前(是否重置)                               |
+| afterSearch    | Function                | `afterSearch((isReset)=>{})`       | 搜索后(是否重置)                               |
+| beforeOpen     | Function                | `beforeOpen((type)=>{})`           | 打开表单弹窗前(弹窗表单类型)                   |
+| afterOpen      | Function                | `afterOpen((type)=>{})`            | 打开表单弹窗后(弹窗表单类型)                   |
+| beforeClose    | Function                | `beforeClose((type)=>{})`          | 关闭表单弹窗前(弹窗表单类型)                   |
+| afterClose     | Function                | `afterClose((type)=>{})`           | 关闭表单弹窗后(弹窗表单类型)                   |
+
+## Type Definitions
+
+<<< @/composables/use-crud/types.ts
