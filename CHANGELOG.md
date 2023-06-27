@@ -1,3 +1,13 @@
+# [2.0.0-beta.55](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.54...v2.0.0-beta.55) (2023-06-27)
+
+
+### Bug Fixes
+
+* **flow-pages:** use async component in config ([3d3349c](https://github.com/SoulLyoko/yusui-tools/commit/3d3349ca39b7b6d7440222df27b3093f8c2367ff))
+* **types-avue:** fix crud menu-btn slot type ([d06ac0a](https://github.com/SoulLyoko/yusui-tools/commit/d06ac0a3d9cb3cfaa933b601b6c8583146fdd630))
+
+
+
 # [2.0.0-beta.54](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2023-06-27)
 
 
