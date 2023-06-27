@@ -1,3 +1,12 @@
+# [2.0.0-beta.53](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.52...v2.0.0-beta.53) (2023-06-27)
+
+
+### Bug Fixes
+
+* **flow:** dynamic assignee config ([0cb727a](https://github.com/SoulLyoko/yusui-tools/commit/0cb727a594776eef538001376c1202f623602357))
+
+
+
 # [2.0.0-beta.52](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.51...v2.0.0-beta.52) (2023-06-24)
 
 
