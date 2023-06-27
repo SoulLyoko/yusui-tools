@@ -570,7 +570,7 @@ declare module "@smallwei/avue" {
     header: () => VNode[];
     footer: () => VNode[];
     page: () => VNode[];
-    "menu-btn": () => VNode[];
+    "menu-btn": (props: { row: TableRowData<T>; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
     "menu-left": (props: { size: Size }) => VNode[];
     "menu-right": (props: { size: Size }) => VNode[];
     search: (props: { row: T; search: T; size: Size }) => VNode[];
