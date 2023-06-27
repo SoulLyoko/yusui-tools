@@ -15,7 +15,9 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
   addBtn: false,
   editBtn: false,
   delBtn: false,
-  menuWidth: 300,
+  menuWidth: 100,
+  menuType: 'menu',
+  menuBtnTitle: '操作',
   column: [
     ...formOption.column!.map((col, index) => {
       return {

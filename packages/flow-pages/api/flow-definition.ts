@@ -42,6 +42,8 @@ export function useFlowDefinitionApi() {
     save: '/sapier-flow/flow-definition/save',
     /** 更新流程 */
     update: '/sapier-flow/flow-definition/update',
+    /** 删除流程 */
+    remove: '/sapier-flow/flow-definition/remove',
     /** 流程定义详情 */
     detail: '/sapier-flow/flow-definition/detail',
     /** 部署流程 */
@@ -51,12 +53,14 @@ export function useFlowDefinitionApi() {
   const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get(url.detail, { params })
   const create = (data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) => request.post<ResData<{ flowModuleId?: string }>>(url.save, data)
   const update = (data: FlowDefinition) => request.post(url.update, data)
+  const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   const deploy = (data: Pick<FlowDefinition, 'flowModuleId'>) => request.post(url.deploy, data)
   return {
     url,
     getList,
     create,
     update,
+    remove,
     deploy,
     getDetail,
   }

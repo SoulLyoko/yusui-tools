@@ -12,7 +12,7 @@ import { useFlowDefinitionApi } from '../../api'
 const props = defineProps<{ categoryId?: string }>()
 const emit = defineEmits(['add', 'view', 'edit', 'version'])
 
-const { getList, deploy } = useFlowDefinitionApi()
+const { getList, deploy, remove } = useFlowDefinitionApi()
 
 const {
   bindVal,
@@ -22,7 +22,7 @@ const {
   tableOption,
   crudOption: {
     getList,
-    // remove
+    remove,
   },
   searchForm: { categoryId: props.categoryId },
 })
@@ -44,6 +44,17 @@ async function handleDeploy(row: FlowDefinition) {
       loading.value = false
     })
 }
+
+async function handleDel(row: FlowDefinition) {
+  console.log('🚀 ~ file: index.vue:49 ~ handleDel ~ row:', row)
+  if (row.mainVersion)
+    return ElMessage.warning('请先删除已发布的流程')
+
+  await ElMessageBox.confirm('确认删除？', '提示', { type: 'warning' })
+  await remove(row.flowModuleId!)
+  ElMessage.success('删除成功')
+  getDataList()
+}
 </script>
 
 <template>
@@ -53,19 +64,22 @@ async function handleDeploy(row: FlowDefinition) {
         新增
       </el-button>
     </template>
-    <template #menu="{ row }">
-      <el-button :loading="loading" type="text" icon="el-icon-view" @click="emit('view', row)">
+    <template #menu-btn="{ row }">
+      <el-dropdown-item icon="el-icon-view" @click="emit('view', row)">
         查看
-      </el-button>
-      <el-button :loading="loading" type="text" icon="el-icon-edit" @click="emit('edit', row)">
+      </el-dropdown-item>
+      <el-dropdown-item icon="el-icon-edit" @click="emit('edit', row)">
         编辑
-      </el-button>
-      <el-button :loading="loading" type="text" icon="el-icon-upload" @click="handleDeploy(row)">
+      </el-dropdown-item>
+      <el-dropdown-item icon="el-icon-delete" @click="handleDel(row)">
+        删除
+      </el-dropdown-item>
+      <el-dropdown-item icon="el-icon-upload" @click="handleDeploy(row)">
         发布
-      </el-button>
-      <el-button :loading="loading" type="text" icon="el-icon-switch" @click="emit('version', row)">
+      </el-dropdown-item>
+      <el-dropdown-item icon="el-icon-switch" @click="emit('version', row)">
         版本管理
-      </el-button>
+      </el-dropdown-item>
     </template>
     <template #flowIcon="{ row }">
       <Icon :icon="row.flowIcon!" width="25" style="display: inline" />

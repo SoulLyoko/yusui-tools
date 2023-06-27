@@ -15,7 +15,9 @@ export const tableOption: AvueCrudOption<FlowDeploy> = {
   addBtn: false,
   editBtn: false,
   delBtn: false,
-  menuWidth: 250,
+  menuWidth: 100,
+  menuType: 'menu',
+  menuBtnTitle: '操作',
   column: [
     ...(formOption.column! as any),
     {
