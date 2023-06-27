@@ -4,7 +4,7 @@ import type { Plugin } from 'vite'
  * avue-crud 菜单按钮颜色
  * [column-menu](https://github.com/nmxiaowei/avue/blob/3.x/packages/element-ui/crud/column/column-menu.vue#L62)
 */
-export function fixBtnType(code: string) {
+export function fixMenuBtnType(code: string) {
   return (
     code
       // prod
@@ -50,14 +50,29 @@ export function fixFormRow(code: string) {
   )
 }
 
+/**
+ * avue-crud 菜单按钮插槽
+ * [column-mnenu](https://github.com/nmxiaowei/avue/blob/3.x/packages/element-ui/crud/column/column-menu.vue#L52)
+ */
+export function fixMenuBtnSlot(code: string) {
+  return (
+    code
+      // prod
+      .replace('e.$slots,"menuBtn"', 'e.$slots,"menu-btn"')
+      // dev
+      .replace('e2.$slots, "menuBtn"', 'e2.$slots, "menu-btn"')
+  )
+}
+
 export function avuePatch(): Plugin {
   return {
     name: 'vite-plugin-avue-patch',
     enforce: 'pre',
     transform(code, id) {
       if (/avue.js|avue.min.js/.test(id)) {
-        code = fixBtnType(code)
+        code = fixMenuBtnType(code)
         code = fixFormRow(code)
+        code = fixMenuBtnSlot(code)
         return code
       }
     },
