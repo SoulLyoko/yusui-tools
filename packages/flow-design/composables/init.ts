@@ -4,7 +4,7 @@ import { nextTick, watch } from 'vue'
 import { LogicFlow } from '@logicflow/core'
 import { InsertNodeInPolyline, MiniMap, SelectionSelect } from '@logicflow/extension'
 
-import { BpmnExtend, Control, Dagre, Group, Menu, Panel, Tooltip, TurboAdapter } from '../extensions'
+import { BpmnExtend, Control, Group, Menu, Panel, Tooltip, TurboAdapter } from '../extensions'
 import { defaultTheme } from '../constants'
 import { useModelerListener } from '.'
 
@@ -19,7 +19,7 @@ export function useInit({ props, state }: { props: FlowDesignProps; state: FlowD
       edgeTextDraggable: true,
       nodeTextEdit: true,
       edgeTextEdit: true,
-      plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, Group, TurboAdapter, Dagre],
+      plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, Group, TurboAdapter],
       edgeGenerator: (sourceNode, targetNode) => {
         if (['note', 'serviceTask'].includes(targetNode.type))
           return 'noteFlow'
