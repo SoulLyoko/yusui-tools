@@ -1,3 +1,18 @@
+# [2.0.0-beta.54](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.53...v2.0.0-beta.54) (2023-06-27)
+
+
+### Bug Fixes
+
+* **flow-design:** disabled Dagre ([f7abf86](https://github.com/SoulLyoko/yusui-tools/commit/f7abf86e42031b6ea3b8ea6813e10b50fae3c803))
+
+
+### Features
+
+* **avue-patch:** add patch `fixMenuBtnSlot` ([50e884d](https://github.com/SoulLyoko/yusui-tools/commit/50e884d5440bb44883e20046833480699243a287))
+* **flow-pages:** add remove flow api ([7b0835c](https://github.com/SoulLyoko/yusui-tools/commit/7b0835c770b1f0890baa17fde74337150c7641a8))
+
+
+
 # [2.0.0-beta.53](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.52...v2.0.0-beta.53) (2023-06-27)
 
 
