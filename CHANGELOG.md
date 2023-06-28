@@ -1,3 +1,12 @@
+# [2.0.0-beta.56](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.55...v2.0.0-beta.56) (2023-06-28)
+
+
+### Bug Fixes
+
+* **flow-pages:** default config ([e2185ad](https://github.com/SoulLyoko/yusui-tools/commit/e2185ade03d4630badf21609107b53a7e4196470))
+
+
+
 # [2.0.0-beta.55](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.54...v2.0.0-beta.55) (2023-06-27)
 
 
