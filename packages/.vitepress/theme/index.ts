@@ -32,6 +32,8 @@ export default {
         app.component('FlowDesign', FlowDesign)
         app.component('FormDesign', FormDesign)
         app.use(FlowPages, {
+          FlowDesign,
+          FormDesign,
           request,
           userInfo: { userId: '1' },
           upload: {
