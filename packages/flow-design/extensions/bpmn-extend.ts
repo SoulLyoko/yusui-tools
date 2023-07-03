@@ -1,6 +1,6 @@
 import type { GraphModel, LogicFlow, NodeConfig } from '@logicflow/core'
 
-import { HtmlNode, HtmlNodeModel, PolygonNode, PolygonNodeModel, h } from '@logicflow/core'
+import { HtmlNode, HtmlNodeModel, PolygonNode, PolygonNodeModel, RectNode, RectNodeModel, h } from '@logicflow/core'
 import { getBpmnId } from '@logicflow/extension/es/bpmn/getBpmnId'
 import {
   GroupNode,
@@ -199,6 +199,13 @@ export class Group extends _Group {
     })
   }
 }
+/** circulateTask */
+export class CirculateTaskModel extends RectNodeModel {
+  createId() {
+    return `Activity_${getBpmnId()}`
+  }
+}
+export class CirculateTaskView extends RectNode {}
 
 const plugins = [
   { type: 'process', model: ProcessModel, view: ProcessView },
@@ -211,6 +218,7 @@ const plugins = [
   { type: 'sequenceFlow', model: SequenceFlowModel, view: SequenceFlowView },
   { type: 'note', model: NoteModel, view: NoteView },
   { type: 'noteFlow', model: NoteFlowModel, view: NoteFlowView },
+  { type: 'circulateTask', model: CirculateTaskModel, view: CirculateTaskView },
 ]
 
 export class BpmnExtend {

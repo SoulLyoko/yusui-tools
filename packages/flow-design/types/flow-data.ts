@@ -3,8 +3,8 @@ export interface AssigneeItem {
   value?: string
 }
 export interface CirculateItem {
-  name?: string
-  assignee?: AssigneeItem[]
+  type?: string
+  value?: string
 }
 export interface ButtonItem {
   name?: string
@@ -88,6 +88,7 @@ export interface FlowFormData {
   inout?: string
   /** 人员配置 */
   assignee?: AssigneeItem[]
+  /** 传阅配置 */
   circulate?: CirculateItem[]
   /** 按钮配置 */
   button?: ButtonItem[]

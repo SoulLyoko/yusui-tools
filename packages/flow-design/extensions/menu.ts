@@ -68,7 +68,8 @@ export class Menu extends _Menu {
           case 'userTask':
           case 'exclusiveGateway':
           case 'parallelGateway':
-            menuList = [back, addUserTask, addServiceTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
+          case 'circulateTask':
+            menuList = [back, addUserTask, addServiceTask, addCirculateTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
             break
           case 'endEvent':
           case 'sequenceFlow':
@@ -93,6 +94,12 @@ export class Menu extends _Menu {
       icon: true,
       className: 'lf-menu-service-task',
       callback: (ele: NodeConfig) => this.addNode(ele, { type: 'serviceTask', x: ele.x + 200, y: ele.y }),
+    }
+    const addCirculateTask = {
+      text: '传阅任务',
+      icon: true,
+      className: 'lf-menu-circulate-task',
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'circulateTask', x: ele.x + 200, y: ele.y }),
     }
     const addEndEvent = {
       text: '结束',

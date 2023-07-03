@@ -71,8 +71,8 @@ watchDebounced(
     if (defaults.assignee?.children?.column?.[1])
       defaults.assignee.children.column[1].component = AssigneeSetter
     // 传阅人选择
-    if (defaults.circulate?.children?.column?.[1]?.children?.column?.[1])
-      defaults.circulate.children.column[1].children.column[1].component = AssigneeSetter
+    if (defaults.circulate?.children?.column?.[1])
+      defaults.circulate.children.column[1].component = AssigneeSetter
   },
   { debounce: 1 },
 )

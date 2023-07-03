@@ -53,7 +53,6 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   userTask: [
     { label: '基本配置', prop: 'baseGroup', column: [...baseColumn, ...userTaskColumn] },
     { label: '人员配置', prop: 'assigneeGroup', column: assigneeColumn },
-    { label: '传阅配置', prop: 'circulateGroup', collapse: false, column: circulateColumn },
     { label: '多实例配置', prop: 'multiInstanceGroup', collapse: false, column: multiInstanceColumn },
     { label: '按钮配置', prop: 'buttonGroup', collapse: false, column: buttonColumn },
     { label: '表单配置', prop: 'formPropertyGroup', collapse: false, column: formPropertyColumn },
@@ -66,6 +65,12 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
     { label: '服务配置', prop: 'serviceGroup', column: serviceTaskColumn },
     { label: '扩展属性', prop: 'propertyGroup', collapse: false, column: propertyColumn },
+  ],
+  circulateTask: [
+    { label: '基本配置', prop: 'baseGroup', column: baseColumn },
+    { label: '传阅配置', prop: 'circulateGroup', column: circulateColumn },
+    { label: '按钮配置', prop: 'buttonGroup', collapse: false, column: buttonColumn },
+    { label: '表单配置', prop: 'formPropertyGroup', collapse: false, column: formPropertyColumn },
   ],
   sequenceFlow: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },

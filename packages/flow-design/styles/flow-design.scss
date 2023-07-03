@@ -24,6 +24,7 @@
   cursor: unset;
 }
 
+// panel
 .lf-dndpanel {
   // 分两列
   // height: 98%;
@@ -39,12 +40,7 @@
   }
 }
 
-.lf-mini-map {
-  right: 0;
-  bottom: 0;
-  margin: 5px;
-}
-
+// control
 .lf-control-clear {
   background-image: url("https://api.iconify.design/ep/delete.svg?width=20&height=20");
 }
@@ -60,7 +56,13 @@
 .lf-control-layout {
   background-image: url("https://api.iconify.design/ep/rank.svg?width=20&height=20");
 }
+.lf-mini-map {
+  right: 0;
+  bottom: 0;
+  margin: 5px;
+}
 
+// menu
 .lf-menu {
   padding-left: 0 !important;
   .lf-menu-item-icon {
@@ -93,6 +95,9 @@
 }
 .lf-menu-service-task .lf-menu-item-icon {
   background: url("https://api.iconify.design/bpmn/service-task.svg?width=16&height=16") no-repeat;
+}
+.lf-menu-circulate-task .lf-menu-item-icon {
+  background: url("https://api.iconify.design/bpmn/manual-task.svg?width=16&height=16") no-repeat;
 }
 .lf-menu-exclusive-gateway .lf-menu-item-icon {
   background: url("https://api.iconify.design/bpmn/gateway-xor.svg?width=16&height=16") no-repeat;
