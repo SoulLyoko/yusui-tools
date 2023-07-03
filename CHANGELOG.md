@@ -1,3 +1,12 @@
+# [2.0.0-beta.57](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.56...v2.0.0-beta.57) (2023-07-03)
+
+
+### Features
+
+* **flow-design:** circulateTask ([9dd4ffc](https://github.com/SoulLyoko/yusui-tools/commit/9dd4ffc237d1ee9e2e6d459a21a162e2b9fa032e))
+
+
+
 # [2.0.0-beta.56](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.55...v2.0.0-beta.56) (2023-06-28)
 
 
