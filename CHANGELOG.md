@@ -1,3 +1,12 @@
+# [2.0.0-beta.58](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.57...v2.0.0-beta.58) (2023-07-04)
+
+
+### Bug Fixes
+
+* **flow-pages:** change comment to handleComment ([9bfe42c](https://github.com/SoulLyoko/yusui-tools/commit/9bfe42c0ef7793ccbb70597a8f3347d7d8964c94))
+
+
+
 # [2.0.0-beta.57](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.56...v2.0.0-beta.57) (2023-07-03)
 
 
