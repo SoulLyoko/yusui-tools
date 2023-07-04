@@ -116,11 +116,11 @@ export interface FlowComment {
   /** 流程实例id */
   flowInstanceId?: string
   /** 操作类型 */
-  type?: HandleType
+  handleType?: HandleType
   /** 审批人 */
   assignee?: string
   /** 意见 */
-  comment?: string
+  handleComment?: string
 }
 
 /** 提交任务数据 */

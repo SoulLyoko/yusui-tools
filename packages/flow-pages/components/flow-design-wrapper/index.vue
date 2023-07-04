@@ -91,7 +91,7 @@ const flowHistoryToolTips = computed(() => {
       content:
         `<div>${item.assigneeName}</div>
         <div>${item.endTime ?? ''}</div>
-        <div>${item.comment?.comment ?? ''}</div>`,
+        <div>${item.comment?.handleComment ?? ''}</div>`,
     }
   })
 })

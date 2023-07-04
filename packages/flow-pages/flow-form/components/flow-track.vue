@@ -40,7 +40,7 @@ const tableOption = {
       dicUrl: '/sapier-flow/flow-param/getParam',
       dicQuery: { paramKey: 'flow.handle.type' },
     },
-    { label: '办理意见', prop: 'comment', bind: 'comment.comment' },
+    { label: '办理意见', prop: 'comment', bind: 'comment.handleComment' },
   ],
 }
 
@@ -72,8 +72,8 @@ function findHandleTypeDicItem(value: number) {
             <div v-if="item.duration">
               办理时长：{{ item.duration }}
             </div>
-            <div v-if="item.type && item.comment?.comment">
-              {{ findHandleTypeDicItem(item.type)?.label }}意见：{{ item.comment?.comment }}
+            <div v-if="item.type && item.comment?.handleComment">
+              {{ findHandleTypeDicItem(item.type)?.label }}意见：{{ item.comment?.handleComment }}
             </div>
           </el-card>
         </el-timeline-item>
