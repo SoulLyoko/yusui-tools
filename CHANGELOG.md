@@ -1,3 +1,13 @@
+# [2.0.0-beta.59](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.58...v2.0.0-beta.59) (2023-07-06)
+
+
+### Bug Fixes
+
+* **flow-pages:** 流程设计偶现表单和模型数据被清空覆盖 ([866069e](https://github.com/SoulLyoko/yusui-tools/commit/866069ed266d7de4c261625fb9974e650c51dd00))
+* **flow-pages:** 人员配置选择后保留一个`idVal` ([0757c70](https://github.com/SoulLyoko/yusui-tools/commit/0757c708ae2d274f0400e53d18c29d52b4af92fe))
+
+
+
 # [2.0.0-beta.58](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.57...v2.0.0-beta.58) (2023-07-04)
 
 
