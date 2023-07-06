@@ -46,5 +46,17 @@ export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
       dicQuery: { size: -1 },
       props: { label: 'tableComment', value: 'tableName', desc: 'tableName', res: 'data.records' },
     },
+    {
+      label: '表单设计',
+      prop: 'formOption',
+      display: false,
+      hide: true,
+    },
+    {
+      label: '模型设计',
+      prop: 'flowData',
+      display: false,
+      hide: true,
+    },
   ],
 }
