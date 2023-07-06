@@ -1,10 +1,12 @@
 export interface AssigneeItem {
   type?: string
   value?: string
+  idVal?: string
 }
 export interface CirculateItem {
   type?: string
   value?: string
+  idVal?: string
 }
 export interface ButtonItem {
   name?: string
