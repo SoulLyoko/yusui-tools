@@ -1,1 +1,1 @@
-<markdown path="README.md"></markdown>
+<!--@include: ../../README.md-->

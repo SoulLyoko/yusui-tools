@@ -1,1 +1,2 @@
-<markdown path="CHANGELOG.md"></markdown>
+<!--@include: ../../CHANGELOG.md-->
+

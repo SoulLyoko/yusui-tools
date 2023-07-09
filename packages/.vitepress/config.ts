@@ -123,6 +123,12 @@ export default defineConfig({
           items: [
             { text: 'Start', link: '/utils/index' },
             {
+              text: 'array',
+              items: [
+                { text: 'arrayToMap', link: '/utils/array/arrayToMap' },
+              ],
+            },
+            {
               text: 'date',
               items: [
                 { text: 'dateFormat', link: '/utils/date/dateFormat' },
