@@ -39,7 +39,7 @@ export function useFlowForm(props: MaybeRef<FlowFormProps>, options: UseFlowForm
     case 'drawer':
       return useFlowFormOverlay(props, options as UseFlowFormOptions)
     default:
-      return { open: (mergeProps?: MaybeRef<FlowFormProps>) => {}, close: () => {} }
+      return { open: (mergeProps?: MaybeRef<FlowFormProps>) => { }, close: () => { } }
   }
 }
 
@@ -64,7 +64,8 @@ export function useFlowFormWindow(props: MaybeRef<FlowFormProps>, options: UseFl
 export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseFlowFormOptions) {
   const { appContext } = getCurrentInstance()!
 
-  let container: HTMLElement
+  let container: HTMLElement | null
+  let overlay: any
   const open = (mergeProps?: MaybeRef<FlowFormProps>) => {
     container = document.createElement('div')
     container.className = 'flow-form-wrapper'
@@ -72,7 +73,7 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
     const renderComponent = resolveFlowFormComponent(options.formPath)
 
     const vnode = h(renderComponent, { ...unref(props), ...unref(mergeProps) })
-    const overlay = h(
+    overlay = h(
       options.type === 'dialog' ? ElDialog : ElDrawer,
       {
         customClass: 'flow-form-overlay',
@@ -92,7 +93,10 @@ export function useFlowFormOverlay(props: MaybeRef<FlowFormProps>, options: UseF
     document.body.appendChild(container)
   }
   const close = () => {
+    if (overlay?.component?.props?.modelValue)
+      overlay.component.props.modelValue = false
     container && document.body.removeChild(container)
+    container = null
   }
 
   return { open, close }

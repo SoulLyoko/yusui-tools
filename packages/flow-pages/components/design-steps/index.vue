@@ -153,9 +153,11 @@ function handleClose() {
             </el-link>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="item in templatesDic" :key="item.label" @click="selectTemplate(item)">
-                  {{ item.label }}
-                </el-dropdown-item>
+                <el-scrollbar max-height="400px">
+                  <el-dropdown-item v-for="item in templatesDic" :key="item.label" @click="selectTemplate(item)">
+                    {{ item.label }}
+                  </el-dropdown-item>
+                </el-scrollbar>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
