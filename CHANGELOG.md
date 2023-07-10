@@ -1,3 +1,17 @@
+# [2.0.0-beta.60](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.59...v2.0.0-beta.60) (2023-07-10)
+
+
+### Bug Fixes
+
+* **flow-pages:** 流程设计选择模板超长滚动，流程弹窗关闭时销毁 ([58ba142](https://github.com/SoulLyoko/yusui-tools/commit/58ba14251ff4534e856d6b734bef32c5120035cd))
+
+
+### Features
+
+* **utils:** arrayToMap ([f9f7136](https://github.com/SoulLyoko/yusui-tools/commit/f9f7136b364e0911c2cf68086ec9baf380951785))
+
+
+
 # [2.0.0-beta.59](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.58...v2.0.0-beta.59) (2023-07-06)
 
 
