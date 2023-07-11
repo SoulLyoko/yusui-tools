@@ -1,9 +1,9 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { TableTemplate } from '../../api'
+import type { TableField, TableTemplate } from '../../api'
 
 import { enumToDic } from '@yusui/utils'
 
-import { FieldType } from '../../api'
+import { FieldType, TablePrimary } from '../../api'
 import { whetherDic } from '../../constants'
 
 const fieldsColumn = [
@@ -25,7 +25,7 @@ const fieldsColumn = [
   { label: '是否允许为空', prop: 'permitNull', type: 'switch', dicData: whetherDic, value: 1 },
 ]
 
-export const tableOption: AvueCrudOption<TableTemplate & { defaultFields: any[];editFields: any[] }> = {
+export const tableOption: AvueCrudOption<TableTemplate & { defaultFields: TableField[]; editFields: TableField[] }> = {
   rowKey: 'id',
   align: 'center',
   index: true,
@@ -38,7 +38,15 @@ export const tableOption: AvueCrudOption<TableTemplate & { defaultFields: any[];
     { label: '表名', prop: 'tableName', search: true },
     { label: '表注释', prop: 'tableComment', search: true },
     { label: '表引擎', prop: 'tableEngine' },
-    { label: '表主键策略', prop: 'tablePrimary' },
+    {
+      label: '表主键策略',
+      prop: 'tablePrimary',
+      type: 'select',
+      filterable: true,
+      allowCreate: true,
+      defaultFirstOption: true,
+      dicData: enumToDic(TablePrimary),
+    },
     {
       label: '数据库字段',
       prop: 'editFields',

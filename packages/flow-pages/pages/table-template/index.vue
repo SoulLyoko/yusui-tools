@@ -22,7 +22,7 @@ const {
 
 getDataList()
 
-const { data: defaultFields } = useFlowParamApi().useParam('table.default.fields' as const)
+const { data: defaultFields } = useFlowParamApi().useParam('table.default.fields')
 afterOpen((type) => {
   formData.value.defaultFields = defaultFields.value ?? []
   if (type === 'edit') {
@@ -41,7 +41,7 @@ watchEffect(() => {
     defaults.value.defaultFields.display = showDefaultFields.value
 })
 
-const { deploy } = useTableTemplateApi()
+const { deploy, getFields } = useTableTemplateApi()
 const loading = ref(false)
 async function handleDeploy(row: TableTemplate) {
   await ElMessageBox.confirm('部署将自动生成数据库表，是否确认？', '提示', { type: 'success' })
@@ -55,6 +55,14 @@ async function handleDeploy(row: TableTemplate) {
       loading.value = false
     })
 }
+
+function handleGetFields() {
+  getFields({ tableName: formData.value.tableName }).then((res) => {
+    if (!res.data?.length)
+      return ElMessage.warning('未找到该表')
+    formData.value.editFields = res.data
+  })
+}
 </script>
 
 <template>
@@ -63,6 +71,15 @@ async function handleDeploy(row: TableTemplate) {
       <el-button type="text" icon="el-icon-upload" @click="handleDeploy(row)">
         部署
       </el-button>
+    </template>
+    <template #tableName-form>
+      <el-input v-model="formData.tableName" placeholder="请输入 表名">
+        <template #append>
+          <el-button type="primary" size="default" @click="handleGetFields">
+            导入已有表
+          </el-button>
+        </template>
+      </el-input>
     </template>
     <template #editFields-label>
       <div>

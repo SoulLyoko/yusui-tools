@@ -77,7 +77,7 @@ watchDebounced(
   { debounce: 1 },
 )
 
-const { data: flowTaskStatus } = useFlowParamApi().useParam('flow.task.status' as const)
+const { data: flowTaskStatus } = useFlowParamApi().useParam('flow.task.status')
 const flowHistoryStyles = computed(() => {
   return props.flowHistory?.map((item) => {
     const style = flowTaskStatus.value?.find(e => e.value === item.status)?.style

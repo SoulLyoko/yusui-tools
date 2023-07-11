@@ -37,7 +37,7 @@ async function handleSaveLayout() {
 
 <template>
   <avue-crud v-bind="bindVal">
-    <template #flowData="{ row }">
+    <template #menu="{ row }">
       <el-button type="primary" text icon="el-icon-crop" @click="openDesign(row)">
         设计
       </el-button>

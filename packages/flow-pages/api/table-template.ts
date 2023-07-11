@@ -1,4 +1,4 @@
-import type { Page, ResRecords } from '@yusui/types'
+import type { Page, ResData, ResRecords } from '@yusui/types'
 import type { Whether } from '../constants'
 
 import { useRequest } from 'vue-request'
@@ -15,9 +15,17 @@ export interface TableTemplate {
   /** 表引擎 */
   tableEngine?: string
   /** 表主键策略 */
-  tablePrimary?: string
+  tablePrimary?: TablePrimary
   /** 数据库字段 */
   tableFields?: string | TableField[]
+}
+
+export enum TablePrimary {
+  ASSIGN_ID = 'ASSIGN_ID',
+  ASSIGN_UUID = 'ASSIGN_UUID',
+  AUTO = 'AUTO',
+  INPUT = 'INPUT',
+  NONE = 'NONE',
 }
 
 export interface TableField {
@@ -81,6 +89,8 @@ export function useTableTemplateApi() {
     remove: '/sapier-flow/dev-table/remove',
     /** 部署数据库表 */
     deploy: '/sapier-flow/dev-table/deploy',
+    /** 获取已存在的表字段 */
+    getFields: '/sapier-flow/dev-table/getTableFields',
   }
   const getList = (params: Page & TableTemplate) => request.get<ResRecords<TableTemplate[]>>(url.list, { params })
   const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
@@ -88,6 +98,7 @@ export function useTableTemplateApi() {
   const update = (data: TableTemplate) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   const deploy = (data: { id?: string }) => request.post(url.deploy, data)
+  const getFields = (params: TableTemplate) => request.get<ResData<TableField[]>>(url.getFields, { params })
   return {
     url,
     getList,
@@ -96,5 +107,6 @@ export function useTableTemplateApi() {
     update,
     remove,
     deploy,
+    getFields,
   }
 }

@@ -44,7 +44,7 @@ const tableOption = {
   ],
 }
 
-const { data: handleTypeDic } = useFlowParamApi().useParam('flow.handle.type' as const)
+const { data: handleTypeDic } = useFlowParamApi().useParam('flow.handle.type')
 function findHandleTypeDicItem(value: number) {
   return handleTypeDic.value?.find(e => e.value === value)
 }
