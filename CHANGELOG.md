@@ -1,3 +1,17 @@
+# [2.0.0-beta.61](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.60...v2.0.0-beta.61) (2023-07-11)
+
+
+### Bug Fixes
+
+* **flow-pages:** 流程弹窗表单添加样式类 ([3bb7da4](https://github.com/SoulLyoko/yusui-tools/commit/3bb7da4026fd8e1b952dfc61adf9286f72bb843c))
+
+
+### Features
+
+* **flow-pages:** 建表设计-导入已有表 ([f130232](https://github.com/SoulLyoko/yusui-tools/commit/f1302324e33a795bd784886ef7ac044c726063e2))
+
+
+
 # [2.0.0-beta.60](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.59...v2.0.0-beta.60) (2023-07-10)
 
 
