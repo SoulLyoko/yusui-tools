@@ -33,6 +33,7 @@ export default defineComponent({
       'modelValue': this.form,
       'defaults': this.defaults,
       'option': this.option,
+      'class': (this.option as any).class,
       'onUpdate:modelValue': (e: any) => (this.form = e),
       'onUpdate:defaults': (e: any) => (this.defaults = e),
     })
