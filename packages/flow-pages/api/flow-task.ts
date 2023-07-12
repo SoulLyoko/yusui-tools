@@ -98,6 +98,8 @@ export interface FlowTask {
   taskNodeName?: string
   /** 任务节点类型 */
   taskNodeType?: string
+  /** 自定义表单 */
+  formPath?: string
 }
 /** 流程历史 */
 export interface FlowHistory extends FlowTask {

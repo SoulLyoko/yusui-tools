@@ -46,7 +46,6 @@ async function handleDeploy(row: FlowDefinition) {
 }
 
 async function handleDel(row: FlowDefinition) {
-  console.log('🚀 ~ file: index.vue:49 ~ handleDel ~ row:', row)
   if (row.mainVersion)
     return ElMessage.warning('请先删除已发布的流程')
 

@@ -1,4 +1,4 @@
-import type { Component } from 'vue'
+import type { AsyncComponentLoader, Component } from 'vue'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { Res } from '@yusui/types'
 import type { FlowFile } from '../api'
@@ -16,6 +16,8 @@ export interface FlowPagesConfig {
   request: RequestInstance
   /** 用户信息 */
   userInfo?: { userId?: string } | (() => { userId?: string })
+  /** 自定义表单 */
+  customForm?: Record<string, Component | AsyncComponentLoader>
   /** 上传配置 */
   upload?: {
     /** 上传地址 */

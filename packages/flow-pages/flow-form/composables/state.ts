@@ -16,6 +16,7 @@ export function useProvideState(props: Props, emit: Emit) {
   const { getFlowDetail } = useFlowTaskApi()
 
   const { tabs } = useConfigProvider()
+  const tabRefs = ref<Record<string, any>>({})
   const tabList = computed(() => {
     return tabs?.filter((tab) => {
       const tabProperty = flowDetail.value?.properties?.formProperty?.find(e => e.prop === tab.prop)
@@ -56,6 +57,7 @@ export function useProvideState(props: Props, emit: Emit) {
     formData,
     formVariables,
     approvalVisible,
+    tabRefs,
     tabList,
     fileIds,
     emit,

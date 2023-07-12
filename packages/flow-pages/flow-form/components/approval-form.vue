@@ -130,7 +130,7 @@ async function onConfirm() {
   approvalFormData.value.assignee = assigneeData
   approvalFormData.value.outgoing = [...outgoing]
   approvalFormData.value.circulate = circulateData
-  console.log('🚀 ~ file: approval-form.vue:210 ~ onConfirm ~ formData:', formData)
+  console.log('🚀 ~ file: approval-form.vue:133 ~ onConfirm ~ formData:', formData)
   emit('confirm')
 }
 

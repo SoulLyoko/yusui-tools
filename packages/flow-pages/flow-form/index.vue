@@ -1,33 +1,35 @@
 <script setup lang="ts">
 import type { FlowButton } from '../api'
 
-import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
 import { useButtonHandler, useEmits, useProps, useProvideState } from './composables'
 import ButtonList from './components/button-list.vue'
 import ApprovalForm from './components/approval-form.vue'
-import InternalForm from './components/internal-form.vue'
 
 const props = defineProps(useProps())
 const emit = defineEmits(useEmits())
 const state = useProvideState(props, emit)
 
 const {
+  title,
   flowDetail,
+  tabRefs,
   tabList,
   activeTab,
   activeBtn,
   formLoading,
   approvalVisible,
   submitLoading,
+  beforeClick,
+  beforeSubmit,
 } = state
 
-const formRef = ref<InstanceType<typeof InternalForm>>()
 async function onButtonClick(btn: FlowButton) {
   activeBtn.value = btn
-  await formRef.value?.validate()
-  await props.beforeClick?.(btn)
+  for (const tabRef of Object.values(tabRefs.value))
+    await tabRef?.validate?.()
+  await beforeClick?.value?.(btn)
   if (btn?.approval !== 'false')
     approvalVisible.value = true
   else
@@ -39,7 +41,7 @@ async function onSubmit() {
   try {
     const { buttonKey } = activeBtn.value
     submitLoading.value = true
-    await props.beforeSubmit?.(activeBtn.value!)
+    await beforeSubmit?.value?.(activeBtn.value!)
     const handler = buttonHandler[buttonKey!]?.()
     if (handler instanceof Promise) {
       await handler
@@ -64,7 +66,7 @@ async function onSubmit() {
   <el-container v-else class="flow-form">
     <el-header class="flow-form__header" height="auto">
       <div class="flow-form__title">
-        {{ props.title ?? flowDetail.flowInstance?.title }}
+        {{ title ?? flowDetail.flowInstance?.title }}
       </div>
       <ButtonList v-if="!detail" @click="onButtonClick" />
       <slot name="button" />
@@ -72,11 +74,8 @@ async function onSubmit() {
     <el-main class="flow-form__main">
       <el-tabs v-model="activeTab">
         <el-tab-pane v-for="tab in tabList" :key="tab.prop" :label="tab.label" :name="tab.prop" lazy>
-          <component
-            :is="$slots.default ?? tab.component" v-if="tab.prop === 'formTab'"
-            :ref="(el: any) => formRef = el"
-          />
-          <component :is="tab.component" v-else />
+          <component :is="$slots.default ?? tab.component" v-if="tab.prop === 'formTab'" :ref="(el: any) => tabRefs[tab.prop!] = el" />
+          <component :is="tab.component" v-else :ref="(el: any) => tabRefs[tab.prop!] = el" />
         </el-tab-pane>
       </el-tabs>
     </el-main>

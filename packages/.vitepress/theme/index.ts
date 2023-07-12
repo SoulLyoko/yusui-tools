@@ -22,6 +22,8 @@ export default {
     app.use(ElementPlus, { locale: zhCn })
     app.use(YSComponents)
     app.component('Icon', Icon)
+    const importedForms = import.meta.glob('../custom-form/**/*.vue')
+    const customForm = Object.fromEntries(Object.entries(importedForms).map(([key, value]) => [key.replace('../custom-form/', ''), value]))
     app.mixin({
       async beforeCreate() {
         const { default: Avue } = await import('@smallwei/avue')
@@ -36,6 +38,7 @@ export default {
           FormDesign,
           request,
           userInfo: { userId: '1' },
+          customForm,
           upload: {
             action: import.meta.env.VITE_UPLOAD_URL,
             headers: { Authorization: import.meta.env.VITE_TOKEN },

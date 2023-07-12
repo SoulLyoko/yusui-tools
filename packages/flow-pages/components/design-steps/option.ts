@@ -13,6 +13,7 @@ export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
     {
       label: '流程标识',
       prop: 'flowKey',
+      editDisabled: true,
       rules: [{ required: true, message: '请输入流程标识' }],
     },
     {

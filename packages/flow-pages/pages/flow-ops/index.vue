@@ -42,8 +42,7 @@ function onTabClick({ paneName }: any) {
   getDataList()
 }
 
-// eslint-disable-next-line no-sequences
-const { open, close } = useFlowForm({ onComplete: () => (close(), getDataList()) }, { type: 'drawer' })
+const { open, close } = useFlowForm({ type: 'drawer' })
 function openFlow(row: FlowOps | FlowCirculateOps) {
   open({
     flowKey: row.flowKey,
@@ -51,6 +50,11 @@ function openFlow(row: FlowOps | FlowCirculateOps) {
     instanceId: row.flowInstanceId,
     debug: debugMode.value,
     circulateId: (row as FlowCirculateOps).id,
+    formPath: (row as FlowOps).formPath,
+    onComplete() {
+      close()
+      getDataList()
+    },
   })
 }
 </script>
