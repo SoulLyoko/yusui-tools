@@ -1,34 +1,21 @@
 import { execSync } from 'node:child_process'
-import path from 'node:path'
 
-import fs from 'fs-extra'
+import { readJSONSync } from 'fs-extra'
 
-const { version } = fs.readJSONSync('package.json')
+const { version: oldVersion } = readJSONSync('package.json')
 
-console.log(`Releasing v${version}...`)
-updatePackageJSON()
-function updatePackageJSON() {
-  const { version, description, author, license, homepage, repository } = fs.readJSONSync('package.json')
-  const packages = fs.readdirSync('packages')
-  packages.forEach((name) => {
-    const packageJSONPath = path.join('packages', name, 'package.json')
-    if (!fs.existsSync(packageJSONPath))
-      return
-    const packageJSON = fs.readJSONSync(packageJSONPath)
-    packageJSON.version = version
-    packageJSON.description = description
-    packageJSON.author = author
-    packageJSON.license = license
-    packageJSON.homepage = homepage
-    packageJSON.repository = repository
-    fs.writeJSONSync(packageJSONPath, packageJSON, { spaces: 2 })
-  })
+execSync('bumpp -r --no-commit --no-tag --no-push', { stdio: 'inherit' })
+
+const { version } = readJSONSync('package.json')
+
+if (version === oldVersion) {
+  console.log('Bumpp canceled')
+  process.exit()
 }
-
-console.log('Generating changelog...')
+console.log('Generating changelog')
 execSync('pnpm changelog')
-
-console.log('Committing changes...')
+console.log('Git commit')
 execSync('git add .')
 execSync(`git commit -m "chore: release v${version}"`)
+console.log('Git tag')
 execSync(`git tag -a v${version} -m "v${version}"`)
