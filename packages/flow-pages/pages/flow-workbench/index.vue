@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import type { FlowCirculate, FlowDeploy, FlowTask } from '../../api'
 
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
-import { Icon } from '@iconify/vue'
 
-import { TaskStatus, useFlowCirculateApi, useFlowTaskApi } from '../../api'
+import { TaskStatus, useFlowCategoryApi, useFlowCirculateApi, useFlowTaskApi } from '../../api'
 import { useFlowForm } from '../../composables'
 import { tableOption } from './option'
 
-const flowList = ref<FlowDeploy[]>([])
-
-const { getPublishList, getTaskList } = useFlowTaskApi()
+const { useList: useCategoryList } = useFlowCategoryApi()
+const { usePublishList, getTaskList } = useFlowTaskApi()
 const { getCirculateList } = useFlowCirculateApi()
 
-getPublishList().then((res) => {
-  flowList.value = res.data
+const { data: categoryList } = useCategoryList()
+const { data: publishList } = usePublishList()
+const flowList = computed(() => {
+  return categoryList.value?.map((category) => {
+    const list = publishList.value?.filter(publish => publish.categoryId === category.id) ?? []
+    return { ...category, list }
+  }).filter(e => e.list?.length)
 })
 
 const flowStatusDic = [
@@ -75,10 +78,15 @@ function openFlow(row: FlowDeploy | FlowTask | FlowCirculate) {
           </el-button>
         </template>
         <div class="flow-list">
-          <div v-for="item in flowList" :key="item.flowKey" class="flow-item" @click="openFlow(item)">
-            <Icon class="flow-icon" :icon="item.flowIcon!" width="60" />
-            <div class="flow-name">
-              {{ item.flowName }}
+          <div v-for="category in flowList" :key="category.id" class="flow-category">
+            <el-divider content-position="left">
+              {{ category.name }}
+            </el-divider>
+            <div v-for="item in category.list" :key="item.flowKey" class="flow-item" @click="openFlow(item)">
+              <Icon class="flow-icon" :icon="item.flowIcon!" width="60" />
+              <div class="flow-name">
+                {{ item.flowName }}
+              </div>
             </div>
           </div>
         </div>

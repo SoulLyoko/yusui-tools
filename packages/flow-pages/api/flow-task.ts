@@ -3,6 +3,8 @@ import type { FlowFormData } from '@yusui/flow-design'
 import type { FlowDeploy } from './flow-deploy'
 import type { FlowOps } from './flow-ops'
 
+import { useRequest } from 'vue-request'
+
 import { useConfigProvider } from '../composables'
 
 /** 任务状态 */
@@ -258,12 +260,11 @@ export function useFlowTaskApi() {
   const greenChannel = (data: CommitTaskData) => request.post(url.green, data)
   /** 已部署列表 */
   const getPublishList = () => request.get<ResData<FlowDeploy[]>>(url.publishList)
+  const usePublishList = () => useRequest(() => getPublishList().then(res => res.data))
   /** 待办/已办列表 */
   const getTaskList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.taskList, { params })
   return {
     url,
-    getPublishList,
-    getTaskList,
     getFlowDetail,
     getApprovalNode,
     startTask,
@@ -276,5 +277,8 @@ export function useFlowTaskApi() {
     rejectTask,
     greenChannel,
     circulateTask,
+    getPublishList,
+    usePublishList,
+    getTaskList,
   }
 }

@@ -1,5 +1,7 @@
 import type { Page, ResData } from '@yusui/types'
 
+import { useRequest } from 'vue-request'
+
 import { useConfigProvider } from '../composables'
 
 /** 流程分类 */
@@ -31,12 +33,14 @@ export function useFlowCategoryApi() {
     tree: '/sapier-flow/flow-category/tree',
   }
   const getList = (params: Page & FlowCategory) => request.get<ResData<FlowCategory[]>>(url.list, { params })
+  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data))
   const getTree = (params: Page & FlowCategory) => request.get<ResData<FlowCategory[]>>(url.tree, { params })
   const create = (data: FlowCategory) => request.post(url.save, data)
   const update = (data: FlowCategory) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   return {
     getList,
+    useList,
     getTree,
     create,
     update,
