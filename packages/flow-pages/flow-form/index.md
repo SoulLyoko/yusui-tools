@@ -45,6 +45,39 @@ defineExpose({ validate })
 
 :::
 
+## 扩展按钮
+
+页面 -> 流程按钮 -> 新增 -> `{ name: "自定义按钮", buttonKey: "flow_custom" }`
+
+::: code-group
+
+```ts [main.ts]
+import FlowPages from '@yusui/flow-pages'
+
+import customButtonHandler from '@/customButtonHandler.ts'
+
+app.use(FlowPages, {
+  buttonHandler: customButtonHandler
+})
+```
+
+```ts [customButtonHandler.ts]
+import type { ButtonHandler, FlowFormState } from '@yusui/flow-pages'
+
+export function useButtonHandler(state: FlowFormState): ButtonHandler {
+  return {
+    // 自定义
+    flow_custom() {
+      // ...做一些自定义操作
+      // 返回Promis并成功则提交流程
+      return request.post('xxx/xxx', {})
+    },
+  }
+}
+```
+
+:::
+
 ## 自定义流程表单
 
 ::: code-group
@@ -53,26 +86,15 @@ defineExpose({ validate })
 const importedForms = import.meta.glob('../custom-form/**/*.vue')
 const customForm = Object.fromEntries(Object.entries(importedForms).map(([key, value]) => [key.replace('../custom-form/', ''), value]))
 // {
-//   "test/index.vue": () => Component
-//   "xxx.vue": () => Component
+//   "test/index.vue": () => Promise<Component>
+//   "xxx.vue": () => Promise<Component>
 // }
 
 app.use(FlowPages, {
   customForm,
 })
 ```
-
-```vue [../custom-form/test/index.vue]
-<script setup lang="ts">
-import { FlowForm } from '@yusui/flow-pages'
-</script>
-
-<template>
-  <FlowForm>
-    这是一个自定义表单
-  </FlowForm>
-</template>
-```
+<<< @/.vitepress/custom-form/test/index.vue [test/index.vue]
 
 :::
 
@@ -104,14 +126,11 @@ app.use(FlowPages, {
 import { useFlowForm } from '@yusui/flow-pages'
 
 const { open, close } = useFlowForm({ type: 'drawer' })
-function openFlow(row: FlowOps | FlowCirculateOps) {
+function openFlow(row: FlowOps) {
   open({
     flowKey: row.flowKey,
     taskId: row.taskId,
     instanceId: row.flowInstanceId,
-    debug: debugMode.value,
-    circulateId: (row as FlowCirculateOps).id,
-    formPath: (row as FlowOps).formPath,
     onComplete() {
       close()
       getDataList()

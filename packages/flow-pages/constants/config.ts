@@ -18,6 +18,17 @@ export const CONFIG_DEFAULT: FlowPagesConfig = {
     { label: '流程跟踪', prop: 'trackTab', component: FlowTrack },
   ],
   request: (() => { }) as any,
+  useFlowFormOptions: {
+    type: 'drawer',
+    window: ['', 'flow-form', 'left=0,top=0,width=1600,height=900'],
+    overlay: {
+      width: '80%',
+      size: '80%',
+      top: '100px',
+      fullscreen: true,
+      destroyOnClose: true,
+    },
+  },
   upload: {
     props: {
       fileName: 'fileOriginalName',

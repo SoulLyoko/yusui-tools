@@ -3,22 +3,28 @@ import type { FlowButton } from '../api'
 
 import { ElMessage } from 'element-plus'
 
-import { useButtonHandler, useEmits, useProps, useProvideState } from './composables'
+import { flowFormEmits, flowFormProps, useButtonHandler, useProvideState } from './composables'
 import ButtonList from './components/button-list.vue'
-import ApprovalForm from './components/approval-form.vue'
+import InternalApprovalForm from './components/approval-form.vue'
+import { useConfigProvider } from '../composables'
 
-const props = defineProps(useProps())
-const emit = defineEmits(useEmits())
+const props = defineProps(flowFormProps)
+const emit = defineEmits(flowFormEmits)
 const state = useProvideState(props, emit)
+const { ApprovalForm: rewriteApprovalForm, tabsProps } = useConfigProvider()
+
+const ApprovalForm = rewriteApprovalForm ?? InternalApprovalForm
 
 const {
   title,
+  detail,
   flowDetail,
   tabRefs,
   tabList,
   activeTab,
   activeBtn,
   formLoading,
+  formTabComponent,
   approvalVisible,
   submitLoading,
   beforeClick,
@@ -42,15 +48,15 @@ async function onSubmit() {
     const { buttonKey } = activeBtn.value
     submitLoading.value = true
     await beforeSubmit?.value?.(activeBtn.value!)
-    const handler = buttonHandler[buttonKey!]?.()
-    if (handler instanceof Promise) {
-      await handler
+    const handler = buttonHandler[buttonKey!]
+    if (handler) {
+      await handler?.()
       ElMessage.success('操作成功')
       approvalVisible.value = false
       emit('complete', activeBtn.value!)
     }
     else {
-      ElMessage.error('操作失败')
+      ElMessage.error('无法找到相应的操作')
     }
   }
   finally {
@@ -69,18 +75,20 @@ async function onSubmit() {
         {{ title ?? flowDetail.flowInstance?.title }}
       </div>
       <ButtonList v-if="!detail" @click="onButtonClick" />
-      <slot name="button" />
     </el-header>
     <el-main class="flow-form__main">
-      <el-tabs v-model="activeTab">
-        <el-tab-pane v-for="tab in tabList" :key="tab.prop" :label="tab.label" :name="tab.prop" lazy>
-          <component :is="$slots.default ?? tab.component" v-if="tab.prop === 'formTab'" :ref="(el: any) => tabRefs[tab.prop!] = el" />
+      <el-tabs v-model="activeTab" v-bind="tabsProps">
+        <el-tab-pane
+          v-for="tab in tabList" :key="tab.prop" :label="tab.label" :name="tab.prop" :lazy="tab.lazy"
+          :disabled="tab.disabled" :closable="tab.closable"
+        >
+          <component :is="formTabComponent" v-if="tab.prop === 'formTab'" :ref="(el: any) => tabRefs[tab.prop!] = el" />
           <component :is="tab.component" v-else :ref="(el: any) => tabRefs[tab.prop!] = el" />
         </el-tab-pane>
       </el-tabs>
     </el-main>
 
-    <ApprovalForm @confirm="onSubmit" />
+    <ApprovalForm @submit="onSubmit" />
   </el-container>
 </template>
 

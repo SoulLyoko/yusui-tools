@@ -12,7 +12,7 @@ import CommonComments from './common-comments.vue'
 import ApprovalTree from './approval-tree.vue'
 import NodeSelect from './node-select.vue'
 
-const emit = defineEmits(['confirm'])
+const emit = defineEmits(['submit'])
 
 const { getApprovalNode } = useFlowTaskApi()
 const { useParam } = useFlowParamApi()
@@ -69,7 +69,7 @@ watchEffect(async () => {
 
   nextTick(() => {
     formRef.value!.resetFields()
-    approvalFormData.value.comment = formData.value.comment || (taskId ? '' : defaultComment.value)
+    approvalFormData.value.comment = formData.value.comment || (taskId ? '' : defaultComment.value) || ''
 
     defaults.value!.jumpTaskNodeKey.display = checkField('specifyNode')
     defaults.value!.assignee.display = checkField('assignee')
@@ -131,7 +131,7 @@ async function onConfirm() {
   approvalFormData.value.outgoing = [...outgoing]
   approvalFormData.value.circulate = circulateData
   console.log('🚀 ~ file: approval-form.vue:133 ~ onConfirm ~ formData:', formData)
-  emit('confirm')
+  emit('submit')
 }
 
 function getApprovalSetData(nodes: ApprovalNode[]) {

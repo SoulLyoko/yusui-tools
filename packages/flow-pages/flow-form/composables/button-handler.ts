@@ -3,12 +3,14 @@ import type { ButtonHandler, FlowFormState } from '../types'
 import { computed } from 'vue'
 
 import { useFlowTaskApi } from '../../api/flow-task'
+import { useConfigProvider } from '../../composables'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const {
     commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask,
     withdrawTask, rejectTask, greenChannel, circulateTask,
   } = useFlowTaskApi()
+  const { buttonHandler: extraButtonHandler } = useConfigProvider()
   const data = computed(() => {
     const { flowDetail, formVariables, approvalFormData, debug, fileIds } = state
     const { flowDeployId } = flowDetail.value.process ?? {}
@@ -19,7 +21,7 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
       flowInstanceId,
       variables: formVariables.value,
       debug: debug.value,
-      fileIds: fileIds.value,
+      fileIds: fileIds?.value,
       ...approvalFormData.value,
     }
   })
@@ -74,5 +76,6 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
         return circulateTask({ id: circulateId?.value, comment: approvalFormData?.value.comment })
       }
     },
+    ...extraButtonHandler?.(state),
   }
 }

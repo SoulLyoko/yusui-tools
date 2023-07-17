@@ -1,7 +1,7 @@
 import type { Plugin, ProxyOptions } from 'vite'
 
 /**
- * @param list [[prefix,target,rewrite?]]
+ * @param list [prefix,target,rewrite?][]
  */
 export function transformProxy(list: string) {
   try {

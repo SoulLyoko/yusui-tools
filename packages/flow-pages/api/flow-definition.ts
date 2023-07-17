@@ -14,7 +14,7 @@ export interface FlowDefinition {
   flowName?: string
   /** 表单配置数据 */
   formOption?: string
-  /** 表单路径 */
+  /** 自定义表单路径 */
   formPath?: string
   /** 关联表 */
   formDataTable?: string

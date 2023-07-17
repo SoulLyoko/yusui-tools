@@ -28,7 +28,7 @@ VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:80
 ## How It Works
 
 ```sh
-# VITE_PROXY=[[prefix,target,rewrite?]]
+# VITE_PROXY=[prefix,target,rewrite?][]
 VITE_PROXY=[["/api","http://127.0.0.1:8080",true],["/apis","https://127.0.0.1:8081"]]
 ```
 

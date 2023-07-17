@@ -42,7 +42,7 @@ function onTabClick({ paneName }: any) {
   getDataList()
 }
 
-const { open, close } = useFlowForm({ type: 'drawer' })
+const { open, close } = useFlowForm()
 function openFlow(row: FlowOps | FlowCirculateOps) {
   open({
     flowKey: row.flowKey,
@@ -50,7 +50,6 @@ function openFlow(row: FlowOps | FlowCirculateOps) {
     instanceId: row.flowInstanceId,
     debug: debugMode.value,
     circulateId: (row as FlowCirculateOps).id,
-    formPath: (row as FlowOps).formPath,
     onComplete() {
       close()
       getDataList()

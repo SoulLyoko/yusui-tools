@@ -31,7 +31,7 @@ export default {
     app.use(YSComponents)
     app.component('Icon', Icon)
     const importedForms = import.meta.glob('../custom-form/**/*.vue')
-    const customForm = Object.fromEntries(Object.entries(importedForms).map(([key, value]) => [key.replace('../custom-form/', ''), value]))
+    const customForm = Object.fromEntries(Object.entries(importedForms).map(([key, module]) => [key.replace('../custom-form/', ''), module]))
     app.mixin({
       async beforeCreate() {
         const { default: Avue } = await import('@smallwei/avue')

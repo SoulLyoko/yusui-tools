@@ -1,7 +1,19 @@
 import type { AsyncComponentLoader, Component } from 'vue'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { Res } from '@yusui/types'
+import type { TabsProps } from 'element-plus'
 import type { FlowFile } from '../api'
+import type { UseFlowFormOptions } from '../composables'
+import type { ButtonHandler, FlowFormState } from '../flow-form'
+
+export interface FlowFormTab {
+  label?: string
+  prop?: string
+  disabled?: boolean
+  lazy?: boolean
+  closable?: boolean
+  component?: Component
+}
 
 export interface FlowPagesConfig {
   /** 流程设计器 */
@@ -10,14 +22,22 @@ export interface FlowPagesConfig {
   FormDesign?: Component
   /** 流程表单 */
   FlowForm?: Component
-  /** 流程表单标签 */
-  tabs?: { label?: string; prop?: string; component?: Component }[]
+  /** 审批表单弹窗 */
+  ApprovalForm?: Component
+  /** 流程表单标签页属性 */
+  tabsProps?: Partial<TabsProps>
+  /** 流程表单标签页配置 */
+  tabs?: FlowFormTab[]
   /** axios实例 */
   request: RequestInstance
   /** 用户信息 */
   userInfo?: { userId?: string } | (() => { userId?: string })
   /** 自定义表单 */
   customForm?: Record<string, Component | AsyncComponentLoader>
+  /** 到开流程表单弹窗的默认配置 */
+  useFlowFormOptions?: UseFlowFormOptions
+  /** 按钮处理 */
+  buttonHandler?: (state: FlowFormState) => ButtonHandler
   /** 上传配置 */
   upload?: {
     /** 上传地址 */
@@ -25,9 +45,9 @@ export interface FlowPagesConfig {
     /** 请求头携带的参数，如token */
     headers?: object | (() => any)
     /** 预览实现函数 */
-    preview?: (row: FlowFile, list: FlowFile[]) => void
+    preview?: (row: FlowFile, list: FlowFile[]) => any
     /** 下载实现函数 */
-    download?: (row: FlowFile, list: FlowFile[]) => void
+    download?: (row: FlowFile, list: FlowFile[]) => any
     /** 与流程文件对接的字段（如有变化则传入修改） */
     props?: {
       /**

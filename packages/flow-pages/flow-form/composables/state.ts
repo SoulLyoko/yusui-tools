@@ -1,7 +1,7 @@
-import type { Emit, Props } from '../types'
+import type { FlowFormEmit, FlowFormProps } from '../types'
 import type { InjectionKey } from 'vue'
 
-import { computed, inject, provide, ref, watchEffect } from 'vue'
+import { computed, defineAsyncComponent, inject, provide, ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'
 
 import { useFlowTaskApi } from '../../api'
@@ -9,13 +9,12 @@ import { useConfigProvider } from '../../composables'
 
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
-export function useProvideState(props: Props, emit: Emit) {
+export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const vModels = useVModels(props, undefined, { passive: true, deep: true })
   const { flowDetail, modelValue: formData, formLoading } = vModels
 
-  const { getFlowDetail } = useFlowTaskApi()
-
-  const { tabs } = useConfigProvider()
+  /** 标签页 */
+  const { tabs, customForm } = useConfigProvider()
   const tabRefs = ref<Record<string, any>>({})
   const tabList = computed(() => {
     return tabs?.filter((tab) => {
@@ -24,7 +23,18 @@ export function useProvideState(props: Props, emit: Emit) {
     }) ?? []
   })
 
+  /** 标签页表单组件 */
+  const formTabComponent = computed(() => {
+    const InternalForm = tabList.value.find(tab => tab.prop === 'formTab')?.component
+    const ExternalForm = customForm?.[flowDetail?.value?.process?.formPath ?? '']
+    if (typeof ExternalForm === 'function')
+      return defineAsyncComponent(ExternalForm! as any)
+    else
+      return ExternalForm ?? InternalForm
+  })
+
   // 获取流程详情
+  const { getFlowDetail } = useFlowTaskApi()
   watchEffect(() => {
     const { flowKey, taskId, instanceId } = props
     if (!flowKey && !taskId && !instanceId)
@@ -40,9 +50,6 @@ export function useProvideState(props: Props, emit: Emit) {
       })
   })
 
-  // 审批表单
-  const approvalVisible = ref(false)
-
   // 表单变量
   const formVariables = computed(() => {
     return Object.entries(formData.value || {})
@@ -50,16 +57,13 @@ export function useProvideState(props: Props, emit: Emit) {
       .map(([key, value]) => ({ key, value }))
   })
 
-  const fileIds = ref<string>()
-
   const state = {
     ...vModels,
     formData,
     formVariables,
-    approvalVisible,
     tabRefs,
     tabList,
-    fileIds,
+    formTabComponent,
     emit,
   }
 
