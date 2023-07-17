@@ -2,15 +2,33 @@
 aside: false
 ---
 
+<script setup>
+  import designer from './demo/designer.vue' 
+  import viewer from './demo/viewer.vue'
+  
+</script>
+
 # FlowDesign
 
 FlowDesign
 
 ## 基础用法
 
-:::demo
-./demo
+<designer></designer>
+
+:::details View Source
+<<< @/flow-design/demo/designer.vue
 :::
+
+## 查看模式
+
+<viewer></viewer>
+
+:::details View Source
+<<< @/flow-design/demo/viewer.vue
+:::
+
+
 
 ## 属性
 

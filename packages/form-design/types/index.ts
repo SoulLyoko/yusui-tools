@@ -55,9 +55,13 @@ export interface Resource {
   | ((context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[])
   /** 拖放规则 */
   rules?: {
+    /** 父级白名单 */
     parentWhiteList?: string[]
+    /** 父级黑名单 */
     parentBlackList?: string[]
+    /** 子级白名单 */
     childWhiteList?: string[]
+    /** 子级黑名单 */
     childBlackList?: string[]
   }
 }
@@ -74,10 +78,15 @@ export type HistoryType = keyof typeof HistoryTypeMap
 
 /** 历史记录 */
 export interface History {
+  /** 操作类型 */
   type: HistoryType
+  /** 操作时间戳 */
   timestamp: number
+  /** 操作的元素 */
   active: ElementTreeNode
+  /** 保存的组件树 */
   tree: ElementTreeNode
+  /** 保存的配置 */
   option: AvueFormOption
 }
 

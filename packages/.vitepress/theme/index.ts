@@ -9,11 +9,19 @@ import 'element-plus/dist/index.css'
 import '@smallwei/avue/lib/index.css'
 import { Icon } from '@iconify/vue'
 
+// import { loader } from '@guolao/vue-monaco-editor'
+
 import components from '../components'
 import YSComponents from '../../components/index'
 import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'
 import { dicRequest, request } from './request'
+
+// loader.config({
+//   paths: {
+//     vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.33.0/min/vs',
+//   },
+// })
 
 export default {
   ...defaultTheme,

@@ -91,6 +91,7 @@ export default defineConfig({
             { text: '流程参数', link: '/flow-pages/pages/flow-param/index' },
             { text: '流程按钮', link: '/flow-pages/pages/flow-button/index' },
             { text: '工作台', link: '/flow-pages/pages/flow-workbench/index' },
+            { text: '流程表单', link: '/flow-pages/flow-form/index' },
           ],
         },
       ],
