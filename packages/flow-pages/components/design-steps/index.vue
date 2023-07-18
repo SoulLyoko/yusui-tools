@@ -6,17 +6,12 @@ import { computed, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
-import {
-  useFlowDefinitionApi,
-  useFlowDeployApi,
-  useFlowTemplateApi,
-  useFormTemplateApi,
-  useTableTemplateApi,
-} from '../../api'
+import { useFlowDefinitionApi, useFlowDeployApi, useTableTemplateApi } from '../../api'
 import { formOption } from './option'
 import { asyncValidate } from '../../utils'
 import FormDesignWrapper from '../form-design-wrapper/index.vue'
 import FlowDesignWrapper from '../flow-design-wrapper/index.vue'
+import TemplateSelect from './template-select.vue'
 
 const props = defineProps<{
   modelValue: FlowDefinition | FlowDeploy
@@ -61,8 +56,6 @@ watch(
   { immediate: true },
 )
 
-const { data: formTemplates } = useFormTemplateApi().useList()
-const { data: flowTemplates } = useFlowTemplateApi().useList()
 const { data: tableTemplates } = useTableTemplateApi().useList()
 
 const tableFields = computed(() => {
@@ -70,21 +63,6 @@ const tableFields = computed(() => {
 })
 
 const activeStep = ref(0)
-const templatesDic = computed(() => {
-  if (activeStep.value === 1)
-    return formTemplates.value?.map(e => ({ label: e.formName, value: e.formOption })) ?? []
-  else if (activeStep.value === 2)
-    return flowTemplates.value?.map(e => ({ label: e.flowName, value: e.flowData })) ?? []
-  return []
-})
-
-function selectTemplate(item: (typeof templatesDic.value)[number]) {
-  if (activeStep.value === 1)
-    formData.value.formOption = item.value
-  else if (activeStep.value === 2)
-    formData.value.flowData = item.value
-}
-
 const formRef = ref<AvueFormInstance>()
 async function saveAndNext(step?: number) {
   if (activeStep.value === 0)
@@ -147,24 +125,14 @@ function handleClose() {
             <span v-if="formData?.flowName"> - {{ formData?.flowName }}</span>
             <span v-if="formData?.version"> - V{{ formData?.version }}</span>
           </div>
-          <el-dropdown v-if="templatesDic.length">
-            <el-link icon="el-icon-arrow-down" :underline="false">
-              选择模板
-            </el-link>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-scrollbar max-height="400px">
-                  <el-dropdown-item v-for="item in templatesDic" :key="item.label" @click="selectTemplate(item)">
-                    {{ item.label }}
-                  </el-dropdown-item>
-                </el-scrollbar>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+          <TemplateSelect v-model:form-data="formData" :active-step="activeStep" />
         </el-col>
         <el-col :span="14">
           <el-steps :active="activeStep" simple process-status="finish" finish-status="success">
-            <el-step v-for="(item, index) in steps" :key="index" :title="item" @click="saveAndNext(index)" />
+            <el-step
+              v-for="(item, index) in steps" :key="index" :title="item" style="cursor:pointer"
+              @click="saveAndNext(index)"
+            />
           </el-steps>
         </el-col>
         <el-col :span="5" style="text-align: right">
@@ -183,22 +151,11 @@ function handleClose() {
 
     <div v-loading="loading" style="height: calc(100vh - 144px)">
       <avue-form
-        v-if="activeStep === 0"
-        ref="formRef"
-        v-model="formData"
-        :option="formOption"
+        v-if="activeStep === 0" ref="formRef" v-model="formData" :option="formOption"
         style="width: 50%; magin: 0 auto"
       />
-      <FormDesignWrapper
-        v-if="activeStep === 1"
-        v-model="formData.formOption"
-        :fields="tableFields"
-      />
-      <FlowDesignWrapper
-        v-if="activeStep === 2"
-        v-model="formData.flowData"
-        :flow-form-option="formData.formOption"
-      />
+      <FormDesignWrapper v-if="activeStep === 1" v-model="formData.formOption" :fields="tableFields" />
+      <FlowDesignWrapper v-if="activeStep === 2" v-model="formData.flowData" :flow-form-option="formData.formOption" />
       <el-result v-if="activeStep === 3" icon="success" title="流程设计完成">
         <template #extra>
           <el-button v-if="!(formData as FlowDeploy).flowDeployId" type="primary" @click="handleDeploy">

@@ -69,7 +69,7 @@ async function handleClose() {
         @version="handleShowDeploy"
       />
       <FlowDeployCrud
-        v-if="showType === 'deploy'"
+        v-if="showType === 'deploy' && currentFlowModuleId"
         :flow-module-id="currentFlowModuleId"
         @edit="handleEdit"
         @view="handleView"

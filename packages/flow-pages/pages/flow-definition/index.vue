@@ -2,6 +2,7 @@
 import type { FlowDefinition } from '../../api'
 
 import { ref, watchEffect } from 'vue'
+import { watchDebounced } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
 import { Icon } from '@iconify/vue'
@@ -28,8 +29,8 @@ const {
 })
 watchEffect(() => {
   searchForm.value.categoryId = props.categoryId ?? ''
-  getDataList()
 })
+watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })
 
 const loading = ref(false)
 async function handleDeploy(row: FlowDefinition) {

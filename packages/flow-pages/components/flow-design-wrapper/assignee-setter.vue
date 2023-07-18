@@ -2,6 +2,7 @@
 import type { DicItem } from '@smallwei/avue'
 import type { AssigneeItem } from '@yusui/flow-design'
 import type { FlowUserTree } from '../../api'
+import type { ElTreeSelect } from 'element-plus'
 
 import { computed, ref, watch } from 'vue'
 import { filterTree, treeMap } from '@yusui/utils'
@@ -12,6 +13,7 @@ import { useFlowParamApi, useFlowUserApi } from '../../api'
 const props = defineProps<{
   modelValue: string | string[]
   tableData?: { row?: AssigneeItem }
+  placeholder: string
 }>()
 const emit = defineEmits(['update:modelValue'])
 
@@ -75,18 +77,28 @@ watch(
   },
   { immediate: true },
 )
+
+const treeRef = ref<InstanceType<typeof ElTreeSelect>>()
+function handleSelectAll() {
+  selectValue.value = filterTree(treeData.value, e => e.type === type.value).map(e => e.id!)
+}
 </script>
 
 <template>
-  <el-tree-select
-    v-if="['dept', 'post', 'user'].includes(type!)" v-model="selectValue" :data="treeData"
-    :loading="loading" :expand-on-click-node="false" multiple check-on-click-node show-checkbox check-strictly clearable
-    style="width: 100%"
+  <div v-if="['dept', 'post', 'user'].includes(type!)">
+    <ElTreeSelect
+      ref="treeRef" v-model="selectValue" check-on-click-node check-strictly clearable collapse-tags
+      collapse-tags-tooltip :data="treeData" filterable :loading="loading" :max-collapse-tags="3" multiple
+      placeholder="请选择" show-checkbox style="width: 75%"
+    />
+    <el-button text type="primary" icon="el-icon-check" style="width: 20%" @click="handleSelectAll">
+      全选
+    </el-button>
+  </div>
+  <ElTreeSelect
+    v-else-if="type === 'dynamic'" v-model="inputValue" clearable :data="dynamicDic" filterable
+    :loading="loading" placeholder="请选择" style="width: 100%"
   />
-  <el-tree-select
-    v-else-if="type === 'dynamic'" v-model="inputValue" :data="dynamicDic" :loading="loading" clearable
-    style="width: 100%"
-  />
-  <FlowNodeSelect v-else-if="type === 'userTask'" v-model="inputValue" filter-type="userTask" />
-  <el-input v-else v-model="inputValue" />
+  <FlowNodeSelect v-else-if="type === 'userTask'" v-model="inputValue" filter-type="userTask" placeholder="请选择" />
+  <el-input v-else v-model="inputValue" clearable placeholder="请输入" />
 </template>

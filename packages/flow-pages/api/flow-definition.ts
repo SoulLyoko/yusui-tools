@@ -1,5 +1,7 @@
 import type { Page, ResData, ResRecords } from '@yusui/types'
 
+import { useRequest } from 'vue-request'
+
 import { useConfigProvider } from '../composables'
 
 /** 流程定义 */
@@ -50,7 +52,8 @@ export function useFlowDefinitionApi() {
     deploy: '/sapier-flow/flow-definition/deployFlow',
   }
   const getList = (params: Page & FlowDefinition) => request.get<ResRecords<FlowDefinition[]>>(url.list, { params })
-  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get(url.detail, { params })
+  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
+  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get<ResData<FlowDefinition>>(url.detail, { params })
   const create = (data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) => request.post<ResData<{ flowModuleId?: string }>>(url.save, data)
   const update = (data: FlowDefinition) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
@@ -58,6 +61,7 @@ export function useFlowDefinitionApi() {
   return {
     url,
     getList,
+    useList,
     create,
     update,
     remove,
