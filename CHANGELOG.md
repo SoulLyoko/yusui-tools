@@ -1,3 +1,17 @@
+# [2.0.0-beta.63](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.62...v2.0.0-beta.63) (2023-07-21)
+
+
+### Bug Fixes
+
+* **utils:** enumToDic考虑输入为空的情况 ([a6e6728](https://github.com/SoulLyoko/yusui-tools/commit/a6e672869cd9d82e5b6d00886209565983f649a0))
+
+
+### Features
+
+* **flow-pages:** useXXXApi参数变更，导出api，页面组件统一加前缀 ([87da313](https://github.com/SoulLyoko/yusui-tools/commit/87da3130e1ce2ea5c65985b47454c0431aa55ad4))
+
+
+
 # [2.0.0-beta.62](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2023-07-21)
 
 
