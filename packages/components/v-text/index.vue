@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { ElText } from 'element-plus'
+import type { VTextProps } from './types'
 
-/**
- * extends ElText
- */
-defineProps({
-  modelValue: { type: String },
-})
+const props = defineProps<VTextProps>()
 </script>
 
 <template>
-  <ElText>{{ modelValue }}</ElText>
+  <el-text v-bind="props">
+    {{ modelValue }}
+  </el-text>
 </template>

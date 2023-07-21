@@ -4,7 +4,7 @@ import IconSelect from './icon-select/index.vue'
 import InputTree from './input-tree/index.vue'
 import VText from './v-text/index.vue'
 
-export { IconSelect, VText }
+export { IconSelect, InputTree, VText }
 
 export default {
   install(app: App) {

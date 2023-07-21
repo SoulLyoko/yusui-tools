@@ -42,7 +42,7 @@
     "@types/node": "^18.16.18",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/shared": "^3.3.4",
-    "@vue/test-utils": "^2.3.2",
+    "@vue/test-utils": "^2.4.0",
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.1.2",
     "async-validator": "^4.2.5",
