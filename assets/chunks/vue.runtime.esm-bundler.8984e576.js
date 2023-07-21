@@ -1,1 +1,0 @@
-import{c as o}from"./omitBy.9af654cc.js";import{as as s}from"./index.e39bc4dd.js";import{b2 as t}from"./framework.268af5be.js";var m=o(function(e,r,a){return e+(a?"-":"")+r.toLowerCase()});const i=m,p=s(t);export{i as k,p as r};

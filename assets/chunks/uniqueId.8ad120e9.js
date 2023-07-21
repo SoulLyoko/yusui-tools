@@ -1,1 +1,0 @@
-import{a3 as i,P as n,Q as a,au as s}from"./index.f85f9727.js";var o="[object String]";function u(r){return typeof r=="string"||!i(r)&&n(r)&&a(r)==o}var e=0;function c(r){var t=++e;return s(r)+t}export{u as i,c as u};
