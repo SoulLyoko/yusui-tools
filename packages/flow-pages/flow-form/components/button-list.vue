@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { FlowButton } from '../../api'
+import type { FlowButton } from '@yusui/flow-pages'
 import type { ButtonItem } from '@yusui/flow-design'
 
 import { computed } from 'vue'
 import { pick } from 'lodash-es'
 import { Icon } from '@iconify/vue'
+import { useConfigProvider, useFlowButtonApi } from '@yusui/flow-pages'
 
-import { useFlowButtonApi } from '../../api'
 import { useInjectState } from '../composables'
-import { useConfigProvider } from '../../composables'
 
 const emit = defineEmits<{ (e: 'click', btn: FlowButton): void }>()
 
+const { userInfo, request } = useConfigProvider()
 const { flowDetail, circulateId } = useInjectState()
-const { data: allButtonList } = useFlowButtonApi().useList()
-const { userInfo } = useConfigProvider()
+
+const { data: allButtonList } = useFlowButtonApi(request).useList()
 
 function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   return button.map((btn) => {

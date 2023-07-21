@@ -1,7 +1,7 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowParam } from '../../api'
+import type { FlowParam } from '@yusui/flow-pages'
 
-import { whetherDic } from '../../constants'
+import { whetherDic } from '@yusui/flow-pages'
 
 export const tableOption: AvueCrudOption<FlowParam> = {
   rowKey: 'id',

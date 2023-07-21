@@ -3,10 +3,9 @@ import type { DicItem } from '@smallwei/avue'
 import type { Whether } from '../constants'
 import type { FlowStatus, HandleType, TaskStatus } from './flow-task'
 import type { TableField } from './table-template'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 流程参数 */
 export interface FlowParam {
@@ -48,8 +47,7 @@ export interface FlowParamMap {
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any
 
-export function useFlowParamApi() {
-  const { request } = useConfigProvider()
+export function useFlowParamApi(request: RequestInstance) {
   const url = {
     /** 流程参数列表 */
     list: '/sapier-flow/flow-param/list',

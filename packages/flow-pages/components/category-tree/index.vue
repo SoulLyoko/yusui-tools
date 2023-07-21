@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useCrud } from '@yusui/composables'
+import { useConfigProvider, useFlowCategoryApi } from '@yusui/flow-pages'
 
-import { useFlowCategoryApi } from '../../api'
 import { treeOption } from './option'
 
 const emit = defineEmits(['node-click'])
+
+const { request } = useConfigProvider()
 
 const {
   crudStateRefs: { formData, tableData },
@@ -15,7 +17,7 @@ const {
 } = useCrud({
   crudOption: {
     rowKey: 'id',
-    ...useFlowCategoryApi(),
+    ...useFlowCategoryApi(request),
     dataPath: 'res.data',
   },
   tableOption: treeOption,

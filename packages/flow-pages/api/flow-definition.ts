@@ -1,8 +1,7 @@
 import type { Page, ResData, ResRecords } from '@yusui/types'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 流程定义 */
 export interface FlowDefinition {
@@ -35,8 +34,7 @@ export interface FlowDefinition {
   mainVersion?: number
 }
 
-export function useFlowDefinitionApi() {
-  const { request } = useConfigProvider()
+export function useFlowDefinitionApi(request: RequestInstance) {
   const url = {
     /** 流程定义列表 */
     list: '/sapier-flow/flow-definition/list',

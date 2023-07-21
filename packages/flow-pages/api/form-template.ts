@@ -1,8 +1,7 @@
 import type { Page, ResRecords } from '@yusui/types'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 表单模板 */
 export interface FormTemplate {
@@ -26,8 +25,7 @@ export interface FormTemplate {
   version?: number
 }
 
-export function useFormTemplateApi() {
-  const { request } = useConfigProvider()
+export function useFormTemplateApi(request: RequestInstance) {
   const url = {
     /** 表单模板列表 */
     list: '/sapier-flow/dev-form/list',

@@ -1,18 +1,19 @@
 <script setup lang="ts" name="common-comments">
-import type { CommonComment } from '../../api'
+import type { CommonComment } from '@yusui/flow-pages'
 import type Node from 'element-plus/es/components/tree/src/model/node'
 
 import { computed, nextTick, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
+import { useCommonCommentApi, useConfigProvider } from '@yusui/flow-pages'
 
-import { useCommonCommentApi } from '../../api'
 import { useInjectState } from '../composables'
 
 const props = defineProps<{ modelValue?: string }>()
 const { modelValue } = useVModels(props)
 
-const { batchUpdate, create, remove, useList } = useCommonCommentApi()
+const { request } = useConfigProvider()
+const { batchUpdate, create, remove, useList } = useCommonCommentApi(request)
 
 const popoverVisible = ref(false)
 const { activeBtn } = useInjectState()

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FlowCategory, FlowDefinition, FlowDeploy } from '../../api'
+import type { FlowCategory, FlowDefinition, FlowDeploy } from '@yusui/flow-pages'
 
 import { nextTick, ref } from 'vue'
 

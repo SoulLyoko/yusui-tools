@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useCrud } from '@yusui/composables'
 import { Icon } from '@iconify/vue'
+import { useConfigProvider, useFlowButtonApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import { useFlowButtonApi } from '../../api'
+
+const { request } = useConfigProvider()
 
 const {
   bindVal,
@@ -11,7 +13,7 @@ const {
   getDataList,
 } = useCrud({
   tableOption,
-  crudOption: useFlowButtonApi(),
+  crudOption: useFlowButtonApi(request),
   sortOption: {
     ascs: 'sort',
   },

@@ -3,8 +3,8 @@ import type { AvueFormOption } from '@smallwei/avue'
 
 import { defineComponent, getCurrentInstance, h, ref, resolveComponent, watchEffect } from 'vue'
 import { jsonParse } from '@yusui/form-design'
+import { asyncValidate } from '@yusui/flow-pages'
 
-import { asyncValidate } from '../../utils'
 import { useFormDefaults, useInjectState } from '../composables'
 
 export default defineComponent({

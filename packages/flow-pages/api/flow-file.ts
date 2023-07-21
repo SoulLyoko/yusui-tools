@@ -1,6 +1,5 @@
 import type { Page, ResData } from '@yusui/types'
-
-import { useConfigProvider } from '../composables'
+import type { RequestInstance } from '../types'
 
 /** 流程文件 */
 export interface FlowFile {
@@ -32,8 +31,7 @@ export interface FlowFile {
   createTime?: string
 }
 
-export function useFlowFileApi() {
-  const { request } = useConfigProvider()
+export function useFlowFileApi(request: RequestInstance) {
   const url = {
     /** 文件列表 */
     list: '/sapier-flow/flow-file/list',

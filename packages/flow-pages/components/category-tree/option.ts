@@ -1,5 +1,5 @@
 import type { AvueTreeOption } from '@smallwei/avue'
-import type { FlowCategory } from '../../api'
+import type { FlowCategory } from '@yusui/flow-pages'
 
 export const treeOption: AvueTreeOption<FlowCategory> = {
   defaultExpandAll: true,

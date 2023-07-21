@@ -3,9 +3,7 @@ import type { InjectionKey } from 'vue'
 
 import { computed, defineAsyncComponent, inject, provide, ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'
-
-import { useFlowTaskApi } from '../../api'
-import { useConfigProvider } from '../../composables'
+import { useConfigProvider, useFlowTaskApi } from '@yusui/flow-pages'
 
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
@@ -14,7 +12,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const { flowDetail, modelValue: formData, formLoading } = vModels
 
   /** 标签页 */
-  const { tabs, customForm } = useConfigProvider()
+  const { tabs, customForm, request } = useConfigProvider()
   const tabRefs = ref<Record<string, any>>({})
   const tabList = computed(() => {
     return tabs?.filter((tab) => {
@@ -34,7 +32,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   })
 
   // 获取流程详情
-  const { getFlowDetail } = useFlowTaskApi()
+  const { getFlowDetail } = useFlowTaskApi(request)
   watchEffect(() => {
     const { flowKey, taskId, instanceId } = props
     if (!flowKey && !taskId && !instanceId)

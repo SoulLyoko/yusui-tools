@@ -1,5 +1,5 @@
 import type { AvueCrudColumn, AvueCrudOption } from '@smallwei/avue'
-import type { FlowOps } from '../../api'
+import type { FlowOps } from '@yusui/flow-pages'
 
 const opsCrudColumn: AvueCrudColumn[] = [
   { label: '流程名称', prop: 'flowName' },

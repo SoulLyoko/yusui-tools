@@ -1,5 +1,5 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowDefinition } from '../../api'
+import type { FlowDefinition } from '@yusui/flow-pages'
 
 import { formOption } from '../../components/design-steps/option'
 

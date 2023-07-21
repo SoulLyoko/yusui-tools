@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { FlowCirculateOps, FlowOps } from '../../api'
+import type { FlowCirculateOps, FlowOps } from '@yusui/flow-pages'
 
 import { ref } from 'vue'
 import { useStorage, watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
+import { useConfigProvider, useFlowCirculateApi, useFlowForm, useFlowOpsApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import { useFlowCirculateApi, useFlowOpsApi } from '../../api'
-import { useFlowForm } from '../../composables'
 
 const debugMode = useStorage('debugMode', false)
 
-const { getTaskOpsList } = useFlowOpsApi()
-const { getCirculateOpsList, updateCirculate, removeCirculate } = useFlowCirculateApi()
+const { request } = useConfigProvider()
+const { getTaskOpsList } = useFlowOpsApi(request)
+const { getCirculateOpsList, updateCirculate, removeCirculate } = useFlowCirculateApi(request)
 
 const {
   bindVal,

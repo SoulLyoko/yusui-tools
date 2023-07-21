@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import type { DicItem } from '@smallwei/avue'
 import type { AssigneeItem } from '@yusui/flow-design'
-import type { FlowUserTree } from '../../api'
+import type { FlowUserTree } from '@yusui/flow-pages'
 import type { ElTreeSelect } from 'element-plus'
 
 import { computed, ref, watch } from 'vue'
 import { filterTree, treeMap } from '@yusui/utils'
 import { FlowNodeSelect } from '@yusui/flow-design'
-
-import { useFlowParamApi, useFlowUserApi } from '../../api'
+import { useConfigProvider, useFlowParamApi, useFlowUserApi } from '@yusui/flow-pages'
 
 const props = defineProps<{
   modelValue: string | string[]
@@ -54,8 +53,9 @@ const type = computed(() => props.tableData?.row?.type)
 const treeData = ref<FlowUserTree[]>([])
 const dynamicDic = ref<DicItem[]>([])
 
-const { getUserTree } = useFlowUserApi()
-const { getParam } = useFlowParamApi()
+const { request } = useConfigProvider()
+const { getUserTree } = useFlowUserApi(request)
+const { getParam } = useFlowParamApi(request)
 
 watch(
   type,

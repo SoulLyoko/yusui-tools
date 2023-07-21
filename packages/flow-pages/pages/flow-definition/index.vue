@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import type { FlowDefinition } from '../../api'
+import type { FlowDefinition } from '@yusui/flow-pages'
 
 import { ref, watchEffect } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { useCrud } from '@yusui/composables'
 import { Icon } from '@iconify/vue'
+import { useCrud } from '@yusui/composables'
+import { useConfigProvider, useFlowDefinitionApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import { useFlowDefinitionApi } from '../../api'
 
 const props = defineProps<{ categoryId?: string }>()
 const emit = defineEmits(['add', 'view', 'edit', 'version'])
 
-const { getList, deploy, remove } = useFlowDefinitionApi()
+const { request } = useConfigProvider()
+const { getList, deploy, remove } = useFlowDefinitionApi(request)
 
 const {
   bindVal,

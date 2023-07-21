@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import type { TableTemplate } from '../../api'
+import type { TableTemplate } from '@yusui/flow-pages'
 
 import { ref, watchEffect } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useCrud } from '@yusui/composables'
 import { differenceBy } from 'lodash-es'
+import { useConfigProvider, useFlowParamApi, useTableTemplateApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import { useFlowParamApi, useTableTemplateApi } from '../../api'
+
+const { request } = useConfigProvider()
 
 const {
   bindVal,
@@ -16,13 +18,13 @@ const {
   afterOpen,
   beforeSubmit,
 } = useCrud({
-  crudOption: useTableTemplateApi(),
+  crudOption: useTableTemplateApi(request),
   tableOption,
 })
 
 getDataList()
 
-const { data: defaultFields } = useFlowParamApi().useParam('table.default.fields')
+const { data: defaultFields } = useFlowParamApi(request).useParam('table.default.fields')
 afterOpen((type) => {
   formData.value.defaultFields = defaultFields.value ?? []
   if (type === 'edit') {
@@ -41,7 +43,7 @@ watchEffect(() => {
     defaults.value.defaultFields.display = showDefaultFields.value
 })
 
-const { deploy, getFields } = useTableTemplateApi()
+const { deploy, getFields } = useTableTemplateApi(request)
 const loading = ref(false)
 async function handleDeploy(row: TableTemplate) {
   await ElMessageBox.confirm('部署将自动生成数据库表，是否确认？', '提示', { type: 'success' })

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { ElTree } from 'element-plus'
-import type { ApprovalNode } from '../../api'
+import type { ApprovalNode } from '@yusui/flow-pages'
 
 import { computed, ref } from 'vue'
 import { useVModels, watchDebounced } from '@vueuse/core'
-import { filterTree, sleep, treeMap, uuid } from '@yusui/utils'
 import { differenceBy } from 'lodash-es'
+import { filterTree, sleep, treeMap, uuid } from '@yusui/utils'
 
 const props = defineProps<{ modelValue: ApprovalNode[]; data: ApprovalNode[]; autoCheck?: boolean }>()
 const { modelValue } = useVModels(props)

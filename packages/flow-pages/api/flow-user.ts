@@ -1,8 +1,7 @@
 import type { ResData } from '@yusui/types'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 用户 */
 export interface FlowUserTree {
@@ -19,8 +18,7 @@ export interface FlowUserTree {
   children?: FlowUserTree[]
 }
 
-export function useFlowUserApi() {
-  const { request } = useConfigProvider()
+export function useFlowUserApi(request: RequestInstance) {
   const url = {
     /** 用户、部门、岗位树 */
     tree: '/sapier-flow/flow-user/tree',

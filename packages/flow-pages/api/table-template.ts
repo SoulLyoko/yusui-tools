@@ -1,9 +1,8 @@
 import type { Page, ResData, ResRecords } from '@yusui/types'
 import type { Whether } from '../constants'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 建表设计 */
 export interface TableTemplate {
@@ -76,8 +75,7 @@ export enum FieldType {
   year = 'year',
 }
 
-export function useTableTemplateApi() {
-  const { request } = useConfigProvider()
+export function useTableTemplateApi(request: RequestInstance) {
   const url = {
     /** 数据库表列表 */
     list: '/sapier-flow/dev-table/list',

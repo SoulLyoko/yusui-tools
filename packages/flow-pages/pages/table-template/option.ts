@@ -1,10 +1,8 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { TableField, TableTemplate } from '../../api'
+import type { TableField, TableTemplate } from '@yusui/flow-pages'
 
 import { enumToDic } from '@yusui/utils'
-
-import { FieldType, TablePrimary } from '../../api'
-import { whetherDic } from '../../constants'
+import { FieldType, TablePrimary, whetherDic } from '@yusui/flow-pages'
 
 const fieldsColumn = [
   { label: '字段名称', prop: 'name' },

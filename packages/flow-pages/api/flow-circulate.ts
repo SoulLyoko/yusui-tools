@@ -1,8 +1,7 @@
 import type { Page, ResRecords } from '@yusui/types'
 import type { FlowTask } from './flow-task'
 import type { FlowOps } from './flow-ops'
-
-import { useConfigProvider } from '../composables'
+import type { RequestInstance } from '../types'
 
 /** 传阅 */
 export interface FlowCirculate extends FlowTask {
@@ -16,8 +15,7 @@ export interface FlowCirculateOps extends FlowOps {
   comment?: string
 }
 
-export function useFlowCirculateApi() {
-  const { request } = useConfigProvider()
+export function useFlowCirculateApi(request: RequestInstance) {
   const url = {
     /** 传阅待办/已办列表 */
     list: '/sapier-flow/flow-circulate/userTaskList',

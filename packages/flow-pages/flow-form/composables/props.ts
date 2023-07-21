@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { ApprovalFormData, FlowButton, FlowDetail } from '../../api'
+import type { ApprovalFormData, FlowButton, FlowDetail } from '@yusui/flow-pages'
 import type { FlowFormPermission } from '../types'
 
 export const flowFormProps = {

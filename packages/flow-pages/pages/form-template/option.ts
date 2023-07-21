@@ -1,5 +1,5 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FormTemplate } from '../../api'
+import type { FormTemplate } from '@yusui/flow-pages'
 
 export const tableOption: AvueCrudOption<FormTemplate> = {
   rowKey: 'id',

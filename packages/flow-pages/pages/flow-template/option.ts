@@ -1,5 +1,5 @@
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowTemplate } from '../../api'
+import type { FlowTemplate } from '@yusui/flow-pages'
 
 export const tableOption: AvueCrudOption<FlowTemplate> = {
   rowKey: 'id',

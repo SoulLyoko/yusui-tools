@@ -4,6 +4,7 @@ import type { FlowPagesConfig } from './types'
 import { useConfigProvider } from './composables'
 import * as PagesComonents from './pages'
 
+export * from './api'
 export * from './flow-form'
 export * from './pages'
 export * from './composables'

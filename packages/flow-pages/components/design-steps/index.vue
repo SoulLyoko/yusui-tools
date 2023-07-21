@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import type { AvueFormInstance } from '@smallwei/avue'
-import type { FlowDefinition, FlowDeploy } from '../../api'
+import type { FlowDefinition, FlowDeploy } from '@yusui/flow-pages'
 
 import { computed, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { asyncValidate, useConfigProvider, useFlowDefinitionApi, useFlowDeployApi, useTableTemplateApi } from '@yusui/flow-pages'
 
-import { useFlowDefinitionApi, useFlowDeployApi, useTableTemplateApi } from '../../api'
 import { formOption } from './option'
-import { asyncValidate } from '../../utils'
 import FormDesignWrapper from '../form-design-wrapper/index.vue'
 import FlowDesignWrapper from '../flow-design-wrapper/index.vue'
 import TemplateSelect from './template-select.vue'
@@ -21,13 +20,15 @@ const emit = defineEmits(['close'])
 const vModels = useVModels(props)
 const { visible, modelValue: formData } = vModels as Required<typeof vModels>
 
+const { request } = useConfigProvider()
+
 const {
   create: createDefinition,
   deploy,
   getDetail: getDefinitionDetail,
   update: updateDefinition,
-} = useFlowDefinitionApi()
-const { getDetail: getDeployDetail, update: updateDeploy } = useFlowDeployApi()
+} = useFlowDefinitionApi(request)
+const { getDetail: getDeployDetail, update: updateDeploy } = useFlowDeployApi(request)
 
 const steps = ['流程信息', '表单设计', '模型设计', '完成']
 
@@ -56,7 +57,7 @@ watch(
   { immediate: true },
 )
 
-const { data: tableTemplates } = useTableTemplateApi().useList()
+const { data: tableTemplates } = useTableTemplateApi(request).useList()
 
 const tableFields = computed(() => {
   return tableTemplates.value?.find(e => e.tableName === formData.value.formDataTable)?.tableFields as string

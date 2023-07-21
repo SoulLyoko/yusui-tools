@@ -1,9 +1,8 @@
 import type { ButtonType } from 'element-plus'
 import type { Page, ResRecords } from '@yusui/types'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 export enum FlowButtonType {
   '默认' = 'default',
@@ -78,8 +77,7 @@ export interface FlowButton {
   status?: FlowButtonStatus
 }
 
-export function useFlowButtonApi() {
-  const { request } = useConfigProvider()
+export function useFlowButtonApi(request: RequestInstance) {
   const url = {
     /** 按钮列表 */
     list: '/sapier-flow/dev-button/list',

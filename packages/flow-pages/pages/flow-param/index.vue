@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useCrud } from '@yusui/composables'
+import { useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import { useFlowParamApi } from '../../api'
+
+const { request } = useConfigProvider()
 
 const { bindVal, getDataList } = useCrud({
   tableOption,
-  crudOption: useFlowParamApi(),
+  crudOption: useFlowParamApi(request),
 })
 getDataList()
 </script>

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import type { FormTemplate } from '../../api'
+import type { FormTemplate } from '@yusui/flow-pages'
 
 import { ref } from 'vue'
 import { useCrud } from '@yusui/composables'
+import { useConfigProvider, useFormTemplateApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
 import FormDesignWrapper from '../../components/form-design-wrapper/index.vue'
-import { useFormTemplateApi } from '../../api'
+
+const { request } = useConfigProvider()
 
 const {
   bindVal,
@@ -15,7 +17,7 @@ const {
   handleUpdate,
 } = useCrud({
   tableOption,
-  crudOption: useFormTemplateApi(),
+  crudOption: useFormTemplateApi(request),
 })
 getDataList()
 

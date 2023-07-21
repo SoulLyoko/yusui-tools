@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { durationFormat } from '@yusui/utils'
 import { Icon } from '@iconify/vue'
+import { durationFormat } from '@yusui/utils'
+import { useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
 
-import { useFlowParamApi } from '../../api'
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 import { useInjectState } from '../composables'
 
@@ -44,7 +44,8 @@ const tableOption = {
   ],
 }
 
-const { data: handleTypeDic } = useFlowParamApi().useParam('flow.handle.type')
+const { request } = useConfigProvider()
+const { data: handleTypeDic } = useFlowParamApi(request).useParam('flow.handle.type')
 function findHandleTypeDicItem(value: number) {
   return handleTypeDic.value?.find(e => e.value === value)
 }

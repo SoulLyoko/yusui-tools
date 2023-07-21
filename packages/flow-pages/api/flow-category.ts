@@ -1,8 +1,7 @@
 import type { Page, ResData } from '@yusui/types'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 流程分类 */
 export interface FlowCategory {
@@ -18,8 +17,7 @@ export interface FlowCategory {
   sort?: number
 }
 
-export function useFlowCategoryApi() {
-  const { request } = useConfigProvider()
+export function useFlowCategoryApi(request: RequestInstance) {
   const url = {
     /** 分类列表 */
     list: '/sapier-flow/flow-category/list',

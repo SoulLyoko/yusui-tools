@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import type { AvueCrudOption } from '@smallwei/avue'
-import type { FlowFile } from '../../api'
+import type { FlowFile } from '@yusui/flow-pages'
 
 import { useCrud } from '@yusui/composables'
 import { get } from 'lodash-es'
 import { uuid } from '@yusui/utils'
 import { computed } from 'vue'
+import { useConfigProvider, useFlowFileApi } from '@yusui/flow-pages'
 
-import { useFlowFileApi } from '../../api'
-import { useConfigProvider } from '../../composables'
 import { useInjectState } from '../composables'
 
 const { flowDetail, fileIds } = useInjectState()
 
-const { upload: { action, headers, preview, download, props: uploadProps } = {} } = useConfigProvider()
+const { upload: { action, headers, preview, download, props: uploadProps } = {}, request } = useConfigProvider()
 
 const uploadHeaders = typeof headers === 'function' ? headers() : headers
 const flowInstanceId = computed(() => flowDetail.value?.task?.flowInstanceId ?? uuid())
@@ -44,7 +43,7 @@ const {
   afterGetList,
   crudStateRefs: { tableData },
 } = useCrud({
-  crudOption: { ...useFlowFileApi(), saveSuccessMsg: '上传成功' },
+  crudOption: { ...useFlowFileApi(request), saveSuccessMsg: '上传成功' },
   tableOption,
   queryForm: {
     isLatest: 1,

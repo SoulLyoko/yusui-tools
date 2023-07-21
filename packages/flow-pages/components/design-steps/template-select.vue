@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useVModels } from '@vueuse/core'
-
-import { useFlowDefinitionApi, useFlowTemplateApi, useFormTemplateApi } from '../../api'
+import { useConfigProvider, useFlowDefinitionApi, useFlowTemplateApi, useFormTemplateApi } from '@yusui/flow-pages'
 
 const props = defineProps({
   formData: { type: Object, default: () => ({}) },
@@ -10,10 +9,11 @@ const props = defineProps({
 })
 const { formData, activeStep } = useVModels(props)
 
-const { getDetail: getDefinitionDetail, useList: useDefinitionList } = useFlowDefinitionApi()
+const { request } = useConfigProvider()
+const { getDetail: getDefinitionDetail, useList: useDefinitionList } = useFlowDefinitionApi(request)
 
-const { data: formTemplates } = useFormTemplateApi().useList()
-const { data: flowTemplates } = useFlowTemplateApi().useList()
+const { data: formTemplates } = useFormTemplateApi(request).useList()
+const { data: flowTemplates } = useFlowTemplateApi(request).useList()
 const { data: definitionList } = useDefinitionList()
 
 const templatesDic = computed(() => {

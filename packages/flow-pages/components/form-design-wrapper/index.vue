@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { form, jsonParse, jsonStringify } from '@yusui/form-design'
-
-import { useConfigProvider } from '../../composables'
+import { useConfigProvider } from '@yusui/flow-pages'
 
 const props = defineProps<{
   modelValue?: string

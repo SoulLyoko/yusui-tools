@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { AvueFormDefaults, AvueFormInstance, AvueFormOption } from '@smallwei/avue'
-import type { ApprovalNode } from '../../api'
+import type { ApprovalNode } from '@yusui/flow-pages'
 
 import { nextTick, ref, watchEffect } from 'vue'
 import { findTree } from '@yusui/utils'
+import { asyncValidate, useConfigProvider, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
 
-import { useFlowParamApi, useFlowTaskApi } from '../../api'
-import { asyncValidate } from '../../utils'
 import { useInjectState } from '../composables'
 import CommonComments from './common-comments.vue'
 import ApprovalTree from './approval-tree.vue'
@@ -14,8 +13,9 @@ import NodeSelect from './node-select.vue'
 
 const emit = defineEmits(['submit'])
 
-const { getApprovalNode } = useFlowTaskApi()
-const { useParam } = useFlowParamApi()
+const { request } = useConfigProvider()
+const { getApprovalNode } = useFlowTaskApi(request)
+const { useParam } = useFlowParamApi(request)
 
 const { formData, approvalFormData, activeBtn, approvalVisible, formVariables, flowDetail } = useInjectState()
 

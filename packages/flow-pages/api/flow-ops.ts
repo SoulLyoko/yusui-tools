@@ -1,7 +1,6 @@
 import type { Page, ResRecords } from '@yusui/types'
 import type { FlowTask } from './flow-task'
-
-import { useConfigProvider } from '../composables'
+import type { RequestInstance } from '../types'
 
 /** 流程运维 */
 export interface FlowOps extends FlowTask {
@@ -18,8 +17,7 @@ export interface FlowOps extends FlowTask {
   version?: number
 }
 
-export function useFlowOpsApi() {
-  const { request } = useConfigProvider()
+export function useFlowOpsApi(request: RequestInstance) {
   const url = {
     /** 流程运维列表 */
     list: '/sapier-flow/flow-ops/list',

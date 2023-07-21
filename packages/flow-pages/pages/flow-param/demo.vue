@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <FlowParam />
+  <PageFlowParam />
 </template>

@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import type { AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
 import type { FlowFormData } from '@yusui/flow-design'
-import type { FlowHistory } from '../../api'
+import type { FlowHistory } from '@yusui/flow-pages'
 
 import { computed, ref, shallowRef } from 'vue'
 import { defaultGraphData, defaultOptions } from '@yusui/flow-design'
 import { enumToDic } from '@yusui/utils'
 import { watchDebounced, watchOnce } from '@vueuse/core'
+import { FlowButtonApproval, FlowButtonDisplay, useConfigProvider, useFlowButtonApi, useFlowParamApi } from '@yusui/flow-pages'
 
-import { FlowButtonApproval, FlowButtonDisplay, useFlowButtonApi, useFlowParamApi } from '../../api'
-import { useConfigProvider } from '../../composables'
 import AssigneeSetter from './assignee-setter.vue'
 
 const props = defineProps<{
@@ -20,8 +19,6 @@ const props = defineProps<{
   showLegend?: boolean
 }>()
 const emit = defineEmits(['update:modelValue', 'nodeClick'])
-
-const { FlowDesign, tabs } = useConfigProvider()
 
 const lf = shallowRef()
 watchOnce(lf, () => {
@@ -48,7 +45,8 @@ const allColumn = computed(() => {
   const all = [...column, ...group.map(g => g.column ?? []).flat()]
   return all
 })
-const { data: buttonList } = useFlowButtonApi().useList()
+const { FlowDesign, tabs, request } = useConfigProvider()
+const { data: buttonList } = useFlowButtonApi(request).useList()
 const tabList = computed(() => {
   return tabs?.map(e => ({ ...e, display: true })) ?? []
 })
@@ -77,7 +75,7 @@ watchDebounced(
   { debounce: 1 },
 )
 
-const { data: flowTaskStatus } = useFlowParamApi().useParam('flow.task.status')
+const { data: flowTaskStatus } = useFlowParamApi(request).useParam('flow.task.status')
 const flowHistoryStyles = computed(() => {
   return props.flowHistory?.map((item) => {
     const style = flowTaskStatus.value?.find(e => e.value === item.status)?.style

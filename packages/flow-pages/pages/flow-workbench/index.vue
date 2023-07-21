@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { FlowCirculate, FlowDeploy, FlowTask } from '../../api'
+import type { FlowCirculate, FlowDeploy, FlowTask } from '@yusui/flow-pages'
 
 import { computed, ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
+import { TaskStatus, useConfigProvider, useFlowCategoryApi, useFlowCirculateApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
 
-import { TaskStatus, useFlowCategoryApi, useFlowCirculateApi, useFlowTaskApi } from '../../api'
-import { useFlowForm } from '../../composables'
 import { tableOption } from './option'
 
-const { useList: useCategoryList } = useFlowCategoryApi()
-const { usePublishList, getTaskList } = useFlowTaskApi()
-const { getCirculateList } = useFlowCirculateApi()
+const { request } = useConfigProvider()
+const { useList: useCategoryList } = useFlowCategoryApi(request)
+const { usePublishList, getTaskList } = useFlowTaskApi(request)
+const { getCirculateList } = useFlowCirculateApi(request)
 
 const { data: categoryList } = useCategoryList()
 const { data: publishList } = usePublishList()

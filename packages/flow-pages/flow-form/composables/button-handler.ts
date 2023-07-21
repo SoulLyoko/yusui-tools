@@ -1,16 +1,14 @@
 import type { ButtonHandler, FlowFormState } from '../types'
 
 import { computed } from 'vue'
-
-import { useFlowTaskApi } from '../../api/flow-task'
-import { useConfigProvider } from '../../composables'
+import { useConfigProvider, useFlowTaskApi } from '@yusui/flow-pages'
 
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
+  const { buttonHandler: extraButtonHandler, request } = useConfigProvider()
   const {
     commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask,
     withdrawTask, rejectTask, greenChannel, circulateTask,
-  } = useFlowTaskApi()
-  const { buttonHandler: extraButtonHandler } = useConfigProvider()
+  } = useFlowTaskApi(request)
   const data = computed(() => {
     const { flowDetail, formVariables, approvalFormData, debug, fileIds } = state
     const { flowDeployId } = flowDetail.value.process ?? {}

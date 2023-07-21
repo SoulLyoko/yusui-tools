@@ -1,7 +1,6 @@
 import type { Page, ResData } from '@yusui/types'
 import type { FlowDefinition } from './flow-definition'
-
-import { useConfigProvider } from '../composables'
+import type { RequestInstance } from '../types'
 
 export enum IsMainVersion {
   '否' = 0,
@@ -16,8 +15,7 @@ export interface FlowDeploy extends FlowDefinition {
   mainVersion?: IsMainVersion
 }
 
-export function useFlowDeployApi() {
-  const { request } = useConfigProvider()
+export function useFlowDeployApi(request: RequestInstance) {
   const url = {
     /** 流程部署列表 */
     list: '/sapier-flow/flow-deploy/list',

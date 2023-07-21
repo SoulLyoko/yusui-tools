@@ -1,9 +1,8 @@
 import type { Ref } from 'vue'
 import type { ResRecords } from '@yusui/types'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 常用意见 */
 export interface CommonComment {
@@ -13,8 +12,7 @@ export interface CommonComment {
   sort?: number
 }
 
-export function useCommonCommentApi() {
-  const { request } = useConfigProvider()
+export function useCommonCommentApi(request: RequestInstance) {
   const url = {
     /** 常用意见列表 */
     list: '/sapier-flow/flow-user-common/list',

@@ -2,10 +2,9 @@ import type { Page, ResData, ResRecords } from '@yusui/types'
 import type { FlowFormData } from '@yusui/flow-design'
 import type { FlowDeploy } from './flow-deploy'
 import type { FlowOps } from './flow-ops'
+import type { RequestInstance } from '../types'
 
 import { useRequest } from 'vue-request'
-
-import { useConfigProvider } from '../composables'
 
 /** 任务状态 */
 export const enum TaskStatus {
@@ -202,8 +201,7 @@ export interface ApprovalNode {
 
 export type GetApprovalNodeResData = ResData<{ approvalNodeList: ApprovalNode[]; circulateNodeList: ApprovalNode[] }>
 
-export function useFlowTaskApi() {
-  const { request } = useConfigProvider()
+export function useFlowTaskApi(request: RequestInstance) {
   const url = {
     /** 获取已部署流程 */
     publishList: '/sapier-flow/flow-run/queryPublishFlowList',

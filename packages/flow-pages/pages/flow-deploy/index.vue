@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import type { FlowDeploy } from '../../api'
+import type { FlowDeploy } from '@yusui/flow-pages'
 
 import { ref, watchEffect } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { useCrud } from '@yusui/composables'
 import { Icon } from '@iconify/vue'
+import { useCrud } from '@yusui/composables'
+import { IsMainVersion, useConfigProvider, useFlowDeployApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import { IsMainVersion, useFlowDeployApi } from '../../api'
 
 const props = defineProps<{ flowModuleId?: string }>()
 const emit = defineEmits(['back', 'view', 'edit'])
 
-const { getList, update, remove } = useFlowDeployApi()
+const { request } = useConfigProvider()
+const { getList, update, remove } = useFlowDeployApi(request)
 
 const {
   bindVal,
