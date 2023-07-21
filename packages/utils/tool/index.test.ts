@@ -47,4 +47,8 @@ describe('tool utils', () => {
       { name: '成功', id: 1 },
     ])
   })
+
+  it('enumToDic empty entry', () => {
+    expect(enumToDic()).toEqual([])
+  })
 })

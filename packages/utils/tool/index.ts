@@ -41,11 +41,11 @@ export const to = awaitTo
  * @param {Object} props {label: 'label', value: 'value'}
  */
 export function enumToDic<T extends object>(
-  enumme: T,
+  enumme?: T,
   props?: { label?: string; value?: string },
 ): { label?: string; value?: any; [x: string]: any }[] {
   const { label: labelKey = 'label', value: valueKey = 'value' } = props || {}
-  return Object.entries(enumme)
+  return Object.entries(enumme ?? {})
     .map(([key, value]) => ({ [labelKey]: key, [valueKey]: value }))
     .filter(item => Number.isNaN(Number(item[labelKey])))
 }
