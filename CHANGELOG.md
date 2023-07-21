@@ -1,3 +1,24 @@
+# [2.0.0-beta.62](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2023-07-21)
+
+
+### Bug Fixes
+
+* **flow-pages:** 流程设计页面重复请求 ([730d940](https://github.com/SoulLyoko/yusui-tools/commit/730d9401b73c43f1378c0346431cdbd2c648d15a))
+
+
+### Features
+
+* **flow-pages:** 工作台页面增加流程分类 ([285779c](https://github.com/SoulLyoko/yusui-tools/commit/285779c9ffa558fdbfd620184f1623437ec1246f))
+* **flow-pages:** 自定义表单 ([b5dc73b](https://github.com/SoulLyoko/yusui-tools/commit/b5dc73b2ff1cc1bd476c59a51f12104f81497d9e))
+* **flow-pages:** 自定义流程表单，标签页属性，扩展按钮 ([bf0b751](https://github.com/SoulLyoko/yusui-tools/commit/bf0b751c844257617a3590a5561156393c30ae2f))
+
+
+### Performance Improvements
+
+* **components:** 优化组件，添加测试 ([47cc89e](https://github.com/SoulLyoko/yusui-tools/commit/47cc89ea283c9f6aa96da27d17ad0035b5bd306f))
+
+
+
 # [2.0.0-beta.61](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.60...v2.0.0-beta.61) (2023-07-11)
 
 
