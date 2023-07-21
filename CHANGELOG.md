@@ -10,6 +10,11 @@
 
 * **flow-pages:** useXXXApi参数变更，导出api，页面组件统一加前缀 ([87da313](https://github.com/SoulLyoko/yusui-tools/commit/87da3130e1ce2ea5c65985b47454c0431aa55ad4))
 
+### BREAKING CHANGE
+- 为适应需要调用api的其它场景，useXXXApi由从配置获取请求实例变更为传入请求实例:
+`const { request } = useConfigProvider()`->`(request: requestInstance)`
+- 工作流页面组件统一加前缀`Page`:
+`<FlowWorkbench>`->`<PageFlowWorkbench>`
 
 
 # [2.0.0-beta.62](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.61...v2.0.0-beta.62) (2023-07-21)
