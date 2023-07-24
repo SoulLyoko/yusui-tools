@@ -27,7 +27,7 @@ export function useFlowDeployApi(request: RequestInstance) {
     detail: '/sapier-flow/flow-deploy/detail',
   }
   const getList = (params: Page & FlowDeploy) => request.get<ResData<FlowDeploy[]>>(url.list, { params })
-  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get(url.detail, { params })
+  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get<ResData<FlowDeploy>>(url.detail, { params })
   const update = (data: FlowDeploy) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   return {

@@ -23,8 +23,8 @@ export function useFlowCirculateApi(request: RequestInstance) {
     update: '/sapier-flow/flow-circulate-ops/update',
     remove: '/sapier-flow/flow-circulate-ops/remove',
   }
-  const getCirculateList = (params: Page & FlowCirculate) => request.get<ResRecords<FlowCirculate>>(url.list, { params })
-  const getCirculateOpsList = (params: Page & FlowCirculateOps) => request.get<ResRecords<FlowCirculateOps>>(url.list, { params })
+  const getCirculateList = (params: Page & FlowCirculate) => request.get<ResRecords<FlowCirculate[]>>(url.list, { params })
+  const getCirculateOpsList = (params: Page & FlowCirculateOps) => request.get<ResRecords<FlowCirculateOps[]>>(url.list, { params })
   const updateCirculate = (data: FlowCirculateOps) => request.post(url.update, data)
   const removeCirculate = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   return {

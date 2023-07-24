@@ -22,7 +22,7 @@ export function useFlowOpsApi(request: RequestInstance) {
     /** 流程运维列表 */
     list: '/sapier-flow/flow-ops/list',
   }
-  const getTaskOpsList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.list, { params })
+  const getTaskOpsList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps[]>>(url.list, { params })
   return {
     url,
     getTaskOpsList,

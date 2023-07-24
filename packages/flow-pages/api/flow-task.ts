@@ -260,7 +260,7 @@ export function useFlowTaskApi(request: RequestInstance) {
   const getPublishList = () => request.get<ResData<FlowDeploy[]>>(url.publishList)
   const usePublishList = () => useRequest(() => getPublishList().then(res => res.data))
   /** 待办/已办列表 */
-  const getTaskList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps>>(url.taskList, { params })
+  const getTaskList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps[]>>(url.taskList, { params })
   return {
     url,
     getFlowDetail,
