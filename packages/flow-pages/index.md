@@ -1,5 +1,20 @@
 # FlowPages
 
+<script setup lang="ts">
+import {useStorage} from '@vueuse/core'
+const useFlowFormType = useStorage('useFlowFormType','drawer')
+function onChange(){
+  location.reload()
+}
+</script>
+
+<span>设置文档中流程表单的弹窗类型：</span>
+<el-radio-group v-model="useFlowFormType" @change="onChange">
+  <el-radio label="drawer"></el-radio>
+  <el-radio label="dialog"></el-radio>
+  <el-radio label="window"></el-radio>
+</el-radio-group>
+
 ## 安装
 
 ```bash
@@ -7,6 +22,10 @@ pnpm i @yusui/flow-pages @yusui/flow-design @yusui/form-design
 ```
 
 ## 使用
+
+:::tip
+FlowPages 以 <u>[lodash.merge](https://www.lodashjs.com/docs/lodash.merge)</u> 的形式将传入配置和默认配置进行合并
+:::
 
 :::code-group
 
@@ -30,12 +49,16 @@ app.use(FlowPages, {
   request, // 请求实例
   userInfo: { userId: 'xxx' }, // or: () => storage.get('user')
   customForm, // 自定义的流程表单
+  useFlowFormOptions: { // 覆盖useFlowForm的默认配置
+    type: 'drawer', // 'drawer'|'dialog'|'window'
+    // window: ['/flow-form','flow-form','left=0,top=0,width=1600,height=900']
+  },
   upload: { // 上传配置
     action: '/xxx', // 文件上传地址
     headers: { Authorization: 'xxx' }, // or: ()=> ({ Authorization: storage.get('token') })
     download: row => window.open(row.fileUrl), // 自行实现下载方法
     preview: row => window.open(row.fileUrl), // 自行实现预览方法
-    props: {}
+    props: {} // 上传接口字段映射
   },
 })
 ```
@@ -51,8 +74,6 @@ export default defineConfig({
 ```
 
 :::
-
-
 
 ## 类型定义
 

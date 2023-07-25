@@ -1,5 +1,7 @@
 # FlowForm
 
+流程表单
+
 ## 扩展tabs
 
 ::: code-group
@@ -54,7 +56,7 @@ defineExpose({ validate })
 ```ts [main.ts]
 import FlowPages from '@yusui/flow-pages'
 
-import customButtonHandler from '@/customButtonHandler.ts'
+import customButtonHandler from './customButtonHandler.ts'
 
 app.use(FlowPages, {
   buttonHandler: customButtonHandler
@@ -69,7 +71,7 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     // 自定义
     flow_custom() {
       // ...做一些自定义操作
-      // 返回Promis并成功则提交流程
+      // 返回Promise并成功则提交流程
       return request.post('xxx/xxx', {})
     },
   }
@@ -94,7 +96,7 @@ app.use(FlowPages, {
   customForm,
 })
 ```
-<<< @/.vitepress/custom-form/test/index.vue [test/index.vue]
+<<< @/.vitepress/custom-form/test/index.vue [custom-form/test/index.vue]
 
 :::
 
@@ -106,39 +108,13 @@ app.use(FlowPages, {
 ```ts [main.ts]
 import FlowPages from '@yusui/flow-pages'
 
-import CustomFlowForm from '@/components/CustomFlowForm.vue'
+import CustomFlowForm from './CustomFlowForm.vue'
 
 app.use(FlowPages, {
   FlowForm: CustomFlowForm
 })
 ```
 
-<<< ./index.vue
-
-:::
-
-
-## 在任何地方调起流程表单
-
-:::code-group
-
-```ts
-import { useFlowForm } from '@yusui/flow-pages'
-
-const { open, close } = useFlowForm({ type: 'drawer' })
-function openFlow(row: FlowOps) {
-  open({
-    flowKey: row.flowKey,
-    taskId: row.taskId,
-    instanceId: row.flowInstanceId,
-    onComplete() {
-      close()
-      getDataList()
-    },
-  })
-}
-```
-
-<<< ../composables/flow-form.ts
+<<< ./index.vue[@yusui/flow-pages/flow-form]
 
 :::

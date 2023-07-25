@@ -7,7 +7,7 @@ import type { RequestInstance } from '../types'
 import { useRequest } from 'vue-request'
 
 /** 任务状态 */
-export const enum TaskStatus {
+export enum TaskStatus {
   '已办' = 1,
   '待办' = 2,
   '失败' = 3,
@@ -15,13 +15,13 @@ export const enum TaskStatus {
   '终止' = 5,
 }
 /** 流程状态 */
-export const enum FlowStatus {
+export enum FlowStatus {
   '已办结' = 1,
   '未办结' = 2,
   '已终止' = 3,
 }
 /** 操作类型 */
-export const enum HandleType {
+export enum HandleType {
   '系统执行' = 1,
   '用户办理' = 2,
   '任务撤销' = 3,

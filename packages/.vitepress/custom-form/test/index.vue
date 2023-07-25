@@ -2,9 +2,11 @@
 import type { AvueFormInstance, AvueFormOption } from '@smallwei/avue'
 
 import { ref } from 'vue'
-import { asyncValidate, useInjectState } from '@yusui/flow-pages'
+import { asyncValidate, useFormDefaults, useInjectState } from '@yusui/flow-pages'
 
-const { formData, beforeClick, beforeSubmit } = useInjectState()
+// 获取流程表单上下文数据
+const { flowDetail, formData, beforeClick, beforeSubmit } = useInjectState()
+
 const formRef = ref<AvueFormInstance>()
 const formOption: AvueFormOption = {
   menuBtn: false,
@@ -15,19 +17,25 @@ const formOption: AvueFormOption = {
   ],
 }
 
+// 可以使用FlowForm内置的表单控制，或自行定义
+const formDefaults = useFormDefaults(flowDetail)
+
+// 按钮点击的钩子，返回Promise.reject()可以阻止点击
 beforeClick!.value = (activeBtn) => {
   if (activeBtn.buttonKey === 'flow_pass')
     console.log('正在选择审批人')
 }
+// 提交前的钩子，返回Promise.reject()可以阻止提交
 beforeSubmit!.value = (activeBtn) => {
   if (activeBtn.buttonKey === 'flow_pass')
     console.log('正在提交')
 }
 
+// 暴露异步validate方法作为提交前的校验
 const validate = () => asyncValidate(formRef)
 defineExpose({ validate })
 </script>
 
 <template>
-  <avue-form ref="formRef" v-model="formData" :option="formOption" />
+  <avue-form ref="formRef" v-model="formData" v-model:defaults="formDefaults" :option="formOption" />
 </template>

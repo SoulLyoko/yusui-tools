@@ -5,6 +5,7 @@ import { computed, ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 import { TaskStatus, useConfigProvider, useFlowCategoryApi, useFlowCirculateApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
+import { enumToDic } from '@yusui/utils'
 
 import { tableOption } from './option'
 
@@ -22,10 +23,7 @@ const flowList = computed(() => {
   }).filter(e => e.list?.length)
 })
 
-const flowStatusDic = [
-  { label: '待办', value: 2 },
-  { label: '已办', value: 1 },
-]
+const flowStatusDic = enumToDic(TaskStatus).filter((e, i) => i < 2).reverse()
 
 const {
   bindVal,
@@ -36,7 +34,7 @@ const {
   crudOption: {
     getList: getTaskList,
   },
-  searchForm: { status: 2 },
+  searchForm: { status: TaskStatus['待办'] },
 })
 
 watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })

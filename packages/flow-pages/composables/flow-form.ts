@@ -7,10 +7,10 @@ import { isFunction, isNil, merge, omitBy, overSome } from 'lodash-es'
 import { ElDialog, ElDrawer } from 'element-plus'
 import { serialize } from '@yusui/utils'
 
-import FlowForm from '../flow-form/index.vue'
 import { useConfigProvider } from './config'
 import { CONFIG_DEFAULT } from '../constants'
 
+// #region types
 export type UseFlowFormType = 'dialog' | 'drawer' | 'window'
 
 /** { [onXxx]?: Function } */
@@ -39,9 +39,10 @@ export interface UseFlowFormOptions extends UseFlowFormProps {
 }
 
 export type UseFlowFormReturn = ReturnType<typeof useFlowForm>
+// #endregion types
 
 /** 判断是useFlowform的配置而不是FlowFrom的props */
-function isOptionsKeys(key: string) {
+function isOptionsKeys(value: any, key: string) {
   return key in (CONFIG_DEFAULT.useFlowFormOptions ?? {})
 }
 
@@ -69,9 +70,9 @@ export function useFlowFormWindow(options: UseFlowFormOptions = {}) {
     const openUrl = `${url}?${serialize(omitBy(mergedOptions, overSome(isFunction, isNil, isOptionsKeys)))}`
     openedWindow.value = window.open(openUrl, name, features)
     openedWindow.value?.addEventListener('message', (e) => {
-      const { event } = e.data
+      const { event, data } = e.data
       const fn = mergeOptions[event as keyof UseFlowFormEvents]
-      typeof fn === 'function' && fn(e.data)
+      typeof fn === 'function' && fn(data)
     })
   }
   const close = () => openedWindow.value?.close()
@@ -81,6 +82,7 @@ export function useFlowFormWindow(options: UseFlowFormOptions = {}) {
 /** dialog和drawer弹窗 */
 export function useFlowFormOverlay(options: UseFlowFormOptions = {}) {
   const { appContext } = getCurrentInstance()!
+  const { FlowForm } = useConfigProvider()
 
   let container: HTMLElement | null
   let overlay: VNode
@@ -90,7 +92,7 @@ export function useFlowFormOverlay(options: UseFlowFormOptions = {}) {
 
     const mergedOptions = merge({ ...options }, { ...mergeOptions })
 
-    const flowform = h(FlowForm as any, omitBy(mergedOptions, isOptionsKeys))
+    const flowform = h(FlowForm!, omitBy(mergedOptions, isOptionsKeys))
     overlay = h(
       mergedOptions.type === 'dialog' ? ElDialog : ElDrawer,
       {

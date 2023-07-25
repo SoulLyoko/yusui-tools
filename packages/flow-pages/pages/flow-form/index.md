@@ -4,6 +4,10 @@ aside: false
 
 # PageFlowForm
 
+流程表单页面
+
+将流程表单组件作为页面，可以实现新窗口(小窗口)打开
+
 ## 基础用法
 
 <PageFlowForm></PageFlowForm>

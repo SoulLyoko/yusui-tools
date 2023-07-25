@@ -2,9 +2,13 @@
 aside: false
 ---
 
-# FlowButton
+# PageFlowButton
 
-FlowButton
+流程按钮页面
+
+- 配置流程弹窗上方显示的操作按钮和点击按钮弹出审批窗口的显示状态。
+
+- 显示的优先级：流程节点配置的按钮配置 > 流程按钮默认配置
 
 ## 基础用法
 
