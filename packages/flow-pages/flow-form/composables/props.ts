@@ -38,9 +38,9 @@ export const flowFormProps = {
   /** 审批提交前 */
   beforeSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 详情模式,为true则禁用表单并隐藏按钮 */
-  detail: { type: Boolean },
+  detail: { type: [Boolean, String], default: false },
   /** 调试模式 */
-  debug: { type: Boolean },
+  debug: { type: [Boolean, String], default: false },
   /** 传阅id */
   circulateId: { type: String },
 }

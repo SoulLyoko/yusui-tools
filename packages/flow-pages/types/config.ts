@@ -34,7 +34,7 @@ export interface FlowPagesConfig {
   userInfo?: { userId?: string } | (() => { userId?: string })
   /** 自定义表单 */
   customForm?: Record<string, Component | AsyncComponentLoader>
-  /** 到开流程表单弹窗的默认配置 */
+  /** 打开流程表单弹窗的默认配置 */
   useFlowFormOptions?: UseFlowFormOptions
   /** 按钮处理 */
   buttonHandler?: (state: FlowFormState) => ButtonHandler

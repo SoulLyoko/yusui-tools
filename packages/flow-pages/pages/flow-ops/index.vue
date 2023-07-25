@@ -4,7 +4,7 @@ import type { FlowCirculateOps, FlowOps } from '@yusui/flow-pages'
 import { ref } from 'vue'
 import { useStorage, watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
-import { useConfigProvider, useFlowCirculateApi, useFlowForm, useFlowOpsApi } from '@yusui/flow-pages'
+import { TaskStatus, useConfigProvider, useFlowCirculateApi, useFlowForm, useFlowOpsApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
 
@@ -23,7 +23,7 @@ const {
   crudOption: {
     getList: getTaskOpsList,
   },
-  searchForm: { status: 2 },
+  searchForm: { status: TaskStatus['待办'] },
   sortOption: { descs: 'start_time' },
 })
 

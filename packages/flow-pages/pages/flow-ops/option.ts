@@ -1,6 +1,8 @@
 import type { AvueCrudColumn, AvueCrudOption } from '@smallwei/avue'
 import type { FlowOps } from '@yusui/flow-pages'
 
+import { TaskStatus } from '@yusui/flow-pages'
+
 const opsCrudColumn: AvueCrudColumn[] = [
   { label: '流程名称', prop: 'flowName' },
   { label: '流程标识', prop: 'flowKey' },
@@ -23,7 +25,7 @@ const opsCrudColumn: AvueCrudColumn[] = [
     prop: 'status',
     type: 'select',
     search: true,
-    searchValue: 2,
+    searchValue: TaskStatus['待办'],
     dicUrl: '/sapier-flow/flow-param/getParam',
     dicQuery: { paramKey: 'flow.task.status' },
   },

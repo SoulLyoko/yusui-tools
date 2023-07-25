@@ -31,7 +31,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
       return ExternalForm ?? InternalForm
   })
 
-  // 获取流程详情
+  /** 获取流程详情 */
   const { getFlowDetail } = useFlowTaskApi(request)
   watchEffect(() => {
     const { flowKey, taskId, instanceId } = props
@@ -48,11 +48,16 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
       })
   })
 
-  // 表单变量
+  /** 表单变量 */
   const formVariables = computed(() => {
     return Object.entries(formData.value || {})
       .filter(([key]) => !key.startsWith('$'))
       .map(([key, value]) => ({ key, value }))
+  })
+
+  /** 是否详情 */
+  const detail = computed(() => {
+    return props.detail === true || props.detail === 'true'
   })
 
   const state = {
@@ -62,6 +67,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
     tabRefs,
     tabList,
     formTabComponent,
+    detail,
     emit,
   }
 
