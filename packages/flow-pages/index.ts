@@ -5,10 +5,10 @@ import { useConfigProvider } from './composables'
 import * as PagesComonents from './pages'
 
 export * from './api'
-export * from './flow-form'
-export * from './pages'
 export * from './composables'
 export * from './constants'
+export * from './flow-form'
+export * from './pages'
 export * from './types'
 export * from './utils'
 

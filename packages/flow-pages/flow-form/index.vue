@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { FlowButton } from '../api'
+import type { FlowButton } from '@yusui/flow-pages'
 
 import { ElMessage } from 'element-plus'
+import { flowFormEmits, flowFormProps, useButtonHandler, useConfigProvider, useProvideState } from '@yusui/flow-pages'
 
-import { flowFormEmits, flowFormProps, useButtonHandler, useProvideState } from './composables'
 import ButtonList from './components/button-list.vue'
 import InternalApprovalForm from './components/approval-form.vue'
-import { useConfigProvider } from '../composables'
 
 const props = defineProps(flowFormProps)
 const emit = defineEmits(flowFormEmits)
