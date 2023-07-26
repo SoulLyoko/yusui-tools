@@ -1,3 +1,20 @@
+# [2.0.0-beta.64](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.62...v2.0.0-beta.64) (2023-07-26)
+
+
+### Bug Fixes
+
+* **flow-pages:** 修复一些接口返回的类型 ([3a2cd6d](https://github.com/SoulLyoko/yusui-tools/commit/3a2cd6de5b25293cebfe4e14927b9318f569e062))
+* **flow-pages:** 修改内部引用路径 ([fdab467](https://github.com/SoulLyoko/yusui-tools/commit/fdab4675a0e67993557234178857bff2669fa506))
+* **utils:** enumToDic考虑输入为空的情况 ([a6e6728](https://github.com/SoulLyoko/yusui-tools/commit/a6e672869cd9d82e5b6d00886209565983f649a0))
+
+
+### Features
+
+* **flow-pages:** 流程表单页PageFlowForm ([550181f](https://github.com/SoulLyoko/yusui-tools/commit/550181f002c533632f22d8dfe344e2113fa40b3d))
+* **flow-pages:** useXXXApi参数变更，导出api，页面组件统一加前缀 ([07a9399](https://github.com/SoulLyoko/yusui-tools/commit/07a9399c6cce84f194958e42980f6a1c0bf0792a))
+
+
+
 # [2.0.0-beta.63](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.62...v2.0.0-beta.63) (2023-07-21)
 
 
