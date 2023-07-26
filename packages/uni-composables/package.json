@@ -23,7 +23,6 @@
     "dist"
   ],
   "dependencies": {
-    "@dcloudio/uni-app": "*",
     "@yusui/composables": "workspace:*",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
@@ -32,7 +31,8 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "postcss": "^8.4.24",
+    "@dcloudio/uni-app": "*",
+    "postcss": "^8.4.27",
     "uvue-crud": "^2.0.8",
     "vue": "^3.3.4"
   }

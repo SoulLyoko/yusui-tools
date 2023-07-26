@@ -26,10 +26,10 @@
     "vue-request": "^2.0.3"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.16",
-    "@types/lodash-es": "^4.17.7",
-    "element-plus": "^2.3.6",
-    "sass": "^1.63.4",
+    "@smallwei/avue": "^3.2.18",
+    "@types/lodash-es": "^4.17.8",
+    "element-plus": "^2.3.8",
+    "sass": "^1.64.1",
     "vue": "^3.3.4"
   }
 }

@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@yusui/types": "workspace:*",
-    "dayjs": "^1.11.8",
+    "dayjs": "^1.11.9",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "lodash-unified": "1.0.3",

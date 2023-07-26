@@ -25,8 +25,8 @@
   "dependencies": {
     "@antv/layout": "^0.3.23",
     "@iconify/vue": "^4.1.1",
-    "@logicflow/core": "^1.2.8",
-    "@logicflow/extension": "^1.2.8",
+    "@logicflow/core": "^1.2.10",
+    "@logicflow/extension": "^1.2.10",
     "@vueuse/core": "^10.1.2",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
@@ -36,9 +36,9 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.16",
-    "element-plus": "^2.3.6",
-    "sass": "^1.63.4",
+    "@smallwei/avue": "^3.2.18",
+    "element-plus": "^2.3.8",
+    "sass": "^1.64.1",
     "vue": "^3.3.4"
   }
 }
