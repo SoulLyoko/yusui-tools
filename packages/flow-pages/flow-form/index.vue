@@ -2,7 +2,7 @@
 import type { FlowButton } from '@yusui/flow-pages'
 
 import { ElMessage } from 'element-plus'
-import { flowFormEmits, flowFormProps, useButtonHandler, useConfigProvider, useProvideState } from '@yusui/flow-pages'
+import { flowFormEmits, flowFormProps, isMobile, useButtonHandler, useConfigProvider, useProvideState } from '@yusui/flow-pages'
 
 import ButtonList from './components/button-list.vue'
 import InternalApprovalForm from './components/approval-form.vue'
@@ -23,11 +23,11 @@ const {
   activeTab,
   activeBtn,
   formLoading,
-  formTabComponent,
   approvalVisible,
   submitLoading,
   beforeClick,
   beforeSubmit,
+  tabsRef,
 } = state
 
 async function onButtonClick(btn: FlowButton) {
@@ -73,19 +73,21 @@ async function onSubmit() {
       <div class="flow-form__title">
         {{ title ?? flowDetail.flowInstance?.title }}
       </div>
-      <ButtonList v-if="!detail" @click="onButtonClick" />
+      <ButtonList v-if="!detail && !isMobile()" @click="onButtonClick" />
     </el-header>
     <el-main class="flow-form__main">
-      <el-tabs v-model="activeTab" v-bind="tabsProps">
+      <el-tabs ref="tabsRef" v-model="activeTab" v-bind="tabsProps">
         <el-tab-pane
           v-for="tab in tabList" :key="tab.prop" :label="tab.label" :name="tab.prop" :lazy="tab.lazy"
           :disabled="tab.disabled" :closable="tab.closable"
         >
-          <component :is="formTabComponent" v-if="tab.prop === 'formTab'" :ref="(el: any) => tabRefs[tab.prop!] = el" />
-          <component :is="tab.component" v-else :ref="(el: any) => tabRefs[tab.prop!] = el" />
+          <component :is="tab.component" :ref="(el: any) => tabRefs[tab.prop!] = el" />
         </el-tab-pane>
       </el-tabs>
     </el-main>
+    <el-footer v-if="!detail && isMobile()" class="flow-form__footer" height="auto">
+      <ButtonList @click="onButtonClick" />
+    </el-footer>
 
     <ApprovalForm @submit="onSubmit" />
   </el-container>
@@ -96,20 +98,18 @@ async function onSubmit() {
   height: 100%;
 
   .flow-form__title {
-    padding: 4px 0;
+    padding: 8px 0;
     font-size: 16px;
   }
 
-  .flow-form__button {
-    display: flex;
-    overflow-x: auto;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  .flow-form__footer {
+    border-top: 2px solid var(--el-border-color-light);
+    padding: 10px;
+    text-align: center;
   }
 
   .flow-form__main {
+    padding-top: 0;
 
     .avue-form {
       padding: 0;

@@ -4,7 +4,7 @@ import type { ApprovalNode } from '@yusui/flow-pages'
 
 import { nextTick, ref, watchEffect } from 'vue'
 import { findTree } from '@yusui/utils'
-import { asyncValidate, useConfigProvider, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
+import { asyncValidate, isMobile, useConfigProvider, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
 import CommonComments from './common-comments.vue'
@@ -31,7 +31,7 @@ const formRef = ref<AvueFormInstance>()
 const defaults = ref<AvueFormDefaults>()
 const formOption: AvueFormOption<typeof approvalFormData.value> = {
   menuBtn: false,
-  labelWidth: 100,
+  labelWidth: 'auto',
   column: [
     { label: '指定节点', prop: 'jumpTaskNodeKey', span: 24, rules: [{ required: true, message: '请选择指定节点' }] },
     { label: '审批人', prop: 'assignee', span: 24, rules: [{ required: true, validator: approvalValidator }] },
@@ -151,18 +151,30 @@ function getApprovalSetData(nodes: ApprovalNode[]) {
 </script>
 
 <template>
-  <el-dialog v-model="approvalVisible" class="approlval-form" :title="activeBtn.name" width="900px" append-to-body>
-    <avue-form ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" :option="formOption">
+  <component
+    :is="isMobile() ? 'el-drawer' : 'el-dialog'" v-model="approvalVisible" class="approlval-form-overlay"
+    :title="activeBtn.name" append-to-body width="900px" size="50%" direction="btt"
+  >
+    <avue-form
+      ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" class="approlval-form"
+      :option="formOption" style="padding:0"
+    >
       <template #jumpTaskNodeKey>
         <NodeSelect v-model="approvalFormData.jumpTaskNodeKey" />
       </template>
       <template #assignee>
         <el-skeleton v-if="treeLoading" />
-        <ApprovalTree v-else key="AssigneeTree" v-model="checkedApprovalNodes" :data="approvalNodes" :auto-check="autoCheck === 'true'" />
+        <ApprovalTree
+          v-else key="AssigneeTree" v-model="checkedApprovalNodes" :data="approvalNodes"
+          :auto-check="autoCheck === 'true'" :mode="isMobile() ? 'vertical' : 'horizontal'"
+        />
       </template>
       <template #circulate>
         <el-skeleton v-if="treeLoading" />
-        <ApprovalTree v-else key="CirculateTree" v-model="checkedCirculateNodes" :data="circulateNodes" />
+        <ApprovalTree
+          v-else key="CirculateTree" v-model="checkedCirculateNodes" :data="circulateNodes"
+          :mode="isMobile() ? 'vertical' : 'horizontal'"
+        />
       </template>
       <template #comment>
         <CommonComments v-model="approvalFormData.comment" />
@@ -177,5 +189,16 @@ function getApprovalSetData(nodes: ApprovalNode[]) {
         确 定
       </el-button>
     </template>
-  </el-dialog>
+  </component>
 </template>
+
+<style lang="scss">
+.approlval-form-overlay {
+
+  .el-drawer__header,
+  .el-dialog__header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+</style>

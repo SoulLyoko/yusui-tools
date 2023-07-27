@@ -2,14 +2,14 @@
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { durationFormat } from '@yusui/utils'
-import { useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
+import { isMobile, useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
 
 import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 import { useInjectState } from '../composables'
 
 const { flowDetail } = useInjectState()
 
-const activeType = ref('table')
+const activeType = ref(isMobile() ? 'timeline' : 'table')
 const typeList = [
   { label: 'table', icon: 'ep:grid' },
   { label: 'graph', icon: 'ep:picture' },
@@ -52,7 +52,7 @@ function findHandleTypeDicItem(value: number) {
 </script>
 
 <template>
-  <el-radio-group v-model="activeType">
+  <el-radio-group v-if="!isMobile" v-model="activeType">
     <el-radio-button v-for="item in typeList" :key="item.label" :label="item.label">
       <Icon :icon="item.icon" />
     </el-radio-button>

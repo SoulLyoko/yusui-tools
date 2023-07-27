@@ -5,7 +5,7 @@ import type Node from 'element-plus/es/components/tree/src/model/node'
 import { computed, nextTick, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
-import { useCommonCommentApi, useConfigProvider } from '@yusui/flow-pages'
+import { isMobile, useCommonCommentApi, useConfigProvider } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
 
@@ -61,30 +61,20 @@ async function nodeClick(data: CommonComment) {
 </script>
 
 <template>
-  <el-popover :visible="popoverVisible" placement="bottom" title="常用意见" :width="600">
+  <el-popover :visible="popoverVisible" placement="bottom" title="常用意见" :width="isMobile() ? '98%' : '600px'">
     <template #reference>
       <el-input
-        ref="inputRef"
-        v-model="modelValue"
-        type="textarea"
-        placeholder="请输入意见"
-        rows="5"
-        @focus="popoverVisible = true"
-        @blur="popoverVisible = false"
+        ref="inputRef" v-model="modelValue" type="textarea" placeholder="请输入意见" rows="5"
+        @focus="popoverVisible = true" @blur="popoverVisible = false"
       />
     </template>
     <el-tree
-      :data="commentTreeData"
-      node-key="content"
-      draggable
-      :allow-drop="(drag:any, drop:any, type:string) => type !== 'inner'"
-      :props="{ label: 'content' }"
-      @node-click="nodeClick"
-      @node-drop="nodeDrop"
-      @node-drag-start="nodeDragStart"
+      :data="commentTreeData" node-key="content" draggable
+      :allow-drop="(drag: any, drop: any, type: string) => type !== 'inner'" :props="{ label: 'content' }"
+      @node-click="nodeClick" @node-drop="nodeDrop" @node-drag-start="nodeDragStart"
     >
       <template #default="{ data }">
-        <el-row style="width: 600px;">
+        <el-row style="width:100%">
           <el-col :span="22">
             <el-text truncated :title="data.content">
               {{ data.content }}
@@ -92,21 +82,10 @@ async function nodeClick(data: CommonComment) {
           </el-col>
           <el-col :span="2">
             <el-button
-              v-if="data.id"
-              type="danger"
-              size="small"
-              icon="el-icon-close"
-              text
+              v-if="data.id" type="danger" size="small" icon="el-icon-close" text
               @click.stop="delComment(data)"
             />
-            <el-button
-              v-else
-              type="primary"
-              size="small"
-              icon="el-icon-plus"
-              text
-              @click.stop="addComment(data)"
-            />
+            <el-button v-else type="primary" size="small" icon="el-icon-plus" text @click.stop="addComment(data)" />
           </el-col>
         </el-row>
       </template>

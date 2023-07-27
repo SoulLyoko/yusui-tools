@@ -5,7 +5,7 @@ import type { ButtonItem } from '@yusui/flow-design'
 import { computed } from 'vue'
 import { pick } from 'lodash-es'
 import { Icon } from '@iconify/vue'
-import { useConfigProvider, useFlowButtonApi } from '@yusui/flow-pages'
+import { FlowStatus, TaskStatus, useConfigProvider, useFlowButtonApi } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
 
@@ -38,12 +38,12 @@ const displayButtonList = computed(() => {
     false: false,
     startUser: createUser == user?.userId,
     assignee: assignee == user?.userId,
-    todo: taskStatus == 2,
-    done: taskStatus == 1,
+    todo: taskStatus == TaskStatus['待办'],
+    done: taskStatus == TaskStatus['已办'],
     notstarted: !flowInstanceId,
     started: !!flowInstanceId,
-    finished: flowStatus === 1,
-    unfinished: flowStatus === 2,
+    finished: flowStatus === FlowStatus['已办结'],
+    unfinished: flowStatus === FlowStatus['未办结'],
   }
 
   const buttonList = allButtonList.value?.filter(e => e.buttonKey !== 'flow_circulate') ?? []

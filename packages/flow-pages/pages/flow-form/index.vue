@@ -12,7 +12,12 @@ const { FlowForm } = useConfigProvider()
 
 const title = computed(() => {
   const instance = flowDetail.value.flowInstance
-  return (query.instanceId || query.taskId) ? `流程详情：${instance?.title}` : `发起流程：${instance?.title}`
+  if (query.detail === true || query.detail === 'true')
+    return `查看流程：${instance?.title}`
+  else if (query.instanceId || query.taskId)
+    return `办理流程：${instance?.title}`
+  else
+    return `发起流程：${instance?.title}`
 })
 useTitle(title)
 
@@ -24,10 +29,7 @@ async function onComplete(btn: FlowButton) {
 <template>
   <FlowForm
     v-model:flowDetail="flowDetail"
-    :task-id="query.taskId"
-    :instance-id="query.instanceId"
-    :detail="query.detail"
-    :flow-key="query.flowKey"
+    v-bind="query"
     @complete="onComplete"
   />
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FlowCirculate, FlowDeploy, FlowTask } from '@yusui/flow-pages'
+import type { FlowCirculate, FlowOps } from '@yusui/flow-pages'
 
 import { computed, ref } from 'vue'
 import { watchDebounced } from '@vueuse/core'
@@ -51,13 +51,13 @@ function onTabClick({ paneName }: any) {
 }
 
 const { open, close } = useFlowForm()
-function openFlow(row: FlowDeploy | FlowTask | FlowCirculate) {
+function openFlow(row: FlowOps | FlowCirculate) {
   open({
-    flowKey: (row as FlowDeploy).flowKey,
-    taskId: (row as FlowTask).taskId,
-    instanceId: (row as FlowTask).flowInstanceId,
+    flowKey: (row as FlowOps).flowKey,
+    taskId: row.taskId,
+    instanceId: row.flowInstanceId,
     circulateId: (row as FlowCirculate).id,
-    detail: (row as FlowTask).taskId ? row.status === TaskStatus['已办'] : false,
+    detail: row.taskId ? row.status === TaskStatus['已办'] : false,
     onComplete() {
       close()
       getDataList()

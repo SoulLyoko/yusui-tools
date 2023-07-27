@@ -4,9 +4,12 @@
 .lf-main {
   height: 100%;
   padding: 0;
-  padding-right: 20px;
+  .lf-graph {
+    height: 99%;
+  }
 }
 .lf-aside {
+  padding-left: 20px;
   .avue-form {
     .el-slider__input {
       width: 60px;

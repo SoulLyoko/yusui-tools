@@ -1,39 +1,42 @@
 <script setup lang="ts">
-import type { AvueCrudOption } from '@smallwei/avue'
+import type { AvueCrudColumn, AvueCrudOption } from '@smallwei/avue'
 import type { FlowFile } from '@yusui/flow-pages'
 
 import { useCrud } from '@yusui/composables'
 import { get } from 'lodash-es'
 import { uuid } from '@yusui/utils'
 import { computed } from 'vue'
-import { useConfigProvider, useFlowFileApi } from '@yusui/flow-pages'
+import { isMobile, useConfigProvider, useFlowFileApi } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
 
-const { flowDetail, fileIds } = useInjectState()
+const { flowDetail, fileIds, detail } = useInjectState()
 
 const { upload: { action, headers, preview, download, props: uploadProps } = {}, request } = useConfigProvider()
 
 const uploadHeaders = typeof headers === 'function' ? headers() : headers
 const flowInstanceId = computed(() => flowDetail.value?.task?.flowInstanceId ?? uuid())
 
+const column: AvueCrudColumn<FlowFile>[] = [
+  { label: '文件名', prop: 'fileName' },
+  { label: '文件类型', prop: 'fileType' },
+  { label: '文件大小', prop: 'fileSize' },
+  { label: '版本', prop: 'version' },
+  { label: '上传时间', prop: 'createTime' },
+]
+const mobileColumn = column.filter(e => e.prop === 'fileName')
 const tableOption: AvueCrudOption<FlowFile> = {
   rowKey: 'id',
   align: 'center',
-  index: true,
+  index: false,
   border: true,
   stripe: true,
   addBtn: false,
   editBtn: false,
   delBtn: false,
-  menuWidth: 200,
-  column: [
-    { label: '文件名', prop: 'fileName' },
-    { label: '文件类型', prop: 'fileType' },
-    { label: '文件大小', prop: 'fileSize' },
-    { label: '版本', prop: 'version' },
-    { label: '上传时间', prop: 'createTime' },
-  ],
+  menuType: 'menu',
+  column: isMobile() ? mobileColumn : column
+  ,
 }
 const {
   bindVal,
@@ -77,6 +80,7 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
   <avue-crud v-bind="bindVal">
     <template #menu-left>
       <el-upload
+        v-if="!detail"
         :action="action"
         :headers="uploadHeaders"
         :show-file-list="false"
@@ -87,27 +91,26 @@ async function onUploadSuccess(response: any, row?: FlowFile) {
         </el-button>
       </el-upload>
     </template>
-    <template #menu="{ row, index }">
-      <el-button type="primary" text icon="el-icon-view" @click="preview?.(row, tableData)">
+    <template #menu-btn="{ row, index }">
+      <el-dropdown-item icon="el-icon-view" @click="preview?.(row, tableData)">
         预览
-      </el-button>
-      <el-button type="primary" text icon="el-icon-download" @click="download?.(row, tableData)">
+      </el-dropdown-item>
+      <el-dropdown-item icon="el-icon-download" @click="download?.(row, tableData)">
         下载
-      </el-button>
-      <el-upload
-        :action="action"
-        :headers="uploadHeaders"
-        :show-file-list="false"
-        style="display:inline;vertical-align:middle;margin-right:10px"
-        @success="onUploadSuccess($event, row)"
-      >
-        <el-button type="primary" text icon="el-icon-upload">
+      </el-dropdown-item>
+      <el-dropdown-item v-if="!detail" icon="el-icon-upload">
+        <el-upload
+          :action="action"
+          :headers="uploadHeaders"
+          :show-file-list="false"
+          @success="onUploadSuccess($event, row)"
+        >
           更新版本
-        </el-button>
-      </el-upload>
-      <el-button type="primary" text icon="el-icon-delete" @click="handleDel(row, index)">
+        </el-upload>
+      </el-dropdown-item>
+      <el-dropdown-item v-if="!detail" icon="el-icon-delete" @click="handleDel(row, index)">
         删除
-      </el-button>
+      </el-dropdown-item>
     </template>
   </avue-crud>
 </template>

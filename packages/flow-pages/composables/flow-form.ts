@@ -15,7 +15,7 @@ export type UseFlowFormType = 'dialog' | 'drawer' | 'window'
 
 /** { [onXxx]?: Function } */
 export type UseFlowFormEvents<K extends keyof FlowFormEmits = keyof FlowFormEmits> = {
-  [P in `on${Capitalize<K>}`]?: Function;
+  [P in `on${Capitalize<K>}`]?: (...args: Parameters<FlowFormEmits[K]>) => void
 }
 
 export type UseFlowFormProps = Partial<FlowFormProps> & UseFlowFormEvents

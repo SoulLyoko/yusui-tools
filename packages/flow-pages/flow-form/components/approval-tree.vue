@@ -7,7 +7,12 @@ import { useVModels, watchDebounced } from '@vueuse/core'
 import { differenceBy } from 'lodash-es'
 import { filterTree, sleep, treeMap, uuid } from '@yusui/utils'
 
-const props = defineProps<{ modelValue: ApprovalNode[]; data: ApprovalNode[]; autoCheck?: boolean }>()
+const props = defineProps<{
+  modelValue: ApprovalNode[]
+  data: ApprovalNode[]
+  autoCheck?: boolean
+  mode?: 'vertical' | 'horizontal'
+}>()
 const { modelValue } = useVModels(props)
 
 const treeRef = ref<InstanceType<typeof ElTree>>()
@@ -111,8 +116,8 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
     {{ item.title }}
   </el-tag>
   <el-tree
-    ref="treeRef" class="approval-tree" :data="treeData" :props="treeProps"
-    node-key="id" check-on-click-node show-checkbox @check="onCheck"
+    ref="treeRef" class="approval-tree" :class="`mode-${mode}`" :data="treeData" :props="treeProps" node-key="id"
+    check-on-click-node show-checkbox @check="onCheck"
   >
     <template #default="{ data }">
       <div>
@@ -124,7 +129,7 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
 </template>
 
 <style lang="scss" scoped>
-.approval-tree {
+.approval-tree.mode-horizontal {
   max-height: 300px;
   overflow-x: auto;
 
