@@ -1,3 +1,12 @@
+# [2.0.0-beta.65](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.64...v2.0.0-beta.65) (2023-07-27)
+
+
+### Features
+
+* **flow-pages:** 适配移动端 ([a95833b](https://github.com/SoulLyoko/yusui-tools/commit/a95833bb710c05387af13dd43b8b1c1ff0818c91))
+
+
+
 # [2.0.0-beta.64](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.62...v2.0.0-beta.64) (2023-07-26)
 
 
