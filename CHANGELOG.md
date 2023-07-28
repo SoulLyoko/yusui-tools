@@ -1,3 +1,12 @@
+# [2.0.0-beta.66](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2023-07-28)
+
+
+### Bug Fixes
+
+* **flow-pages:** 移除原有的传阅逻辑，优化审批窗口显示逻辑 ([2344bbc](https://github.com/SoulLyoko/yusui-tools/commit/2344bbc350fa2b7650f1535010de58b7ef700c90))
+
+
+
 # [2.0.0-beta.65](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.64...v2.0.0-beta.65) (2023-07-27)
 
 
