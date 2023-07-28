@@ -29,7 +29,7 @@ describe('durationFormat', () => {
     expect(durationFormat('')).toMatchInlineSnapshot('""')
     expect(durationFormat(undefined)).toMatchInlineSnapshot('""')
     expect(durationFormat(null)).toMatchInlineSnapshot('""')
-    expect(durationFormat(NaN)).toMatchInlineSnapshot('""')
+    expect(durationFormat(Number.NaN)).toMatchInlineSnapshot('""')
   })
 
   it('humanize', () => {

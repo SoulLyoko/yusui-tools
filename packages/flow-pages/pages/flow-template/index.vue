@@ -30,7 +30,7 @@ async function openDesign(row: FlowTemplate) {
 async function handleSaveLayout() {
   await handleUpdate(
     formData.value,
-    NaN,
+    Number.NaN,
     () => (dialogVisible.value = false),
     () => {},
   )

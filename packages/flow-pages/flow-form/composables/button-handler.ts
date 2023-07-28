@@ -6,8 +6,15 @@ import { useConfigProvider, useFlowTaskApi } from '@yusui/flow-pages'
 export function useButtonHandler(state: FlowFormState): ButtonHandler {
   const { buttonHandler: extraButtonHandler, request } = useConfigProvider()
   const {
-    commitTask, revokeTask, saveDraft, startTask, terminateTask, transferTask,
-    withdrawTask, rejectTask, greenChannel, circulateTask,
+    commitTask,
+    revokeTask,
+    saveDraft,
+    startTask,
+    terminateTask,
+    transferTask,
+    withdrawTask,
+    rejectTask,
+    greenChannel,
   } = useFlowTaskApi(request)
   const data = computed(() => {
     const { flowDetail, formVariables, approvalFormData, debug, fileIds } = state
@@ -66,13 +73,6 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
     flow_green() {
       if (isInstance())
         return greenChannel(data.value)
-    },
-    // 传阅
-    flow_circulate() {
-      if (isInstance()) {
-        const { approvalFormData, circulateId } = state
-        return circulateTask({ id: circulateId?.value, comment: approvalFormData?.value.comment })
-      }
     },
     ...extraButtonHandler?.(state),
   }

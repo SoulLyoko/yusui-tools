@@ -3,7 +3,7 @@ import type { Res } from '@yusui/types'
 import { useCrud } from '.'
 
 vi.mock('element-plus', async () => {
-  const ElementPlus = (await vi.importActual('element-plus')) as {}
+  const ElementPlus = (await vi.importActual('element-plus')) as any
   const ElMessageBox = {
     confirm: () => Promise.resolve(),
   }

@@ -78,7 +78,7 @@ export function flatTree<T extends TreeNode>(tree: T[], options: FlatTreeOptions
       else
         return node
     })
-    .flat(Infinity)
+    .flat(Number.POSITIVE_INFINITY)
     .map((e) => {
       !returnChildren && delete (e as T)[childrenKey]
       return e

@@ -12,6 +12,7 @@ module.exports = {
     '@typescript-eslint/prefer-ts-expect-error': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/consistent-type-imports': 'off',
+    'import/no-self-import': 'off',
     'import/consistent-type-specifier-style': ['error', 'prefer-top-level'], // 类型导入放在顶层
     'import/order': [ // 导入排序
       'error',

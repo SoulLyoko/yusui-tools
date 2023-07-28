@@ -2,11 +2,13 @@ export interface AssigneeItem {
   type?: string
   value?: string
   idVal?: string
+  values?: any[]
 }
 export interface CirculateItem {
   type?: string
   value?: string
   idVal?: string
+  values?: any[]
 }
 export interface ButtonItem {
   name?: string

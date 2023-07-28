@@ -43,6 +43,7 @@ export interface FlowParamMap {
   'table.default.fields': TableField[]
   'flow.default.comment': string
   'flow.approval.autocheck': 'true' | 'fasle'
+  'flow.approval.autocomment': 'true' | 'fasle'
   'flow.trends.user': DicItem[]
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any

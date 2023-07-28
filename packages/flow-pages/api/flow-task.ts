@@ -229,8 +229,6 @@ export function useFlowTaskApi(request: RequestInstance) {
     reject: '/sapier-flow/flow-run/rollbackTask',
     /** 绿色通道 */
     green: '/sapier-flow/flow-run/greenTask',
-    /** 传阅 */
-    circulate: '/sapier-flow/flow-circulate/commitTask',
   }
   /** 获取流程详情 */
   const getFlowDetail = (params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
@@ -252,8 +250,6 @@ export function useFlowTaskApi(request: RequestInstance) {
   const transferTask = (data: CommitTaskData) => request.post(url.transfer, data)
   /** 退回 */
   const rejectTask = (data: CommitTaskData) => request.post(url.reject, data)
-  /** 传阅 */
-  const circulateTask = (data: CommitTaskData) => request.post(url.circulate, data)
   /** 绿色通道 */
   const greenChannel = (data: CommitTaskData) => request.post(url.green, data)
   /** 已部署列表 */
@@ -274,7 +270,6 @@ export function useFlowTaskApi(request: RequestInstance) {
     transferTask,
     rejectTask,
     greenChannel,
-    circulateTask,
     getPublishList,
     usePublishList,
     getTaskList,

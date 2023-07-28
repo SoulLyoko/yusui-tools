@@ -12,7 +12,7 @@ import { useInjectState } from '../composables'
 const emit = defineEmits<{ (e: 'click', btn: FlowButton): void }>()
 
 const { userInfo, request } = useConfigProvider()
-const { flowDetail, circulateId } = useInjectState()
+const { flowDetail } = useInjectState()
 
 const { data: allButtonList } = useFlowButtonApi(request).useList()
 
@@ -26,10 +26,6 @@ function mergeButton(button: FlowButton[], source: ButtonItem[]) {
 
 // 显示的按钮
 const displayButtonList = computed(() => {
-  if (circulateId?.value) {
-    const circulateBtn = allButtonList.value?.find(e => e.buttonKey === 'flow_circulate')
-    return circulateBtn ? [circulateBtn] : []
-  }
   const user = typeof userInfo === 'function' ? userInfo() : userInfo
   const { assignee, status: taskStatus } = flowDetail.value?.task || {}
   const { createUser, flowInstanceId, status: flowStatus } = flowDetail.value?.flowInstance || {}
@@ -46,9 +42,8 @@ const displayButtonList = computed(() => {
     unfinished: flowStatus === FlowStatus['未办结'],
   }
 
-  const buttonList = allButtonList.value?.filter(e => e.buttonKey !== 'flow_circulate') ?? []
   const { button: buttonProperties } = flowDetail.value?.properties || {}
-  const filterBtn = mergeButton(buttonList, buttonProperties ?? [])?.filter((item) => {
+  const filterBtn = mergeButton(allButtonList.value ?? [], buttonProperties ?? [])?.filter((item) => {
     return item.display?.split(',')?.every(condition => buttonCondition[condition])
   })
   return filterBtn ?? []

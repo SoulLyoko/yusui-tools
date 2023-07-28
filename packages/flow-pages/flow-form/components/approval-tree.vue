@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { ElTree } from 'element-plus'
+import type { LoadFunction } from 'element-plus/es/components/tree/src/tree.type'
 import type { ApprovalNode } from '@yusui/flow-pages'
 
 import { computed, ref } from 'vue'
 import { useVModels, watchDebounced } from '@vueuse/core'
 import { differenceBy } from 'lodash-es'
-import { filterTree, sleep, treeMap, uuid } from '@yusui/utils'
+import { treeMap, uuid } from '@yusui/utils'
 
 const props = defineProps<{
   modelValue: ApprovalNode[]
@@ -15,28 +16,44 @@ const props = defineProps<{
 }>()
 const { modelValue } = useVModels(props)
 
-const treeRef = ref<InstanceType<typeof ElTree>>()
-const treeProps = {
-  class(data: ApprovalNode) {
-    return `node-${data.type}`
-  },
-}
-const treeData = computed(() => {
-  return treeMap(props.data ?? [], (item, index, parent) => {
-    const id = uuid()
-    item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
-    item.incoming = parent?.incoming ?? item.incoming
-    item.multiple = parent?.multiple ?? item.multiple
-    return { ...item, id, label: item.title, disabled: item.type !== 'user' }
-  })
-})
-
 const iconMap: Record<string, string> = {
   element: 'ep:flag',
   post: 'ep:share',
   dept: 'ep:share',
   user: 'ep:user',
 }
+
+const treeLoad: LoadFunction = (node, resolve) => {
+  if (node.level === 0)
+    resolve(treeData.value)
+  else
+    resolve(node.data.children ?? [])
+}
+const treeProps = {
+  defaultExpandAll: true,
+  lazy: true,
+  showCheckbox: true,
+  nodeKey: 'id',
+  load: treeLoad,
+  onCheck,
+  props: {
+    label: 'title',
+    class(data: ApprovalNode) {
+      return `node-${data.type}`
+    },
+  },
+}
+const treeRef = ref<InstanceType<typeof ElTree>>()
+const treeData = computed(() => {
+  return treeMap(props.data ?? [], (item, index, parent) => {
+    const id = uuid()
+    item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
+    item.incoming = parent?.incoming ?? item.incoming
+    item.multiple = parent?.multiple ?? item.multiple
+    item.parentId = parent?.id ?? item.parentId
+    return { ...item, id }
+  })
+})
 
 watchDebounced(
   () => [treeData.value, treeRef.value],
@@ -49,12 +66,12 @@ watchDebounced(
       checkedNode && setCheckedNodes([checkedNode])
     }
     // 展开节点
-    const expandedNodes = filterTree(treeData.value, e => !!e.children?.length)
-    expandedNodes.map(async (data) => {
-      await sleep(100)
-      const node = treeRef.value?.getNode(data)
-      node?.expand()
-    })
+    // const expandedNodes = filterTree(treeData.value, e => !!e.children?.length)
+    // expandedNodes.map(async (data) => {
+    //   await sleep(100)
+    //   const node = treeRef.value?.getNode(data)
+    //   node?.expand()
+    // })
   },
   { immediate: true, debounce: 100 },
 )
@@ -115,10 +132,7 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
   <el-tag v-for="item in modelValue" :key="item.id" type="info" closable @close="onTagClose(item)">
     {{ item.title }}
   </el-tag>
-  <el-tree
-    ref="treeRef" class="approval-tree" :class="`mode-${mode}`" :data="treeData" :props="treeProps" node-key="id"
-    check-on-click-node show-checkbox @check="onCheck"
-  >
+  <el-tree ref="treeRef" class="approval-tree" :class="`mode-${mode}`" :data="treeData" v-bind="treeProps">
     <template #default="{ data }">
       <div>
         <Icon :icon="iconMap[data.type] || iconMap.element" style="display: inline-block" />
@@ -129,11 +143,11 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
 </template>
 
 <style lang="scss" scoped>
-.approval-tree.mode-horizontal {
+.approval-tree {
   max-height: 300px;
   overflow-x: auto;
 
-  :deep(.el-tree-node__children) {
+  &.mode-horizontal:deep(.el-tree-node__children) {
     white-space: normal;
 
     .node-user {

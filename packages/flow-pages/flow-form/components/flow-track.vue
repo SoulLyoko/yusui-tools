@@ -52,7 +52,7 @@ function findHandleTypeDicItem(value: number) {
 </script>
 
 <template>
-  <el-radio-group v-if="!isMobile" v-model="activeType">
+  <el-radio-group v-if="!isMobile()" v-model="activeType">
     <el-radio-button v-for="item in typeList" :key="item.label" :label="item.label">
       <Icon :icon="item.icon" />
     </el-radio-button>

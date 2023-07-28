@@ -7,6 +7,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
 import { IsMainVersion, useConfigProvider, useFlowDeployApi } from '@yusui/flow-pages'
+import { pick } from 'lodash-es'
 
 import { tableOption } from './option'
 
@@ -59,6 +60,10 @@ async function handleDel(row: FlowDeploy) {
   ElMessage.success('删除成功')
   getDataList()
 }
+
+function handleUpdateSort(row: FlowDeploy) {
+  update(pick(row, ['flowDeployId', 'flowModuleId', 'sort']))
+}
 </script>
 
 <template>
@@ -84,6 +89,9 @@ async function handleDel(row: FlowDeploy) {
     </template>
     <template #flowIcon="{ row }">
       <Icon :icon="row.flowIcon!" width="25" style="display: inline" />
+    </template>
+    <template #sort="{ row }">
+      <el-input-number v-model="row.sort" controls-position="right" style="width:100%" @change="handleUpdateSort(row)" />
     </template>
   </avue-crud>
 </template>

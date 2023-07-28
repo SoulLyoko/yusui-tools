@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { FlowCirculate, FlowOps } from '@yusui/flow-pages'
+import type { FlowOps } from '@yusui/flow-pages'
 
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
-import { TaskStatus, useConfigProvider, useFlowCategoryApi, useFlowCirculateApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
+import { TaskStatus, useConfigProvider, useFlowCategoryApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
 import { enumToDic } from '@yusui/utils'
 
 import { tableOption } from './option'
@@ -12,7 +12,6 @@ import { tableOption } from './option'
 const { request } = useConfigProvider()
 const { useList: useCategoryList } = useFlowCategoryApi(request)
 const { usePublishList, getTaskList } = useFlowTaskApi(request)
-const { getCirculateList } = useFlowCirculateApi(request)
 
 const { data: categoryList } = useCategoryList()
 const { data: publishList } = usePublishList()
@@ -28,7 +27,7 @@ const flowStatusDic = enumToDic(TaskStatus).filter((e, i) => i < 2).reverse()
 const {
   bindVal,
   getDataList,
-  crudStateRefs: { searchForm, crudOption },
+  crudStateRefs: { searchForm },
 } = useCrud({
   tableOption,
   crudOption: {
@@ -39,24 +38,12 @@ const {
 
 watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })
 
-const activeTab = ref('task')
-const tabs = [
-  { label: '任务', name: 'task', getList: getTaskList },
-  { label: '传阅', name: 'circulate', getList: getCirculateList },
-]
-function onTabClick({ paneName }: any) {
-  const findTab = tabs.find(tab => tab.name === paneName)
-  crudOption.value.getList = findTab!.getList
-  getDataList()
-}
-
 const { open, close } = useFlowForm()
-function openFlow(row: FlowOps | FlowCirculate) {
+function openFlow(row: FlowOps) {
   open({
     flowKey: (row as FlowOps).flowKey,
     taskId: row.taskId,
     instanceId: row.flowInstanceId,
-    circulateId: (row as FlowCirculate).id,
     detail: row.taskId ? row.status === TaskStatus['已办'] : false,
     onComplete() {
       close()
@@ -91,11 +78,8 @@ function openFlow(row: FlowOps | FlowCirculate) {
       </el-collapse-item>
     </el-collapse>
   </el-card>
-  <el-divider direction="horizontal" content-position="left" />
 
-  <el-tabs v-model="activeTab" @tab-click="onTabClick">
-    <el-tab-pane v-for="tab in tabs" :key="tab.name" :label="tab.label" :name="tab.name" />
-  </el-tabs>
+  <el-divider direction="horizontal" content-position="left" />
 
   <avue-crud v-bind="bindVal">
     <template #menu-left>

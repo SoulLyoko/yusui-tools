@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { AvueFormDefaults, AvueFormInstance, AvueFormOption } from '@smallwei/avue'
-import type { ApprovalNode } from '@yusui/flow-pages'
+import type { AvueFormInstance, AvueFormOption } from '@smallwei/avue'
+import type { ApprovalFormData, ApprovalNode } from '@yusui/flow-pages'
 
-import { nextTick, ref, watchEffect } from 'vue'
+import { computed, nextTick, ref, watchEffect } from 'vue'
 import { findTree } from '@yusui/utils'
 import { asyncValidate, isMobile, useConfigProvider, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
 
@@ -28,16 +28,44 @@ const submitLoading = ref(false)
 const treeLoading = ref(false)
 
 const formRef = ref<AvueFormInstance>()
-const defaults = ref<AvueFormDefaults>()
-const formOption: AvueFormOption<typeof approvalFormData.value> = {
-  menuBtn: false,
-  labelWidth: 'auto',
-  column: [
-    { label: '指定节点', prop: 'jumpTaskNodeKey', span: 24, rules: [{ required: true, message: '请选择指定节点' }] },
-    { label: '审批人', prop: 'assignee', span: 24, rules: [{ required: true, validator: approvalValidator }] },
-    { label: '传阅人', prop: 'circulate', span: 24 },
-    { label: '意见', prop: 'comment', span: 24, rules: [{ required: true, message: '请填写意见' }] },
-  ],
+const formOption = computed<AvueFormOption<ApprovalFormData>>(() => {
+  const validateAssignee = approvalNodes.value.length
+  const validateCirculate = circulateNodes.value.length && !approvalNodes.value.length
+  return {
+    menuBtn: false,
+    labelWidth: 'auto',
+    span: 24,
+    column: [
+      {
+        label: '指定节点',
+        prop: 'jumpTaskNodeKey',
+        display: checkField('specifyNode'),
+        rules: [{ required: true, message: '请选择指定节点' }],
+      },
+      {
+        label: '审批人',
+        prop: 'assignee',
+        display: checkField('assignee'),
+        rules: validateAssignee ? [{ required: true, validator: approvalValidator }] : [],
+      },
+      {
+        label: '传阅人',
+        prop: 'circulate',
+        display: checkField('circulate'),
+        rules: validateCirculate ? [{ required: true, message: '请选择传阅人' }] : [],
+      },
+      {
+        label: '意见',
+        prop: 'comment',
+        display: checkField('comment'),
+        rules: [{ required: true, message: '请填写意见' }],
+      },
+    ],
+  }
+})
+
+function checkField(key: string) {
+  return activeBtn.value?.approval?.includes(key)
 }
 
 function approvalValidator(rule: any, value: any, callback: (msg?: string) => void) {
@@ -55,32 +83,29 @@ function approvalValidator(rule: any, value: any, callback: (msg?: string) => vo
   return true
 }
 
-const { data: defaultComment } = useParam('flow.default.comment')
+// const { data: defaultComment } = useParam('flow.default.comment')
 const { data: autoCheck } = useParam('flow.approval.autocheck')
+const { data: autoComment } = useParam('flow.approval.autocomment')
 
 watchEffect(async () => {
   /** 弹窗表单未加载完成 */
-  if (!approvalVisible.value || !formRef.value || !defaults.value)
+  if (!approvalVisible.value || !formRef.value)
     return
-
-  resetNodes()
-
-  const { taskId } = flowDetail.value?.task || {}
-
   nextTick(() => {
     formRef.value!.resetFields()
-    approvalFormData.value.comment = formData.value.comment || (taskId ? '' : defaultComment.value) || ''
-
-    defaults.value!.jumpTaskNodeKey.display = checkField('specifyNode')
-    defaults.value!.assignee.display = checkField('assignee')
-    defaults.value!.circulate.display = checkField('circulate')
-    defaults.value!.comment.display = checkField('comment')
+    approvalFormData.value.comment = formData.value.comment || (autoComment.value === 'true' && activeBtn.value.name) || ''
+    // // 流程发起默认意见
+    // if (!approvalFormData.value.comment && defaultComment.value)
+    //   approvalFormData.value.comment = defaultComment.value
+    // // 按钮对应文本的意见
+    // if (!approvalFormData.value.comment && autoComment.value === 'true')
+    //   approvalFormData.value.comment = activeBtn.value.name
   })
-})
-watchEffect(async () => {
-  /** 弹窗表单未加载完成 */
-  if (!approvalVisible.value)
-    return
+
+  const { taskId } = flowDetail.value?.task || {}
+  const { flowKey } = flowDetail.value?.process || {}
+
+  resetNodes()
 
   /** 不显示审批人 */
   if (!checkField('assignee'))
@@ -88,10 +113,7 @@ watchEffect(async () => {
   /** 显示指定节点但未选择节点 */
   if (checkField('specifyNode') && !approvalFormData.value.jumpTaskNodeKey)
     return
-
-  resetNodes()
-  const { flowKey } = flowDetail.value?.process || {}
-  const { taskId } = flowDetail.value?.task || {}
+  /** 获取审批人和传阅人节点数据 */
   try {
     treeLoading.value = true
     const res = await getApprovalNode({
@@ -116,49 +138,41 @@ function resetNodes() {
   checkedCirculateNodes.value = []
 }
 
-function checkField(key: string) {
-  return activeBtn.value?.approval?.includes(key)
-}
-
 async function onConfirm() {
   await asyncValidate(formRef)
   submitLoading.value = true
 
-  const { data: assigneeData, outgoing } = getApprovalSetData(checkedApprovalNodes.value)
-  const { data: circulateData } = getApprovalSetData(checkedCirculateNodes.value)
+  const { data: assigneeData, outgoing } = getApprovalDataSet(checkedApprovalNodes.value)
+  const { data: circulateData } = getApprovalDataSet(checkedCirculateNodes.value)
 
   approvalFormData.value.assignee = assigneeData
-  approvalFormData.value.outgoing = [...outgoing]
   approvalFormData.value.circulate = circulateData
-  console.log('🚀 ~ file: approval-form.vue:133 ~ onConfirm ~ formData:', formData)
+  approvalFormData.value.outgoing = [...outgoing]
   emit('submit')
 }
 
-function getApprovalSetData(nodes: ApprovalNode[]) {
-  const set: Record<string, Set<string>> = {}
+function getApprovalDataSet(nodes: ApprovalNode[]) {
+  const dataSet: Record<string, Set<string>> = {}
   const data: Record<string, string> = {}
   const outgoing = new Set<string>()
   nodes.forEach((item) => {
     const { taskNodeKey, incoming } = item
-    if (!set[taskNodeKey!])
-      set[taskNodeKey!] = new Set()
-    item.userId && set[taskNodeKey!].add(item.userId)
-    data[taskNodeKey!] = [...set[taskNodeKey!]].join(',')
+    if (!dataSet[taskNodeKey!])
+      dataSet[taskNodeKey!] = new Set()
+    item.userId && dataSet[taskNodeKey!].add(item.userId)
+    data[taskNodeKey!] = [...dataSet[taskNodeKey!]].join(',')
     incoming && outgoing.add(incoming)
   })
-  return { set, data, outgoing }
+  return { dataSet, data, outgoing }
 }
 </script>
 
 <template>
   <component
-    :is="isMobile() ? 'el-drawer' : 'el-dialog'" v-model="approvalVisible" class="approlval-form-overlay"
+    :is="isMobile() ? 'el-drawer' : 'el-dialog'" v-model="approvalVisible" class="approval-form-overlay"
     :title="activeBtn.name" append-to-body width="900px" size="50%" direction="btt"
   >
-    <avue-form
-      ref="formRef" v-model="approvalFormData" v-model:defaults="defaults" class="approlval-form"
-      :option="formOption" style="padding:0"
-    >
+    <avue-form ref="formRef" v-model="approvalFormData" class="approval-form" :option="formOption">
       <template #jumpTaskNodeKey>
         <NodeSelect v-model="approvalFormData.jumpTaskNodeKey" />
       </template>
@@ -193,12 +207,16 @@ function getApprovalSetData(nodes: ApprovalNode[]) {
 </template>
 
 <style lang="scss">
-.approlval-form-overlay {
+.approval-form-overlay {
 
   .el-drawer__header,
   .el-dialog__header {
     margin-bottom: 0;
     padding-bottom: 0;
+  }
+
+  .approval-form {
+    padding: 0
   }
 }
 </style>

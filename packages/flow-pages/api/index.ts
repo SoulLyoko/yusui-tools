@@ -1,7 +1,6 @@
 export * from './common-comment'
 export * from './flow-button'
 export * from './flow-category'
-export * from './flow-circulate'
 export * from './flow-definition'
 export * from './flow-deploy'
 export * from './flow-file'

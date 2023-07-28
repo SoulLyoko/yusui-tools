@@ -29,10 +29,10 @@ function handleTreeSave(node: any, data: any, done: () => void, loading: () => v
   handleSave(data, done, loading)
 }
 function handleTreeUpdate(node: any, data: any, done: () => void, loading: () => void) {
-  handleUpdate(data, NaN, done, loading)
+  handleUpdate(data, Number.NaN, done, loading)
 }
 async function handleTreeDel(node: any, done: () => void) {
-  await handleDel(node.data, NaN)
+  await handleDel(node.data, Number.NaN)
   done()
 }
 </script>

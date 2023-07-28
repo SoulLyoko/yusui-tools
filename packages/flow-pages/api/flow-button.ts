@@ -27,7 +27,6 @@ export enum FlowButtonKey {
   '减签' = 'flow_del_instance',
   '指定回退' = 'flow_rollback',
   '绿色通道' = 'flow_green',
-  '传阅' = 'flow_circulate',
 }
 
 export enum FlowButtonDisplay {

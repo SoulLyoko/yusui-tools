@@ -41,8 +41,6 @@ export const flowFormProps = {
   detail: { type: [Boolean, String], default: false },
   /** 调试模式 */
   debug: { type: [Boolean, String], default: false },
-  /** 传阅id */
-  circulateId: { type: String },
 }
 
 export const flowFormEmits = {

@@ -4,6 +4,7 @@ import type { FlowDefinition } from '@yusui/flow-pages'
 import { ref, watchEffect } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { pick } from 'lodash-es'
 import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
 import { useConfigProvider, useFlowDefinitionApi } from '@yusui/flow-pages'
@@ -14,7 +15,7 @@ const props = defineProps<{ categoryId?: string }>()
 const emit = defineEmits(['add', 'view', 'edit', 'version'])
 
 const { request } = useConfigProvider()
-const { getList, deploy, remove } = useFlowDefinitionApi(request)
+const { getList, deploy, update, remove } = useFlowDefinitionApi(request)
 
 const {
   bindVal,
@@ -56,6 +57,10 @@ async function handleDel(row: FlowDefinition) {
   ElMessage.success('删除成功')
   getDataList()
 }
+
+function handleUpdateSort(row: FlowDefinition) {
+  update(pick(row, ['flowModuleId', 'sort']))
+}
 </script>
 
 <template>
@@ -84,6 +89,9 @@ async function handleDel(row: FlowDefinition) {
     </template>
     <template #flowIcon="{ row }">
       <Icon :icon="row.flowIcon!" width="25" style="display: inline" />
+    </template>
+    <template #sort="{ row }">
+      <el-input-number v-model="row.sort" controls-position="right" style="width:100%" @change="handleUpdateSort(row)" />
     </template>
   </avue-crud>
 </template>
