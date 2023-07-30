@@ -82,6 +82,7 @@ export interface FlowPagesConfig {
 export interface RequestInstance extends AxiosInstance {
   <T = Res>(config: AxiosRequestConfig): Promise<T>
   <T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
+  getUri(config?: AxiosRequestConfig): string
   request<T = Res>(config: AxiosRequestConfig): Promise<T>
   get<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
   delete<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>

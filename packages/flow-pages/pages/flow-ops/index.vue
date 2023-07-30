@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FlowOps } from '@yusui/flow-pages'
 
+import { ElMessage } from 'element-plus'
 import { useStorage, watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 import { TaskStatus, useConfigProvider, useFlowForm, useFlowOpsApi } from '@yusui/flow-pages'
@@ -36,6 +37,7 @@ function openFlow(row: FlowOps) {
     debug: debugMode.value,
     onComplete() {
       close()
+      ElMessage.success('操作成功')
       getDataList()
     },
   })

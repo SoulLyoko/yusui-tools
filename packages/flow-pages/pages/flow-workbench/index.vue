@@ -2,6 +2,7 @@
 import type { FlowOps } from '@yusui/flow-pages'
 
 import { computed } from 'vue'
+import { ElMessage } from 'element-plus'
 import { watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
 import { TaskStatus, useConfigProvider, useFlowCategoryApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
@@ -47,6 +48,7 @@ function openFlow(row: FlowOps) {
     detail: row.taskId ? row.status === TaskStatus['已办'] : false,
     onComplete() {
       close()
+      ElMessage.success('操作成功')
       getDataList()
     },
   })

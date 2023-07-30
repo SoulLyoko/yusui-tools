@@ -50,7 +50,6 @@ async function onSubmit() {
     const handler = buttonHandler[buttonKey!]
     if (handler) {
       await handler?.()
-      ElMessage.success('操作成功')
       approvalVisible.value = false
       emit('complete', activeBtn.value!)
     }
