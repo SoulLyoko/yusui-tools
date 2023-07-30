@@ -7,16 +7,15 @@ export function transformProxy(list: string) {
   try {
     return Object.fromEntries<ProxyOptions>(
       JSON.parse(list).map(([prefix, target, rewrite]: [string, string, boolean]) => {
-        return [
-          prefix,
-          {
-            target,
-            changeOrigin: true,
-            ws: true,
-            secure: /^https:\/\//.test(target),
-            rewrite: (path: string) => path.replace(new RegExp(`^${rewrite ? prefix : ''}`), ''),
-          },
-        ]
+        const option: ProxyOptions = {
+          target,
+          changeOrigin: true,
+          ws: true,
+          secure: /^https:\/\//.test(target),
+        }
+        if (rewrite)
+          option.rewrite = (path: string) => path.replace(new RegExp(`^${prefix}`), '')
+        return [prefix, option]
       }),
     )
   }
