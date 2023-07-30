@@ -1,3 +1,19 @@
+# [2.0.0-beta.67](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.66...v2.0.0-beta.67) (2023-07-30)
+
+
+### Bug Fixes
+
+* 适配深色模式 ([d8275e6](https://github.com/SoulLyoko/yusui-tools/commit/d8275e661ab77208b7e12e314188fd51a2d8e544))
+* **flow-pages:** flow-form提交成功的提示改为由外部处理 ([eea7fa3](https://github.com/SoulLyoko/yusui-tools/commit/eea7fa3c49f282df73656e198a042efdd4924e3a))
+* **plugins:** loadProxy rewrite参数为空时，不再设置rewrite函数 ([6490f3e](https://github.com/SoulLyoko/yusui-tools/commit/6490f3ec623d01c505b56ab6408b65110f0ec72a))
+
+
+### Features
+
+* **flow-pages:** 支持统一修改页面avue表格的配置 ([fd1c985](https://github.com/SoulLyoko/yusui-tools/commit/fd1c985bfb6dbea382a5ef5c64e1be6c052c5930))
+
+
+
 # [2.0.0-beta.66](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.65...v2.0.0-beta.66) (2023-07-28)
 
 
