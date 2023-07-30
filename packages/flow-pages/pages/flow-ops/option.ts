@@ -1,15 +1,9 @@
-import type { AvueCrudOption } from '@smallwei/avue'
 import type { FlowOps } from '@yusui/flow-pages'
 
-import { TaskStatus } from '@yusui/flow-pages'
+import { TaskStatus, defineTableOption } from '@yusui/flow-pages'
 
-export const tableOption: AvueCrudOption<FlowOps> = {
+export const tableOption = defineTableOption<FlowOps>({
   rowKey: 'id',
-  align: 'center',
-  index: true,
-  border: true,
-  stripe: true,
-  searchMenuSpan: 6,
   menu: false,
   addBtn: false,
   column: [
@@ -39,4 +33,4 @@ export const tableOption: AvueCrudOption<FlowOps> = {
       dicQuery: { paramKey: 'flow.task.status' },
     },
   ],
-}
+})

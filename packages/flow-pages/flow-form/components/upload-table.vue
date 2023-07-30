@@ -35,6 +35,7 @@ const tableOption: AvueCrudOption<FlowFile> = {
   editBtn: false,
   delBtn: false,
   menuType: 'menu',
+  menuBtnTitle: '操作',
   column: isMobile() ? mobileColumn : column
   ,
 }

@@ -14,9 +14,9 @@ export * from './utils'
 
 export default {
   install(app: App, config?: FlowPagesConfig) {
+    useConfigProvider(config)
     Object.entries(PagesComonents).forEach(([key, component]) => {
       app.component(key, component)
     })
-    useConfigProvider(app, config)
   },
 }

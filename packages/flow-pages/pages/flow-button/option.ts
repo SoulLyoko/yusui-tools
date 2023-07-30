@@ -1,18 +1,11 @@
-import type { AvueCrudOption } from '@smallwei/avue'
 import type { FlowButton } from '@yusui/flow-pages'
 
 import { enumToDic } from '@yusui/utils'
-import { FlowButtonApproval, FlowButtonDisplay, FlowButtonStatus, FlowButtonType } from '@yusui/flow-pages'
+import { FlowButtonApproval, FlowButtonDisplay, FlowButtonStatus, FlowButtonType, defineTableOption } from '@yusui/flow-pages'
 
-export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = {
+export const tableOption = defineTableOption<FlowButton & { buttonPreview: any }>({
   rowKey: 'id',
-  align: 'center',
-  index: true,
-  border: true,
-  stripe: true,
-  searchMenuSpan: 6,
   labelWidth: 150,
-  span: 24,
   column: [
     { label: '按钮名称', prop: 'name', search: true },
     { label: '按钮标识', prop: 'buttonKey', search: true },
@@ -48,4 +41,4 @@ export const tableOption: AvueCrudOption<FlowButton & { buttonPreview: any }> = 
     { label: '状态', prop: 'status', type: 'switch', value: 1, dicData: enumToDic(FlowButtonStatus) },
     { label: '按钮预览', prop: 'buttonPreview', width: 150 },
   ],
-}
+})

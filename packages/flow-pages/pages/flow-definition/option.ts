@@ -1,16 +1,11 @@
-import type { AvueCrudOption } from '@smallwei/avue'
 import type { FlowDefinition } from '@yusui/flow-pages'
+
+import { defineTableOption } from '@yusui/flow-pages'
 
 import { formOption } from '../../components/design-steps/option'
 
-export const tableOption: AvueCrudOption<FlowDefinition> = {
+export const tableOption = defineTableOption<FlowDefinition>({
   rowKey: 'flowModuleId',
-  align: 'center',
-  index: true,
-  border: true,
-  stripe: true,
-  searchMenuSpan: 6,
-  tabs: true,
   dialogFullscreen: true,
   addBtn: false,
   editBtn: false,
@@ -33,4 +28,4 @@ export const tableOption: AvueCrudOption<FlowDefinition> = {
       },
     },
   ],
-}
+})

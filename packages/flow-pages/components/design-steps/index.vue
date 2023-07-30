@@ -32,11 +32,12 @@ const { getDetail: getDeployDetail, update: updateDeploy } = useFlowDeployApi(re
 
 const steps = ['流程信息', '表单设计', '模型设计', '完成']
 
+const formRef = ref<AvueFormInstance>()
 const loading = ref(false)
 watch(
-  visible,
-  async (val) => {
-    if (!val)
+  () => [visible.value, formRef.value],
+  async () => {
+    if (!visible.value || !formRef.value)
       return
     const { flowModuleId } = formData.value
     const { flowDeployId } = formData.value as FlowDeploy
@@ -47,7 +48,6 @@ watch(
         res = await getDeployDetail({ flowDeployId })
       else if (flowModuleId)
         res = await getDefinitionDetail({ flowModuleId })
-
       formData.value = res.data
     }
     finally {
@@ -64,7 +64,6 @@ const tableFields = computed(() => {
 })
 
 const activeStep = ref(0)
-const formRef = ref<AvueFormInstance>()
 async function saveAndNext(step?: number) {
   if (activeStep.value === 0)
     await asyncValidate(formRef)

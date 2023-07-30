@@ -36,6 +36,10 @@ const validate = () => asyncValidate(formRef)
 defineExpose({ validate })
 </script>
 
+<script lang="ts">
+export default { name: 'TestForm' }
+</script>
+
 <template>
   <avue-form ref="formRef" v-model="formData" v-model:defaults="formDefaults" :option="formOption" />
 </template>

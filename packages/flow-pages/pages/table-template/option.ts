@@ -1,8 +1,7 @@
-import type { AvueCrudOption } from '@smallwei/avue'
 import type { TableField, TableTemplate } from '@yusui/flow-pages'
 
+import { FieldType, TablePrimary, defineTableOption, whetherDic } from '@yusui/flow-pages'
 import { enumToDic } from '@yusui/utils'
-import { FieldType, TablePrimary, whetherDic } from '@yusui/flow-pages'
 
 const fieldsColumn = [
   { label: '字段名称', prop: 'name' },
@@ -23,14 +22,8 @@ const fieldsColumn = [
   { label: '是否允许为空', prop: 'permitNull', type: 'switch', dicData: whetherDic, value: 1 },
 ]
 
-export const tableOption: AvueCrudOption<TableTemplate & { defaultFields: TableField[]; editFields: TableField[] }> = {
+export const tableOption = defineTableOption<TableTemplate & { defaultFields: TableField[]; editFields: TableField[] }>({
   rowKey: 'id',
-  align: 'center',
-  index: true,
-  border: true,
-  stripe: true,
-  searchMenuSpan: 6,
-  span: 24,
   dialogFullscreen: true,
   column: [
     { label: '表名', prop: 'tableName', search: true },
@@ -66,4 +59,4 @@ export const tableOption: AvueCrudOption<TableTemplate & { defaultFields: TableF
       },
     },
   ],
-}
+})

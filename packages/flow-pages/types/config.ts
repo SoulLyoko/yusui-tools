@@ -1,7 +1,8 @@
 import type { AsyncComponentLoader, Component } from 'vue'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
-import type { Res } from '@yusui/types'
+import type { AvueCrudOption } from '@smallwei/avue'
 import type { TabsProps } from 'element-plus'
+import type { Res } from '@yusui/types'
 import type { FlowFile } from '../api'
 import type { UseFlowFormOptions } from '../composables'
 import type { ButtonHandler, FlowFormState } from '../flow-form'
@@ -38,6 +39,8 @@ export interface FlowPagesConfig {
   useFlowFormOptions?: UseFlowFormOptions
   /** 按钮处理 */
   buttonHandler?: (state: FlowFormState) => ButtonHandler
+  /** avue表格统一配置 */
+  tableOption?: AvueCrudOption
   /** 上传配置 */
   upload?: {
     /** 上传地址 */
@@ -50,30 +53,15 @@ export interface FlowPagesConfig {
     download?: (row: FlowFile, list: FlowFile[]) => any
     /** 与流程文件对接的字段（如有变化则传入修改） */
     props?: {
-      /**
-       * 文件名
-       * @default fileOriginalName
-       */
+      /** 文件名 */
       fileName?: string
-      /**
-       * 文件类型
-       * @default fileType
-       */
+      /** 文件类型 */
       fileType?: string
-      /**
-       * 文件大小
-       * @default fileSize
-       */
+      /** 文件大小 */
       fileSize?: string
-      /**
-       * 文件地址
-       * @default fileUrl
-       */
+      /** 文件地址 */
       fileUrl?: string
-      /**
-       * 上传成功后返回的数据
-       * @default res.data
-       */
+      /** 上传成功后返回的数据 */
       res?: string
     }
   }
