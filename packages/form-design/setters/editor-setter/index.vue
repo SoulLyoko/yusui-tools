@@ -24,6 +24,11 @@ onUnmounted(() => !monacoRef.value && unload())
 
 const visible = ref(false)
 
+const theme = computed(() => {
+  const isDark = document.documentElement.className.includes('dark')
+  return isDark ? 'vs-dark' : 'light'
+})
+
 const options = computed(() => {
   return {
     renderValidationDecorations: 'off',
@@ -62,6 +67,7 @@ const editorValue = computed({
       <Editor
         v-model:value="editorValue"
         default-language="javascript"
+        :theme="theme"
         :options="options"
         :width="width || '300px'"
         :height="height || '200px'"
@@ -81,15 +87,18 @@ const editorValue = computed({
     v-else
     v-model:value="editorValue"
     default-language="javascript"
+    :theme="theme"
     :options="options"
     :width="width"
     :height="height"
+    v-bind="$attrs"
   />
 
   <el-dialog v-if="dialog || visible" v-model="visible" :fullscreen="fullscreen" :width="width">
     <Editor
       v-model:value="editorValue"
       default-language="javascript"
+      :theme="theme"
       :options="options"
       :height="height || (fullscreen ? '90vh' : '600px')"
       v-bind="$attrs"

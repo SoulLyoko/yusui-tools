@@ -37,6 +37,7 @@
   // grid-template-rows: repeat(10, 60px);
   .lf-dnd-text {
     overflow: hidden;
+    color: #000;
   }
   .lf-dnd-item {
     margin-top: 0;
@@ -44,6 +45,11 @@
 }
 
 // control
+.lf-control {
+  .lf-control-text {
+    color: #000;
+  }
+}
 .lf-control-clear {
   background-image: url("https://api.iconify.design/ep/delete.svg?width=20&height=20");
 }
@@ -70,6 +76,9 @@
   padding-left: 0 !important;
   .lf-menu-item-icon {
     padding-left: 20px;
+  }
+  .lf-menu-item-text {
+    color: #000;
   }
 }
 .lf-menu-copy .lf-menu-item-icon {

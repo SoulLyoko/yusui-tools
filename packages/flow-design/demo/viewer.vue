@@ -27,7 +27,7 @@ const tooltips = computed(() => {
   <div class="flow-status-legend">
     <div class="legend-item">
       <div class="legend-color" />
-      <span>已办</span>
+      <span class="legend-text">已办</span>
     </div>
   </div>
   <FlowDesign :model-value="graphData" type="viewer" :styles="styles" :tooltips="tooltips" style="height:400px" />
@@ -50,6 +50,10 @@ const tooltips = computed(() => {
       height: 16px;
       margin-right: 5px;
       background-color: lightgreen;
+    }
+
+    .legend-text {
+      color: #000;
     }
   }
 }

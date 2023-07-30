@@ -81,7 +81,7 @@ function openFlow(row: FlowOps) {
     </el-collapse>
   </el-card>
 
-  <el-divider direction="horizontal" content-position="left" />
+  <el-divider />
 
   <avue-crud v-bind="bindVal">
     <template #menu-left>
@@ -109,7 +109,7 @@ function openFlow(row: FlowOps) {
     }
 
     &:hover {
-      background-color: #f5f5f5;
+      background-color: var(--el-fill-color);
     }
   }
 }

@@ -35,7 +35,7 @@
 
 .component-tree {
   .el-tree-node.is-current > .el-tree-node__content {
-    background-color: #eee;
+    background-color: var(--el-fill-color);
   }
   .tree-item {
     position: relative;
@@ -59,10 +59,10 @@
     padding: 4px 8px;
     cursor: pointer;
     &:hover {
-      background-color: #eee;
+      background-color: var(--el-fill-color);
     }
     &.is-active {
-      background-color: #eee;
+      background-color: var(--el-fill-color);
     }
   }
 }

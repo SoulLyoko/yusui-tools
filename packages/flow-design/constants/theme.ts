@@ -1,4 +1,6 @@
-export const defaultTheme = {
+import type { Theme } from '@logicflow/core/types/constant/DefaultTheme'
+
+export const defaultTheme: Theme = {
   rect: {
     radius: 5,
     stroke: 'black',
@@ -16,12 +18,7 @@ export const defaultTheme = {
     selectedStroke: 'black',
   },
   edgeText: {
-    background: {
-      fill: 'white',
-      height: 14,
-      stroke: 'transparent',
-      radius: 3,
-    },
+    color: 'black',
   },
   nodeText: {
     // overflowMode: "autoWrap" // 会导致节点很难点击

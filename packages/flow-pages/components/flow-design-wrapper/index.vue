@@ -100,7 +100,7 @@ const flowHistoryToolTips = computed(() => {
     <div v-if="showLegend !== false" class="flow-status-legend">
       <div v-for="item in flowTaskStatus" :key="item.label" class="legend-item">
         <div class="legend-color" :style="{ backgroundColor: item.style?.fill }" />
-        <span>{{ item.label }}</span>
+        <span class="legend-text">{{ item.label }}</span>
       </div>
     </div>
     <FlowDesign
@@ -133,6 +133,10 @@ const flowHistoryToolTips = computed(() => {
         width: 16px;
         height: 16px;
         margin-right: 5px;
+      }
+
+      .legend-text {
+        color: #000;
       }
     }
   }
