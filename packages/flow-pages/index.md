@@ -2,15 +2,10 @@
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
-import { useConfigProvider } from '@yusui/flow-pages'
 
 const useFlowFormType = useStorage('useFlowFormType','drawer')
 function onChange(){
-  useConfigProvider({
-    useFlowFormOptions: {
-      type: useFlowFormType.value
-    }
-  })
+  location.reload()
 }
 </script>
 

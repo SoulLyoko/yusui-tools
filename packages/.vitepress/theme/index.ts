@@ -9,7 +9,8 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
 import './index.scss'
-import { loader } from '@guolao/vue-monaco-editor'
+
+// import { loader } from '@guolao/vue-monaco-editor'
 
 import components from '../components'
 import YSComponents from '../../components/index'
@@ -17,11 +18,11 @@ import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'
 import { dicRequest, request } from './request'
 
-loader.config({
-  paths: {
-    vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.33.0/min/vs',
-  },
-})
+// loader.config({
+//   paths: {
+//     vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.33.0/min/vs',
+//   },
+// })
 
 export default {
   ...defaultTheme,
@@ -39,11 +40,8 @@ export default {
       app.component('FlowDesign', FlowDesign)
       app.component('FormDesign', FormDesign)
       // #region install
-      const importedForms = import.meta.glob('../custom-form/**/*.vue', { eager: true })
-      const customForm = Object.fromEntries(
-        Object.values(importedForms)
-          .map((module: any) => [module.default.name, module.default]),
-      )
+      const importedForms = import.meta.glob('../custom-form/**/*.vue')
+      const customForm = Object.fromEntries(Object.entries(importedForms).map(([key, module]) => [key.replace('../custom-form/', ''), module]))
       app.use(FlowPages, {
         FlowDesign,
         FormDesign,
