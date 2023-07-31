@@ -27,7 +27,7 @@
 // }
 
 // 适配暗黑模式
-.dark{
+.dark {
   .avue-crud {
     .avue-crud__header {
       background-color: var(--el-bg-color-overlay);
@@ -55,19 +55,21 @@
         color: initial;
       }
     }
-    &.avue--detail {
+    &.avue--detail,
+    .avue--detail {
       .el-row,
       .el-col {
         border-color: var(--el-border-color);
       }
-      .el-form-item__content {
-        border-left: 1px solid var(--el-border-color);
-      }
-      .el-form-item,
-      .el-form-item__content {
-        background: unset;
+      
+      .el-form-item {
+        background: var(--el-bg-color-overlay);
       }
       .el-form-item__label {
+        background: var(--el-bg-color-overlay);
+      }
+      .el-form-item__content {
+        border-left: 1px solid var(--el-border-color);
         background: var(--el-bg-color);
       }
 

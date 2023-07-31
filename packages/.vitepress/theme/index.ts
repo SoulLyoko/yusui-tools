@@ -10,19 +10,11 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
 import './index.scss'
 
-// import { loader } from '@guolao/vue-monaco-editor'
-
 import components from '../components'
 import YSComponents from '../../components/index'
 import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'
 import { dicRequest, request } from './request'
-
-// loader.config({
-//   paths: {
-//     vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.33.0/min/vs',
-//   },
-// })
 
 export default {
   ...defaultTheme,
@@ -32,6 +24,13 @@ export default {
     app.use(YSComponents)
     app.component('Icon', Icon)
     if (!import.meta.env.SSR) {
+      import('@guolao/vue-monaco-editor').then(({ loader }) => {
+        loader.config({
+          paths: {
+            vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.33.0/min/vs',
+          },
+        })
+      })
       const { default: Avue } = await import('@smallwei/avue')
       app.use(Avue, { axios: dicRequest })
       const { FlowDesign } = await import('@yusui/flow-design')
