@@ -48,6 +48,7 @@
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3081120230719001",
     "@dcloudio/uni-ui": "^1.4.28",
     "@vueuse/core": "^10.1.2",
+    "@yusui/uvue": "workspace:*",
     "dayjs": "^1.11.9",
     "uview-plus": "^3.1.32",
     "vue": "^3.3.4",

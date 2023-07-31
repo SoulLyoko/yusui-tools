@@ -27,6 +27,7 @@ export default defineConfig({
           { text: '@yusui/plugins', link: '/plugins/index' },
           { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
+          { text: '@yusui/uvue', link: '/uvue/index' },
         ],
       },
     ],
@@ -194,6 +195,16 @@ export default defineConfig({
                 { text: 'treeMap', link: '/utils/tree/treeMap' },
               ],
             },
+          ],
+        },
+      ],
+      'uvue': [
+        {
+          text: 'Types',
+          items: [
+            { text: 'Start', link: '/uvue/index' },
+            { text: 'uvue-list', link: '/uvue/components/uvue-list/index' },
+            { text: 'uvue-form', link: '/uvue/components/uvue-form/index' },
           ],
         },
       ],

@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import { onHide, onLaunch, onShow } from '@dcloudio/uni-app'
-
-onLaunch(() => {
-  console.log('App Launch')
-})
-onShow(() => {
-  console.log('App Show')
-})
-onHide(() => {
-  console.log('App Hide')
-})
 </script>
+
+<template>
+  App
+</template>
 
 <style lang="scss">
 @import "uview-plus/index.scss";

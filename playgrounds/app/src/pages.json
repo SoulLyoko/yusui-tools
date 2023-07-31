@@ -13,9 +13,16 @@
   },
   "pages": [
     {
-      "path": "pages/index/index",
+      "path": "pages/index/list",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "uvue-list",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/index/form",
+      "style": {
+        "navigationBarTitleText": "uvue-form"
       }
     }
   ]

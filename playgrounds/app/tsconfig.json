@@ -6,7 +6,11 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["@dcloudio/types"]
+    "types": [
+      "vite/client",
+      "@dcloudio/types",
+      "@yusui/types/avue"
+    ]
   },
   "include": ["src"]
 }

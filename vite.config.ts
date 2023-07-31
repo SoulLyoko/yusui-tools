@@ -41,7 +41,10 @@ const input = {
 export const alias = Object.entries(input)
   .map(([name, path]) => ({ find: `@yusui/${name}`, replacement: path }))
   // flow-pages 不打包
-  .concat({ find: '@yusui/flow-pages', replacement: path.resolve(__dirname, 'packages/flow-pages/index.ts') })
+  .concat(
+    { find: '@yusui/flow-pages', replacement: path.resolve(__dirname, 'packages/flow-pages/index.ts') },
+    { find: '@yusui/uvue', replacement: path.resolve(__dirname, 'packages/uvue/index.ts') },
+  )
 
 export default defineConfig(({ mode }) => {
   if (mode === 'production')

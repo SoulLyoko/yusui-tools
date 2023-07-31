@@ -1,0 +1,26 @@
+{
+  "name": "@yusui/uvue",
+  "version": "2.0.0-beta.67",
+  "description": "Collection of development tools",
+  "author": "SoulLyoko<https://github.com/SoulLyoko>",
+  "license": "MIT",
+  "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
+  "repository": "https://github.com/SoulLyoko/yusui-tools.git",
+  "exports": {
+    ".": "./index.ts",
+    "./*": "./*"
+  },
+  "main": "index.ts",
+  "module": "index.ts",
+  "dependencies": {
+    "@vueuse/core": "^9.13.0",
+    "@yusui/utils": "workspace:*",
+    "dayjs": "^1.11.9",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@yusui/types": "workspace:*",
+    "uview-plus": "3.1.32",
+    "vue": "^3.3.4"
+  }
+}
