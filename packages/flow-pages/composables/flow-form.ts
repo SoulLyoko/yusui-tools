@@ -57,7 +57,7 @@ export function useFlowForm(options: UseFlowFormOptions = {}) {
     case 'drawer':
       return useFlowFormOverlay(mergedOptions)
     default:
-      return { open: (mergeOptions?: UseFlowFormOptions) => { }, close: () => { } }
+      return { open: (_mergeOptions?: UseFlowFormOptions) => { }, close: () => { } }
   }
 }
 

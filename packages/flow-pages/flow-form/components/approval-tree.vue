@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { ElTree } from 'element-plus'
 import type { LoadFunction } from 'element-plus/es/components/tree/src/tree.type'
 import type { ApprovalNode } from '@yusui/flow-pages'
@@ -133,10 +134,10 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
     {{ item.title }}
   </el-tag>
   <el-tree ref="treeRef" class="approval-tree" :class="`mode-${mode}`" :data="treeData" v-bind="treeProps">
-    <template #default="{ data }">
+    <template #default="{ data: nodeData }">
       <div>
-        <Icon :icon="iconMap[data.type] || iconMap.element" style="display: inline-block" />
-        <span>{{ data.title }}</span>
+        <Icon :icon="iconMap[nodeData.type] || iconMap.element" style="display: inline-block" />
+        <span>{{ nodeData.title }}</span>
       </div>
     </template>
   </el-tree>

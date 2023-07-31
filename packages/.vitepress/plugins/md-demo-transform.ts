@@ -8,7 +8,7 @@ function useMatcher(flags?: string) {
 }
 
 function parseComponent(match: string, id: string) {
-  const [m, componentPath] = match.match(useMatcher()) ?? []
+  const [_m, componentPath] = match.match(useMatcher()) ?? []
   const componentName = `demo${path.basename(componentPath)}`
   const sourcePath = path.join(id.substring(0, id.lastIndexOf('/')), componentPath)
   return { componentPath, componentName, sourcePath }

@@ -2,7 +2,6 @@
 import type { DicItem } from '@smallwei/avue'
 import type { AssigneeItem } from '@yusui/flow-design'
 import type { FlowUserTree } from '@yusui/flow-pages'
-import type { ElTreeSelect } from 'element-plus'
 
 import { computed, ref, watch } from 'vue'
 import { filterTree } from '@yusui/utils'
@@ -113,12 +112,12 @@ const dynamicSelectProps = computed(() => {
 
 <template>
   <div v-if="['dept', 'post', 'user'].includes(type!)">
-    <ElTreeSelect v-model="selectValue" v-bind="userSelectProps" style="width:75%" />
+    <el-tree-select v-model="selectValue" v-bind="userSelectProps" style="width:75%" />
     <el-button text type="primary" icon="el-icon-check" style="width: 20%" @click="handleSelectAll">
       全选
     </el-button>
   </div>
-  <ElTreeSelect v-else-if="type === 'dynamic'" v-model="inputValue" v-bind="dynamicSelectProps" style="width:100%" />
+  <el-tree-select v-else-if="type === 'dynamic'" v-model="inputValue" v-bind="dynamicSelectProps" style="width:100%" />
   <FlowNodeSelect v-else-if="type === 'userTask'" v-model="inputValue" filter-type="userTask" placeholder="请选择" />
   <el-input v-else v-model="inputValue" clearable placeholder="请输入" />
 </template>
