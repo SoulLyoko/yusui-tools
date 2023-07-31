@@ -3,6 +3,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "baseUrl": ".",
+    "allowJs": true,
     "paths": {
       "@yusui/form-design": ["packages/form-design/index.ts"],
       "@yusui/flow-design": ["packages/flow-design/index.ts"],

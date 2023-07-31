@@ -1,4 +1,4 @@
-import path from 'node:path'
+import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 
 import { defineConfig } from 'vite'
@@ -28,44 +28,41 @@ const external = [
   '@vue/compiler-sfc',
   'magic-string',
 ]
-const input = {
-  'form-design': path.resolve(__dirname, 'packages/form-design/index.ts'),
-  'flow-design': path.resolve(__dirname, 'packages/flow-design/index.ts'),
-  'components': path.resolve(__dirname, 'packages/components/index.ts'),
-  'composables': path.resolve(__dirname, 'packages/composables/index.ts'),
-  'plugins': path.resolve(__dirname, 'packages/plugins/index.ts'),
-  'types': path.resolve(__dirname, 'packages/types/index.ts'),
-  'uni-composables': path.resolve(__dirname, 'packages/uni-composables/index.ts'),
-  'utils': path.resolve(__dirname, 'packages/utils/index.ts'),
+// 打包
+const entry = {
+  'form-design': resolve(__dirname, 'packages/form-design/index.ts'),
+  'flow-design': resolve(__dirname, 'packages/flow-design/index.ts'),
+  'components': resolve(__dirname, 'packages/components/index.ts'),
+  'composables': resolve(__dirname, 'packages/composables/index.ts'),
+  'plugins': resolve(__dirname, 'packages/plugins/index.ts'),
+  'types': resolve(__dirname, 'packages/types/index.ts'),
+  'uni-composables': resolve(__dirname, 'packages/uni-composables/index.ts'),
+  'utils': resolve(__dirname, 'packages/utils/index.ts'),
 }
-export const alias = Object.entries(input)
+// 不打包
+const unpkg = {
+  'flow-pages': resolve(__dirname, 'packages/flow-pages/index.ts'),
+  'uvue': resolve(__dirname, 'packages/uvue/index.ts'),
+}
+
+export const alias = Object.entries({ ...entry, ...unpkg })
   .map(([name, path]) => ({ find: `@yusui/${name}`, replacement: path }))
-  // flow-pages 不打包
-  .concat(
-    { find: '@yusui/flow-pages', replacement: path.resolve(__dirname, 'packages/flow-pages/index.ts') },
-    { find: '@yusui/uvue', replacement: path.resolve(__dirname, 'packages/uvue/index.ts') },
-  )
 
 export default defineConfig(({ mode }) => {
   if (mode === 'production')
     execSync('pnpm remove:dist')
-
   return {
     plugins: [Vue()],
-    resolve: {
-      alias,
-    },
+    resolve: { alias },
     build: {
-      lib: {
-        entry: input,
-      },
+      lib: { entry },
       rollupOptions: {
         external,
         output: [
           // {
           //   inlineDynamicImports: true,
           //   entryFileNames: "index.umd.js",
-          //   file: input.utils,
+          //   file: entry.utils,
           //   format: "umd",
           //   dir: "dist"
           // },
