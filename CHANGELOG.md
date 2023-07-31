@@ -1,3 +1,12 @@
+# [2.0.0-beta.68](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2023-07-31)
+
+
+### Features
+
+* **uvue:** uvue-crud迁至此仓库，更名为uvue ([ddbd1e6](https://github.com/SoulLyoko/yusui-tools/commit/ddbd1e66718c320261e240b229ccb2a44283effa))
+
+
+
 # [2.0.0-beta.67](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.66...v2.0.0-beta.67) (2023-07-30)
 
 
