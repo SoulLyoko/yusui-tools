@@ -30,13 +30,12 @@ const external = [
 ]
 // 打包
 const entry = {
-  'form-design': resolve(__dirname, 'packages/form-design/index.ts'),
-  'flow-design': resolve(__dirname, 'packages/flow-design/index.ts'),
   'components': resolve(__dirname, 'packages/components/index.ts'),
   'composables': resolve(__dirname, 'packages/composables/index.ts'),
+  'form-design': resolve(__dirname, 'packages/form-design/index.ts'),
+  'flow-design': resolve(__dirname, 'packages/flow-design/index.ts'),
   'plugins': resolve(__dirname, 'packages/plugins/index.ts'),
   'types': resolve(__dirname, 'packages/types/index.ts'),
-  'uni-composables': resolve(__dirname, 'packages/uni-composables/index.ts'),
   'utils': resolve(__dirname, 'packages/utils/index.ts'),
 }
 // 不打包
