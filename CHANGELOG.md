@@ -1,3 +1,12 @@
+# [2.0.0-beta.69](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2023-08-01)
+
+
+### Features
+
+* **uvue:** uni-composables迁至uvue/composables ([f867a62](https://github.com/SoulLyoko/yusui-tools/commit/f867a627a5e8a6e9ae4d9217b64a8901a72a8538))
+
+
+
 # [2.0.0-beta.68](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.67...v2.0.0-beta.68) (2023-07-31)
 
 
