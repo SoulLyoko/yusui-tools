@@ -13,6 +13,12 @@
   },
   "pages": [
     {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "index"
+      }
+    },
+    {
       "path": "pages/index/list",
       "style": {
         "navigationBarTitleText": "uvue-list",
@@ -23,6 +29,12 @@
       "path": "pages/index/form",
       "style": {
         "navigationBarTitleText": "uvue-form"
+      }
+    },
+    {
+      "path": "pages/index/crud",
+      "style": {
+        "navigationBarTitleText": "use-crud"
       }
     }
   ]

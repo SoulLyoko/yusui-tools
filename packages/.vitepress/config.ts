@@ -203,8 +203,9 @@ export default defineConfig({
           text: 'Types',
           items: [
             { text: 'Start', link: '/uvue/index' },
-            { text: 'uvue-list', link: '/uvue/components/uvue-list/index' },
-            { text: 'uvue-form', link: '/uvue/components/uvue-form/index' },
+            { text: 'UvueList', link: '/uvue/components/uvue-list/index' },
+            { text: 'UvueForm', link: '/uvue/components/uvue-form/index' },
+            { text: 'useCrud', link: '/uvue/composables/use-crud/index' },
           ],
         },
       ],

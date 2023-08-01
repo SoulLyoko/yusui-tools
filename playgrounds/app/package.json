@@ -50,7 +50,7 @@
     "@vueuse/core": "^10.1.2",
     "@yusui/uvue": "workspace:*",
     "dayjs": "^1.11.9",
-    "uview-plus": "^3.1.32",
+    "uview-plus": "3.1.32",
     "vue": "^3.3.4",
     "vue-i18n": "^9.2.2",
     "vuex": "^4.1.0"
