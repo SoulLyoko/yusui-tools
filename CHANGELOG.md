@@ -1,3 +1,12 @@
+# [2.0.0-beta.70](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.69...v2.0.0-beta.70) (2023-08-01)
+
+
+### Bug Fixes
+
+* **uvue:** 使用vue-request优化字典请求 ([d95ff74](https://github.com/SoulLyoko/yusui-tools/commit/d95ff742b609135f9fc3713a97e60b66b00fc3fd))
+
+
+
 # [2.0.0-beta.69](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.68...v2.0.0-beta.69) (2023-08-01)
 
 
