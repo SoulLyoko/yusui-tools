@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { DicItem } from '@smallwei/avue'
 
 import { useAttrs } from 'vue'
+import { useConfigProvider, useDict } from '@yusui/uvue'
 
-import { useConfigProvider, useDict } from '../../composables'
-
-const props = defineProps({
+defineProps({
   type: { type: String as PropType<'select' | 'cascader' | 'checkbox' | 'radio' | 'switch'>, default: 'select' },
-  dic: { type: Array as PropType<DicItem> },
 })
 
-const dic = props.dic ?? useDict(useAttrs(), useConfigProvider().request)
+const { data: dic } = useDict(useAttrs(), useConfigProvider().request)
 </script>
 
 <template>

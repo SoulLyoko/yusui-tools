@@ -35,13 +35,6 @@ export const defaultFormGroup: UvueFormGroup = {
   collapse: true,
 }
 
-export const defaultDictOption = {
-  label: 'label',
-  value: 'value',
-  children: 'children',
-  res: 'res.data',
-}
-
 export function handleGroup(group: UvueFormGroup[] = [], formType: FormType) {
   return group.map((g) => {
     return {

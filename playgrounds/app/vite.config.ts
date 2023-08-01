@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@yusui/uvue': path.resolve(__dirname, '../../packages/uvue'),
     },
   },
   // optimizeDeps: {

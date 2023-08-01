@@ -1,6 +1,8 @@
 import type { DicItem } from '@smallwei/avue'
+import type { AxiosInstance, AxiosResponse } from 'axios'
 
-import { ref, watchEffect } from 'vue'
+import { ref } from 'vue'
+import { useRequest } from 'vue-request'
 import { get } from 'lodash-es'
 import { serialize, treeMap } from '@yusui/utils'
 
@@ -16,17 +18,18 @@ export interface UseDictOptions {
   dicUrl?: string
   dicQuery?: object
   dicHeaders?: object
-  dicFormatter?: (res: any) => DicItem[]
-  dicMethod?: 'get' | 'post'
+  dicFormatter?: (res: AxiosResponse['data']) => DicItem[]
+  dicMethod?: string
 }
 
-const dicStorage: Record<string, DicItem[]> = {}
+export function useDict(options: UseDictOptions, request?: AxiosInstance) {
+  const { props = {}, dicData, dicUrl, dicQuery = {}, dicHeaders, dicFormatter, dicMethod = 'get' } = options
+  if (dicData)
+    return { data: ref(dicData) }
+  else if (!dicUrl || !request)
+    return { data: ref([] as DicItem[]) }
 
-export function useDict(options: UseDictOptions, request?: any) {
-  const data = ref<DicItem[]>([])
-
-  watchEffect(() => {
-    const { props = {}, dicData, dicUrl, dicQuery = {}, dicHeaders, dicFormatter, dicMethod = 'get' } = options
+  function getDict() {
     const {
       label = 'label',
       value = 'value',
@@ -34,32 +37,23 @@ export function useDict(options: UseDictOptions, request?: any) {
       disabled = 'disabled',
       res: dataPath = 'data',
     } = props
-    if (dicData?.length)
-      data.value = dicData
-    if (dicUrl && request) {
-      const cacheKey = dicUrl + (dicQuery ? `?${serialize(dicQuery)}` : '')
-      if (dicStorage[cacheKey]) {
-        data.value = dicStorage[cacheKey]
-        return
+    return request!({ url: dicUrl, method: dicMethod, params: dicQuery, data: dicQuery, headers: dicHeaders }).then((res) => {
+      if (dicFormatter) {
+        return dicFormatter(res.data)
       }
-      request[dicMethod](dicUrl, { params: dicQuery, headers: dicHeaders, ...dicQuery }).then((res: any) => {
-        if (dicFormatter) {
-          data.value = dicFormatter(res)
-        }
-        else {
-          const d = get(res, dataPath, [])
-          data.value = treeMap(
-            d,
-            (item) => {
-              return { label: item[label], value: item[value], disabled: item[disabled] }
-            },
-            { childrenKey: children },
-          )
-        }
-        dicStorage[cacheKey] = data.value
-      })
-    }
-  })
+      else {
+        const data = get(res.data, dataPath, [])
+        return treeMap(
+          data,
+          (item: any) => {
+            return { label: item[label], value: item[value], disabled: item[disabled] }
+          },
+          { childrenKey: children },
+        )
+      }
+    })
+  }
 
-  return data
+  const cacheKey = dicUrl + (dicQuery ? `?${serialize(dicQuery)}` : '')
+  return useRequest<DicItem[]>(getDict, { cacheKey })
 }

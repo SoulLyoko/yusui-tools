@@ -62,7 +62,7 @@ const group: UvueFormGroup[] = [
         label: 'select',
         prop: 'select',
         type: 'select',
-        dicUrl: 'single',
+        dicUrl: '/dict/single',
         allowCreate: true,
         change(e) {
           console.log('🚀 ~ file: option.ts ~ line 33 ~ select ~ e', e)
@@ -72,14 +72,14 @@ const group: UvueFormGroup[] = [
         label: 'cascader',
         prop: 'cascader',
         type: 'cascader',
-        dicUrl: 'tree',
+        dicUrl: '/dict/tree',
         change(e) {
           console.log('🚀 ~ file: option.ts ~ line 33 ~ cascader ~ e', e)
         },
       },
       {
         label: 'datetime',
-        prop: 'datetime',
+        prop: '/dict/datetime',
         type: 'date',
         change(e) {
           console.log('🚀 ~ file: option.ts ~ line 33 ~ datetime ~ e', e)
@@ -95,7 +95,7 @@ const group: UvueFormGroup[] = [
         label: 'checkbox',
         prop: 'checkbox',
         type: 'checkbox',
-        dicUrl: 'single',
+        dicUrl: '/dict/single',
         change(e) {
           console.log('🚀 ~ file: option.ts ~ line 33 ~ checkbox ~ e', e)
         },
@@ -104,7 +104,7 @@ const group: UvueFormGroup[] = [
         label: 'radio',
         prop: 'radio',
         type: 'radio',
-        dicUrl: 'datetime',
+        dicUrl: '/dict/datetime',
         change(e) {
           console.log('🚀 ~ file: option.ts ~ line 33 ~ radio ~ e', e)
         },
@@ -113,7 +113,7 @@ const group: UvueFormGroup[] = [
         label: 'switch',
         prop: 'switch',
         type: 'switch',
-        dicUrl: 'single',
+        dicUrl: '/dict/single',
         change(e) {
           console.log('🚀 ~ file: option.ts ~ line 33 ~ switch ~ e', e)
         },

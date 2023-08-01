@@ -17,7 +17,8 @@
     "@yusui/composables": "workspace:*",
     "@yusui/utils": "workspace:*",
     "dayjs": "^1.11.9",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "vue-request": "^2.0.3"
   },
   "devDependencies": {
     "@dcloudio/uni-app": "vue3",

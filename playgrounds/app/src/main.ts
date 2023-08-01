@@ -5,11 +5,11 @@ import Uvue from '@yusui/uvue'
 import App from './App.vue'
 
 const dicMap = {
-  single: [
+  '/dict/single': [
     { label: '1', value: '1' },
     { label: '2', value: '2' },
   ],
-  tree: [
+  '/dict/tree': [
     {
       label: '1',
       value: '1',
@@ -27,21 +27,19 @@ const dicMap = {
       ],
     },
   ],
-  datetime: [
+  '/dict/datetime': [
     { label: 'date', value: 'date' },
     { label: 'time', value: 'time' },
     { label: 'datetime', value: 'datetime' },
   ],
 }
 
-const request: any = {
-  get: (url: keyof typeof dicMap) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ data: dicMap[url] })
-      }, 1000)
-    })
-  },
+const request: any = ({ url }: { url: keyof typeof dicMap }) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ data: { data: dicMap[url] } })
+    }, 1000)
+  })
 }
 
 export function createApp() {
