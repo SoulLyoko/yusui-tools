@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import { defaultGraphData } from '../constants'
 import { defaultOptions } from '../options'
+import { useGraphData } from './data'
 
-const graphData = ref(defaultGraphData())
+const graphData = useGraphData()
 
 const formOptions = defaultOptions
 

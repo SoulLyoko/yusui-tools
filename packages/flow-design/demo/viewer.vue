@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
-import { defaultGraphData } from '../constants'
+import { useGraphData } from './data'
 
-const graphData = ref(defaultGraphData())
+const graphData = useGraphData()
 
 const styles = computed(() => {
   return graphData.value.flowElementList?.map((item) => {

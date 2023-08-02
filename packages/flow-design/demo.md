@@ -5,7 +5,6 @@ aside: false
 <script setup>
   import designer from './demo/designer.vue' 
   import viewer from './demo/viewer.vue'
-  
 </script>
 
 # FlowDesign
