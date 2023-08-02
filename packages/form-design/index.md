@@ -3,7 +3,7 @@
 ## 安装
 
 ```bash
-npm i @yusui/form-design
+pnpm i @yusui/form-design
 ```
 
 ## 使用

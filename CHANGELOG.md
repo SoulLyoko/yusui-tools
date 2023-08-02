@@ -66,13 +66,11 @@
 
 * **flow-pages:** 修复一些接口返回的类型 ([3a2cd6d](https://github.com/SoulLyoko/yusui-tools/commit/3a2cd6de5b25293cebfe4e14927b9318f569e062))
 * **flow-pages:** 修改内部引用路径 ([fdab467](https://github.com/SoulLyoko/yusui-tools/commit/fdab4675a0e67993557234178857bff2669fa506))
-* **utils:** enumToDic考虑输入为空的情况 ([a6e6728](https://github.com/SoulLyoko/yusui-tools/commit/a6e672869cd9d82e5b6d00886209565983f649a0))
 
 
 ### Features
 
 * **flow-pages:** 流程表单页PageFlowForm ([550181f](https://github.com/SoulLyoko/yusui-tools/commit/550181f002c533632f22d8dfe344e2113fa40b3d))
-* **flow-pages:** useXXXApi参数变更，导出api，页面组件统一加前缀 ([07a9399](https://github.com/SoulLyoko/yusui-tools/commit/07a9399c6cce84f194958e42980f6a1c0bf0792a))
 
 
 
@@ -643,9 +641,9 @@
 # [2.0.0-beta.11](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2023-03-24)
 
 
-### Bug Fixes
+### Features
 
-* **form-design:** dicTreeSetter ([26f7029](https://github.com/SoulLyoko/yusui-tools/commit/26f702926d1878bd114f0c5e3015efb3453061f3))
+* **form-design:** 新增dicTreeSetter ([26f7029](https://github.com/SoulLyoko/yusui-tools/commit/26f702926d1878bd114f0c5e3015efb3453061f3))
 
 
 
@@ -663,7 +661,7 @@
 
 ### Bug Fixes
 
-* **form-design:** disable dicDataSetter ([bfc933e](https://github.com/SoulLyoko/yusui-tools/commit/bfc933e129cd0758937b028fd10ac7fed28def9d))
+* **form-design:** 不使用dicDataSetter了 ([bfc933e](https://github.com/SoulLyoko/yusui-tools/commit/bfc933e129cd0758937b028fd10ac7fed28def9d))
 
 
 
@@ -690,7 +688,7 @@
 
 ### Features
 
-* **editor-setter:** open dialog on tooltip type ([720582c](https://github.com/SoulLyoko/yusui-tools/commit/720582c99fcb92f9aaf12e1861c5e2d1a2f2d76a))
+* **editor-setter:** 编辑器tooltip模式下支持全屏打开 ([720582c](https://github.com/SoulLyoko/yusui-tools/commit/720582c99fcb92f9aaf12e1861c5e2d1a2f2d76a))
 
 
 
@@ -708,7 +706,7 @@
 
 ### Bug Fixes
 
-* **form-design:** prod bug ([3c4a1fb](https://github.com/SoulLyoko/yusui-tools/commit/3c4a1fb2983628cc8d264d5dc68f4421736f39fb))
+* **form-design:** 生产环境bug ([3c4a1fb](https://github.com/SoulLyoko/yusui-tools/commit/3c4a1fb2983628cc8d264d5dc68f4421736f39fb))
 
 
 
@@ -717,7 +715,7 @@
 
 ### Bug Fixes
 
-* **form-design:** prod json5 error ([6757a41](https://github.com/SoulLyoko/yusui-tools/commit/6757a41a2673947749c491ff243ea088f72e91e7))
+* **form-design:** 生产环境bug ([6757a41](https://github.com/SoulLyoko/yusui-tools/commit/6757a41a2673947749c491ff243ea088f72e91e7))
 
 
 
@@ -726,8 +724,8 @@
 
 ### Bug Fixes
 
-* **form-design:** baseOption,advanceOption ([522cd31](https://github.com/SoulLyoko/yusui-tools/commit/522cd31bfb966145136edb59597b4285a5cedd66))
-* **form-design:** rename monaco-editor to editor-setter ([c9571af](https://github.com/SoulLyoko/yusui-tools/commit/c9571af8cbd4dc4fbfbce35ce0e8f12f06fe4ddd))
+* **form-design:** 修改基础配置baseOption和高级配置advanceOption ([522cd31](https://github.com/SoulLyoko/yusui-tools/commit/522cd31bfb966145136edb59597b4285a5cedd66))
+* **form-design:** monaco-editor重命名为editor-setter ([c9571af](https://github.com/SoulLyoko/yusui-tools/commit/c9571af8cbd4dc4fbfbce35ce0e8f12f06fe4ddd))
 
 
 

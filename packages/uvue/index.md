@@ -1,18 +1,15 @@
-# @yusui/uvue
+# Uvue
 
 - 基于 uni-app 和 uview-plus 封装的 crud 组件
 - 以配置的方式渲染列表和表单，实现一次配置，多处复用
 - 包含 uvue-list 列表组件、uvue-form 表单组件
-- [示例](https://soullyoko.github.io/uvue-crud/build/h5)
-- [uvue-list 文档](https://github.com/SoulLyoko/uvue-crud/blob/master/uvue-crud/components/uvue-list/README.md)
-- [uvue-form 文档](https://github.com/SoulLyoko/uvue-crud/blob/master/uvue-crud/components/uvue-form/README.md)
 
 # 安装
 
 ## npm 安装方式
 
 ```sh
-npm i @yusui/uvue
+pnpm i @yusui/uvue
 ```
 
 # 快速上手

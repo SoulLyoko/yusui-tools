@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-npm i @yusui/components
+pnpm i @yusui/components
 ```
 
 ## Usage

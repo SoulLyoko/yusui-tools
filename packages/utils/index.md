@@ -3,5 +3,5 @@
 ## Install
 
 ```bash
-npm i @yusui/utils
+pnpm i @yusui/utils
 ```

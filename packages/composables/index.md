@@ -3,5 +3,5 @@
 ## Install
 
 ```bash
-npm i @yusui/composables
+pnpm i @yusui/composables
 ```

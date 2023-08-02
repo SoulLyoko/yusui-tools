@@ -3,7 +3,7 @@
 ## 安装
 
 ```bash
-npm i @yusui/flow-design
+pnpm i @yusui/flow-design
 ```
 
 ## 使用

@@ -32,6 +32,7 @@ export default {
         })
       })
       const { default: Avue } = await import('@smallwei/avue')
+      console.log('🚀 ~ file: index.ts:35 ~ enhanceApp ~ Avue:', Avue)
       app.use(Avue, { axios: dicRequest })
       const { FlowDesign } = await import('@yusui/flow-design')
       const { FormDesign } = await import('@yusui/form-design')

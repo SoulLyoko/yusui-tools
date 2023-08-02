@@ -3,5 +3,5 @@
 ## Install
 
 ```bash
-npm i -D @yusui/types
+pnpm i -D @yusui/types
 ```
