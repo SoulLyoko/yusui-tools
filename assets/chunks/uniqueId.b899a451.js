@@ -1,1 +1,0 @@
-import{i,n,G as s,t as a}from"./index.8d72fe00.js";var o="[object String]";function u(r){return typeof r=="string"||!i(r)&&n(r)&&s(r)==o}var e=0;function c(r){var t=++e;return a(r)+t}export{u as i,c as u};

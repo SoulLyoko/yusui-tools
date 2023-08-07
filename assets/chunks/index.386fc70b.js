@@ -1,0 +1,1 @@
+function e(r=16,t){const n="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",c=t||n.length,s=[];for(let o=0;o<r;o++)s[o]=n.charAt(Math.random()*c);return s.join("")}function u(r){const t=[];return Object.keys(r).forEach(n=>{t.push(`${n}=${r[n]}`)}),t.join("&")}export{u as s,e as u};
