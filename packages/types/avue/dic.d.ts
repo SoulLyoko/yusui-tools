@@ -19,4 +19,21 @@ declare module "@smallwei/avue" {
     /** 选项返回结构的层级(例如data.data) */
     res?: string;
   }
+
+  export interface DicOption {
+    /** 数据字典属性的配置对象 */
+    props?: DicProps;
+    /** 数据字典值 */
+    dicData?: DicItem[];
+    /** 数据字典接口url地址 */
+    dicUrl?: string;
+    /** 数据字典接口url携带请求参数 */
+    dicQuery?: object;
+    /** 数据字典接口url携带头部参数 */
+    dicHeaders?: object;
+    /** 数据字典接口url返回数据格式化方法 */
+    dicFormatter?: (res: any) => DicItem[];
+    /** 数据字典接口请求方式 */
+    dicMethod?: string;
+  }
 }

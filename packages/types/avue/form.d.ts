@@ -102,14 +102,24 @@ declare module "@smallwei/avue" {
     component?: string | Component;
     /** 传递给组件的参数 */
     params?: object;
+    /** 传递给组件的事件 */
+    events?: object;
     /** 值改变事件 */
     change?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem }) => void;
+    /** 值改变事件 */
+    onChange?: AvueFormColumn['change'];
     /** 点击事件 */
     click?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
+    /** 点击事件 */
+    onClick?: AvueFormColumn['click'];
     /** 聚焦事件 */
     focus?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
+    /** 聚焦事件 */
+    onFocus?: AvueFormColumn['focus'];
     /** 失焦事件 */
     blur?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void;
+    /** 失焦事件 */
+    onBlur?: AvueFormColumn['blur'];
     /** 其它属性根据type查看对应的文档 */
     [x: string]: any;
   }
