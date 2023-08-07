@@ -48,6 +48,7 @@ export default defineConfig({
             { text: 'Start', link: '/components/index' },
             { text: 'IconSelect', link: '/components/icon-select/index' },
             { text: 'InputTree', link: '/components/input-tree/index' },
+            { text: 'VDict', link: '/components/v-dict/index' },
             { text: 'VText', link: '/components/v-text/index' },
           ],
         },
@@ -58,6 +59,7 @@ export default defineConfig({
           items: [
             { text: 'Start', link: '/composables/index' },
             { text: 'useCrud', link: '/composables/use-crud/index' },
+            { text: 'useDict', link: '/composables/use-dict/index' },
           ],
         },
       ],
