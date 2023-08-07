@@ -45,7 +45,7 @@
     "@vue/shared": "^3.3.4",
     "@vue/test-utils": "^2.4.1",
     "@vue/tsconfig": "^0.4.0",
-    "@vueuse/core": "^10.1.2",
+    "@vueuse/core": "~10.1.2",
     "async-validator": "^4.2.5",
     "axios": "^1.4.0",
     "bumpp": "^9.1.1",
