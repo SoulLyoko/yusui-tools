@@ -1,3 +1,13 @@
+# [2.0.0-beta.71](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.70...v2.0.0-beta.71) (2023-08-07)
+
+
+### Features
+
+* **components:** 字典组件 VDict ([0839b29](https://github.com/SoulLyoko/yusui-tools/commit/0839b29c193bb69fcc414db2004c9f4fe838e926))
+* **composables:** useDict ([cd6837d](https://github.com/SoulLyoko/yusui-tools/commit/cd6837d5baea1653bb6563425cd731cef863b096))
+
+
+
 # [2.0.0-beta.70](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.69...v2.0.0-beta.70) (2023-08-01)
 
 
