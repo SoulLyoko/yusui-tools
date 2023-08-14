@@ -12,7 +12,7 @@ pnpm i @yusui/form-design
 <script setup lang="ts">
 import { ref } from 'vue'
 import { FormDesign } from '@yusui/form-design'
-import '@yusui/form-design/dist/styles/index.scss'
+import '@yusui/form-design/dist/styles/index.css'
 
 const option = ref({})
 </script>

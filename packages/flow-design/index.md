@@ -12,7 +12,7 @@ pnpm i @yusui/flow-design
 <script setup lang="ts">
 import { ref } from 'vue'
 import { FlowDesign, defaultGraphData, defaultOptions } from '@yusui/flow-design'
-import '@yusui/flow-design/dist/styles/index.scss'
+import '@yusui/flow-design/dist/styles/index.css'
 
 const graphData = ref(defaultGraphData())
 const formOptions = defaultOptions

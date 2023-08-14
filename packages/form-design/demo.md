@@ -34,7 +34,7 @@ aside: false
 | keywords         | 组件关键词,用于搜索联想          | string                       | -      | -      |
 | group            | 用于描述组件位于组件面板哪个分组 | string                       | -      | -      |
 | priority         | 用于描述组件在同一分组中的排序   | number                       | -      | -      |
-| isContainer      | 用于描述组件位于组件面板哪个分组 | boolean                      | -      | -      |
+| isContainer      | 用于描述组件是否为容器(如子表单) | boolean                      | -      | -      |
 | designOption     | 设计面板渲染配置                 | AvueFormOption \| Function   | -      | -      |
 | disabled         | 禁用组件，将不会出现在组件面板中 | boolean                      | -      | -      |
 | disabledActions  | 设计面板中禁用复制、删除等动作   | DesignAction[]               | -      | -      |
