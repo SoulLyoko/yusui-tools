@@ -103,7 +103,7 @@ const dynamicSelectProps = computed(() => {
     data: dynamicDic.value,
     filterable: true,
     loading: loading.value,
-    nodeKey: 'id',
+    nodeKey: 'value',
     props: { label: 'title' },
     placeholder: '请选择',
   }

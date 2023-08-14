@@ -32,7 +32,7 @@ export interface FlowPagesConfig {
   /** axios实例 */
   request: RequestInstance
   /** 用户信息 */
-  userInfo?: { userId?: string } | (() => { userId?: string })
+  userInfo?: { userId?: string | number } | (() => { userId?: string | number })
   /** 自定义表单 */
   customForm?: Record<string, Component | AsyncComponentLoader>
   /** 打开流程表单弹窗的默认配置 */

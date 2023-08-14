@@ -56,10 +56,12 @@ async function handleClose() {
 
 <template>
   <el-row :gutter="20">
-    <el-col :span="4">
-      <CategoryTree @node-click="nodeClick" />
+    <el-col :span="6">
+      <el-card header="流程分类" style="height:100%;">
+        <CategoryTree @node-click="nodeClick" />
+      </el-card>
     </el-col>
-    <el-col :span="20">
+    <el-col :span="18">
       <FlowDefinitionCrud
         v-if="showType === 'definition'"
         :category-id="currentCategoryId"
