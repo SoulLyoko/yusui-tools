@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import type { VDictProps } from '../types'
 
-import { computed, useAttrs, watchEffect } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { mergeDicProps, useDict } from '@yusui/composables'
 
 const props = defineProps<VDictProps>()
 const { modelValue } = useVModels(props)
 
-const { data, dictValue } = useDict(props)
+const { data } = useDict(props)
 const dicProps = mergeDicProps(props.props)
-watchEffect(() => {
-  dictValue.value = modelValue?.value
-})
 
 const cascaderProps = computed(() => {
   return {

@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import type { VDictProps } from '../types'
 
-import { watchEffect } from 'vue'
 import { useDict } from '@yusui/composables'
 
 const props = defineProps<VDictProps>()
 
-const { selectedLabel, dictValue } = useDict(props)
-watchEffect(() => {
-  dictValue.value = props.modelValue
-})
+const { selectedLabel } = useDict(props)
 </script>
 
 <template>

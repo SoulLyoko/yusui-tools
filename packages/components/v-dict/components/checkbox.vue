@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import type { VDictProps } from '../types'
 
-import { computed, watchEffect } from 'vue'
+import { computed } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { mergeDicProps, useDict } from '@yusui/composables'
 
 const props = defineProps<VDictProps>()
 const { modelValue } = useVModels(props)
 
-const { data, dictValue } = useDict(props)
+const { data } = useDict(props)
 const { label, value, disabled } = mergeDicProps(props.props)
-watchEffect(() => {
-  dictValue.value = modelValue?.value
-})
 
 const checkboxComponent = computed(() => {
   return props.button ? 'el-checkbox-button' : 'el-checkbox'

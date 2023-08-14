@@ -1,4 +1,5 @@
 import { sleep } from '@yusui/utils'
+import { ref } from 'vue'
 
 import { useDict } from '.'
 
@@ -34,17 +35,17 @@ describe('useDict', () => {
     expect(data.value).toEqual(dicData)
   })
 
-  it('should return selectedItem and selectedLabel based on dictValue', async () => {
-    const { dictValue, selectedItem, selectedLabel } = useDict({ dicData })
-    dictValue.value = 'value1'
+  it('should return selectedItem and selectedLabel based on modelValue', async () => {
+    const modelValue = ref('value1')
+    const { selectedItem, selectedLabel } = useDict({ modelValue, dicData })
     await sleep()
     expect(selectedItem.value).toEqual(dicData[0])
     expect(selectedLabel.value).toEqual(dicData[0].label)
   })
 
-  it('should return selectedItem and selectedLabel based on dictValue array', async () => {
-    const { dictValue, selectedItem, selectedLabel } = useDict({ dicData })
-    dictValue.value = ['value1', 'value2']
+  it('should return selectedItem and selectedLabel based on modelValue array', async () => {
+    const modelValue = ref(['value1', 'value2'])
+    const { selectedItem, selectedLabel } = useDict({ modelValue, dicData })
     await sleep()
     expect(selectedItem.value).toEqual(dicData)
     expect(selectedLabel.value).toEqual(dicData.map(e => e.label).join(','))
@@ -55,14 +56,15 @@ describe('useDict', () => {
       { name: 'label1', id: 'value1' },
       { name: 'label2', id: 'value2' },
     ]
-    const { dictValue, selectedItem, selectedLabel } = useDict({
+    const modelValue = ref('value1')
+    const { selectedItem, selectedLabel } = useDict({
+      modelValue,
       dicData: data,
       props: {
         value: 'id',
         label: 'name',
       },
     })
-    dictValue.value = 'value1'
     await sleep()
     expect(selectedItem.value).toEqual(data[0])
     expect(selectedLabel.value).toEqual('label1')

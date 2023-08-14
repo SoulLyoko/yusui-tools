@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import { useDict } from '.'
 
 const dicData = [
@@ -42,21 +44,21 @@ function request({ url }: { url: keyof typeof dicMap }) {
   })
 }
 
+const selectValue = ref('')
 const {
   data: selectData,
   loading: selectLoading,
-  dictValue: selectValue,
   selectedLabel,
   selectedItem,
-} = useDict({ dicData })
+} = useDict({ modelValue: selectValue, dicData })
 
+const treeSelectValue = ref('')
 const {
   data: treeSelectData,
   loading: treeSelectLoading,
-  dictValue: treeSelectValue,
   selectedItem: treeSelectedItem,
   selectedLabel: treeSelectedLabel,
-} = useDict({ request: request as any, dicUrl: '/dict/treeData' })
+} = useDict({ modelValue: treeSelectValue, request: request as any, dicUrl: '/dict/treeData' })
 </script>
 
 <template>

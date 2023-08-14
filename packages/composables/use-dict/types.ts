@@ -4,6 +4,8 @@ import type { DicItem, DicProps } from '@smallwei/avue'
 import type { useRequest } from 'vue-request'
 
 export interface UseDictOptions {
+  /** 绑定值 */
+  modelValue?: MaybeRef<UseDictValue>
   /** 请求实例 */
   request?: AxiosInstance
   // /** 数据类型用于数组和字符串之间的转化 */
@@ -29,7 +31,6 @@ export interface UseDictOptions {
 export type UseDictValue = string | number | boolean | string[] | number[] | undefined
 
 export interface UseDictReturn extends ReturnType<typeof useRequest<DicItem[]>> {
-  dictValue: Ref<UseDictValue>
   selectedItem: Ref<DicItem | DicItem[] | null>
   selectedLabel: Ref<string | undefined>
 }

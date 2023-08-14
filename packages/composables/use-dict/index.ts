@@ -1,7 +1,7 @@
 import type { DicItem } from '@smallwei/avue'
-import type { UseDictOptions, UseDictReturn, UseDictValue } from './types'
+import type { UseDictOptions, UseDictReturn } from './types'
 
-import { computed, ref, unref } from 'vue'
+import { computed, unref } from 'vue'
 import { useRequest } from 'vue-request'
 import { get } from 'lodash-unified'
 import { filterTree, findTree, serialize } from '@yusui/utils'
@@ -41,9 +41,8 @@ export function useDict(options: UseDictOptions = {}): UseDictReturn {
   const requestResult = useRequest(getDict, { cacheKey })
   const { data } = requestResult
 
-  const dictValue = ref<UseDictValue>()
   const selectedItem = computed(() => {
-    const unrefValue = unref(dictValue)
+    const unrefValue = unref(options.modelValue)
     if (Array.isArray(unrefValue))
       return filterTree(data.value ?? [], item => unrefValue?.some(e => e === item[dicProps.value!]))
     else
@@ -58,7 +57,6 @@ export function useDict(options: UseDictOptions = {}): UseDictReturn {
 
   return {
     ...requestResult,
-    dictValue,
     selectedItem,
     selectedLabel,
   }
