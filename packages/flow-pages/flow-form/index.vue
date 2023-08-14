@@ -27,6 +27,7 @@ const {
   submitLoading,
   beforeClick,
   beforeSubmit,
+  afterSubmit,
   tabsRef,
 } = state
 
@@ -50,6 +51,7 @@ async function onSubmit() {
     const handler = buttonHandler[buttonKey!]
     if (handler) {
       await handler?.()
+      await afterSubmit?.value?.(activeBtn.value!)
       approvalVisible.value = false
       emit('complete', activeBtn.value!)
     }

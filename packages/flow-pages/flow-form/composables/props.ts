@@ -37,6 +37,8 @@ export const flowFormProps = {
   beforeClick: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 审批提交前 */
   beforeSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
+  /** 审批提交后 */
+  afterSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 详情模式,为true则禁用表单并隐藏按钮 */
   detail: { type: [Boolean, String], default: false },
   /** 调试模式 */
