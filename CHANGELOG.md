@@ -1,3 +1,18 @@
+# [2.0.0-beta.72](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.71...v2.0.0-beta.72) (2023-08-14)
+
+
+### Bug Fixes
+
+* **flow-pages:** 人员配置动态属性字段修改 ([00e385b](https://github.com/SoulLyoko/yusui-tools/commit/00e385b282832f6d6f3058fbfe3013cdb7811f85))
+* **use-dict:** 移除dictValue,改为外部输入modelValue ([04b2fff](https://github.com/SoulLyoko/yusui-tools/commit/04b2fff93a1aeaf3d149bed867e192b9283d1c4c))
+
+
+### Features
+
+* **types:** 增加AvueCrudOption的titleSize,titleStyle ([0574889](https://github.com/SoulLyoko/yusui-tools/commit/05748899c56dcf0281be4651864c113a028af7aa))
+
+
+
 # [2.0.0-beta.71](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.70...v2.0.0-beta.71) (2023-08-07)
 
 
