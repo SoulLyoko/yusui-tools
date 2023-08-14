@@ -141,10 +141,11 @@ declare module "@smallwei/avue" {
     disabled?: boolean;
     /** 表单项配置 */
     column?: Array<AvueFormColumn<T>>;
+    [x: string]: any;
   }
 
   export interface AvueFormOption<T = any> {
-    /** 表格总控件大小 */
+    /** 组件大小 */
     size?: Size;
     /** 表单项配置 */
     column?: Array<AvueFormColumn<T>>;
@@ -186,6 +187,7 @@ declare module "@smallwei/avue" {
     readonly?: boolean;
     /** 表单禁用 */
     disabled?: boolean;
+    [x: string]: any;
   }
 
   export interface AvueFormProps<T = any> {

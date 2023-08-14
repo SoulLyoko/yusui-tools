@@ -226,6 +226,10 @@ declare module "@smallwei/avue" {
     lazy?: boolean;
     /** 表格标题 */
     title?: string;
+    /** 表格标题标签/组件 */
+    titleSize?: string | Component;
+    /** 表格标题样式 */
+    titleStyle?: string | object;
     /** 新增按钮 */
     addBtn?: boolean;
     /** 新增按钮文案 */
@@ -470,13 +474,13 @@ declare module "@smallwei/avue" {
     /** 当某一行被点击时会触发该事件 */
     onRowClick?: RowEvent<T>;
     /** 当某一行被鼠标右键点击时会触发该事件 */
-    onRowContextMenu?: RowEvent<T>;
+    onRowContextmenu?: RowEvent<T>;
     /** 当某一行被双击时会触发该事件 */
     onRowDblclick?: RowEvent<T>;
     /** 当某一列的表头被点击时会触发该事件 */
     onHeaderClick?: HeaderEvent<T>;
     /** 当某一列的表头被鼠标右键点击时触发该事件 */
-    onHeaderContextMenu?: HeaderEvent<T>;
+    onHeaderContextmenu?: HeaderEvent<T>;
     /** 当拖动表头改变了列的宽度的时候会触发该事件 */
     onHeaderDragend?: (newWidth: number, oldWidth: number, column: TableColumnCtx<T>, event: Event) => any;
     /** 当表格的排序条件发生变化的时候会触发该事件 */
