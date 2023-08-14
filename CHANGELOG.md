@@ -1,3 +1,12 @@
+# [2.0.0-beta.73](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.72...v2.0.0-beta.73) (2023-08-14)
+
+
+### Features
+
+* **flow-pages:** flow-form增加afterSubmit审批提交后hook ([75f9749](https://github.com/SoulLyoko/yusui-tools/commit/75f974936c65ce587449bfbea030edbbfca08303))
+
+
+
 # [2.0.0-beta.72](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.71...v2.0.0-beta.72) (2023-08-14)
 
 
