@@ -4,7 +4,7 @@
 ### Features
 
 * **flow-pages:** 新增获取流程详情后钩子afterGetDetail ([ccf07be](https://github.com/SoulLyoko/yusui-tools/commit/ccf07bededeefc7e2296955885d3d3e292fd55b9))
-* **form-design:** 新增adapterIn, ([7cea1d0](https://github.com/SoulLyoko/yusui-tools/commit/7cea1d0ff196818acda520e7547ce416de9e2de9))
+* **form-design:** 新增adapterIn,adapterOut属性,支持自定义输入输出格式 ([7cea1d0](https://github.com/SoulLyoko/yusui-tools/commit/7cea1d0ff196818acda520e7547ce416de9e2de9))
 
 
 
@@ -13,7 +13,7 @@
 
 ### Features
 
-* **flow-pages:** flow-form增加afterSubmit审批提交后hook ([75f9749](https://github.com/SoulLyoko/yusui-tools/commit/75f974936c65ce587449bfbea030edbbfca08303))
+* **flow-pages:** 新增审批提交后钩子afterSubmit ([75f9749](https://github.com/SoulLyoko/yusui-tools/commit/75f974936c65ce587449bfbea030edbbfca08303))
 
 
 
