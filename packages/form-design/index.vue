@@ -1,24 +1,29 @@
 <script setup lang="ts">
 import type { AvueFormOption } from '@smallwei/avue'
-import type { Resource } from './types'
+import type { ElementTreeNode, Resource } from './types'
 
 import { useProvideState } from './composables'
 import LeftPanel from './components/left-panel/index.vue'
 import MainWorkspace from './components/main-workspace/index.vue'
 import RightPanel from './components/right-panel/index.vue'
 import MainHeader from './components/main-header/index.vue'
+import { adapterIn, adapterOut } from './utils'
 
-const props = defineProps<{
-  modelValue?: AvueFormOption
-  groupList?: string[]
-  resources?: Record<string, Resource>
-  baseOption?: Resource['settings']
-  advanceOption?: Resource['settings']
-  leftWidth?: string
-  rightWidth?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    modelValue?: AvueFormOption
+    groupList?: string[]
+    resources?: Record<string, Resource>
+    baseOption?: Resource['settings']
+    advanceOption?: Resource['settings']
+    leftWidth?: string
+    rightWidth?: string
+    adapterIn?: (option: AvueFormOption) => ElementTreeNode
+    adapterOut?: (tree: ElementTreeNode) => AvueFormOption
+  }>(),
+  { adapterIn, adapterOut },
+)
 const emit = defineEmits(['reset'])
-
 const { workType, deviceType } = useProvideState(props, emit)
 </script>
 
