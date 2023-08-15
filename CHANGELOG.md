@@ -1,3 +1,13 @@
+# [2.0.0-beta.74](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.73...v2.0.0-beta.74) (2023-08-15)
+
+
+### Features
+
+* **flow-pages:** 新增获取流程详情后钩子afterGetDetail ([ccf07be](https://github.com/SoulLyoko/yusui-tools/commit/ccf07bededeefc7e2296955885d3d3e292fd55b9))
+* **form-design:** 新增adapterIn, ([7cea1d0](https://github.com/SoulLyoko/yusui-tools/commit/7cea1d0ff196818acda520e7547ce416de9e2de9))
+
+
+
 # [2.0.0-beta.73](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.72...v2.0.0-beta.73) (2023-08-14)
 
 
