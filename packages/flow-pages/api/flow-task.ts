@@ -140,8 +140,6 @@ export interface CommitTaskData extends ApprovalFormData {
   variables?: FlowVariable[]
   /** 发起时携带文件ids */
   fileIds?: string
-  /** 传阅id */
-  id?: string
 }
 
 /** 审批窗口表单数据 */

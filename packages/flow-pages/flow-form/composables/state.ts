@@ -9,7 +9,7 @@ export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Sy
 
 export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const vModels = useVModels(props, undefined, { passive: true, deep: true })
-  const { flowDetail, modelValue: formData, formLoading, activeTab } = vModels
+  const { flowDetail, modelValue: formData, formLoading, activeTab, afterGetDetail } = vModels
 
   /** 标签页 */
   const { tabs, customForm, request } = useConfigProvider()
@@ -53,9 +53,10 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
       return
     formLoading.value = true
     getFlowDetail({ flowKey, taskId, flowInstanceId: instanceId })
-      .then((res) => {
+      .then(async (res) => {
         flowDetail.value = res.data
         formData.value = res.data.formData || {}
+        await afterGetDetail?.value?.()
       })
       .finally(() => {
         formLoading.value = false

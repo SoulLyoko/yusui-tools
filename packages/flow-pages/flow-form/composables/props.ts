@@ -33,6 +33,8 @@ export const flowFormProps = {
   fileIds: { type: String },
   /** TODO:控制内部组件的显隐 */
   permission: { type: Object as PropType<FlowFormPermission> },
+  /** 获取流程详情后 */
+  afterGetDetail: { type: Function as PropType<() => any> },
   /** 弹出审批窗口前 */
   beforeClick: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 审批提交前 */
