@@ -606,8 +606,6 @@ import{_ as s,c as n,o as a,V as l}from"./chunks/framework.f01dabf7.js";const i=
 <span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#F07178;">variables</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">FlowVariable</span><span style="color:#A6ACCD;">[]</span></span>
 <span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#676E95;font-style:italic;">/** 发起时携带文件ids */</span></span>
 <span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#F07178;">fileIds</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">string</span></span>
-<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#676E95;font-style:italic;">/** 传阅id */</span></span>
-<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#F07178;">id</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">string</span></span>
 <span class="line"><span style="color:#89DDFF;">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#676E95;font-style:italic;">/** 审批窗口表单数据 */</span></span>
