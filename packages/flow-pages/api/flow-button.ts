@@ -74,6 +74,8 @@ export interface FlowButton {
   sort?: number
   /** 0 正常 | 1 禁用 */
   status?: FlowButtonStatus
+  /** 按钮备注 */
+  remarks?: string
 }
 
 export function useFlowButtonApi(request: RequestInstance) {
