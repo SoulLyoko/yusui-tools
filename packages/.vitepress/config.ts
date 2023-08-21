@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress'
 
-import { alias } from '../../vite.config'
-import pkg from '../../package.json'
 import { mdDemoTransform } from './plugins/md-demo-transform'
 import { avuePatch, loadProxy } from '../plugins'
+import { alias } from '../../vite.config'
+import pkg from '../../package.json'
 
 export default defineConfig({
   base: `/${pkg.name}/`,

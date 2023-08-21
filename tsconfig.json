@@ -29,5 +29,5 @@
     ]
   },
   "include": ["packages", "packages/.vitepress/**/*"],
-  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds"]
+  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache"]
 }
