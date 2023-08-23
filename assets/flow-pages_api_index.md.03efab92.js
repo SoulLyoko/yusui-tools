@@ -122,6 +122,8 @@ import{_ as s,c as n,o as a,V as l}from"./chunks/framework.f01dabf7.js";const i=
 <span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#F07178;">sort</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">number</span></span>
 <span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#676E95;font-style:italic;">/** 0 正常 | 1 禁用 */</span></span>
 <span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#F07178;">status</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">FlowButtonStatus</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#676E95;font-style:italic;">/** 按钮备注 */</span></span>
+<span class="line"><span style="color:#A6ACCD;">  </span><span style="color:#F07178;">remarks</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">string</span></span>
 <span class="line"><span style="color:#89DDFF;">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#89DDFF;font-style:italic;">export</span><span style="color:#A6ACCD;"> </span><span style="color:#C792EA;">function</span><span style="color:#A6ACCD;"> </span><span style="color:#82AAFF;">useFlowButtonApi</span><span style="color:#89DDFF;">(</span><span style="color:#A6ACCD;font-style:italic;">request</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">RequestInstance</span><span style="color:#89DDFF;">)</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">{</span></span>
