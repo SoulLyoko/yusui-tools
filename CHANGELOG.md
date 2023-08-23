@@ -1,3 +1,14 @@
+# [2.0.0-beta.75](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.74...v2.0.0-beta.75) (2023-08-23)
+
+
+### Features
+
+* **flow-pages:** 配置tabs支持函数 ([a1e6139](https://github.com/SoulLyoko/yusui-tools/commit/a1e6139ad0d2cfd74cb31e7522a1ba64b0df6750))
+* **flow-pages:** flow-button增加备注字段 ([4719417](https://github.com/SoulLyoko/yusui-tools/commit/471941707db365cb35188452358cd631b4db85d6))
+* **load-proxy:** 新增log配置可打印转换后的proxy配置 ([a3ab10f](https://github.com/SoulLyoko/yusui-tools/commit/a3ab10f9af8251670797bfb29cdc99c76d5afed8))
+
+
+
 # [2.0.0-beta.74](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.73...v2.0.0-beta.74) (2023-08-15)
 
 
