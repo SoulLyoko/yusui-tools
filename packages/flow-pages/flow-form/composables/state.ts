@@ -15,7 +15,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const { tabs, customForm, request } = useConfigProvider()
   const tabRefs = ref<Record<string, any>>({})
   const tabList = computed(() => {
-    const tabsValue = typeof tabs === 'function' ? tabs(flowDetail.value) : tabs
+    const tabsValue = typeof tabs === 'function' ? tabs({ ...vModels }) : tabs
     return tabsValue?.filter((tab) => {
       const tabProperty = flowDetail.value?.properties?.formProperty?.find(e => e.prop === tab.prop)
       return tabProperty?.display !== false

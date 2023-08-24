@@ -1,11 +1,11 @@
-import type { AsyncComponentLoader, Component } from 'vue'
+import type { AsyncComponentLoader, Component, ToRefs } from 'vue'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { AvueCrudOption } from '@smallwei/avue'
 import type { TabsProps } from 'element-plus'
 import type { Res } from '@yusui/types'
-import type { FlowDetail, FlowFile } from '../api'
+import type { FlowFile } from '../api'
 import type { UseFlowFormOptions } from '../composables'
-import type { ButtonHandler, FlowFormState } from '../flow-form'
+import type { ButtonHandler, FlowFormProps, FlowFormState } from '../flow-form'
 
 export interface FlowFormTab {
   label?: string
@@ -13,6 +13,7 @@ export interface FlowFormTab {
   disabled?: boolean
   lazy?: boolean
   closable?: boolean
+  display?: boolean
   component?: Component
 }
 
@@ -28,7 +29,7 @@ export interface FlowPagesConfig {
   /** 流程表单标签页属性 */
   tabsProps?: Partial<TabsProps>
   /** 流程表单标签页配置 */
-  tabs?: FlowFormTab[] | ((flowDetail: FlowDetail) => FlowFormTab[])
+  tabs?: FlowFormTab[] | ((props: ToRefs<Partial<FlowFormProps>>) => FlowFormTab[])
   /** axios实例 */
   request: RequestInstance
   /** 用户信息 */
