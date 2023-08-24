@@ -1,3 +1,12 @@
+# [2.0.0-beta.76](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2023-08-24)
+
+
+### Features
+
+* **flow-pages:** 配置tabs支持函数和display属性 ([c667642](https://github.com/SoulLyoko/yusui-tools/commit/c667642496667836f437245a332191ef74280bc6))
+
+
+
 # [2.0.0-beta.75](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.74...v2.0.0-beta.75) (2023-08-23)
 
 
