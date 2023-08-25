@@ -1,3 +1,12 @@
+# [2.0.0-beta.77](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.76...v2.0.0-beta.77) (2023-08-25)
+
+
+### Bug Fixes
+
+* **flow-pages:** 修复tabs配置的display属性,取消函数形式的tabs配置 ([994a661](https://github.com/SoulLyoko/yusui-tools/commit/994a661fb534d2cdb4ce815956de8b01385b2ab9))
+
+
+
 # [2.0.0-beta.76](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.75...v2.0.0-beta.76) (2023-08-24)
 
 
