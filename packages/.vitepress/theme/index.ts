@@ -35,7 +35,7 @@ export default {
       app.use(Avue, { axios: dicRequest })
       const { FlowDesign } = await import('@yusui/flow-design')
       const { FormDesign } = await import('@yusui/form-design')
-      const { default: FlowPages } = await import('@yusui/flow-pages')
+      const { default: FlowPages, CONFIG_DEFAULT } = await import('@yusui/flow-pages')
       app.component('FlowDesign', FlowDesign)
       app.component('FormDesign', FormDesign)
       // #region install
@@ -51,6 +51,10 @@ export default {
           type: localStorage.getItem('useFlowFormType') as any ?? 'drawer',
           window: ['/yusui-tools/flow-pages/pages/flow-form/index'],
         },
+        tabs: [
+          ...CONFIG_DEFAULT.tabs!,
+          { label: '默认隐藏', prop: 'test', display: false },
+        ],
         upload: {
           action: import.meta.env.VITE_UPLOAD_URL,
           headers: { Authorization: import.meta.env.VITE_TOKEN }, // ()=> ({ Authorization: storage.get('token') })

@@ -48,12 +48,11 @@ const allColumn = computed(() => {
 const { FlowDesign, tabs, request } = useConfigProvider()
 const { data: buttonList } = useFlowButtonApi(request).useList()
 const tabList = computed(() => {
-  const tabsValue = typeof tabs === 'function' ? tabs?.({}) : tabs
-  return tabsValue?.map(e => ({ display: true, ...e })) ?? []
+  return tabs?.map(e => ({ ...e, display: e.display ?? true })) ?? []
 })
 const dataOptions = computed(() => ({
   formPropertyList: [...allColumn.value, ...tabList.value],
-  buttonList: buttonList.value?.filter(e => e.status === 1),
+  buttonList: buttonList.value,
   fieldsDic: allColumn.value.map(e => ({ label: e.label, value: `$\{${e.prop}}`, desc: `$\{${e.prop}}` })),
   flowButtonDisplayDic: enumToDic(FlowButtonDisplay),
   flowButtonApprovalDic: enumToDic(FlowButtonApproval),

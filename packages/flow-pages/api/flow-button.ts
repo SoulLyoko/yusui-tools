@@ -90,7 +90,7 @@ export function useFlowButtonApi(request: RequestInstance) {
     remove: '/sapier-flow/dev-button/remove',
   }
   const getList = (params: Page & FlowButton) => request.get<ResRecords<FlowButton[]>>(url.list, { params })
-  const useList = () => useRequest(() => getList({ size: -1, ascs: 'sort' }).then(res => res.data.records))
+  const useList = () => useRequest(() => getList({ size: -1, ascs: 'sort', status: 1 }).then(res => res.data.records))
   const create = (data: FlowButton) => request.post(url.save, data)
   const update = (data: FlowButton) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
