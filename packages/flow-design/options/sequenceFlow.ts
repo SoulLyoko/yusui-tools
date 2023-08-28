@@ -12,5 +12,8 @@ export const sequenceFlowColumn: AvueFormColumn<FlowFormData>[] = [
     labelWidth: 120,
     type: 'switch',
     value: false,
+    change({ row, value }) {
+      row.isDefaultFlow = value
+    },
   },
 ]

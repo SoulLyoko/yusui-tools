@@ -4,28 +4,29 @@ import { nextTick, watch } from 'vue'
 import { LogicFlow } from '@logicflow/core'
 import { InsertNodeInPolyline, MiniMap, SelectionSelect } from '@logicflow/extension'
 
-import { BpmnExtend, Control, Group, Menu, Panel, Tooltip, TurboAdapter } from '../extensions'
+import { BpmnElements, Control, Menu, Panel, Styles, Tooltips, TurboAdapter } from '../extensions'
 import { defaultTheme } from '../constants'
+import { mergeInitOptions } from '../utils'
 import { useModelerListener } from '.'
 
 export function useInit({ props, state }: { props: FlowDesignProps; state: FlowDesignState }) {
   const { lf, graphData } = state
 
   function initModeler(container: HTMLElement) {
-    lf.value = new LogicFlow({
+    const options = mergeInitOptions({
       container,
       grid: { type: 'dot', size: 10 },
       nodeTextDraggable: true,
       edgeTextDraggable: true,
       nodeTextEdit: true,
       edgeTextEdit: true,
-      plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnExtend, Group, TurboAdapter],
+      plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnElements, TurboAdapter],
       edgeGenerator: (sourceNode, targetNode) => {
         if (['note', 'serviceTask'].includes(targetNode.type))
           return 'noteFlow'
       },
-      ...props.initOptions,
-    })
+    }, props.initOptions)
+    lf.value = new LogicFlow(options)
     lf.value?.setTheme(defaultTheme)
     useModelerListener(state)
     watch(
@@ -45,23 +46,21 @@ export function useInit({ props, state }: { props: FlowDesignProps; state: FlowD
   }
 
   function initViewer(container: HTMLElement) {
-    lf.value = new LogicFlow({
+    const options = mergeInitOptions({
       container,
       grid: { type: 'dot', size: 10 },
       isSilentMode: true,
-      plugins: [BpmnExtend, Group, TurboAdapter, Tooltip],
-      ...props.initOptions,
-    })
+      plugins: [BpmnElements, TurboAdapter, Tooltips, Styles],
+    }, props.initOptions)
+    lf.value = new LogicFlow(options)
     lf.value?.setTheme(defaultTheme)
     watch(
       () => [graphData.value, props.styles, props.tooltips],
       async () => {
         lf.value?.render(graphData.value)
         await nextTick()
-        props.styles?.forEach(({ id, style }) => {
-          id && lf.value?.graphModel?.updateAttributes(id, { style })
-        })
-        lf.value?.extension.tooltip?.setTooltips(props.tooltips ?? [])
+        lf.value?.extension?.styles?.setStyles(props.styles ?? [])
+        lf.value?.extension?.tooltips?.setTooltips(props.tooltips ?? [])
       },
       { immediate: true },
     )

@@ -1,13 +1,14 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
-/** */
+import { useVModels } from '@vueuse/core'
+
+const props = defineProps<{
+  modelValue?: boolean
+}>()
+const { modelValue } = useVModels(props)
 </script>
 
 <template>
-  <el-checkbox v-bind="$attrs" label="" />
+  <span>
+    <el-checkbox v-model="modelValue" />
+  </span>
 </template>

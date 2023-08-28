@@ -134,17 +134,26 @@ export class Menu extends _Menu {
       callback: (ele: NodeConfig) => {
         let menuList: MenuItem[] = []
         switch (ele.type) {
+          case 'startEvent':
+            menuList = [back, changeToEndEvent]
+            break
+          case 'endEvent':
+            menuList = [back, changeToStartEvent]
+            break
           case 'exclusiveGateway':
             menuList = [back, changeToParallelGateway]
             break
           case 'parallelGateway':
             menuList = [back, changeToExclusiveGateway]
             break
-          case 'startEvent':
-            menuList = [back, changeToEndEvent]
+          case 'userTask':
+            menuList = [back, changeToServiceTask, changeToCirculateTask]
             break
-          case 'endEvent':
-            menuList = [back, changeToStartEvent]
+          case 'serviceTask':
+            menuList = [back, changeToUserTask, changeToCirculateTask]
+            break
+          case 'circulateTask':
+            menuList = [back, changeToUserTask, changeToServiceTask]
             break
           default:
             menuList = [back]
@@ -175,6 +184,24 @@ export class Menu extends _Menu {
       icon: true,
       className: 'lf-menu-exclusive-gateway',
       callback: (ele: NodeConfig) => this.changeNodeType(ele, 'exclusiveGateway'),
+    }
+    const changeToUserTask = {
+      text: '用户任务',
+      icon: true,
+      className: 'lf-menu-user-task',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'userTask'),
+    }
+    const changeToServiceTask = {
+      text: '服务任务',
+      icon: true,
+      className: 'lf-menu-service-task',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'serviceTask'),
+    }
+    const changeToCirculateTask = {
+      text: '传阅任务',
+      icon: true,
+      className: 'lf-menu-circulate-task',
+      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'circulateTask'),
     }
 
     const defaultMenuConfig = {

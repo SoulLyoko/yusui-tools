@@ -1,5 +1,6 @@
 import type { AvueFormColumn } from '@smallwei/avue'
 import type { ButtonItem, FormPropertyItem } from '../types'
+import type { Definition } from '@logicflow/core'
 
 export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
   return button.map((btn) => {
@@ -19,4 +20,13 @@ export function mergeFormProperty(column: AvueFormColumn[], source: FormProperty
       result.children = mergeFormProperty(col.children.column, findSource?.children ?? [])
     return result
   })
+}
+
+/** 合并初始化配置，主要是合并plugins */
+export function mergeInitOptions(target?: Definition, source?: Definition) {
+  return {
+    ...target,
+    ...source,
+    plugins: [...target?.plugins ?? [], ...source?.plugins ?? []],
+  } as Definition
 }

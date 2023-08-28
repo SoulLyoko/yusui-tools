@@ -1,12 +1,12 @@
-import type LogicFlow from '@logicflow/core'
+import type { LogicFlow } from '@logicflow/core'
 
 export interface TooltipItem {
   id?: string
   content?: string
 }
 
-export class Tooltip {
-  static pluginName = 'tooltip'
+export class Tooltips {
+  static pluginName = 'tooltips'
 
   lf: LogicFlow
   container?: HTMLElement
@@ -15,7 +15,7 @@ export class Tooltip {
 
   constructor({ lf }: { lf: LogicFlow }) {
     this.__tooltipDOM = document.createElement('div')
-    this.__tooltipDOM.className = 'lf-tooltip'
+    this.__tooltipDOM.className = 'lf-tooltips'
     this.__tooltipDOM.style.position = 'absolute'
     this.__tooltipDOM.style.display = 'none'
     this.lf = lf

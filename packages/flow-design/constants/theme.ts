@@ -21,6 +21,6 @@ export const defaultTheme: Theme = {
     color: 'black',
   },
   nodeText: {
-    // overflowMode: "autoWrap" // 会导致节点很难点击
+    // overflowMode: 'autoWrap', // 会导致节点很难点击
   },
 }
