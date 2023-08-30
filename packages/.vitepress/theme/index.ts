@@ -27,7 +27,7 @@ export default {
       import('@guolao/vue-monaco-editor').then(({ loader }) => {
         loader.config({
           paths: {
-            vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.33.0/min/vs',
+            vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.40.0/min/vs',
           },
         })
       })
