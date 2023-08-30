@@ -4,6 +4,11 @@ import { Group, SubProcessFactory, bpmnUtils } from '@logicflow/extension'
 
 /** SubProcess */
 export class SubProcessModel extends SubProcessFactory().model {
+  setZIndex(zIndex?: number) {
+    if (typeof zIndex === 'number' && zIndex < 0)
+      this.zIndex = zIndex
+  }
+
   createId() {
     return `Group_${bpmnUtils.genBpmnId()}`
   }
