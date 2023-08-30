@@ -53,13 +53,13 @@ const booleanDic = [
       :dic="booleanDic"
     />
     <EditorSetter v-else v-model="modelValue" :value-type="valueType" tooltip />
-    <avue-select
-      v-model="valueType"
-      :dic="valueTypeDic"
-      :clearable="false"
-      suffix-icon=""
-      style="width: 60px"
-      @update:model-value="valueTypeChange"
-    />
+    <el-select v-model="valueType" :clearable="false" suffix-icon="" style="width: 60px" @change="valueTypeChange">
+      <el-option
+        v-for="item in valueTypeDic"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
   </div>
 </template>

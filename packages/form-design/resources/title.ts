@@ -7,7 +7,7 @@ export const title: Resource = {
   title: '标题',
   icon: 'el-icon-minus',
   group: '布局组件',
-  props: { type: 'title', label: '', labelWidth: 0 },
+  props: { type: 'title', labelWidth: 0 },
   settings: [
     {
       label: '标题内容',

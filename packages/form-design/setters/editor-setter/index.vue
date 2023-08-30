@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { EditorProps } from '@guolao/vue-monaco-editor'
+import type { editor as MonacoEditor } from 'monaco-editor'
 
-import { computed, onUnmounted, ref } from 'vue'
-import Editor, { useMonaco } from '@guolao/vue-monaco-editor'
+import { computed, onUnmounted, ref, useAttrs } from 'vue'
+import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
 
 import { jsonParse, jsonStringify } from '../../utils'
 
@@ -22,86 +23,71 @@ const emit = defineEmits(['update:modelValue'])
 const { monacoRef, unload } = useMonaco()
 onUnmounted(() => !monacoRef.value && unload())
 
-const visible = ref(false)
+const editorValue = computed<string>(() => {
+  const value = props.modelValue
+  if (typeof value === 'string')
+    return value
+  else if (props.valueType === 'function' && typeof value === 'function')
+    return value ? value.toString() : ''
+  else if (['object', 'array'].includes(props.valueType!) && typeof value === 'object')
+    return value ? jsonStringify(value) : ''
 
-const theme = computed(() => {
-  const isDark = document.documentElement.className.includes('dark')
-  return isDark ? 'vs-dark' : 'light'
+  return String(value ?? '')
 })
 
 const options = computed(() => {
   return {
-    renderValidationDecorations: 'off',
+    renderValidationDecorations: 'off' as const,
     minimap: { enabled: props.dialog || false },
+    theme: document.documentElement.className.includes('dark') ? 'vs-dark' : 'light',
     ...props.options,
   }
 })
 
-const editorValue = computed({
-  get() {
-    const value = props.modelValue
-    if (typeof value === 'string')
-      return value
-    else if (props.valueType === 'function' && typeof value === 'function')
-      return value ? value.toString() : ''
-    else if (['object', 'array'].includes(props.valueType!) && typeof value === 'object')
-      return value ? jsonStringify(value) : ''
+const editorProps = computed(() => {
+  return {
+    value: editorValue.value,
+    options: options.value,
+    defaultLanguage: 'javascript',
+    onMount: onEditorMount,
+    ...useAttrs(),
+  }
+})
 
-    return String(value ?? '')
-  },
-  set(val) {
+function onEditorMount(editor: MonacoEditor.ICodeEditor) {
+  editor.onDidBlurEditorText(() => {
+    let val = editor.getValue()
+    if (val === editorValue.value)
+      return
     if (props.valueType === 'function')
       val = eval(`${val}`)
     else if (['object', 'array'].includes(props.valueType!))
       val = jsonParse(val)
-
     emit('update:modelValue', val)
-  },
-})
+  })
+}
+
+const dialogVisible = ref(false)
 </script>
 
 <template>
   <el-tooltip v-if="tooltip" trigger="click" effect="light">
     <el-button>{{ btnText || "编辑代码" }}</el-button>
     <template #content>
-      <Editor
-        v-model:value="editorValue"
-        default-language="javascript"
-        :theme="theme"
-        :options="options"
-        :width="width || '300px'"
-        :height="height || '200px'"
-        v-bind="$attrs"
-      />
-      <el-button text icon="el-icon-full-screen" @click="visible = true" />
+      <Editor :width="width || '300px'" :height="height || '200px'" v-bind="editorProps" />
+      <el-button text icon="el-icon-full-screen" @click="dialogVisible = true" />
     </template>
   </el-tooltip>
 
   <template v-else-if="dialog">
-    <el-button @click="visible = true">
+    <el-button @click="dialogVisible = true">
       {{ btnText || "编辑代码" }}
     </el-button>
   </template>
 
-  <Editor
-    v-else
-    v-model:value="editorValue"
-    default-language="javascript"
-    :theme="theme"
-    :options="options"
-    :width="width"
-    :height="height"
-    v-bind="$attrs"
-  />
+  <Editor v-else :width="width" :height="height" v-bind="editorProps" />
 
-  <el-dialog v-if="dialog || visible" v-model="visible" :fullscreen="fullscreen" :width="width">
-    <Editor
-      v-model:value="editorValue"
-      default-language="javascript"
-      :theme="theme"
-      :options="options"
-      :height="height || (fullscreen ? '90vh' : '600px')"
-      v-bind="$attrs"
-    />
+  <el-dialog v-if="dialog || dialogVisible" v-model="dialogVisible" :fullscreen="fullscreen" :width="width">
+    <Editor width="100%" :height="height || (fullscreen ? '90vh' : '600px')" v-bind="editorProps" />
   </el-dialog>
 </template>
