@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,V as e}from"./chunks/framework.a13ec59b.js";const h=JSON.parse('{"title":"Uvue","description":"","frontmatter":{},"headers":[],"relativePath":"uvue/index.md","filePath":"uvue/index.md"}'),l={name:"uvue/index.md"},o=e("",12),p=[o];function t(c,r,i,u,y,D){return n(),a("div",null,p)}const F=s(l,[["render",t]]);export{h as __pageData,F as default};

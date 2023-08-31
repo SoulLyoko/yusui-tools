@@ -1,0 +1,1 @@
+const e={rect:{radius:5,stroke:"black"},circle:{r:18,stroke:"black"},polygon:{stroke:"black"},polyline:{stroke:"black",hoverStroke:"black",selectedStroke:"black"},edgeText:{color:"black"},nodeText:{}};export{e as d};
