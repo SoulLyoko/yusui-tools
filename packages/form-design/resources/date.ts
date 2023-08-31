@@ -74,7 +74,7 @@ export const date: Resource = {
       children: {
         column: [
           { label: '名称', prop: 'text' },
-          { label: '值', prop: 'value' },
+          { label: '值', prop: 'value', component: EditorSetter, tooltip: true },
         ],
       },
     },

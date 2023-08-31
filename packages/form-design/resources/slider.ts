@@ -60,7 +60,7 @@ export const slider: Resource = {
       dicData: placementDic,
     },
     {
-      label: '格式化提示信息',
+      label: '格式化提示',
       prop: 'formatTooltip',
       component: EditorSetter,
       valueType: 'function',

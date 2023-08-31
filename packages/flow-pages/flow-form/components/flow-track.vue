@@ -86,11 +86,11 @@ function findHandleTypeDicItem(value: number) {
 
 <style lang="scss" scoped>
 .flow-track {
-  height: calc(100% - 50px);
+  height: calc(100% - 55px);
   margin-top: 15px;
 
   .avue-crud {
-    :deep(.avue-crud__menu) {
+    :deep(.avue-crud__header) {
       display: none;
     }
   }

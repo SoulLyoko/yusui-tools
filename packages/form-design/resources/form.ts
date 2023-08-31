@@ -1,7 +1,7 @@
 import type { Resource } from '../types'
 
 import { alignDic, iconList, positionDic, sizeDic } from '../options'
-import { SwitchSetter } from '../setters'
+import { SwitchSetter, ValueSetter } from '../setters'
 
 export const form: Resource = {
   name: 'form',
@@ -20,7 +20,9 @@ export const form: Resource = {
     {
       label: '标签宽度',
       prop: 'labelWidth',
-      type: 'number',
+      component: ValueSetter,
+      types: ['string', 'number'],
+      defaultValueType: 'number',
       step: 10,
     },
     {
