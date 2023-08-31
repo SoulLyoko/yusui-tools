@@ -1,3 +1,21 @@
+# [2.0.0-beta.78](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2023-08-31)
+
+
+### Bug Fixes
+
+* **flow-design:**  升级logicflow,适配bpmn-elements ([830df24](https://github.com/SoulLyoko/yusui-tools/commit/830df24e9c6b13ab225ffc79f04f17706c106511))
+* **flow-design:** 修复子流程层级问题 ([0368a08](https://github.com/SoulLyoko/yusui-tools/commit/0368a081e3532962ea4348ad9fc96b49f3907e12))
+* **form-design:** 代码编辑器monaco-editor保存时机修改为失焦时 ([f5e15f4](https://github.com/SoulLyoko/yusui-tools/commit/f5e15f4bf4f9b8a8189acc0cf53ca80d974c9f0a))
+* **utils:** 修复filterObjDeep传入类型不为对象类型的问题 ([7097a3c](https://github.com/SoulLyoko/yusui-tools/commit/7097a3c5af104c49ab3fbd891882e9500bfebe0f))
+
+
+### Features
+
+* **form-design:** 新增操作历史源码对比视图 ([1986f05](https://github.com/SoulLyoko/yusui-tools/commit/1986f054c960ca20ca054a30d3ee3306d3c6ccd8))
+* **form-design:** value-setter支持传入显示的选择项和默认选择的类型 ([67097a6](https://github.com/SoulLyoko/yusui-tools/commit/67097a614ae612bb3c888505a5370dd151cbe681))
+
+
+
 # [2.0.0-beta.77](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.76...v2.0.0-beta.77) (2023-08-25)
 
 
