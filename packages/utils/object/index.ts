@@ -5,7 +5,7 @@
  * @param {Array} fields 被过滤字段
  */
 export function filterObj<R = any, T = any>(obj: T, values: any[] = [undefined, null], fields: string[] = []): R {
-  if (typeof obj !== 'object')
+  if (typeof obj !== 'object' || obj === null)
     return obj as any
   const temp: any = {}
   for (const key in obj) {
@@ -30,7 +30,7 @@ export function filterObjDeep<R = any, T = any>(obj: T, values: any[] = [undefin
     return obj.map(e => filterObjDeep(e, values, fields)) as R
   const temp: any = {}
   for (const key in obj) {
-    if (typeof obj[key] === 'object') {
+    if (obj[key] && typeof obj[key] === 'object') {
       temp[key] = filterObjDeep(obj[key], values, fields)
     }
     else {

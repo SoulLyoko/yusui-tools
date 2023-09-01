@@ -3,15 +3,16 @@ import { filterObj, filterObjDeep, getDataType } from '.'
 describe('object utils', () => {
   it('filterObj', () => {
     const testData = { a: 1, b: 'b', c: undefined, d: null }
+    expect(filterObj(null)).toBeNull()
     expect(filterObj(testData)).toEqual({ a: 1, b: 'b' })
     expect(filterObj(testData, [])).toEqual(testData)
     expect(filterObj(testData, undefined, ['a', 'b'])).toEqual({})
   })
   it('filterObjDeep', () => {
-    const testData = { a: undefined, b: { bb: '1' }, c: [{ cc: 1 }] }
-    expect(filterObjDeep(testData)).toEqual({ b: { bb: '1' }, c: [{ cc: 1 }] })
+    const testData = { a: [{ aa: 1 }], b: { bb: '1' }, c: undefined, d: null }
+    expect(filterObjDeep(testData)).toEqual({ a: [{ aa: 1 }], b: { bb: '1' } })
     expect(filterObjDeep(testData, [])).toEqual(testData)
-    expect(filterObjDeep(testData, undefined, ['cc', 'bb'])).toEqual({ b: {}, c: [{}] })
+    expect(filterObjDeep(testData, undefined, ['aa', 'bb'])).toEqual({ a: [{}], b: {} })
   })
   it('getDataType', () => {
     expect(getDataType(true)).toBe('Boolean')
