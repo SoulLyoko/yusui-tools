@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvueCrudOption } from '@smallwei/avue'
+import type { AvueCrudOption, AvueFormOption } from '@smallwei/avue'
 
 import { defineComponent, h, ref } from 'vue'
 
@@ -37,10 +37,49 @@ const option3: AvueCrudOption = {
     }),
   }],
 }
+
+const formRef = ref()
+const formData = ref({})
+const option4: AvueFormOption = {
+  tabs: true,
+  column: [{
+    prop: 'title',
+    labelWidth: 0,
+    type: 'title',
+    span: 24,
+    value: '表单分组的control不再导致增加空分组',
+    styles: { fontSize: '24px' },
+  }],
+  group: [
+    {
+      label: '分组1',
+      column: [
+        {
+          label: '属性1',
+          prop: 'test1',
+          type: 'select',
+          dicData: [{ label: '显示属性2', value: true }, { label: '隐藏属性2', value: false }],
+          control(val) {
+            return {
+              test2: { display: val },
+            }
+          },
+        },
+      ],
+    },
+    {
+      label: '分组2',
+      column: [
+        { label: '属性2', prop: 'test2' },
+      ],
+    },
+  ],
+}
 </script>
 
 <template>
   <avue-crud class="hide-menu" :data="data" :option="option1" />
+
   <avue-crud class="hide-menu" :data="data" :option="option2">
     <template #menu-btn>
       <el-dropdown-item icon="el-icon-warning">
@@ -48,5 +87,8 @@ const option3: AvueCrudOption = {
       </el-dropdown-item>
     </template>
   </avue-crud>
+
   <avue-crud class="hide-menu" :data="data" :option="option3" />
+
+  <avue-form ref="formRef" v-model="formData" :option="option4" />
 </template>

@@ -2,7 +2,7 @@ import type { Plugin } from 'vite'
 
 /**
  * avue-crud 菜单按钮颜色
- * [column-menu](https://github.com/nmxiaowei/avue/blob/3.x/packages/element-ui/crud/column/column-menu.vue#L62)
+ * [column-menu](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/crud/column/column-menu.vue#L62)
 */
 export function fixMenuBtnType(code: string) {
   return (
@@ -38,7 +38,7 @@ export function fixMenuBtnType(code: string) {
 
 /**
  * avue-form 给表单项传递表单数据
- * [form](https://github.com/nmxiaowei/avue/blob/3.x/packages/element-ui/form/index.vue#L126)
+ * [form](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/form/index.vue#L126)
   */
 export function fixFormRow(code: string) {
   return (
@@ -52,7 +52,7 @@ export function fixFormRow(code: string) {
 
 /**
  * avue-crud 菜单按钮插槽
- * [column-mnenu](https://github.com/nmxiaowei/avue/blob/3.x/packages/element-ui/crud/column/column-menu.vue#L52)
+ * [column-menu](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/crud/column/column-menu.vue#L52)
  */
 export function fixMenuBtnSlot(code: string) {
   return (
@@ -61,6 +61,20 @@ export function fixMenuBtnSlot(code: string) {
       .replace('e.$slots,"menuBtn"', 'e.$slots,"menu-btn"')
       // dev
       .replace('e2.$slots, "menuBtn"', 'e2.$slots, "menu-btn"')
+  )
+}
+
+/**
+ * 表单分组
+ * [form](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/form/index.vue#L326)
+ */
+export function fixFormGroup(code: string) {
+  return (
+    code
+      // prod
+      .replace('o=t.group||[],l=t.footer||[];', 'o=this.deepClone(t.group||[]),l=this.deepClone(t.footer||[]);')
+      // dev
+      .replace('o2 = t2.group || [], l2 = t2.footer || [];', 'o2 = [].concat(t2.group || []), l2 = [].concat(t2.footer || []);')
   )
 }
 
@@ -73,6 +87,7 @@ export function avuePatch(): Plugin {
         code = fixMenuBtnType(code)
         code = fixFormRow(code)
         code = fixMenuBtnSlot(code)
+        code = fixFormGroup(code)
         return code
       }
     },
