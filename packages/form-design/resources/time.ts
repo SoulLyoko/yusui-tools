@@ -7,7 +7,7 @@ export const time: Resource = {
   title: '时间',
   icon: 'el-icon-clock',
   group: '日期时间组件',
-  props: { type: 'time', label: '时间' },
+  props: { type: 'time', label: '时间', format: 'HH:mm:ss', valueFormat: 'HH:mm:ss' },
   settings: [
     {
       label: '开始占位内容',
@@ -20,12 +20,10 @@ export const time: Resource = {
     {
       label: '显示格式',
       prop: 'format',
-      value: 'HH:mm:ss',
     },
     {
       label: '值格式',
       prop: 'valueFormat',
-      value: 'HH:mm:ss',
     },
     {
       label: '下拉框类名',
@@ -108,5 +106,5 @@ export const timerange: Resource = {
   title: '时间范围',
   icon: 'el-icon-clock',
   group: '日期时间组件',
-  props: { type: 'timerange', label: '时间范围' },
+  props: { type: 'timerange', label: '时间范围', format: 'HH:mm:ss', valueFormat: 'HH:mm:ss' },
 }

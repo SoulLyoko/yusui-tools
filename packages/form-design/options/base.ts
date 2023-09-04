@@ -17,10 +17,7 @@ const basic = [
   {
     label: '标签宽度',
     prop: 'labelWidth',
-    component: ValueSetter,
-    types: ['string', 'number'],
-    defaultValueType: 'number',
-    step: 10,
+    labelTip: '"auto"或数字',
   },
   {
     label: '标签位置',
@@ -39,12 +36,10 @@ const basic = [
   {
     label: '数据类型',
     prop: 'dataType',
-    type: 'radio',
-    button: true,
-    labelWidth: 90,
+    type: 'select',
     labelTip: '会将数据转换为对应选择的数据类型，如：[1,2,3]=>"1,2,3"',
     dicData: [
-      { label: '字符', value: 'string' },
+      { label: '字符串', value: 'string' },
       { label: '数字', value: 'number' },
       { label: '数组', value: 'array' },
     ],

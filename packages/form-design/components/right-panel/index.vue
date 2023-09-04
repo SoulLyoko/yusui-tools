@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvueFormGroup } from '@smallwei/avue'
+import type { AvueFormOption } from '@smallwei/avue'
 import type { ElementTreeNode } from '../../types'
 
 import { nextTick, ref, watch } from 'vue'
@@ -14,10 +14,16 @@ const { elementTree, activeElement, baseOption, advanceOption, resolveSettings, 
 
 const formReLoading = ref(false)
 const activeTab = ref('')
-const settingsTabs = ref<AvueFormGroup[]>([])
-const settingsData = ref<any>({})
 const updateTimes = ref(0)
-const commonOption = { labelPosition: 'left' as const, labelWidth: 100, menuBtn: false, span: 24 }
+const settingsData = ref<any>({})
+const settingsFormOption = ref<AvueFormOption>({
+  labelPosition: 'left' as const,
+  labelWidth: 100,
+  menuBtn: false,
+  span: 24,
+  tabs: true,
+  group: [],
+})
 
 watch(
   () => activeElement.value.id,
@@ -26,11 +32,12 @@ watch(
     updateTimes.value = 0
     await nextTick()
     const { settings, disabledSettings } = getResource(activeElement.value.name) ?? {}
-    const baseGroup = { ...commonOption, label: '基础', prop: 'base', column: baseOption.value }
-    const advanceGroup = { ...commonOption, label: '高级', prop: 'advance', column: advanceOption.value }
-    const componentGroup = { ...commonOption, label: '属性', prop: 'component', column: resolveSettings(settings) }
-    settingsTabs.value = [baseGroup, componentGroup, advanceGroup].filter(e => !disabledSettings?.includes(e.prop!))
-    activeTab.value = settingsTabs.value[0].prop!
+    const baseGroup = { label: '基础', prop: 'base', column: baseOption.value }
+    const componentGroup = { label: '属性', prop: 'component', column: resolveSettings(settings) }
+    const advanceGroup = { label: '高级', prop: 'advance', column: advanceOption.value }
+    const group = [baseGroup, componentGroup, advanceGroup].filter(e => !disabledSettings?.includes(e.prop!))
+    settingsFormOption.value.group = group
+    activeTab.value = group[0].prop!
     settingsData.value = cloneDeep(activeElement.value.props)
     formReLoading.value = false
   },
@@ -58,6 +65,7 @@ watchDebounced(
   { deep: true, debounce: 100 },
 )
 
+// 通过id查找路径
 function findPathById(object: ElementTreeNode, id?: string): string[] | void {
   if (object.id === id)
     return []
@@ -83,9 +91,5 @@ function findPathById(object: ElementTreeNode, id?: string): string[] | void {
 </script>
 
 <template>
-  <el-tabs v-model="activeTab">
-    <el-tab-pane v-for="group in settingsTabs" :key="group.label" :label="group.label" :name="group.prop">
-      <avue-form v-if="!formReLoading" v-model="settingsData" class="settings-form" :option="group" />
-    </el-tab-pane>
-  </el-tabs>
+  <avue-form v-if="!formReLoading" v-model="settingsData" class="settings-form" :option="settingsFormOption" />
 </template>

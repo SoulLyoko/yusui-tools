@@ -7,14 +7,13 @@ export const title: Resource = {
   title: '标题',
   icon: 'el-icon-minus',
   group: '布局组件',
-  props: { type: 'title', labelWidth: 0 },
+  props: { type: 'title', labelWidth: 0, modelValue: '标题', styles: { textAlign: 'center' } },
   settings: [
     {
       label: '标题内容',
       prop: 'modelValue',
       type: 'textarea',
       labelPosition: 'top',
-      value: '标题',
     },
     {
       label: '样式',
@@ -22,7 +21,6 @@ export const title: Resource = {
       component: EditorSetter,
       valueType: 'object',
       tooltip: true,
-      value: { textAlign: 'center' },
     },
   ],
 }

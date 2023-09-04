@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { getDataType } from '@yusui/utils'
 
 import EditorSetter from '../editor-setter/index.vue'
 
@@ -18,15 +19,12 @@ const props = defineProps<{
 const vModels = useVModels(props)
 const { modelValue } = vModels as Required<typeof vModels>
 
-const valueType = computed({
-  get() {
-    return props.tableData?.row?.[`${props.prop}ValueType`] ?? props.tableData?.row?.valueType ?? props.defaultValueType ?? 'string'
-  },
-  set(val) {
-    if (props.tableData?.row)
-      props.tableData!.row![`${props.prop}ValueType`] = val
-  },
-})
+const valueType = ref<ValueType>(props.defaultValueType ?? 'string')
+watch(modelValue, (val) => {
+  if (val === undefined)
+    return
+  valueType.value = getDataType(val).toLowerCase() as ValueType
+}, { immediate: true })
 
 function valueTypeChange() {
   modelValue.value = undefined
@@ -55,10 +53,13 @@ const booleanDic = [
   <div style="display: flex">
     <el-input v-if="valueType === 'string'" v-model="modelValue" v-bind="$attrs" />
     <el-input-number v-else-if="valueType === 'number'" v-model="modelValue" controls-position="right" v-bind="$attrs" />
-    <avue-select v-else-if="valueType === 'boolean'" v-model="modelValue" :dic="booleanDic" v-bind="$attrs" />
+    <avue-select v-else-if="valueType === 'boolean'" v-model="modelValue" v-bind="$attrs" :dic="booleanDic" />
     <EditorSetter v-else v-model="modelValue" :value-type="valueType" tooltip v-bind="$attrs" />
 
-    <el-select v-model="valueType" :clearable="false" suffix-icon="" style="width: 50px;flex-shrink: 0;" @change="valueTypeChange">
+    <el-select
+      v-model="valueType" :clearable="false" suffix-icon="" style="width: 50px;flex-shrink: 0;"
+      @change="valueTypeChange"
+    >
       <el-option v-for="item in valueTypesDic" :key="item.value" :label="item.label" :value="item.value" />
     </el-select>
   </div>
