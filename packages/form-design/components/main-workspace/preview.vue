@@ -14,7 +14,13 @@ export default defineComponent({
       return jsonParse.bind(proxy)(jsonStringify(modelValue.value))
     })
     const formRef = ref()
-    return { form, defaults, option, formRef }
+
+    function onSubmit(form: any, done: () => void) {
+      console.log(form)
+      done?.()
+    }
+
+    return { form, defaults, option, formRef, onSubmit }
   },
   render() {
     return h(resolveComponent('avue-form'), {
@@ -24,6 +30,7 @@ export default defineComponent({
       'defaults': this.defaults,
       'onUpdate:modelValue': (e: any) => (this.form = e),
       'onUpdate:defaults': (e: any) => (this.defaults = e),
+      'onSubmit': this.onSubmit,
     })
   },
 })

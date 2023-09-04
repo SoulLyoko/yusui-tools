@@ -1,7 +1,7 @@
 import type { Resource } from '../types'
 
 import { alignDic, iconList, positionDic, sizeDic } from '../options'
-import { SwitchSetter } from '../setters'
+import { EditorSetter, SwitchSetter } from '../setters'
 
 export const form: Resource = {
   name: 'form',
@@ -141,6 +141,38 @@ export const form: Resource = {
       type: 'radio',
       button: true,
       dicData: sizeDic,
+    },
+    {
+      label: '隐藏星号',
+      prop: 'hideRequiredAsterisk',
+      component: SwitchSetter,
+      defaultValue: false,
+    },
+    {
+      label: '星号的位置',
+      prop: 'requireAsteriskPosition',
+      type: 'radio',
+      button: true,
+      dicData: [
+        { label: '左', value: 'left' },
+        { label: '右', value: 'right' },
+      ],
+    },
+    {
+      label: '滚动到错误项',
+      prop: 'scrollToError',
+      labelWidth: 120,
+      labelTip: '当校验失败时，滚动到第一个错误表单项',
+      component: SwitchSetter,
+      defaultValue: false,
+    },
+    {
+      label: '滚动配置',
+      prop: 'scrollIntoViewOptions',
+      labelTip: '当校验有失败结果时，滚动到第一个失败的表单项目时的滚动配置 https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView',
+      component: EditorSetter,
+      tooltip: true,
+      defaultValue: '{}',
     },
   ],
 }

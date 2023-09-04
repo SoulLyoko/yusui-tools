@@ -1,5 +1,8 @@
 import type { Resource } from '../types'
 
+import { EditorSetter, SwitchSetter } from '../setters'
+import { iconList } from '../options'
+
 const switchs: Resource = {
   name: 'switch',
   title: '开关',
@@ -40,14 +43,42 @@ const switchs: Resource = {
       prop: 'len',
     },
     {
-      label: '开启时背景色',
-      prop: 'activeColor',
-      type: 'color',
+      label: '文字在点内',
+      prop: 'inlinePrompt',
+      component: SwitchSetter,
+      defaultValue: false,
     },
     {
-      label: '关闭时背景色',
-      prop: 'inactiveColor',
-      type: 'color',
+      label: '开启时图标',
+      prop: 'activeIcon',
+      type: 'icon',
+      iconList,
+    },
+    {
+      label: '关闭时图标',
+      prop: 'inactiveIcon',
+      type: 'icon',
+      iconList,
+    },
+    {
+      label: '开启动作图标',
+      prop: 'activeActionIcon',
+      type: 'icon',
+      iconList,
+    },
+    {
+      label: '关闭动作图标',
+      prop: 'inactiveActionIcon',
+      type: 'icon',
+      iconList,
+    },
+    {
+      label: '改变前钩子',
+      prop: 'beforeChange',
+      labelTip: '回调 false 则停止切换',
+      component: EditorSetter,
+      tooltip: true,
+      defaultValue: '(cb) => cb(true)',
     },
   ],
 }
