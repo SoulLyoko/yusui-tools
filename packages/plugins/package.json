@@ -9,8 +9,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },
@@ -24,10 +24,10 @@
   ],
   "dependencies": {
     "@vue/compiler-sfc": "^3.3.4",
-    "magic-string": "^0.30.0"
+    "magic-string": "^0.30.3"
   },
   "devDependencies": {
     "@dcloudio/uni-ui": "^1.4.28",
-    "uview-plus": "^3.1.32"
+    "uview-plus": "^3.1.36"
   }
 }

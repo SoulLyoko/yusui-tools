@@ -9,8 +9,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },
@@ -36,9 +36,9 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.18",
-    "element-plus": "^2.3.8",
-    "sass": "^1.64.1",
+    "@smallwei/avue": "^3.2.20",
+    "element-plus": "^2.3.12",
+    "sass": "^1.66.1",
     "vue": "^3.3.4"
   }
 }

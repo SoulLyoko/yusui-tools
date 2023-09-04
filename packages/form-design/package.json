@@ -9,8 +9,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },
@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
-    "@guolao/vue-monaco-editor": "^1.2.0",
+    "@guolao/vue-monaco-editor": "^1.2.1",
     "@iconify/vue": "^4.1.1",
     "@vueuse/core": "~10.1.2",
     "@yusui/types": "workspace:*",
@@ -38,10 +38,10 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.18",
-    "element-plus": "^2.3.8",
+    "@smallwei/avue": "^3.2.20",
+    "element-plus": "^2.3.12",
     "monaco-editor": "^0.41.0",
-    "sass": "^1.64.1",
+    "sass": "^1.66.1",
     "vue": "^3.3.4"
   }
 }

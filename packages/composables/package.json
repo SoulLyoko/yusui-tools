@@ -9,8 +9,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },
@@ -31,7 +31,7 @@
     "vue-request": "^2.0.3"
   },
   "devDependencies": {
-    "element-plus": "^2.3.8",
+    "element-plus": "^2.3.12",
     "vue": "^3.3.4"
   }
 }
