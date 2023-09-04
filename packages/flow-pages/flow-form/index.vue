@@ -29,13 +29,16 @@ const {
   beforeSubmit,
   afterSubmit,
   tabsRef,
+  emitter,
 } = state
 
+/** 按钮点击时如果配置了显示审批窗口，则显示审批窗口，否则直接提交流程 */
 async function onButtonClick(btn: FlowButton) {
   activeBtn.value = btn
   for (const tabRef of Object.values(tabRefs.value))
     await tabRef?.validate?.()
   await beforeClick?.value?.(btn)
+  await emitter.emitAsync('beforeClick', btn)
   if (btn?.approval !== 'false')
     approvalVisible.value = true
   else
@@ -45,19 +48,20 @@ async function onButtonClick(btn: FlowButton) {
 const buttonHandler = useButtonHandler(state)
 async function onSubmit() {
   try {
-    const { buttonKey } = activeBtn.value
     submitLoading.value = true
     await beforeSubmit?.value?.(activeBtn.value!)
+    await emitter.emitAsync('beforeSubmit', activeBtn.value!)
+    const { buttonKey } = activeBtn.value
     const handler = buttonHandler[buttonKey!]
-    if (handler) {
-      await handler?.()
-      await afterSubmit?.value?.(activeBtn.value!)
-      approvalVisible.value = false
-      emit('complete', activeBtn.value!)
-    }
-    else {
+    if (!handler) {
       ElMessage.error('无法找到相应的操作')
+      return
     }
+    await handler?.()
+    await afterSubmit?.value?.(activeBtn.value!)
+    await emitter.emitAsync('afterSubmit', activeBtn.value!)
+    approvalVisible.value = false
+    emit('complete', activeBtn.value!)
   }
   finally {
     submitLoading.value = false

@@ -7,6 +7,7 @@ import { asyncValidate } from '@yusui/flow-pages'
 
 import { useFormDefaults, useInjectState } from '../composables'
 
+// 用defineComponent定义组件，能够在表单配置中通过this获取setup返回的参数
 export default defineComponent({
   setup() {
     const { flowDetail, formData: form, detail } = useInjectState()
@@ -16,6 +17,7 @@ export default defineComponent({
     const option = ref<AvueFormOption>({})
     watchEffect(() => {
       const { formOption } = flowDetail.value.process ?? {}
+      // 给表单配置传递组件实例，即this
       option.value = jsonParse.bind(proxy)(formOption || '{"menuBtn":false}')
       option.value.detail = Boolean(detail.value)
     })

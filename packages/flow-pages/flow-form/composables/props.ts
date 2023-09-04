@@ -15,11 +15,11 @@ export const flowFormProps = {
   submitLoading: { type: Boolean },
   /** 当前激活的标签,v-model */
   activeTab: { type: String, default: 'formTab' },
-  /** 当前点击的按钮 */
+  /** 当前点击的按钮,v-model */
   activeBtn: { type: Object as PropType<FlowButton>, default: () => ({}) },
-  /** 审批表单显示 */
+  /** 审批表单显示,v-model */
   approvalVisible: { type: Boolean },
-  /** 审批表单数据 */
+  /** 审批表单数据,v-model */
   approvalFormData: { type: Object as PropType<ApprovalFormData>, default: () => ({}) },
   /** 流程key */
   flowKey: { type: String },
@@ -35,11 +35,11 @@ export const flowFormProps = {
   permission: { type: Object as PropType<FlowFormPermission> },
   /** 获取流程详情后 */
   afterGetDetail: { type: Function as PropType<() => any> },
-  /** 弹出审批窗口前 */
+  /** 按钮点击时(弹出审批窗口前) */
   beforeClick: { type: Function as PropType<(btn: FlowButton) => any> },
-  /** 审批提交前 */
+  /** 流程提交前 */
   beforeSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
-  /** 审批提交后 */
+  /** 流程提交后 */
   afterSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 详情模式,为true则禁用表单并隐藏按钮 */
   detail: { type: [Boolean, String], default: false },

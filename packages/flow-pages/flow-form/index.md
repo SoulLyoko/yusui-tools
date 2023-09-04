@@ -2,6 +2,25 @@
 
 流程表单
 
+
+## 一些钩子
+
+```ts
+import { useInjectState } from '@yusui/flow-pages'
+
+const { onAfterGetDetail } = useInjectState()
+onAfterGetDetail((data) => {
+  console.log(data)
+})
+```
+
+| 名称             | 说明           | 参数                                     |
+| ---------------- | -------------- | ---------------------------------------- |
+| onAfterGetDetail | 获取流程详情后 | (data: FlowDetail) => MaybePromise<any\> |
+| onBeforeClick    | 获取流程详情后 | (btn: FlowButton) => MaybePromise<any\>  |
+| onBeforeSubmit   | 流程提交前     | (btn: FlowButton) => MaybePromise<any\>  |
+| onAfterSubmit    | 流程提交成功后 | (btn: FlowButton) => MaybePromise<any\>  |
+
 ## 扩展tabs
 
 ::: code-group
@@ -118,3 +137,6 @@ app.use(FlowPages, {
 <<< ./index.vue[@yusui/flow-pages/flow-form]
 
 :::
+
+
+

@@ -3,13 +3,15 @@ import type { InjectionKey } from 'vue'
 
 import { computed, defineAsyncComponent, inject, provide, ref, watchEffect } from 'vue'
 import { clamp, useSwipe, useVModels } from '@vueuse/core'
-import { isMobile, useConfigProvider, useFlowTaskApi } from '@yusui/flow-pages'
+import { isMobile, useConfigProvider, useEmitter, useFlowTaskApi } from '@yusui/flow-pages'
 
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
 export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const vModels = useVModels(props, undefined, { passive: true, deep: true })
   const { flowDetail, modelValue: formData, formLoading, activeTab, afterGetDetail } = vModels
+
+  const { emitter } = useEmitter()
 
   /** 标签页 */
   const { tabs, customForm, request } = useConfigProvider()
@@ -58,6 +60,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
         flowDetail.value = res.data
         formData.value = res.data.formData || {}
         await afterGetDetail?.value?.()
+        await emitter.emitAsync('afterGetDetail', res.data)
       })
       .finally(() => {
         formLoading.value = false
@@ -78,6 +81,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
 
   const state = {
     ...vModels,
+    ...useEmitter(),
     formData,
     formVariables,
     tabRefs,
