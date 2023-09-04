@@ -2,13 +2,11 @@ import type { TableProps } from "element-plus/es/components/table/src/table/defa
 import type { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults";
 import type { UploadFile, UploadRawFile, UploadUserFile } from "element-plus";
 import type { VNode } from "vue";
+import type { ElSize } from "../helpers";
 
 declare module "@smallwei/avue" {
   export type Align = "left" | "center" | "right";
-  export type MenuPosition = "left" | "right" | "center";
-  export type LabelPosition = "left" | "right" | "top";
   export type MenuType = "button" | "icon" | "text" | "menu";
-  export type Size = "large" | "default" | "small";
   // export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Partial<Record<`$${keyof T}`, any>>
   export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Record<string, any>
   export type CellEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, cell: any, event: Event) => void;
@@ -351,7 +349,7 @@ declare module "@smallwei/avue" {
     /** 搜索项标题位置	 */
     searchLabelPosition?: LabelPosition;
     /** 搜索框整体布局大小 */
-    searchSize?: Size;
+    searchSize?: ElSize;
     /** 搜索操作按钮栅格占据的列数 */
     searchMenuSpan?: number;
     /** 首次加载是否显示搜索 */
@@ -569,20 +567,20 @@ declare module "@smallwei/avue" {
   export interface AvueCrudSlots<T = any> {
     empty: () => VNode[];
     expand: (props: { row: TableRowData<T>; index: number }) => VNode[];
-    menu: (props: { row: TableRowData<T>; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
-    "menu-form": (props: { disabled: boolean; size: Size; type: FormType }) => VNode[];
+    menu: (props: { row: TableRowData<T>; type: string; disabled: boolean; size: ElSize; index: number }) => VNode[];
+    "menu-form": (props: { disabled: boolean; size: ElSize; type: FormType }) => VNode[];
     header: () => VNode[];
     footer: () => VNode[];
     page: () => VNode[];
-    "menu-btn": (props: { row: TableRowData<T>; type: string; disabled: boolean; size: Size; index: number }) => VNode[];
-    "menu-left": (props: { size: Size }) => VNode[];
-    "menu-right": (props: { size: Size }) => VNode[];
-    search: (props: { row: T; search: T; size: Size }) => VNode[];
-    "search-menu": (props: { row: T; search: T; disabled: boolean; size: Size }) => VNode[];
+    "menu-btn": (props: { row: TableRowData<T>; type: string; disabled: boolean; size: ElSize; index: number }) => VNode[];
+    "menu-left": (props: { size: ElSize }) => VNode[];
+    "menu-right": (props: { size: ElSize }) => VNode[];
+    search: (props: { row: T; search: T; size: ElSize }) => VNode[];
+    "search-menu": (props: { row: T; search: T; disabled: boolean; size: ElSize }) => VNode[];
     [x: `${string}-form` | `${string}-label`]: (props: {
       value: any;
       column: AvueCrudColumn<T>;
-      size: Size;
+      size: ElSize;
       disabled: boolean;
       dic: DicItem[];
       type: FormType
@@ -592,14 +590,14 @@ declare module "@smallwei/avue" {
       column: AvueFormColumn<T>;
       value: any;
       disabled: boolean;
-      size: Size;
+      size: ElSize;
       dic: DicItem[];
       type: FormType
     }) => VNode[];
     [x: `${string}-search` | `${string}-search-label`]: (props: {
       value: any;
       column: AvueCrudColumn<T>;
-      size: Size;
+      size: ElSize;
       disabled: boolean;
       dic: DicItem[];
     }) => VNode[];
@@ -608,7 +606,7 @@ declare module "@smallwei/avue" {
       row: TableRowData<T>;
       index: number;
       dic: DicItem[];
-      size: Size;
+      size: ElSize;
       label: string
     }) => VNode[];
     // [x: string]: (props: {
@@ -619,7 +617,7 @@ declare module "@smallwei/avue" {
     //   dic?: DicItem[];
     //   disabled?: boolean;
     //   readonly?: boolean;
-    //   size?: Size;
+    //   size?: ElSize;
     //   label?: string;
     //   search?: T;
     //   column?: AvueCrudColumn<T>;

@@ -1,8 +1,12 @@
 import type { Component, VNode } from "vue";
 import type { UploadFile, UploadRawFile, UploadUserFile, FormItemRule } from "element-plus";
+import type { ElSize } from '../helpers'
 
 declare module "@smallwei/avue" {
   export type FormType = "add" | "edit" | "view";
+  export type MenuPosition = "left" | "right" | "center";
+  export type LabelPosition = "left" | "right" | "top";
+  export type AsteriskPosition = 'left' | 'right'
   // export type FormRowData<T> = T & Partial<Record<`$${keyof T}`, any>>
   export type FormRowData<T> = T & Partial<Record<string, any>>
   export type PropKeyType<T> = keyof T extends string ? keyof T : string;
@@ -27,7 +31,7 @@ declare module "@smallwei/avue" {
     /** 字段位置排序，数字越大位置越靠前 */
     order?: number;
     /** 组件的尺寸 */
-    size?: Size;
+    size?: ElSize;
     /** 栅格占据的列数 */
     span?: number;
     /** 栅格间隔 */
@@ -146,7 +150,7 @@ declare module "@smallwei/avue" {
 
   export interface AvueFormOption<T = any> {
     /** 组件大小 */
-    size?: Size;
+    size?: ElSize;
     /** 表单项配置 */
     column?: Array<AvueFormColumn<T>>;
     /** 标题宽度 */
@@ -187,6 +191,14 @@ declare module "@smallwei/avue" {
     readonly?: boolean;
     /** 表单禁用 */
     disabled?: boolean;
+    /** 隐藏星号 */
+    hideRequiredAsterisk?: boolean;
+    /** 星号的位置 */
+    requireAsteriskPosition?: AsteriskPosition;
+    /** 滚动到错误项 */
+    scrollToError?: boolean;
+    /** 滚动到错误项配置 */
+    scrollIntoViewOptions?: ScrollIntoViewOptions;
     [x: string]: any;
   }
 
@@ -235,24 +247,26 @@ declare module "@smallwei/avue" {
     /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */
     validate: (callback?: (valid: boolean, done: () => void, msg: string) => void) => Promise<boolean>;
     /** 对部分表单字段进行校验的方法 */
-    validateField: (props: string[]) => void;
+    validateField: (props?: string[]) => void;
     /** 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果 */
     resetFields: () => void;
     /** 移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果 */
-    clearValidate: () => void;
+    clearValidate: (props?: string[]) => void;
     /** 重新初始化（多数用于服务端加载或者更新网络字典） */
     init: () => void;
     /** 重新初始化字典 */
     dicInit: () => void;
+    /** 滚动到指定的字段 */
+    scrollToField: (prop: string) => void;
   }
   export interface AvueFormSlots<T = any> {
-    "menu-form": (props: { disabled: boolean; size: Size }) => VNode[];
+    "menu-form": (props: { disabled: boolean; size: ElSize }) => VNode[];
     [x: `${string}-header`]: (props: { column: AvueFormColumn<T> }) => VNode[];
     [x: `${string}-label`]: (props: {
       column: AvueFormColumn<T>;
       value: any;
       disabled: boolean;
-      size: Size;
+      size: ElSize;
       dic: DicItem[];
     }) => VNode[];
     [x: `${string}-error`]: (props: {
@@ -260,13 +274,13 @@ declare module "@smallwei/avue" {
       column: AvueFormColumn<T>;
       value: any;
       disabled: boolean;
-      size: Size;
+      size: ElSize;
       dic: DicItem[];
     }) => VNode[];
     [x: string]: (props: {
       value: any;
       column: AvueFormColumn<T>;
-      size: Size;
+      size: ElSize;
       disabled: boolean;
       dic: DicItem[];
     }) => VNode[];
