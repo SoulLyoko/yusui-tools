@@ -1,3 +1,21 @@
+# [2.0.0-beta.79](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2023-09-04)
+
+
+### Bug Fixes
+
+* **form-design:** 优化属性配置面板 ([e1c7c11](https://github.com/SoulLyoko/yusui-tools/commit/e1c7c11c3425ca7e99e3ef92790f17513d7f315b))
+* **utils:** filterObj和filterObjDeep增加值为null的处理 ([0e4d276](https://github.com/SoulLyoko/yusui-tools/commit/0e4d2763a78b55b052c0b0e1bce6ae3264c09b58))
+
+
+### Features
+
+* **flow-pages:** 新增流程提交前后等的钩子用法 ([7ca2d3e](https://github.com/SoulLyoko/yusui-tools/commit/7ca2d3e62932307c05254b10f34fc9832a41b8e5))
+* **form-design:** 新增form和switch的一些属性配置 ([2a229b9](https://github.com/SoulLyoko/yusui-tools/commit/2a229b95b6a8f13ee5bc30e1ea42f0a55cd4606d))
+* **plugins:** avuePatch新增表单分组处理 ([5e9aca2](https://github.com/SoulLyoko/yusui-tools/commit/5e9aca20441acfc77eb28f136fa1064226e13aad))
+* **types:** avue新增一些属性 ([34315dc](https://github.com/SoulLyoko/yusui-tools/commit/34315dcf52c94c466b9cd2fdc25323f6a9574f12))
+
+
+
 # [2.0.0-beta.78](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.77...v2.0.0-beta.78) (2023-08-31)
 
 
