@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { form, jsonParse, jsonStringify } from '@yusui/form-design'
+import { base, form, jsonParse, jsonStringify } from '@yusui/form-design'
 import { useConfigProvider } from '@yusui/flow-pages'
 
 const props = defineProps<{
@@ -33,10 +33,16 @@ const baseOption = computed(() => {
     allowCreate: true,
     defaultFirstOption: true,
   }
-  return [
-    { ...common, props: { label: 'name', value: 'name', desc: 'comment' } },
-    { ...common, props: { label: 'comment', value: 'comment', desc: 'name' } },
-  ]
+  return (context: any) => {
+    const defaultBaseOption = base(context)
+    return [
+      { ...common, props: { label: 'name', value: 'name', desc: 'comment' } },
+      { ...common, props: { label: 'comment', value: 'comment', desc: 'name' } },
+      ...Array.from({ length: (defaultBaseOption?.length ?? 0) - 2 })
+        .fill({})
+        .concat({ label: '样式类', prop: 'class' }),
+    ]
+  }
 })
 
 const resourcesToMerge: Record<string, any> = {
