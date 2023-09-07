@@ -1,11 +1,12 @@
-import type { Resource } from '../types'
+import type { SettingsFunc } from '../types'
+import type { AvueFormColumn } from '@smallwei/avue'
 
 import { findTree, treeMap } from '@yusui/utils'
 
 import { alignDic, placementDic, positionDic, sizeDic } from './dic'
 import { RulesSetter, SwitchSetter, ValueSetter } from '../setters'
 
-const basic = [
+const basic: AvueFormColumn[] = [
   {
     label: '字段标识',
     prop: 'prop',
@@ -117,7 +118,7 @@ const basic = [
   },
 ]
 
-const dynamic = [
+const dynamic: AvueFormColumn[] = [
   { labelWidth: 0, type: 'title', modelValue: '子表单/表格属性' },
   {
     label: '宽度',
@@ -173,7 +174,7 @@ const dynamic = [
   },
 ]
 
-export const base: Resource['settings'] = ({ elementTree, activeElement }) => {
+export const base: SettingsFunc = ({ elementTree, activeElement }) => {
   const newTree = treeMap([elementTree], (node, index, parent) => ({ ...node, parent }))
   const find = findTree(newTree, node => node.id === activeElement.id)
   if (find?.parent?.name === 'dynamic')

@@ -5,7 +5,7 @@ import { ref } from 'vue'
 
 import { form } from './resources'
 import { SwitchSetter } from './setters'
-import { groupList as defaultGroupList } from './options'
+import { base, groupList as defaultGroupList } from './options'
 
 const option = ref({})
 
@@ -15,34 +15,26 @@ const filesDic = [
 ]
 
 // 扩展基础配置
-const baseOption = [
-  // 为字段标识增加可选项
-  {
-    type: 'select',
-    dicData: filesDic,
-    filterable: true,
-    allowCreate: true,
-    defaultFirstOption: true,
-    props: { label: 'name', value: 'name', desc: 'comment' },
-  },
-  // 为字段标题增加可选项
-  {
-    type: 'select',
-    dicData: filesDic,
-    filterable: true,
-    allowCreate: true,
-    defaultFirstOption: true,
-    props: { label: 'comment', value: 'comment', desc: 'name' },
-  },
-]
+function baseOption(context: any) {
+  const defaultBaseOption = base(context)
+  const commonOption = { type: 'select', dicData: filesDic, filterable: true, allowCreate: true, defaultFirstOption: true }
+  return [
+    // 为字段标识增加可选项
+    { ...commonOption, props: { label: 'name', value: 'name', desc: 'comment' } },
+    // 为字段标题增加可选项
+    { ...commonOption, props: { label: 'comment', value: 'comment', desc: 'name' } },
+    // 最后添加一个样式类
+    ...Array.from({ length: (defaultBaseOption?.length ?? 0) - 2 })
+      .fill({}).concat({ label: '样式类', prop: 'class' }),
+  ]
+}
 
 // 扩展物料库
 const resources: Record<string, Resource> = {
   // 给表单增加一个样式类的配置
   form: {
     settings: Array.from({ length: form.settings?.length ?? 0 })
-      .fill({})
-      .concat({ label: '样式类', prop: 'class' }),
+      .fill({}).concat({ label: '样式类', prop: 'class' }),
   } as Resource,
   // 自定义组件,基于el-text封装(@yusui/components/v-text)
   custom: {
@@ -87,5 +79,8 @@ const groupList = ['自定义分组', ...defaultGroupList]
 </script>
 
 <template>
-  <FormDesign v-model="option" :base-option="baseOption" :resources="resources" :group-list="groupList" style="height: 800px" />
+  <FormDesign
+    v-model="option" :base-option="baseOption" :resources="resources" :group-list="groupList"
+    style="height: 800px"
+  />
 </template>

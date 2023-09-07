@@ -15,6 +15,10 @@ export interface ElementTreeNode {
   children?: ElementTreeNode[]
 }
 
+export type SettingsFunc = (context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[]
+
+export type DesignOptionFunc = (element: ElementTreeNode) => AvueFormOption
+
 /** 左侧物料组件 */
 export interface Resource {
   /** 组件名称 */
@@ -40,7 +44,7 @@ export interface Resource {
   /** 是否容器组件 */
   isContainer?: boolean
   /** 设计面板渲染配置 */
-  designOption?: AvueFormOption | ((element: ElementTreeNode) => AvueFormOption)
+  designOption?: AvueFormOption | DesignOptionFunc
   /** 禁用组件，将不会出现在组件面板中 */
   disabled?: boolean
   /** 设计面板中禁用复制、删除等动作 */
@@ -50,9 +54,7 @@ export interface Resource {
   /** 配置面板的默认值 */
   props?: ComponentProps
   /** 配置面板 */
-  settings?:
-  | AvueFormColumn[]
-  | ((context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[])
+  settings?: AvueFormColumn[] | SettingsFunc
   /** 拖放规则 */
   rules?: {
     /** 父级白名单 */
