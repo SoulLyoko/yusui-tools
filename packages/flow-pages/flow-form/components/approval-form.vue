@@ -92,7 +92,7 @@ watchEffect(async () => {
   if (!approvalVisible.value || !formRef.value)
     return
   nextTick(() => {
-    formRef.value!.resetFields()
+    formRef.value!.resetForm()
     approvalFormData.value.comment = formData.value.comment || (autoComment.value === 'true' && activeBtn.value.name) || ''
     // // 流程发起默认意见
     // if (!approvalFormData.value.comment && defaultComment.value)
@@ -102,11 +102,11 @@ watchEffect(async () => {
     //   approvalFormData.value.comment = activeBtn.value.name
   })
 
-  const { taskId } = flowDetail.value?.task || {}
-  const { flowKey } = flowDetail.value?.process || {}
-
   resetNodes()
+})
 
+/** 分开监听jumpTaskNodeKey，不然会导致jumpTaskNodeKey被清空 */
+watchEffect(async () => {
   /** 不显示审批人 */
   if (!checkField('assignee'))
     return
@@ -116,6 +116,8 @@ watchEffect(async () => {
   /** 获取审批人和传阅人节点数据 */
   try {
     treeLoading.value = true
+    const { taskId } = flowDetail.value?.task || {}
+    const { flowKey } = flowDetail.value?.process || {}
     const res = await getApprovalNode({
       flowKey,
       taskId,
