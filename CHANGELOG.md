@@ -1,3 +1,17 @@
+# [2.0.0-beta.80](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2023-09-07)
+
+
+### Bug Fixes
+
+* **flow-pages:** 修复绿色通道选择节点会被清空 ([4ab3cb1](https://github.com/SoulLyoko/yusui-tools/commit/4ab3cb153f5c0176ab1e095501b83a8538424017))
+
+
+### Features
+
+* **types:** 完善AvueTree的类型 ([81d2ee5](https://github.com/SoulLyoko/yusui-tools/commit/81d2ee52becfff968f8f2be174b140d937b469a2))
+
+
+
 # [2.0.0-beta.79](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.78...v2.0.0-beta.79) (2023-09-04)
 
 
