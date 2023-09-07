@@ -496,6 +496,7 @@ declare module "@smallwei/avue" {
     /** 更新配置项结构 */
     "onUpdate:defaults"?: (defaluts: AvueCrudDefaults) => any;
   }
+  
   export interface AvueCrudMethods<T = any> {
     /** 打开表单新增窗口 */
     rowAdd: () => void;

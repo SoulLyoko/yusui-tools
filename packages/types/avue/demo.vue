@@ -6,6 +6,7 @@ import type {
   AvueFormDefaults,
   AvueFormInstance,
   AvueFormOption,
+  AvueTreeInstance,
   AvueTreeOption,
 } from '@smallwei/avue'
 
@@ -15,8 +16,8 @@ interface User {
   name?: string
 }
 
-const data = ref<User[]>([{ name: 'admin' }])
-const crudOption: AvueCrudOption<User> = {
+const tableData = ref<User[]>([{ name: 'admin' }])
+const tableOption: AvueCrudOption<User> = {
   searchBtn: false,
   emptyBtn: false,
   // addBtn: false,
@@ -46,7 +47,7 @@ watchEffect(() => {
   crudDefaults.value.name.prop = 'name'
 })
 
-const form = ref<User>({ name: 'admin' })
+const formData = ref<User>({ name: 'admin' })
 const formOption: AvueFormOption<User> = {
   column: [{
     label: '名称',
@@ -66,7 +67,9 @@ watchEffect(() => {
   formDefaults.value.name.prop = 'name'
 })
 
-const tree = ref<User[]>([{ name: 'admin' }])
+const treeRef = ref<AvueTreeInstance>()
+treeRef.value?.filter('')
+const treeData = ref<User[]>([{ name: 'admin' }])
 const treeOption: AvueTreeOption<User> = {
   formOption: {
     column: [{
@@ -80,9 +83,9 @@ const treeOption: AvueTreeOption<User> = {
 
 <template>
   <h2>AvueCrud</h2>
-  tableData: {{ data }}
+  tableData: {{ tableData }}
   crudDefaults: {{ crudDefaults }}
-  <avue-crud ref="crudRef" v-model:defaults="crudDefaults" :data="data" :option="crudOption">
+  <avue-crud ref="crudRef" v-model:defaults="crudDefaults" :data="tableData" :option="tableOption">
     <template #search="props">
       #search: {{ props }}
     </template>
@@ -128,9 +131,9 @@ const treeOption: AvueTreeOption<User> = {
   </avue-crud>
 
   <h2>AvueForm</h2>
-  formData: {{ form }}
+  formData: {{ formData }}
   formDefaults: {{ formDefaults }}
-  <avue-form ref="formRef" v-model="form" v-model:defaults="formDefaults" :option="formOption">
+  <avue-form ref="formRef" v-model="formData" v-model:defaults="formDefaults" :option="formOption">
     <template #name-label="props">
       #name-label: {{ props }}
     </template>
@@ -146,7 +149,7 @@ const treeOption: AvueTreeOption<User> = {
   </avue-form>
 
   <h2>AvueTree</h2>
-  <avue-tree :data="tree" :option="treeOption">
+  <avue-tree ref="treeRef" :data="treeData" :option="treeOption">
     <template #menu="props">
       {{ props?.node.data }}
     </template>

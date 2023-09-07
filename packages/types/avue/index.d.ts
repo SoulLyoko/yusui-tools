@@ -13,6 +13,9 @@ declare module "@smallwei/avue" {
   };
   const Avue: {
     install(app: import("vue").App, config?: AvueConfig): void;
+    locale: { use: Function, t: Function, i18n: Function }
+    version: string
+    [name: string]: import("vue").DefineComponent
   };
   export type AvueConfig = typeof avueConfig;
   export default Avue;

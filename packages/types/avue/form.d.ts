@@ -235,6 +235,7 @@ declare module "@smallwei/avue" {
     /** 更新配置项结构 */
     "onUpdate:defaults"?: (defaluts: AvueFormDefaults) => any;
   }
+
   export interface AvueFormMethods<T = any> {
     /** 对整个表单进行提交 */
     submit: () => void;
@@ -259,6 +260,7 @@ declare module "@smallwei/avue" {
     /** 滚动到指定的字段 */
     scrollToField: (prop: string) => void;
   }
+  
   export interface AvueFormSlots<T = any> {
     "menu-form": (props: { disabled: boolean; size: ElSize }) => VNode[];
     [x: `${string}-header`]: (props: { column: AvueFormColumn<T> }) => VNode[];
@@ -286,10 +288,8 @@ declare module "@smallwei/avue" {
     }) => VNode[];
   }
 
-
   export const AvueForm: new <T = any>(props: AvueFormProps<T>) =>
     { $props: AvueFormProps; $slots: AvueFormSlots<T>; } & AvueFormMethods<T>
-
 
   export type AvueFormInstance<T = any> = InstanceType<typeof AvueForm<T>>
 }
