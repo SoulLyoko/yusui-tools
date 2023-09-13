@@ -26,7 +26,7 @@ import Uvue from '@yusui/uvue'
 
 import request from '@/api'
 
-app.use(uvue, { request })
+app.use(Uvue, { request })
 ```
 
 ## 配置 easycom 规则
