@@ -24,7 +24,5 @@ const tableOption = computed(() => {
 </script>
 
 <template>
-  <div>
-    <avue-dynamic v-model="tableData" :children="tableOption" />
-  </div>
+  <avue-dynamic v-model="tableData" :children="tableOption" />
 </template>

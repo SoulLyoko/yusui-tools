@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FlowButton } from '@yusui/flow-pages'
+import type { FlowButton, FlowButtonDisplay } from '@yusui/flow-pages'
 import type { ButtonItem } from '@yusui/flow-design'
 
 import { computed } from 'vue'
@@ -24,27 +24,36 @@ function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   })
 }
 
+type OrConditionKey = 'true' | 'notstarted'
+type AndConditionKey = Exclude<FlowButtonDisplay, OrConditionKey>
+
 // 显示的按钮
 const displayButtonList = computed(() => {
   const user = typeof userInfo === 'function' ? userInfo() : userInfo
   const { assignee, status: taskStatus } = flowDetail.value?.task || {}
   const { createUser, flowInstanceId, status: flowStatus } = flowDetail.value?.flowInstance || {}
-  const buttonCondition: Record<string, boolean> = {
-    true: true,
+
+  const andCondition: Record<AndConditionKey, boolean> = {
     false: false,
     startUser: createUser == user?.userId,
     assignee: assignee == user?.userId,
     todo: taskStatus == TaskStatus['待办'],
     done: taskStatus == TaskStatus['已办'],
-    notstarted: !flowInstanceId,
-    started: !!flowInstanceId,
-    finished: flowStatus === FlowStatus['已办结'],
     unfinished: flowStatus === FlowStatus['未办结'],
+    finished: flowStatus === FlowStatus['已办结'],
+    started: !!flowInstanceId,
+  }
+  const orCondition: Record<OrConditionKey, boolean> = {
+    true: true,
+    notstarted: !flowInstanceId,
   }
 
   const { button: buttonProperties } = flowDetail.value?.properties || {}
   const filterBtn = mergeButton(allButtonList.value ?? [], buttonProperties ?? [])?.filter((item) => {
-    return item.display?.split(',')?.every(condition => buttonCondition[condition])
+    const displayList = item.display?.split(',')
+    const and = displayList?.every(condition => andCondition[condition as AndConditionKey])
+    const or = displayList?.some(condition => orCondition[condition as OrConditionKey])
+    return and || or
   })
   return filterBtn ?? []
 })

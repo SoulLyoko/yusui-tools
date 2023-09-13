@@ -28,13 +28,13 @@ getDataList()
     </template>
     <template #buttonPreview="{ row }">
       <el-button :type="row.buttonType">
-        <Icon :icon="row.icon!" />
+        <Icon v-if="row.icon" :icon="row.icon" />
         {{ row.name }}
       </el-button>
     </template>
     <template #buttonPreview-form>
       <el-button :type="formData.buttonType">
-        <Icon :icon="formData.icon!" />
+        <Icon v-if="formData.icon" :icon="formData.icon" />
         {{ formData.name }}
       </el-button>
     </template>

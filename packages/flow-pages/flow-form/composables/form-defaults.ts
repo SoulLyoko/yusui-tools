@@ -15,6 +15,8 @@ export function useFormDefaults(flowDetail: MaybeRef<FlowDetail>) {
     Object.keys(defaults.value).forEach((prop) => {
       const label = defaults.value[prop]?.label || ''
       const find = formProperty?.find(e => e.prop === prop)
+      if (!find)
+        return
       defaults.value[prop].display = find?.display
       defaults.value[prop].disabled = find?.disabled
       defaults.value[prop].detail = find?.detail

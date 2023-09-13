@@ -37,10 +37,10 @@ export enum FlowButtonDisplay {
   '处理人' = 'assignee',
   '已办' = 'done',
   '待办' = 'todo',
-  '未发起' = 'notstarted',
-  '已发起' = 'started',
-  '未办结' = 'unfinished',
   '已办结' = 'finished',
+  '未办结' = 'unfinished',
+  '已发起' = 'started',
+  '未发起' = 'notstarted',
 }
 
 export enum FlowButtonApproval {
