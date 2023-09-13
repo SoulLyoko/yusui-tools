@@ -1,3 +1,12 @@
+# [2.0.0-beta.82](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.81...v2.0.0-beta.82) (2023-09-13)
+
+
+### Bug Fixes
+
+* **flow-pages:** 修复按钮显示和表单配置问题 ([5b87ed9](https://github.com/SoulLyoko/yusui-tools/commit/5b87ed9aff7e8ae142daed10b17f32dffcab4c7b))
+
+
+
 # [2.0.0-beta.81](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2023-09-13)
 
 
