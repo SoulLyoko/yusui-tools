@@ -1,7 +1,6 @@
 import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption, DicItem } from '@smallwei/avue'
 import type { Definition, EdgeConfig, LogicFlow, NodeConfig } from '@logicflow/core'
-import type { StyleItem, TooltipItem, TurboData } from '../extensions'
-import type { ButtonItem, FlowFormData } from '../types'
+import type { ButtonItem, FlowFormData, StyleItem, TooltipItem, TurboData } from '../types'
 
 export interface FlowDesignProps {
   /** LogicFlow实例 */
@@ -22,8 +21,6 @@ export interface FlowDesignProps {
   formDefaults?: AvueFormDefaults
   /** 表单宽度 */
   formWidth?: string
-  // formOptionFormat?: (option: AvueFormOption) => AvueFormOption | Promise<AvueFormOption>
-  // formDataFormat?: (data: object) => object | Promise<object>
   /** 表单配置数据 */
   dataOptions?: {
     /** 按钮数据 */
@@ -36,6 +33,16 @@ export interface FlowDesignProps {
     flowButtonDisplayDic?: DicItem[]
     /** 按钮审批字典 */
     flowButtonApprovalDic?: DicItem[]
+    /** 按钮校验字典 */
+    flowButtonValidateDic?: DicItem[]
+    /** 人员配置用户选择 */
+    flowAssigneeUserDic?: DicItem[]
+    /** 人员配置用户部门 */
+    flowAssigneeDeptDic?: DicItem[]
+    /** 人员配置岗位选择 */
+    flowAssigneePostDic?: DicItem[]
+    /** 人员配置动态选择 */
+    flowAssigneeDynamicDic?: DicItem[]
   }
   /** 查看器模式 */
   type?: 'viewer'

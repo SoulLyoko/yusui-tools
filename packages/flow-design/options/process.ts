@@ -1,7 +1,8 @@
 import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
 
-import FlowNodeSelect from '../components/flow-node-select.vue'
+import FlowNodeSelect from '../components/FlowNodeSelect.vue'
+import FlowFieldsSelect from '../components/FlowFieldsSelect.vue'
 
 export const processColumn: AvueFormColumn<FlowFormData>[] = [
   {
@@ -23,6 +24,7 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
     label: '优先级字段',
     prop: 'priority',
     type: 'select',
+    component: FlowFieldsSelect,
     filterable: true,
     allowCreate: true,
     defaultFirstOption: true,
@@ -32,6 +34,7 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
     prop: 'formTitle',
     separator: '-',
     type: 'select',
+    component: FlowFieldsSelect,
     dataType: 'string',
     multiple: true,
     filterable: true,

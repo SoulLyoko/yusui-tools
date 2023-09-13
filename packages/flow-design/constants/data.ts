@@ -1,11 +1,11 @@
-import type { TurboData } from '../extensions'
+import type { TurboData } from '../types'
 
 import { bpmnUtils } from '@logicflow/extension'
 
 export function defaultGraphData(): TurboData {
   const processId = `Process_${bpmnUtils.genBpmnId()}`
-  const StartEventId = `Event_${bpmnUtils.genBpmnId()}`
-  const flowId = `Flow_${bpmnUtils.genBpmnId()}`
+  const startEventId = `Event_${bpmnUtils.genBpmnId()}`
+  const sequenceFlowId = `Flow_${bpmnUtils.genBpmnId()}`
   const userTaskId = `Activity_${bpmnUtils.genBpmnId()}`
   return {
     processData: {
@@ -16,9 +16,9 @@ export function defaultGraphData(): TurboData {
     flowElementList: [
       {
         incoming: [],
-        outgoing: [flowId],
+        outgoing: [sequenceFlowId],
         type: 'startEvent',
-        key: StartEventId,
+        key: startEventId,
         properties: {
           name: '开始',
           x: 160,
@@ -31,7 +31,7 @@ export function defaultGraphData(): TurboData {
         },
       },
       {
-        incoming: [flowId],
+        incoming: [sequenceFlowId],
         outgoing: [],
         type: 'userTask',
         key: userTaskId,
@@ -47,10 +47,10 @@ export function defaultGraphData(): TurboData {
         },
       },
       {
-        incoming: [StartEventId],
+        incoming: [startEventId],
         outgoing: [userTaskId],
         type: 'sequenceFlow',
-        key: flowId,
+        key: sequenceFlowId,
         properties: {
           name: '',
           text: '',

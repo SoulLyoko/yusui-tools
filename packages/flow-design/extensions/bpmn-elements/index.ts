@@ -39,7 +39,8 @@ export class BpmnElements {
     // 服务任务
     lf.register(TaskNodeFactory('serviceTask', icons.serviceTaskIcon))
     // 传阅任务
-    lf.register(TaskNodeFactory('circulateTask', [h('path', { d: icons.manualTaskIcon, fill: 'none', stroke: 'black', transform: 'scale(30)' })]))
+    const manualTaskIconProps = { d: icons.manualTaskIcon, fill: 'none', stroke: 'black', transform: 'scale(30)' }
+    lf.register(TaskNodeFactory('circulateTask', [h('path', manualTaskIconProps)]))
     // 流转线
     lf.register({ ...sequenceFlowFactory(), type: 'sequenceFlow' })
     // 注释节点

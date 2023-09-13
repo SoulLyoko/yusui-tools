@@ -1,9 +1,5 @@
 import type { LogicFlow } from '@logicflow/core'
-
-export interface TooltipItem {
-  id?: string
-  content?: string
-}
+import type { TooltipItem } from '../types'
 
 export class Tooltips {
   static pluginName = 'tooltips'

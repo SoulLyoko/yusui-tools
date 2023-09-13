@@ -14,10 +14,12 @@
     .el-slider__input {
       width: 60px;
     }
-    .avue-crud.hide-menu {
-      .avue-crud__menu,
-      .avue-crud__header {
-        display: none;
+    .avue-dynamic .cell {
+      .el-table__expand-icon + .el-form-item {
+        width: unset;
+      }
+      .el-table__indent + .el-table__placeholder + .el-form-item {
+        width: unset;
       }
     }
   }

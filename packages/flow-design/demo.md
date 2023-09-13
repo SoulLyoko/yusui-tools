@@ -25,8 +25,6 @@ aside: false
 <<< @/flow-design/demo/viewer.vue
 :::
 
-
-
 ## 属性
 
 | 属性名               | 说明                   | 类型                            | 可选值   | 默认值 |
@@ -45,3 +43,10 @@ aside: false
 | styles               | 节点样式(查看器模式)   | StyleItem[]                     |          |        |
 | tooltips             | 节点提示框(查看器模式) | TooltipItem[]                   |          |        |
 
+## 类型定义
+
+<<< @/flow-design/types/props.ts
+
+<<< @/flow-design/types/data.ts
+
+<<< @/flow-design/types/extensions.ts

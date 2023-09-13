@@ -1,9 +1,5 @@
-import type { LogicFlow, ShapeStyleAttribute } from '@logicflow/core'
-
-export interface StyleItem {
-  id?: string
-  style?: ShapeStyleAttribute
-}
+import type { LogicFlow } from '@logicflow/core'
+import type { StyleItem } from '../types'
 
 export class Styles {
   static pluginName = 'styles'

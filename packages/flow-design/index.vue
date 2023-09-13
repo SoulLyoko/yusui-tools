@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
 import { uniqueId } from 'lodash-unified'
 
 import { useInit, useProvideState } from './composables'
-import FlowEditor from './components/flow-editor.vue'
+import FlowEditor from './components/FlowEditor.vue'
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
 
@@ -27,8 +27,7 @@ onMounted(() => {
 
   <el-container v-else class="lf-container">
     <el-main :id="containerId" class="lf-main" />
-    <el-aside :width="formWidth" class="lf-aside">
-      <slot name="form-top" />
+    <el-aside class="lf-aside" :width="formWidth">
       <el-empty v-if="!formOption?.group?.length" description="选择元素以编辑数据" />
       <el-skeleton v-else-if="formLoading" />
       <avue-form
@@ -37,10 +36,6 @@ onMounted(() => {
       />
     </el-aside>
 
-    <FlowEditor v-model="graphData" v-model:visible="editorVisible" @confirm="lf?.render($event)">
-      <template v-if="$slots['editor-header']" #header>
-        <slot name="editor-header" />
-      </template>
-    </FlowEditor>
+    <FlowEditor v-model="graphData" v-model:visible="editorVisible" @save="lf?.render($event)" />
   </el-container>
 </template>

@@ -15,23 +15,15 @@ export function useModelerListener({
   formOption,
   formOptions,
   editorVisible,
-  // formOptionFormat,
-  // formDataFormat,
   dataOptions,
-  formRef,
-  formDefaults,
 }: FlowDesignState) {
   async function selectElement({ data, isForce } = { data: {} as EdgeConfig | NodeConfig, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === 'process')
-    if (!data && processNode?.id) {
-      // elementData!.value = undefined;
-      // formOption.value.group = [];
-      // formData.value = {};
-      // return;
+    if (!data && processNode?.id)
       data = lf.value?.getNodeDataById(processNode.id) as NodeConfig
-    }
     if (data?.id === elementData.value?.id && data?.type === elementData.value?.type && !isForce)
       return
+
     data.type !== 'process' && lf.value?.selectElementById(data.id!)
 
     formLoading.value = true
@@ -44,40 +36,7 @@ export function useModelerListener({
       group: formOptions.value?.[data.type!] ?? defaultGroup,
     }
     formData.value = { ...data.properties, id: data.id, name: (data.text as TextConfig)?.value || '' }
-    // formOption.value = await formOptionFormat({
-    //   menuBtn: false,
-    //   span: 24,
-    //   labelPosition: 'left',
-    //   group: formOptions.value?.[data.type] ?? defaultGroup,
-    // })
-    // formData.value = await formDataFormat({ ...data.properties, id: data.id, name: data.text?.value || '' })
     formLoading.value = false
-    await nextTick()
-    handleDataOptions()
-  }
-
-  async function handleDataOptions() {
-    const { formPropertyList, buttonList, fieldsDic, flowButtonDisplayDic, flowButtonApprovalDic } = dataOptions.value ?? {}
-    const hasProp = (prop: string) => formOption.value?.group?.some(g => g.column?.some(c => c.prop === prop))
-    // 按钮配置
-    if (hasProp('button')) {
-      formData.value!.button = mergeButton(buttonList || [], formData.value?.button || [])
-      formDefaults.value?.button.children?.column?.forEach((col) => {
-        if (col.prop === 'display')
-          col.dicData = flowButtonDisplayDic
-        if (col.prop === 'approval')
-          col.dicData = flowButtonApprovalDic
-      })
-    }
-    // 表单配置
-    if (hasProp('formProperty'))
-      formData.value!.formProperty = mergeFormProperty(formPropertyList || [], formData.value?.formProperty || [])
-    // 优先级字段
-    if (hasProp('priority'))
-      formRef.value?.updateDic('priority', fieldsDic)
-    // 表单标题字段
-    if (hasProp('formTitle'))
-      formRef.value?.updateDic('formTitle', fieldsDic)
   }
 
   lf.value?.on('element:click', selectElement)

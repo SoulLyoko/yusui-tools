@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import type { DicItem } from '@smallwei/avue'
+
 import { computed } from 'vue'
 
 import { useInjectState } from '../composables/state'
 
-const props = defineProps<{ filterType?: string | string[]; dic?: any[] }>()
+const props = defineProps<{
+  /** 过滤出节点类型 */
+  filterType?: string | string[]
+  dic?: DicItem[]
+}>()
 
 const { lf } = useInjectState()
 
