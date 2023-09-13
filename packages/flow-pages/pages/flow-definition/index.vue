@@ -4,7 +4,7 @@ import type { FlowDefinition } from '@yusui/flow-pages'
 import { ref, watchEffect } from 'vue'
 import { watchDebounced } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { pick } from 'lodash-es'
+import { debounce, pick } from 'lodash-es'
 import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
 import { useConfigProvider, useFlowDefinitionApi } from '@yusui/flow-pages'
@@ -26,6 +26,9 @@ const {
   crudOption: {
     getList,
     remove,
+  },
+  sortOption: {
+    ascs: 'sort',
   },
   searchForm: { categoryId: props.categoryId },
 })
@@ -58,9 +61,12 @@ async function handleDel(row: FlowDefinition) {
   getDataList()
 }
 
-function handleUpdateSort(row: FlowDefinition) {
-  update(pick(row, ['flowModuleId', 'sort']))
+function updateSort(row: FlowDefinition) {
+  update(pick(row, ['flowModuleId', 'flowKey', 'sort']))
+  getDataList()
 }
+
+const updateSortDebounce = debounce(updateSort, 500)
 </script>
 
 <template>
@@ -91,7 +97,7 @@ function handleUpdateSort(row: FlowDefinition) {
       <Icon :icon="row.flowIcon!" width="25" style="display: inline" />
     </template>
     <template #sort="{ row }">
-      <el-input-number v-model="row.sort" controls-position="right" style="width:100%" @change="handleUpdateSort(row)" />
+      <el-input-number v-model="row.sort" controls-position="right" style="width:100%" @change="updateSortDebounce(row)" />
     </template>
   </avue-crud>
 </template>

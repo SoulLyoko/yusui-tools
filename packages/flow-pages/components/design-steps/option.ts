@@ -21,7 +21,7 @@ export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
       prop: 'categoryId',
       type: 'select',
       dicUrl: '/sapier-flow/flow-category/list',
-      dicQuery: { size: -1 },
+      dicQuery: { size: -1, ascs: 'sort' },
       props: { label: 'name', value: 'id' },
     },
     {

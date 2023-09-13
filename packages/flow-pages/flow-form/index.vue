@@ -35,8 +35,10 @@ const {
 /** 按钮点击时如果配置了显示审批窗口，则显示审批窗口，否则直接提交流程 */
 async function onButtonClick(btn: FlowButton) {
   activeBtn.value = btn
-  for (const tabRef of Object.values(tabRefs.value))
-    await tabRef?.validate?.()
+  if (btn.validate === 1) {
+    for (const tabRef of Object.values(tabRefs.value))
+      await tabRef?.validate?.()
+  }
   await beforeClick?.value?.(btn)
   await emitter.emitAsync('beforeClick', btn)
   if (btn?.approval !== 'false')

@@ -37,13 +37,19 @@ export interface FlowParamFlowStatus {
 }
 
 export interface FlowParamMap {
+  /** 流程办理状态 */
   'flow.task.status': FlowParamTaskStatus[]
+  /** 流程操作类型 */
   'flow.handle.type': FlowParamHandleType[]
+  /** 流程状态 */
   'flow.status': FlowParamFlowStatus[]
+  /** 自动建表设计默认字段 */
   'table.default.fields': TableField[]
-  'flow.default.comment': string
+  /** 只有一个节点时自动选择 */
   'flow.approval.autocheck': 'true' | 'fasle'
+  /** 自动填入意见 */
   'flow.approval.autocomment': 'true' | 'fasle'
+  /** 流程动态审批人 */
   'flow.trends.user': DicItem[]
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any

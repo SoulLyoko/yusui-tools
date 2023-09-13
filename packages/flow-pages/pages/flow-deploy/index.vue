@@ -27,6 +27,9 @@ const {
     getList,
     dataPath: 'res.data',
   },
+  sortOption: {
+    descs: 'version',
+  },
 })
 
 watchEffect(() => {

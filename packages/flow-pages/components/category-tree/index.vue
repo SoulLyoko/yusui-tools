@@ -20,6 +20,9 @@ const {
     ...useFlowCategoryApi(request),
     dataPath: 'res.data',
   },
+  sortOption: {
+    ascs: 'sort',
+  },
   tableOption: treeOption,
   pageOption: { pageSize: 20 },
 })

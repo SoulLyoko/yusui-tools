@@ -1,5 +1,6 @@
 import type { ResData } from '@yusui/types'
 import type { RequestInstance } from '../types'
+import type { Options } from 'vue-request'
 
 import { useRequest } from 'vue-request'
 
@@ -24,7 +25,7 @@ export function useFlowUserApi(request: RequestInstance) {
     tree: '/sapier-flow/flow-user/tree',
   }
   const getUserTree = (filter?: string) => request.get<ResData<FlowUserTree[]>>(url.tree, { params: { filter } })
-  const useUserTree = () => useRequest(() => getUserTree().then(res => res.data))
+  const useUserTree = (options?: Options<FlowUserTree[], [string]>) => useRequest((filter?: string) => getUserTree(filter).then(res => res.data), options)
   return {
     url,
     getUserTree,

@@ -1,6 +1,7 @@
 import type { ButtonType } from 'element-plus'
 import type { Page, ResRecords } from '@yusui/types'
 import type { RequestInstance } from '../types'
+import type { Options } from 'vue-request'
 
 import { useRequest } from 'vue-request'
 
@@ -66,6 +67,8 @@ export interface FlowButton {
   display?: FlowButtonDisplay
   /** 审批弹窗显示 */
   approval?: FlowButtonApproval
+  /** 点击按钮是否先执行校验 0否 1是 */
+  validate?: number
   /** 按钮图标 */
   icon?: string
   /** 按钮名称 */
@@ -90,7 +93,7 @@ export function useFlowButtonApi(request: RequestInstance) {
     remove: '/sapier-flow/dev-button/remove',
   }
   const getList = (params: Page & FlowButton) => request.get<ResRecords<FlowButton[]>>(url.list, { params })
-  const useList = () => useRequest(() => getList({ size: -1, ascs: 'sort', status: 1 }).then(res => res.data.records))
+  const useList = (options?: Options<FlowButton[], any>) => useRequest(() => getList({ size: -1, ascs: 'sort', status: 1 }).then(res => res.data.records), options)
   const create = (data: FlowButton) => request.post(url.save, data)
   const update = (data: FlowButton) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

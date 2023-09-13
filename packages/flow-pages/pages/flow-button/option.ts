@@ -1,7 +1,7 @@
 import type { FlowButton } from '@yusui/flow-pages'
 
 import { enumToDic } from '@yusui/utils'
-import { FlowButtonApproval, FlowButtonDisplay, FlowButtonStatus, FlowButtonType, defineTableOption } from '@yusui/flow-pages'
+import { FlowButtonApproval, FlowButtonDisplay, FlowButtonStatus, FlowButtonType, defineTableOption, whetherDic } from '@yusui/flow-pages'
 
 export const tableOption = defineTableOption<FlowButton & { buttonPreview: any }>({
   rowKey: 'id',
@@ -36,6 +36,14 @@ export const tableOption = defineTableOption<FlowButton & { buttonPreview: any }
       dicData: enumToDic(FlowButtonApproval),
       labelTip: `不显示: 不显示审批窗口;<br/>指定节点: 显示指定节点选择框(常用于绿色通道等);<br/>
       审批人: 显示审批人选择框;<br/>传阅人: 显示传阅人选择框;<br/>意见: 显示意见输入框;`,
+    },
+    {
+      label: '默认是否校验',
+      prop: 'validate',
+      type: 'switch',
+      value: 1,
+      dicData: whetherDic,
+      labelTip: '是: 点击按钮时先执行每个tab的校验;<br/>否: 点击按钮不执行校验;',
     },
     { label: '备注', prop: 'remarks', overHidden: true },
     { label: '排序', prop: 'sort', type: 'number', value: 0 },

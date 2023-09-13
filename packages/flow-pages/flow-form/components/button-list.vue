@@ -19,7 +19,7 @@ const { data: allButtonList } = useFlowButtonApi(request).useList()
 function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   return button.map((btn) => {
     const findSource = source.find(e => e.buttonKey === btn.buttonKey)
-    const result = { ...btn, ...pick(findSource, ['display', 'approval']) } as FlowButton
+    const result = { ...btn, ...pick(findSource, ['display', 'approval', 'validate']) } as FlowButton
     return result
   })
 }
@@ -52,7 +52,7 @@ const displayButtonList = computed(() => {
 
 <template>
   <el-button v-for="btn in displayButtonList" :key="btn.buttonKey" :type="btn.buttonType" @click="emit('click', btn)">
-    <Icon :icon="btn.icon!" />
+    <Icon v-if="btn.icon" :icon="btn.icon" />
     {{ btn.name }}
   </el-button>
 </template>

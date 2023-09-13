@@ -15,6 +15,7 @@ export const tableOption = defineTableOption<FlowDeploy>({
   menuBtnTitle: '操作',
   column: [
     ...(formOption.column! as any),
+    { prop: 'sort', hide: true },
     {
       label: '流程版本',
       prop: 'version',

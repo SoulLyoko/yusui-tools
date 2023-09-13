@@ -50,7 +50,7 @@ export function useFlowDefinitionApi(request: RequestInstance) {
     deploy: '/sapier-flow/flow-definition/deployFlow',
   }
   const getList = (params: Page & FlowDefinition) => request.get<ResRecords<FlowDefinition[]>>(url.list, { params })
-  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
+  const useList = () => useRequest(() => getList({ size: -1, ascs: 'sort' }).then(res => res.data.records))
   const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get<ResData<FlowDefinition>>(url.detail, { params })
   const create = (data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) => request.post<ResData<{ flowModuleId?: string }>>(url.save, data)
   const update = (data: FlowDefinition) => request.post(url.update, data)

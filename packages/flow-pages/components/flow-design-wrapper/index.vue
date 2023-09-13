@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import type { AvueFormDefaults, AvueFormOption } from '@smallwei/avue'
-import type { FlowFormData } from '@yusui/flow-design'
-import type { FlowHistory } from '@yusui/flow-pages'
+import type { AvueFormOption } from '@smallwei/avue'
+import type { FlowHistory, FlowUserTree } from '@yusui/flow-pages'
 
-import { computed, ref, shallowRef } from 'vue'
+import { computed, shallowRef } from 'vue'
 import { defaultGraphData, defaultOptions } from '@yusui/flow-design'
-import { enumToDic } from '@yusui/utils'
-import { watchDebounced, watchOnce } from '@vueuse/core'
-import { FlowButtonApproval, FlowButtonDisplay, useConfigProvider, useFlowButtonApi, useFlowParamApi } from '@yusui/flow-pages'
-
-import AssigneeSetter from './assignee-setter.vue'
+import { enumToDic, treeMap } from '@yusui/utils'
+import { watchOnce } from '@vueuse/core'
+import { FlowButtonApproval, FlowButtonDisplay, useConfigProvider, useFlowButtonApi, useFlowParamApi, useFlowUserApi, whetherDic } from '@yusui/flow-pages'
 
 const props = defineProps<{
   modelValue?: string
@@ -45,37 +42,44 @@ const allColumn = computed(() => {
   const all = [...column, ...group.map(g => g.column ?? []).flat()]
   return all
 })
+
 const { FlowDesign, tabs, request } = useConfigProvider()
-const { data: buttonList } = useFlowButtonApi(request).useList()
+
 const tabList = computed(() => {
   return tabs?.map(e => ({ ...e, display: e.display ?? true })) ?? []
 })
+
+const ready = computed(() => !props.view)
+const { data: buttonList } = useFlowButtonApi(request).useList({ ready })
+
+const { useUserTree } = useFlowUserApi(request)
+const { data: userTreeData } = useUserTree({ ready })
+const { data: deptTreeData } = useUserTree({ ready, defaultParams: ['dept'] })
+const { data: postTreeData } = useUserTree({ ready, defaultParams: ['post'] })
+
+const { useParam } = useFlowParamApi(request)
+const { data: dynamicData } = useParam('flow.trends.user')
+
+function userTreeToDic(data: FlowUserTree[]) {
+  return treeMap(data, (e) => {
+    return { ...e, label: e.title, value: e.id }
+  })
+}
+
 const dataOptions = computed(() => ({
   formPropertyList: [...allColumn.value, ...tabList.value],
   buttonList: buttonList.value,
   fieldsDic: allColumn.value.map(e => ({ label: e.label, value: `$\{${e.prop}}`, desc: `$\{${e.prop}}` })),
   flowButtonDisplayDic: enumToDic(FlowButtonDisplay),
   flowButtonApprovalDic: enumToDic(FlowButtonApproval),
+  flowButtonValidateDic: whetherDic.map(e => ({ ...e, label: '' })),
+  flowAssigneeUserDic: userTreeToDic(userTreeData.value ?? []),
+  flowAssigneeDeptDic: userTreeToDic(deptTreeData.value ?? []),
+  flowAssigneePostDic: userTreeToDic(postTreeData.value ?? []),
+  flowAssigneeDynamicDic: dynamicData.value,
 }))
 
-const formData = ref<FlowFormData>({})
-const formDefaults = ref<AvueFormDefaults>({})
-watchDebounced(
-  formDefaults,
-  (defaults) => {
-    if (!defaults)
-      return
-    // 审批人选择
-    if (defaults.assignee?.children?.column?.[1])
-      defaults.assignee.children.column[1].component = AssigneeSetter
-    // 传阅人选择
-    if (defaults.circulate?.children?.column?.[1])
-      defaults.circulate.children.column[1].component = AssigneeSetter
-  },
-  { debounce: 1 },
-)
-
-const { data: flowTaskStatus } = useFlowParamApi(request).useParam('flow.task.status')
+const { data: flowTaskStatus } = useParam('flow.task.status')
 const flowHistoryStyles = computed(() => {
   return props.flowHistory?.map((item) => {
     const style = flowTaskStatus.value?.find(e => e.value === item.status)?.style
@@ -108,10 +112,7 @@ const flowHistoryToolTips = computed(() => {
       type="viewer"
     />
   </div>
-  <FlowDesign
-    v-else v-model="graphData" v-model:formData="formData" v-model:formDefaults="formDefaults"
-    :form-options="defaultOptions" :data-options="dataOptions" form-width="30%"
-  />
+  <FlowDesign v-else v-model="graphData" :form-options="defaultOptions" :data-options="dataOptions" form-width="30%" />
 </template>
 
 <style lang="scss" scoped>
