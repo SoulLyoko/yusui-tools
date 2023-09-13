@@ -1,3 +1,14 @@
+# [2.0.0-beta.81](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.80...v2.0.0-beta.81) (2023-09-13)
+
+
+### Features
+
+* **flow-design:** 优化按钮配置和表单配置，解决数据项过多导致的卡顿问题 ([4413f9d](https://github.com/SoulLyoko/yusui-tools/commit/4413f9dbf42bb2d559ac853576bcea7739ca83f3))
+* **flow-pages:** 按钮配置新增是否校验字段，优化排序 ([d11bbb2](https://github.com/SoulLyoko/yusui-tools/commit/d11bbb2ba431db69e0ccfc2a0a4342a391891612))
+* **flow-pages:** form-design扩展baseOption增加样式类配置 ([d0c2a80](https://github.com/SoulLyoko/yusui-tools/commit/d0c2a8022a86444d4b34cf643c16832768060049))
+
+
+
 # [2.0.0-beta.80](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.79...v2.0.0-beta.80) (2023-09-07)
 
 
