@@ -1,0 +1,1 @@
+function o(n){return new Promise(t=>setTimeout(t,n))}function u(n,t){return n.then(e=>[null,e]).catch(e=>t?[Object.assign({},e,t),void 0]:[e,void 0])}const i=u;function l(n,t){const{label:e="label",value:a="value"}=t||{};return Object.entries(n??{}).map(([r,s])=>({[e]:r,[a]:s})).filter(r=>Number.isNaN(Number(r[e])))}export{l as e,o as s,i as t};
