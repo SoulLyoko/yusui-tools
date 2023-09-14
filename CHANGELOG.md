@@ -1,3 +1,18 @@
+# [2.0.0-beta.83](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.82...v2.0.0-beta.83) (2023-09-14)
+
+
+### Bug Fixes
+
+* **flow-design:** 按钮配置和表单配置去重，人员配置的指定用户选择后保存idVal ([c96f45f](https://github.com/SoulLyoko/yusui-tools/commit/c96f45f0c46dc3db6f9aa4f4d0fff1014ccd6542))
+
+
+### Features
+
+* **flow-pages:** 表单配置修改支持修改子表单属性 ([9c70e78](https://github.com/SoulLyoko/yusui-tools/commit/9c70e781a7869c3c559c5e78990366c9823e7443))
+* **flow-pages:** 支持在流程设计页面进行调试，支持修改已发布版本后同步到流程定义 ([99fbd4c](https://github.com/SoulLyoko/yusui-tools/commit/99fbd4c22299a3621c5384be015ab6cb27cb5da8))
+
+
+
 # [2.0.0-beta.82](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.81...v2.0.0-beta.82) (2023-09-13)
 
 
