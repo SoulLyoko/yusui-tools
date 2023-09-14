@@ -1,8 +1,32 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { AvueFormDefaults } from '@smallwei/avue'
+import type { AvueFormColumn, AvueFormDefaults } from '@smallwei/avue'
+import type { FormPropertyItem } from '@yusui/flow-design'
 import type { FlowDetail } from '@yusui/flow-pages'
 
 import { nextTick, ref, unref, watchEffect } from 'vue'
+
+export function mergeColumn(target: AvueFormColumn[], source: FormPropertyItem[]) {
+  target.forEach((col) => {
+    const find = source?.find(e => e.prop === col.prop)
+    if (!find)
+      return
+    col.display = find.display
+    col.disabled = find.disabled
+    col.detail = find.detail
+    col.readonly = find.readonly
+    const rules = col.rules ?? []
+    if (find.required && rules?.some(e => e.required))
+      return
+    else if (find.required)
+      col.rules?.push({ required: true, message: `${col.label}为必填项` })
+    else
+      col.rules = rules.filter(e => !e.required)
+
+    // 子表单
+    if (col.children?.column?.length && find.children?.length)
+      mergeColumn(col.children?.column, find.children)
+  })
+}
 
 export function useFormDefaults(flowDetail: MaybeRef<FlowDetail>) {
   const defaults = ref<AvueFormDefaults>({})
@@ -12,23 +36,7 @@ export function useFormDefaults(flowDetail: MaybeRef<FlowDetail>) {
     if (!formProperty?.length)
       return
     await nextTick()
-    Object.keys(defaults.value).forEach((prop) => {
-      const label = defaults.value[prop]?.label || ''
-      const find = formProperty?.find(e => e.prop === prop)
-      if (!find)
-        return
-      defaults.value[prop].display = find?.display
-      defaults.value[prop].disabled = find?.disabled
-      defaults.value[prop].detail = find?.detail
-      defaults.value[prop].readonly = find?.readonly
-      defaults.value[prop].rules = defaults.value[prop].rules ?? []
-      if (find?.required && defaults.value[prop].rules?.some(e => e.required))
-        return null
-      else if (find?.required)
-        defaults.value[prop].rules?.push({ required: true, message: `${label}为必填项` })
-      else
-        defaults.value[prop].rules = defaults.value[prop].rules?.filter(e => !e.required)
-    })
+    mergeColumn(Object.values(defaults.value), formProperty)
   })
 
   return defaults
