@@ -1,6 +1,6 @@
 # uvue-form 表单组件
 
-## 基本使用
+## 基础用法
 
 ```html
 <template>

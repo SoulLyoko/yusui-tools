@@ -4,7 +4,7 @@ aside: false
 
 # FormDesign
 
-## 基本使用
+## 基础用法
 :::demo
 ./demo
 :::
