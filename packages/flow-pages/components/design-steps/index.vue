@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvueFormInstance } from '@smallwei/avue'
+import type { AvueFormDefaults, AvueFormInstance } from '@smallwei/avue'
 import type { FlowDefinition, FlowDeploy } from '@yusui/flow-pages'
 
 import { computed, ref, watch } from 'vue'
@@ -33,6 +33,7 @@ const { getDetail: getDeployDetail, update: updateDeploy } = useFlowDeployApi(re
 const steps = ['流程信息', '表单设计', '模型设计', '完成']
 
 const formRef = ref<AvueFormInstance>()
+const formDefaults = ref<AvueFormDefaults>()
 const loading = ref(false)
 watch(
   () => [visible.value, formRef.value],
@@ -49,6 +50,9 @@ watch(
       else if (flowModuleId)
         res = await getDefinitionDetail({ flowModuleId })
       formData.value = res.data
+      // 已发布流程不显示排序
+      if (formDefaults.value?.sort)
+        formDefaults.value.sort.display = !(formData.value as FlowDeploy).flowDeployId
     }
     finally {
       loading.value = false
@@ -113,6 +117,12 @@ function handleClose() {
   formData.value = {}
   emit('close')
 }
+
+async function handleSync() {
+  await ElMessageBox.confirm('流程定义的数据(包括流程信息、表单设计、流程设计)将被修改为当前版本的数据，是否确认？', '提示')
+  await updateDefinition(formData.value)
+  ElMessage.success('同步成功')
+}
 </script>
 
 <template>
@@ -151,13 +161,16 @@ function handleClose() {
 
     <div v-loading="loading" style="height: calc(100vh - 144px)">
       <avue-form
-        v-if="activeStep === 0" ref="formRef" v-model="formData" :option="formOption"
+        v-if="activeStep === 0" ref="formRef" v-model="formData" v-model:defaults="formDefaults" :option="formOption"
         style="width: 50%; magin: 0 auto"
       />
       <FormDesignWrapper v-if="activeStep === 1" v-model="formData.formOption" :fields="tableFields" />
       <FlowDesignWrapper v-if="activeStep === 2" v-model="formData.flowData" :flow-form-option="formData.formOption" />
       <el-result v-if="activeStep === 3" icon="success" title="流程设计完成">
         <template #extra>
+          <el-button v-if="(formData as FlowDeploy).flowDeployId" type="primary" @click="handleSync">
+            同步到流程定义
+          </el-button>
           <el-button v-if="!(formData as FlowDeploy).flowDeployId" type="primary" @click="handleDeploy">
             发布
           </el-button>

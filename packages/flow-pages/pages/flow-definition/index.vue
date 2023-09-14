@@ -7,7 +7,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { debounce, pick } from 'lodash-es'
 import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
-import { useConfigProvider, useFlowDefinitionApi } from '@yusui/flow-pages'
+import { useConfigProvider, useFlowDefinitionApi, useFlowForm } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
 
@@ -67,6 +67,18 @@ function updateSort(row: FlowDefinition) {
 }
 
 const updateSortDebounce = debounce(updateSort, 500)
+
+const { open, close } = useFlowForm()
+function openFlow(row: FlowDefinition) {
+  open({
+    flowKey: row.flowKey,
+    debug: true,
+    onComplete() {
+      close()
+      ElMessage.success('操作成功')
+    },
+  })
+}
 </script>
 
 <template>
@@ -85,6 +97,9 @@ const updateSortDebounce = debounce(updateSort, 500)
       </el-dropdown-item>
       <el-dropdown-item icon="el-icon-delete" @click="handleDel(row)">
         删除
+      </el-dropdown-item>
+      <el-dropdown-item icon="el-icon-video-play" @click="openFlow(row)">
+        调试
       </el-dropdown-item>
       <el-dropdown-item icon="el-icon-upload" @click="handleDeploy(row)">
         发布

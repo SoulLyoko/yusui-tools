@@ -6,8 +6,7 @@ import { watchDebounced } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
-import { IsMainVersion, useConfigProvider, useFlowDeployApi } from '@yusui/flow-pages'
-import { pick } from 'lodash-es'
+import { IsMainVersion, useConfigProvider, useFlowDeployApi, useFlowForm } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
 
@@ -19,7 +18,7 @@ const { getList, update, remove } = useFlowDeployApi(request)
 
 const {
   bindVal,
-  crudStateRefs: { searchForm },
+  crudStateRefs: { searchForm, tableData },
   getDataList,
 } = useCrud({
   tableOption,
@@ -64,8 +63,19 @@ async function handleDel(row: FlowDeploy) {
   getDataList()
 }
 
-function handleUpdateSort(row: FlowDeploy) {
-  update(pick(row, ['flowDeployId', 'flowModuleId', 'sort']))
+const { open, close } = useFlowForm()
+function openFlow() {
+  const flowKey = tableData.value[0]?.flowKey
+  if (!flowKey)
+    return
+  open({
+    flowKey,
+    debug: true,
+    onComplete() {
+      close()
+      ElMessage.success('操作成功')
+    },
+  })
 }
 </script>
 
@@ -75,6 +85,11 @@ function handleUpdateSort(row: FlowDeploy) {
       <el-button :loading="loading" type="primary" icon="el-icon-arrow-left" @click="emit('back')">
         返回
       </el-button>
+    </template>
+    <template #menu-right>
+      <el-tooltip content="调试">
+        <el-button icon="el-icon-video-play" circle @click="openFlow" />
+      </el-tooltip>
     </template>
     <template #menu-btn="{ row }">
       <el-dropdown-item icon="el-icon-view" @click="emit('view', row)">
@@ -92,9 +107,6 @@ function handleUpdateSort(row: FlowDeploy) {
     </template>
     <template #flowIcon="{ row }">
       <Icon :icon="row.flowIcon!" width="25" style="display: inline" />
-    </template>
-    <template #sort="{ row }">
-      <el-input-number v-model="row.sort" controls-position="right" style="width:100%" @change="handleUpdateSort(row)" />
     </template>
   </avue-crud>
 </template>
