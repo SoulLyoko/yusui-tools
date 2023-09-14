@@ -13,16 +13,13 @@ const dicMap = {
 }
 
 // 模拟请求
-function request({ url }: { url: keyof typeof dicMap }) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: {
-          data: dicMap[url],
-        },
-      })
-    })
-  })
+async function request({ url }: { url: keyof typeof dicMap }) {
+  await sleep()
+  return {
+    data: {
+      data: dicMap[url],
+    },
+  }
 }
 
 describe('useDict', () => {

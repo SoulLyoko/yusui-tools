@@ -60,6 +60,7 @@ export default defineConfig({
             { text: 'Start', link: '/composables/index' },
             { text: 'useCrud', link: '/composables/use-crud/index' },
             { text: 'useDict', link: '/composables/use-dict/index' },
+            { text: 'useRes', link: '/composables/use-res/index' },
           ],
         },
       ],
