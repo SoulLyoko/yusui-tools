@@ -26,8 +26,9 @@ const multipleValue = computed({
     emit('update:modelValue', val.join(','))
     if (props.tableData?.row) {
       const values = filterTree(treeData.value, e => val?.includes(e.id!))
+      // 把选择项的实际id存到idVal
       // eslint-disable-next-line vue/no-mutating-props
-      props.tableData.row.idVal = values.map(e => e[`${type.value}Id` as keyof typeof e]).join(',')
+      props.tableData.row.idVal = values.map(e => e[`${type.value.replace('specifyUser', 'user')}Id` as keyof typeof e]).join(',')
       // // eslint-disable-next-line vue/no-mutating-props
       // props.tableData.row.values = values
     }

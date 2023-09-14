@@ -2,9 +2,11 @@ import type { AvueFormColumn } from '@smallwei/avue'
 import type { ButtonItem, FormPropertyItem } from '../types'
 import type { Definition } from '@logicflow/core'
 
+import { uniqBy } from 'lodash-unified'
+
 import { defaultFormProperty } from '../constants'
 
-/** 保留修改过的按钮配置 */
+/** 保留修改过的按钮配置并去重 */
 export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
   const result: ButtonItem[] = []
   button.forEach((btn) => {
@@ -17,16 +19,10 @@ export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
       return
     result.push(findSource)
   })
-  return result
-  // return button.map((btn) => {
-  //   const findSource = source.find(e => e.buttonKey === btn.buttonKey)
-  //   const { name, buttonKey, display, approval, validate } = btn
-  //   const result = { name, buttonKey, display, approval, validate, ...findSource }
-  //   return result
-  // })
+  return uniqBy(result, 'buttonKey')
 }
 
-/** 保留修改过的表单配置 */
+/** 保留修改过的表单配置并去重 */
 export function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[]): FormPropertyItem[] {
   const result: FormPropertyItem[] = []
   column.forEach((col) => {
@@ -43,16 +39,7 @@ export function mergeFormProperty(column: AvueFormColumn[], source: FormProperty
       return
     result.push(findSource)
   })
-  return result
-  // return column.map((col) => {
-  //   const findSource = source.find(e => e.prop === col.prop)
-  //   const { label, prop, display = true, disabled = false, detail = false, readonly = false, rules } = col
-  //   const required = rules?.some(e => e.required) ?? false
-  //   const result = { label, prop, display, disabled, detail, readonly, required, ...findSource }
-  //   if (col.type === 'dynamic' && col.children?.column?.length)
-  //     result.children = mergeFormProperty(col.children.column, findSource?.children ?? [])
-  //   return result
-  // })
+  return uniqBy(result, 'prop')
 }
 
 /** 合并初始化配置，主要是合并plugins */
