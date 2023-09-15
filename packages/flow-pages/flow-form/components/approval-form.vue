@@ -94,12 +94,6 @@ watchEffect(async () => {
   nextTick(() => {
     formRef.value!.resetForm()
     approvalFormData.value.comment = formData.value.comment || (autoComment.value === 'true' && activeBtn.value.name) || ''
-    // // 流程发起默认意见
-    // if (!approvalFormData.value.comment && defaultComment.value)
-    //   approvalFormData.value.comment = defaultComment.value
-    // // 按钮对应文本的意见
-    // if (!approvalFormData.value.comment && autoComment.value === 'true')
-    //   approvalFormData.value.comment = activeBtn.value.name
   })
 
   resetNodes()
@@ -113,6 +107,8 @@ watchEffect(async () => {
   /** 显示指定节点但未选择节点 */
   if (checkField('specifyNode') && !approvalFormData.value.jumpTaskNodeKey)
     return
+
+  resetNodes()
   /** 获取审批人和传阅人节点数据 */
   try {
     treeLoading.value = true
@@ -172,7 +168,7 @@ function getApprovalDataSet(nodes: ApprovalNode[]) {
 <template>
   <component
     :is="isMobile() ? 'el-drawer' : 'el-dialog'" v-model="approvalVisible" class="approval-form-overlay"
-    :title="activeBtn.name" append-to-body width="900px" size="50%" direction="btt"
+    :title="activeBtn.name" append-to-body width="900px" size="50%" direction="btt" destroy-on-close
   >
     <avue-form ref="formRef" v-model="approvalFormData" class="approval-form" :option="formOption">
       <template #jumpTaskNodeKey>
