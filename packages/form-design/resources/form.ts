@@ -143,6 +143,12 @@ export const form: Resource = {
       dicData: sizeDic,
     },
     {
+      label: '校验图标',
+      prop: 'statusIcon',
+      component: SwitchSetter,
+      defaultValue: false,
+    },
+    {
       label: '隐藏星号',
       prop: 'hideRequiredAsterisk',
       component: SwitchSetter,

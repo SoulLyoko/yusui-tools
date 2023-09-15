@@ -191,6 +191,8 @@ declare module "@smallwei/avue" {
     readonly?: boolean;
     /** 表单禁用 */
     disabled?: boolean;
+    /** 校验图标 */
+    statusIcon?: boolean;
     /** 隐藏星号 */
     hideRequiredAsterisk?: boolean;
     /** 星号的位置 */
