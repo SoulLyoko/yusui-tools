@@ -6,4 +6,5 @@ export const defaultFormProperty: FormPropertyItem = {
   detail: false,
   readonly: false,
   required: false,
+  validate: false,
 }

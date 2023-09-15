@@ -16,10 +16,10 @@
     }
     .avue-dynamic .cell {
       .el-table__expand-icon + .el-form-item {
-        width: unset;
+        width: calc(100% - 20px);
       }
       .el-table__indent + .el-table__placeholder + .el-form-item {
-        width: unset;
+        width: calc(100% - 40px);
       }
     }
   }
@@ -44,87 +44,4 @@
   .lf-dnd-item {
     margin-top: 0;
   }
-}
-
-// control
-.lf-control {
-  .lf-control-text {
-    color: #000;
-  }
-}
-.lf-control-clear {
-  background-image: url("https://api.iconify.design/ep/delete.svg?width=20&height=20");
-}
-.lf-control-edit {
-  background-image: url("https://api.iconify.design/ep/edit.svg?width=20&height=20");
-}
-.lf-control-mini-map {
-  background-image: url("https://api.iconify.design/ep/picture.svg?width=20&height=20");
-}
-.lf-control-reset {
-  background-image: url("https://api.iconify.design/ep/refresh.svg?width=20&height=20");
-}
-.lf-control-layout {
-  background-image: url("https://api.iconify.design/ep/rank.svg?width=20&height=20");
-}
-.lf-mini-map {
-  right: 0;
-  bottom: 0;
-  margin: 5px;
-}
-
-// menu
-.lf-menu {
-  padding-left: 0 !important;
-  .lf-menu-item-icon {
-    padding-left: 20px;
-  }
-  .lf-menu-item-text {
-    color: #000;
-  }
-}
-.lf-menu-copy .lf-menu-item-icon {
-  background: url("https://api.iconify.design/ep/copy-document.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-delete .lf-menu-item-icon {
-  background: url("https://api.iconify.design/ep/delete.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-edit .lf-menu-item-icon {
-  background: url("https://api.iconify.design/ep/edit.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-select .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/lasso-tool.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-clear .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/trash.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-add .lf-menu-item-icon {
-  background: url("https://api.iconify.design/ep/plus.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-back .lf-menu-item-icon {
-  background: url("https://api.iconify.design/ep/back.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-user-task .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/user-task.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-service-task .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/service-task.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-circulate-task .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/manual-task.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-exclusive-gateway .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/gateway-xor.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-parallel-gateway .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/gateway-parallel.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-end-event .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/end-event.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-note .lf-menu-item-icon {
-  background: url("https://api.iconify.design/bpmn/text-annotation.svg?width=16&height=16") no-repeat;
-}
-.lf-menu-switch .lf-menu-item-icon {
-  background: url("https://api.iconify.design/ep/switch.svg?width=16&height=16") no-repeat;
 }

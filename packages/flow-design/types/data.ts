@@ -49,6 +49,7 @@ export interface FormPropertyItem {
   detail?: boolean
   readonly?: boolean
   required?: boolean
+  validate?: boolean
   children?: FormPropertyItem[]
 }
 export interface TimeLimitItem {

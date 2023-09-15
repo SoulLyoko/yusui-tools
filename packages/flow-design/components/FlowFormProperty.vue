@@ -40,6 +40,7 @@ const tableOption = computed(() => {
       { label: '详情', prop: 'detail', width: 40, component: FlowCheckbox },
       { label: '只读', prop: 'readonly', width: 40, component: FlowCheckbox },
       { label: '必填', prop: 'required', width: 40, component: FlowCheckbox },
+      { label: '校验', prop: 'validate', width: 40, component: FlowCheckbox },
     ],
   }
 })
