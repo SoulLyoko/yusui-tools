@@ -1,4 +1,5 @@
 export * from './bpmn-elements'
+export * from './contextmenu'
 export * from './control'
 export * from './dagre'
 export * from './menu'

@@ -1,0 +1,23 @@
+// control
+.lf-control {
+  .lf-control-text {
+    color: #000;
+  }
+}
+.lf-control-clear {
+  background-image: url("https://api.iconify.design/ep/delete.svg?width=20&height=20");
+}
+.lf-control-edit {
+  background-image: url("https://api.iconify.design/ep/edit.svg?width=20&height=20");
+}
+.lf-control-mini-map {
+  background-image: url("https://api.iconify.design/ep/picture.svg?width=20&height=20");
+}
+.lf-control-layout {
+  background-image: url("https://api.iconify.design/ep/rank.svg?width=20&height=20");
+}
+.lf-mini-map {
+  right: 0;
+  bottom: 0;
+  margin: 5px;
+}
