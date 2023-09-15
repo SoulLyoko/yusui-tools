@@ -36,6 +36,6 @@ onMounted(() => {
       />
     </el-aside>
 
-    <FlowEditor v-model="graphData" v-model:visible="editorVisible" @save="lf?.render($event)" />
+    <FlowEditor v-model="graphData" v-model:visible="editorVisible" @confirm="lf?.render($event)" />
   </el-container>
 </template>

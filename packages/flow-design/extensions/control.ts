@@ -1,7 +1,6 @@
 import type { LogicFlow } from '@logicflow/core'
 
 import { Control as _Control } from '@logicflow/extension'
-import { ElMessageBox } from 'element-plus'
 
 export class Control extends _Control {
   constructor({ lf }: { lf: LogicFlow }) {
@@ -29,20 +28,6 @@ export class Control extends _Control {
         onClick: () => {
           const { isShow, show, hide } = lf.extension.miniMap ?? {}
           isShow ? hide() : show()
-        },
-      },
-      {
-        key: 'reset',
-        iconClass: 'lf-control-reset',
-        title: '重置',
-        text: '重置',
-        onClick: () => {
-          ElMessageBox.confirm('选择重置的配置', '提示', { confirmButtonText: '重置表单配置', cancelButtonText: '重置按钮配置' })
-            .then(() => {
-              lf.emit('custom:reset-form-property', {})
-            }).catch(() => {
-              lf.emit('custom:reset-button', {})
-            })
         },
       },
       // {

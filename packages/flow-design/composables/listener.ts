@@ -4,7 +4,6 @@ import type { FlowDesignState } from '../types'
 import { nextTick } from 'vue'
 
 import { defaultGroup } from '../options'
-import { mergeButton, mergeFormProperty } from '../utils'
 
 export function useModelerListener({
   lf,
@@ -15,7 +14,6 @@ export function useModelerListener({
   formOption,
   formOptions,
   editorVisible,
-  dataOptions,
 }: FlowDesignState) {
   async function selectElement({ data, isForce } = { data: {} as EdgeConfig | NodeConfig, isForce: false }) {
     const processNode = lf.value?.graphModel.nodes.find(node => node.type === 'process')
@@ -51,21 +49,5 @@ export function useModelerListener({
   /** 编辑 */
   lf.value?.on('custom:edit-click', () => {
     editorVisible.value = true
-  })
-  /** 重置表单配置 */
-  lf.value?.on('custom:reset-form-property', () => {
-    graphData.value?.flowElementList?.forEach((item) => {
-      if (item.properties?.formProperty)
-        item.properties.formProperty = mergeFormProperty(dataOptions.value?.formPropertyList || [], [])
-    })
-    graphData.value = { ...graphData.value }
-  })
-  /** 重置按钮配置 */
-  lf.value?.on('custom:reset-button', () => {
-    graphData.value?.flowElementList?.forEach((item) => {
-      if (item.properties?.button)
-        item.properties.button = mergeButton(dataOptions.value?.buttonList || [], [])
-    })
-    graphData.value = { ...graphData.value }
   })
 }
