@@ -4,7 +4,7 @@ import type { FlowDeploy } from './flow-deploy'
 import type { FlowOps } from './flow-ops'
 import type { RequestInstance } from '../types'
 
-import { useRequest } from 'vue-request'
+import { useRes } from '@yusui/composables'
 
 /** 任务状态 */
 export enum TaskStatus {
@@ -252,7 +252,7 @@ export function useFlowTaskApi(request: RequestInstance) {
   const greenChannel = (data: CommitTaskData) => request.post(url.green, data)
   /** 已部署列表 */
   const getPublishList = (params: Page & FlowDeploy) => request.get<ResData<FlowDeploy[]>>(url.publishList, { params })
-  const usePublishList = () => useRequest(() => getPublishList({ ascs: 'sort' }).then(res => res.data))
+  const usePublishList = useRes(getPublishList, { res: 'data', modify: true, defaultParams: [{ ascs: 'sort' }] })
   /** 待办/已办列表 */
   const getTaskList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps[]>>(url.taskList, { params })
   return {

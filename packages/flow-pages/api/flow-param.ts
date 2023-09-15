@@ -5,7 +5,7 @@ import type { FlowStatus, HandleType, TaskStatus } from './flow-task'
 import type { TableField } from './table-template'
 import type { RequestInstance } from '../types'
 
-import { useRequest } from 'vue-request'
+import { useRes } from '@yusui/composables'
 
 /** 流程参数 */
 export interface FlowParam {
@@ -73,8 +73,8 @@ export function useFlowParamApi(request: RequestInstance) {
   /** 获取所有流程参数键值对 */
   const getAllParam = () => request.get<ResData<FlowParamMap>>(url.all)
   /** 根据key获取流程参数 */
-  const getParam = <K extends string = keyof FlowParamMap>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
-  const useParam = <K extends string = keyof FlowParamMap>(key: K) => useRequest(() => getParam<K>(key).then(res => res.data))
+  const getParam = <K extends keyof FlowParamMap>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
+  const useParam = <K extends keyof FlowParamMap>(key: K) => useRes(getParam, { res: 'data', defaultParams: [key] })
   const create = (data: FlowParam) => request.post(url.save, data)
   const update = (data: FlowParam) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

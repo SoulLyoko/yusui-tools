@@ -1,7 +1,7 @@
 import type { Page, ResRecords } from '@yusui/types'
 import type { RequestInstance } from '../types'
 
-import { useRequest } from 'vue-request'
+import { useRes } from '@yusui/composables'
 
 /** 流程模板 */
 export interface FlowTemplate {
@@ -37,7 +37,7 @@ export function useFlowTemplateApi(request: RequestInstance) {
     remove: '/sapier-flow/dev-flow/remove',
   }
   const getList = (params: Page & FlowTemplate) => request.get<ResRecords<FlowTemplate[]>>(url.list, { params })
-  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
+  const useList = useRes(getList, { res: 'data.records', modify: true, defaultParams: [{ size: -1 }] })
   const create = (data: FlowTemplate) => request.post(url.save, data)
   const update = (data: FlowTemplate) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

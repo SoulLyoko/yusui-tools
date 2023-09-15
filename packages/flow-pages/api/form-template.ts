@@ -1,7 +1,7 @@
 import type { Page, ResRecords } from '@yusui/types'
 import type { RequestInstance } from '../types'
 
-import { useRequest } from 'vue-request'
+import { useRes } from '@yusui/composables'
 
 /** 表单模板 */
 export interface FormTemplate {
@@ -37,7 +37,7 @@ export function useFormTemplateApi(request: RequestInstance) {
     remove: '/sapier-flow/dev-form/remove',
   }
   const getList = (params: Page & FormTemplate) => request.get<ResRecords<FormTemplate[]>>(url.list, { params })
-  const useList = () => useRequest(() => getList({ size: -1 }).then(res => res.data.records))
+  const useList = useRes(getList, { res: 'data.records', modify: true, defaultParams: [{ size: -1 }] })
   const create = (data: FormTemplate) => request.post(url.save, data)
   const update = (data: FormTemplate) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

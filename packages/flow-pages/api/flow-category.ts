@@ -1,7 +1,7 @@
 import type { Page, ResData } from '@yusui/types'
 import type { RequestInstance } from '../types'
 
-import { useRequest } from 'vue-request'
+import { useRes } from '@yusui/composables'
 
 /** 流程分类 */
 export interface FlowCategory {
@@ -31,7 +31,7 @@ export function useFlowCategoryApi(request: RequestInstance) {
     tree: '/sapier-flow/flow-category/tree',
   }
   const getList = (params: Page & FlowCategory) => request.get<ResData<FlowCategory[]>>(url.list, { params })
-  const useList = () => useRequest(() => getList({ size: -1, ascs: 'sort' }).then(res => res.data))
+  const useList = useRes(getList, { res: 'data', modify: true, defaultParams: [{ size: -1, ascs: 'sort' }] })
   const getTree = (params: Page & FlowCategory) => request.get<ResData<FlowCategory[]>>(url.tree, { params })
   const create = (data: FlowCategory) => request.post(url.save, data)
   const update = (data: FlowCategory) => request.post(url.update, data)

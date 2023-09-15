@@ -1,9 +1,8 @@
 import type { ButtonType } from 'element-plus'
 import type { Page, ResRecords } from '@yusui/types'
 import type { RequestInstance } from '../types'
-import type { Options } from 'vue-request'
 
-import { useRequest } from 'vue-request'
+import { useRes } from '@yusui/composables'
 
 export enum FlowButtonType {
   '默认' = 'default',
@@ -93,7 +92,7 @@ export function useFlowButtonApi(request: RequestInstance) {
     remove: '/sapier-flow/dev-button/remove',
   }
   const getList = (params: Page & FlowButton) => request.get<ResRecords<FlowButton[]>>(url.list, { params })
-  const useList = (options?: Options<FlowButton[], any>) => useRequest(() => getList({ size: -1, ascs: 'sort', status: 1 }).then(res => res.data.records), options)
+  const useList = useRes(getList, { res: 'data.records', modify: true, defaultParams: [{ size: -1, ascs: 'sort', status: 1 }] })
   const create = (data: FlowButton) => request.post(url.save, data)
   const update = (data: FlowButton) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
