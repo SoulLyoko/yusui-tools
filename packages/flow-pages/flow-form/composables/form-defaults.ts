@@ -14,13 +14,11 @@ export function mergeColumn(target: AvueFormColumn[], source: FormPropertyItem[]
     col.disabled = find.disabled
     col.detail = find.detail
     col.readonly = find.readonly
-    const rules = col.rules ?? []
-    if (find.required && rules?.some(e => e.required))
-      return
-    else if (find.required)
+    col.rules = find.validate ? (col.rules ?? []) : []
+    if (find.required && !col.rules?.some(e => e.required))
       col.rules?.push({ required: true, message: `${col.label}为必填项` })
-    else
-      col.rules = rules.filter(e => !e.required)
+    else if (!find.required)
+      col.rules = col.rules.filter(e => !e.required)
 
     // 子表单
     if (col.children?.column?.length && find.children?.length)
