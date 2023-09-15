@@ -1,3 +1,24 @@
+# [2.0.0-beta.84](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2023-09-15)
+
+
+### Bug Fixes
+
+* **flow-design:** 重置字段功能移至编辑弹窗顶部 ([c8758e5](https://github.com/SoulLyoko/yusui-tools/commit/c8758e5226b3ae5f1d3be8b2432d1b9de4eaf8ea))
+* **flow-pages:** 使用useRes替代useRequest ([f78d83e](https://github.com/SoulLyoko/yusui-tools/commit/f78d83e67d55a4db8db12fb409f677cff1ff152e))
+* **flow-pages:** 修复重复打开审批窗口不显示审批人的问题 ([74626e8](https://github.com/SoulLyoko/yusui-tools/commit/74626e8f6792473ae2f372c0a2e79b0d9793b77d))
+
+
+### Features
+
+* **composables:** 新增useRes,扩展useRequest功能 ([8d5b4b1](https://github.com/SoulLyoko/yusui-tools/commit/8d5b4b16fb1292ef2e6328ace8dc9ce09e73ced4))
+* **flow-design:** 表单配置新增校验规则控制字段`validate` ([3af00f4](https://github.com/SoulLyoko/yusui-tools/commit/3af00f419f1e52deca932ac637b37cb8ecc8568a))
+* **flow-design:** 新增节点右侧菜单面板contextmenu(未启用) ([f426569](https://github.com/SoulLyoko/yusui-tools/commit/f42656960b09540d9dcab79d6a4a017d34974b5e))
+* **flow-pages:** internal-form适配validate规则检验控制 ([1e799b3](https://github.com/SoulLyoko/yusui-tools/commit/1e799b38d0f0e24c07aeb6e20c243ce61448d150))
+* **form-design:** 校验图标字段statusIcon ([8abe134](https://github.com/SoulLyoko/yusui-tools/commit/8abe1343794f0ebf6727826477e1f5aad1f06826))
+* **types:** helpers新增ElTreeNode，GetFieldType ([8645405](https://github.com/SoulLyoko/yusui-tools/commit/8645405ea6759c5f5101c675e1eecfc5f507eaac))
+
+
+
 # [2.0.0-beta.83](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.82...v2.0.0-beta.83) (2023-09-14)
 
 
