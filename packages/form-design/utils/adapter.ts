@@ -17,7 +17,8 @@ function formItemToElement(list: AvueFormColumn[]): ElementTreeNode[] {
       children = formItemToElement(temp.column ?? [])
     else if (['dynamic', 'table'].includes(temp.name))
       children = formItemToElement(temp.children?.column ?? [])
-
+    else if (Array.isArray(temp.children))
+      children = formItemToElement(temp.children)
     return {
       name: temp.name,
       id: temp.id,
@@ -53,6 +54,9 @@ function elementToFormItem(list: ElementTreeNode[]): ComponentProps[] {
       const tableColumn = elementToFormItem(temp.children ?? [])
       const tableChildren = { ...temp.props?.children, column: tableColumn }
       return { ...temp.props, children: tableChildren }
+    }
+    else if (Array.isArray(temp.children)) {
+      return { ...temp.props, children: elementToFormItem(temp.children) }
     }
     return { ...temp.props }
   })

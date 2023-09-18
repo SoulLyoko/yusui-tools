@@ -2,9 +2,10 @@
 import type { AvueFormOption } from '@smallwei/avue'
 import type { DesignAction, ElementTreeNode, HistoryType } from '../../types'
 
-import Draggable from 'vuedraggable'
+import { nextTick } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { cloneDeep, isFunction, omitBy } from 'lodash-unified'
+import Draggable from 'vuedraggable'
 
 import { useInjectState } from '../../composables'
 import Design from './design.vue'
@@ -39,10 +40,12 @@ function getItemSpan(element: ElementTreeNode) {
   return element.props?.span || formOption.value.span || 24
 }
 
-function onChange(operation: Record<string, { element?: ElementTreeNode }>) {
+async function onChange(operation: Record<string, { element?: ElementTreeNode }>) {
   const operationName = Object.keys(operation)[0] as HistoryType
   if (!operationName)
     return
+  setActiveElement()
+  await nextTick()
   setActiveElement(operation[operationName]?.element)
   recordHistory(operationName)
 }

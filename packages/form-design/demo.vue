@@ -37,12 +37,12 @@ const resources: Record<string, Resource> = {
       .fill({}).concat({ label: '样式类', prop: 'class' }),
   } as Resource,
   // 自定义组件,基于el-text封装(@yusui/components/v-text)
-  custom: {
-    name: 'custom',
-    title: '自定义组件',
-    icon: 'el-icon-user',
+  customText: {
+    name: 'customText',
+    title: '自定义文本',
+    icon: 'el-icon-minus',
     group: '自定义分组',
-    props: { label: '自定义组件', component: 'v-text', value: '这是一个自定义组件', type: 'primary' },
+    props: { label: '自定义文本', component: 'v-text', value: '这是一个自定义文本', type: 'primary' },
     settings: [
       {
         label: '显示内容',
@@ -72,6 +72,14 @@ const resources: Record<string, Resource> = {
         labelWidth: 120,
       },
     ],
+  },
+  customContainer: {
+    name: 'customContainer',
+    title: '自定义容器',
+    icon: 'el-icon-folder',
+    group: '自定义分组',
+    isContainer: true,
+    props: { label: '自定义容器' },
   },
 }
 
