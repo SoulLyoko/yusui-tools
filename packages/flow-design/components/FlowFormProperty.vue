@@ -69,7 +69,7 @@ function showAddChildBtn(prop: string) {
 <template>
   <DefinePropSelect v-slot="{ modelValue: prop, 'onUpdate:modelValue': setProp }">
     <div style="display:flex;">
-      <avue-input-tree :model-value="prop" :dic="propDic" default-expand-all @update:modelValue="setProp" />
+      <avue-input-tree :model-value="prop" :dic="propDic" default-expand-all filterable @update:modelValue="setProp" />
       <el-button v-if="showAddChildBtn(prop)" type="primary" icon="el-icon-plus" text @click="handleAddChild(prop)" />
       <el-button type="danger" icon="el-icon-delete" text @click="handleDel(prop)" />
     </div>

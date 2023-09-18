@@ -2,6 +2,8 @@ import type { Page, ResRecords } from '@yusui/types'
 import type { FlowTask } from './flow-task'
 import type { RequestInstance } from '../types'
 
+import { useRes } from '@yusui/composables'
+
 /** 流程运维 */
 export interface FlowOps extends FlowTask {
   /** 申请人 */
@@ -23,8 +25,10 @@ export function useFlowOpsApi(request: RequestInstance) {
     list: '/sapier-flow/flow-ops/list',
   }
   const getTaskOpsList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps[]>>(url.list, { params })
+  const useTaskOpsList = useRes(getTaskOpsList, { res: 'data.records', modify: true, defaultParams: [{ size: -1 }] })
   return {
     url,
     getTaskOpsList,
+    useTaskOpsList,
   }
 }

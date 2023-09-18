@@ -255,6 +255,7 @@ export function useFlowTaskApi(request: RequestInstance) {
   const usePublishList = useRes(getPublishList, { res: 'data', modify: true, defaultParams: [{ ascs: 'sort' }] })
   /** 待办/已办列表 */
   const getTaskList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps[]>>(url.taskList, { params })
+  const useTaskList = useRes(getTaskList, { res: 'data.records', modify: true })
   return {
     url,
     getFlowDetail,
@@ -271,5 +272,6 @@ export function useFlowTaskApi(request: RequestInstance) {
     getPublishList,
     usePublishList,
     getTaskList,
+    useTaskList,
   }
 }

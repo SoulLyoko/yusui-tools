@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AssigneeItem } from '../types'
 
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { filterTree } from '@yusui/utils'
 
 import { useInjectState } from '../composables/state'
@@ -17,6 +17,11 @@ const emit = defineEmits(['update:modelValue'])
 const loading = ref(false)
 const type = computed(() => props.tableData?.row?.type as keyof typeof dicMap.value)
 const isMultiple = computed(() => ['dept', 'post', 'user', 'specifyUser'].includes(type.value!))
+
+watch(type, () => {
+  multipleValue.value = []
+  singleValue.value = ''
+})
 
 const multipleValue = computed({
   get() {
