@@ -1,3 +1,12 @@
+# [2.0.0-beta.85](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.84...v2.0.0-beta.85) (2023-09-18)
+
+
+### Features
+
+* **form-design:** 增加容器children的默认转换 ([8e91172](https://github.com/SoulLyoko/yusui-tools/commit/8e91172ead5d92ded2478def4a4687f0b3d5e0d5))
+
+
+
 # [2.0.0-beta.84](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.83...v2.0.0-beta.84) (2023-09-15)
 
 
