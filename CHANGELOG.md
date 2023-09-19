@@ -1,3 +1,13 @@
+# [2.0.0-beta.86](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2023-09-19)
+
+
+### Bug Fixes
+
+* **composables:** useRes的modify配置项默认值改为true ([5def11e](https://github.com/SoulLyoko/yusui-tools/commit/5def11e703a4f18239d0be9de455c48425ec5751))
+* **types:** request移至helpers内 ([570ee1e](https://github.com/SoulLyoko/yusui-tools/commit/570ee1e4ba7f63c8d9daf717d4fb8fa9ab65e56b))
+
+
+
 # [2.0.0-beta.85](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.84...v2.0.0-beta.85) (2023-09-18)
 
 
