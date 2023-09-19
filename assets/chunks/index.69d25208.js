@@ -1,1 +1,0 @@
-import{u as t}from"./index.es.1accc3d3.js";import{g as R}from"./get.51c768ca.js";function h(f,e){const u=e==null?void 0:e.res,m=!!(e!=null&&e.modify),a=(...r)=>f(...r).then(s=>u?R(s,u):s),c=r=>t(a,{...e,...r});return m?c:c()}export{h as u};
