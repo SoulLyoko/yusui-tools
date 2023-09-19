@@ -25,7 +25,7 @@ export function useFlowOpsApi(request: RequestInstance) {
     list: '/sapier-flow/flow-ops/list',
   }
   const getTaskOpsList = (params: Page & FlowOps) => request.get<ResRecords<FlowOps[]>>(url.list, { params })
-  const useTaskOpsList = useRes(getTaskOpsList, { res: 'data.records', modify: true, defaultParams: [{ size: -1 }] })
+  const useTaskOpsList = useRes(getTaskOpsList, { res: 'data.records', defaultParams: [{ size: -1 }] })
   return {
     url,
     getTaskOpsList,

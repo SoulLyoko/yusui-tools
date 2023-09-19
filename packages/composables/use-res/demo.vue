@@ -13,22 +13,26 @@ async function request() {
   }
 }
 
-const { data: dataWithResPath } = useRes(request, {
-  res: 'data.records',
-})
+const useDataWithResPathAndModify = useRes(request, { res: 'data.records' })
+const { data: dataWithResPathAndModify, run } = useDataWithResPathAndModify({ manual: true })
 
-const useData = useRes(request, {
-  res: 'data.records',
-  modify: true,
-})
-const { data: dataWithModifyOptions } = useData({ initialData: [] })
+const { data: dataWithoutModify } = useRes(request, { res: 'data.records', modify: false })
 </script>
 
 <template>
   <div>
-    传入属性路径获取数据: {{ dataWithResPath }}
+    传入属性路径，配置修改为手动执行:
+    <el-button type="primary" size="small" icon="el-icon-refresh" @click="run">
+      执行
+    </el-button>
   </div>
   <div>
-    返回可传入修改配置的函数，执行后获取数据: {{ dataWithModifyOptions }}
+    {{ dataWithResPathAndModify }}
+  </div>
+  <div>
+    直接返回结果:
+  </div>
+  <div>
+    {{ dataWithoutModify }}
   </div>
 </template>

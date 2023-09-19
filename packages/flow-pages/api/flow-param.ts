@@ -74,7 +74,7 @@ export function useFlowParamApi(request: RequestInstance) {
   const getAllParam = () => request.get<ResData<FlowParamMap>>(url.all)
   /** 根据key获取流程参数 */
   const getParam = <K extends keyof FlowParamMap>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
-  const useParam = <K extends keyof FlowParamMap>(key: K) => useRes(getParam, { res: 'data', defaultParams: [key] })
+  const useParam = <K extends keyof FlowParamMap>(key: K) => useRes(getParam, { res: 'data', modify: false, defaultParams: [key] })
   const create = (data: FlowParam) => request.post(url.save, data)
   const update = (data: FlowParam) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

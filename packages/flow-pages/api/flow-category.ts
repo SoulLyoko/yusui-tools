@@ -31,7 +31,7 @@ export function useFlowCategoryApi(request: RequestInstance) {
     tree: '/sapier-flow/flow-category/tree',
   }
   const getList = (params: Page & FlowCategory) => request.get<ResData<FlowCategory[]>>(url.list, { params })
-  const useList = useRes(getList, { res: 'data', modify: true, defaultParams: [{ size: -1, ascs: 'sort' }] })
+  const useList = useRes(getList, { res: 'data', defaultParams: [{ size: -1, ascs: 'sort' }] })
   const getTree = (params: Page & FlowCategory) => request.get<ResData<FlowCategory[]>>(url.tree, { params })
   const create = (data: FlowCategory) => request.post(url.save, data)
   const update = (data: FlowCategory) => request.post(url.update, data)

@@ -43,7 +43,7 @@ watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: 
 const { open, close } = useFlowForm()
 function openFlow(row: FlowOps) {
   open({
-    flowKey: (row as FlowOps).flowKey,
+    flowKey: row.flowKey,
     taskId: row.taskId,
     instanceId: row.flowInstanceId,
     detail: row.taskId ? row.status === TaskStatus['已办'] : false,

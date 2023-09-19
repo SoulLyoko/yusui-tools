@@ -24,7 +24,7 @@ export function useFlowUserApi(request: RequestInstance) {
     tree: '/sapier-flow/flow-user/tree',
   }
   const getUserTree = (filter?: string) => request.get<ResData<FlowUserTree[]>>(url.tree, { params: { filter } })
-  const useUserTree = useRes(getUserTree, { res: 'data', modify: true })
+  const useUserTree = useRes(getUserTree, { res: 'data' })
   return {
     url,
     getUserTree,

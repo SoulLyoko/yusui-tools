@@ -37,7 +37,7 @@ export function useFormTemplateApi(request: RequestInstance) {
     remove: '/sapier-flow/dev-form/remove',
   }
   const getList = (params: Page & FormTemplate) => request.get<ResRecords<FormTemplate[]>>(url.list, { params })
-  const useList = useRes(getList, { res: 'data.records', modify: true, defaultParams: [{ size: -1 }] })
+  const useList = useRes(getList, { res: 'data.records', defaultParams: [{ size: -1 }] })
   const create = (data: FormTemplate) => request.post(url.save, data)
   const update = (data: FormTemplate) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

@@ -18,28 +18,37 @@ async function request() {
 }
 
 describe('useRes', () => {
-  it('no options', async () => {
-    const { data } = useRes(request)
+  it('should return modify fn without no options by default', async () => {
+    const useData = useRes(request)
+    const { data } = useData()
     await sleep()
     expect(data.value).toEqual(resRecords)
   })
 
-  it('original options', async () => {
-    const { data } = useRes(request, { initialData: { data: { records: [] } } })
+  it('should return modify fn with original options', async () => {
+    const useData = useRes(request, { initialData: { data: { records: [] } } })
+    const { data } = useData()
     await sleep()
     expect(data.value).toEqual(resRecords)
   })
 
-  it('path in options', async () => {
-    const { data } = useRes(request, { res: 'data.records', initialData: [] })
+  it('should return final data when path in options', async () => {
+    const useData = useRes(request, { res: 'data.records', initialData: [] })
+    const { data } = useData()
     await sleep()
     expect(data.value).toEqual(result)
   })
 
-  it('modify in options', async () => {
+  it('should return modify fn when modify is true', async () => {
     const useData = useRes(request, { res: 'data.records', modify: true })
     const { data, runAsync } = useData({ manual: true, initialData: [] })
     await runAsync()
+    expect(data.value).toEqual(result)
+  })
+
+  it('should return result when modify is false', async () => {
+    const { data } = useRes(request, { res: 'data.records', modify: false })
+    await sleep()
     expect(data.value).toEqual(result)
   })
 })

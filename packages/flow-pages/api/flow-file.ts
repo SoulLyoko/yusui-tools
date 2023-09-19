@@ -43,7 +43,7 @@ export function useFlowFileApi(request: RequestInstance) {
     remove: '/sapier-flow/flow-file/remove',
   }
   const getList = (params: Page & FlowFile) => request.get<ResData<FlowFile[]>>(url.list, { params })
-  const useList = useRes(getList, { res: 'data', modify: true })
+  const useList = useRes(getList, { res: 'data' })
   const create = (data: FlowFile) => request.post(url.save, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   return {

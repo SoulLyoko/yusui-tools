@@ -26,7 +26,7 @@ export function useCommonCommentApi(request: RequestInstance) {
     batchUpdate: '/sapier-flow/flow-user-common/batchUpdate',
   }
   const getList = (type?: string) => request.get<ResRecords<CommonComment[]>>(url.list, { params: { type, ascs: 'sort' } })
-  const useList = (type: Ref<string | undefined>) => useRes(() => getList(type.value), { res: 'data.records', refreshDeps: [type] })
+  const useList = (type: Ref<string | undefined>) => useRes(() => getList(type.value), { res: 'data.records', modify: false, refreshDeps: [type] })
   const create = (data: CommonComment) => request.post(url.save, data)
   const update = (data: CommonComment) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
