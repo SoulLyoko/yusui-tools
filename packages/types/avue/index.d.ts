@@ -3,20 +3,25 @@
 /// <reference types="./crud" />
 /// <reference types="./tree" />
 
-declare module "@smallwei/avue" {
+import type { ElSize } from '../helpers'
+
+type AnyFn = (...args: any[]) => any
+
+declare module '@smallwei/avue' {
   const avueConfig: {
-    size?: "large" | "default" | "small";
-    menuType?: MenuType;
-    theme?: "dark";
-    axios?: import("axios").AxiosInstance;
-    appendToBody?: boolean;
-  };
+    appendToBody?: boolean
+    axios?: import('axios').AxiosInstance
+    calcHeight?: number
+    menuType?: MenuType
+    size?: ElSize
+    theme?: 'dark'
+  }
   const Avue: {
-    install(app: import("vue").App, config?: AvueConfig): void;
-    locale: { use: Function, t: Function, i18n: Function }
+    install(app: import('vue').App, config?: AvueConfig): void
+    locale: { use: AnyFn; t: AnyFn; i18n: AnyFn }
     version: string
-    [name: string]: import("vue").DefineComponent
-  };
-  export type AvueConfig = typeof avueConfig;
-  export default Avue;
+    [name: string]: import('vue').DefineComponent
+  }
+  export type AvueConfig = typeof avueConfig
+  export default Avue
 }

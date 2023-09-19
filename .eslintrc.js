@@ -8,6 +8,7 @@ module.exports = {
     'vue/eqeqeq': 'off', // 允许==
     'prefer-regex-literals': 'off', // 允许new RegExp
     'prefer-promise-reject-errors': 'off', // 允许reject非Error参数
+    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off', // 允许ts-ignore
     '@typescript-eslint/prefer-ts-expect-error': 'off', // 允许ts-expect-error
     '@typescript-eslint/no-use-before-define': 'off', // 允许使用后定义的变量

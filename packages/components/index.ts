@@ -15,3 +15,12 @@ export default {
     app.component('VText', VText)
   },
 }
+
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    IconSelect: typeof IconSelect
+    InputTree: typeof InputTree
+    VDict: typeof VDict
+    VText: typeof VText
+  }
+}

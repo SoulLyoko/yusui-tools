@@ -20,7 +20,7 @@
     "docs:dev": "vitepress dev packages --host",
     "docs:serve": "vitepress serve packages",
     "lint": "eslint .",
-    "postinstall": "npx simple-git-hooks",
+    "postinstall": "npx simple-git-hooks & esno scripts/postinstall.ts",
     "release": "esno scripts/release.ts",
     "remove:dist": "esno scripts/remove-dist.ts",
     "test": "vitest",
