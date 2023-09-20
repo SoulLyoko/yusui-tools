@@ -8,24 +8,23 @@ import { getRandomId } from '.'
 function formItemToElement(list: AvueFormColumn[]): ElementTreeNode[] {
   return list.map((item) => {
     const temp = cloneDeep(item)
-    let children: ElementTreeNode[] = []
     temp.name = temp.name || temp.component || temp.type
     temp.id = temp.id || getRandomId(temp.name)
-    if (temp.name === 'form')
-      children = formItemToElement([...(temp.column ?? []), ...(temp.group ?? [])])
-    else if (temp.name === 'group')
-      children = formItemToElement(temp.column ?? [])
-    else if (['dynamic', 'table'].includes(temp.name))
-      children = formItemToElement(temp.children?.column ?? [])
-    else if (Array.isArray(temp.children))
-      children = formItemToElement(temp.children)
-    return {
+    const result: ElementTreeNode = {
       name: temp.name,
       id: temp.id,
       isRoot: temp.isRoot,
       props: temp,
-      children,
     }
+    if (temp.name === 'form')
+      result.children = formItemToElement([...(temp.column ?? []), ...(temp.group ?? [])])
+    else if (temp.name === 'group')
+      result.children = formItemToElement(temp.column ?? [])
+    else if (['dynamic', 'table'].includes(temp.name))
+      result.children = formItemToElement(temp.children?.column ?? [])
+    else if (Array.isArray(temp.children))
+      result.children = formItemToElement(temp.children)
+    return result
   })
 }
 
