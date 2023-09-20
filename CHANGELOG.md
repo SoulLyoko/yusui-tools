@@ -1,3 +1,12 @@
+# [2.0.0-beta.87](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.86...v2.0.0-beta.87) (2023-09-20)
+
+
+### Bug Fixes
+
+* **form-design:** 修复非容器组件的空children字段 ([a355d36](https://github.com/SoulLyoko/yusui-tools/commit/a355d36644c88226980e2450163d614c5706ddad))
+
+
+
 # [2.0.0-beta.86](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.85...v2.0.0-beta.86) (2023-09-19)
 
 
