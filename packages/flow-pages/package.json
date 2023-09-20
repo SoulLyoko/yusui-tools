@@ -29,7 +29,7 @@
     "@smallwei/avue": "^3.2.20",
     "@types/lodash-es": "^4.17.9",
     "element-plus": "^2.3.12",
-    "sass": "^1.66.1",
+    "sass": "^1.67.0",
     "vue": "^3.3.4"
   }
 }

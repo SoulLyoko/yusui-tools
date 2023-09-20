@@ -2,6 +2,7 @@
 /// <reference types="./form" />
 /// <reference types="./crud" />
 /// <reference types="./tree" />
+/// <reference types="./global" />
 
 import type { ElSize } from '../helpers'
 
