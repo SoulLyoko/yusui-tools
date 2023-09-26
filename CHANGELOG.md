@@ -1,3 +1,20 @@
+# [2.0.0-beta.88](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.87...v2.0.0-beta.88) (2023-09-26)
+
+
+### Bug Fixes
+
+* **flow-pages:** 修复按钮显示条件判断、修复传阅人的选择校验 ([a8d191f](https://github.com/SoulLyoko/yusui-tools/commit/a8d191f88385b1350c764670a92eb3479ad8f9ff))
+* **flow-pages:** 修改钩子参数 ([7ac00a5](https://github.com/SoulLyoko/yusui-tools/commit/7ac00a5a145ecd64c81df0945de513e27ecd6385))
+* **flow-pages:** 组件改为大驼峰命名 ([a45b988](https://github.com/SoulLyoko/yusui-tools/commit/a45b988710f1d28e5dee657a5c59138480da48f8))
+
+
+### Features
+
+* **flow-pages:** 流程设计弹窗新增保存按钮 ([349160e](https://github.com/SoulLyoko/yusui-tools/commit/349160ea427d42d8a17217eb181b7a1e9e3f15cb))
+* **flow-pages:** 流程运维、工作台、流程跟踪增加传阅任务的显示 ([e35d05f](https://github.com/SoulLyoko/yusui-tools/commit/e35d05f8315cb01eabc221ffc1db952491011246))
+
+
+
 # [2.0.0-beta.87](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.86...v2.0.0-beta.87) (2023-09-20)
 
 
