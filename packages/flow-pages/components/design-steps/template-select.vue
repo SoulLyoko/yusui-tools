@@ -60,9 +60,10 @@ async function selectTemplate(item: (typeof templatesDic.value)[number]) {
 
 <template>
   <el-dropdown v-if="templatesDic.length">
-    <el-link icon="el-icon-arrow-down" :underline="false">
+    <el-button text type="primary" :underline="false">
       选择模板
-    </el-link>
+      <Icon icon="ep:arrow-down" />
+    </el-button>
     <template #dropdown>
       <el-dropdown-menu>
         <el-scrollbar max-height="600px">

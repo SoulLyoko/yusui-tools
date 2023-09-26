@@ -126,18 +126,18 @@ async function handleSync() {
 </script>
 
 <template>
-  <el-dialog v-model="visible" fullscreen :show-close="false" destroy-on-close @close="handleClose">
+  <el-dialog v-model="visible" :show-close="false" fullscreen destroy-on-close @close="handleClose">
     <template #header>
       <el-row justify="center">
-        <el-col :span="5">
-          <div>
+        <el-col :span="6">
+          <div style="display: flex; align-items: center;">
             <span>流程设计</span>
-            <span v-if="formData?.flowName"> - {{ formData?.flowName }}</span>
-            <span v-if="formData?.version"> - V{{ formData?.version }}</span>
+            <span v-if="formData.flowName">-{{ formData.flowName }}</span>
+            <span v-if="formData.version">-V{{ formData.version }}</span>
+            <TemplateSelect v-model:form-data="formData" :active-step="activeStep" />
           </div>
-          <TemplateSelect v-model:form-data="formData" :active-step="activeStep" />
         </el-col>
-        <el-col :span="14">
+        <el-col :span="12">
           <el-steps :active="activeStep" simple process-status="finish" finish-status="success">
             <el-step
               v-for="(item, index) in steps" :key="index" :title="item" style="cursor:pointer"
@@ -145,12 +145,18 @@ async function handleSync() {
             />
           </el-steps>
         </el-col>
-        <el-col :span="5" style="text-align: right">
-          <el-button :disabled="activeStep === 0" :loading="loading" type="primary" @click="activeStep--">
+        <el-col :span="6" style="text-align: right">
+          <el-button :disabled="activeStep === 0" :loading="loading" type="primary" @click="saveAndNext(activeStep - 1)">
             上一步
           </el-button>
-          <el-button :disabled="activeStep === steps.length - 1" type="primary" :loading="loading" @click="saveAndNext()">
+          <el-button
+            :disabled="activeStep === steps.length - 1" :loading="loading" type="primary"
+            @click="saveAndNext(activeStep + 1)"
+          >
             下一步
+          </el-button>
+          <el-button :loading="loading" type="success" @click="saveAndNext(activeStep)">
+            保存
           </el-button>
           <el-button @click="handleClose">
             关闭
@@ -159,10 +165,10 @@ async function handleSync() {
       </el-row>
     </template>
 
-    <div v-loading="loading" style="height: calc(100vh - 144px)">
+    <div v-loading="loading" style="height: calc(100vh - 144px);">
       <avue-form
-        v-if="activeStep === 0" ref="formRef" v-model="formData" v-model:defaults="formDefaults" :option="formOption"
-        style="width: 50%; magin: 0 auto"
+        v-if="activeStep === 0" ref="formRef" v-model="formData" v-model:defaults="formDefaults"
+        :option="formOption" style="width: 50%; magin: 0 auto;"
       />
       <FormDesignWrapper v-if="activeStep === 1" v-model="formData.formOption" :fields="tableFields" />
       <FlowDesignWrapper v-if="activeStep === 2" v-model="formData.flowData" :flow-form-option="formData.formOption" />
