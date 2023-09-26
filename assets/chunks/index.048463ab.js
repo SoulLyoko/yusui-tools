@@ -1,0 +1,1 @@
+import{u as a}from"./index.es.ab5e9e65.js";import{g as R}from"./get.51c768ca.js";function h(f,e){const u=e==null?void 0:e.res,m=(e==null?void 0:e.modify)??!0,t=(...r)=>f(...r).then(s=>u?R(s,u):s),c=r=>a(t,{...e,...r});return m?c:c()}export{h as u};
