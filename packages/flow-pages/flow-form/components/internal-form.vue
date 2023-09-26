@@ -17,9 +17,9 @@ export default defineComponent({
     const option = ref<AvueFormOption>({})
     watchEffect(() => {
       const { formOption } = flowDetail.value.process ?? {}
-      // 给表单配置传递组件实例，即this
+      // 给表单配置传递this组件实例
       option.value = jsonParse.bind(proxy)(formOption || '{"menuBtn":false}')
-      option.value.detail = Boolean(detail.value)
+      option.value.detail = detail.value
     })
 
     const formRef = ref()

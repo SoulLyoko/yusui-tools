@@ -59,9 +59,9 @@ async function onSubmit() {
       ElMessage.error('无法找到相应的操作')
       return
     }
-    await handler?.()
-    await afterSubmit?.value?.(activeBtn.value!)
-    await emitter.emitAsync('afterSubmit', activeBtn.value!)
+    const res = await handler?.()
+    await afterSubmit?.value?.(res)
+    await emitter.emitAsync('afterSubmit', res)
     approvalVisible.value = false
     emit('complete', activeBtn.value!)
   }

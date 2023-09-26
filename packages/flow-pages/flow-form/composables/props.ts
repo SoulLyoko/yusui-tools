@@ -34,13 +34,13 @@ export const flowFormProps = {
   /** TODO:控制内部组件的显隐 */
   permission: { type: Object as PropType<FlowFormPermission> },
   /** 获取流程详情后 */
-  afterGetDetail: { type: Function as PropType<() => any> },
+  afterGetDetail: { type: Function as PropType<(flowDetail: FlowDetail) => any> },
   /** 按钮点击时(弹出审批窗口前) */
   beforeClick: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 流程提交前 */
   beforeSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
   /** 流程提交后 */
-  afterSubmit: { type: Function as PropType<(btn: FlowButton) => any> },
+  afterSubmit: { type: Function as PropType<(res: any) => any> },
   /** 详情模式,为true则禁用表单并隐藏按钮 */
   detail: { type: [Boolean, String], default: false },
   /** 调试模式 */

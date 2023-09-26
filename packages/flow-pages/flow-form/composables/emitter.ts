@@ -7,7 +7,7 @@ export type Emitter = EmitterAsync<{
   afterGetDetail: FlowDetail
   beforeClick: FlowButton
   beforeSubmit: FlowButton
-  afterSubmit: FlowButton
+  afterSubmit: any
 }>
 
 export type MaybePromise<T> = Promise<T> | T
@@ -20,16 +20,16 @@ export function useEmitter() {
   const onAfterGetDetail = (cb: (data: FlowDetail) => MaybePromise<any>) => {
     emitter.on('afterGetDetail', async (...arg) => await cb?.(...arg))
   }
-  /** 按钮点击时 onBeforeClick((res)=>{})  */
+  /** 按钮点击时 onBeforeClick((btn)=>{})  */
   const onBeforeClick = (cb: (btn: FlowButton) => MaybePromise<any>) => {
     emitter.on('beforeClick', async (...arg) => await cb?.(...arg))
   }
-  /** 流程提交前 onBeforeSubmit((res)=>{})  */
+  /** 流程提交前 onBeforeSubmit((btn)=>{})  */
   const onBeforeSubmit = (cb: (btn: FlowButton) => MaybePromise<any>) => {
     emitter.on('beforeSubmit', async (...arg) => await cb?.(...arg))
   }
   /** 流程提交成功后 onAfterSubmit((res)=>{})  */
-  const onAfterSubmit = (cb: (btn: FlowButton) => MaybePromise<any>) => {
+  const onAfterSubmit = (cb: (res: any) => MaybePromise<any>) => {
     emitter.on('afterSubmit', async (...arg) => await cb?.(...arg))
   }
 
