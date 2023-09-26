@@ -6,8 +6,7 @@ import { ElMessage } from 'element-plus'
 import { watchDebounced } from '@vueuse/core'
 import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
-import { TaskStatus, useConfigProvider, useFlowCategoryApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
-import { enumToDic } from '@yusui/utils'
+import { TaskStatus, taskNodeTypeDic, useConfigProvider, useFlowCategoryApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
 
@@ -24,8 +23,6 @@ const flowList = computed(() => {
   }).filter(e => e.list?.length)
 })
 
-const flowStatusDic = enumToDic(TaskStatus).filter((e, i) => i < 2).reverse()
-
 const {
   bindVal,
   getDataList,
@@ -35,7 +32,7 @@ const {
   crudOption: {
     getList: getTaskList,
   },
-  searchForm: { status: TaskStatus['待办'] },
+  searchForm: { status: TaskStatus['待办'], taskNodeType: 'userTask' },
 })
 
 watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })
@@ -86,7 +83,7 @@ function openFlow(row: FlowOps) {
 
   <avue-crud v-bind="bindVal">
     <template #menu-left>
-      <avue-radio v-model="searchForm.status" button :dic="flowStatusDic" />
+      <avue-radio v-model="searchForm.taskNodeType" :dic="taskNodeTypeDic" button />
     </template>
     <template #processTitle="{ row }">
       <el-link type="primary" :underline="false" @click="openFlow(row)">

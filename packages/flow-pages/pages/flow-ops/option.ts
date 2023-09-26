@@ -24,7 +24,7 @@ export const tableOption = defineTableOption<FlowOps>({
     { label: '申请人', prop: 'applyUserName' },
     { label: '接收时间', prop: 'startTime' },
     {
-      label: '任务状态',
+      label: '状态',
       prop: 'status',
       type: 'select',
       search: true,

@@ -1,6 +1,6 @@
 import type { FlowOps } from '@yusui/flow-pages'
 
-import { defineTableOption } from '@yusui/flow-pages'
+import { TaskStatus, defineTableOption } from '@yusui/flow-pages'
 
 export const tableOption = defineTableOption<FlowOps>({
   rowKey: 'id',
@@ -23,5 +23,14 @@ export const tableOption = defineTableOption<FlowOps>({
     { label: '审批人', prop: 'assigneeName' },
     { label: '申请人', prop: 'applyUserName' },
     { label: '接收时间', prop: 'startTime' },
+    {
+      label: '状态',
+      prop: 'status',
+      type: 'select',
+      search: true,
+      searchValue: TaskStatus['待办'],
+      dicUrl: '/sapier-flow/flow-param/getParam',
+      dicQuery: { paramKey: 'flow.task.status' },
+    },
   ],
 })

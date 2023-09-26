@@ -4,7 +4,7 @@ import type { FlowOps } from '@yusui/flow-pages'
 import { ElMessage } from 'element-plus'
 import { useStorage, watchDebounced } from '@vueuse/core'
 import { useCrud } from '@yusui/composables'
-import { TaskStatus, useConfigProvider, useFlowForm, useFlowOpsApi } from '@yusui/flow-pages'
+import { TaskStatus, taskNodeTypeDic, useConfigProvider, useFlowForm, useFlowOpsApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
 
@@ -22,7 +22,7 @@ const {
   crudOption: {
     getList: getTaskOpsList,
   },
-  searchForm: { status: TaskStatus['待办'] },
+  searchForm: { status: TaskStatus['待办'], taskNodeType: 'userTask' },
   sortOption: { descs: 'start_time' },
 })
 
@@ -46,6 +46,9 @@ function openFlow(row: FlowOps) {
 
 <template>
   <avue-crud v-bind="bindVal">
+    <template #menu-left>
+      <avue-radio v-model="searchForm.taskNodeType" :dic="taskNodeTypeDic" button />
+    </template>
     <template #menu-right>
       <el-button type="text">
         <el-switch v-model="debugMode" inline-prompt active-text="debug" inactive-text="debug" />

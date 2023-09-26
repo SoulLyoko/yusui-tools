@@ -17,7 +17,7 @@ const typeList = [
 ]
 
 const tableData = computed(() => {
-  return flowDetail.value?.flowHistory?.filter(e => e.taskNodeType === 'userTask')?.map((e) => {
+  return flowDetail.value?.flowHistory?.filter(e => /Task/.test(e.taskNodeType ?? ''))?.map((e) => {
     return {
       ...e,
       duration: durationFormat(e.duration),
