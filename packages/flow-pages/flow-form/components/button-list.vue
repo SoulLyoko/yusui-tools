@@ -51,8 +51,8 @@ const displayButtonList = computed(() => {
   const { button: buttonProperties } = flowDetail.value?.properties || {}
   const filterBtn = mergeButton(allButtonList.value ?? [], buttonProperties ?? [])?.filter((item) => {
     const displayList = item.display?.split(',')
-    const and = displayList?.every(condition => andCondition[condition as AndConditionKey])
-    const or = displayList?.some(condition => orCondition[condition as OrConditionKey])
+    const and = displayList?.filter(condition => condition in andCondition).every(condition => andCondition[condition as AndConditionKey])
+    const or = displayList?.filter(condition => condition in orCondition).some(condition => orCondition[condition as OrConditionKey])
     return and || or
   })
   return filterBtn ?? []

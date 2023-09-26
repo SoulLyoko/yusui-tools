@@ -52,7 +52,7 @@ const formOption = computed<AvueFormOption<ApprovalFormData>>(() => {
         label: '传阅人',
         prop: 'circulate',
         display: checkField('circulate'),
-        rules: validateCirculate ? [{ required: true, message: '请选择传阅人' }] : [],
+        rules: validateCirculate ? [{ required: true, validator: circulateValidator }] : [],
       },
       {
         label: '意见',
@@ -83,7 +83,13 @@ function approvalValidator(rule: any, value: any, callback: (msg?: string) => vo
   return true
 }
 
-// const { data: defaultComment } = useParam('flow.default.comment')
+function circulateValidator(rule: any, value: any, callback: (msg?: string) => void) {
+  if (checkedCirculateNodes.value.length)
+    return true
+  else
+    return callback('请选择传阅人')
+}
+
 const { data: autoCheck } = useParam('flow.approval.autocheck')
 const { data: autoComment } = useParam('flow.approval.autocomment')
 
