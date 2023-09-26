@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import Inspect from 'vite-plugin-inspect'
 
 import { mdDemoTransform } from './plugins/md-demo-transform'
 import { avuePatch, loadProxy } from '../plugins'
@@ -215,7 +216,7 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [mdDemoTransform(), avuePatch(), loadProxy()],
+    plugins: [mdDemoTransform(), avuePatch(), loadProxy(), Inspect()],
     resolve: {
       alias,
     },
