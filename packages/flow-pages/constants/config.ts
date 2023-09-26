@@ -1,9 +1,9 @@
 import type { FlowPagesConfig } from '../types'
 
 import FlowForm from '../flow-form/index.vue'
-import InternalForm from '../flow-form/components/internal-form.vue'
-import UploadTable from '../flow-form/components/upload-table.vue'
-import FlowTrack from '../flow-form/components/flow-track.vue'
+import InternalForm from '../flow-form/components/InternalForm.vue'
+import UploadTable from '../flow-form/components/UploadTable.vue'
+import FlowTrack from '../flow-form/components/FlowTrack.vue'
 
 export const CONFIG_DEFAULT: FlowPagesConfig = {
   FlowDesign: {},

@@ -2,9 +2,8 @@
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { durationFormat } from '@yusui/utils'
-import { isMobile, useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
+import { FlowDesignWrapper, isMobile, useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
 
-import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 import { useInjectState } from '../composables'
 
 const { flowDetail } = useInjectState()

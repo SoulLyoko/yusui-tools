@@ -7,9 +7,9 @@ import { findTree } from '@yusui/utils'
 import { asyncValidate, isMobile, useConfigProvider, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
-import CommonComments from './common-comments.vue'
-import ApprovalTree from './approval-tree.vue'
-import NodeSelect from './node-select.vue'
+import CommonComments from './CommonComments.vue'
+import ApprovalTree from './ApprovalTree.vue'
+import NodeSelect from './NodeSelect.vue'
 
 const emit = defineEmits(['submit'])
 

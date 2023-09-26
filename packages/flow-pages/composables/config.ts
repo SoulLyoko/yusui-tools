@@ -1,4 +1,4 @@
-import type { FlowPagesConfig } from '../types'
+import type { FlowPagesConfig } from '@yusui/flow-pages'
 
 import { reactive } from 'vue'
 import { cloneDeep, merge } from 'lodash-es'

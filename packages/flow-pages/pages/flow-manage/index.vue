@@ -3,9 +3,9 @@ import type { FlowCategory, FlowDefinition, FlowDeploy } from '@yusui/flow-pages
 
 import { nextTick, ref } from 'vue'
 
-import CategoryTree from '../../components/category-tree/index.vue'
-import DesignSteps from '../../components/design-steps/index.vue'
-import DesignView from '../../components/design-view/index.vue'
+import CategoryTree from '../../components/CategoryTree.vue'
+import DesignSteps from '../../components/DesignSteps.vue'
+import DesignView from '../../components/DesignView.vue'
 import FlowDefinitionCrud from '../flow-definition/index.vue'
 import FlowDeployCrud from '../flow-deploy/index.vue'
 

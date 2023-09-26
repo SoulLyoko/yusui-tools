@@ -3,10 +3,13 @@ import type { FlowDefinition, FlowDeploy } from '@yusui/flow-pages'
 
 import { ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
-import { useConfigProvider, useFlowDefinitionApi, useFlowDeployApi } from '@yusui/flow-pages'
-
-import FormDesignWrapper from '../form-design-wrapper/index.vue'
-import FlowDesignWrapper from '../flow-design-wrapper/index.vue'
+import {
+  FlowDesignWrapper,
+  FormDesignWrapper,
+  useConfigProvider,
+  useFlowDefinitionApi,
+  useFlowDeployApi,
+} from '@yusui/flow-pages'
 
 const props = defineProps<{
   modelValue: FlowDefinition | FlowDeploy
@@ -52,7 +55,7 @@ function handleClose() {
 </script>
 
 <template>
-  <el-dialog v-model="visible" width="60%" top="0" @close="handleClose">
+  <el-dialog v-model="visible" width="60%" top="5%" @close="handleClose">
     <template #header>
       <span>流程查看</span>
       <span v-if="formData?.flowName"> - {{ formData?.flowName }}</span>

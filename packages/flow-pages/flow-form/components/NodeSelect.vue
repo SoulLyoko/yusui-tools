@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { FlowDesignWrapper } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
-import FlowDesignWrapper from '../../components/flow-design-wrapper/index.vue'
 
 const props = defineProps<{ modelValue?: string }>()
 const { modelValue } = useVModels(props)

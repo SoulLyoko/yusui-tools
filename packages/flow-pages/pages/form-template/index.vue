@@ -6,7 +6,7 @@ import { useCrud } from '@yusui/composables'
 import { useConfigProvider, useFormTemplateApi } from '@yusui/flow-pages'
 
 import { tableOption } from './option'
-import FormDesignWrapper from '../../components/form-design-wrapper/index.vue'
+import FormDesignWrapper from '../../components/FormDesignWrapper.vue'
 
 const { request } = useConfigProvider()
 

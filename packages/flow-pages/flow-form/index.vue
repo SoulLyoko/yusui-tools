@@ -4,8 +4,8 @@ import type { FlowButton } from '@yusui/flow-pages'
 import { ElMessage } from 'element-plus'
 import { flowFormEmits, flowFormProps, isMobile, useButtonHandler, useConfigProvider, useProvideState } from '@yusui/flow-pages'
 
-import ButtonList from './components/button-list.vue'
-import InternalApprovalForm from './components/approval-form.vue'
+import ButtonList from './components/ButtonList.vue'
+import InternalApprovalForm from './components/ApprovalForm.vue'
 
 const props = defineProps(flowFormProps)
 const emit = defineEmits(flowFormEmits)

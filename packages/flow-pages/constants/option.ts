@@ -1,7 +1,7 @@
 import type { AvueFormOption } from '@smallwei/avue'
 import type { FlowDefinition, FlowDeploy } from '@yusui/flow-pages'
 
-export const formOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
+export const designFormOption: AvueFormOption<FlowDefinition | FlowDeploy> = {
   menuBtn: false,
   span: 24,
   column: [

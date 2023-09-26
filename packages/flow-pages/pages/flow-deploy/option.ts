@@ -1,8 +1,6 @@
 import type { FlowDeploy } from '@yusui/flow-pages'
 
-import { defineTableOption } from '@yusui/flow-pages'
-
-import { formOption } from '../../components/design-steps/option'
+import { defineTableOption, designFormOption } from '@yusui/flow-pages'
 
 export const tableOption = defineTableOption<FlowDeploy>({
   rowKey: 'flowDeloyId',
@@ -14,7 +12,7 @@ export const tableOption = defineTableOption<FlowDeploy>({
   menuType: 'menu',
   menuBtnTitle: '操作',
   column: [
-    ...(formOption.column! as any),
+    ...(designFormOption.column! as any),
     { prop: 'sort', hide: true },
     {
       label: '流程版本',

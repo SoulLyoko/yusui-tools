@@ -5,12 +5,17 @@ import type { FlowDefinition, FlowDeploy } from '@yusui/flow-pages'
 import { computed, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { asyncValidate, useConfigProvider, useFlowDefinitionApi, useFlowDeployApi, useTableTemplateApi } from '@yusui/flow-pages'
-
-import { formOption } from './option'
-import FormDesignWrapper from '../form-design-wrapper/index.vue'
-import FlowDesignWrapper from '../flow-design-wrapper/index.vue'
-import TemplateSelect from './template-select.vue'
+import {
+  FlowDesignWrapper,
+  FormDesignWrapper,
+  TemplateSelect,
+  asyncValidate,
+  designFormOption,
+  useConfigProvider,
+  useFlowDefinitionApi,
+  useFlowDeployApi,
+  useTableTemplateApi,
+} from '@yusui/flow-pages'
 
 const props = defineProps<{
   modelValue: FlowDefinition | FlowDeploy
@@ -100,7 +105,7 @@ async function saveAndNext(step?: number) {
 }
 
 async function handleDeploy() {
-  await ElMessageBox.confirm('发布新版本，是否确认？', '提示')
+  await ElMessageBox.confirm('发布新版本，是否确认？', '提示', { type: 'success' })
   loading.value = true
   deploy({ flowModuleId: formData.value.flowModuleId })
     .then(() => {
@@ -111,17 +116,21 @@ async function handleDeploy() {
     })
 }
 
+async function handleSync() {
+  await ElMessageBox.confirm(
+    '流程定义的数据(包括流程信息、表单设计、流程设计)将被修改为当前版本的数据，是否确认？',
+    '提示',
+    { type: 'warning' },
+  )
+  await updateDefinition(formData.value)
+  ElMessage.success('同步成功')
+}
+
 function handleClose() {
   visible.value = false
   activeStep.value = 0
   formData.value = {}
   emit('close')
-}
-
-async function handleSync() {
-  await ElMessageBox.confirm('流程定义的数据(包括流程信息、表单设计、流程设计)将被修改为当前版本的数据，是否确认？', '提示')
-  await updateDefinition(formData.value)
-  ElMessage.success('同步成功')
 }
 </script>
 
@@ -132,8 +141,8 @@ async function handleSync() {
         <el-col :span="6">
           <div style="display: flex; align-items: center;">
             <span>流程设计</span>
-            <span v-if="formData.flowName">-{{ formData.flowName }}</span>
-            <span v-if="formData.version">-V{{ formData.version }}</span>
+            <span v-if="formData.flowName"> - {{ formData.flowName }}</span>
+            <span v-if="formData.version"> - V{{ formData.version }}</span>
             <TemplateSelect v-model:form-data="formData" :active-step="activeStep" />
           </div>
         </el-col>
@@ -168,7 +177,7 @@ async function handleSync() {
     <div v-loading="loading" style="height: calc(100vh - 144px);">
       <avue-form
         v-if="activeStep === 0" ref="formRef" v-model="formData" v-model:defaults="formDefaults"
-        :option="formOption" style="width: 50%; magin: 0 auto;"
+        :option="designFormOption" style="width: 50%; magin: 0 auto;"
       />
       <FormDesignWrapper v-if="activeStep === 1" v-model="formData.formOption" :fields="tableFields" />
       <FlowDesignWrapper v-if="activeStep === 2" v-model="formData.flowData" :flow-form-option="formData.formOption" />

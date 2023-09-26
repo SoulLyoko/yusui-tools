@@ -1,8 +1,6 @@
 import type { FlowDefinition } from '@yusui/flow-pages'
 
-import { defineTableOption } from '@yusui/flow-pages'
-
-import { formOption } from '../../components/design-steps/option'
+import { defineTableOption, designFormOption } from '@yusui/flow-pages'
 
 export const tableOption = defineTableOption<FlowDefinition>({
   rowKey: 'flowModuleId',
@@ -14,7 +12,7 @@ export const tableOption = defineTableOption<FlowDefinition>({
   menuType: 'menu',
   menuBtnTitle: '操作',
   column: [
-    ...formOption.column!.map((col, index) => {
+    ...designFormOption.column!.map((col, index) => {
       return {
         ...col,
         search: index < 2,

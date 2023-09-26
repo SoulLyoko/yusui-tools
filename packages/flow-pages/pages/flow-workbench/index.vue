@@ -8,7 +8,7 @@ import { Icon } from '@iconify/vue'
 import { useCrud } from '@yusui/composables'
 import { TaskStatus, taskNodeTypeDic, useConfigProvider, useFlowCategoryApi, useFlowForm, useFlowTaskApi } from '@yusui/flow-pages'
 
-import { tableOption } from './option'
+import { tableOption } from '../flow-ops/option'
 
 const { request } = useConfigProvider()
 const { useList: useCategoryList } = useFlowCategoryApi(request)

@@ -6,7 +6,15 @@ import { computed, shallowRef } from 'vue'
 import { defaultGraphData, defaultOptions } from '@yusui/flow-design'
 import { enumToDic, treeMap } from '@yusui/utils'
 import { watchOnce } from '@vueuse/core'
-import { FlowButtonApproval, FlowButtonDisplay, useConfigProvider, useFlowButtonApi, useFlowParamApi, useFlowUserApi, whetherDic } from '@yusui/flow-pages'
+import {
+  FlowButtonApproval,
+  FlowButtonDisplay,
+  useConfigProvider,
+  useFlowButtonApi,
+  useFlowParamApi,
+  useFlowUserApi,
+  whetherDic,
+} from '@yusui/flow-pages'
 
 const props = defineProps<{
   modelValue?: string

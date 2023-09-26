@@ -3,7 +3,7 @@ import { useAttrs, watch } from 'vue'
 
 import { useConfigProvider, useDict } from '../../composables'
 
-const emit = defineEmits(['update:dic'])
+const emit = defineEmits(['update:dic', 'update:modelValue'])
 
 const inputTypes = ['input', 'text', 'password', 'number'] // 显示input组件的类型
 const pickerTypes = ['date', 'time', 'datetime'] // 显示picker组件的类型
