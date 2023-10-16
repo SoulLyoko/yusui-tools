@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import InputTree from './index.vue'
+import EpTree from './index.vue'
 
 const treeData = [
   {
@@ -60,7 +60,7 @@ const multiValue = ref([])
 
 <template>
   单选：
-  <InputTree v-model="singleValue" :data="treeData" />
+  <EpTree v-model="singleValue" :data="treeData" />
   多选：
-  <InputTree v-model="multiValue" :data="treeData" multiple />
+  <EpTree v-model="multiValue" :data="treeData" multiple />
 </template>

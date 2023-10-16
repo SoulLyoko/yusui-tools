@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 
-import InputTree from './index.vue'
+import EpTree from './index.vue'
 
-describe('InputTree', () => {
+describe('EpTree', () => {
   const treeData = [{
     value: '1',
     label: '一级 1',
@@ -24,7 +24,7 @@ describe('InputTree', () => {
     ],
   }]
 
-  const wrapper = mount(InputTree, { props: { data: treeData } })
+  const wrapper = mount(EpTree, { props: { data: treeData } })
 
   it('mount', async () => {
     expect(wrapper.find('.input-tree').html()).toContain('一级 1')

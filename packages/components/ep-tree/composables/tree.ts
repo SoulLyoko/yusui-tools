@@ -1,12 +1,12 @@
 import type Node from 'element-plus/es/components/tree/src/model/node'
 import type { Ref } from 'vue'
-import type { InputTreeProps, TreeInstance } from '../types'
+import type { EpTreeProps, TreeInstance } from '../types'
 
 import { computed, nextTick, onMounted, useAttrs, watch } from 'vue'
 import { ElTree } from 'element-plus'
 import { isEqual, pick } from 'lodash-unified'
 
-export function useTree(props: InputTreeProps, { emit, treeRef }: { emit: any; treeRef: Ref<TreeInstance | undefined> }) {
+export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any; treeRef: Ref<TreeInstance | undefined> }) {
   const attrs = useAttrs() as any
 
   onMounted(() => {

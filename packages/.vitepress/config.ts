@@ -47,8 +47,9 @@ export default defineConfig({
           text: 'Components',
           items: [
             { text: 'Start', link: '/components/index' },
+            { text: 'EpMenu', link: '/components/ep-menu/index' },
+            { text: 'EpTree', link: '/components/ep-tree/index' },
             { text: 'IconSelect', link: '/components/icon-select/index' },
-            { text: 'InputTree', link: '/components/input-tree/index' },
             { text: 'VDict', link: '/components/v-dict/index' },
             { text: 'VText', link: '/components/v-text/index' },
           ],

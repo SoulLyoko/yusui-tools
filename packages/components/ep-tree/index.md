@@ -1,4 +1,4 @@
-# InputTree
+# EpTree
 
 ## 基础用法
 

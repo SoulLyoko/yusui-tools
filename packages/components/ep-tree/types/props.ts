@@ -3,7 +3,7 @@ import type { TreeComponentProps } from 'element-plus/es/components/tree/src/tre
 
 export type TreeInstance = InstanceType<typeof ElTree>
 
-export type InputTreeProps = Partial<TreeComponentProps & Omit<InputProps, 'modelValue'> & {
+export type EpTreeProps = Partial<TreeComponentProps & Omit<InputProps, 'modelValue'> & {
   modelValue: string | number | string[] | number[]
   multiple: boolean
   tagType: TagProps['type']

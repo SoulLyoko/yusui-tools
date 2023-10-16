@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { InputTreeProps, TreeInstance } from './types'
+import type { EpTreeProps, TreeInstance } from './types'
 
 import { onMounted, reactive, ref } from 'vue'
 import { pickBy } from 'lodash-unified'
@@ -7,7 +7,7 @@ import { pickBy } from 'lodash-unified'
 import { useInput, useTag, useTree } from './composables'
 
 const props = withDefaults(
-  defineProps<InputTreeProps>(),
+  defineProps<EpTreeProps>(),
   { nodeKey: 'value', tagType: 'info', placeholder: '输入关键字搜索' },
 )
 const emit = defineEmits(['update:modelValue'])
@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="input-tree">
+  <div class="ep-tree">
     <el-input v-bind="reactive(inputProps)">
       <template #prefix>
         <el-space wrap>

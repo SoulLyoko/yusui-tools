@@ -1,16 +1,18 @@
 import type { App } from 'vue'
 
+import EpMenu from './ep-menu/index.vue'
+import EpTree from './ep-tree/index.vue'
 import IconSelect from './icon-select/index.vue'
-import InputTree from './input-tree/index.vue'
 import VDict from './v-dict/index.vue'
 import VText from './v-text/index.vue'
 
-export { IconSelect, InputTree, VDict, VText }
+export { EpMenu, EpTree, IconSelect, VDict, VText }
 
 export default {
   install(app: App) {
+    app.component('EpMenu', EpMenu)
+    app.component('EpTree', EpTree)
     app.component('IconSelect', IconSelect)
-    app.component('InputTree', InputTree)
     app.component('VDict', VDict)
     app.component('VText', VText)
   },
@@ -18,8 +20,9 @@ export default {
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    EpMenu: typeof EpMenu
+    EpTree: typeof EpTree
     IconSelect: typeof IconSelect
-    InputTree: typeof InputTree
     VDict: typeof VDict
     VText: typeof VText
   }
