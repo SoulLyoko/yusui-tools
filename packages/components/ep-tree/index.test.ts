@@ -27,7 +27,7 @@ describe('EpTree', () => {
   const wrapper = mount(EpTree, { props: { data: treeData } })
 
   it('mount', async () => {
-    expect(wrapper.find('.input-tree').html()).toContain('一级 1')
+    expect(wrapper.find('.ep-tree').html()).toContain('一级 1')
   })
 
   it('show tag', async () => {
