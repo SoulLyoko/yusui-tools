@@ -1,3 +1,18 @@
+# [2.0.0-beta.89](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.88...v2.0.0-beta.89) (2023-10-18)
+
+
+### Bug Fixes
+
+* **components:** input-tree重命名为ep-tree ([6b3c2d2](https://github.com/SoulLyoko/yusui-tools/commit/6b3c2d2c872a4d4fa2b567668775ed9f56b87ba2))
+* **flow-pages:** api可以单独引入 ([2db16f6](https://github.com/SoulLyoko/yusui-tools/commit/2db16f60d2309044acb6d4200a2b84d4791c09b2))
+
+
+### Features
+
+* **components:** ep-menu菜单组件 ([0eb3bee](https://github.com/SoulLyoko/yusui-tools/commit/0eb3bee9e12387b1947ee5825e5a0c7717359cae))
+
+
+
 # [2.0.0-beta.88](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.87...v2.0.0-beta.88) (2023-09-26)
 
 
