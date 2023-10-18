@@ -30,7 +30,7 @@ const [DefineMenuTitle, MenuTitle] = createReusableTemplate<{ menu: RouteRecordR
 const [DefineMenuItem, MenuItem] = createReusableTemplate<{ routes?: RouteRecordRaw[] }>()
 
 function bindMenuItemEvents(menu: RouteRecordRaw) {
-  function emitEvent(type: string, e: MouseEvent | RouteRecordRaw) {
+  function emitEvent(type: keyof EpMenuEmits, e: MouseEvent | RouteRecordRaw) {
     const isEvent = e instanceof Event
     if (isEvent)
       e.preventDefault()
@@ -52,8 +52,8 @@ function bindMenuItemEvents(menu: RouteRecordRaw) {
   <DefineMenuTitle v-slot="{ menu }">
     <slot v-if="$slots.default" name="default" v-bind="menu" />
     <div v-else class="menu-item" style="width:100%" v-bind="bindMenuItemEvents(menu)">
-      <el-icon class="menu-icon">
-        <Icon v-if="menu.meta?.icon" :icon="menu.meta?.icon" />
+      <el-icon v-if="menu.meta?.icon" class="menu-icon">
+        <Icon :icon="menu.meta?.icon" />
       </el-icon>
       <span v-if="!collapse" class="menu-title">{{ menu.meta?.title }}</span>
     </div>

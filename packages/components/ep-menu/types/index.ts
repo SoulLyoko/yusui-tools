@@ -15,7 +15,7 @@ export type EpMenuProps = {
 export type OnSelectParams = Parameters<MenuEmits['select']>
 export type EpMenuEmits = {
   click: [menu: RouteRecordRaw]
-  constextmenu: [menu: RouteRecordRaw]
+  contextmenu: [menu: RouteRecordRaw]
   select: OnSelectParams
 } & {}
 
