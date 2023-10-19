@@ -1,3 +1,14 @@
+# [2.0.0-beta.90](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.89...v2.0.0-beta.90) (2023-10-19)
+
+
+### Bug Fixes
+
+* **components:** ep-menu事件更名 ([9b12a76](https://github.com/SoulLyoko/yusui-tools/commit/9b12a76eed9bbda9ec4e425d161b7fa2cf68df3a))
+* **components:** ep-menu无图标显示问题,contextmenu事件拼写问题 ([a47f9cb](https://github.com/SoulLyoko/yusui-tools/commit/a47f9cbbae3a79d1aa59ce2c72cca161e3504beb))
+* **plugins:** 弃用fixFormGroup，最新avue已修复分组问题 ([282f093](https://github.com/SoulLyoko/yusui-tools/commit/282f09344e52270530c57677a64e47eb4dc76492))
+
+
+
 # [2.0.0-beta.89](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.88...v2.0.0-beta.89) (2023-10-18)
 
 
