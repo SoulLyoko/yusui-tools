@@ -67,6 +67,7 @@ export function fixMenuBtnSlot(code: string) {
 /**
  * 表单分组
  * [form](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/form/index.vue#L326)
+ * @deprecated v3.2.21已修复
  */
 export function fixFormGroup(code: string) {
   return (
@@ -87,7 +88,6 @@ export function avuePatch(): Plugin {
         code = fixMenuBtnType(code)
         code = fixFormRow(code)
         code = fixMenuBtnSlot(code)
-        code = fixFormGroup(code)
         return code
       }
     },
