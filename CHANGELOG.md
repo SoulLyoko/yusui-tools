@@ -1,3 +1,12 @@
+# [2.0.0-beta.91](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.90...v2.0.0-beta.91) (2023-10-19)
+
+
+### Features
+
+* **components:** 完善ep-menu的插槽，事件和方法 ([58cb670](https://github.com/SoulLyoko/yusui-tools/commit/58cb6700ebfc3e7725c312490b90071e23a4ef8b))
+
+
+
 # [2.0.0-beta.90](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.89...v2.0.0-beta.90) (2023-10-19)
 
 
