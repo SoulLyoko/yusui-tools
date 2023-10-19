@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
-import type { EpMenuItemEmits, EpMenuItemProps } from './types'
+import type { EpMenuItemEmits, EpMenuItemProps, EpMenuItemSlots } from './types'
 
 import { computed } from 'vue'
 import { createReusableTemplate } from '@vueuse/core'
@@ -12,6 +12,7 @@ const props = withDefaults(
   { indexKey: 'path' },
 )
 const emit = defineEmits<EpMenuItemEmits>()
+const slots = defineSlots<EpMenuItemSlots>()
 
 const elSubMenuProps = computed(() => {
   return pick(props, Object.keys(subMenuProps))
@@ -40,7 +41,7 @@ function bindMenuItemEvents(route: RouteRecordRaw) {
 
 <template>
   <DefineMenuTitle v-slot="{ route }">
-    <slot v-if="$slots.default" name="default" v-bind="route" />
+    <slot v-if="$slots.default" v-bind="route" />
     <div v-else class="menu-item" style="width:100%" v-bind="bindMenuItemEvents(route)">
       <el-icon v-if="route.meta?.icon" class="menu-icon">
         <Icon :icon="route.meta?.icon" />
@@ -54,7 +55,11 @@ function bindMenuItemEvents(route: RouteRecordRaw) {
       <template #title>
         <MenuTitle :route="route" />
       </template>
-      <MenuItem :routes="route.children" v-bind="bindMenuItemEvents(route)" />
+      <MenuItem :routes="route.children" v-bind="bindMenuItemEvents(route)">
+        <template v-if="$slots.default" #default="scope">
+          <slot v-bind="scope" />
+        </template>
+      </MenuItem>
     </el-sub-menu>
     <el-menu-item v-else :index="route[indexKey as 'path']" :route="route" :disabled="route.meta?.disabled">
       <MenuTitle :route="route" />

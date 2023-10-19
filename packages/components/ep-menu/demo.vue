@@ -88,4 +88,10 @@ const activeMenuIndex = ref('/components/ep-menu/index')
     v-model="activeMenuIndex" :routes="menuList" mode="horizontal" @item-click="onMenuItemClick"
     @item-contextmenu="onMenuItemContextmenu"
   />
+  插槽：
+  <EpMenu v-model="activeMenuIndex" :routes="menuList" mode="horizontal">
+    <template #default="route">
+      {{ route.meta?.title }}自定义插槽
+    </template>
+  </EpMenu>
 </template>

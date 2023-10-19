@@ -14,3 +14,7 @@ export type EpMenuItemEmits = {
   click: [route: RouteRecordRaw]
   contextmenu: [route: RouteRecordRaw]
 } & {}
+
+export interface EpMenuItemSlots {
+  default(route: RouteRecordRaw): any
+}
