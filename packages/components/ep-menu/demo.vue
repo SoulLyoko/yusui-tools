@@ -2,80 +2,90 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 import { ref } from 'vue'
+import { useRouter } from 'vitepress'
 
 const menuList = ref<RouteRecordRaw[]>([
   {
     name: 'components',
-    path: '/yusui-tools/components/',
+    path: '/components',
     redirect: '',
-    meta: { title: 'Components', icon: 'ep:plus' },
+    meta: { title: 'Components', icon: 'ep:menu' },
     children: [
       {
         name: 'components-start',
-        path: '/yusui-tools/components/index',
+        path: '/components/index',
         redirect: '',
-        meta: { title: 'Start', icon: 'ep:plus' },
+        meta: { title: 'Start', icon: 'ep:menu' },
+      },
+      {
+        name: 'components-ep-menu',
+        path: '/components/ep-menu/index',
+        redirect: '',
+        meta: { title: 'EpMenu', icon: 'ep:menu' },
+      },
+      {
+        name: 'components-ep-tree',
+        path: '/components/ep-tree/index',
+        redirect: '',
+        meta: { title: 'EpTree', icon: 'ep:menu' },
       },
       {
         name: 'components-icon-select',
-        path: '/yusui-tools/components/icon-select/',
+        path: '/components/icon-select/index',
         redirect: '',
-        meta: { title: 'IconSelect', icon: 'ep:plus' },
-      },
-      {
-        name: 'components-input-tree',
-        path: '/yusui-tools/components/input-tree/',
-        redirect: '',
-        meta: { title: 'InputTree', icon: 'ep:plus' },
+        meta: { title: 'IconSelect', icon: 'ep:menu' },
       },
     ],
   },
   {
     name: 'composables',
-    path: '/yusui-tools/composables/',
+    path: '/composables',
     redirect: '',
-    meta: { title: 'Composables', icon: 'ep:minus' },
+    meta: { title: 'Composables', icon: 'ep:menu' },
     children: [
       {
         name: 'composables-start',
-        path: '/yusui-tools/composables/index',
+        path: '/composables/index',
         redirect: '',
-        meta: { title: 'Start', icon: 'ep:minus' },
+        meta: { title: 'Start', icon: 'ep:menu' },
       },
       {
         name: 'composables-use-crud',
-        path: '/yusui-tools/composables/use-crud/',
+        path: '/composables/use-crud/',
         redirect: '',
-        meta: { title: 'useCrud', icon: 'ep:minus' },
+        meta: { title: 'useCrud', icon: 'ep:menu' },
       },
       {
         name: 'composables-use-dict',
-        path: '/yusui-tools/composables/use-dict/',
+        path: '/composables/use-dict/',
         redirect: '',
-        meta: { title: 'useDict', icon: 'ep:minus' },
+        meta: { title: 'useDict', icon: 'ep:menu' },
       },
     ],
   },
 ])
 
-function onMenuClick(menu: RouteRecordRaw) {
-  console.log('click', menu)
+const router = useRouter()
+function onMenuItemClick(route: RouteRecordRaw) {
+  console.log('item-click', route)
+  if (!route.children?.length)
+    router.go(route.path)
 }
-function onContextmenu(menu: RouteRecordRaw) {
-  console.log('contextmenu', menu)
+function onMenuItemContextmenu(route: RouteRecordRaw) {
+  console.log('item-contextmenu', route)
 }
 
-const activeMenuIndex = ref('/yusui-tools/components/index')
+const activeMenuIndex = ref('/components/ep-menu/index')
 </script>
 
 <template>
   默认纵向：
   <div style="width:300px">
-    <EpMenu v-model="activeMenuIndex" :routes="menuList" @click="onMenuClick" @contextmenu="onContextmenu" />
+    <EpMenu v-model="activeMenuIndex" :routes="menuList" @item-click="onMenuItemClick" @item-contextmenu="onMenuItemContextmenu" />
   </div>
   横向：
   <EpMenu
-    v-model="activeMenuIndex" :routes="menuList" mode="horizontal" @click="onMenuClick"
-    @contextmenu="onContextmenu"
+    v-model="activeMenuIndex" :routes="menuList" mode="horizontal" @item-click="onMenuItemClick"
+    @item-contextmenu="onMenuItemContextmenu"
   />
 </template>

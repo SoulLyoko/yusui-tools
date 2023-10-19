@@ -18,4 +18,4 @@
 
 ## 路由定义
 
-<<<./types/index.ts#route-meta
+<<<./types/route-meta.ts

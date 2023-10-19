@@ -12,7 +12,7 @@
     "build": "esno scripts/build.ts",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "changelog:init": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "ci": "pnpm lint && pnpm typecheck && pnpm test run && pnpm build && pnpm docs:build",
+    "ci": "pnpm lint && pnpm tc && pnpm test run && pnpm build && pnpm docs:build",
     "dev": "pnpm -F web dev",
     "dev:h5": "pnpm -F app dev:h5",
     "dev:mp": "pnpm -F app dev:mp-weixin",
@@ -24,7 +24,7 @@
     "release": "esno scripts/release.ts",
     "remove:dist": "esno scripts/remove-dist.ts",
     "test": "vitest",
-    "typecheck": "vue-tsc --noEmit",
+    "tc": "vue-tsc --noEmit",
     "upd": "taze major -r -I",
     "uvm": "pnpm -F app uvm"
   },
