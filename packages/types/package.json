@@ -18,7 +18,7 @@
     "avue"
   ],
   "devDependencies": {
-    "element-plus": "^2.3.12",
+    "element-plus": "^2.4.1",
     "vue": "^3.3.4"
   }
 }

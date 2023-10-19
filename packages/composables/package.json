@@ -28,10 +28,10 @@
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "lodash-unified": "1.0.3",
-    "vue-request": "^2.0.3"
+    "vue-request": "^2.0.4"
   },
   "devDependencies": {
-    "element-plus": "^2.3.12",
+    "element-plus": "^2.4.1",
     "vue": "^3.3.4"
   }
 }
