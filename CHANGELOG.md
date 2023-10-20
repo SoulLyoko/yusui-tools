@@ -1,3 +1,12 @@
+# [2.0.0-beta.92](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.91...v2.0.0-beta.92) (2023-10-20)
+
+
+### Bug Fixes
+
+* **components:** 给MenuItem传递参数,插槽参数改为`{route}` ([eba782d](https://github.com/SoulLyoko/yusui-tools/commit/eba782df1e7e10da545756c29bbd30af4df9d2d5))
+
+
+
 # [2.0.0-beta.91](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.90...v2.0.0-beta.91) (2023-10-19)
 
 
