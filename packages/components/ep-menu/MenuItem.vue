@@ -1,20 +1,19 @@
 <script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
-import type { EpMenuItemEmits, EpMenuItemProps, EpMenuItemSlots } from './types'
+import type { MenuItemSlots } from './props'
 
 import { computed } from 'vue'
 import { createReusableTemplate } from '@vueuse/core'
 import { subMenuProps } from 'element-plus'
 import { pick } from 'lodash-unified'
 
-const props = withDefaults(
-  defineProps<EpMenuItemProps>(),
-  { indexKey: 'path' },
-)
-const emit = defineEmits<EpMenuItemEmits>()
-const slots = defineSlots<EpMenuItemSlots>()
+import { menuItemEmits, menuItemProps } from './props'
 
-const elSubMenuProps = computed(() => {
+const props = defineProps(menuItemProps)
+const emit = defineEmits(menuItemEmits)
+const slots = defineSlots<MenuItemSlots>()
+
+const bindSubMenuProps = computed(() => {
   return pick(props, Object.keys(subMenuProps))
 })
 
@@ -41,7 +40,7 @@ function bindMenuItemEvents(route: RouteRecordRaw) {
 
 <template>
   <DefineMenuTitle v-slot="{ route }">
-    <slot v-if="$slots.default" v-bind="route" />
+    <slot v-if="$slots.default" :route="route" />
     <div v-else class="menu-item" style="width:100%" v-bind="bindMenuItemEvents(route)">
       <el-icon v-if="route.meta?.icon" class="menu-icon">
         <Icon :icon="route.meta?.icon" />
@@ -51,7 +50,7 @@ function bindMenuItemEvents(route: RouteRecordRaw) {
   </DefineMenuTitle>
 
   <template v-for="route in routes" :key="route[indexKey]">
-    <el-sub-menu v-if="route.children?.length" v-bind="elSubMenuProps" :index="route[indexKey as 'path']">
+    <el-sub-menu v-if="route.children?.length" v-bind="bindSubMenuProps" :index="route[indexKey as 'path']">
       <template #title>
         <MenuTitle :route="route" />
       </template>

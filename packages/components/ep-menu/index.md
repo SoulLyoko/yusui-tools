@@ -18,13 +18,13 @@
 
 ## 事件
 
-| 名称             | 说明                             | 回调参数               |
-| ---------------- | -------------------------------- | ---------------------- |
-| item-click       | menu-item 和 sub-menu 点击的回调 | (route:RouteRecordRaw) |
-| item-contextmenu | menu-item 和 sub-menu 右击的回调 | (route:RouteRecordRaw) |
-| select           | 菜单激活回调                     | OnSelectParams         |
-| open             | sub-menu 展开的回调              | OnOpenParams           |
-| close            | sub-menu 收起的回调              | OnCloseParams          |
+| 名称             | 说明                             | 回调参数                       |
+| ---------------- | -------------------------------- | ------------------------------ |
+| item-click       | menu-item 和 sub-menu 点击的回调 | (route:RouteRecordRaw)         |
+| item-contextmenu | menu-item 和 sub-menu 右击的回调 | (route:RouteRecordRaw)         |
+| select           | 菜单激活回调                     | Parameters<MenuEmits['select'] |
+| open             | sub-menu 展开的回调              | Parameters<MenuEmits['open']   |
+| close            | sub-menu 收起的回调              | Parameters<MenuEmits['close']  |
 
 ## 方法
 
@@ -35,16 +35,22 @@
 
 ## 插槽
 
-| 名称 | 说明             | 参数           |
-| ---- | ---------------- | -------------- |
-| -    | 自定义菜单项内容 | RouteRecordRaw |
+| 名称 | 说明             | 参数                      |
+| ---- | ---------------- | ------------------------- |
+| -    | 自定义菜单项内容 | \{route: RouteRecordRaw\} |
+
+:::tip
+
+使用插槽需要自行处理点击事件
+
+:::
 
 ## 路由定义
 
-<<<./types/route-meta.ts
+<<<./props/index.ts#route-meta
 
 ## 类型定义
 
-<<<./types/menu.ts
+<<<./props/menu.ts
 
-<<<./types/menu-item.ts
+<<<./props/menu-item.ts

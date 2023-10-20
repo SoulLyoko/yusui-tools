@@ -1,5 +1,7 @@
-export {}
+export * from './menu-item'
+export * from './menu'
 
+// #region route-meta
 declare module 'vue-router' {
   interface RouteMeta {
     /** 菜单标题 */
@@ -10,3 +12,4 @@ declare module 'vue-router' {
     disabled?: boolean
   }
 }
+// #endregion route-meta

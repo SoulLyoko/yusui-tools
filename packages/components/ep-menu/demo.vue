@@ -76,12 +76,15 @@ function onMenuItemContextmenu(route: RouteRecordRaw) {
 }
 
 const activeMenuIndex = ref('/components/ep-menu/index')
+
+const collapse = ref(false)
 </script>
 
 <template>
   默认纵向：
   <div style="width:300px">
-    <EpMenu v-model="activeMenuIndex" :routes="menuList" @item-click="onMenuItemClick" @item-contextmenu="onMenuItemContextmenu" />
+    <el-switch v-model="collapse" active-text="折叠" inactive-text="展开" />
+    <EpMenu v-model="activeMenuIndex" :routes="menuList" :collapse="collapse" @item-click="onMenuItemClick" @item-contextmenu="onMenuItemContextmenu" />
   </div>
   横向：
   <EpMenu
@@ -90,8 +93,10 @@ const activeMenuIndex = ref('/components/ep-menu/index')
   />
   插槽：
   <EpMenu v-model="activeMenuIndex" :routes="menuList" mode="horizontal">
-    <template #default="route">
-      {{ route.meta?.title }}自定义插槽
+    <template #default="{ route }">
+      <div style="width:100%" @click="onMenuItemClick(route)">
+        自定义插槽 - {{ route.meta?.title }}
+      </div>
     </template>
   </EpMenu>
 </template>

@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import type { EpMenuEmits, EpMenuProps, EpMenuSlots, OnSelectParams } from './types'
 import type { RouteRecordRaw } from 'vue-router'
+import type { MenuEmits, MenuSlots } from './props'
 
 import { computed, onMounted, reactive, ref } from 'vue'
 import { pick, pickBy } from 'lodash-unified'
 import { useVModels } from '@vueuse/core'
-import { menuProps } from 'element-plus'
+import { menuProps as elMenuProps } from 'element-plus'
 
 import MenuItem from './MenuItem.vue'
+import { menuEmits, menuItemProps, menuProps } from './props'
 
-const props = withDefaults(
-  defineProps<EpMenuProps>(),
-  { indexKey: 'path' },
-)
-const emit = defineEmits<EpMenuEmits>()
-const slots = defineSlots<EpMenuSlots>()
+const props = defineProps(menuProps)
+const emit = defineEmits(menuEmits)
+const slots = defineSlots<MenuSlots>()
 
 const { modelValue: activeMenuIndex } = useVModels(props)
 
-const elMenuProps = computed(() => {
-  return pick(props, Object.keys(menuProps))
+const bindMenuProps = computed(() => {
+  return pick(props, Object.keys(elMenuProps))
 })
-function onMenuSelect(...args: OnSelectParams) {
+const bindMenuItemProps = computed(() => {
+  return pick(props, Object.keys(menuItemProps))
+})
+
+function onMenuSelect(...args: Parameters<MenuEmits['select']>) {
   activeMenuIndex!.value = args[0]
   emit('select', ...args)
 }
@@ -42,11 +44,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-menu v-bind="elMenuProps" ref="menuRef" class="ep-menu" :default-active="activeMenuIndex" @select="onMenuSelect">
-    <MenuItem :routes="routes" @click="onMenuItemClick" @contextmenu="onMenuItemContextmenu">
-      <template v-if="$slots.default" #default="scope">
-        <slot v-bind="scope" />
-      </template>
-    </MenuItem>
+  <el-menu v-bind="bindMenuProps" ref="menuRef" class="ep-menu" :default-active="activeMenuIndex" @select="onMenuSelect">
+    <template #default>
+      <MenuItem v-bind="bindMenuItemProps" @click="onMenuItemClick" @contextmenu="onMenuItemContextmenu">
+        <template v-if="$slots.default" #default="scope">
+          <slot v-bind="scope" />
+        </template>
+      </MenuItem>
+    </template>
   </el-menu>
 </template>
