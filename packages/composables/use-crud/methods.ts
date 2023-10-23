@@ -1,9 +1,9 @@
-import type { Ref } from 'vue'
 import type { AvueCrudInstance, AvueCrudProps, FormType } from '@smallwei/avue'
+import type { Ref } from 'vue'
 import type { Data } from '@yusui/types'
 import type { CrudState, Emitter, UseCrudMethodsOptions } from './types'
 
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { getCurrentInstance } from 'vue'
 import { cloneDeep, get, isNil, omitBy, overSome, snakeCase } from 'lodash-unified'
 import { sleep, to } from '@yusui/utils'
 
@@ -18,6 +18,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
   emitter: Emitter<T, P>
   options: UseCrudMethodsOptions<T, P>
 }) {
+  const { proxy: vm } = getCurrentInstance() ?? {}
   /**
    * 获取数据列表
    */
@@ -75,7 +76,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
       delete data[rowKey]
       try {
         const res = await create(filterRow(data))
-        saveSuccessMsg && ElMessage.success(saveSuccessMsg)
+        saveSuccessMsg && vm?.$message?.success(saveSuccessMsg)
         await emitter.emitAsync('afterSave', res)
         await emitter.emitAsync('afterSubmit', res)
         done?.()
@@ -106,7 +107,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
         return loading?.()
       try {
         const res = await update(filterRow(data))
-        updateSuccessMsg && ElMessage.success(updateSuccessMsg)
+        updateSuccessMsg && vm?.$message?.success(updateSuccessMsg)
         await emitter.emitAsync('afterUpdate', res)
         await emitter.emitAsync('afterSubmit', res)
         done?.()
@@ -131,10 +132,10 @@ export function useCrudMethods<T extends Data, P extends Data>({
       const { rowKey, remove, delConfirm, delSuccessMsg } = crudState.crudOption
       if (!remove)
         return
-      delConfirm && (await ElMessageBox.confirm('确认进行删除操作？', '提示', { type: 'warning' }))
+      delConfirm && (await vm?.$messageBox?.confirm('确认进行删除操作？', '提示', { type: 'warning' }))
       try {
         const res = await remove(data[rowKey])
-        delSuccessMsg && ElMessage.success(delSuccessMsg)
+        delSuccessMsg && vm?.$message?.success(delSuccessMsg)
         await emitter.emitAsync('afterDel', res)
         return getDataList()
       }
@@ -157,15 +158,15 @@ export function useCrudMethods<T extends Data, P extends Data>({
         return
       const length = data.length
       if (!length)
-        return ElMessage.warning('请选择删除项')
-      delConfirm && (await ElMessageBox.confirm(`确认删除所选的${length}条数据？`, '提示', { type: 'warning' }))
+        return vm?.$message?.warning('请选择删除项')
+      delConfirm && (await vm?.$messageBox?.confirm(`确认删除所选的${length}条数据？`, '提示', { type: 'warning' }))
       const ids = data
         .map(item => item[rowKey])
         // 根据后端接口传数组或者逗号拼接的字符串
         .join(',')
       try {
         const res = await remove(ids)
-        delSuccessMsg && ElMessage.success(delSuccessMsg)
+        delSuccessMsg && vm?.$message?.success(delSuccessMsg)
         await emitter.emitAsync('afterBatchDel', res)
         return getDataList()
       }
