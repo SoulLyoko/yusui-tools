@@ -8,7 +8,9 @@
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },

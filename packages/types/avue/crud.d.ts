@@ -140,7 +140,7 @@ declare module '@smallwei/avue' {
     addDisplay?: boolean
     /** 表单编辑时是否可见 */
     editDisplay?: boolean
-    /** viewDisplay */
+    /** 表单查看时是否可见 */
     viewDisplay?: boolean
     column?: AvueCrudColumn<T>[]
   }
