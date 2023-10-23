@@ -1,3 +1,13 @@
+# [2.0.0-beta.93](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.92...v2.0.0-beta.93) (2023-10-23)
+
+
+### Bug Fixes
+
+* **composables:** 移除ElMessage的导入，使用$message ([a520c3e](https://github.com/SoulLyoko/yusui-tools/commit/a520c3e6e4a7fb7dd14a358f18caacf4bc7da502))
+* **types:** exports ([36fc2ab](https://github.com/SoulLyoko/yusui-tools/commit/36fc2abf2eea3706205a1181dd15400a23f65581))
+
+
+
 # [2.0.0-beta.92](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.91...v2.0.0-beta.92) (2023-10-20)
 
 
