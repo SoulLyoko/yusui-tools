@@ -45,12 +45,13 @@ onMounted(() => {
 
 <template>
   <el-menu v-bind="bindMenuProps" ref="menuRef" class="ep-menu" :default-active="activeMenuIndex" @select="onMenuSelect">
-    <template #default>
-      <MenuItem v-bind="bindMenuItemProps" @click="onMenuItemClick" @contextmenu="onMenuItemContextmenu">
-        <template v-if="$slots.default" #default="scope">
-          <slot v-bind="scope" />
-        </template>
-      </MenuItem>
-    </template>
+    <MenuItem
+      v-for="route in routes" :key="route[indexKey]" v-bind="bindMenuItemProps" :route="route"
+      @click="onMenuItemClick" @contextmenu="onMenuItemContextmenu"
+    >
+      <template v-if="$slots.default" #default="scope">
+        <slot v-bind="scope" />
+      </template>
+    </MenuItem>
   </el-menu>
 </template>

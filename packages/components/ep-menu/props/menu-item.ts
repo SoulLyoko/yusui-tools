@@ -8,8 +8,8 @@ export const menuItemProps = {
   ...omit(subMenuProps, 'index'),
   /** 是否折叠 */
   collapse: menuProps.collapse,
-  /** 菜单列表 */
-  routes: { type: Array as PropType<RouteRecordRaw[]>, default: () => [] },
+  /** 菜单项 */
+  route: { type: Object as PropType<RouteRecordRaw>, default: () => ({}) },
   /** 菜单索引 */
   indexKey: { type: String as PropType<'name' | 'path'>, default: 'path' },
 }

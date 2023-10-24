@@ -16,6 +16,9 @@ const slots = defineSlots<MenuItemSlots>()
 const bindSubMenuProps = computed(() => {
   return pick(props, Object.keys(subMenuProps))
 })
+const bindMenuItemProps = computed(() => {
+  return pick(props, Object.keys(menuItemProps))
+})
 
 const [DefineMenuTitle, MenuTitle] = createReusableTemplate<{ route: RouteRecordRaw }>()
 
@@ -49,19 +52,20 @@ function bindMenuItemEvents(route: RouteRecordRaw) {
     </div>
   </DefineMenuTitle>
 
-  <template v-for="route in routes" :key="route[indexKey]">
-    <el-sub-menu v-if="route.children?.length" v-bind="bindSubMenuProps" :index="route[indexKey as 'path']">
-      <template #title>
-        <MenuTitle :route="route" />
-      </template>
-      <MenuItem :routes="route.children" v-bind="bindMenuItemEvents(route)">
-        <template v-if="$slots.default" #default="scope">
-          <slot v-bind="scope" />
-        </template>
-      </MenuItem>
-    </el-sub-menu>
-    <el-menu-item v-else :index="route[indexKey as 'path']" :route="route" :disabled="route.meta?.disabled">
+  <el-sub-menu v-if="route.children?.length" v-bind="bindSubMenuProps" :index="route[indexKey as 'path']">
+    <template #title>
       <MenuTitle :route="route" />
-    </el-menu-item>
-  </template>
+    </template>
+    <MenuItem
+      v-for="childRoute in route.children" :key="childRoute[indexKey ]"
+      v-bind="{ ...bindMenuItemProps, ...bindMenuItemEvents(route) }" :route="childRoute"
+    >
+      <template v-if="$slots.default" #default="scope">
+        <slot v-bind="scope" />
+      </template>
+    </MenuItem>
+  </el-sub-menu>
+  <el-menu-item v-else :index="route[indexKey as 'path']" :route="route" :disabled="route.meta?.disabled">
+    <MenuTitle :route="route" />
+  </el-menu-item>
 </template>
