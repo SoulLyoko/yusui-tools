@@ -21,6 +21,8 @@ describe('math utils', () => {
   it('accDiv', () => {
     expect(accDiv(0.3, 0.1)).toBe(3)
     expect(accDiv(0.69, 10)).toBe(0.069)
+    expect(accDiv(90.43, 100)).toBe(0.9043)
+    expect(accDiv(90.4343, 100)).toBe(0.904343)
   })
   it('accChain', () => {
     // (0.1+0.2-0.2)*3/0.1

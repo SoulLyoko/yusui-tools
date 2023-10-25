@@ -39,7 +39,7 @@ export function accDiv(num1: number | string, num2: number | string) {
   const multiple = 10 ** (r2 - r1)
   num1 = Number(num1.toString().replace('.', ''))
   num2 = Number(num2.toString().replace('.', ''))
-  return (num1 / num2) * multiple
+  return accMul(num1 / num2, multiple)
 }
 
 /**
@@ -52,33 +52,38 @@ export function accDiv(num1: number | string, num2: number | string) {
  */
 export function accChain(num: number | string) {
   class AccChain {
-    num: number
+    result: number
     constructor(num: number | string) {
-      this.num = Number(num)
+      this.result = Number(num)
     }
 
+    /** 加法 */
     add(num: number | string) {
-      this.num = accAdd(this.num, num)
+      this.result = accAdd(this.result, num)
       return this
     }
 
+    /** 减法 */
     sub(num: number | string) {
-      this.num = accSub(this.num, num)
+      this.result = accSub(this.result, num)
       return this
     }
 
+    /** 乘法 */
     mul(num: number | string) {
-      this.num = accMul(this.num, num)
+      this.result = accMul(this.result, num)
       return this
     }
 
+    /** 除法 */
     div(num: number | string) {
-      this.num = accDiv(this.num, num)
+      this.result = accDiv(this.result, num)
       return this
     }
 
+    /** 获取计算结果 */
     value() {
-      return this.num
+      return this.result
     }
   }
   return new AccChain(num)
