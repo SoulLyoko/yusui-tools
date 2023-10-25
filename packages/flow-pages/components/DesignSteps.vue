@@ -57,7 +57,10 @@ watch(
       formData.value = res.data
       // 已发布流程不显示排序
       if (formDefaults.value?.sort)
-        formDefaults.value.sort.display = !(formData.value as FlowDeploy).flowDeployId
+        formDefaults.value.sort.display = !('flowDeployId' in formData.value)
+      // 编辑模式下不允许修改流程标识
+      if (formDefaults.value?.flowKey)
+        formDefaults.value.flowKey.disabled = 'flowModuleId' in formData.value || 'flowDeployId' in formData.value
     }
     finally {
       loading.value = false
