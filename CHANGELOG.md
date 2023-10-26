@@ -1,3 +1,14 @@
+# [2.0.0-beta.94](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2023-10-26)
+
+
+### Bug Fixes
+
+* **components:** 修复ep-menu省略多余子项的问题 ([e277662](https://github.com/SoulLyoko/yusui-tools/commit/e2776624e9b352f7e4393821fc87a209c1d8e3eb))
+* **flow-pages:** 不允许修改流程标识 ([a60d90b](https://github.com/SoulLyoko/yusui-tools/commit/a60d90bcfb7654a4311a0303f63d6519de8e3b94))
+* **utils:** 修复accDiv精确除法问题 ([04b536f](https://github.com/SoulLyoko/yusui-tools/commit/04b536f61e095a1b9442bfb836d991e9d313b3fc))
+
+
+
 # [2.0.0-beta.93](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.92...v2.0.0-beta.93) (2023-10-23)
 
 
