@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import Inspect from 'vite-plugin-inspect'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import { mdDemoTransform } from './plugins/md-demo-transform'
 import { avuePatch, loadProxy } from '../plugins'
@@ -62,6 +63,7 @@ export default defineConfig({
             { text: 'Start', link: '/composables/index' },
             { text: 'useCrud', link: '/composables/use-crud/index' },
             { text: 'useDict', link: '/composables/use-dict/index' },
+            { text: 'useOverlay', link: '/composables/use-overlay/index' },
             { text: 'useRes', link: '/composables/use-res/index' },
           ],
         },
@@ -217,7 +219,7 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [mdDemoTransform(), avuePatch(), loadProxy(), Inspect()],
+    plugins: [vueJsx(), mdDemoTransform(), avuePatch(), loadProxy(), Inspect()],
     resolve: {
       alias,
     },
