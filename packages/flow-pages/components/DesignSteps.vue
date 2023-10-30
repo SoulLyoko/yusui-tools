@@ -167,7 +167,10 @@ function handleClose() {
           >
             下一步
           </el-button>
-          <el-button :loading="loading" type="success" @click="saveAndNext(activeStep)">
+          <el-button
+            :disabled="activeStep === steps.length - 1" :loading="loading" type="success"
+            @click="saveAndNext(activeStep)"
+          >
             保存
           </el-button>
           <el-button @click="handleClose">

@@ -33,6 +33,7 @@ const {
     getList: getTaskList,
   },
   searchForm: { status: TaskStatus['待办'], taskNodeType: 'userTask' },
+  sortOption: { descs: 'start_time' },
 })
 
 watchDebounced(searchForm, getDataList, { debounce: 300, immediate: true, deep: true })
@@ -43,7 +44,6 @@ function openFlow(row: FlowOps) {
     flowKey: row.flowKey,
     taskId: row.taskId,
     instanceId: row.flowInstanceId,
-    detail: row.taskId ? row.status === TaskStatus['已办'] : false,
     onComplete() {
       close()
       ElMessage.success('操作成功')
