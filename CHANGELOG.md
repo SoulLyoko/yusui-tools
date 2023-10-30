@@ -1,3 +1,17 @@
+# [2.0.0-beta.95](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.94...v2.0.0-beta.95) (2023-10-30)
+
+
+### Bug Fixes
+
+* **flow-pages:** 流程工作台列表排序 ([2e941a7](https://github.com/SoulLyoko/yusui-tools/commit/2e941a74affff772b644d7456bdc797d0a5f99d8))
+
+
+### Features
+
+* **composables:** 新增`useOverlay`命令式使用弹窗 ([9e9f8ab](https://github.com/SoulLyoko/yusui-tools/commit/9e9f8aba749d263a58f7b74f992ba9bb9517d16d))
+
+
+
 # [2.0.0-beta.94](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.93...v2.0.0-beta.94) (2023-10-26)
 
 
