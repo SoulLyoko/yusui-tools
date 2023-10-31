@@ -4,7 +4,7 @@ import type { UseOverlayOptions, UseOverlayType } from './types'
 import { getCurrentInstance, h, ref, render, resolveComponent } from 'vue'
 
 /** 命令式使用弹窗 */
-export function useOverlay<T extends UseOverlayType>(initialOptions?: UseOverlayOptions<T>) {
+export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOptions<T>) {
   const { appContext: _appContext } = getCurrentInstance() ?? {}
 
   const modalComponentMap = {
@@ -17,7 +17,7 @@ export function useOverlay<T extends UseOverlayType>(initialOptions?: UseOverlay
   let overlay: Element | null
   function open(options?: UseOverlayOptions<T>) {
     visible.value = true
-    options = { ...initialOptions, ...options }
+    options = { ...initOptions, ...options }
     const { type = 'dialog', header, content, footer, appContext = _appContext } = options
     /** 没有插槽则视为组件式调用 */
     if (!(header || content || footer))

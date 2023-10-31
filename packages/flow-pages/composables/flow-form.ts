@@ -1,10 +1,9 @@
 import type { FlowFormEmits, FlowFormProps } from '../flow-form/types'
 import type { DialogProps, DrawerProps } from 'element-plus'
-import type { VNode } from 'vue'
 
-import { getCurrentInstance, h, ref, render } from 'vue'
+import { h, shallowRef } from 'vue'
 import { isFunction, isNil, merge, omitBy, overSome } from 'lodash-es'
-import { ElDialog, ElDrawer } from 'element-plus'
+import { useOverlay } from '@yusui/composables'
 import { serialize } from '@yusui/utils'
 
 import { useConfigProvider } from './config'
@@ -47,9 +46,9 @@ function isOptionsKeys(value: any, key: string) {
 }
 
 /** 打开流程弹窗 */
-export function useFlowForm(options: UseFlowFormOptions = {}) {
+export function useFlowForm(initOptions: UseFlowFormOptions = {}) {
   const { useFlowFormOptions } = useConfigProvider()
-  const mergedOptions = merge({ ...useFlowFormOptions }, { ...options })
+  const mergedOptions = merge({ ...useFlowFormOptions }, { ...initOptions })
   switch (mergedOptions?.type) {
     case 'window':
       return useFlowFormWindow(mergedOptions)
@@ -62,16 +61,16 @@ export function useFlowForm(options: UseFlowFormOptions = {}) {
 }
 
 /** window弹窗 */
-export function useFlowFormWindow(options: UseFlowFormOptions = {}) {
-  const openedWindow = ref<Window | null>(null)
-  const open = (mergeOptions: UseFlowFormOptions = {}) => {
-    const mergedOptions = merge({ ...options }, { ...mergeOptions })
+export function useFlowFormWindow(initOptions: UseFlowFormOptions = {}) {
+  const openedWindow = shallowRef<Window | null>(null)
+  const open = (options: UseFlowFormOptions = {}) => {
+    const mergedOptions = merge({ ...initOptions }, { ...options })
     const { window: [url, name, features] = [] } = mergedOptions
     const openUrl = `${url}?${serialize(omitBy(mergedOptions, overSome(isFunction, isNil, isOptionsKeys)))}`
     openedWindow.value = window.open(openUrl, name, features)
     openedWindow.value?.addEventListener('message', (e) => {
       const { event, data } = e.data
-      const fn = mergeOptions[event as keyof UseFlowFormEvents]
+      const fn = mergedOptions[event as keyof UseFlowFormEvents]
       typeof fn === 'function' && fn(data)
     })
   }
@@ -80,38 +79,18 @@ export function useFlowFormWindow(options: UseFlowFormOptions = {}) {
 }
 
 /** dialog和drawer弹窗 */
-export function useFlowFormOverlay(options: UseFlowFormOptions = {}) {
-  const { appContext } = getCurrentInstance()!
+export function useFlowFormOverlay(initOptions: UseFlowFormOptions = {}) {
   const { FlowForm } = useConfigProvider()
+  const { open: _open, close } = useOverlay()
 
-  let container: HTMLElement | null
-  let overlay: VNode
-  const open = (mergeOptions?: UseFlowFormOptions) => {
-    container = document.createElement('div')
-    container.className = 'flow-form-wrapper'
-
-    const mergedOptions = merge({ ...options }, { ...mergeOptions })
-
-    const flowform = h(FlowForm!, omitBy(mergedOptions, isOptionsKeys))
-    overlay = h(
-      mergedOptions.type === 'dialog' ? ElDialog : ElDrawer,
-      {
-        class: 'flow-form-overlay',
-        modelValue: true,
-        onClose: close,
-        ...mergedOptions.overlay,
-      },
-      flowform,
-    )
-    overlay.appContext = appContext!
-    render(overlay, container)
-    document.body.appendChild(container)
-  }
-  const close = () => {
-    if (overlay?.component?.props?.modelValue)
-      overlay.component.props.modelValue = false
-    container && document.body.removeChild(container)
-    container = null
+  const open = (options: UseFlowFormOptions = {}) => {
+    const mergedOptions = merge({ ...initOptions }, { ...options })
+    _open({
+      content: () => h(FlowForm!, omitBy(mergedOptions, isOptionsKeys)),
+      class: 'flow-form-overlay',
+      type: mergedOptions.type as 'dialog' | 'drawer',
+      ...mergedOptions.overlay,
+    })
   }
 
   return { open, close }
