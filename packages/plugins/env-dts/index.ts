@@ -5,10 +5,10 @@ import path from 'node:path'
 
 export function generateTemplate(env: Record<string, any>) {
   const values = Object.entries(env)
-    .map(([key, value]) => `/** ${key}=${value} */\n  ${key}: ${typeof value};`)
+    .map(([key, value]) => `/** ${key}=${value} */\n  ${key}: ${typeof value}`)
     .join('\n  ')
   const template = `interface ImportMeta {
-  readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnv
 }
 interface ImportMetaEnv {
   ${values}
