@@ -21,15 +21,15 @@
     "@yusui/form-design": "workspace:*",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "lodash-es": "^4.17.21",
     "vue-request": "^2.0.4"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.2.21",
+    "@smallwei/avue": "^3.2.22",
     "@types/lodash-es": "^4.17.10",
     "element-plus": "^2.4.1",
-    "sass": "^1.69.4",
-    "vue": "^3.3.4"
+    "sass": "^1.69.5",
+    "vue": "^3.3.7"
   }
 }
