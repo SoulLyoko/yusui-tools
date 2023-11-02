@@ -15,9 +15,11 @@ interface Control {
   value?: string
 }
 
-const props = defineProps<{ modelValue?: string }>()
-const vModels = useVModels(props)
-const { modelValue } = vModels as Required<typeof vModels>
+const props = withDefaults(
+  defineProps<{ modelValue?: string }>(),
+  { modelValue: '' },
+)
+const { modelValue } = useVModels(props)
 const { elementTree } = useInjectState()
 
 const visible = ref(false)

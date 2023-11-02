@@ -8,9 +8,11 @@ import { filterObj } from '@yusui/utils'
 
 import EditorSetter from '../editor-setter/index.vue'
 
-const props = defineProps<{ modelValue?: FormItemRule[] }>()
-const vModels = useVModels(props)
-const { modelValue: rules } = vModels as Required<typeof vModels>
+const props = withDefaults(
+  defineProps<{ modelValue?: FormItemRule[] }>(),
+  { modelValue: () => [] },
+)
+const { modelValue: rules } = useVModels(props)
 
 const visible = ref(false)
 const currentIndex = ref(-1)

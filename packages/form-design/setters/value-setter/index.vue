@@ -16,8 +16,7 @@ const props = defineProps<{
   /** 默认选择的类型 */
   defaultValueType?: ValueType
 }>()
-const vModels = useVModels(props)
-const { modelValue } = vModels as Required<typeof vModels>
+const { modelValue } = useVModels(props)
 
 const valueType = ref<ValueType>(props.defaultValueType ?? 'string')
 watch(modelValue, (val) => {

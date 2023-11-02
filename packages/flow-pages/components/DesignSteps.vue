@@ -17,13 +17,12 @@ import {
   useTableTemplateApi,
 } from '@yusui/flow-pages'
 
-const props = defineProps<{
-  modelValue: FlowDefinition | FlowDeploy
-  visible: boolean
-}>()
+const props = withDefaults(
+  defineProps<{ modelValue: FlowDefinition | FlowDeploy;visible: boolean }>(),
+  { modelValue: () => ({}) },
+)
 const emit = defineEmits(['close'])
-const vModels = useVModels(props)
-const { visible, modelValue: formData } = vModels as Required<typeof vModels>
+const { modelValue: formData, visible } = useVModels(props)
 
 const { request } = useConfigProvider()
 

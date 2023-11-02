@@ -5,14 +5,16 @@ import { computed, onUnmounted, ref, watchEffect } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
 
-const props = defineProps<{
-  /** 流程图数据 */
-  modelValue?: TurboData
-  visible?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    /** 流程图数据 */
+    modelValue?: TurboData
+    visible?: boolean
+  }>(),
+  { modelValue: () => ({}) },
+)
 const emit = defineEmits(['confirm'])
-const vModels = useVModels(props)
-const { modelValue, visible } = vModels as Required<typeof vModels>
+const { modelValue, visible } = useVModels(props)
 
 const { monacoRef, unload } = useMonaco()
 onUnmounted(() => !monacoRef.value && unload())

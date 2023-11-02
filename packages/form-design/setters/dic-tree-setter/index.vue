@@ -6,9 +6,11 @@ import { useVModels } from '@vueuse/core'
 
 import { getRandomId } from '../../utils'
 
-const props = defineProps<{ modelValue?: any[] }>()
-const vModels = useVModels(props)
-const { modelValue: dicData } = vModels as Required<typeof vModels>
+const props = withDefaults(
+  defineProps<{ modelValue?: any[] }>(),
+  { modelValue: () => [] },
+)
+const { modelValue: dicData } = useVModels(props)
 
 const treeOption = {
   props: {

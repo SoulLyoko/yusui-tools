@@ -12,7 +12,7 @@ import { menuEmits, menuItemProps, menuProps } from './props'
 
 const props = defineProps(menuProps)
 const emit = defineEmits(menuEmits)
-const slots = defineSlots<MenuSlots>()
+defineSlots<MenuSlots>()
 
 const { modelValue: activeMenuIndex } = useVModels(props)
 

@@ -6,9 +6,11 @@ import { useVModels } from '@vueuse/core'
 
 import { getRandomId } from '../../utils'
 
-const props = defineProps<{ modelValue?: any[]; setterType?: string }>()
-const vModels = useVModels(props)
-const { modelValue: dicData } = vModels as Required<typeof vModels>
+const props = withDefaults(
+  defineProps<{ modelValue?: any[]; setterType?: string }>(),
+  { modelValue: () => [] },
+)
+const { modelValue: dicData } = useVModels(props)
 
 // dynamic
 const dynamicOption = {
@@ -58,8 +60,7 @@ const onDel: AvueTreeProps['onDel'] = (data, done) => done()
   />
   <avue-dynamic
     v-else
+    v-model="dicData"
     :children="dynamicOption"
-    :model-value="dicData || []"
-    @update:model-value="dicData = $event"
   />
 </template>

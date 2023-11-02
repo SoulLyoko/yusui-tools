@@ -16,9 +16,11 @@ interface OnLoadData {
   codeMode?: boolean
 }
 
-const props = defineProps<{ modelValue?: string; tableData?: { row: any } }>()
-const vModels = useVModels(props)
-const { modelValue } = vModels as Required<typeof vModels>
+const props = withDefaults(
+  defineProps<{ modelValue?: string; tableData?: { row: any } }>(),
+  { modelValue: '' },
+)
+const { modelValue } = useVModels(props)
 
 const visible = ref(false)
 const onLoadData = ref<OnLoadData>({})

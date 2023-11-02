@@ -11,7 +11,7 @@ import { menuItemEmits, menuItemProps } from './props'
 
 const props = defineProps(menuItemProps)
 const emit = defineEmits(menuItemEmits)
-const slots = defineSlots<MenuItemSlots>()
+defineSlots<MenuItemSlots>()
 
 const bindSubMenuProps = computed(() => {
   return pick(props, Object.keys(subMenuProps))

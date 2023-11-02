@@ -11,12 +11,11 @@ import {
   useFlowDeployApi,
 } from '@yusui/flow-pages'
 
-const props = defineProps<{
-  modelValue: FlowDefinition | FlowDeploy
-  visible: boolean
-}>()
-const vModels = useVModels(props)
-const { visible, modelValue: formData } = vModels as Required<typeof vModels>
+const props = withDefaults(
+  defineProps<{ modelValue?: FlowDefinition | FlowDeploy; visible?: boolean }>(),
+  { modelValue: () => ({}) },
+)
+const { modelValue: formData, visible } = useVModels(props)
 
 const { request } = useConfigProvider()
 const { getDetail: getDefinitionDetail } = useFlowDefinitionApi(request)
