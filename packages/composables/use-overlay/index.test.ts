@@ -8,7 +8,7 @@ const TestComponent = defineComponent({
   setup() {
     const { open, close } = useOverlay({
       header: () => h('div', { class: 'header' }, 'header'),
-      content: () => h(
+      default: () => h(
         'div',
         { class: 'content' },
         h('button', { class: 'close-btn', onClick: () => close() }, 'close'),

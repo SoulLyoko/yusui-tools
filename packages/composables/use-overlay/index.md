@@ -10,22 +10,23 @@
 
 ## UseOverlayOptions
 
-| 名称           | 类型                             | 默认值   | 说明                 |
-| -------------- | -------------------------------- | -------- | -------------------- |
-| ...dialogProps | DialogProps                      |          | ElDialog的属性和事件 |
-| ...drawerProps | DrawerProps                      |          | ElDrawer的属性和事件 |
-| type           | 'dialog' \| 'drawer'             | 'dialog' | 打开弹窗的类型       |
-| header         | string \| VNode \| (() => VNode) |          | 头部插槽             |
-| content        | string \| VNode \| (() => VNode) |          | 中间内容插槽         |
-| footer         | string \| VNode \| (() => VNode) |          | 底部插槽             |
+| 名称            | 类型                              | 默认值   | 说明                 |
+| --------------- | --------------------------------- | -------- | -------------------- |
+| ...dialogProps  | DialogProps                       |          | ElDialog的属性和事件 |
+| ...drawerProps  | DrawerProps                       |          | ElDrawer的属性和事件 |
+| ...overlayProps | OverlayProps                      |          | ElOverlay的属性      |
+| type            | 'dialog' \| 'drawer' \| 'overlay' | 'dialog' | 打开弹窗的类型       |
+| header          | Slot                              |          | 头部插槽             |
+| default         | Slot                              |          | 中间内容插槽         |
+| footer          | Slot                              |          | 底部插槽             |
+| appContext      | AppContext                        |          | 应用上下文           |
 
 ## UseOverlayReturn
 
-| 名称    | 类型                                  | 说明                     |
-| ------- | ------------------------------------- | ------------------------ |
-| open    | (options?: UseOverlayOptions) => void | 打开弹窗函数             |
-| close   | () => void                            | 关闭弹窗函数             |
-| visible | Ref\<boolean>                         | 弹窗是否可见(用于组件式弹窗) |
+| 名称  | 类型                                  | 说明         |
+| ----- | ------------------------------------- | ------------ |
+| open  | (options?: UseOverlayOptions) => void | 打开弹窗函数 |
+| close | (delay?: number) => void              | 关闭弹窗函数 |
 
 ## 类型定义
 

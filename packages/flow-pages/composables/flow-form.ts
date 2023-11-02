@@ -86,7 +86,7 @@ export function useFlowFormOverlay(initOptions: UseFlowFormOptions = {}) {
   const open = (options: UseFlowFormOptions = {}) => {
     const mergedOptions = merge({ ...initOptions }, { ...options })
     _open({
-      content: () => h(FlowForm!, omitBy(mergedOptions, isOptionsKeys)),
+      default: () => h(FlowForm!, omitBy(mergedOptions, isOptionsKeys)),
       class: 'flow-form-overlay',
       type: mergedOptions.type as 'dialog' | 'drawer',
       ...mergedOptions.overlay,

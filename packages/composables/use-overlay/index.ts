@@ -1,42 +1,43 @@
-import type { VNode } from 'vue'
+import type { ConcreteComponent, VNode } from 'vue'
 import type { UseOverlayOptions, UseOverlayType } from './types'
 
-import { getCurrentInstance, h, ref, render, resolveComponent } from 'vue'
+import { getCurrentInstance, h, render, resolveComponent } from 'vue'
+import { pick } from 'lodash-es'
+import { sleep } from '@yusui/utils'
 
 /** 命令式使用弹窗 */
 export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOptions<T>) {
   const { appContext: _appContext } = getCurrentInstance() ?? {}
 
-  const modalComponentMap = {
-    dialog: resolveComponent('ElDialog'),
-    drawer: resolveComponent('ElDrawer'),
+  const overlayComponentMap = {
+    dialog: resolveComponent('ElDialog') as ConcreteComponent,
+    drawer: resolveComponent('ElDrawer') as ConcreteComponent,
+    overlay: resolveComponent('ElOverlay') as ConcreteComponent,
   }
 
-  const visible = ref(false)
   let vnode: VNode | null
   let overlay: Element | null
-  function open(options?: UseOverlayOptions<T>) {
-    visible.value = true
+  async function open(options?: UseOverlayOptions<T>) {
     options = { ...initOptions, ...options }
-    const { type = 'dialog', header, content, footer, appContext = _appContext } = options
-    /** 没有插槽则视为组件式调用 */
-    if (!(header || content || footer))
-      return
+    const { type = 'dialog', appContext = _appContext, onClose } = options
+    let ElOverlay: any
+    if (type === 'overlay') {
+      try {
+        ElOverlay = (await import('element-plus')).ElOverlay
+      }
+      catch {}
+    }
     vnode = h(
-      modalComponentMap[type] as any,
+      ElOverlay ?? overlayComponentMap[type],
       {
         ...options,
         modelValue: true,
         onClose() {
           close()
-          options?.onClose?.()
+          onClose?.()
         },
       },
-      {
-        header: options.header,
-        default: options.content,
-        footer: options.footer,
-      },
+      pick(options, 'header', 'default', 'footer'),
     )
     appContext && (vnode.appContext = appContext)
     const container = document.createElement('div')
@@ -44,12 +45,12 @@ export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOpt
     overlay = container.firstElementChild
     overlay && document.body.appendChild(overlay)
   }
-  function close() {
-    visible.value = false
+  async function close(delay = 300) {
     if (vnode?.component?.props?.modelValue)
       vnode.component.props.modelValue = false
-    setTimeout(() => overlay && document.body.removeChild(overlay), 300)
+    await sleep(delay)
+    overlay && document.body.removeChild(overlay)
   }
 
-  return { open, close, visible }
+  return { open, close }
 }
