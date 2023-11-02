@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { AvueFormOption } from '@smallwei/avue'
-import type { DesignAction, ElementTreeNode, HistoryType } from '../../types'
+import type { ElementTreeNode } from '../../types'
+import type { DesignActionKey, HistoryTypeKey } from '../../constants'
 
 import { nextTick } from 'vue'
 import { useVModels } from '@vueuse/core'
@@ -41,7 +42,7 @@ function getItemSpan(element: ElementTreeNode) {
 }
 
 async function onChange(operation: Record<string, { element?: ElementTreeNode }>) {
-  const operationName = Object.keys(operation)[0] as HistoryType
+  const operationName = Object.keys(operation)[0] as HistoryTypeKey
   if (!operationName)
     return
   setActiveElement()
@@ -83,14 +84,14 @@ function onMove({
 }
 
 const actions = [
-  { name: 'copy', type: 'primary' as const, icon: 'el-icon-copy-document', handler: onCopy },
-  { name: 'delete', type: 'danger' as const, icon: 'el-icon-delete', handler: onRemove },
-  { name: 'clear', type: 'warning' as const, icon: 'el-icon-folder-delete', handler: onClearChildren },
+  { name: 'copy' as const, type: 'primary' as const, icon: 'el-icon-copy-document', handler: onCopy },
+  { name: 'delete' as const, type: 'danger' as const, icon: 'el-icon-delete', handler: onRemove },
+  { name: 'clear' as const, type: 'warning' as const, icon: 'el-icon-folder-delete', handler: onClearChildren },
 ]
 function getActionList(element: ElementTreeNode) {
-  return actions.filter(e => showActions(element, e.name as DesignAction))
+  return actions.filter(e => showActions(element, e.name))
 }
-function showActions(element: ElementTreeNode, type: DesignAction) {
+function showActions(element: ElementTreeNode, type: DesignActionKey) {
   const { disabledActions, isContainer } = getResource(element.name) ?? {}
   const enable = !disabledActions?.includes(type)
   if (type === 'clear')

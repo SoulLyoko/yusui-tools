@@ -1,5 +1,6 @@
 import type { AvueFormOption } from '@smallwei/avue'
-import type { ElementTreeNode, Emit, History, HistoryType, Props, Resource } from '../types'
+import type { ElementTreeNode, FormDesignEmit, FormDesignProps, History, Resource } from '../types'
+import type { HistoryTypeKey } from '../constants'
 
 import { computed, inject, provide, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
@@ -11,7 +12,7 @@ import { advance as defaultAdvanceOption, base as defaultBaseOption, groupList a
 
 const injectKey = Symbol('form-design-state')
 
-export function useProvideState(props: Props, emit: Emit) {
+export function useProvideState(props: FormDesignProps, emit: FormDesignEmit) {
   const vModels = useVModels(props)
   const { modelValue } = vModels as Required<typeof vModels>
 
@@ -77,7 +78,7 @@ export function useProvideState(props: Props, emit: Emit) {
     }
   }
 
-  async function recordHistory(type: HistoryType) {
+  async function recordHistory(type: HistoryTypeKey) {
     // await nextTick();
     historyList.value.push({
       type,

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type Node from 'element-plus/es/components/tree/src/model/node.d'
-import type { DesignAction, ElementTreeNode } from '../../types'
+import type { ElementTreeNode } from '../../types'
+import type { DesignActionKey } from '../../constants'
 
 import { ElTree } from 'element-plus'
 import { computed, ref, watchEffect } from 'vue'
@@ -74,9 +75,9 @@ const actions = [
   { name: 'clear', type: 'warning' as const, icon: 'el-icon-folder-delete', handler: onClearChildren },
 ]
 function getActionList(element: ElementTreeNode) {
-  return actions.filter(e => showActions(element, e.name as DesignAction))
+  return actions.filter(e => showActions(element, e.name as DesignActionKey))
 }
-function showActions(element: ElementTreeNode, type: DesignAction) {
+function showActions(element: ElementTreeNode, type: DesignActionKey) {
   const { disabledActions, isContainer } = getResource(element.name) ?? {}
   const enable = !disabledActions?.includes(type)
   if (type === 'clear')

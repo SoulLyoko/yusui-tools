@@ -1,4 +1,5 @@
 export { default as FormDesign } from './index.vue'
+export * from './constants'
 export * from './options'
 export * from './resources'
 export * from './setters'

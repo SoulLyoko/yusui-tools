@@ -4,7 +4,7 @@ import { DiffEditor } from '@guolao/vue-monaco-editor'
 import { computed } from 'vue'
 
 import { useInjectState } from '../../composables'
-import { HistoryTypeMap } from '../../types'
+import { HistoryType } from '../../constants'
 import { jsonStringify } from '../../utils'
 
 const { historyList, historyIndex, restoreHistory } = useInjectState()
@@ -43,7 +43,7 @@ const theme = computed(() => {
       </template>
       <div class="history-item" :class="{ 'is-active': index === historyIndex }" @click="restoreHistory(index)">
         <span>
-          {{ HistoryTypeMap[item.type] }}
+          {{ HistoryType[item.type] }}
         </span>
         <span>
           {{ new Date(item.timestamp).toLocaleString() }}
