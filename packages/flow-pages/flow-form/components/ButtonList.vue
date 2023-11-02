@@ -35,10 +35,10 @@ const displayButtonList = computed(() => {
 
   const andCondition: Record<AndConditionKey, boolean> = {
     false: false,
-    startUser: createUser == user?.userId,
-    assignee: assignee == user?.userId,
-    todo: taskStatus == TaskStatus['待办'],
-    done: taskStatus == TaskStatus['已办'],
+    startUser: createUser === String(user?.userId),
+    assignee: assignee === String(user?.userId),
+    todo: taskStatus === TaskStatus['待办'],
+    done: taskStatus === TaskStatus['已办'],
     unfinished: flowStatus === FlowStatus['未办结'],
     finished: flowStatus === FlowStatus['已办结'],
     started: !!flowInstanceId,

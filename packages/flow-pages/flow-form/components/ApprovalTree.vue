@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+// eslint-disable-next-line ts/consistent-type-imports
 import type { ElTree } from 'element-plus'
 import type { LoadFunction } from 'element-plus/es/components/tree/src/tree.type'
 import type { ApprovalNode } from '@yusui/flow-pages'

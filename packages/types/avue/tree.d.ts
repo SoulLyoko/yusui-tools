@@ -9,19 +9,18 @@ declare module '@smallwei/avue' {
   export type TreeNode<T> = Node & { data: T }
 
   export interface AvueTreeOption<T = any> extends
-    Partial<Pick<TreeComponentProps,
-      | 'checkStrictly'
-      | 'expandOnClickNode'
-      | 'defaultExpandAll'
-      | 'checkOnClickNode'
-      | 'defaultExpandedKeys'
-      | 'draggable'
-      | 'allowDrag'
-      | 'allowDrop'
-      | 'lazy'
-      | 'highlightCurrent'
-      | 'filterNodeMethod'
-      | 'accordion'>> {
+    Partial<Pick<TreeComponentProps, | 'checkStrictly'
+    | 'expandOnClickNode'
+    | 'defaultExpandAll'
+    | 'checkOnClickNode'
+    | 'defaultExpandedKeys'
+    | 'draggable'
+    | 'allowDrag'
+    | 'allowDrop'
+    | 'lazy'
+    | 'highlightCurrent'
+    | 'filterNodeMethod'
+    | 'accordion'>> {
     /** 组件大小 */
     size?: ElSize
     /** 是否虚拟树 */
@@ -55,11 +54,10 @@ declare module '@smallwei/avue' {
   }
 
   export interface AvueTreeProps<T = any> extends
-    Partial<Pick<TreeComponentProps,
-      | 'expandOnClickNode'
-      | 'checkOnClickNode'
-      | 'filterNodeMethod'
-      | 'indent'>> {
+    Partial<Pick<TreeComponentProps, | 'expandOnClickNode'
+    | 'checkOnClickNode'
+    | 'filterNodeMethod'
+    | 'indent'>> {
     /** 表单数据 */
     modelValue?: T
     /** 存放结构体的数据 */
@@ -101,27 +99,25 @@ declare module '@smallwei/avue' {
   }
 
   export interface AvueTreeMethods<T = any> extends
-    Pick<InstanceType<typeof ElTree>,
-      | 'filter'
-      | 'getNodeKey'
-      | 'getNodePath'
-      | 'getCheckedNodes'
-      | 'getCheckedKeys'
-      | 'getCurrentNode'
-      | 'getCurrentKey'
-      | 'setCheckedNodes'
-      | 'setCheckedKeys'
-      | 'setChecked'
-      | 'getHalfCheckedNodes'
-      | 'getHalfCheckedKeys'
-      | 'setCurrentNode'
-      | 'setCurrentKey'
-      | 'getNode'
-      | 'remove'
-      | 'append'
-      | 'insertBefore'
-      | 'insertAfter'
-    > { }
+    Pick<InstanceType<typeof ElTree>, | 'filter'
+    | 'getNodeKey'
+    | 'getNodePath'
+    | 'getCheckedNodes'
+    | 'getCheckedKeys'
+    | 'getCurrentNode'
+    | 'getCurrentKey'
+    | 'setCheckedNodes'
+    | 'setCheckedKeys'
+    | 'setChecked'
+    | 'getHalfCheckedNodes'
+    | 'getHalfCheckedKeys'
+    | 'setCurrentNode'
+    | 'setCurrentKey'
+    | 'getNode'
+    | 'remove'
+    | 'append'
+    | 'insertBefore'
+    | 'insertAfter' > { }
 
   export interface AvueTreeSlots<T = any> {
     menu: (arg: { node: TreeNode<T> }) => VNode[]

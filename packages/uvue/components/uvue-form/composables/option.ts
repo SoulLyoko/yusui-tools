@@ -54,10 +54,10 @@ export function handleColumn(column: UvueFormColumn[] = [], formType: FormType) 
     formType === 'edit' && disabledFlags.push(!!col.editDisabled)
     formType === 'view' && disabledFlags.push(true)
 
-    const displayFlags = [col.display != false]
-    formType === 'add' && displayFlags.push(col.addDisplay != false)
-    formType === 'edit' && displayFlags.push(col.editDisplay != false)
-    formType === 'view' && displayFlags.push(col.viewDisplay != false)
+    const displayFlags = [col.display !== false]
+    formType === 'add' && displayFlags.push(col.addDisplay !== false)
+    formType === 'edit' && displayFlags.push(col.editDisplay !== false)
+    formType === 'view' && displayFlags.push(col.viewDisplay !== false)
 
     const result = {
       ...defaultFormColumn,

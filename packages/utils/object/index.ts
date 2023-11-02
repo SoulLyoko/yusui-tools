@@ -1,6 +1,6 @@
 /**
  * 过滤对象值和字段
- * @param {Object} obj 被过滤对象
+ * @param {object} obj 被过滤对象
  * @param {Array} values 被过滤的值
  * @param {Array} fields 被过滤字段
  */
@@ -19,7 +19,7 @@ export function filterObj<R = any, T = any>(obj: T, values: any[] = [undefined, 
 
 /**
  * 递归过滤对象值和字段
- * @param {Object} obj 被过滤对象
+ * @param {object} obj 被过滤对象
  * @param {Array} values 被过滤的值
  * @param {Array} fields 被过滤字段
  */

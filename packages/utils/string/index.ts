@@ -2,8 +2,8 @@ import type { Data } from '@yusui/types'
 
 /**
  * 生成uuid
- * @param {Number} length 长度
- * @param {Number} radix 基数长度
+ * @param {number} length 长度
+ * @param {number} radix 基数长度
  */
 export function uuid(length = 16, radix?: number) {
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -17,7 +17,7 @@ export function uuid(length = 16, radix?: number) {
 
 /**
  * data序列化
- * @param {Object} data 序列化的对象
+ * @param {object} data 序列化的对象
  * @returns 序列化后的字符串
  */
 export function serialize<T extends Data>(data: T) {
@@ -30,7 +30,7 @@ export function serialize<T extends Data>(data: T) {
 
 /**
  * url反序列化
- * @param {String} url 反序列化的url
+ * @param {string} url 反序列化的url
  * @returns 反序列化后的对象
  */
 export function deserialize<T = Data>(url: string): T {
@@ -38,7 +38,7 @@ export function deserialize<T = Data>(url: string): T {
   const res: Data = {}
   for (let i = 0; i < string.length; i++) {
     const str = string[i].split('=')
-    if (str[0] != '')
+    if (str[0] !== '')
       res[str[0]] = str[1]
   }
   return res as T

@@ -1,9 +1,8 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "allowJs": true,
     "baseUrl": ".",
+    "moduleResolution": "node",
     "paths": {
       "@yusui/components": ["packages/components/index.ts"],
       "@yusui/composables": ["packages/composables/index.ts"],
@@ -25,8 +24,9 @@
       "element-plus/global",
       "@dcloudio/types",
       "./packages/types/avue"
-    ]
+    ],
+    "allowJs": true
   },
   "include": ["packages", "packages/.vitepress/**/*"],
-  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache"]
+  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache", "**/*.js"]
 }

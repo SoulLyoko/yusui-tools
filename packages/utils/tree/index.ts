@@ -6,12 +6,12 @@ export interface BuildTreeOptions {
   /**
    * 父级id
    * @default "0"
-   * */
+   */
   parentId?: string | number
   /**
    * 节点id键名
    * @default "id"
-   * */
+   */
   idKey?: string
   /**
    * 父级节点id键名

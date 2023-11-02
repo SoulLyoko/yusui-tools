@@ -95,7 +95,7 @@ if (window.navigator.userAgent.indexOf('MSIE') != -1 || window.navigator.userAge
 
 /**
  * index.html 写入兼容提示代码
-  */
+ */
 export function fixHtml(html: string) {
   return (
     html

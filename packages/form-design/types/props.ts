@@ -14,5 +14,7 @@ export interface FormDesignProps {
   adapterOut?: (tree: ElementTreeNode) => AvueFormOption
 }
 
-export type FormDesignEmits = { reset: [] } & {}
+export interface FormDesignEmits {
+  reset: []
+}
 export type FormDesignEmit = SetupContext<FormDesignEmits>['emit']

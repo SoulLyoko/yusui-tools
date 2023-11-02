@@ -49,7 +49,7 @@ const onDel: AvueTreeProps['onDel'] = (data, done) => done()
 
 <template>
   <avue-tree
-    v-if="setterType == 'tree'"
+    v-if="setterType === 'tree'"
     v-model="treeFormData"
     :data="dicData"
     :option="treeOption"

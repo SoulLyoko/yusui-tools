@@ -3,7 +3,7 @@ import type { Plugin } from 'vite'
 /**
  * avue-crud 菜单按钮颜色
  * [column-menu](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/crud/column/column-menu.vue#L62)
-*/
+ */
 export function fixMenuBtnType(code: string) {
   return (
     code
@@ -39,7 +39,7 @@ export function fixMenuBtnType(code: string) {
 /**
  * avue-form 给表单项传递表单数据
  * [form](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/form/index.vue#L126)
-  */
+ */
 export function fixFormRow(code: string) {
   return (
     code

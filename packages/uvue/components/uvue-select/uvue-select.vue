@@ -11,6 +11,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'change'])
 
 const selectedLabel = computed(() => {
+  // eslint-disable-next-line eqeqeq
   return props.dic?.find(e => e.value == props.modelValue)?.label ?? props.modelValue ?? ''
 })
 

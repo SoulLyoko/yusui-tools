@@ -29,7 +29,7 @@ const { workType, deviceType } = useProvideState(props, emit)
         <MainWorkspace :class="`device-${deviceType}`" />
       </el-main>
     </el-container>
-    <el-aside v-show="workType == 'design'" class="right-panel" :width="rightWidth">
+    <el-aside v-show="workType === 'design'" class="right-panel" :width="rightWidth">
       <RightPanel />
     </el-aside>
   </el-container>

@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 
 import VText from './index.vue'
 
-describe('VText', () => {
+describe('test VText', () => {
   const wrapper = mount(VText)
 
   it('mount', async () => {

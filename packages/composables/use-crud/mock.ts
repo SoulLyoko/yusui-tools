@@ -33,7 +33,7 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
         if (typeof item[key] === 'string')
           return item[key].includes(value)
         else
-          return item[key] == value
+          return item[key] === value
       })
     })
     // const orderData = orderBy(filterData, prop, order);
@@ -76,11 +76,11 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     if (typeof ids === 'string') {
       const idsArr = ids.split(',')
       crudState.mockData = crudState.mockData.filter((item) => {
-        return !idsArr.some(id => id == item[rowKey])
+        return !idsArr.includes(item[rowKey])
       })
     }
     else {
-      crudState.mockData = crudState.mockData.filter(item => ids != item[rowKey])
+      crudState.mockData = crudState.mockData.filter(item => ids !== item[rowKey])
     }
     return Promise.resolve({ code: 200, msg: '操作成功' })
   }

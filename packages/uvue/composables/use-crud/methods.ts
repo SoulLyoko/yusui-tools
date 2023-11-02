@@ -127,7 +127,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
 
   /**
    * 获取表单数据
-   * @param {Object} options onLoad的参数
+   * @param {object} options onLoad的参数
    */
   const getFormData
     = options.getFormData
@@ -157,7 +157,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
     })
   /**
    * 提交数据
-   * @param {Object} form 提交的表单数据
+   * @param {object} form 提交的表单数据
    * @param {Function} loading 取消加载按钮函数
    * @param {Function} back 返回上一页函数
    */

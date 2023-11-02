@@ -13,7 +13,7 @@ export function useRules(option: Ref<UvueFormOption>, defaults: Ref<any>, form: 
       const allColumn = flatGroupColumn(option.value)
       const allColumnRules = allColumn.filter(col => col.display).map(col => [col.prop, col.rules || []])
 
-      const dynamicColumn = allColumn.filter(e => e.type == 'dynamic')
+      const dynamicColumn = allColumn.filter(e => e.type === 'dynamic')
       const dynamicColumnRules = dynamicColumn
         .filter(dcol => dcol.display)
         .map((dcol) => {

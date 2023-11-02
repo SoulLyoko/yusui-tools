@@ -2,27 +2,29 @@ import { mount } from '@vue/test-utils'
 
 import EpTree from './index.vue'
 
-describe('EpTree', () => {
-  const treeData = [{
-    value: '1',
-    label: '一级 1',
-    children: [
-      {
-        value: '1-1',
-        label: '二级 1-1',
-      },
-    ],
-  },
-  {
-    value: '2',
-    label: '一级 2',
-    children: [
-      {
-        value: '2-1',
-        label: '二级 2-1',
-      },
-    ],
-  }]
+describe('test EpTree', () => {
+  const treeData = [
+    {
+      value: '1',
+      label: '一级 1',
+      children: [
+        {
+          value: '1-1',
+          label: '二级 1-1',
+        },
+      ],
+    },
+    {
+      value: '2',
+      label: '一级 2',
+      children: [
+        {
+          value: '2-1',
+          label: '二级 2-1',
+        },
+      ],
+    },
+  ]
 
   const wrapper = mount(EpTree, { props: { data: treeData } })
 

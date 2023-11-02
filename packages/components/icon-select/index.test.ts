@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 
 import IconSelect from './index.vue'
 
-describe('IconSelect', () => {
+describe('test IconSelect', () => {
   const wrapper = mount(IconSelect)
 
   it('mount', async () => {

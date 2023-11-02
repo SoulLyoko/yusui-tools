@@ -58,7 +58,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 数据添加
-   * @param {Object} row 为当前的数据
+   * @param {object} row 为当前的数据
    * @param {Function} done 为表单关闭函数
    * @param {Function} loading 为表单停止loading函数
    */
@@ -89,8 +89,8 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 数据更新
-   * @param {Object} row 为当前的数据
-   * @param {Number} index 为当前更新数据的行数
+   * @param {object} row 为当前的数据
+   * @param {number} index 为当前更新数据的行数
    * @param {Function} done 为表单关闭函数
    * @param {Function} loading 为表单停止loading函数
    */
@@ -120,7 +120,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 删除行
-   * @param {Object} row 行数据
+   * @param {object} row 行数据
    */
   const handleDel
     = options.handleDel
@@ -179,7 +179,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
   const isEmptyString = (v: any) => v === ''
   /**
    * 过滤对象的undefined和null值
-   * @param {Object} row 被过滤对象
+   * @param {object} row 被过滤对象
    */
   const filterRow
     = options.filterRow
@@ -188,7 +188,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 过滤搜索参数的undefined和null值和""值
-   * @param {Object} params 被过滤对象
+   * @param {object} params 被过滤对象
    */
   const filterParams
     = options.filterParams
@@ -198,9 +198,8 @@ export function useCrudMethods<T extends Data, P extends Data>({
 
   /**
    * 搜索
-   * @param {Object} form 搜索表单数据
+   * @param {object} form 搜索表单数据
    * @param {Functoin} done 表单完成函数
-   * @param {Boolean} isReset 是否是搜索重置
    */
   const searchChange
     = options.searchChange
@@ -245,7 +244,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 分页,每页条数
-   * @param {Number} size 每页条数
+   * @param {number} size 每页条数
    */
   const pageSizeChange
     = options.pageSizeChange
@@ -255,7 +254,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 分页,当前页
-   * @param {Number} current 当前页
+   * @param {number} current 当前页
    */
   const pageCurrentChange
     = options.pageCurrentChange
@@ -265,8 +264,9 @@ export function useCrudMethods<T extends Data, P extends Data>({
     })
   /**
    * 排序
-   * @param {String} order 排序顺序
-   * @param {String} prop 排序字段
+   * @param {object} params
+   * @param {string} params.order 排序顺序
+   * @param {string} params.prop 排序字段
    */
   const sortChange: AvueCrudProps<T>['onSortChange']
     = options.sortChange

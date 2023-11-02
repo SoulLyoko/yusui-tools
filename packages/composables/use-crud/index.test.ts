@@ -44,14 +44,14 @@ describe('useCrud', () => {
     return resolve(row)
   }
   function update(row: RowData) {
-    const index = rows.findIndex(e => e.id == row.id)
+    const index = rows.findIndex(e => e.id === row.id)
     rows.splice(index, 1, row)
     return resolve(row)
   }
   function remove(ids: string) {
     const idsArr = ids.split(',')
     idsArr.forEach((id) => {
-      const index = rows.findIndex(e => id == e.id)
+      const index = rows.findIndex(e => id === e.id)
       index >= 0 && rows.splice(index, 1)
     })
     return resolve(ids)

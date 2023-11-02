@@ -1,6 +1,6 @@
 /**
  * 休眠
- * @param {Number} ms 毫秒
+ * @param {number} ms 毫秒
  *
  * ```
  * await sleep(1000)
@@ -13,7 +13,7 @@ export function sleep(ms?: number) {
 /**
  * try catch的替代方案
  * @param {Promise} promise 传入执行的promise
- * @param {Object} errorExt 自定义错误数据对象
+ * @param {object} errorExt 自定义错误数据对象
  */
 export function awaitTo<T, U = Error>(promise: Promise<T>, errorExt?: object): Promise<[U, undefined] | [null, T]> {
   return promise
@@ -37,8 +37,10 @@ export const to = awaitTo
 
 /**
  * 将枚举转换为字典数组
- * @param {Object} enumme 枚举对象
- * @param {Object} props {label: 'label', value: 'value'}
+ * @param {object} enumme 枚举对象
+ * @param {object} props default: { label: 'label', value: 'value' }
+ * @param {string} props.label
+ * @param {string} props.value
  */
 export function enumToDic<T extends object>(
   enumme?: T,

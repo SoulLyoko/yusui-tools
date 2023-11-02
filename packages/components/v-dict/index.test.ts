@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 
 import VDict from './index.vue'
 
-describe('VDict', () => {
+describe('test VDict', () => {
   it('renders DictSelect component by default', () => {
     const wrapper = mount(VDict)
     expect(wrapper.find('.el-select').exists()).toBeTruthy()

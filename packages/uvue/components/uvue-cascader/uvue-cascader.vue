@@ -12,6 +12,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'change'])
 
 const selectedLabel = computed(() => {
+  // eslint-disable-next-line eqeqeq
   return findTree(props.dic, e => e.value == props.modelValue)?.label ?? ''
 })
 
