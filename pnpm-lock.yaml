@@ -18,8 +18,8 @@ importers:
         specifier: ^18.1.0
         version: 18.1.0
       '@dcloudio/types':
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       '@dcloudio/uni-ui':
         specifier: ^1.4.28
         version: 1.4.28
@@ -63,8 +63,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
       '@vueuse/core':
-        specifier: ~10.1.2
-        version: 10.1.2(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       async-validator:
         specifier: ^4.2.5
         version: 4.2.5
@@ -171,8 +171,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(vue@3.3.7)
       '@vueuse/core':
-        specifier: ~10.1.2
-        version: 10.1.2(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       '@yusui/types':
         specifier: workspace:*
         version: link:../types
@@ -251,8 +251,8 @@ importers:
         specifier: ^1.2.18
         version: 1.2.18
       '@vueuse/core':
-        specifier: ~10.1.2
-        version: 10.1.2(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       '@yusui/types':
         specifier: workspace:*
         version: link:../types
@@ -291,8 +291,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(vue@3.3.7)
       '@vueuse/core':
-        specifier: ~10.1.2
-        version: 10.1.2(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       '@yusui/composables':
         specifier: workspace:*
         version: link:../composables
@@ -346,8 +346,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(vue@3.3.7)
       '@vueuse/core':
-        specifier: ~10.1.2
-        version: 10.1.2(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       '@yusui/types':
         specifier: workspace:*
         version: link:../types
@@ -441,8 +441,8 @@ importers:
   packages/uvue:
     dependencies:
       '@vueuse/core':
-        specifier: ^9.13.0
-        version: 9.13.0(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       '@yusui/composables':
         specifier: workspace:*
         version: link:../composables
@@ -461,7 +461,7 @@ importers:
     devDependencies:
       '@dcloudio/uni-app':
         specifier: vue3
-        version: 3.0.0-alpha-3090320231018001(@dcloudio/types@3.4.1)(postcss@8.4.31)(vue@3.3.7)
+        version: 3.0.0-alpha-3090320231018001(@dcloudio/types@3.4.2)(postcss@8.4.31)(vue@3.3.7)
       '@yusui/types':
         specifier: workspace:*
         version: link:../types
@@ -476,7 +476,7 @@ importers:
     dependencies:
       '@dcloudio/uni-app':
         specifier: 3.0.0-alpha-3090620231030001
-        version: 3.0.0-alpha-3090620231030001(@dcloudio/types@3.4.1)(postcss@8.4.31)(vue@3.3.7)
+        version: 3.0.0-alpha-3090620231030001(@dcloudio/types@3.4.2)(postcss@8.4.31)(vue@3.3.7)
       '@dcloudio/uni-app-plus':
         specifier: 3.0.0-alpha-3090620231030001
         version: 3.0.0-alpha-3090620231030001(postcss@8.4.31)(vite@4.5.0)(vue@3.3.7)
@@ -514,8 +514,8 @@ importers:
         specifier: ^1.4.28
         version: 1.4.28
       '@vueuse/core':
-        specifier: ^9.13.0
-        version: 9.13.0(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       '@yusui/uvue':
         specifier: workspace:*
         version: link:../../packages/uvue
@@ -536,8 +536,8 @@ importers:
         version: 4.1.0(vue@3.3.7)
     devDependencies:
       '@dcloudio/types':
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       '@dcloudio/uni-automator':
         specifier: 3.0.0-alpha-3090620231030001
         version: 3.0.0-alpha-3090620231030001(jest-environment-node@27.5.1)(jest@27.0.4)(postcss@8.4.31)(vue@3.3.7)
@@ -584,8 +584,8 @@ importers:
         specifier: ^3.2.22
         version: 3.2.22(element-plus@2.4.1)(vue@3.3.7)
       '@vueuse/core':
-        specifier: ~10.1.2
-        version: 10.1.2(vue@3.3.7)
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.7)
       element-plus:
         specifier: ^2.4.1
         version: 2.4.1(vue@3.3.7)
@@ -2301,8 +2301,8 @@ packages:
     resolution: {integrity: sha512-/Z3l6pXthq0JvMYdUFyX9j0MaCltlIn6mfh9jLyQwg5aPKxkyNa0PTHtU1AlFXLNk55ZuAeJRcpvq+tmLfKmaQ==}
     engines: {node: '>=10'}
 
-  /@dcloudio/types@3.4.1:
-    resolution: {integrity: sha512-3po6f5obp3C/nYsd5r7dzF2vHFQCcdf+PKk+YzgcNFWo8lSivFA8KJZDA/GVmHCSl0zGTqbRQlQPWFaYTAzv7w==}
+  /@dcloudio/types@3.4.2:
+    resolution: {integrity: sha512-9iMDW3D5C6UCBFjza+okPqTgwEjT8R0zrZ74igA19wkaNgWC1o03/w3GJenq5Ob+uSIaJudwLgUf7vNZ8/LTWQ==}
 
   /@dcloudio/uni-app-plus@3.0.0-alpha-3090620231030001(postcss@8.4.31)(vite@4.5.0)(vue@3.3.7):
     resolution: {integrity: sha512-Y+9f/loCZDCICFa3mXfQRe4OOnHjrDJ7PHuMFhkMKFWiI6w4Wb6H6+X+JFB6JpvSSy3aUlb2RTtLQb5KHJScwA==}
@@ -2376,7 +2376,7 @@ packages:
     resolution: {integrity: sha512-qepcd7KRv2JGGBZm3FqJFI6SXL/y8px0JneKeMs8hPyMLRkZ8e80zmXxU6TfnJrcAysRndOQyWUdJyCQjUXP3Q==}
     dev: false
 
-  /@dcloudio/uni-app@3.0.0-alpha-3090320231018001(@dcloudio/types@3.4.1)(postcss@8.4.31)(vue@3.3.7):
+  /@dcloudio/uni-app@3.0.0-alpha-3090320231018001(@dcloudio/types@3.4.2)(postcss@8.4.31)(vue@3.3.7):
     resolution: {integrity: sha512-7rvXPjXB1wXhKIkJiy5tRYvyhSu/aXXvYVBNyPG1vqPEj3RSzphGz4bPcN1xvPJqnFUzwjdAOwQq57n5GjqHOQ==}
     peerDependencies:
       '@dcloudio/types': ^3.3.2
@@ -2384,7 +2384,7 @@ packages:
       '@dcloudio/types':
         optional: true
     dependencies:
-      '@dcloudio/types': 3.4.1
+      '@dcloudio/types': 3.4.2
       '@dcloudio/uni-cloud': 3.0.0-alpha-3090320231018001(postcss@8.4.31)(vue@3.3.7)
       '@dcloudio/uni-components': 3.0.0-alpha-3090320231018001(postcss@8.4.31)(vue@3.3.7)
       '@dcloudio/uni-i18n': 3.0.0-alpha-3090320231018001
@@ -2399,7 +2399,7 @@ packages:
       - vue
     dev: true
 
-  /@dcloudio/uni-app@3.0.0-alpha-3090620231030001(@dcloudio/types@3.4.1)(postcss@8.4.31)(vue@3.3.7):
+  /@dcloudio/uni-app@3.0.0-alpha-3090620231030001(@dcloudio/types@3.4.2)(postcss@8.4.31)(vue@3.3.7):
     resolution: {integrity: sha512-avY2bLhnoXr3ca0v6u8gdV9n0PgJlSyDLDZbupIqjUjmnxsbYfTGl93qS+M+ZO0gzDgnFLOEnSPqLn0aTaMPdw==}
     peerDependencies:
       '@dcloudio/types': ^3.3.2
@@ -2407,7 +2407,7 @@ packages:
       '@dcloudio/types':
         optional: true
     dependencies:
-      '@dcloudio/types': 3.4.1
+      '@dcloudio/types': 3.4.2
       '@dcloudio/uni-cloud': 3.0.0-alpha-3090620231030001(postcss@8.4.31)(vue@3.3.7)
       '@dcloudio/uni-components': 3.0.0-alpha-3090620231030001(postcss@8.4.31)(vue@3.3.7)
       '@dcloudio/uni-i18n': 3.0.0-alpha-3090620231030001
@@ -4772,6 +4772,10 @@ packages:
 
   /@types/web-bluetooth@0.0.17:
     resolution: {integrity: sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA==}
+    dev: true
+
+  /@types/web-bluetooth@0.0.18:
+    resolution: {integrity: sha512-v/ZHEj9xh82usl8LMR3GarzFY1IrbXJw5L4QfQhokjRV91q+SelFqxQWSep1ucXEZ22+dSTwLFkXeur25sPIbw==}
 
   /@types/yargs-parser@21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
@@ -5230,17 +5234,6 @@ packages:
     resolution: {integrity: sha512-CPuIReonid9+zOG/CGTT05FXrPYATEqoDGNrEaqS4hwcw5BUNM2FguC0mOwJD4Jr16UpRVl9N0pY3P+srIbqmg==}
     dev: true
 
-  /@vueuse/core@10.1.2(vue@3.3.7):
-    resolution: {integrity: sha512-roNn8WuerI56A5uiTyF/TEYX0Y+VKlhZAF94unUfdhbDUI+NfwQMn4FUnUscIRUhv3344qvAghopU4bzLPNFlA==}
-    dependencies:
-      '@types/web-bluetooth': 0.0.17
-      '@vueuse/metadata': 10.1.2
-      '@vueuse/shared': 10.1.2(vue@3.3.7)
-      vue-demi: 0.14.5(vue@3.3.7)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
   /@vueuse/core@10.3.0(vue@3.3.7):
     resolution: {integrity: sha512-BEM5yxcFKb5btFjTSAFjTu5jmwoW66fyV9uJIP4wUXXU8aR5Hl44gndaaXp7dC5HSObmgbnR2RN+Un1p68Mf5Q==}
     dependencies:
@@ -5252,6 +5245,17 @@ packages:
       - '@vue/composition-api'
       - vue
     dev: true
+
+  /@vueuse/core@10.5.0(vue@3.3.7):
+    resolution: {integrity: sha512-z/tI2eSvxwLRjOhDm0h/SXAjNm8N5ld6/SC/JQs6o6kpJ6Ya50LnEL8g5hoYu005i28L0zqB5L5yAl8Jl26K3A==}
+    dependencies:
+      '@types/web-bluetooth': 0.0.18
+      '@vueuse/metadata': 10.5.0
+      '@vueuse/shared': 10.5.0(vue@3.3.7)
+      vue-demi: 0.14.6(vue@3.3.7)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   /@vueuse/core@9.13.0(vue@3.3.7):
     resolution: {integrity: sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==}
@@ -5316,23 +5320,15 @@ packages:
       - vue
     dev: true
 
-  /@vueuse/metadata@10.1.2:
-    resolution: {integrity: sha512-3mc5BqN9aU2SqBeBuWE7ne4OtXHoHKggNgxZR2K+zIW4YLsy6xoZ4/9vErQs6tvoKDX6QAqm3lvsrv0mczAwIQ==}
-
   /@vueuse/metadata@10.3.0:
     resolution: {integrity: sha512-Ema3YhNOa4swDsV0V7CEY5JXvK19JI/o1szFO1iWxdFg3vhdFtCtSTP26PCvbUpnUtNHBY2wx5y3WDXND5Pvnw==}
     dev: true
 
+  /@vueuse/metadata@10.5.0:
+    resolution: {integrity: sha512-fEbElR+MaIYyCkeM0SzWkdoMtOpIwO72x8WsZHRE7IggiOlILttqttM69AS13nrDxosnDBYdyy3C5mR1LCxHsw==}
+
   /@vueuse/metadata@9.13.0:
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
-
-  /@vueuse/shared@10.1.2(vue@3.3.7):
-    resolution: {integrity: sha512-1uoUTPBlgyscK9v6ScGeVYDDzlPSFXBlxuK7SfrDGyUTBiznb3mNceqhwvZHjtDRELZEN79V5uWPTF1VDV8svA==}
-    dependencies:
-      vue-demi: 0.14.6(vue@3.3.7)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
 
   /@vueuse/shared@10.3.0(vue@3.3.7):
     resolution: {integrity: sha512-kGqCTEuFPMK4+fNWy6dUOiYmxGcUbtznMwBZLC1PubidF4VZY05B+Oht7Jh7/6x4VOWGpvu3R37WHi81cKpiqg==}
@@ -5342,6 +5338,14 @@ packages:
       - '@vue/composition-api'
       - vue
     dev: true
+
+  /@vueuse/shared@10.5.0(vue@3.3.7):
+    resolution: {integrity: sha512-18iyxbbHYLst9MqU1X1QNdMHIjks6wC7XTVf0KNOv5es/Ms6gjVFCAAWTVP2JStuGqydg3DT+ExpFORUEi9yhg==}
+    dependencies:
+      vue-demi: 0.14.6(vue@3.3.7)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   /@vueuse/shared@9.13.0(vue@3.3.7):
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
@@ -14072,7 +14076,7 @@ packages:
       '@docsearch/js': 3.5.1(search-insights@2.7.0)
       '@vitejs/plugin-vue': 4.4.0(vite@4.5.0)(vue@3.3.7)
       '@vue/devtools-api': 6.5.0
-      '@vueuse/core': 10.3.0(vue@3.3.7)
+      '@vueuse/core': 10.5.0(vue@3.3.7)
       '@vueuse/integrations': 10.3.0(async-validator@4.2.5)(axios@1.6.0)(focus-trap@7.5.2)(vue@3.3.7)
       body-scroll-lock: 4.0.0-beta.0
       focus-trap: 7.5.2
@@ -14186,20 +14190,6 @@ packages:
   /vue-component-type-helpers@1.8.4:
     resolution: {integrity: sha512-6bnLkn8O0JJyiFSIF0EfCogzeqNXpnjJ0vW/SZzNHfe6sPx30lTtTXlE5TFs2qhJlAtDFybStVNpL73cPe3OMQ==}
     dev: true
-
-  /vue-demi@0.14.5(vue@3.3.7):
-    resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      vue: 3.3.7(typescript@5.2.2)
 
   /vue-demi@0.14.6(vue@3.3.7):
     resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
