@@ -1,3 +1,12 @@
+# [2.0.0-beta.97](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.96...v2.0.0-beta.97) (2023-11-03)
+
+
+### Bug Fixes
+
+* **composables:** useOverlay的ElOverlay需要注册为全局组件 ([f7aefa6](https://github.com/SoulLyoko/yusui-tools/commit/f7aefa64554b2a8306e9abe5f4da9487e9bac7f2))
+
+
+
 # [2.0.0-beta.96](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.95...v2.0.0-beta.96) (2023-11-03)
 
 
