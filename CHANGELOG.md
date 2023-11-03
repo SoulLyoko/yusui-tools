@@ -1,3 +1,19 @@
+# [2.0.0-beta.96](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.95...v2.0.0-beta.96) (2023-11-03)
+
+
+### Bug Fixes
+
+* 优化useVModels使用 ([16f7fc4](https://github.com/SoulLyoko/yusui-tools/commit/16f7fc4c2da9c0c40e75638298f3b2a4358a2bb9))
+* **plugins:** createEnvDts生成的代码去掉行分号 ([b7cb423](https://github.com/SoulLyoko/yusui-tools/commit/b7cb423699d88bba25b6b29285097aa5e9a27fbe))
+
+
+### Features
+
+* **composables:** useOverlay新增overlay类型，内容插槽由content改为default ([ef6dd7f](https://github.com/SoulLyoko/yusui-tools/commit/ef6dd7f1564e267fba732d7c8f88347b4d03749b))
+* **flow-pages:** useFlowFormOverlay使用useOverlay实现 ([9c05a6e](https://github.com/SoulLyoko/yusui-tools/commit/9c05a6e5c5ccb4851e4f90696d35b3adf19615c9))
+
+
+
 # [2.0.0-beta.95](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.94...v2.0.0-beta.95) (2023-10-30)
 
 
