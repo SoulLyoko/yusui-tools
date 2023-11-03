@@ -3,7 +3,7 @@ import type { Theme } from 'vitepress'
 
 import defaultTheme from 'vitepress/theme'
 import { Icon } from '@iconify/vue'
-import ElementPlus, { ElMessage } from 'element-plus'
+import ElementPlus, { ElMessage, ElOverlay } from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
@@ -21,6 +21,7 @@ export default {
   async enhanceApp({ app }: { app: App }) {
     app.use(components)
     app.use(ElementPlus, { locale: zhCn })
+    app.component('ElOverlay', ElOverlay)
     app.use(YSComponents)
     app.component('Icon', Icon)
     if (!import.meta.env.SSR) {

@@ -20,15 +20,8 @@ export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOpt
   async function open(options?: UseOverlayOptions<T>) {
     options = { ...initOptions, ...options }
     const { type = 'dialog', appContext = _appContext, onClose } = options
-    let ElOverlay: any
-    if (type === 'overlay') {
-      try {
-        ElOverlay = (await import('element-plus')).ElOverlay
-      }
-      catch {}
-    }
     vnode = h(
-      ElOverlay ?? overlayComponentMap[type],
+      overlayComponentMap[type],
       {
         ...options,
         modelValue: true,

@@ -2,6 +2,10 @@
 
 命令式使用弹窗
 
+:::tip
+需要将ElDialog,ElDrawer,ElOverlay注册为全局组件
+:::
+
 ## 基础用法
 
 :::demo
@@ -16,9 +20,9 @@
 | ...drawerProps  | DrawerProps                       |          | ElDrawer的属性和事件 |
 | ...overlayProps | OverlayProps                      |          | ElOverlay的属性      |
 | type            | 'dialog' \| 'drawer' \| 'overlay' | 'dialog' | 打开弹窗的类型       |
-| header          | Slot                              |          | 头部插槽             |
-| default         | Slot                              |          | 中间内容插槽         |
-| footer          | Slot                              |          | 底部插槽             |
+| header          | RawChildren                       |          | 头部插槽             |
+| default         | RawChildren                       |          | 中间内容插槽         |
+| footer          | RawChildren                       |          | 底部插槽             |
 | appContext      | AppContext                        |          | 应用上下文           |
 
 ## UseOverlayReturn

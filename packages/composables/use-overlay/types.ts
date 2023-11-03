@@ -1,7 +1,7 @@
 import type { ElDialog, ElDrawer, ElOverlay } from 'element-plus'
-import type { AppContext, VNode } from 'vue'
+import type { AppContext, VNode, VNodeArrayChildren } from 'vue'
 
-export type Slot = string | VNode | (() => VNode)
+export type RawChildren = string | number | boolean | VNode | VNodeArrayChildren | (() => any)
 export type UseOverlayType = 'dialog' | 'drawer' | 'overlay'
 export interface UseOverlayComponentProps {
   dialog: InstanceType<typeof ElDialog>['$props']
@@ -16,11 +16,11 @@ export type UseOverlayOptions<T extends UseOverlayType = 'dialog'> = {
    */
   type?: T
   /** 头部插槽 */
-  header?: Slot
+  header?: RawChildren
   /** 中间内容插槽 */
-  default?: Slot
+  default?: RawChildren
   /** 底部插槽 */
-  footer?: Slot
+  footer?: RawChildren
   /** 应用上下文 */
   appContext?: AppContext
   onClose?: () => any
