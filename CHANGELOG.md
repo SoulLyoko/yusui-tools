@@ -1,3 +1,12 @@
+# [2.0.0-beta.98](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2023-11-05)
+
+
+### Features
+
+* **components:** 新增右键菜单组件ContextMenu ([9bfcde5](https://github.com/SoulLyoko/yusui-tools/commit/9bfcde58888857e84e87f1537fe023d39b182f56))
+
+
+
 # [2.0.0-beta.97](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.96...v2.0.0-beta.97) (2023-11-03)
 
 
