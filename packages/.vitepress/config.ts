@@ -48,6 +48,7 @@ export default defineConfig({
           text: 'Components',
           items: [
             { text: 'Start', link: '/components/index' },
+            { text: 'ContextMenu', link: '/components/context-menu/index' },
             { text: 'EpMenu', link: '/components/ep-menu/index' },
             { text: 'EpTree', link: '/components/ep-tree/index' },
             { text: 'IconSelect', link: '/components/icon-select/index' },

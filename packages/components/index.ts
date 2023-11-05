@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 
+import ContextMenu from './context-menu/index.vue'
 import EpMenu from './ep-menu/index.vue'
 import EpTree from './ep-tree/index.vue'
 import IconSelect from './icon-select/index.vue'
@@ -10,6 +11,7 @@ export { EpMenu, EpTree, IconSelect, VDict, VText }
 
 export default {
   install(app: App) {
+    app.component('ContextMenu', ContextMenu)
     app.component('EpMenu', EpMenu)
     app.component('EpTree', EpTree)
     app.component('IconSelect', IconSelect)
@@ -20,6 +22,7 @@ export default {
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ContextMenu: typeof ContextMenu
     EpMenu: typeof EpMenu
     EpTree: typeof EpTree
     IconSelect: typeof IconSelect

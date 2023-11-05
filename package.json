@@ -19,7 +19,7 @@
     "docs:build": "vitepress build packages",
     "docs:dev": "vitepress dev packages --host",
     "docs:serve": "vitepress serve packages",
-    "lint": "eslint -c eslint.config.mjs .",
+    "lint": "eslint .",
     "postinstall": "npx simple-git-hooks",
     "release": "esno scripts/release.ts",
     "remove:dist": "esno scripts/remove-dist.ts",
@@ -99,7 +99,7 @@
     "commit-msg": "npx --no-install commitlint --edit $1"
   },
   "lint-staged": {
-    "*": "eslint -c eslint.config.mjs --fix"
+    "*": "eslint --fix"
   },
   "commitlint": {
     "extends": [
