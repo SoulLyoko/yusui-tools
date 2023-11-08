@@ -58,7 +58,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
     getFlowDetail({ flowKey, taskId, flowInstanceId: instanceId })
       .then(async (res) => {
         flowDetail.value = res.data
-        formData.value = res.data.formData || {}
+        formData.value = { ...res.data.formData, ...formData.value }
         await afterGetDetail?.value?.(res.data)
         await emitter.emitAsync('afterGetDetail', res.data)
       })
