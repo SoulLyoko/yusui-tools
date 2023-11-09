@@ -1,3 +1,12 @@
+# [2.0.0-beta.99](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.98...v2.0.0-beta.99) (2023-11-09)
+
+
+### Features
+
+* **flow-pages:** flow-form支持传入默认表单值 ([8684f52](https://github.com/SoulLyoko/yusui-tools/commit/8684f527861e5a030ea18a181ad45c5f8963542b))
+
+
+
 # [2.0.0-beta.98](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.97...v2.0.0-beta.98) (2023-11-05)
 
 
