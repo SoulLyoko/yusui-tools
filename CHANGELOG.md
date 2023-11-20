@@ -1,3 +1,13 @@
+# [2.0.0-beta.100](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.99...v2.0.0-beta.100) (2023-11-20)
+
+
+### Bug Fixes
+
+* **types:** avue types ([19e48c2](https://github.com/SoulLyoko/yusui-tools/commit/19e48c2508a96407a3e3837217b2802bf17a9abb))
+* **utils:** export `arrayToMap` ([793944f](https://github.com/SoulLyoko/yusui-tools/commit/793944fab4352a5587ee1dd75180f7d7d56057cd))
+
+
+
 # [2.0.0-beta.99](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0-beta.98...v2.0.0-beta.99) (2023-11-09)
 
 
