@@ -1,5 +1,5 @@
 import type { Component, VNode } from 'vue'
-import type { FormItemRule, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
+import type { FormItemRule, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import type { ElSize } from '../helpers'
 
 declare module '@smallwei/avue' {
@@ -165,6 +165,8 @@ declare module '@smallwei/avue' {
     group?: Array<AvueFormGroup<T>>
     /** 选项卡模式 */
     tabs?: boolean
+    /** 选项卡风格类型 */
+    tabsType?: TabsProps['type']
     /** 表单操作栏 */
     menuBtn?: boolean
     /** 表单操作菜单栅格占据的列数 */
@@ -282,6 +284,7 @@ declare module '@smallwei/avue' {
       dic: DicItem[]
     }) => VNode[]
     [x: string]: (props: {
+      row: any
       value: any
       column: AvueFormColumn<T>
       size: ElSize

@@ -26,7 +26,7 @@ declare module '@smallwei/avue' {
     /** 是否虚拟树 */
     virtualize?: boolean
     /** 弹出框宽度 */
-    dialogWidth?: string
+    dialogWidth?: number
     /** 自定义form表单，具体参考avue-form */
     formOption?: AvueFormOption<T>
     /** 菜单栏 */
