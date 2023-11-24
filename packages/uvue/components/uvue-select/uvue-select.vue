@@ -38,7 +38,7 @@ function onInput(value: any) {
 </script>
 
 <template>
-  <u-input v-if="allowCreate" v-bind="$attrs" type="text" :model-value="selectedLabel" @update:modelValue="onInput">
+  <u-input v-if="allowCreate" v-bind="$attrs" type="text" :model-value="selectedLabel" @update:model-value="onInput">
     <template #suffix>
       <u-icon name="arrow-right" @tap="onShow" />
     </template>

@@ -37,25 +37,25 @@ export default { inheritAttrs: false }
         <u-input
           v-if="inputTypes.includes($attrs.type as string)"
           v-bind="$attrs"
-          @update:modelValue="$emit('update:modelValue', $event)"
+          @update:model-value="emit('update:modelValue', $event)"
         />
 
         <uvue-datetime-picker
           v-if="pickerTypes.includes($attrs.type as string)"
           v-bind="$attrs"
-          @update:modelValue="$emit('update:modelValue', $event)"
+          @update:model-value="emit('update:modelValue', $event)"
         />
 
         <uvue-dict
           v-if="dicTypes.includes($attrs.type as string)"
           v-bind="$attrs"
-          @update:modelValue="$emit('update:modelValue', $event)"
+          @update:model-value="emit('update:modelValue', $event)"
         />
 
         <u-textarea
           v-if="$attrs.type === 'textarea'"
           v-bind="$attrs"
-          @update:modelValue="$emit('update:modelValue', $event)"
+          @update:model-value="emit('update:modelValue', $event)"
         />
       </template>
     </view>

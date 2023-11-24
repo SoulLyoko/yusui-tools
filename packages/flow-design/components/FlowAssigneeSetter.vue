@@ -18,9 +18,26 @@ const loading = ref(false)
 const type = computed(() => props.tableData?.row?.type as keyof typeof dicMap.value)
 const isMultiple = computed(() => ['dept', 'post', 'user', 'specifyUser'].includes(type.value!))
 
-watch(type, () => {
-  multipleValue.value = []
-  singleValue.value = ''
+const { dataOptions } = useInjectState()
+const dicMap = computed(() => {
+  const {
+    flowAssigneeUserDic = [],
+    flowAssigneeDeptDic = [],
+    flowAssigneePostDic = [],
+    flowAssigneeDynamicDic = [],
+  } = dataOptions.value ?? {}
+  return {
+    user: flowAssigneeUserDic,
+    dept: flowAssigneeDeptDic,
+    post: flowAssigneePostDic,
+    dynamic: flowAssigneeDynamicDic,
+    specifyUser: flowAssigneeUserDic,
+    userTask: [],
+  }
+})
+
+const treeData = computed(() => {
+  return dicMap.value[type.value] ?? []
 })
 
 const multipleValue = computed({
@@ -49,6 +66,11 @@ const singleValue = computed({
   },
 })
 
+watch(type, () => {
+  multipleValue.value = []
+  singleValue.value = ''
+})
+
 const treeValue = computed({
   get() {
     return isMultiple.value ? multipleValue.value : singleValue.value
@@ -63,28 +85,6 @@ const treeValue = computed({
 function handleSelectAll() {
   treeValue.value = filterTree(treeData.value, e => e.type === type.value).map(e => e.id!)
 }
-
-const { dataOptions } = useInjectState()
-const dicMap = computed(() => {
-  const {
-    flowAssigneeUserDic = [],
-    flowAssigneeDeptDic = [],
-    flowAssigneePostDic = [],
-    flowAssigneeDynamicDic = [],
-  } = dataOptions.value ?? {}
-  return {
-    user: flowAssigneeUserDic,
-    dept: flowAssigneeDeptDic,
-    post: flowAssigneePostDic,
-    dynamic: flowAssigneeDynamicDic,
-    specifyUser: flowAssigneeUserDic,
-    userTask: [],
-  }
-})
-
-const treeData = computed(() => {
-  return dicMap.value[type.value] ?? []
-})
 
 const treeSelectProps = computed(() => {
   const commonProps = {

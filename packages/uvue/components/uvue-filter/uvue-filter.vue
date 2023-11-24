@@ -5,6 +5,7 @@ export default {
     option: { type: Object, default: () => ({}) },
     filterForm: { type: Object, default: () => ({}) },
   },
+  emits: ['update:filterForm', 'filterChange'],
   data() {
     return {
       filterFormData: {},
@@ -33,7 +34,7 @@ export default {
     filterFormData: {
       handler(val) {
         this.$emit('update:filterForm', val)
-        this.$emit('filter-change', val)
+        this.$emit('filterChange', val)
       },
       deep: true,
     },

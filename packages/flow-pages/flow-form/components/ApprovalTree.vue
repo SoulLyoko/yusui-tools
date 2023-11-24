@@ -24,6 +24,17 @@ const iconMap: Record<string, string> = {
   user: 'ep:user',
 }
 
+const treeRef = ref<InstanceType<typeof ElTree>>()
+const treeData = computed(() => {
+  return treeMap(props.data ?? [], (item, index, parent) => {
+    const id = uuid()
+    item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
+    item.incoming = parent?.incoming ?? item.incoming
+    item.multiple = parent?.multiple ?? item.multiple
+    item.parentId = parent?.id ?? item.parentId
+    return { ...item, id }
+  })
+})
 const treeLoad: LoadFunction = (node, resolve) => {
   if (node.level === 0)
     resolve(treeData.value)
@@ -44,17 +55,6 @@ const treeProps = {
     },
   },
 }
-const treeRef = ref<InstanceType<typeof ElTree>>()
-const treeData = computed(() => {
-  return treeMap(props.data ?? [], (item, index, parent) => {
-    const id = uuid()
-    item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
-    item.incoming = parent?.incoming ?? item.incoming
-    item.multiple = parent?.multiple ?? item.multiple
-    item.parentId = parent?.id ?? item.parentId
-    return { ...item, id }
-  })
-})
 
 watchDebounced(
   () => [treeData.value, treeRef.value],

@@ -6,13 +6,13 @@ export function useSearch(props: UvueListProps, emit: UvueListEmitFn) {
   const searchValue = useVModel(props, 'searchValue')
   const searchListeners = {
     onSearch: (value: string) => emit('search', value),
-    onChange: (value: string) => emit('search-change', value),
-    onCustom: (value: string) => emit('search-custom', value),
-    onBlur: (value: string) => emit('search-blur', value),
-    onFocus: (value: string) => emit('search-focus', value),
-    onClear: () => emit('search-clear'),
-    onClick: () => emit('search-click'),
-    onClickIcon: () => emit('search-click-icon'),
+    onChange: (value: string) => emit('searchChange', value),
+    onCustom: (value: string) => emit('searchCustom', value),
+    onBlur: (value: string) => emit('searchBlur', value),
+    onFocus: (value: string) => emit('searchFocus', value),
+    onClear: () => emit('searchClear'),
+    onClick: () => emit('searchClick'),
+    onClickIcon: () => emit('searchClickIcon'),
   }
 
   return { searchValue, searchListeners }

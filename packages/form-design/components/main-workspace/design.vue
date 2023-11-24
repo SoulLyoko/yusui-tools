@@ -8,8 +8,9 @@ import { useVModels } from '@vueuse/core'
 import { cloneDeep, isFunction, omitBy } from 'lodash-unified'
 import Draggable from 'vuedraggable'
 
-import { useInjectState } from '../../composables'
+// eslint-disable-next-line import/no-self-import
 import Design from './design.vue'
+import { useInjectState } from '../../composables'
 import { checkRules, copyItem } from '../../utils'
 
 const props = defineProps<{ list: ElementTreeNode[]; componentData: ElementTreeNode }>()

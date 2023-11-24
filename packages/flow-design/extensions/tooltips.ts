@@ -11,7 +11,7 @@ export class Tooltips {
 
   constructor({ lf }: { lf: LogicFlow }) {
     this.__tooltipDOM = document.createElement('div')
-    this.__tooltipDOM.className = 'lf-tooltips'
+    this.__tooltipDOM.className = 'lf-tooltip'
     this.__tooltipDOM.style.position = 'absolute'
     this.__tooltipDOM.style.display = 'none'
     this.lf = lf

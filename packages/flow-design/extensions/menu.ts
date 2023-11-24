@@ -53,36 +53,10 @@ export class Menu extends _Menu {
       text: '',
       icon: true,
       className: 'lf-menu-back',
+      // eslint-disable-next-line ts/no-use-before-define
       callback: (ele: NodeConfig) => this.changeMenuList(ele, defaultMenuConfig.nodeMenu),
     }
 
-    // 添加节点
-    const add = {
-      text: '添加',
-      icon: true,
-      className: 'lf-menu-add',
-      callback: (ele: NodeConfig) => {
-        let menuList: MenuItem[] = []
-        switch (ele.type) {
-          case 'startEvent':
-          case 'userTask':
-          case 'exclusiveGateway':
-          case 'parallelGateway':
-          case 'circulateTask':
-            menuList = [back, addUserTask, addServiceTask, addCirculateTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
-            break
-          case 'endEvent':
-          case 'sequenceFlow':
-          case 'group':
-          case 'serviceTask':
-            menuList = [back, addNote]
-            break
-          default:
-            menuList = [back]
-        }
-        this.changeMenuList(ele, menuList)
-      },
-    }
     const addUserTask = {
       text: '用户任务',
       icon: true,
@@ -125,35 +99,26 @@ export class Menu extends _Menu {
       className: 'lf-menu-note',
       callback: (ele: NodeConfig) => this.addNode(ele, { type: 'note', x: ele.x, y: ele.y - 150 }),
     }
-
-    // 修改节点类型
-    const change = {
-      text: '切换类型',
+    // 添加节点
+    const add = {
+      text: '添加',
       icon: true,
-      className: 'lf-menu-switch',
+      className: 'lf-menu-add',
       callback: (ele: NodeConfig) => {
         let menuList: MenuItem[] = []
         switch (ele.type) {
           case 'startEvent':
-            menuList = [back, changeToEndEvent]
+          case 'userTask':
+          case 'exclusiveGateway':
+          case 'parallelGateway':
+          case 'circulateTask':
+            menuList = [back, addUserTask, addServiceTask, addCirculateTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
             break
           case 'endEvent':
-            menuList = [back, changeToStartEvent]
-            break
-          case 'exclusiveGateway':
-            menuList = [back, changeToParallelGateway]
-            break
-          case 'parallelGateway':
-            menuList = [back, changeToExclusiveGateway]
-            break
-          case 'userTask':
-            menuList = [back, changeToServiceTask, changeToCirculateTask]
-            break
+          case 'sequenceFlow':
+          case 'group':
           case 'serviceTask':
-            menuList = [back, changeToUserTask, changeToCirculateTask]
-            break
-          case 'circulateTask':
-            menuList = [back, changeToUserTask, changeToServiceTask]
+            menuList = [back, addNote]
             break
           default:
             menuList = [back]
@@ -161,6 +126,7 @@ export class Menu extends _Menu {
         this.changeMenuList(ele, menuList)
       },
     }
+
     const changeToStartEvent = {
       text: '开始',
       icon: true,
@@ -202,6 +168,41 @@ export class Menu extends _Menu {
       icon: true,
       className: 'lf-menu-circulate-task',
       callback: (ele: NodeConfig) => this.changeNodeType(ele, 'circulateTask'),
+    }
+    // 修改节点类型
+    const change = {
+      text: '切换类型',
+      icon: true,
+      className: 'lf-menu-switch',
+      callback: (ele: NodeConfig) => {
+        let menuList: MenuItem[] = []
+        switch (ele.type) {
+          case 'startEvent':
+            menuList = [back, changeToEndEvent]
+            break
+          case 'endEvent':
+            menuList = [back, changeToStartEvent]
+            break
+          case 'exclusiveGateway':
+            menuList = [back, changeToParallelGateway]
+            break
+          case 'parallelGateway':
+            menuList = [back, changeToExclusiveGateway]
+            break
+          case 'userTask':
+            menuList = [back, changeToServiceTask, changeToCirculateTask]
+            break
+          case 'serviceTask':
+            menuList = [back, changeToUserTask, changeToCirculateTask]
+            break
+          case 'circulateTask':
+            menuList = [back, changeToUserTask, changeToServiceTask]
+            break
+          default:
+            menuList = [back]
+        }
+        this.changeMenuList(ele, menuList)
+      },
     }
 
     const defaultMenuConfig = {

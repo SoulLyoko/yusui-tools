@@ -23,7 +23,7 @@ function onLoadmore() {
   emit('loadmore')
 }
 function onItemClick(row: any, index: number) {
-  emit('item-click', row, index)
+  emit('itemClick', row, index)
 }
 function getSlotName(name: string) {
   return slots[name] ? name : ''

@@ -6,6 +6,7 @@ import { computed, useAttrs } from 'vue'
 const props = defineProps({
   dic: { type: Array as PropType<{ label?: string; value?: string; color?: string }[]>, default: () => [] },
 })
+const emit = defineEmits(['update:modelValue', 'change'])
 
 const attrs = useAttrs()
 const switchProps = computed(() => {
@@ -22,7 +23,7 @@ const switchProps = computed(() => {
 
 <template>
   <u-switch
-    v-bind="switchProps" @update:modelValue="$emit('update:modelValue', $event)"
-    @change="$emit('change', $event)"
+    v-bind="switchProps" @update:model-value="emit('update:modelValue', $event)"
+    @change="emit('change', $event)"
   />
 </template>

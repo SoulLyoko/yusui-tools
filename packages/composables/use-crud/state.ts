@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-use-before-define */
 import type { Data } from '@yusui/types'
 import type { CrudState, UseCrudStateOptions } from './types'
 

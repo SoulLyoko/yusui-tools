@@ -19,6 +19,28 @@ export function useCrudMethods<T extends Data, P extends Data>({
   options: UseCrudMethodsOptions<T, P>
 }) {
   const { proxy: vm } = getCurrentInstance() ?? {}
+
+  const hasKey$ = (v: any, k: string | string[]) => k.includes('$')
+  const isEmptyString = (v: any) => v === ''
+  /**
+   * 过滤对象的undefined和null值
+   * @param {object} row 被过滤对象
+   */
+  const filterRow
+    = options.filterRow
+    ?? ((row: T) => {
+      return omitBy(row, overSome(isNil, hasKey$)) as T
+    })
+  /**
+   * 过滤搜索参数的undefined和null值和""值
+   * @param {object} params 被过滤对象
+   */
+  const filterParams
+    = options.filterParams
+    ?? ((params: P) => {
+      return omitBy(params, overSome(isNil, isEmptyString, hasKey$)) as P
+    })
+
   /**
    * 获取数据列表
    */
@@ -174,28 +196,6 @@ export function useCrudMethods<T extends Data, P extends Data>({
         console.error('batchDel ~ err', err)
       }
     })
-
-  const hasKey$ = (v: any, k: string | string[]) => k.includes('$')
-  const isEmptyString = (v: any) => v === ''
-  /**
-   * 过滤对象的undefined和null值
-   * @param {object} row 被过滤对象
-   */
-  const filterRow
-    = options.filterRow
-    ?? ((row: T) => {
-      return omitBy(row, overSome(isNil, hasKey$)) as T
-    })
-  /**
-   * 过滤搜索参数的undefined和null值和""值
-   * @param {object} params 被过滤对象
-   */
-  const filterParams
-    = options.filterParams
-    ?? ((params: P) => {
-      return omitBy(params, overSome(isNil, isEmptyString, hasKey$)) as P
-    })
-
   /**
    * 搜索
    * @param {object} form 搜索表单数据

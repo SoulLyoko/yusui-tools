@@ -28,10 +28,10 @@ function onMenuSelect(...args: Parameters<MenuEmits['select']>) {
   emit('select', ...args)
 }
 function onMenuItemClick(route: RouteRecordRaw) {
-  emit('item-click', route)
+  emit('itemClick', route)
 }
 function onMenuItemContextmenu(route: RouteRecordRaw) {
-  emit('item-contextmenu', route)
+  emit('itemContextmenu', route)
 }
 
 const menuRef = ref()
