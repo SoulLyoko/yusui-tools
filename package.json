@@ -25,8 +25,7 @@
     "remove:dist": "esno scripts/remove-dist.ts",
     "test": "vitest",
     "tc": "vue-tsc --noEmit",
-    "upd": "taze major -r -I",
-    "uvm": "pnpm -F app uvm"
+    "upd": "taze major -r -l -I"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.1.0",
@@ -95,8 +94,9 @@
     }
   },
   "simple-git-hooks": {
+    "commit-msg": "npx --no-install commitlint --edit $1",
     "pre-commit": "npx lint-staged",
-    "commit-msg": "npx --no-install commitlint --edit $1"
+    "pre-push": "pnpm tc"
   },
   "lint-staged": {
     "*": "eslint --fix"
