@@ -3,7 +3,7 @@ import Inspect from 'vite-plugin-inspect'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import { mdDemoTransform } from './plugins/md-demo-transform'
-import { avuePatch, loadProxy } from '../plugins'
+import { avuePatch, loadProxy } from '../plugins/index'
 import { alias } from '../../vite.config'
 import pkg from '../../package.json'
 
@@ -39,7 +39,7 @@ export default defineConfig({
           text: 'Guide',
           items: [
             { text: 'Start', link: '/guide/start' },
-            { text: 'Changelog', link: '/guide/changelog' },
+            { text: 'CHANGELOG', link: '/guide/CHANGELOG' },
           ],
         },
       ],
