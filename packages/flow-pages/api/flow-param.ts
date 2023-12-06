@@ -25,7 +25,7 @@ export interface FlowParam {
 export interface FlowParamTaskStatus {
   label?: TaskStatus
   value?: TaskStatus
-  style?: { fill?: string; stroke?: string; strokeWidth?: number }
+  style?: { fill?: string, stroke?: string, strokeWidth?: number }
 }
 export interface FlowParamHandleType {
   label?: HandleType

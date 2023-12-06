@@ -6,7 +6,7 @@ import { computed, nextTick, onMounted, useAttrs, watch } from 'vue'
 import { ElTree } from 'element-plus'
 import { isEqual, pick } from 'lodash-unified'
 
-export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any; treeRef: Ref<TreeInstance | undefined> }) {
+export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
   const attrs = useAttrs() as any
 
   onMounted(() => {

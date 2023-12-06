@@ -13,7 +13,7 @@ import Design from './design.vue'
 import { useInjectState } from '../../composables'
 import { checkRules, copyItem } from '../../utils'
 
-const props = defineProps<{ list: ElementTreeNode[]; componentData: ElementTreeNode }>()
+const props = defineProps<{ list: ElementTreeNode[], componentData: ElementTreeNode }>()
 const emit = defineEmits(['update:active', 'update:list'])
 const { list } = useVModels(props, emit, { passive: true, deep: true })
 

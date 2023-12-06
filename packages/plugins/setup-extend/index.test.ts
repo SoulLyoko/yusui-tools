@@ -24,14 +24,14 @@ console.log('hello')
 </script>`
     const result = transformSetupExtend(code, '/test.vue')?.code
     expect(result).toMatchInlineSnapshot(`
-      "<script lang=\\"ts\\">
+      "<script lang="ts">
       import { defineComponent } from 'vue'
       export default defineComponent({
         name: 'ComponentName',
         inheritAttrs: true,
       })
       </script>
-      <script setup lang=\\"ts\\" name=\\"ComponentName\\" generic=\\"T\\" inheritAttrs>
+      <script setup lang="ts" name="ComponentName" generic="T" inheritAttrs>
       console.log('hello')
       </script>"
     `)
@@ -43,14 +43,14 @@ console.log('hello')
 </script>`
     const result = transformSetupExtend(code, '/test.vue')?.code
     expect(result).toMatchInlineSnapshot(`
-      "<script lang=\\"ts\\">
+      "<script lang="ts">
       import { defineComponent } from 'vue'
       export default defineComponent({
         
         inheritAttrs: false,
       })
       </script>
-      <script setup lang=\\"ts\\" inheritAttrs=\\"false\\">
+      <script setup lang="ts" inheritAttrs="false">
       console.log('hello')
       </script>"
     `)

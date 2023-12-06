@@ -22,7 +22,7 @@ const fieldsColumn = [
   { label: '是否允许为空', prop: 'permitNull', type: 'switch', dicData: whetherDic, value: 1 },
 ]
 
-export const tableOption = defineTableOption<TableTemplate & { defaultFields: TableField[]; editFields: TableField[] }>({
+export const tableOption = defineTableOption<TableTemplate & { defaultFields: TableField[], editFields: TableField[] }>({
   rowKey: 'id',
   dialogFullscreen: true,
   column: [

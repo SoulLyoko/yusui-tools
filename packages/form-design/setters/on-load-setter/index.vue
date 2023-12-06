@@ -17,7 +17,7 @@ interface OnLoadData {
 }
 
 const props = withDefaults(
-  defineProps<{ modelValue?: string; tableData?: { row: any } }>(),
+  defineProps<{ modelValue?: string, tableData?: { row: any } }>(),
   { modelValue: '' },
 )
 const { modelValue } = useVModels(props)

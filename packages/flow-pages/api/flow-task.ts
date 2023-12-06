@@ -197,7 +197,7 @@ export interface ApprovalNode {
   children?: ApprovalNode[]
 }
 
-export type GetApprovalNodeResData = ResData<{ approvalNodeList: ApprovalNode[]; circulateNodeList: ApprovalNode[] }>
+export type GetApprovalNodeResData = ResData<{ approvalNodeList: ApprovalNode[], circulateNodeList: ApprovalNode[] }>
 
 export function useFlowTaskApi(request: RequestInstance) {
   const url = {
@@ -229,7 +229,7 @@ export function useFlowTaskApi(request: RequestInstance) {
     green: '/sapier-flow/flow-run/greenTask',
   }
   /** 获取流程详情 */
-  const getFlowDetail = (params: { flowKey?: string; taskId?: string; flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
+  const getFlowDetail = (params: { flowKey?: string, taskId?: string, flowInstanceId?: string }) => request.get<ResData<FlowDetail>>(url.detail, { params })
   /** 获取审批节点 */
   const getApprovalNode = (data: GetApprovalNodeParams) => request.post<GetApprovalNodeResData>(url.approvalNode, data)
   /** 发起 */

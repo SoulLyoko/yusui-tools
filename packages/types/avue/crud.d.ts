@@ -7,7 +7,7 @@ import type { ElSize } from '../helpers'
 declare module '@smallwei/avue' {
   export type Align = 'left' | 'center' | 'right'
   export type MenuType = 'button' | 'icon' | 'text' | 'menu'
-  export type TableRowData<T> = T & { $cellEdit?: boolean; $index?: number } & Partial<Record<`$${keyof T}`, string>> & Record<string, any>
+  export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Partial<Record<`$${keyof T}`, string>> & Record<string, any>
   // export type TableRowData<T> = T & { $cellEdit?: boolean, $index?: number } & Record<string, any>
   export type CellEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, cell: any, event: Event) => void
   export type RowEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, event: Event) => void
@@ -57,7 +57,7 @@ declare module '@smallwei/avue' {
     /** 表头对齐方式 */
     headerAlign?: Align
     /** 传入true开启默认数据过滤的选项，也可以传入自定义数组格式，数组中的元素需要有text和value属性 */
-    filters?: boolean | [{ text: string; value: string | number }]
+    filters?: boolean | [{ text: string, value: string | number }]
     /** 是否搜索 */
     search?: boolean
     /** 搜索表单的默认值 */
@@ -217,7 +217,7 @@ declare module '@smallwei/avue' {
     /** 可以通过该属性设置目前的展开行，需要设置rowKey属性才能使用，该属性为展开行的keys数组。 */
     expandRowKeys?: Array<string | number>
     /** 表格的排序字段{prop:'date',order:'descending'}prop默认排序字段，order排序方式 */
-    defaultSort?: { prop: string; order: 'ascending' | 'descending' }
+    defaultSort?: { prop: string, order: 'ascending' | 'descending' }
     /** 是否在表尾显示合计行 */
     showSummary?: boolean
     /** 是否懒加载子节点数据,会调用tree-load方法回调 */
@@ -482,7 +482,7 @@ declare module '@smallwei/avue' {
     /** 当拖动表头改变了列的宽度的时候会触发该事件 */
     onHeaderDragend?: (newWidth: number, oldWidth: number, column: TableColumnCtx<T>, event: Event) => any
     /** 当表格的排序条件发生变化的时候会触发该事件 */
-    onSortChange?: (args: { column: TableColumnCtx<T>; prop: string; order: 'ascsending' | 'descending' }) => any
+    onSortChange?: (args: { column: TableColumnCtx<T>, prop: string, order: 'ascsending' | 'descending' }) => any
     /** 当表格的筛选条件发生变化的时候会触发该事件 */
     onFilterChange?: (filters: Record<string, any[]>) => any
     /** 当用户对某一行展开或者关闭的时候会触发该事件（展开行时，回调的第二个参数为 expandedRows；树形表格时第二参数为 expanded） */
@@ -567,17 +567,17 @@ declare module '@smallwei/avue' {
 
   export interface AvueCrudSlots<T = any> {
     empty: () => VNode[]
-    expand: (props: { row: TableRowData<T>; index: number }) => VNode[]
-    menu: (props: { row: TableRowData<T>; type: string; disabled: boolean; size: ElSize; index: number }) => VNode[]
-    'menu-form': (props: { disabled: boolean; size: ElSize; type: FormType }) => VNode[]
+    expand: (props: { row: TableRowData<T>, index: number }) => VNode[]
+    menu: (props: { row: TableRowData<T>, type: string, disabled: boolean, size: ElSize, index: number }) => VNode[]
+    'menu-form': (props: { disabled: boolean, size: ElSize, type: FormType }) => VNode[]
     header: () => VNode[]
     footer: () => VNode[]
     page: () => VNode[]
-    'menu-btn': (props: { row: TableRowData<T>; type: string; disabled: boolean; size: ElSize; index: number }) => VNode[]
+    'menu-btn': (props: { row: TableRowData<T>, type: string, disabled: boolean, size: ElSize, index: number }) => VNode[]
     'menu-left': (props: { size: ElSize }) => VNode[]
     'menu-right': (props: { size: ElSize }) => VNode[]
-    search: (props: { row: T; search: T; size: ElSize }) => VNode[]
-    'search-menu': (props: { row: T; search: T; disabled: boolean; size: ElSize }) => VNode[]
+    search: (props: { row: T, search: T, size: ElSize }) => VNode[]
+    'search-menu': (props: { row: T, search: T, disabled: boolean, size: ElSize }) => VNode[]
     [x: `${string}-form` | `${string}-label`]: (props: {
       value: any
       column: AvueCrudColumn<T>
@@ -626,7 +626,7 @@ declare module '@smallwei/avue' {
   }
 
   export const AvueCrud: new<T = any>(props: AvueCrudProps<T>) =>
-  { $props: AvueCrudProps; $slots: AvueCrudSlots<T> } & AvueCrudMethods<T>
+  { $props: AvueCrudProps, $slots: AvueCrudSlots<T> } & AvueCrudMethods<T>
 
   export type AvueCrudInstance<T = any> = InstanceType<typeof AvueCrud<T>>
 }

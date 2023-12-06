@@ -18,7 +18,7 @@ import {
 } from '@yusui/flow-pages'
 
 const props = withDefaults(
-  defineProps<{ modelValue: FlowDefinition | FlowDeploy;visible: boolean }>(),
+  defineProps<{ modelValue: FlowDefinition | FlowDeploy, visible: boolean }>(),
   { modelValue: () => ({}) },
 )
 const emit = defineEmits(['close'])

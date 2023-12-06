@@ -44,8 +44,8 @@ export const to = awaitTo
  */
 export function enumToDic<T extends object>(
   enumme?: T,
-  props?: { label?: string; value?: string },
-): { label?: string; value?: any; [x: string]: any }[] {
+  props?: { label?: string, value?: string },
+): { label?: string, value?: any, [x: string]: any }[] {
   const { label: labelKey = 'label', value: valueKey = 'value' } = props || {}
   return Object.entries(enumme ?? {})
     .map(([key, value]) => ({ [labelKey]: key, [valueKey]: value }))

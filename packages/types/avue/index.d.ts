@@ -19,7 +19,7 @@ declare module '@smallwei/avue' {
   }
   const Avue: {
     install(app: import('vue').App, config?: AvueConfig): void
-    locale: { use: AnyFn; t: AnyFn; i18n: AnyFn }
+    locale: { use: AnyFn, t: AnyFn, i18n: AnyFn }
     version: string
     [name: string]: import('vue').DefineComponent
   }

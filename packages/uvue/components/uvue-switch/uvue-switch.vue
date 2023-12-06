@@ -4,7 +4,7 @@ import type { PropType } from 'vue'
 import { computed, useAttrs } from 'vue'
 
 const props = defineProps({
-  dic: { type: Array as PropType<{ label?: string; value?: string; color?: string }[]>, default: () => [] },
+  dic: { type: Array as PropType<{ label?: string, value?: string, color?: string }[]>, default: () => [] },
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 

@@ -9,7 +9,7 @@ import { defaultTheme } from '../constants'
 import { mergeInitOptions } from '../utils'
 import { useModelerListener } from '.'
 
-export function useInit({ props, state }: { props: FlowDesignProps; state: FlowDesignState }) {
+export function useInit({ props, state }: { props: FlowDesignProps, state: FlowDesignState }) {
   const { lf, graphData } = state
 
   function initModeler(container: HTMLElement) {

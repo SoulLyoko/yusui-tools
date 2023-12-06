@@ -4,7 +4,7 @@ import type { EpTreeProps, TreeInstance } from '../types'
 
 import { computed } from 'vue'
 
-export function useTag(props: EpTreeProps, { emit, treeRef }: { emit: any; treeRef: Ref<TreeInstance | undefined> }) {
+export function useTag(props: EpTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
   const checkedNodes = computed(() => {
     if (props.multiple) {
       const nodes = treeRef.value?.getCheckedNodes(!props.checkStrictly)

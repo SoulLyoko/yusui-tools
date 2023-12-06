@@ -51,7 +51,7 @@ export function useFlowDefinitionApi(request: RequestInstance) {
   }
   const getList = (params: Page & FlowDefinition) => request.get<ResRecords<FlowDefinition[]>>(url.list, { params })
   const useList = useRes(getList, { res: 'data.records', defaultParams: [{ size: -1, ascs: 'sort' }] })
-  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get<ResData<FlowDefinition>>(url.detail, { params })
+  const getDetail = (params: { flowModuleId?: string, flowDeployId?: string }) => request.get<ResData<FlowDefinition>>(url.detail, { params })
   const create = (data: Pick<FlowDefinition, 'flowKey' | 'flowName' | 'remarks'>) => request.post<ResData<{ flowModuleId?: string }>>(url.save, data)
   const update = (data: FlowDefinition) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })

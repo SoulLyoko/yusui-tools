@@ -121,11 +121,11 @@ declare module '@smallwei/avue' {
 
   export interface AvueTreeSlots<T = any> {
     menu: (arg: { node: TreeNode<T> }) => VNode[]
-    default: (arg: { node: TreeNode<T>; data: T }) => VNode[]
+    default: (arg: { node: TreeNode<T>, data: T }) => VNode[]
   }
 
   export const AvueTree: new<T = any>(props: AvueTreeProps<T>) =>
-  { $props: AvueTreeProps; $slots: AvueTreeSlots<T> } & AvueTreeMethods<T>
+  { $props: AvueTreeProps, $slots: AvueTreeSlots<T> } & AvueTreeMethods<T>
 
   export type AvueTreeInstance<T = any> = InstanceType<typeof AvueTree<T>>
 }

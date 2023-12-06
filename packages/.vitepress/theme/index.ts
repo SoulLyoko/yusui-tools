@@ -1,5 +1,4 @@
 import type { App } from 'vue'
-import type { Theme } from 'vitepress'
 
 import defaultTheme from 'vitepress/theme'
 import { Icon } from '@iconify/vue'
@@ -75,4 +74,4 @@ export default {
       // #endregion install
     }
   },
-} as Theme
+}

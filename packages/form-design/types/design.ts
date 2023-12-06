@@ -10,9 +10,9 @@ export interface ElementTreeNode {
   children?: ElementTreeNode[]
 }
 
-export type ComponentProps = AvueFormOption & AvueFormGroup & AvueFormColumn & { name?: string; id?: string }
+export type ComponentProps = AvueFormOption & AvueFormGroup & AvueFormColumn & { name?: string, id?: string }
 
-export type SettingsFunc = (context: { elementTree: ElementTreeNode; activeElement: ElementTreeNode }) => AvueFormColumn[]
+export type SettingsFunc = (context: { elementTree: ElementTreeNode, activeElement: ElementTreeNode }) => AvueFormColumn[]
 
 export type DesignOptionFunc = (element: ElementTreeNode) => AvueFormOption
 

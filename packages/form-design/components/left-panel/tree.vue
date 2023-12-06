@@ -18,7 +18,7 @@ const treeData = computed(() => {
 
 function allowDrop(
   draggingNode: { data: ElementTreeNode },
-  dropNode: { data: ElementTreeNode; level: number },
+  dropNode: { data: ElementTreeNode, level: number },
   type: string,
 ) {
   // 顶级不能被放置

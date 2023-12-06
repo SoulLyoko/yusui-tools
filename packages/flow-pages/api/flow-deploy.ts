@@ -30,7 +30,7 @@ export function useFlowDeployApi(request: RequestInstance) {
   }
   const getList = (params: Page & FlowDeploy) => request.get<ResData<FlowDeploy[]>>(url.list, { params })
   const useList = useRes(getList, { res: 'data' })
-  const getDetail = (params: { flowModuleId?: string; flowDeployId?: string }) => request.get<ResData<FlowDeploy>>(url.detail, { params })
+  const getDetail = (params: { flowModuleId?: string, flowDeployId?: string }) => request.get<ResData<FlowDeploy>>(url.detail, { params })
   const update = (data: FlowDeploy) => request.post(url.update, data)
   const remove = (ids: string) => request.post(url.remove, {}, { params: { ids } })
   return {

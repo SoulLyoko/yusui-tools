@@ -109,19 +109,19 @@ declare module '@smallwei/avue' {
     /** 传递给组件的事件 */
     events?: object
     /** 值改变事件 */
-    change?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem }) => void
+    change?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem }) => void
     /** 值改变事件 */
     onChange?: AvueFormColumn['change']
     /** 点击事件 */
-    click?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void
+    click?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
     /** 点击事件 */
     onClick?: AvueFormColumn['click']
     /** 聚焦事件 */
-    focus?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void
+    focus?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
     /** 聚焦事件 */
     onFocus?: AvueFormColumn['focus']
     /** 失焦事件 */
-    blur?: (args: { column: AvueFormColumn<T>; row: FormRowData<T>; value: any; dic: DicItem[]; item: DicItem; event: Event }) => void
+    blur?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
     /** 失焦事件 */
     onBlur?: AvueFormColumn['blur']
     /** 其它属性根据type查看对应的文档 */
@@ -266,7 +266,7 @@ declare module '@smallwei/avue' {
   }
 
   export interface AvueFormSlots<T = any> {
-    'menu-form': (props: { disabled: boolean; size: ElSize }) => VNode[]
+    'menu-form': (props: { disabled: boolean, size: ElSize }) => VNode[]
     [x: `${string}-header`]: (props: { column: AvueFormColumn<T> }) => VNode[]
     [x: `${string}-label`]: (props: {
       column: AvueFormColumn<T>
@@ -294,7 +294,7 @@ declare module '@smallwei/avue' {
   }
 
   export const AvueForm: new<T = any>(props: AvueFormProps<T>) =>
-  { $props: AvueFormProps; $slots: AvueFormSlots<T> } & AvueFormMethods<T>
+  { $props: AvueFormProps, $slots: AvueFormSlots<T> } & AvueFormMethods<T>
 
   export type AvueFormInstance<T = any> = InstanceType<typeof AvueForm<T>>
 }

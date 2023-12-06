@@ -5,7 +5,7 @@ import { computed, ref, useAttrs } from 'vue'
 
 const props = defineProps({
   modelValue: { type: [String, Number, Array] as PropType<string | number | string[] | number[]> },
-  dic: { type: Array as PropType<{ label?: string; value?: string }[]>, default: () => [] },
+  dic: { type: Array as PropType<{ label?: string, value?: string }[]>, default: () => [] },
   allowCreate: { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:modelValue', 'change'])

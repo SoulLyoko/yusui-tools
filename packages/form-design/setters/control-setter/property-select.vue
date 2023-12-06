@@ -4,7 +4,7 @@ import { findTree } from '@yusui/utils'
 
 import { useInjectState } from '../../composables'
 
-const props = defineProps<{ tableData?: { row: any }; dic?: any }>()
+const props = defineProps<{ tableData?: { row: any }, dic?: any }>()
 
 const { elementTree, baseOption, resolveSettings, getResource } = useInjectState()
 

@@ -24,7 +24,7 @@ function onShow() {
     return
   show.value = true
 }
-function onConfirm({ value, mode }: { value: number; mode: 'date' | 'time' | 'datetime' }) {
+function onConfirm({ value, mode }: { value: number, mode: 'date' | 'time' | 'datetime' }) {
   const f = attrs.valueFormat || formatMap[mode]
   const d = dayjs(value).format(f as string)
   emit('update:modelValue', d)

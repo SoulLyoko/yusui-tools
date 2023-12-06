@@ -11,10 +11,10 @@ declare module '@vue/runtime-core' {
     $AVUE: Required<import('@smallwei/avue').AvueConfig>
     $Clipboard: (arg: { text: string }) => Promise<void>
     $Export: {
-      excel: (arg: { title: string; columns: { label: string; prop: string }[]; data: any[] }) => void
+      excel: (arg: { title: string, columns: { label: string, prop: string }[], data: any[] }) => void
       xlsx: (raw: File) => Promise<{ results: any[] }>
     }
-    $ImagePreview: (list: { url?: string; thumbUrl?: string }[], index?: number) => void
+    $ImagePreview: (list: { url?: string, thumbUrl?: string }[], index?: number) => void
     $Log: {
       capsule: (title?: string, content?: string, type?: string) => void
       colorful: (content?: string) => void

@@ -2,11 +2,13 @@ import { execSync } from 'node:child_process'
 import path from 'node:path'
 
 import fs from 'fs-extra'
-import { dest, series, src } from 'gulp'
+import gulp from 'gulp'
 import autoprefixer from 'gulp-autoprefixer'
 import cleancss from 'gulp-clean-css'
 import gulpSass from 'gulp-sass'
 import sass from 'sass'
+
+const { dest, series, src } = gulp
 
 function buildPackages() {
   execSync('vite build')

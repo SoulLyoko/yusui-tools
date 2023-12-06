@@ -132,7 +132,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
   const getFormData
     = options.getFormData
     ?? (async (options: any) => {
-      const { formType, formData } = options as { formData: string | object; formType: CrudState<T, P>['formType'] }
+      const { formType, formData } = options as { formData: string | object, formType: CrudState<T, P>['formType'] }
       crudState.formType = formType
       let urlFormData = {}
       if (typeof formData === 'string')

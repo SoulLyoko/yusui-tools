@@ -7,7 +7,7 @@ import { useVModels } from '@vueuse/core'
 import { getRandomId } from '../../utils'
 
 const props = withDefaults(
-  defineProps<{ modelValue?: any[]; setterType?: string }>(),
+  defineProps<{ modelValue?: any[], setterType?: string }>(),
   { modelValue: () => [] },
 )
 const { modelValue: dicData } = useVModels(props)
