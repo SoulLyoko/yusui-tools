@@ -1,8 +1,8 @@
-/// <reference types="./dic" />
-/// <reference types="./form" />
-/// <reference types="./crud" />
-/// <reference types="./tree" />
-/// <reference types="./global" />
+/// <reference path="./dic.d.ts" />
+/// <reference path="./form.d.ts" />
+/// <reference path="./crud.d.ts" />
+/// <reference path="./tree.d.ts" />
+/// <reference path="./global.d.ts" />
 
 type AnyFn = (...args: any[]) => any
 

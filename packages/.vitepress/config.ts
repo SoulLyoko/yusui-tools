@@ -89,6 +89,7 @@ export default defineConfig({
           items: [
             { text: 'Start', link: '/types/index' },
             { text: 'avue', link: '/types/avue/index' },
+            { text: 'helpers', link: '/types/helpers/index' },
           ],
         },
       ],

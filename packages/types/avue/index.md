@@ -6,7 +6,18 @@ type definitions for `@smallwei/avue`
 
 ```ts
 /// <reference types="@yusui/types/avue" />
-/// <reference types="@yusui/types/avue/global" />
+```
+
+or
+
+```json [tsconfig.json]
+{
+  "compilerOptions": {
+    "types": [
+      "@yusui/types/avue"
+    ]
+  }
+}
 ```
 
 ## 测试示例
