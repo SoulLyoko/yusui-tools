@@ -1,3 +1,17 @@
+## [2.0.3](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.2...v2.0.3) (2023-12-12)
+
+
+### Bug Fixes
+
+* **types:** 修复avue类型的导入 ([195d889](https://github.com/SoulLyoko/yusui-tools/commit/195d88993441d42ac33c98fb526e31845ad5a4ab))
+
+
+### Features
+
+* **plugins:** uni-patch ([5380056](https://github.com/SoulLyoko/yusui-tools/commit/5380056688e6ef7cb10822db763a25614f24d350))
+
+
+
 ## [2.0.2](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.1...v2.0.2) (2023-12-12)
 
 
