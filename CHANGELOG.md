@@ -1,4 +1,4 @@
-## 2.0.2 (2023-12-12)
+## [2.0.2](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.1...v2.0.2) (2023-12-12)
 
 
 ### Bug Fixes
@@ -7,7 +7,7 @@
 
 
 
-## 2.0.1 (2023-12-12)
+## [2.0.1](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.0...v2.0.1) (2023-12-12)
 
 
 ### Bug Fixes
@@ -16,7 +16,9 @@
 
 
 
-# 2.0.0 (2023-12-12)
+# [2.0.0](https://github.com/SoulLyoko/yusui-tools/compare/f2156f86115f76db101f3270f9237c6acf4ee642...v2.0.0) (2023-12-12)
+
+
 
 ## Previous Changelogs
 
