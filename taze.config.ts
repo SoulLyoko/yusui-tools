@@ -2,5 +2,5 @@ import { defineConfig } from 'taze'
 
 export default defineConfig({
   // ignore packages from bumping
-  exclude: ['vitepress', 'vue', '@vue/shared'],
+  exclude: ['vitepress', 'vue', '@vue/*'],
 })
