@@ -1,4 +1,13 @@
-## [2.0.1](https://github.com/SoulLyoko/yusui-tools/compare/f2156f86115f76db101f3270f9237c6acf4ee642...v2.0.1) (2023-12-12)
+## 2.0.2 (2023-12-12)
+
+
+### Bug Fixes
+
+* **types:** 修改ElSize导入 ([486c93f](https://github.com/SoulLyoko/yusui-tools/commit/486c93f198789db728323c7c4274a1c1a2610546))
+
+
+
+## 2.0.1 (2023-12-12)
 
 
 ### Bug Fixes
