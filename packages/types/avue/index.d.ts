@@ -4,8 +4,6 @@
 /// <reference types="./tree" />
 /// <reference types="./global" />
 
-import type { ElSize } from '../helpers'
-
 type AnyFn = (...args: any[]) => any
 
 declare module '@smallwei/avue' {
@@ -14,7 +12,7 @@ declare module '@smallwei/avue' {
     axios?: import('axios').AxiosInstance
     calcHeight?: number
     menuType?: MenuType
-    size?: ElSize
+    size?: import('../helpers').ElSize
     theme?: 'dark'
   }
   const Avue: {
