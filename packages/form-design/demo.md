@@ -5,10 +5,10 @@ aside: false
 # FormDesign
 
 ## 基础用法
+
 :::demo
 ./demo
 :::
-
 
 ## 属性
 
@@ -24,7 +24,7 @@ aside: false
 | adapterIn     | 输入格式化                          | (option: AvueFormOption) => ElementTreeNode | -      | adapterIn  |
 | adapterOut    | 输出格式化                          | (tree: ElementTreeNode) => AvueFormOption   | -      | adapterOut |
 
-## Resource 
+## Resource
 
 | 名称             | 说明                             | 类型                         | 可选值 | 默认值 |
 | ---------------- | -------------------------------- | ---------------------------- | ------ | ------ |

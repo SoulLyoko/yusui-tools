@@ -2,7 +2,6 @@
 
 流程表单
 
-
 ## 一些钩子
 
 ```ts
@@ -115,10 +114,10 @@ app.use(FlowPages, {
   customForm,
 })
 ```
+
 <<< @/.vitepress/custom-form/test/index.vue [custom-form/test/index.vue]
 
 :::
-
 
 ## 直接重写FlowForm(不建议)
 
@@ -137,6 +136,3 @@ app.use(FlowPages, {
 <<< ./index.vue[@yusui/flow-pages/flow-form]
 
 :::
-
-
-

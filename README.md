@@ -1,6 +1,6 @@
 <div align="center">
 <h3>YusuiTools</h3>
-<span>Collection of development tools</span> 
+<span>Collection of development tools</span>
 <br>
 <a href="https://soullyoko.github.io/yusui-tools/">Docs</a>
 </div>

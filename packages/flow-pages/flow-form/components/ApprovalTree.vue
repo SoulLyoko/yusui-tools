@@ -164,7 +164,6 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
           padding-left: 0 !important;
         }
       }
-
     }
   }
 }

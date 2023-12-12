@@ -33,7 +33,7 @@ export default { name: 'Demo' }
       cursor: pointer;
     }
 
-    :deep([class^="language"]) {
+    :deep([class^='language']) {
       margin: 0 !important;
     }
   }

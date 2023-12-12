@@ -2,49 +2,52 @@
 
 ## 使用示例
 
-```html
+```vue
+<script>
+export default {
+  data() {
+    return {
+      filterForm: {},
+      filterOption: {
+        items: [
+          {
+            title: '排序',
+            prop: 'sort',
+            options: [
+              { label: '综合排序', value: '' },
+              { label: '销量优先', value: 'sales' },
+              { label: '距离优先', value: 'distance' },
+              { label: '速度优先', value: 'speed' },
+              { label: '评分优先', value: 'score' },
+            ],
+          },
+          {
+            title: '速度',
+            prop: 'speed',
+            options: [
+              { label: '全部', value: '' },
+              { label: '30分钟内', value: 30 },
+              { label: '40分钟内', value: 40 },
+              { label: '50分钟内', value: 50 },
+              { label: '60分钟内', value: 60 },
+            ],
+          },
+        ],
+      },
+    }
+  },
+}
+</script>
+
 <template>
   <!-- 单独使用 -->
-  <uvue-filter :option="filterOption" :filterForm.sync="filterForm"></uvue-filter>
+  <uvue-filter
+    v-model:filter-form="filterForm"
+    :option="filterOption"
+  />
   <!-- 在uvue-crud中使用 -->
-  <uvue-list :filter="filterOption" :filterForm.sync="filterForm"></uvue-list>
+  <uvue-list v-model:filter-form="filterForm" :filter="filterOption" />
 </template>
-
-<script>
-  export default {
-    data() {
-      return {
-        filterForm: {},
-        filterOption: {
-          items: [
-            {
-              title: "排序",
-              prop: "sort",
-              options: [
-                { label: "综合排序", value: "" },
-                { label: "销量优先", value: "sales" },
-                { label: "距离优先", value: "distance" },
-                { label: "速度优先", value: "speed" },
-                { label: "评分优先", value: "score" }
-              ]
-            },
-            {
-              title: "速度",
-              prop: "speed",
-              options: [
-                { label: "全部", value: "" },
-                { label: "30分钟内", value: 30 },
-                { label: "40分钟内", value: 40 },
-                { label: "50分钟内", value: 50 },
-                { label: "60分钟内", value: 60 }
-              ]
-            }
-          ]
-        }
-      };
-    }
-  };
-</script>
 ```
 
 ## Props
@@ -56,24 +59,24 @@
 
 ## Option
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| --- | --- | --- | --- | --- |
-| `u-dropdown` 的所有属性 | [官方文档](https://uviewui.com/components/dropdown.html#dropdown-props) | - | - | - |
-| items | 下拉菜单项，即`u-dropdown-item`数组，见下方说明 | Array | - | - |
+| 参数                    | 说明                                                                    | 类型  | 可选值 | 默认值 |
+| ----------------------- | ----------------------------------------------------------------------- | ----- | ------ | ------ |
+| `u-dropdown` 的所有属性 | [官方文档](https://uviewui.com/components/dropdown.html#dropdown-props) | -     | -      | -      |
+| items                   | 下拉菜单项，即`u-dropdown-item`数组，见下方说明                         | Array | -      | -      |
 
 ## Filter-items
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| --- | --- | --- | --- | --- |
-| `u-dropdown-item` 的所有属性 | [官方文档](https://uviewui.com/components/dropdown.html#dropdown-item-props) | - | - | - |
-| title | 过滤项标题 | String | - | - |
-| prop | 过滤项的属性名 | String | - | - |
-| dictData | 选项字典数据 | Array | - | - |
-| options | 选项字典数据,同 dictData,两者选其一即可 | Array | - | - |
-| dictOption | 字典配置，见下方说明 | Object | - | - |
-| multiple | 是否多选选项 | Boolean | true/false | - |
-| transform | 多选时是否将数组转为逗号分隔的字符串 | Boolean | true/false | - |
-| cascader | 是否级联选项（仅支持二级） | Boolean | true/false | - |
+| 参数                         | 说明                                                                         | 类型    | 可选值     | 默认值 |
+| ---------------------------- | ---------------------------------------------------------------------------- | ------- | ---------- | ------ |
+| `u-dropdown-item` 的所有属性 | [官方文档](https://uviewui.com/components/dropdown.html#dropdown-item-props) | -       | -          | -      |
+| title                        | 过滤项标题                                                                   | String  | -          | -      |
+| prop                         | 过滤项的属性名                                                               | String  | -          | -      |
+| dictData                     | 选项字典数据                                                                 | Array   | -          | -      |
+| options                      | 选项字典数据,同 dictData,两者选其一即可                                      | Array   | -          | -      |
+| dictOption                   | 字典配置，见下方说明                                                         | Object  | -          | -      |
+| multiple                     | 是否多选选项                                                                 | Boolean | true/false | -      |
+| transform                    | 多选时是否将数组转为逗号分隔的字符串                                         | Boolean | true/false | -      |
+| cascader                     | 是否级联选项（仅支持二级）                                                   | Boolean | true/false | -      |
 
 ## DictOption
 

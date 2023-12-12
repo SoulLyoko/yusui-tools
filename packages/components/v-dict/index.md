@@ -47,7 +47,6 @@ useDictConfigProvider({ request })
 | disabled | String | 'disabled' | 字典禁用项属性名                         |
 | res      | String | 'data'     | 字典请求返回的数据结构(如'data.records') |
 
-
 ## 类型定义
 
 <<< ./types/index.ts

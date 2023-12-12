@@ -11,9 +11,9 @@ function onChange(){
 
 <span>设置文档中流程表单的弹窗类型：</span>
 <el-radio-group v-model="useFlowFormType" @change="onChange">
-  <el-radio label="drawer"></el-radio>
-  <el-radio label="dialog"></el-radio>
-  <el-radio label="window"></el-radio>
+<el-radio label="drawer"></el-radio>
+<el-radio label="dialog"></el-radio>
+<el-radio label="window"></el-radio>
 </el-radio-group>
 
 ## 安装
@@ -27,7 +27,6 @@ pnpm i @yusui/flow-pages @yusui/flow-design @yusui/form-design
 :::tip
 FlowPages 以 <u>[lodash.merge](https://www.lodashjs.com/docs/lodash.merge)</u> 的形式将传入配置和默认配置进行合并
 :::
-
 
 ```ts
 // main.ts
@@ -44,7 +43,7 @@ import { request } from '@/api/request'
 
 <<< @/.vitepress/theme/index.ts#install
 
-```ts 
+```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 
@@ -58,7 +57,6 @@ export default defineConfig({
 ## 默认配置
 
 <<< @/flow-pages/constants/config.ts
-
 
 ## 类型定义
 

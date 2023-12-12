@@ -79,17 +79,17 @@ function onItemClick(row, index) {
 
 ## Slots
 
-| name            | 说明         | 参数        |
-| --------------- | ------------ | ----------- |
+| name            | 说明         | 参数         |
+| --------------- | ------------ | ------------ |
 | title           | 单元格插槽   | \{row,index} |
 | label           | 单元格插槽   | \{row,index} |
 | value           | 单元格插槽   | \{row,index} |
 | icon            | 单元格插槽   | \{row,index} |
 | right-icon      | 单元格插槽   | \{row,index} |
-| search-top      | 搜索栏上方   | -           |
-| search-bottom   | 搜索栏下方   | -           |
-| list-top        | 列表上方     | -           |
-| list-bottom     | 列表下方     | -           |
+| search-top      | 搜索栏上方   | -            |
+| search-bottom   | 搜索栏下方   | -            |
+| list-top        | 列表上方     | -            |
+| list-bottom     | 列表下方     | -            |
 | list-item       | 列表项       | \{row,index} |
-| loadmore-top    | 加载更多上方 | -           |
-| loadmore-bottom | 加载更多下方 | -           |
+| loadmore-top    | 加载更多上方 | -            |
+| loadmore-bottom | 加载更多下方 | -            |

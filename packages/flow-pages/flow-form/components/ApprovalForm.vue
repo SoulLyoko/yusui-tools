@@ -212,7 +212,6 @@ function getApprovalDataSet(nodes: ApprovalNode[]) {
 
 <style lang="scss">
 .approval-form-overlay {
-
   .el-drawer__header,
   .el-dialog__header {
     margin-bottom: 0;
@@ -220,7 +219,7 @@ function getApprovalDataSet(nodes: ApprovalNode[]) {
   }
 
   .approval-form {
-    padding: 0
+    padding: 0;
   }
 }
 </style>

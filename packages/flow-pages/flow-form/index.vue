@@ -138,7 +138,6 @@ async function onSubmit() {
 }
 
 .flow-form-overlay {
-
   .el-drawer__header,
   .el-dialog__header {
     margin: 0;

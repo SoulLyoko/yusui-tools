@@ -2,42 +2,47 @@
 
 ## 基础用法
 
-```html
+```vue
+<script setup>
+import { ref } from 'vue'
+const option = {
+  labelWidth: 'auto',
+  column: [
+    {
+      label: '用户名',
+      prop: 'username',
+      rules: [{ required: true, message: '请输入用户名', trigger: 'change' }],
+    },
+    {
+      label: '性别',
+      prop: 'sex',
+      type: 'radio',
+      dicData: [
+        { label: '男', value: '1' },
+        { label: '女', value: '0' },
+      ],
+    },
+  ],
+}
+const data = ref({
+  username: 'admin',
+  sex: '1',
+})
+const defaults = ref({})
+</script>
+
 <template>
-  <uvue-form v-model="data" :option="option" v-model:defaults="defaults" @submit="handleSubmit">
+  <uvue-form
+    v-model="data"
+    v-model:defaults="defaults"
+    :option="option"
+    @submit="handleSubmit"
+  >
     <template #username>
-      <view>{{data.username}}</view>
+      <view>{{ data.username }}</view>
     </template>
   </uvue-form>
 </template>
-
-<script setup>
-  import { ref } from "vue";
-  const option = {
-    labelWidth: "auto",
-    column: [
-      {
-        label: "用户名",
-        prop: "username",
-        rules: [{ required: true, message: "请输入用户名", trigger: "change" }]
-      },
-      {
-        label: "性别",
-        prop: "sex",
-        type: "radio",
-        dicData: [
-          { label: "男", value: "1" },
-          { label: "女", value: "0" }
-        ]
-      }
-    ]
-  };
-  const data = ref({
-    username: "admin",
-    sex: "1"
-  });
-  const defaults = ref({});
-</script>
 ```
 
 ## Props

@@ -19,7 +19,7 @@ export default {
 
 ## How It Works
 
-```vue 
+```vue
 <script setup lang="ts" name="ComponentName" inheritAttrs>
 console.log('hello')
 </script>

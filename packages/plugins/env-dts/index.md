@@ -17,7 +17,6 @@ export default {
 }
 ```
 
-
 ```sh [.env]
 VITE_TEST=test
 ```
