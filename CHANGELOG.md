@@ -1,3 +1,5 @@
+# 2.0.0 (2023-12-12)
+
 ## Previous Changelogs
 
 ### 2.x-beta

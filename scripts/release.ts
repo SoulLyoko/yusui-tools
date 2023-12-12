@@ -1,7 +1,9 @@
 import { execSync } from 'node:child_process'
 import process from 'node:process'
 
-import { readJSONSync } from 'fs-extra'
+import fs from 'fs-extra'
+
+const { readJSONSync } = fs
 
 const { version: oldVersion } = readJSONSync('package.json')
 
