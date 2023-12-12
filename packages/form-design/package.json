@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@guolao/vue-monaco-editor": "^1.4.0",
+    "@guolao/vue-monaco-editor": "^1.4.1",
     "@iconify/vue": "^4.1.1",
     "@vueuse/core": "^10.7.0",
     "@yusui/types": "workspace:*",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@smallwei/avue": "^3.2.23",
     "element-plus": "^2.4.3",
-    "monaco-editor": "^0.44.0",
+    "monaco-editor": "^0.45.0",
     "sass": "^1.69.5",
     "vue": "^3.3.7"
   }
