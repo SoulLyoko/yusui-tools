@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.4.5
-        version: 2.4.5(@vue/compiler-sfc@3.3.7)(eslint-plugin-format@0.1.0)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4)
+        version: 2.4.5(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4)
       '@commitlint/cli':
         specifier: ^18.4.3
         version: 18.4.3(typescript@5.3.3)
@@ -404,6 +404,9 @@ importers:
         specifier: ^0.30.5
         version: 0.30.5
     devDependencies:
+      '@dcloudio/uni-mp-vue':
+        specifier: vue3
+        version: 3.0.0-alpha-3090920231208001
       '@dcloudio/uni-ui':
         specifier: ^1.4.28
         version: 1.4.28
@@ -770,7 +773,7 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.19
 
-  /@antfu/eslint-config@2.4.5(@vue/compiler-sfc@3.3.7)(eslint-plugin-format@0.1.0)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4):
+  /@antfu/eslint-config@2.4.5(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4):
     resolution: {integrity: sha512-vfngpXqPE935bqjp2eJeniV113d3TspyHvsSfqeUUDbCiof6AEVT7x+G4aCWHd/WJQPr+eSnUpYkTpGdvsk/aQ==}
     hasBin: true
     peerDependencies:
@@ -820,7 +823,7 @@ packages:
       eslint-plugin-vitest: 0.3.16(@typescript-eslint/eslint-plugin@6.14.0)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4)
       eslint-plugin-vue: 9.19.2(eslint@8.55.0)
       eslint-plugin-yml: 1.10.0(eslint@8.55.0)
-      eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.3.7)(eslint@8.55.0)
+      eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.3.11)(eslint@8.55.0)
       globals: 13.24.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
@@ -3024,7 +3027,6 @@ packages:
     dependencies:
       '@dcloudio/uni-shared': 3.0.0-alpha-3090920231208001
       '@vue/shared': 3.2.47
-    dev: false
 
   /@dcloudio/uni-mp-weixin@3.0.0-alpha-3090920231208001(postcss@8.4.32)(vue@3.3.7):
     resolution: {integrity: sha512-jD5lTNuDahi2jJFs5eIlLPrb6t9iCb0LOPQ46gMF6mu9LUzbp3wpTUbhxTB0GyAup0G9LXGKYwxB5/wvU9nwYQ==}
@@ -5695,7 +5697,7 @@ packages:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
       '@vue/compiler-dom': 3.3.7
-      '@vue/shared': 3.3.7
+      '@vue/shared': 3.3.11
       computeds: 0.0.1
       minimatch: 9.0.3
       muggle-string: 0.3.1
@@ -6930,7 +6932,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   /chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
@@ -8442,13 +8444,13 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-processor-vue-blocks@0.1.1(@vue/compiler-sfc@3.3.7)(eslint@8.55.0):
+  /eslint-processor-vue-blocks@0.1.1(@vue/compiler-sfc@3.3.11)(eslint@8.55.0):
     resolution: {integrity: sha512-9+dU5lU881log570oBwpelaJmOfOzSniben7IWEDRYQPPWwlvaV7NhOtsTuUWDqpYT+dtKKWPsgz4OkOi+aZnA==}
     peerDependencies:
       '@vue/compiler-sfc': ^3.3.0
       eslint: ^8.50.0
     dependencies:
-      '@vue/compiler-sfc': 3.3.7
+      '@vue/compiler-sfc': 3.3.11
       eslint: 8.55.0
     dev: true
 
@@ -9076,13 +9078,6 @@ packages:
       bindings: 1.5.0
       nan: 2.17.0
     dev: true
-    optional: true
-
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
     optional: true
 
   /fsevents@2.3.3:
@@ -10471,7 +10466,7 @@ packages:
       micromatch: 4.0.5
       walker: 1.0.8
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   /jest-jasmine2@27.5.1:
     resolution: {integrity: sha512-jtq7VVyG8SqAorDpApwiJJImd0V2wv1xzdheGHRGyuT7gZm6gG47QEskOlzsN1PG/6WNaCo5pmwMHDf3AkG2pQ==}
