@@ -13,6 +13,8 @@ export interface UvueFormOption<T = any> extends AvueFormOption<T> {
   labelStyle?: string | object
   column?: UvueFormColumn<T>[]
   group?: UvueFormGroup<T>[]
+  delBtn?: boolean
+  delText?: string
 }
 export interface UvueFormColumn<T = any> extends AvueFormColumn<T> {
   borderBottom?: boolean

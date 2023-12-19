@@ -28,6 +28,11 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
           isPullDown: true, // 是否下拉刷新，需要在pages配置中开启enablePullDownRefresh
           isSrollTop: true, // 是否显示返回顶部按钮
           submitBack: true, // 提交后是否返回
+          delConfirm: true, // 删除前是否提示确认
+          delBack: true, // 表单删除后是否返回
+          saveSuccessMsg: '保存成功',
+          updateSuccessMsg: '保存成功',
+          delSuccessMsg: '删除成功',
         },
         // 分页
         pageOption: {

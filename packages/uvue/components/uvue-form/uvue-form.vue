@@ -28,6 +28,11 @@ async function onSubmit() {
   const loading = () => (submitLoading.value = false)
   emit('submit', props.modelValue, loading)
 }
+function onDel() {
+  submitLoading.value = true
+  const loading = () => (submitLoading.value = false)
+  emit('del', props.modelValue, loading)
+}
 
 const collapseRef = ref()
 async function initCollapse() {
@@ -245,6 +250,9 @@ async function initCollapse() {
         </u-button>
         <u-button v-if="option.emptyBtn" :loading="submitLoading" @click="resetFields">
           {{ option.emptyText }}
+        </u-button>
+        <u-button v-if="option.delBtn" :loading="submitLoading" @click="onDel">
+          {{ option.delText }}
         </u-button>
       </view>
     </u-form>

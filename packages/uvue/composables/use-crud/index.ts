@@ -76,6 +76,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     // 事件
     'onUpdate:modelValue': (form: T) => (crudState.formData = form),
     'onSubmit': handleSubmit,
+    'onDel': handleDel,
   }))
 
   /** 使用一些默认的生命周期 */

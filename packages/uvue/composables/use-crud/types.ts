@@ -23,6 +23,8 @@ export interface CrudOption<T, P> extends _CrudOption<T, P> {
   isSrollTop: boolean
   /** 提交后是否返回 */
   submitBack: boolean
+  /** 表单删除后是否返回 */
+  delBack: boolean
 }
 
 export interface CrudState<T, P>

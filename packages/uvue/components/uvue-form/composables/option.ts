@@ -16,6 +16,8 @@ export const defaultFormOption: UvueFormOption = {
   submitText: '提交', // 提交按钮文字
   emptyBtn: true, // 是否显示清空按钮
   emptyText: '清空', // 清空按钮文字
+  delBtn: false, // 是否显示删除按钮
+  delText: '删除', // 删除按钮文字
 }
 
 export const defaultFormColumn: UvueFormColumn = {

@@ -57,12 +57,14 @@ const defaults = ref({})
 
 ## Option
 
-| 参数                  | 说明                                                                   | 类型  | 可选值 | 默认值 |
-| --------------------- | ---------------------------------------------------------------------- | ----- | ------ | ------ |
-| `u-form` 的所有属性   | [文档](https://uiadmin.net/uview-plus/components/form.html#form-props) | -     | -      | -      |
-| `AvueForm` 的所有属性 | 自行查看各组件文档：[文档](https://avuejs.com/form/form-doc/#option)   | -     | -      | -      |
-| column                | 表单项配置，与 AvueForm 基本相同，见下方说明                           | Array | -      | []     |
-| group                 | 表单组配置，与 AvueForm 基本相同                                       | Array | -      | []     |
+| 参数                  | 说明                                                                   | 类型    | 可选值 | 默认值 |
+| --------------------- | ---------------------------------------------------------------------- | ------- | ------ | ------ |
+| `u-form` 的所有属性   | [文档](https://uiadmin.net/uview-plus/components/form.html#form-props) | -       | -      | -      |
+| `AvueForm` 的所有属性 | 自行查看各组件文档：[文档](https://avuejs.com/form/form-doc/#option)   | -       | -      | -      |
+| column                | 表单项配置，与 AvueForm 基本相同，见下方说明                           | Array   | -      | []     |
+| group                 | 表单组配置，与 AvueForm 基本相同                                       | Array   | -      | []     |
+| delBtn                | 是否显示删除按钮                                                       | boolean | -      | false  |
+| delText               | 删除按钮文字                                                           | string  | -      | '删除' |
 
 ## Column
 

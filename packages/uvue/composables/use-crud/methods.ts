@@ -29,13 +29,11 @@ export function useCrudMethods<T extends object = object, P extends object = obj
       const sort = isSort ? crudState.sortOption : {}
       const params = cloneDeep({ ...crudState.searchForm, ...page, ...sort, ...crudState.queryForm }) as P
       const [err] = await to(emitter.emitAsync('beforeGetList', params))
-      if (err !== null)
-        return
       const { getList } = crudState.crudOption
-      if (!getList)
+      if (err !== null || !getList)
         return
-      crudState.loadStatus = 'loading'
       try {
+        crudState.loadStatus = 'loading'
         const res = await getList(params)
         console.log('getDataList ~ res', res)
         const data = get({ res }, dataPath, [])
@@ -51,6 +49,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
         await emitter.emitAsync('afterGetList', res)
       }
       catch (err) {
+        console.error('getDataList ~ err', err)
         // listState.listData = [];
         // listState.pageOption.total = 0;
         // listState.loadStatus = "nomore";
@@ -77,14 +76,12 @@ export function useCrudMethods<T extends object = object, P extends object = obj
       })
   const handleDel
     = options.handleDel
-    ?? (async (row: T) => {
+    ?? (async (row: T, loading?: () => void) => {
       const data = cloneDeep(row)
       const [err] = await to(emitter.emitAsync('beforeDel', data))
-      if (err !== null)
-        return
-      const { rowKey, remove } = crudState.crudOption
-      if (!remove)
-        return
+      const { rowKey, remove, delBack, delSuccessMsg } = crudState.crudOption
+      if (err !== null || !remove)
+        return loading?.()
       uni.showModal({
         title: '提示',
         content: '确认进行删除操作？',
@@ -92,12 +89,18 @@ export function useCrudMethods<T extends object = object, P extends object = obj
           if (confirm) {
             try {
               const res = await remove(row[rowKey as keyof T])
-              uni.showToast({ title: '删除成功', icon: 'success' })
+              delSuccessMsg && uni.showToast({ title: delSuccessMsg, icon: 'success' })
               await emitter.emitAsync('afterDel', res)
+              // 列表删除
               handleRefresh()
+              // 表单删除
+              crudState.formType === 'edit' && delBack && setTimeout(() => uni.navigateBack(), 500)
             }
             catch (err) {
               console.error('handleDel ~ err', err)
+            }
+            finally {
+              loading?.()
             }
           }
         },
@@ -159,28 +162,26 @@ export function useCrudMethods<T extends object = object, P extends object = obj
    * 提交数据
    * @param {object} form 提交的表单数据
    * @param {Function} loading 取消加载按钮函数
-   * @param {Function} back 返回上一页函数
    */
   const handleSubmit
     = options.handleSubmit
-    ?? (async (form: T, loading?: () => void, back?: () => void) => {
+    ?? (async (form: T, loading?: () => void) => {
       const data = cloneDeep({ ...crudState.formData, ...form })
       const [err] = await to(emitter.emitAsync('beforeSubmit', data))
-      if (err !== null)
+      const { create, update, submitBack, saveSuccessMsg, updateSuccessMsg } = crudState.crudOption
+      if (err !== null || !create || !update)
         return loading?.()
-      const { create, update, submitBack } = crudState.crudOption
-      if (!create || !update)
-        loading?.()
       const submitMethod = { add: create, edit: update, view: () => Promise.resolve() }
+      const successMsgMap = { add: saveSuccessMsg, edit: updateSuccessMsg, view: '' }
+      const successMsg = successMsgMap[crudState.formType]
       try {
         const res = await submitMethod[crudState.formType](filterObj(data))
-        uni.showToast({ title: '保存成功', icon: 'success' })
+        successMsg && uni.showToast({ title: successMsg, icon: 'success' })
         await emitter.emitAsync('afterSubmit', res)
-        submitBack && setTimeout(() => back?.(), 500)
+        submitBack && setTimeout(() => uni.navigateBack(), 500)
       }
       catch (err) {
-        loading?.()
-        console.error(err)
+        console.error('handleSubmit ~ err', err)
       }
       finally {
         loading?.()
