@@ -30,3 +30,17 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           pnpm publish --no-git-checks --access public -r
+
+      - name: Sync
+        uses: sepveneto/sync-npmmirror-action@v1
+        with:
+          name: |
+            @yusui/components
+            @yusui/composables
+            @yusui/flow-design
+            @yusui/flow-pages
+            @yusui/form-design
+            @yusui/plugins
+            @yusui/types
+            @yusui/utils
+            @yusui/uvue
