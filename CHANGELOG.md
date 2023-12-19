@@ -1,3 +1,12 @@
+## [2.0.4](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.3...v2.0.4) (2023-12-19)
+
+
+### Features
+
+* **uvue:** uvue-form表单增加删除按钮,useCrud增加自定义成功消息 ([b1cf0b4](https://github.com/SoulLyoko/yusui-tools/commit/b1cf0b43b550ded440b2e657a27c72cf248931d3))
+
+
+
 ## [2.0.3](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.2...v2.0.3) (2023-12-12)
 
 
