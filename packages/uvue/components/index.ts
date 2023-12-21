@@ -37,3 +37,19 @@ export default {
   UvueSelect,
   UvueSwitch,
 }
+
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    UvueCascader: typeof UvueCascader
+    UvueCheckbox: typeof UvueCheckbox
+    UvueDatetimePicker: typeof UvueDatetimePicker
+    UvueDict: typeof UvueDict
+    UvueDynamic: typeof UvueDynamic
+    UvueForm: typeof UvueForm
+    UvueFormItem: typeof UvueFormItem
+    UvueList: typeof UvueList
+    UvueRadio: typeof UvueRadio
+    UvueSelect: typeof UvueSelect
+    UvueSwitch: typeof UvueSwitch
+  }
+}

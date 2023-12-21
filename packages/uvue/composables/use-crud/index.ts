@@ -1,5 +1,6 @@
 import type { Data } from '@yusui/types'
 import type { UseCrudOptions } from './types'
+import type { UvueFormDefaults } from '../../'
 
 import { computed, ref, toRefs } from 'vue'
 
@@ -73,8 +74,10 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     'option': crudState.formOption ?? {},
     'modelValue': crudState.formData,
     'formType': crudState.formType,
+    'defaults': crudState.defaults,
     // 事件
     'onUpdate:modelValue': (form: T) => (crudState.formData = form),
+    'onUpdate:defaults': (defaults: UvueFormDefaults<T>) => (crudState.defaults = defaults),
     'onSubmit': handleSubmit,
     'onDel': handleDel,
   }))

@@ -53,6 +53,7 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
         formOption: {},
         formData: {}, // 表单数据
         formType: options.formType || '', // add,edit,view
+        defaults: {}, // 修改表单配置
       },
       options,
     ),

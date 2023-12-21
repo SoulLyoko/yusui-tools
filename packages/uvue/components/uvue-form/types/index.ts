@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, SetupContext } from 'vue'
-import type { AvueFormColumn, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
+import type { AvueFormColumn, AvueFormGroup, AvueFormOption, PropKeyType } from '@smallwei/avue'
 import type { formEmits, formProps } from '../constants'
 
 export type UvueFormProps = ExtractPropTypes<typeof formProps>
@@ -33,4 +33,4 @@ export interface UvueFormColumn<T = any> extends AvueFormColumn<T> {
 export interface UvueFormGroup<T = any> extends AvueFormGroup<T> {
   column?: UvueFormColumn<T>[]
 }
-export type UvueFormDefaults = Record<string, UvueFormColumn>
+export type UvueFormDefaults<T = any, K extends string = PropKeyType<T> > = Record<K, UvueFormColumn<T>>

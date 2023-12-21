@@ -94,7 +94,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
               // 列表删除
               handleRefresh()
               // 表单删除
-              crudState.formType === 'edit' && delBack && setTimeout(() => uni.navigateBack(), 500)
+              crudState.formType && delBack && setTimeout(() => uni.navigateBack(), 500)
             }
             catch (err) {
               console.error('handleDel ~ err', err)
@@ -169,7 +169,7 @@ export function useCrudMethods<T extends object = object, P extends object = obj
       const data = cloneDeep({ ...crudState.formData, ...form })
       const [err] = await to(emitter.emitAsync('beforeSubmit', data))
       const { create, update, submitBack, saveSuccessMsg, updateSuccessMsg } = crudState.crudOption
-      if (err !== null || !create || !update)
+      if (err !== null || (!create && !update))
         return loading?.()
       const submitMethod = { add: create, edit: update, view: () => Promise.resolve() }
       const successMsgMap = { add: saveSuccessMsg, edit: updateSuccessMsg, view: '' }

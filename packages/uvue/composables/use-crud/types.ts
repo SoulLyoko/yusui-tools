@@ -1,5 +1,5 @@
 import type { FormType, PageOption } from '@smallwei/avue'
-import type { UvueFormOption, UvueListOption } from '@yusui/uvue'
+import type { UvueFormDefaults, UvueFormOption, UvueListOption } from '@yusui/uvue'
 import type { EmitterAsync } from '@yusui/utils'
 import type { CrudOption as _CrudOption, CrudState as _CrudState } from '@yusui/composables'
 
@@ -42,6 +42,8 @@ export interface CrudState<T, P>
   formOption: UvueFormOption<T>
   /** 表单类型 */
   formType: FormType // add,edit,view
+  /** 修改表单配置 */
+  defaults: UvueFormDefaults<T>
 }
 
 export type Emitter<T, P> = EmitterAsync<{

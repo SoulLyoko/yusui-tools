@@ -5,7 +5,7 @@ import { onPageScroll, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-ap
 import { listOption } from './option'
 
 const data = ref<any[]>([])
-const status = ref('loadmore')
+const status = ref<any>('loadmore')
 const searchValue = ref('')
 
 function loadData(isLoadmore = false) {
