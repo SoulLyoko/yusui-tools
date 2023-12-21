@@ -1,3 +1,12 @@
+## [2.0.5](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.4...v2.0.5) (2023-12-21)
+
+
+### Bug Fixes
+
+* **uvue:** 提交和删除问题，crudState增加defaults ([a3c85d6](https://github.com/SoulLyoko/yusui-tools/commit/a3c85d6a71aea29168e2655389d9ad6a72b82493))
+
+
+
 ## [2.0.4](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.3...v2.0.4) (2023-12-19)
 
 
