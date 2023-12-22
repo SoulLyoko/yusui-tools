@@ -6,6 +6,7 @@ import EpTree from './ep-tree/index.vue'
 import IconSelect from './icon-select/index.vue'
 import VDict from './v-dict/index.vue'
 import VText from './v-text/index.vue'
+import CrudPlus from './crud-plus/index.vue'
 
 export { EpMenu, EpTree, IconSelect, VDict, VText }
 
@@ -17,6 +18,7 @@ export default {
     app.component('IconSelect', IconSelect)
     app.component('VDict', VDict)
     app.component('VText', VText)
+    app.component('CrudPlus', CrudPlus as any)
   },
 }
 
@@ -28,5 +30,6 @@ declare module '@vue/runtime-core' {
     IconSelect: typeof IconSelect
     VDict: typeof VDict
     VText: typeof VText
+    CrudPlus: typeof CrudPlus
   }
 }

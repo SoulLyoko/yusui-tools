@@ -54,6 +54,7 @@ export default defineConfig({
             { text: 'IconSelect', link: '/components/icon-select/index' },
             { text: 'VDict', link: '/components/v-dict/index' },
             { text: 'VText', link: '/components/v-text/index' },
+            { text: 'CrudPlus', link: '/components/crud-plus/index' },
           ],
         },
       ],

@@ -1,0 +1,7 @@
+// 设置为卡片或列表时,隐藏原来的表格
+.crud-plus.is-card,
+.crud-plus.is-list {
+  .avue-crud__header + .el-form {
+    display: none;
+  }
+}

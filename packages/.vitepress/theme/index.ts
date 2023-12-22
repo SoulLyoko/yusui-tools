@@ -10,6 +10,7 @@ import '@smallwei/avue/lib/index.css'
 import './index.scss'
 
 import components from '../components'
+import '../../components/index.scss'
 import YSComponents from '../../components/index'
 import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'

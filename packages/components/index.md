@@ -13,6 +13,7 @@ pnpm i @yusui/components
 ```js [main.js]
 import { createApp } from 'vue'
 import YSComponents from '@yusui/components'
+import '@yusui/components/dist/index.css'
 
 import App from './App.vue'
 
