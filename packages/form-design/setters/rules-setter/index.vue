@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FormItemRule } from 'element-plus'
+import type { AvueFormOption } from '@smallwei/avue'
 
 import { computed, nextTick, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
@@ -46,7 +47,7 @@ const whetherDic = [
   { label: '是', value: true },
 ]
 
-const ruleItemOption = {
+const ruleItemOption: AvueFormOption = {
   menuBtn: false,
   span: 24,
   labelWidth: 100,

@@ -1,4 +1,4 @@
-import type { AvueCrudInstance, AvueCrudProps, FormType } from '@smallwei/avue'
+import type { AvueCrudEmits, AvueCrudInstance, FormType } from '@smallwei/avue'
 import type { Ref } from 'vue'
 import type { Data } from '@yusui/types'
 import type { CrudState, Emitter, UseCrudMethodsOptions } from './types'
@@ -74,7 +74,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
         crudState.pageOption.total = 0
       }
       finally {
-        clearSelection && crudRef?.value?.selectClear?.()
+        clearSelection && crudRef?.value?.clearSelection?.()
         crudState.tableLoading = false
       }
     })
@@ -268,7 +268,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    * @param {string} params.order 排序顺序
    * @param {string} params.prop 排序字段
    */
-  const sortChange: AvueCrudProps<T>['onSortChange']
+  const sortChange: AvueCrudEmits<T>['sort-change']
     = options.sortChange
     ?? (({ order, prop }) => {
       if (order && prop) {

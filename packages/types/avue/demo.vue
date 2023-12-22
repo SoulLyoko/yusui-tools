@@ -36,6 +36,9 @@ const tableOption: AvueCrudOption<User> = {
     span: 24,
     dicData: [{ label: '管理员', value: 'admin' }],
     rules: [{ required: true }],
+    formatter(row) {
+      return row.name
+    },
   }],
 }
 const crudRef = ref<AvueCrudInstance<User>>()

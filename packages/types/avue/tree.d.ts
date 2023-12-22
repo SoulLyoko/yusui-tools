@@ -117,7 +117,7 @@ declare module '@smallwei/avue' {
     | 'remove'
     | 'append'
     | 'insertBefore'
-    | 'insertAfter' > { }
+    | 'insertAfter'> { }
 
   export interface AvueTreeSlots<T = any> {
     menu: (arg: { node: TreeNode<T> }) => VNode[]
@@ -125,7 +125,7 @@ declare module '@smallwei/avue' {
   }
 
   export const AvueTree: new<T = any>(props: AvueTreeProps<T>) =>
-  { $props: AvueTreeProps, $slots: AvueTreeSlots<T> } & AvueTreeMethods<T>
+    { $props: AvueTreeProps<T>, $slots: AvueTreeSlots<T> } & AvueTreeProps<T> & AvueTreeMethods<T>
 
   export type AvueTreeInstance<T = any> = InstanceType<typeof AvueTree<T>>
 }

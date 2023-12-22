@@ -1,6 +1,6 @@
 import type { Component, VNode } from 'vue'
-import type { FormItemRule, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
-import type { ElSize } from '../helpers'
+import type { FormItemRule, TabsPaneContext, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
+import type { ElSize, EmitFn } from '../helpers'
 
 declare module '@smallwei/avue' {
   export type FormType = 'add' | 'edit' | 'view'
@@ -8,18 +8,17 @@ declare module '@smallwei/avue' {
   export type LabelPosition = 'left' | 'right' | 'top'
   export type AsteriskPosition = 'left' | 'right'
   export type FormRowData<T> = T & Partial<Record<`$${keyof T}`, string>> & Record<string, any>
-  // export type FormRowData<T> = T & Record<string, any>
   export type PropKeyType<T> = keyof T extends string ? keyof T : string
   export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>
   // export type AvueFormDefaults = Record<string, AvueFormColumn>;
 
-  export interface AvueFormColumn<T = any, K = PropKeyType<T>> {
+  export interface AvueFormColumn<T = any, K = PropKeyType<T>, D = FormRowData<T>> {
     /** 标题名称 */
     label?: string
     /** 列字段(唯一不重复) */
     prop?: K
     /** 字段控制器 */
-    control?: (val: any, form: FormRowData<T>) => Record<string, AvueFormColumn<T>>
+    control?: (val: any, form: D) => Record<string, AvueFormColumn<T>>
     /** 深结构数据绑定值 */
     bind?: string
     /** 验证规则可以参考 [async-validator](https://github.com/yiminghe/async-validator) */
@@ -109,19 +108,19 @@ declare module '@smallwei/avue' {
     /** 传递给组件的事件 */
     events?: object
     /** 值改变事件 */
-    change?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem }) => void
+    change?: (args: { column: AvueFormColumn<T>, row: D, value: any, dic: DicItem[], item: DicItem }) => void
     /** 值改变事件 */
     onChange?: AvueFormColumn['change']
     /** 点击事件 */
-    click?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
+    click?: (args: { column: AvueFormColumn<T>, row: D, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
     /** 点击事件 */
     onClick?: AvueFormColumn['click']
     /** 聚焦事件 */
-    focus?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
+    focus?: (args: { column: AvueFormColumn<T>, row: D, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
     /** 聚焦事件 */
     onFocus?: AvueFormColumn['focus']
     /** 失焦事件 */
-    blur?: (args: { column: AvueFormColumn<T>, row: FormRowData<T>, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
+    blur?: (args: { column: AvueFormColumn<T>, row: D, value: any, dic: DicItem[], item: DicItem, event: Event }) => void
     /** 失焦事件 */
     onBlur?: AvueFormColumn['blur']
     /** 其它属性根据type查看对应的文档 */
@@ -167,6 +166,8 @@ declare module '@smallwei/avue' {
     tabs?: boolean
     /** 选项卡风格类型 */
     tabsType?: TabsProps['type']
+    /** 默认展开或激活的分组 */
+    tabsActive?: string
     /** 表单操作栏 */
     menuBtn?: boolean
     /** 表单操作菜单栅格占据的列数 */
@@ -183,6 +184,10 @@ declare module '@smallwei/avue' {
     emptyBtn?: boolean
     /** 清空按钮文案 */
     emptyText?: string
+    /** 模拟数据按钮 */
+    mockBtn?: boolean
+    /** 模拟数据按钮文案 */
+    mockText?: string
     /** 查看模式 */
     detail?: boolean
     /** 栅格 */
@@ -206,66 +211,200 @@ declare module '@smallwei/avue' {
     [x: string]: any
   }
 
-  export interface AvueFormProps<T = any> {
-    /** 表单绑定值 v-model */
-    modelValue?: T
+  export interface AvueFormProps<T = any, D = FormRowData<T>> {
+    /** 配置项结构 */
+    defaults?: AvueFormDefaults<T>
     /** 表单总配置属性 */
     option?: AvueFormOption<T>
-    /** 配置项结构 */
-    defaults?: AvueFormDefaults
+
+    /** 表单禁用状态 */
+    status?: boolean
+    /** 表单绑定值 v-model */
+    modelValue?: D
     /** upload组件上传前的回调,done用于继续图片上传，loading用于中断操作 */
-    'upload-before'?: (
+    uploadBefore?: (
       file: UploadRawFile,
       done: (file?: File) => void,
       loading: () => void,
       column: AvueFormColumn<T>
     ) => void
     /** upload组件上传后的回调,done用于结束操作，loading用于中断操作 */
-    'upload-after'?: (res: any, done: () => void, loading: () => void, column: AvueFormColumn<T>) => void
+    uploadAfter?: (res: any, done: () => void, loading: () => void, column: AvueFormColumn<T>) => void
     /** upload组件删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除 */
-    'upload-delete'?: (file: UploadFile, column: AvueFormColumn<T>) => boolean | Promise<any> | void
+    uploadDelete?: (file: UploadFile, column: AvueFormColumn<T>) => boolean | Promise<any> | void
     /** upload组件查看回调 */
-    'upload-preview'?: (file: UploadFile, column: AvueFormColumn<T>, done: () => void) => void
+    uploadPreview?: (file: UploadFile, column: AvueFormColumn<T>, done: () => void) => void
     /** upload组件上传失败错误回调 */
-    'upload-error'?: (error: Error, column: AvueFormColumn<T>) => void
+    uploadError?: (error: Error, column: AvueFormColumn<T>) => void
     /** upload组件上传超过长度限制回调 */
-    'upload-exceed'?: (limit: number, files: File[], fileList: UploadUserFile[], column: AvueFormColumn<T>) => void
-    /** 表单提交回调事件 */
-    onSubmit?: (form: T, done: () => void) => void
-    /** 表单重置回调事件 */
-    onResetChange?: () => void
-    /** 更新表单值 */
-    'onUpdate:modelValue'?: (row: T) => any
-    /** 更新配置项结构 */
-    'onUpdate:defaults'?: (defaluts: AvueFormDefaults) => any
+    uploadExceed?: (limit: number, files: File[], fileList: UploadUserFile[], column: AvueFormColumn<T>) => void
   }
 
-  export interface AvueFormMethods<T = any> {
-    /** 对整个表单进行提交 */
-    submit: () => void
-    /** 对整个表单进行重置 */
-    resetForm: () => void
-    /** 更新字典 */
-    updateDic: (prop?: string, list?: DicItem[]) => void
-    /** 获取prop的ref对象 */
-    getPropRef: (prop: string) => void
-    /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */
-    validate: (callback?: (valid: boolean, done: () => void, msg: string) => void) => Promise<boolean>
+  export interface AvueFormEmits<T = any, D = FormRowData<T>> {
+    /** 更新表单值 */
+    'update:modelValue': (row: D) => any
+    /** 更新表单状态 */
+    'update:status': (disabled: boolean) => any
+    /** 表单重置事件 */
+    'reset-change': () => void
+    /** 模拟数据事件 */
+    'mock-data': () => void
+    /** 分组点击事件 */
+    'tab-click': ((paneOrTabs: TabsPaneContext | string[], ev?: Event) => any)
+    /** 表单提交事件 */
+    'submit': (form: T, done: () => void) => any
+    /** 表单校验错误事件 */
+    'error': (msg: string) => any
+    /** 更新配置项结构 */
+    'update:defaults': (defaluts: AvueFormDefaults<T>) => any
+
+  }
+
+  // export interface AvueFormEmits<T = any, D = FormRowData<T>> {
+  // /** 更新表单值 */
+  // 'update:modelValue'?: (row: D) => any
+  // /** 更新表单状态 */
+  // 'update:status'?: (disabled: boolean) => any
+  // /** 表单重置回调事件 */
+  // 'reset-change'?: () => void
+  // /** 模拟数据事件 */
+  // 'mock-change'?: () => void
+  // /** 分组点击事件 */
+  // 'tab-click'?: ((activeTabs: string[]) => any) | ((pane: TabsPaneContext, ev: Event) => any)
+  // /** 表单提交回调事件 */
+  // 'submit'?: (form: T, done: () => void) => any
+  // /** 表单校验错误事件 */
+  // 'error'?: (msg: string) => any
+  // /** 更新配置项结构 */
+  // 'update:defaults'?: (defaluts: AvueFormDefaults<T>) => any
+  // }
+
+  export interface AvueFormData<T = any, D = TableRowData<T>> {
+    DIC: Record<string, DicItem[]>
+    cascaderDIC: Record<string, DicItem[]>
+    objectOption: AvueFormDefaults<T>
+
+    config: any
+    activeName: string
+    allDisabled: boolean
+    tableOption: AvueFormOption<T>
+    form: D
+    formCreate: boolean
+    formList: string[]
+    formBind: Record<number, (...args: any[]) => any>
+  }
+
+  export interface AvueFormComputed<T = any, D = TableRowData<T>> {
+    isMobile: boolean
+    resultOption: AvueFormOption<T>
+    rowKey: string
+    formRules: Record<string, FormItemRule[]>
+
+    size: ElSize
+    columnSlot: string[]
+    labelSuffix: string
+    isMenu: boolean
+    isDetail: boolean
+    isAdd: boolean
+    isTabs: boolean
+    isEdit: boolean
+    isView: boolean
+    detail: AvueFormOption<T>['detail']
+    disabled: AvueFormOption<T>['disabled']
+    readonly: AvueFormOption<T>['readonly']
+    tabsType: AvueFormOption<T>['tabsType']
+    columnLen: number
+    dynamicOption: AvueFormColumn<T>[]
+    propOption: AvueFormColumn<T>[]
+    columnOption: AvueFormGroup<T>[]
+    menuPosition: MenuPosition
+    boxType: FormType
+    isPrint: boolean
+    tabsActive: string
+    isMock: boolean
+    menuSpan: number
+  }
+
+  export interface AvueFormMethods<T = any, D = FormRowData<T>> {
+    /** 动态获取组件 */
+    getComponent: <P extends string, C extends AvueFormColumn<T>['component']>(type?: P, component?: C) => P extends undefined ? C : P
+    /** 获取占位文字 */
+    getPlaceholder: (column: AvueFormColumn<T>, type?: string) => string
+    /** 获取详情状态 */
+    getDisabled: (column: AvueFormColumn<T>) => boolean
+    isGroupShow: (item: any, index: number) => boolean
+    /** 处理表单数据 */
+    dataFormat: () => void
+    /** 设置表单控制 */
+    setControl: () => void
+    /** 设置表单数据 */
+    setForm: () => void
+    /** 更新表单数据 */
+    setVal: () => void
+    /** 设置表单项标题 */
+    setLabel: () => void
+    /** 分组点击事件 */
+    handleGroupClick: AvueFormEmits<T>['tab-click']
+    /** 分组点击事件 */
+    handleTabClick: AvueFormEmits<T>['tab-click']
+    /** 获取表单项属性 */
+    getItemParams: (column: AvueFormColumn<T>, item: AvueFormGroup<T>, type: string, isPx?: boolean) => number | string
     /** 对部分表单字段进行校验的方法 */
     validateField: (props?: string | string[]) => Promise<boolean>
-    /** 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果 */
-    resetFields: () => void
+    /** 滚动到指定的字段 */
+    scrollToField: (prop: string) => void
+    /** 是否显示检验提示 */
+    validTip: (column: AvueFormColumn<T>) => boolean
+    /** 获取prop的ref对象 */
+    getPropRef: (prop: string) => any
+    /** 字段值变化 */
+    handleChange: (list: AvueFormColumn<T>[], column: AvueFormColumn<T>) => void
+    /** 打印表单 */
+    handlePrint: () => void
+    /** 字段值变化 */
+    propChange: (option: AvueFormColumn<T>[], column: AvueFormColumn<T>) => void
+    /** 模拟数据 */
+    handleMock: () => void
+    /** 是否详情 */
+    vaildDetail: (column: AvueFormColumn<T>) => boolean
+    /** 是否禁用 */
+    vaildDisabled: (column: AvueFormColumn<T>) => boolean
+    /** 是否显示 */
+    vaildDisplay: (column: AvueFormColumn<T>) => boolean
     /** 移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果 */
     clearValidate: (props?: string | string[]) => void
+    /** 校验子表单 */
+    validateCellForm: () => Promise<string>
+    /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */
+    validate: (callback?: (valid: boolean, done: () => void, msg: string) => void) => Promise<boolean>
+    /** 对整个表单进行重置 */
+    resetForm: (reset?: boolean) => void
+    /** 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果 */
+    resetFields: () => void
+    /** 表单禁用状态 */
+    show: () => void
+    /** 表单启用状态 */
+    hide: () => void
+    /** 对整个表单进行提交 */
+    submit: () => void
+
     /** 重新初始化（多数用于服务端加载或者更新网络字典） */
     init: () => void
     /** 重新初始化字典 */
     dicInit: () => void
-    /** 滚动到指定的字段 */
-    scrollToField: (prop: string) => void
+    /** 更新字典 */
+    updateDic: (prop?: string, list?: DicItem[]) => void
+    /** 设置字典列表 */
+    handleSetDic: (list: DicItem[], res: Record<string, DicItem[]>) => void
+    /** 加载本地字典 */
+    handleLocalDic: () => void
+    /** 加载网络字典 */
+    handleLoadDic: () => void
+    /** 加载级联字典 */
+    handleLoadCascaderDic: () => void
   }
 
-  export interface AvueFormSlots<T = any> {
+  export interface AvueFormSlots<T = any, D = FormRowData<T>> {
     'menu-form': (props: { disabled: boolean, size: ElSize }) => VNode[]
     [x: `${string}-header`]: (props: { column: AvueFormColumn<T> }) => VNode[]
     [x: `${string}-label`]: (props: {
@@ -284,7 +423,7 @@ declare module '@smallwei/avue' {
       dic: DicItem[]
     }) => VNode[]
     [x: string]: (props: {
-      row: any
+      row: D
       value: any
       column: AvueFormColumn<T>
       size: ElSize
@@ -294,7 +433,12 @@ declare module '@smallwei/avue' {
   }
 
   export const AvueForm: new<T = any>(props: AvueFormProps<T>) =>
-  { $props: AvueFormProps, $slots: AvueFormSlots<T> } & AvueFormMethods<T>
+    {
+      $props: AvueFormProps<T>
+      $emit: EmitFn<AvueFormEmits<T>>
+      $slots: AvueFormSlots<T>
+      $data: AvueFormData<T>
+    } & AvueFormProps<T> & AvueFormData<T> & AvueFormComputed<T> & AvueFormMethods<T>
 
   export type AvueFormInstance<T = any> = InstanceType<typeof AvueForm<T>>
 }

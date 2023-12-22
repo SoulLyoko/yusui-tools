@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // import { parse } from "acorn";
+import type { AvueFormOption } from '@smallwei/avue'
+
 import { ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 
@@ -65,7 +67,7 @@ watch(
   { deep: true },
 )
 
-const option = {
+const option: AvueFormOption = {
   span: 24,
   menuBtn: false,
   labelWidth: 100,

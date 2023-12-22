@@ -1,4 +1,4 @@
-import type { AvueCrudDefaults, AvueCrudOption, AvueCrudProps, FormType, PageOption } from '@smallwei/avue'
+import type { AvueCrudDefaults, AvueCrudEmits, AvueCrudOption, AvueCrudProps, FormType, PageOption } from '@smallwei/avue'
 import type { EmitterAsync } from '@yusui/utils'
 
 export interface CrudOption<T, P> {
@@ -90,20 +90,20 @@ export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>,
 
 export interface UseCrudMethodsOptions<T, P> {
   getDataList?: () => any
-  handleSave?: AvueCrudProps<T>['onRowSave']
-  handleUpdate?: AvueCrudProps<T>['onRowUpdate']
-  handleDel?: AvueCrudProps<T>['onRowDel']
+  handleSave?: AvueCrudEmits<T>['row-save']
+  handleUpdate?: AvueCrudEmits<T>['row-update']
+  handleDel?: AvueCrudEmits<T>['row-del']
   batchDel?: () => any
   filterRow?: (row: T) => T
   filterParams?: (params: P) => P
   searchChange?: (form: P, done: () => void) => any
   searchReset?: () => any
-  selectionChange?: AvueCrudProps<T>['onSelectionChange']
-  pageSizeChange?: AvueCrudProps<T>['onSizeChange']
-  pageCurrentChange?: AvueCrudProps<T>['onCurrentChange']
-  sortChange?: AvueCrudProps<T>['onSortChange']
-  beforeOpen?: AvueCrudProps<T>['before-open']
-  beforeClose?: AvueCrudProps<T>['before-close']
+  selectionChange?: AvueCrudEmits<T>['selection-change']
+  pageSizeChange?: AvueCrudEmits<T>['size-change']
+  pageCurrentChange?: AvueCrudEmits<T>['current-change']
+  sortChange?: AvueCrudEmits<T>['sort-change']
+  beforeOpen?: AvueCrudProps<T>['beforeOpen']
+  beforeClose?: AvueCrudProps<T>['beforeClose']
 }
 
 export type UseCrudOptions<T, P> = UseCrudStateOptions<T, P> & UseCrudMethodsOptions<T, P>

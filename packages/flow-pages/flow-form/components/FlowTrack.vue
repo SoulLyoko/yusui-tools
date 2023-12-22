@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { AvueCrudOption } from '@smallwei/avue'
+
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { durationFormat } from '@yusui/utils'
@@ -23,7 +25,7 @@ const tableData = computed(() => {
     }
   }) ?? []
 })
-const tableOption = {
+const tableOption: AvueCrudOption = {
   addBtn: false,
   menu: false,
   border: true,
