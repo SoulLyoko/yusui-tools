@@ -26,7 +26,7 @@ function buildStyles() {
   series(...tasks)()
 }
 function buildTypes() {
-  execSync('vue-tsc -p tsconfig.build.json -d --emitDeclarationOnly')
+  execSync('vue-tsc -p tsconfig.build.json')
   execSync('tsc-alias -p tsconfig.build.json')
 }
 function fixBuild() {

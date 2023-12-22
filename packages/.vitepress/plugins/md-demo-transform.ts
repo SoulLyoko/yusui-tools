@@ -57,7 +57,7 @@ export function mdDemoTransform(): Plugin {
         })
         .join('\n')
       const importSript = `<script setup>\n${importComponents}\n</script>\n`
-      demoMatches?.forEach((match) => {
+      demoMatches?.forEach((match, index) => {
         const { componentName, sourcePath } = parseComponent(match, id)
         //         const demoTemplate = `<${componentName}></${componentName}>
 
@@ -73,7 +73,7 @@ export function mdDemoTransform(): Plugin {
 \n<<< ${sourcePath}.vue\n
   </template>
 </demo>`
-        code = code.replace(match, importSript + demoTemplate)
+        code = code.replace(match, (index ? '' : importSript) + demoTemplate)
       })
 
       return code
