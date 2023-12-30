@@ -251,7 +251,7 @@ async function initCollapse() {
         <u-button v-if="option.emptyBtn" :loading="submitLoading" @click="resetFields">
           {{ option.emptyText }}
         </u-button>
-        <u-button v-if="option.delBtn" :loading="submitLoading" @click="onDel">
+        <u-button v-if="option.delBtn && formType === 'edit'" :loading="submitLoading" @click="onDel">
           {{ option.delText }}
         </u-button>
       </view>
@@ -266,6 +266,11 @@ async function initCollapse() {
     width: 100%;
     &__content {
       width: 100%;
+    }
+  }
+  .uvue-form-menu {
+    .u-button + .u-button {
+      margin-top: 10rpx;
     }
   }
 }
