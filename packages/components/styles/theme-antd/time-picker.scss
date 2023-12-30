@@ -1,0 +1,41 @@
+.el-time-panel,
+.el-time-range-picker {
+  border-radius: var(--el-border-radius-base);
+
+  .el-time-range-picker__body {
+    border: none;
+  }
+
+  .el-time-panel__content::before {
+    display: none;
+  }
+
+  .el-time-spinner__wrapper {
+    padding: 4px;
+    margin: 4px 0;
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--el-border-color-light);
+    }
+
+    &:not(.is-arrow) {
+      .el-time-spinner__list::before {
+        display: none;
+      }
+
+      .el-time-spinner__list::after {
+        height: 160px;
+      }
+    }
+  }
+
+  .el-time-spinner__item {
+    border-radius: var(--el-border-radius-small);
+
+    &.is-active:not(.is-disabled) {
+      color: inherit;
+      font-weight: inherit;
+      background-color: var(--el-color-primary-light-9);
+    }
+  }
+}

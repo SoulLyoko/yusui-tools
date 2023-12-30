@@ -1,0 +1,9 @@
+.el-autocomplete-suggestion {
+  .el-autocomplete-suggestion__wrap {
+    padding: 4px;
+  }
+
+  li {
+    border-radius: var(--el-border-radius-small);
+  }
+}

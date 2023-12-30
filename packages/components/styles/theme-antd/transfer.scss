@@ -1,0 +1,53 @@
+.el-transfer {
+  --el-transfer-border-color: var(--el-border-color);
+  --el-transfer-panel-header-bg-color: unset;
+  --el-transfer-panel-width: 180px;
+  --el-transfer-panel-body-height: 160px;
+
+  .el-transfer-panel__header {
+    border-bottom: 1px solid var(--el-border-color-light);
+  }
+
+  .el-transfer-panel__filter .el-input__inner {
+    font-size: inherit;
+  }
+
+  .el-transfer-panel__item {
+    margin-right: 0;
+    color: var(--el-text-color-primary);
+
+    &:hover:not(.is-disabled) {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+
+  .el-checkbox__inner {
+    height: var(--el-checkbox-input-height);
+    width: var(--el-checkbox-input-width);
+    border-radius: var(--el-checkbox-border-radius);
+
+    &::after {
+      height: 7px;
+      left: 4px;
+    }
+  }
+
+  .el-transfer__buttons {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    padding: 0 8px;
+
+    .el-transfer__button {
+      width: 24px;
+      height: 24px;
+      padding: 0px;
+      margin: 2px 0;
+
+      &.is-disabled {
+        background-color: var(--el-disabled-bg-color);
+        border-color: var(--el-disabled-border-color);
+        color: var(--el-text-color-disabled);
+      }
+    }
+  }
+}

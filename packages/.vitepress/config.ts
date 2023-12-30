@@ -55,6 +55,7 @@ export default defineConfig({
             { text: 'VDict', link: '/components/v-dict/index' },
             { text: 'VText', link: '/components/v-text/index' },
             { text: 'CrudPlus', link: '/components/crud-plus/index' },
+            { text: 'Theme', link: '/components/styles/index.md' },
           ],
         },
       ],

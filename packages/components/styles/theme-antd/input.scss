@@ -1,0 +1,13 @@
+.el-input {
+  // .el-input__prefix,
+  // .el-input__suffix,
+  .el-input-group__append,
+  .el-input-group__prepend {
+    color: var(--el-text-color-primary);
+  }
+
+  .el-input-group__append,
+  .el-input-group__prepend {
+    background-color: var(--el-fill-color-lighter);
+  }
+}

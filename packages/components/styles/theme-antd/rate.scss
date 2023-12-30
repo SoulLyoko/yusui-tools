@@ -1,0 +1,19 @@
+.el-rate {
+  --el-rate-fill-color: #fadb14;
+
+  .el-rate__icon {
+    font-size: 20px;
+  }
+
+  &.el-rate--large {
+    .el-rate__icon {
+      font-size: 22px;
+    }
+  }
+
+  &.el-rate--small {
+    .el-rate__icon {
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.el-select {
+  &.el-select--disabled {
+    .el-tag.el-tag--info {
+      --el-tag-text-color: var(--el-text-color-placeholder);
+    }
+  }
+}
+
+.el-select-dropdown {
+  .el-select-dropdown__list {
+    margin: 4px !important;
+
+    .el-select-dropdown__item {
+      border-radius: var(--el-border-radius-small);
+
+      &.selected {
+        color: inherit;
+        background-color: var(--el-color-primary-light-9);
+      }
+    }
+  }
+}

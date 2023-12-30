@@ -1,0 +1,37 @@
+.el-switch {
+  --el-switch-on-hover-color: var(--el-color-primary-light-3);
+  --el-switch-off-color: var(--el-text-color-placeholder);
+  --el-switch-off-hover-color: var(--el-text-color-secondary);
+
+  .el-switch__core {
+    border: none;
+  }
+
+  &:not(.is-checked) {
+    .el-switch__core {
+      .el-switch__action {
+        left: 2px;
+      }
+    }
+
+    &:hover {
+      .el-switch__core {
+        background-color: var(--el-switch-off-hover-color);
+      }
+    }
+  }
+
+  &.is-checked {
+    .el-switch__core {
+      .el-switch__action {
+        left: calc(100% - 18px);
+      }
+    }
+
+    &:hover {
+      .el-switch__core {
+        background-color: var(--el-switch-on-hover-color);
+      }
+    }
+  }
+}

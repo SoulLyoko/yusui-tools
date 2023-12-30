@@ -1,0 +1,34 @@
+.el-cascader {
+  &.is-disabled {
+    .el-tag.el-tag--info {
+      --el-tag-text-color: var(--el-text-color-placeholder);
+    }
+  }
+}
+
+.el-cascader-panel {
+  --el-cascader-menu-selected-text-color: var(--el-cascader-menu-text-color);
+  --el-cascader-menu-min-width: 111px;
+
+  .el-cascader-menu {
+    min-width: var(--el-cascader-menu-min-width);
+  }
+
+  .el-cascader-menu__list {
+    padding: 4px;
+
+    .el-cascader-node {
+      padding-left: 12px;
+      border-radius: var(--el-border-radius-small);
+
+      .el-cascader-node__prefix {
+        display: none;
+      }
+
+      &.in-active-path,
+      &.is-active {
+        background-color: var(--el-color-primary-light-9);
+      }
+    }
+  }
+}
