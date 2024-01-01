@@ -1,0 +1,19 @@
+.el-descriptions {
+  --el-descriptions-table-border: 1px solid var(--el-border-color-light);
+  --el-descriptions-item-bordered-label-background: var(
+    --el-fill-color-lighter
+  );
+
+  .el-descriptions__title {
+    font-weight: var(--el-font-weight-strong);
+  }
+
+  .el-descriptions__label {
+    color: var(--el-text-color-secondary);
+  }
+
+  .el-descriptions__label.el-descriptions__cell.is-bordered-label {
+    color: var(--el-text-color-primary);
+    font-weight: inherit;
+  }
+}

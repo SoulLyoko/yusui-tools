@@ -1,0 +1,11 @@
+.el-result {
+  --el-result-icon-font-size: 72px;
+  --el-result-title-font-size: 24px;
+  --el-result-title-margin-top: 24px;
+  --el-result-subtitle-margin-top: 8px;
+  --el-result-extra-margin-top: 24px;
+
+  .el-result__subtitle p {
+    color: var(--el-text-color-secondary);
+  }
+}

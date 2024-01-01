@@ -1,0 +1,23 @@
+.el-tree-select__popper {
+  .el-select-dropdown__item {
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: var(--el-border-radius-small);
+
+    &:hover {
+      background-color: var(--el-tree-node-hover-bg-color) !important;
+    }
+
+    &.selected {
+      font-weight: inherit;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  :not(.el-checkbox) + .el-select-dropdown__item.selected {
+    background-color: var(--el-color-primary-light-9) !important;
+  }
+}

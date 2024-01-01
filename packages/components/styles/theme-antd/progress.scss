@@ -1,0 +1,75 @@
+.el-progress {
+  .el-progress-bar__outer {
+    background-color: var(--el-fill-color);
+  }
+
+  .el-progress-bar__outer[style='height: 6px;'] {
+    height: 8px !important;
+  }
+
+  .el-progress-bar__inner--indeterminate {
+    animation: unset;
+  }
+
+  .el-progress-bar__inner--indeterminate::after {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background-color: var(--el-fill-color-blank);
+    animation: progress 3s infinite;
+  }
+
+  @keyframes progress {
+    0% {
+      transform: translateX(-100%) scaleX(0);
+      opacity: 0.1;
+    }
+    20% {
+      transform: translateX(-100%) scaleX(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateX(0) scaleX(1);
+      opacity: 0;
+    }
+  }
+
+  .el-progress-circle path:last-child[stroke='#20a0ff'] {
+    stroke: var(--el-color-primary);
+  }
+
+  &.is-success .el-progress-circle path:last-child {
+    stroke: var(--el-color-success);
+  }
+
+  &.is-warning .el-progress-circle path:last-child {
+    stroke: var(--el-color-warning);
+  }
+
+  &.is-exception .el-progress-circle path:last-child {
+    stroke: var(--el-color-danger);
+  }
+
+  .el-progress-circle {
+    width: 120px !important;
+    height: 120px !important;
+
+    path {
+      stroke-width: 6;
+    }
+
+    path.el-progress-circle__track {
+      stroke: var(--el-fill-color);
+    }
+  }
+
+  .el-progress-circle + .el-progress__text {
+    span {
+      font-size: 24px;
+    }
+
+    i {
+      font-size: 32px;
+    }
+  }
+}

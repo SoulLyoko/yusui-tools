@@ -19,6 +19,10 @@
 
   .el-checkbox__inner::after {
     border-width: 2px;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
   }
 
   &:hover:not(.is-disabled) {

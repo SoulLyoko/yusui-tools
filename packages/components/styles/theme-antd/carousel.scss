@@ -1,0 +1,17 @@
+.el-carousel {
+  --el-carousel-indicator-height: 3px;
+  --el-carousel-indicator-width: 16px;
+  --el-carousel-indicator-active-width: 24px;
+
+  .el-carousel__button {
+    border-radius: var(--el-carousel-indicator-height);
+  }
+
+  .el-carousel__indicator--horizontal.is-active .el-carousel__button {
+    width: var(--el-carousel-indicator-active-width);
+  }
+
+  .el-carousel__indicator--vertical .el-carousel__button {
+    height: var(--el-carousel-indicator-width);
+  }
+}
