@@ -29,4 +29,12 @@ const value = ref('')
 
   <h3>文本域</h3>
   <el-input v-model="value" placeholder="Please input" type="textarea" />
+
+  <h3>尺寸</h3>
+
+  <el-space>
+    <el-input v-model="value" size="large" placeholder="large" />
+    <el-input v-model="value" placeholder="default" />
+    <el-input v-model="value" size="small" placeholder="small" />
+  </el-space>
 </template>

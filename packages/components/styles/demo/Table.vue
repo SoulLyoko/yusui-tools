@@ -17,6 +17,13 @@ const tableData1 = [
 
 <template>
   <h3>基础表格</h3>
+  <el-table :data="tableData">
+    <el-table-column prop="date" label="Date" />
+    <el-table-column prop="name" label="Name" />
+    <el-table-column prop="address" label="Address" width="220" />
+  </el-table>
+
+  <h3>表格功能</h3>
   <el-table :data="tableData" stripe border>
     <el-table-column type="selection" fixed="left" width="50" />
     <el-table-column prop="date" label="Date" sortable width="150" />
@@ -50,7 +57,7 @@ const tableData1 = [
     color: inherit;
   }
   tr:nth-child(2n) {
-    background-color: unset;
+    background-color: var(--el-table-tr-bg-color);
   }
   table {
     overflow-x: unset;

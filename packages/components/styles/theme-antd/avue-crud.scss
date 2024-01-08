@@ -1,0 +1,14 @@
+.avue-dialog {
+  border-radius: var(--el-dialog-border-radius);
+
+  .el-dialog__body {
+    padding-bottom: 50px;
+    border-radius: var(--el-dialog-border-radius);
+    overflow: auto;
+  }
+
+  .avue-dialog__footer {
+    border-radius: 0 0 var(--el-dialog-border-radius)
+      var(--el-dialog-border-radius);
+  }
+}

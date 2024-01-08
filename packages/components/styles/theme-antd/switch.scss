@@ -8,10 +8,8 @@
   }
 
   &:not(.is-checked) {
-    .el-switch__core {
-      .el-switch__action {
-        left: 2px;
-      }
+    .el-switch__action {
+      left: 2px;
     }
 
     &:hover {
@@ -22,10 +20,8 @@
   }
 
   &.is-checked {
-    .el-switch__core {
-      .el-switch__action {
-        left: calc(100% - 18px);
-      }
+    .el-switch__action {
+      left: calc(100% - 18px);
     }
 
     &:hover {
@@ -33,5 +29,13 @@
         background-color: var(--el-switch-on-hover-color);
       }
     }
+  }
+
+  &.el-switch--large.is-checked .el-switch__action {
+    left: calc(100% - 22px);
+  }
+
+  &.el-switch--small.is-checked .el-switch__action {
+    left: calc(100% - 14px);
   }
 }

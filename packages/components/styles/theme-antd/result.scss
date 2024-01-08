@@ -8,4 +8,8 @@
   .el-result__subtitle p {
     color: var(--el-text-color-secondary);
   }
+
+  .icon-info {
+    --el-result-color: var(--el-color-primary);
+  }
 }

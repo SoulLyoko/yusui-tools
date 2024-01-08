@@ -1,0 +1,9 @@
+.avue-form {
+  .avue-group > .el-collapse {
+    border: none;
+
+    .el-collapse-item__content {
+      padding: 0;
+    }
+  }
+}

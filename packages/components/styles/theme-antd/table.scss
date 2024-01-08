@@ -10,4 +10,24 @@
     td.el-table__cell {
     background-color: var(--el-table-header-bg-color);
   }
+
+  tr.el-table__row:has(.el-table-column--selection .el-checkbox.is-checked) {
+    &:hover {
+      td.el-table__cell {
+        background-color: var(--el-color-primary-light-8);
+      }
+    }
+
+    td.el-table__cell {
+      background-color: var(--el-color-primary-light-9);
+    }
+  }
+
+  th.el-table__cell > .cell.highlight {
+    color: inherit;
+
+    .el-table__column-filter-trigger i {
+      color: var(--el-color-primary);
+    }
+  }
 }

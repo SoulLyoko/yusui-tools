@@ -10,7 +10,7 @@
           <strong>Header</strong>
         </el-col>
         <el-col :span="2">
-          <el-button text type="primary">
+          <el-button link type="primary">
             More
           </el-button>
         </el-col>

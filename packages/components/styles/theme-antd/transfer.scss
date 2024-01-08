@@ -1,8 +1,6 @@
 .el-transfer {
   --el-transfer-border-color: var(--el-border-color);
   --el-transfer-panel-header-bg-color: unset;
-  --el-transfer-panel-width: 180px;
-  --el-transfer-panel-body-height: 160px;
 
   .el-transfer-panel__header {
     border-bottom: 1px solid var(--el-border-color-light);
@@ -16,8 +14,16 @@
     margin-right: 0;
     color: var(--el-text-color-primary);
 
-    &:hover:not(.is-disabled) {
+    &:hover:not(.is-disabled, .is-checked) {
       background-color: var(--el-fill-color-light);
+    }
+
+    &.is-checked {
+      background-color: var(--el-color-primary-light-9);
+
+      &:hover {
+        background-color: var(--el-color-primary-light-8);
+      }
     }
   }
 

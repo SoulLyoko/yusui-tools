@@ -1,3 +1,16 @@
 .el-card {
-  --el-card-border-radius: var(--el-border-radius-base);
+  --el-card-border-radius: var(--el-border-radius-large);
+
+  --el-card-box-shadow: var(--el-box-shadow);
+
+  &.is-always-shadow {
+    box-shadow: var(--el-card-box-shadow);
+    border-color: transparent;
+  }
+
+  &.is-hover-shadow:focus,
+  &.is-hover-shadow:hover {
+    box-shadow: var(--el-card-box-shadow);
+    border-color: transparent;
+  }
 }

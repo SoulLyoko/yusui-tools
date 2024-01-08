@@ -8,20 +8,29 @@ const options = [
   { label: 'C', value: 'C' },
   { label: 'D', value: 'D', disabled: true },
 ]
+
+const size = ref('default' as const)
+const sizes = ['large', 'default', 'small']
 </script>
 
 <template>
   <h3>基础用法</h3>
-  <el-radio-group v-model="value">
+  尺寸：
+  <el-radio-group v-model="size">
+    <el-radio v-for="item in sizes" :key="item" :label="item" />
+  </el-radio-group>
+  <br>
+
+  <el-radio-group v-model="value" :size="size">
     <el-radio v-for="item in options" :key="item.value" :label="item.value" :disabled="item.disabled" />
   </el-radio-group>
   <br>
-  <el-radio-group v-model="value">
+  <el-radio-group v-model="value" :size="size">
     <el-radio-button v-for="item in options" :key="item.value" :label="item.value" :disabled="item.disabled" />
   </el-radio-group>
   <br>
   <br>
-  <el-radio-group v-model="value">
+  <el-radio-group v-model="value" :size="size">
     <el-radio v-for="item in options" :key="item.value" :label="item.value" :disabled="item.disabled" border />
   </el-radio-group>
 

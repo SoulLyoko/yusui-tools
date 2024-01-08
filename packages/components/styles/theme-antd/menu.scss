@@ -1,0 +1,71 @@
+.el-menu {
+  --el-menu-border-color: var(--el-border-color-light);
+  --el-menu-hover-text-color: var(--el-text-color-primary);
+  --el-menu-hover-bg-color: var(--el-fill-color);
+  --el-menu-item-height: 40px;
+  --el-menu-sub-item-height: 40px;
+  --el-menu-horizontal-height: 46px;
+  --el-menu-horizontal-sub-item-height: 40px;
+  --el-menu-base-level-padding: 16px;
+
+  --el-menu-active-bg-color: var(--el-color-primary-light-9);
+}
+
+.el-menu--horizontal > .el-menu-item:not(.is-disabled):focus,
+.el-menu--horizontal > .el-menu-item:not(.is-disabled):hover,
+.el-menu--horizontal > .el-sub-menu:not(.is-disabled) .el-sub-menu__title:hover,
+.el-menu--horizontal > .el-sub-menu.is-opened .el-sub-menu__title {
+  background-color: unset;
+  border-bottom: 2px solid var(--el-menu-active-color);
+}
+
+.el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
+  padding: 0 var(--el-menu-base-level-padding);
+
+  .el-sub-menu__icon-arrow {
+    display: none;
+  }
+}
+
+.el-menu.el-menu--vertical,
+.el-menu.el-menu--popup {
+  .el-sub-menu__title:hover {
+    background-color: var(--el-menu-hover-bg-color);
+  }
+
+  .el-menu-item,
+  .el-sub-menu__title {
+    border-radius: var(--el-border-radius-small);
+    margin: 4px;
+  }
+
+  .el-menu-item.is-active {
+    background-color: var(--el-menu-active-bg-color);
+    color: var(--el-menu-active-color);
+  }
+
+  .el-sub-menu.is-active > .el-sub-menu__title {
+    color: var(--el-menu-active-color);
+  }
+}
+
+.el-menu.el-menu--vertical {
+  .el-menu.el-menu--inline {
+    background-color: var(--el-fill-color-lighter);
+  }
+}
+
+.el-menu.el-menu--popup {
+  padding: 0;
+}
+
+// 解决margin合并
+.el-menu--vertical {
+  &.el-menu--popup-container {
+    display: flex;
+  }
+
+  .el-menu.el-menu--inline {
+    overflow: hidden;
+  }
+}

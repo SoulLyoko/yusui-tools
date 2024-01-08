@@ -9,6 +9,7 @@ import VText from './v-text/index.vue'
 import CrudPlus from './crud-plus/index.vue'
 
 export { EpMenu, EpTree, IconSelect, VDict, VText }
+export * from './styles'
 
 export default {
   install(app: App) {

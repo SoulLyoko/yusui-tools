@@ -34,4 +34,15 @@ const values = ref(['4', '5', '6'])
   <h3>禁用状态</h3>
   <el-cascader v-model="value" :options="options" :show-all-levels="false" :props="{ emitPath: false }" disabled />
   <el-cascader v-model="values" :options="options" :show-all-levels="false" :props="{ multiple: true }" disabled />
+
+  <h3>级联面板</h3>
+  <el-cascader-panel :options="options" />
 </template>
+
+<style lang="scss">
+.el-cascader-panel {
+  ul {
+    margin: 0;
+  }
+}
+</style>

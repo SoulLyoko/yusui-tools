@@ -63,6 +63,24 @@ const menuList = ref<RouteRecordRaw[]>([
       },
     ],
   },
+  {
+    name: 'plugins',
+    path: '/plugins',
+    redirect: '',
+    meta: { title: 'Plugins', icon: 'ep:menu', disabled: true },
+  },
+  {
+    name: 'types',
+    path: '/types',
+    redirect: '',
+    meta: { title: 'Types', icon: 'ep:menu', disabled: true },
+  },
+  {
+    name: 'utils',
+    path: '/utils',
+    redirect: '',
+    meta: { title: 'Utils', icon: 'ep:menu', disabled: true },
+  },
 ])
 
 const router = useRouter()

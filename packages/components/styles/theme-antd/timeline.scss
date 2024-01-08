@@ -1,5 +1,6 @@
 .el-timeline {
   --el-timeline-node-size-normal: 10px;
+
   :not(.el-timeline-item__center) {
     .el-timeline-item__tail,
     .el-timeline-item__node {
@@ -17,6 +18,6 @@
 
   .el-timeline-item__timestamp {
     color: var(--el-text-color-primary);
-    font-size: var(--el-font-size);
+    font-size: var(--el-font-size-base);
   }
 }

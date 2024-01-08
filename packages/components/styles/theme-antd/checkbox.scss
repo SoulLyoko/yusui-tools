@@ -17,7 +17,20 @@
     }
   }
 
-  .el-checkbox__inner::after {
+  &.el-checkbox--large {
+    .el-checkbox__inner {
+      width: var(--el-checkbox-input-width);
+      height: var(--el-checkbox-input-height);
+    }
+  }
+
+  &.el-checkbox--small {
+    .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
+      height: 10px;
+    }
+  }
+
+  &:not(.el-checkbox--small) .el-checkbox__inner::after {
     border-width: 2px;
     left: 4px;
     top: 1px;
@@ -41,6 +54,16 @@
     margin-right: 0;
     border-radius: 0;
 
+    --el-checkbox-border-radius: var(--el-border-radius-base);
+
+    &.el-checkbox--large {
+      --el-checkbox-border-radius: var(--el-border-radius-large);
+    }
+
+    &.el-checkbox--small {
+      --el-checkbox-border-radius: var(--el-border-radius-small);
+    }
+
     .el-checkbox__input {
       display: none;
     }
@@ -51,19 +74,20 @@
 
     &.is-checked {
       border: 1px solid var(--el-color-primary);
+
       & + .is-checked {
         border-left: none;
       }
     }
 
     &:first-child {
-      border-radius: var(--el-border-radius-base) 0 0
-        var(--el-border-radius-base);
+      border-radius: var(--el-checkbox-border-radius) 0 0
+        var(--el-checkbox-border-radius);
     }
 
     &:last-child {
-      border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base)
-        0;
+      border-radius: 0 var(--el-checkbox-border-radius)
+        var(--el-checkbox-border-radius) 0;
     }
 
     &:hover {
@@ -90,6 +114,26 @@
 }
 
 .el-checkbox-button {
+  --el-checkbox-border-radius: var(--el-border-radius-base);
+
+  &.el-checkbox-button--large {
+    --el-checkbox-border-radius: var(--el-border-radius-large);
+  }
+
+  &.el-checkbox-button--small {
+    --el-checkbox-border-radius: var(--el-border-radius-small);
+  }
+
+  &:first-child .el-checkbox-button__inner {
+    border-radius: var(--el-checkbox-border-radius) 0 0
+      var(--el-checkbox-border-radius);
+  }
+
+  &:last-child .el-checkbox-button__inner {
+    border-radius: 0 var(--el-checkbox-border-radius)
+      var(--el-checkbox-border-radius) 0;
+  }
+
   &.is-disabled {
     .el-checkbox-button__inner {
       border-color: var(--el-border-color);

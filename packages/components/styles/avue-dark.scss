@@ -4,10 +4,12 @@
     .avue-crud__header {
       background-color: var(--el-bg-color-overlay);
     }
+
     .avue-crud__tip {
       border-color: var(--el-border-color);
       background-color: var(--el-color-primary-light-9);
     }
+
     .el-table {
       th.el-table__cell {
         color: initial;
@@ -23,26 +25,34 @@
       .el-collapse-item__header {
         border-color: var(--el-bg-color-overlay);
       }
+
       .avue-group__title {
         color: initial;
       }
     }
+
     &.avue--detail,
     .avue--detail {
+      .avue-group__header {
+        border-bottom: 1px solid var(--el-border-color);
+      }
+
       .el-row,
       .el-col {
         border-color: var(--el-border-color);
       }
 
       .el-form-item {
-        background: var(--el-bg-color-overlay);
+        background: unset;
       }
+
       .el-form-item__label {
-        background: var(--el-bg-color-overlay);
+        background: var(--el-fill-color-lighter);
       }
+
       .el-form-item__content {
         border-left: 1px solid var(--el-border-color);
-        background: var(--el-bg-color);
+        background: unset;
       }
 
       .el-input.is-disabled .el-input__wrapper,

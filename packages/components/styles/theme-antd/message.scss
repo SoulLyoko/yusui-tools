@@ -1,0 +1,16 @@
+.el-message {
+  --el-message-bg-color: var(--el-bg-color);
+  --el-message-border-color: var(--el-bg-color);
+
+  box-shadow: var(--el-box-shadow-light);
+  border-radius: var(--el-border-radius-large);
+  padding: 10px 12px;
+
+  .el-message__icon.el-message-icon--info {
+    color: var(--el-color-primary);
+  }
+
+  .el-message__content {
+    color: var(--el-text-color-primary);
+  }
+}

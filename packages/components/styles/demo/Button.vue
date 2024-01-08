@@ -21,7 +21,20 @@ const list = [
   </el-button>
   <br>
   <br>
+  <el-button v-for="item in list" :key="item.label" :type="item.type" round>
+    {{ item.label }}
+  </el-button>
+  <br>
+  <br>
+  <el-button v-for="item in list" :key="item.label" :type="item.type" circle icon="el-icon-plus" />
+  <br>
+  <br>
   <el-button v-for="item in list" :key="item.label" :type="item.type" text>
+    {{ item.label }}
+  </el-button>
+  <br>
+  <br>
+  <el-button v-for="item in list" :key="item.label" :type="item.type" link>
     {{ item.label }}
   </el-button>
 
@@ -38,5 +51,21 @@ const list = [
   <br>
   <el-button v-for="item in list" :key="item.label" :type="item.type" text disabled>
     {{ item.label }}
+  </el-button>
+  <br>
+  <br>
+  <el-button v-for="item in list" :key="item.label" :type="item.type" link disabled>
+    {{ item.label }}
+  </el-button>
+
+  <h3>尺寸</h3>
+  <el-button size="large">
+    Large
+  </el-button>
+  <el-button>
+    Default
+  </el-button>
+  <el-button size="small">
+    Small
   </el-button>
 </template>

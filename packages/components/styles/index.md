@@ -10,12 +10,6 @@
 ./demo/Button
 :::
 
-## Link 链接
-
-::: demo
-./demo/Link
-:::
-
 ## AutoComplete 自动完成
 
 ::: demo
@@ -194,4 +188,82 @@
 
 ::: demo
 ./demo/Statistic
+:::
+
+## Dropdown 下拉菜单
+
+::: demo
+./demo/Dropdown
+:::
+
+## Menu 菜单
+
+::: demo
+./demo/Menu
+:::
+
+## Steps 步骤条
+
+::: demo
+./demo/Steps
+:::
+
+## Tabs 标签页
+
+::: demo
+./demo/Tabs
+:::
+
+## Alert 提示
+
+::: demo
+./demo/Alert
+:::
+
+## Dialog 对话框
+
+::: demo
+./demo/Dialog
+:::
+
+## Drawer 抽屉
+
+::: demo
+./demo/Drawer
+:::
+
+## Message 消息提示
+
+::: demo
+./demo/Message
+:::
+
+## MessageBox 消息弹出框
+
+::: demo
+./demo/MessageBox
+:::
+
+## Notification 通知
+
+::: demo
+./demo/Notification
+:::
+
+## Popconfirm 气泡确认框
+
+::: demo
+./demo/Popconfirm
+:::
+
+## AvueForm
+
+::: demo
+./demo/AvueForm
+:::
+
+## AvueCrud
+
+::: demo
+./demo/AvueCrud
 :::

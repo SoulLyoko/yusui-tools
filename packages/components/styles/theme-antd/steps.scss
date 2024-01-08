@@ -1,0 +1,125 @@
+.el-steps {
+  &:not(.el-steps--simple) .el-step__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.el-steps--simple {
+    background-color: unset;
+
+    .el-step__head {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .el-step__icon-inner {
+    font-weight: inherit;
+  }
+
+  .el-step__description {
+    font-size: var(--el-font-size-base);
+  }
+
+  .el-step.is-horizontal {
+    .el-step__line {
+      height: 1px;
+      top: 16px;
+      margin-left: 40px;
+      margin-right: 8px;
+    }
+
+    &.is-center .el-step__line {
+      height: 1px;
+      top: 16px;
+      margin: 0 24px;
+    }
+  }
+
+  .el-step.is-vertical {
+    .el-step__line {
+      width: 1px;
+      left: 16px;
+      margin-top: 40px;
+      margin-bottom: 8px;
+    }
+
+    .el-step__head {
+      width: 32px;
+    }
+  }
+
+  .el-step__head {
+    .el-step__line {
+      background-color: var(--el-border-color-light);
+    }
+
+    &.is-finish,
+    &.is-success {
+      color: var(--el-color-primary);
+      border-color: var(--el-color-primary-light-9);
+
+      .el-step__line {
+        background-color: var(--el-color-primary);
+      }
+
+      .el-step__icon.is-text {
+        background: var(--el-color-primary-light-9);
+      }
+    }
+
+    &.is-process {
+      color: var(--el-color-white);
+      border-color: var(--el-color-primary);
+
+      .el-step__icon.is-text {
+        background: var(--el-color-primary);
+      }
+    }
+
+    &.is-wait {
+      color: var(--el-text-color-primary);
+      border-color: var(--el-border-color-light);
+
+      .el-step__icon.is-text {
+        background: var(--el-border-color-light);
+      }
+    }
+
+    &.is-error {
+      color: var(--el-color-white);
+
+      .el-step__icon.is-text {
+        background: var(--el-color-danger);
+      }
+    }
+  }
+
+  .el-step__main {
+    .el-step__title {
+      &.is-finish,
+      &.is-success {
+        color: var(--el-text-color-primary);
+      }
+
+      &.is-process {
+        font-weight: inherit;
+      }
+
+      &.is-wait {
+        color: var(--el-text-color-secondary);
+      }
+    }
+
+    .el-step__description {
+      &.is-finish,
+      &.is-success {
+        color: var(--el-text-color-secondary);
+      }
+
+      &.is-wait {
+        color: var(--el-text-color-secondary);
+      }
+    }
+  }
+}

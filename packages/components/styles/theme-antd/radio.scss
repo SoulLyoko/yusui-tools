@@ -2,6 +2,20 @@
   --el-radio-input-height: 16px;
   --el-radio-input-width: 16px;
 
+  &.el-radio--large {
+    .el-radio__inner {
+      width: var(--el-radio-input-width);
+      height: var(--el-radio-input-height);
+    }
+  }
+
+  &.el-radio--small {
+    .el-radio__inner::after {
+      width: 4px;
+      height: 4px;
+    }
+  }
+
   .el-radio__inner::after {
     width: 6px;
     height: 6px;
@@ -30,6 +44,16 @@
     margin-right: 0;
     border-radius: 0;
 
+    --el-radio-border-radius: var(--el-border-radius-base);
+
+    &.el-radio--large {
+      --el-radio-border-radius: var(--el-border-radius-large);
+    }
+
+    &.el-radio--small {
+      --el-radio-border-radius: var(--el-border-radius-small);
+    }
+
     .el-radio__input {
       display: none;
     }
@@ -39,13 +63,13 @@
     }
 
     &:first-child {
-      border-radius: var(--el-border-radius-base) 0 0
-        var(--el-border-radius-base);
+      border-radius: var(--el-radio-border-radius) 0 0
+        var(--el-radio-border-radius);
     }
 
     &:last-child {
-      border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base)
-        0;
+      border-radius: 0 var(--el-radio-border-radius)
+        var(--el-radio-border-radius) 0;
     }
 
     &:hover {
@@ -72,6 +96,26 @@
 }
 
 .el-radio-button {
+  --el-radio-border-radius: var(--el-border-radius-base);
+
+  &.el-radio-button--large {
+    --el-radio-border-radius: var(--el-border-radius-large);
+  }
+
+  &.el-radio-button--small {
+    --el-radio-border-radius: var(--el-border-radius-small);
+  }
+
+  &:first-child .el-radio-button__inner {
+    border-radius: var(--el-radio-border-radius) 0 0
+      var(--el-radio-border-radius);
+  }
+
+  &:last-child .el-radio-button__inner {
+    border-radius: 0 var(--el-radio-border-radius) var(--el-radio-border-radius)
+      0;
+  }
+
   &.is-disabled {
     .el-radio-button__inner {
       border-color: var(--el-border-color);

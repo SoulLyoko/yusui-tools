@@ -10,4 +10,12 @@
   .el-input-group__prepend {
     background-color: var(--el-fill-color-lighter);
   }
+
+  &.el-input--large {
+    --el-input-border-radius: var(--el-border-radius-large);
+  }
+
+  &.el-input--small {
+    --el-input-border-radius: var(--el-border-radius-small);
+  }
 }

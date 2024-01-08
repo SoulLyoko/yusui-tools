@@ -1,3 +1,10 @@
+.el-tag {
+  &.el-tag--large {
+    --el-tag-font-size: var(--el-font-size-base);
+    --el-tag-border-radius: var(--el-border-radius-base);
+  }
+}
+
 .el-tag:not(.el-tag--dark) {
   --el-tag-border-color: var(--el-color-primary-light-5);
 
@@ -7,7 +14,6 @@
 
   &.el-tag--info {
     --el-tag-border-color: var(--el-color-info-light-5);
-    --el-tag-text-color: var(--el-text-color-primary);
   }
 
   &.el-tag--warning {
@@ -16,5 +22,29 @@
 
   &.el-tag--danger {
     --el-tag-border-color: var(--el-color-danger-light-5);
+  }
+}
+
+.el-check-tag {
+  background-color: unset;
+  color: var(--el-text-color-primary);
+  font-weight: inherit;
+
+  &:hover {
+    background-color: var(--el-fill-color);
+    color: var(--el-color-primary);
+  }
+
+  &.is-checked {
+    background-color: var(--el-color-primary);
+    color: var(--el-fill-color-blank);
+
+    &:hover {
+      background-color: var(--el-color-primary-light-3);
+    }
+
+    &:active {
+      background-color: var(--el-color-primary-dark-2);
+    }
   }
 }

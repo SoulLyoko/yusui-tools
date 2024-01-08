@@ -1,0 +1,13 @@
+.el-notification {
+  --el-notification-padding: 20px 24px;
+
+  border: none;
+
+  .el-notification__title {
+    font-weight: inherit;
+  }
+
+  .el-notification--info {
+    --el-notification-icon-color: var(--el-color-primary);
+  }
+}

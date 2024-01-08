@@ -54,7 +54,7 @@ function openFlow(row: FlowOps) {
 </script>
 
 <template>
-  <el-card :body-style="{ padding: '0 20px' }">
+  <el-card>
     <el-collapse model-value="1">
       <el-collapse-item name="1">
         <template #title>

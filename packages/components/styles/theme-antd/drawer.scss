@@ -1,0 +1,14 @@
+.el-drawer {
+  .el-drawer__header {
+    margin-bottom: 0;
+    padding: 16px 20px;
+    color: var(--el-text-color-primary);
+    font-weight: var(--el-font-weight-strong);
+    border-bottom: 1px solid var(--el-border-color-light);
+  }
+
+  .el-drawer__footer {
+    padding: 10px 20px;
+    border-top: 1px solid var(--el-border-color-light);
+  }
+}

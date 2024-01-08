@@ -1,0 +1,63 @@
+.el-button {
+  --el-button-border-radius: var(--el-border-radius-base);
+
+  &:not(.is-circle, .is-round) {
+    border-radius: var(--el-button-border-radius);
+  }
+
+  &.el-button--large {
+    --el-button-border-radius: var(--el-border-radius-large);
+  }
+
+  &.el-button--small {
+    --el-button-border-radius: var(--el-border-radius-small);
+  }
+
+  &.is-disabled,
+  &.is-disabled:hover {
+    color: var(--el-text-color-disabled);
+    background-color: var(--el-disabled-bg-color);
+    border-color: var(--el-border-color);
+  }
+
+  &.is-plain {
+    --el-button-bg-color: var(--el-fill-color-blank);
+    --el-button-hover-bg-color: var(--el-button-bg-color);
+    --el-button-active-bg-color: var(--el-button-bg-color);
+    --el-button-active-text-color: var(--el-button-active-color);
+
+    &.el-button--default {
+      --el-button-active-color: var(--el-color-primary-dark-2);
+    }
+
+    &.el-button--primary {
+      --el-button-border-color: var(--el-color-primary);
+      --el-button-hover-text-color: var(--el-color-primary-light-3);
+      --el-button-hover-border-color: var(--el-color-primary-light-5);
+    }
+
+    &.el-button--success {
+      --el-button-border-color: var(--el-color-success);
+      --el-button-hover-text-color: var(--el-color-success-light-3);
+      --el-button-hover-border-color: var(--el-color-success-light-5);
+    }
+
+    &.el-button--info {
+      --el-button-border-color: var(--el-color-info);
+      --el-button-hover-text-color: var(--el-color-info-light-3);
+      --el-button-hover-border-color: var(--el-color-info-light-5);
+    }
+
+    &.el-button--warning {
+      --el-button-border-color: var(--el-color-warning);
+      --el-button-hover-text-color: var(--el-color-warning-light-3);
+      --el-button-hover-border-color: var(--el-color-warning-light-5);
+    }
+
+    &.el-button--danger {
+      --el-button-border-color: var(--el-color-danger);
+      --el-button-hover-text-color: var(--el-color-danger-light-3);
+      --el-button-hover-border-color: var(--el-color-danger-light-5);
+    }
+  }
+}

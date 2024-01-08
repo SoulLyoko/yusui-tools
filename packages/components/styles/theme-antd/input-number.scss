@@ -1,0 +1,27 @@
+.el-input-number {
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    opacity: 0;
+    background-color: var(--el-fill-color-blank);
+    transition: opacity 0.2s linear 0.2s;
+  }
+
+  &:hover:not(.is-disabled) {
+    .el-input-number__decrease,
+    .el-input-number__increase {
+      opacity: 1;
+    }
+  }
+
+  .el-input__wrapper {
+    padding: 1px 11px;
+  }
+
+  .el-input--large .el-input__wrapper {
+    padding: 1px 15px;
+  }
+
+  .el-input--small .el-input__wrapper {
+    padding: 1px 7px;
+  }
+}

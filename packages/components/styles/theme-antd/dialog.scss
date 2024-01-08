@@ -1,0 +1,13 @@
+.el-dialog {
+  --el-dialog-border-radius: var(--el-border-radius-large);
+  --el-dialog-title-font-size: var(--el-font-size-medium);
+  --el-dialog-box-shadow: var(--el-box-shadow-light);
+
+  .el-dialog__title {
+    font-weight: var(--el-font-weight-strong);
+  }
+
+  .el-dialog__body {
+    padding: 10px 20px;
+  }
+}

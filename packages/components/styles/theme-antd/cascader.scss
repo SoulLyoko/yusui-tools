@@ -8,7 +8,10 @@
 
 .el-cascader-panel {
   --el-cascader-menu-selected-text-color: var(--el-cascader-menu-text-color);
-  --el-cascader-menu-min-width: 111px;
+  --el-cascader-menu-min-width: 120px;
+  --el-cascader-menu-radius: var(--el-border-radius-large);
+
+  width: fit-content;
 
   .el-cascader-menu {
     min-width: var(--el-cascader-menu-min-width);
@@ -28,6 +31,7 @@
       &.in-active-path,
       &.is-active {
         background-color: var(--el-color-primary-light-9);
+        font-weight: inherit;
       }
     }
   }
