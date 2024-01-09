@@ -23,7 +23,7 @@ const showListContent = computed(() => {
 <template>
   <div v-loading="crudRef?.tableLoading" class="crud-plus__list">
     <el-page-header
-      v-for="(row, index) in tableData" :key="tableOption.rowKey ?? index" class="crud-plus__list-item"
+      v-for="(row, index) in tableData" :key="row[tableOption.rowKey!] ?? index" class="crud-plus__list-item"
       @click="crudRef?.$emit('row-click', row, {} as any, $event)"
       @dblclick="crudRef?.$emit('row-dblclick', row, {} as any, $event)"
       @contextmenu="crudRef?.$emit('row-contextmenu', row, {} as any, $event)"

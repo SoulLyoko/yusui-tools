@@ -13,7 +13,7 @@
   "main": "index.ts",
   "module": "index.ts",
   "dependencies": {
-    "@vueuse/core": "^10.7.0",
+    "@vueuse/core": "^10.7.1",
     "@yusui/composables": "workspace:*",
     "@yusui/utils": "workspace:*",
     "dayjs": "^1.11.10",

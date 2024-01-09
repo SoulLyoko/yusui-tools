@@ -51,7 +51,7 @@ const showCardFooter = computed(() => {
 
 <template>
   <el-row v-loading="crudRef?.tableLoading" class="crud-plus__card" :gutter="cardOption.gutter">
-    <el-col v-for="(row, index) in tableData" :key="tableOption.rowKey ?? index" :span="cardOption.span">
+    <el-col v-for="(row, index) in tableData" :key="row[tableOption.rowKey!] ?? index" :span="cardOption.span">
       <el-card
         class="crud-plus__card-item" shadow="hover" @click="crudRef?.$emit('row-click', row, {} as any, $event)"
         @dblclick="crudRef?.$emit('row-dblclick', row, {} as any, $event)"
