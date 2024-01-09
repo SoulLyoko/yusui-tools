@@ -81,17 +81,24 @@ const collapse = ref(false)
 </script>
 
 <template>
-  默认纵向：
+  <h3>默认纵向：</h3>
   <div style="width:300px">
     <el-switch v-model="collapse" active-text="折叠" inactive-text="展开" />
     <EpMenu v-model="activeMenuIndex" :routes="menuList" :collapse="collapse" @item-click="onMenuItemClick" @item-contextmenu="onMenuItemContextmenu" />
   </div>
-  横向：
+  <h3>横向：</h3>
   <EpMenu
     v-model="activeMenuIndex" :routes="menuList" mode="horizontal" @item-click="onMenuItemClick"
     @item-contextmenu="onMenuItemContextmenu"
   />
-  插槽：
+  <h3>插槽：</h3>
+  <EpMenu v-model="activeMenuIndex" :routes="menuList" :collapse="collapse">
+    <template #default="{ route }">
+      <span @click="onMenuItemClick(route)">
+        自定义插槽 - {{ route.meta?.title }}
+      </span>
+    </template>
+  </EpMenu>
   <EpMenu v-model="activeMenuIndex" :routes="menuList" mode="horizontal">
     <template #default="{ route }">
       <div style="width:100%" @click="onMenuItemClick(route)">
