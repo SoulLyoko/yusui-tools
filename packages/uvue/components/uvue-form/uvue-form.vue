@@ -43,7 +43,7 @@ async function initCollapse() {
 </script>
 
 <template>
-  <view class="uvue-form">
+  <view class="uvue-form" :class="`uvue-form--${formType}`">
     <u-form ref="formRef" v-bind="option" :model="{ $model: '', ...vModel }" :rules="rules">
       <!-- 渲染表单项 -->
       <template v-for="(columnItem, columnIndex) in option.column" :key="columnItem.prop || columnIndex">
