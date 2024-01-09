@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
-const option = ref({
+const option = reactive({
   disabled: false,
   detail: false,
   menuBtn: true,
@@ -29,10 +29,10 @@ const option = ref({
     },
   ],
 })
-const data = { name: '张三', age: 18, sex: '1' }
+const data = ref({ name: '张三', age: 18, sex: '1' })
 
-watch(() => option.value.detail, (val) => {
-  option.value.menuBtn = !val
+watch(() => option.detail, (val) => {
+  option.menuBtn = !val
 })
 </script>
 
@@ -44,5 +44,7 @@ watch(() => option.value.detail, (val) => {
     详情
   </el-checkbox>
 
-  <avue-form v-model="data" :option="option" />
+  <ClientOnly>
+    <avue-form v-model="data" :option="option" />
+  </ClientOnly>
 </template>

@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 
-import defaultTheme from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme'
 import { Icon } from '@iconify/vue'
 import ElementPlus, { ElMessage, ElOverlay } from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
@@ -9,6 +9,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
 import './index.scss'
 
+import Layout from './Layout.vue'
 import components from '../components'
 import YSComponents from '../../components/index'
 import '../../components/index.scss'
@@ -17,7 +18,8 @@ import '../../form-design/styles/index.scss'
 import { dicRequest, request } from './request'
 
 export default {
-  ...defaultTheme,
+  extends: DefaultTheme,
+  Layout,
   async enhanceApp({ app }: { app: App }) {
     app.use(components)
     app.use(ElementPlus, { locale: zhCn })

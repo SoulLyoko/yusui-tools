@@ -1,15 +1,21 @@
-import type { Ref } from 'vue'
-import type { MaybeRefOrGetter } from '@vueuse/core'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 
 import { watch } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 
 export interface UseComponentThemeOptions {
-  initialValue?: MaybeRefOrGetter<string>
+  initialValue?: MaybeRefOrGetter<Theme>
 }
 
-export function useComponentTheme(options?: UseComponentThemeOptions): Ref<string | undefined> {
-  const theme = useLocalStorage('component-theme-scheme', options?.initialValue)
+export type Theme = keyof typeof themes | undefined
+
+const themes = {
+  element: 'element',
+  antd: 'antd',
+}
+
+export function useComponentTheme(options?: UseComponentThemeOptions) {
+  const theme = useLocalStorage('component-theme-scheme', options?.initialValue) as Ref<Theme>
 
   watch(theme, onChange, { immediate: true })
 
@@ -18,10 +24,10 @@ export function useComponentTheme(options?: UseComponentThemeOptions): Ref<strin
       if (item.startsWith('component-theme-'))
         document.documentElement.classList.remove(item)
     })
-    if (!val)
+    if (!val || val === 'element')
       return
     document.documentElement.classList.add(`component-theme-${val}`)
   }
 
-  return theme
+  return { theme, themes }
 }

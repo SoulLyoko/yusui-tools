@@ -61,19 +61,19 @@ export function useCrudMethods<T extends object = object, P extends object = obj
       }
     })
   const loadMore
-      = options.loadMore
-      ?? (() => {
-        if (crudState.loadStatus === 'nomore')
-          return
-        crudState.pageOption.currentPage!++
-        getDataList(true)
-      })
+    = options.loadMore
+    ?? (() => {
+      if (crudState.loadStatus === 'nomore')
+        return
+      crudState.pageOption.currentPage += 1
+      getDataList(true)
+    })
   const handleRefresh
-      = options.handleRefresh
-      ?? (() => {
-        crudState.pageOption.currentPage = 1
-        getDataList()
-      })
+    = options.handleRefresh
+    ?? (() => {
+      crudState.pageOption.currentPage = 1
+      getDataList()
+    })
   const handleDel
     = options.handleDel
     ?? (async (row: T, loading?: () => void) => {

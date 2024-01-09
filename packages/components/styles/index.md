@@ -1,7 +1,7 @@
 # Theme
 
-::: demo
-./demo/ThemeSwitch
+:::tip
+通过切换顶部的组件主题来查看效果
 :::
 
 ## Button 按钮

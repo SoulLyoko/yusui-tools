@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
-const option = ref({
+const option = reactive({
   viewBtn: true,
   card: false,
   stripe: false,
@@ -51,14 +51,16 @@ const data = [
 </script>
 
 <template>
-  <avue-crud :data="data" :option="option">
-    <template #menu-left>
-      <el-checkbox v-model="option.card">
-        卡片
-      </el-checkbox>
-      <el-checkbox v-model="option.stripe">
-        斑马纹
-      </el-checkbox>
-    </template>
-  </avue-crud>
+  <ClientOnly>
+    <avue-crud :data="data" :option="option">
+      <template #menu-left>
+        <el-checkbox v-model="option.card">
+          卡片
+        </el-checkbox>
+        <el-checkbox v-model="option.stripe">
+          斑马纹
+        </el-checkbox>
+      </template>
+    </avue-crud>
+  </ClientOnly>
 </template>
