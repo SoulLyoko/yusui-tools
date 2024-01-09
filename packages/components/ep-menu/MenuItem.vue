@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import type { MenuItemSlots } from './props'
 
 import { computed } from 'vue'
-import { createReusableTemplate } from '@vueuse/core'
+import { createReusableTemplate, useParentElement } from '@vueuse/core'
 import { subMenuProps } from 'element-plus'
 import { pick } from 'lodash-unified'
 
@@ -39,25 +39,31 @@ function bindMenuItemEvents(route: RouteRecordRaw) {
     },
   }
 }
+
+const parentEl = useParentElement()
+const showTitle = computed(() => {
+  const isPopup = parentEl.value?.classList.contains('el-menu--popup')
+  return !props.collapse || isPopup
+})
 </script>
 
 <template>
   <DefineMenuTitle v-slot="{ route }">
     <slot v-if="$slots.default" :route="route" />
-    <div v-else class="menu-item" style="width:100%" v-bind="bindMenuItemEvents(route)">
-      <el-icon v-if="route.meta?.icon" class="menu-icon">
+    <div v-else class="ep-menu-item" style="width: 100%;" v-bind="bindMenuItemEvents(route)">
+      <el-icon v-if="route.meta?.icon" class="ep-menu-icon">
         <Icon :icon="route.meta?.icon" />
       </el-icon>
-      <span v-if="!collapse" class="menu-title">{{ route.meta?.title }}</span>
+      <span v-show="showTitle" class="ep-menu-title">{{ route.meta?.title }}</span>
     </div>
   </DefineMenuTitle>
 
-  <el-sub-menu v-if="route.children?.length" v-bind="bindSubMenuProps" :index="route[indexKey as 'path']">
+  <el-sub-menu v-if="route.children?.length" v-bind="bindSubMenuProps" :index="route[indexKey as 'path']" :disabled="route.meta?.disabled">
     <template #title>
       <MenuTitle :route="route" />
     </template>
     <MenuItem
-      v-for="childRoute in route.children" :key="childRoute[indexKey ]"
+      v-for="childRoute in route.children" :key="childRoute[indexKey]"
       v-bind="{ ...bindMenuItemProps, ...bindMenuItemEvents(route) }" :route="childRoute"
     >
       <template v-if="$slots.default" #default="scope">
