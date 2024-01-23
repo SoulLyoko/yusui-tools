@@ -35,10 +35,12 @@ const datetimerange = ref('')
   <el-date-picker v-model="value" :shortcuts="shortcuts" type="date" placeholder="Pick a day" clearable />
 
   <h3>其他日期单位</h3>
-  <el-date-picker v-model="week" type="week" format="[Week] ww" placeholder="Pick a week" />
-  <el-date-picker v-model="month" type="month" placeholder="Pick a month" />
-  <el-date-picker v-model="year" type="year" placeholder="Pick a year" />
-  <el-date-picker v-model="dates" type="dates" placeholder="Pick one or more dates" />
+  <el-space direction="vertical">
+    <el-date-picker v-model="week" type="week" format="[Week] ww" placeholder="Pick a week" />
+    <el-date-picker v-model="month" type="month" placeholder="Pick a month" />
+    <el-date-picker v-model="year" type="year" placeholder="Pick a year" />
+    <el-date-picker v-model="dates" type="dates" placeholder="Pick one or more dates" />
+  </el-space>
 
   <h3>选择一段时间</h3>
   <el-date-picker v-model="daterange" type="daterange" start-placeholder="Start date" end-placeholder="End date" />

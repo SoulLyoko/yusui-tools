@@ -6,12 +6,16 @@ const value = ref(true)
 
 <template>
   <h3>基础用法</h3>
-  <el-switch v-model="value" size="large" />
-  <br>
-  <el-switch v-model="value" />
-  <br>
-  <el-switch v-model="value" size="small" />
+  <el-space>
+    <el-switch v-model="value" size="large" />
+    <el-switch v-model="value" />
+    <el-switch v-model="value" size="small" />
+  </el-space>
 
   <h3>禁用状态</h3>
-  <el-switch v-model="value" disabled />
+  <el-space>
+    <el-switch v-model="value" size="large" disabled />
+    <el-switch v-model="value" disabled />
+    <el-switch v-model="value" size="small" disabled />
+  </el-space>
 </template>

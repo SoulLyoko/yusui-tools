@@ -1,0 +1,51 @@
+.el-transfer {
+  --el-transfer-border-color: var(--el-border-color);
+  --el-transfer-panel-header-bg-color: var(--el-fill-color-lighter);
+
+  .el-transfer-panel__header {
+    border-bottom: none;
+
+    .el-checkbox .el-checkbox__label span {
+      color: var(--el-text-color-placeholder);
+    }
+  }
+
+  .el-transfer-panel__filter .el-input__inner {
+    font-size: inherit;
+  }
+
+  .el-transfer-panel__item {
+    margin-right: 0;
+    color: var(--el-text-color-primary);
+
+    &:hover:not(.is-disabled) {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+
+  .el-transfer__buttons {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    padding: 0 20px;
+
+    .el-transfer__button {
+      width: 28px;
+      height: 28px;
+      padding: 0px;
+      margin: 6px 0;
+      border-radius: 100%;
+      background-color: var(--el-fill-color-light);
+      border: unset;
+      color: inherit;
+
+      &:hover {
+        background-color: var(--el-fill-color);
+      }
+
+      &.is-disabled {
+        background-color: var(--el-disabled-bg-color);
+        color: var(--el-text-color-disabled);
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.el-form {
+  .el-form-item.is-error .el-input__wrapper:not(.is-focus, .is-active) {
+    box-shadow: unset;
+    background-color: var(--el-color-danger-light-9);
+
+    &:hover {
+      background-color: var(--el-color-danger-light-8) !important;
+    }
+  }
+}

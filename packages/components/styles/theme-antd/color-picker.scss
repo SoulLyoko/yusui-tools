@@ -25,13 +25,27 @@
   .el-color-picker__icon {
     display: none;
   }
+
+  &.is-disabled .el-color-picker__trigger {
+    background-color: var(--el-disabled-bg-color);
+  }
+
+  .el-color-picker__mask {
+    display: none;
+  }
 }
 
 .el-color-picker__panel {
+  .el-color-svpanel {
+    overflow: hidden;
+  }
+
   .el-color-svpanel__cursor > div {
+    cursor: pointer;
     width: 16px;
     height: 16px;
     border: 2px solid #fff;
     box-shadow: none;
+    transform: translate(-8px, -8px);
   }
 }

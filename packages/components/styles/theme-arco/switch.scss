@@ -1,0 +1,44 @@
+.el-switch {
+  --el-switch-off-color: var(--el-fill-color-dark);
+
+  &.is-disabled {
+    opacity: 0.4;
+  }
+
+  .el-switch__core {
+    height: 24px;
+    border-radius: var(--el-border-radius-round);
+  }
+
+  .el-switch__action {
+    left: 4px;
+  }
+
+  &.is-checked .el-switch__action {
+    left: calc(100% - 20px);
+  }
+
+  &.el-switch--large {
+    .el-switch__core {
+      height: 28px;
+    }
+
+    &.is-checked .el-switch__action {
+      left: calc(100% - 24px);
+    }
+  }
+
+  &.el-switch--small {
+    .el-switch__core {
+      height: 16px;
+    }
+
+    .el-switch__action {
+      left: 1px;
+    }
+
+    &.is-checked .el-switch__action {
+      left: calc(100% - 13px);
+    }
+  }
+}

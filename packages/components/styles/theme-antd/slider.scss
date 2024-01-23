@@ -1,14 +1,31 @@
 .el-slider {
   --el-slider-main-bg-color: var(--el-color-primary-light-7);
-  --el-slider-main-hover-bg-color: var(--el-color-primary-light-5);
   --el-slider-runway-bg-color: var(--el-fill-color-light);
-  --el-slider-runway-hover-bg-color: var(--el-fill-color);
   --el-slider-disabled-color: var(--el-border-color-darker);
   --el-slider-border-radius: 2px;
   --el-slider-height: 4px;
   --el-slider-button-size: 14px;
-  --el-slider-button-wrapper-size: 25px;
-  --el-slider-button-wrapper-offset: -10px;
+  --el-slider-button-wrapper-size: 14px;
+  --el-slider-button-wrapper-offset: -5px;
+
+  --el-slider-main-hover-bg-color: var(--el-color-primary-light-5);
+  --el-slider-runway-hover-bg-color: var(--el-fill-color);
+  --el-slider-stop-border-color: var(--el-color-primary-light-7);
+
+  .el-slider__button {
+    display: block;
+  }
+
+  .el-slider__stop {
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--el-slider-stop-border-color);
+    top: -2px;
+  }
+
+  .el-slider__runway.is-disabled {
+    --el-slider-stop-border-color: var(--el-slider-disabled-color);
+  }
 
   .el-slider__runway:not(.is-disabled) {
     &:hover {

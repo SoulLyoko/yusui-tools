@@ -1,0 +1,178 @@
+.el-date-picker,
+.el-date-range-picker {
+  --el-datepicker-inner-border-color: var(--el-border-color);
+  --el-datepicker-hover-text-color: var(--el-text-color-primary);
+  --el-datepicker-inrange-bg-color: var(--el-fill-color);
+  --el-datepicker-inrange-hover-bg-color: var(--el-fill-color);
+
+  --el-datepicker-hover-bg-color: var(--el-fill-color);
+  --el-datepicker-inrange-active-bg-color: var(--el-color-primary-light-9);
+}
+
+.el-date-editor {
+  --el-datepicker-hover-bg-color: var(--el-fill-color);
+  --el-input-border-color: var(--el-border-color-light);
+  --el-input-bg-color: var(--el-fill-color-light);
+  --el-input-hover-border-color: var(--el-fill-color);
+
+  --el-input-hover-bg-color: var(--el-fill-color);
+  --el-input-focus-bg-color: var(--el-fill-color-blank);
+
+  transition: unset;
+
+  &:hover {
+    box-shadow: unset;
+  }
+
+  &:hover:not(.is-disabled, .is-active) {
+    background: var(--el-input-hover-bg-color);
+  }
+
+  &.is-active {
+    background: var(--el-input-focus-bg-color);
+  }
+}
+
+.el-picker-panel {
+  .el-date-picker__header-label:hover,
+  .el-date-picker__header button:hover {
+    background-color: var(--el-datepicker-hover-bg-color);
+  }
+
+  .el-date-picker__header button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
+
+  // 当前日/月/年下面的小点
+  %today-after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--el-color-primary);
+  }
+
+  // 日
+  .el-date-table:not(.is-week-mode) {
+    td.today .el-date-table-cell__text {
+      font-weight: inherit;
+
+      &::after {
+        @extend %today-after;
+      }
+    }
+
+    td.today:not(.current, .selected) .el-date-table-cell__text {
+      color: inherit;
+    }
+
+    td:hover:not(.current, .selected, .start-date, .end-date)
+      .el-date-table-cell__text {
+      background-color: var(--el-datepicker-hover-bg-color);
+    }
+
+    td.selected .el-date-table-cell {
+      background-color: unset;
+    }
+
+    td.in-range .el-date-table-cell {
+      background-color: var(--el-datepicker-inrange-active-bg-color);
+    }
+  }
+
+  // 周
+  .el-date-table.is-week-mode {
+    td.today .el-date-table-cell__text {
+      font-weight: inherit;
+
+      &::after {
+        @extend %today-after;
+      }
+    }
+
+    .el-date-table__row.current .el-date-table-cell {
+      color: var(--el-color-white);
+      background-color: var(--el-datepicker-active-color);
+    }
+
+    td.today .el-date-table-cell__text {
+      color: inherit;
+      font-weight: inherit;
+    }
+  }
+
+  // 月
+  .el-month-table {
+    td > div {
+      height: 32px;
+      padding: 4px 0;
+    }
+
+    td.in-range > div {
+      background-color: var(--el-datepicker-inrange-active-bg-color);
+    }
+
+    td .cell {
+      height: 24px;
+      line-height: 24px;
+    }
+
+    td.today .cell {
+      color: inherit;
+      font-weight: inherit;
+      position: relative;
+
+      &::after {
+        @extend %today-after;
+      }
+    }
+
+    td.current:not(.disabled) .cell {
+      color: var(--el-color-white);
+      background-color: var(--el-datepicker-active-color);
+    }
+
+    td:hover:not(.current, .start-date, .end-date) .cell {
+      color: var(--el-datepicker-hover-text-color);
+      background-color: var(--el-datepicker-hover-bg-color);
+    }
+  }
+
+  // 年
+  .el-year-table {
+    td {
+      padding: 8px 0;
+    }
+
+    td .cell {
+      height: 24px;
+      line-height: 24px;
+    }
+
+    td.today .cell {
+      color: inherit;
+      font-weight: inherit;
+      position: relative;
+
+      &::after {
+        @extend %today-after;
+      }
+    }
+
+    td.current:not(.disabled) .cell {
+      color: var(--el-color-white);
+      background-color: var(--el-datepicker-active-color);
+    }
+
+    td:hover:not(.current) .cell {
+      color: var(--el-datepicker-hover-text-color);
+      background-color: var(--el-datepicker-hover-bg-color);
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.el-input {
+  --el-input-bg-color: var(--el-fill-color-light);
+  --el-input-hover-border-color: transparent;
+  --el-input-border-color: transparent;
+
+  --el-input-hover-bg-color: var(--el-fill-color);
+  --el-input-focus-bg-color: var(--el-fill-color-blank);
+
+  .el-input-group__append,
+  .el-input-group__prepend {
+    color: var(--el-text-color-primary);
+  }
+
+  .el-input-group__prepend {
+    border-right: var(--el-border);
+  }
+
+  .el-input-group__append {
+    border-left: var(--el-border);
+  }
+
+  &:not(.is-disabled) {
+    &.is-focus .el-input__wrapper,
+    .el-input__wrapper.is-focus,
+    .el-input__wrapper:focus {
+      background-color: var(--el-input-focus-bg-color);
+      box-shadow: 0 0 0 1px var(--el-input-focus-border-color) inset;
+    }
+
+    &:not(.is-focus) {
+      .el-input__wrapper:hover:not(.is-focus, :focus) {
+        background-color: var(--el-input-hover-bg-color);
+      }
+    }
+  }
+}
+
+.el-textarea {
+  --el-input-bg-color: var(--el-fill-color-light);
+  --el-input-hover-border-color: transparent;
+  --el-input-border-color: transparent;
+
+  --el-input-hover-bg-color: var(--el-fill-color);
+  --el-input-focus-bg-color: var(--el-fill-color-blank);
+
+  &:not(.is-disabled) {
+    .el-textarea__inner:hover {
+      background-color: var(--el-input-hover-bg-color);
+    }
+
+    .el-textarea__inner:focus {
+      background-color: var(--el-input-focus-bg-color);
+    }
+  }
+}

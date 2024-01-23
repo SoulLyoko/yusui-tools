@@ -13,9 +13,15 @@ const value = ref(0)
   </el-space>
 
   <h3>按钮位置</h3>
-  <el-input-number v-model="value" controls-position="right" />
+  <el-space>
+    <el-input-number v-model="value" controls-position="right" size="large" />
+    <el-input-number v-model="value" controls-position="right" />
+    <el-input-number v-model="value" controls-position="right" size="small" />
+  </el-space>
 
   <h3>禁用状态</h3>
-  <el-input-number v-model="value" disabled />
-  <el-input-number v-model="value" controls-position="right" disabled />
+  <el-space>
+    <el-input-number v-model="value" disabled />
+    <el-input-number v-model="value" controls-position="right" disabled />
+  </el-space>
 </template>

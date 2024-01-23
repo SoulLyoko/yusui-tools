@@ -27,10 +27,11 @@ const marks = {
   <el-slider v-model="value" />
   <el-slider v-model="value" show-input />
 
+  <h3>显示标记</h3>
+  <el-slider v-model="range" range :marks="marks" />
+
   <h3>禁用状态</h3>
   <el-slider v-model="value" disabled />
   <el-slider v-model="value" disabled show-input />
-
-  <h3>显示标记</h3>
-  <el-slider v-model="range" range :marks="marks" />
+  <el-slider v-model="range" range :marks="marks" disabled />
 </template>

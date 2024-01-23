@@ -1,20 +1,20 @@
 .el-rate {
-  --el-rate-fill-color: #fadb14;
+  --el-rate-fill-color: #f7ba1e;
   --el-rate-void-color: var(--el-fill-color);
 
   .el-rate__icon {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   &.el-rate--large {
     .el-rate__icon {
-      font-size: 22px;
+      font-size: 24px;
     }
   }
 
   &.el-rate--small {
     .el-rate__icon {
-      font-size: 16px;
+      font-size: 20px;
     }
   }
 }

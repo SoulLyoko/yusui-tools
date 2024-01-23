@@ -12,6 +12,7 @@ export type Theme = keyof typeof themes | undefined
 const themes = {
   element: 'element',
   antd: 'antd',
+  arco: 'arco',
 }
 
 export function useComponentTheme(options?: UseComponentThemeOptions) {
@@ -19,7 +20,7 @@ export function useComponentTheme(options?: UseComponentThemeOptions) {
 
   watch(theme, onChange, { immediate: true })
 
-  function onChange(val?: string) {
+  function onChange(val?: Theme) {
     document.documentElement.classList.forEach((item) => {
       if (item.startsWith('component-theme-'))
         document.documentElement.classList.remove(item)

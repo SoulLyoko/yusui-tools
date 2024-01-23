@@ -1,0 +1,38 @@
+.el-time-panel,
+.el-time-range-picker {
+  --el-timepicker-inner-border-color: var(--el-border-color);
+
+  .el-time-range-picker__body {
+    border: none;
+  }
+
+  .el-time-panel__content::before {
+    display: none;
+  }
+
+  .el-time-spinner__wrapper {
+    margin: 4px 0;
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--el-timepicker-inner-border-color);
+    }
+
+    &:not(.is-arrow) {
+      .el-time-spinner__list::before {
+        display: none;
+      }
+
+      .el-time-spinner__list::after {
+        height: 160px;
+      }
+    }
+  }
+
+  .el-time-spinner__item {
+    &.is-active:not(.is-disabled) {
+      color: inherit;
+      font-weight: inherit;
+      background-color: var(--el-fill-color-light);
+    }
+  }
+}

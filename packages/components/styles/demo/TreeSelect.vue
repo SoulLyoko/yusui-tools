@@ -58,10 +58,20 @@ const data = [
 
 <template>
   <h3>基础用法</h3>
-  <el-tree-select v-model="value" :data="data" />
-  <el-tree-select v-model="value" :data="data" show-checkbox />
+  <el-space>
+    <el-tree-select v-model="value" :data="data" />
+    <el-tree-select v-model="value" :data="data" show-checkbox />
+  </el-space>
 
   <h3>多选</h3>
-  <el-tree-select v-model="values" :data="data" multiple />
-  <el-tree-select v-model="values" :data="data" show-checkbox multiple />
+  <el-space>
+    <el-tree-select v-model="values" :data="data" multiple />
+    <el-tree-select v-model="values" :data="data" show-checkbox multiple />
+  </el-space>
+
+  <h3>禁用</h3>
+  <el-space>
+    <el-tree-select v-model="value" :data="data" disabled />
+    <el-tree-select v-model="values" :data="data" multiple disabled />
+  </el-space>
 </template>

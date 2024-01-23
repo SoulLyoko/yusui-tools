@@ -1,0 +1,61 @@
+.el-button {
+  --el-button-plain-hover-bg-color: var(--el-color-info-light-7);
+  --el-button-plain-active-bg-color: var(--el-color-info-light-5);
+  --el-button-text-hover-bg-color: var(--el-color-info-light-8);
+  --el-button-text-active-bg-color: var(--el-color-info-light-7);
+
+  &.is-disabled,
+  &.is-plain,
+  &.is-plain.is-disabled {
+    border-color: transparent;
+  }
+
+  &.el-button--primary {
+    --el-button-plain-hover-bg-color: var(--el-color-primary-light-8);
+    --el-button-plain-active-bg-color: var(--el-color-primary-light-7);
+  }
+
+  &.el-button--success {
+    --el-button-plain-hover-bg-color: var(--el-color-success-light-8);
+    --el-button-plain-active-bg-color: var(--el-color-success-light-7);
+  }
+
+  &.el-button--info {
+    --el-button-plain-hover-bg-color: var(--el-color-info-light-8);
+    --el-button-plain-active-bg-color: var(--el-color-info-light-7);
+  }
+
+  &.el-button--warning {
+    --el-button-plain-hover-bg-color: var(--el-color-warning-light-8);
+    --el-button-plain-active-bg-color: var(--el-color-warning-light-7);
+  }
+
+  &.el-button--danger {
+    --el-button-plain-hover-bg-color: var(--el-color-danger-light-8);
+    --el-button-plain-active-bg-color: var(--el-color-danger-light-7);
+  }
+
+  &.is-plain:not(.is-disabled) {
+    color: var(--el-button-text-color);
+
+    &:focus,
+    &:hover {
+      background-color: var(--el-button-plain-hover-bg-color);
+    }
+
+    &:active {
+      background-color: var(--el-button-plain-active-bg-color);
+    }
+  }
+
+  &.is-text:not(.is-disabled) {
+    &:focus,
+    &:hover {
+      background-color: var(--el-button-text-hover-bg-color);
+    }
+
+    &:active {
+      background-color: var(--el-button-text-active-bg-color);
+    }
+  }
+}

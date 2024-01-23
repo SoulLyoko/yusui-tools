@@ -1,0 +1,20 @@
+@import './root.scss';
+
+.component-theme-arco {
+  @import './button.scss';
+  @import './calendar.scss';
+  @import './cascader.scss';
+  @import './checkbox.scss';
+  @import './color-picker.scss';
+  @import './date-picker.scss';
+  @import './form.scss';
+  @import './input.scss';
+  @import './input-number.scss';
+  @import './radio.scss';
+  @import './rate.scss';
+  @import './select.scss';
+  @import './slider.scss';
+  @import './switch.scss';
+  @import './time-picker.scss';
+  @import './transfer.scss';
+}

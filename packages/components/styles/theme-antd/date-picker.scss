@@ -26,6 +26,11 @@
     }
   }
 
+  .el-date-picker__header-label:hover,
+  .el-date-picker__header button:hover {
+    color: var(--el-color-primary);
+  }
+
   .el-date-table {
     td.start-date,
     .el-date-table__row:hover td:first-child {
@@ -80,7 +85,7 @@
   // 周
   .el-date-table.is-week-mode {
     .el-date-table__row.current .el-date-table-cell {
-      color: #fff;
+      color: var(--el-color-white);
       background-color: var(--el-datepicker-active-color);
     }
 

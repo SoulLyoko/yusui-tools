@@ -35,6 +35,8 @@ const options = [
   </el-select>
 
   <h3>禁用状态</h3>
-  <el-select v-model="value" placeholder="Select" disabled />
-  <el-select v-model="mvalue" placeholder="Select" multiple disabled />
+  <el-space>
+    <el-select v-model="value" placeholder="Select" disabled />
+    <el-select v-model="mvalue" placeholder="Select" multiple disabled />
+  </el-space>
 </template>

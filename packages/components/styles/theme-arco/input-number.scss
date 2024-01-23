@@ -1,0 +1,98 @@
+.el-input-number {
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    &:hover {
+      background-color: var(--el-fill-color);
+      color: inherit;
+    }
+  }
+
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    opacity: 0;
+    transition: opacity 0.1s linear 0.1s;
+    border: none;
+  }
+
+  &:hover:not(.is-disabled) {
+    .el-input-number__decrease,
+    .el-input-number__increase {
+      opacity: 1;
+    }
+  }
+
+  &:not(.is-controls-right) {
+    .el-input-number__decrease {
+      left: 5px;
+    }
+
+    .el-input-number__increase {
+      right: 5px;
+    }
+
+    .el-input-number__decrease,
+    .el-input-number__increase {
+      --el-input-number-controls-height: 22px;
+      width: var(--el-input-number-controls-height);
+      height: var(--el-input-number-controls-height);
+      top: 5px;
+    }
+
+    &.el-input-number--large {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        --el-input-number-controls-height: 30px;
+      }
+    }
+
+    &.el-input-number--small {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        --el-input-number-controls-height: 14px;
+      }
+    }
+  }
+
+  &.is-controls-right {
+    .el-input-number__increase {
+      top: 5px;
+    }
+
+    .el-input-number__decrease {
+      bottom: 5px;
+    }
+
+    .el-input-number__decrease,
+    .el-input-number__increase {
+      --el-input-number-controls-height: 11px;
+      width: 18px;
+      right: 5px;
+    }
+
+    &.el-input-number--large {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        --el-input-number-controls-height: 15px;
+      }
+    }
+
+    &.el-input-number--small {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        --el-input-number-controls-height: 7px;
+      }
+    }
+  }
+
+  .el-input__wrapper {
+    padding: 1px 11px;
+  }
+
+  .el-input--large .el-input__wrapper {
+    padding: 1px 15px;
+  }
+
+  .el-input--small .el-input__wrapper {
+    padding: 1px 7px;
+  }
+}

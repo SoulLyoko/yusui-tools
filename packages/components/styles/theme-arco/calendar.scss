@@ -1,0 +1,33 @@
+.el-calendar {
+  --el-calendar-border: 1px solid var(--el-border-color);
+  --el-calendar-header-border-bottom: none;
+  --el-calendar-selected-bg-color: unset;
+  --el-calendar-cell-width: 100px;
+
+  th {
+    text-align: left;
+  }
+
+  .el-calendar-day {
+    > div:first-child {
+      width: 24px;
+      height: 24px;
+      padding: 0 4px;
+    }
+  }
+
+  td.is-selected .el-calendar-day {
+    > div:first-child {
+      background-color: var(--el-color-primary);
+      color: var(--el-color-white);
+      border-radius: 100%;
+    }
+  }
+
+  .el-calendar-table:not(.is-range) {
+    td.next,
+    td.prev {
+      color: var(--el-text-color-disabled);
+    }
+  }
+}

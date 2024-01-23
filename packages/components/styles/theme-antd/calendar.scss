@@ -18,11 +18,6 @@
       margin: 0 4px;
       padding: 4px 8px;
 
-      > span:first-child {
-        display: block;
-        text-align: right;
-      }
-
       &:hover {
         background-color: var(--el-calendar-hover-bg-color);
       }

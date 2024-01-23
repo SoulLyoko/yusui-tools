@@ -1,0 +1,42 @@
+.el-checkbox {
+  --el-checkbox-input-border: 2px solid var(--el-border-color);
+  --el-checkbox-disabled-checked-input-fill: var(--el-color-primary-light-7);
+  --el-checkbox-disabled-checked-input-border-color: var(
+    --el-color-primary-light-7
+  );
+  --el-checkbox-disabled-checked-icon-color: var(
+    --el-checkbox-checked-icon-color
+  );
+  --el-checkbox-checked-text-color: var(--el-text-color-primary);
+
+  .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
+    transform: unset;
+    width: 60%;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .el-checkbox__inner::after {
+    left: 3px;
+    top: 1px;
+    width: 2px;
+    height: 5px;
+    border-width: 2px;
+  }
+
+  &.el-checkbox--small {
+    .el-checkbox__inner::after {
+      left: 2px;
+      top: 0px;
+      height: 5px;
+    }
+  }
+
+  &:hover:not(.is-disabled) {
+    .el-checkbox__input:not(.is-checked) .el-checkbox__inner {
+      border-color: var(--el-border-color-dark);
+    }
+  }
+}
