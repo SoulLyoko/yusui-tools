@@ -55,6 +55,10 @@ export default {
           ...CONFIG_DEFAULT.tabs!,
           { label: '默认隐藏', prop: 'test', display: false },
         ],
+        tableOption: {
+          border: false,
+          stripe: false,
+        },
         upload: {
           action: import.meta.env.VITE_UPLOAD_URL,
           headers: { Authorization: import.meta.env.VITE_TOKEN }, // ()=> ({ Authorization: storage.get('token') })

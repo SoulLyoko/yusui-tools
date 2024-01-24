@@ -86,9 +86,9 @@ function openFlow(row: FlowOps) {
       <avue-radio v-model="searchForm.taskNodeType" :dic="taskNodeTypeDic" button />
     </template>
     <template #processTitle="{ row }">
-      <el-link type="primary" :underline="false" @click="openFlow(row)">
+      <el-text type="primary" style="cursor: pointer;" @click="openFlow(row)">
         {{ row.processTitle || "无标题" }}
-      </el-link>
+      </el-text>
     </template>
   </avue-crud>
 </template>

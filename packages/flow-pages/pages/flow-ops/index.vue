@@ -55,9 +55,9 @@ function openFlow(row: FlowOps) {
       </el-button>
     </template>
     <template #processTitle="{ row }">
-      <el-link type="primary" :underline="false" @click="openFlow(row)">
+      <el-text type="primary" style="cursor: pointer;" @click="openFlow(row)">
         {{ row.processTitle || "无标题" }}
-      </el-link>
+      </el-text>
     </template>
   </avue-crud>
 </template>

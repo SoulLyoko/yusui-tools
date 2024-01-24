@@ -32,7 +32,7 @@ const {
   emitter,
 } = state
 
-/** 按钮点击时如果配置了显示审批窗口，则显示审批窗口，否则直接提交流程 */
+/** 按钮点击时如果配置了显示审批窗口则显示，否则直接提交流程 */
 async function onButtonClick(btn: FlowButton) {
   activeBtn.value = btn
   if (btn.validate === 1) {
@@ -56,7 +56,7 @@ async function onSubmit() {
     const { buttonKey } = activeBtn.value
     const handler = buttonHandler[buttonKey!]
     if (!handler) {
-      ElMessage.error('无法找到相应的操作')
+      ElMessage.error('没有找到相应的操作')
       return
     }
     const res = await handler?.()

@@ -17,7 +17,7 @@ export const tableOption = defineTableOption<FlowOps>({
       dicUrl: '/sapier-flow/flow-category/list',
       props: { label: 'name', value: 'id' },
     },
-    { label: '标题', prop: 'processTitle', search: true },
+    { label: '标题', prop: 'processTitle', search: true, overHidden: true },
     { label: '流水号', prop: 'serialNumber' },
     { label: '当前节点', prop: 'taskNodeName' },
     { label: '审批人', prop: 'assigneeName' },
