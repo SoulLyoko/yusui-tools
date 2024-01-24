@@ -30,9 +30,14 @@ function getItemOption(element: ElementTreeNode): AvueFormOption {
   }
   else {
     const column = []
-    if (element.props)
-      column.push({ ...omitBy(element.props, isFunction), span: 24 })
-
+    if (element.props) {
+      column.push({
+        ...omitBy(element.props, isFunction),
+        span: 24,
+        display: true,
+        style: { opacity: element.props.display === false ? 0.3 : 1 },
+      })
+    }
     return { ...common, column }
   }
 }
