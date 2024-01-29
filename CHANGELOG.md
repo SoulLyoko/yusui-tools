@@ -1,3 +1,19 @@
+## [2.0.6](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.4...v2.0.6) (2024-01-09)
+
+
+### Bug Fixes
+
+* **ep-menu:** 修复纵向折叠时子菜单不显示的问题 ([b5e6278](https://github.com/SoulLyoko/yusui-tools/commit/b5e6278cb53128ee25d69d31a72963694a237edd))
+* **uvue:** 提交和删除问题，crudState增加defaults ([a3c85d6](https://github.com/SoulLyoko/yusui-tools/commit/a3c85d6a71aea29168e2655389d9ad6a72b82493))
+* **uvue:** 修复删除按钮在新增时的显示问题 ([e12dd2e](https://github.com/SoulLyoko/yusui-tools/commit/e12dd2ec12e47cda4d57495ed37484791509ba98))
+
+
+### Features
+
+* **uvue:** uvue-form增加表单类型的class ([d4684f5](https://github.com/SoulLyoko/yusui-tools/commit/d4684f552808e3722d7d161b79f2e17235acd87d))
+
+
+
 ## [2.0.5](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.4...v2.0.5) (2023-12-21)
 
 
