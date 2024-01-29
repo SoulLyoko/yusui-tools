@@ -11,7 +11,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const vModels = useVModels(props, undefined, { passive: true, deep: true })
   const { flowDetail, modelValue: formData, formLoading, activeTab, afterGetDetail } = vModels
 
-  const { emitter } = useEmitter()
+  const emitter = useEmitter()
 
   /** 标签页 */
   const { tabs, customForm, request } = useConfigProvider()
@@ -38,6 +38,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const tabsRef = ref()
   if (isMobile()) {
     useSwipe(tabsRef, {
+      threshold: 100,
       onSwipeEnd(e, direction) {
         if (!['left', 'right'].includes(direction))
           return
@@ -60,7 +61,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
         flowDetail.value = res.data
         formData.value = { ...res.data.formData, ...formData.value }
         await afterGetDetail?.value?.(res.data)
-        await emitter.emitAsync('afterGetDetail', res.data)
+        await emitter.emitter.emitAsync('afterGetDetail', res.data)
       })
       .finally(() => {
         formLoading.value = false

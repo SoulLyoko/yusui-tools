@@ -8,7 +8,7 @@ import { TaskStatus, taskNodeTypeDic, useConfigProvider, useFlowForm, useFlowOps
 
 import { tableOption } from './option'
 
-const debugMode = useStorage('debugMode', false)
+const debugMode = useStorage('flow-debug-mode', false)
 
 const { request } = useConfigProvider()
 const { getTaskOpsList } = useFlowOpsApi(request)
@@ -50,9 +50,11 @@ function openFlow(row: FlowOps) {
       <avue-radio v-model="searchForm.taskNodeType" :dic="taskNodeTypeDic" button />
     </template>
     <template #menu-right>
-      <el-button type="text">
-        <el-switch v-model="debugMode" inline-prompt active-text="debug" inactive-text="debug" />
-      </el-button>
+      <el-tooltip content="开启调试模式不提交任务">
+        <el-button type="text">
+          <el-switch v-model="debugMode" inline-prompt active-text="debug" inactive-text="debug" />
+        </el-button>
+      </el-tooltip>
     </template>
     <template #processTitle="{ row }">
       <el-text type="primary" style="cursor: pointer;" @click="openFlow(row)">
