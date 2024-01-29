@@ -1,3 +1,14 @@
+## [2.0.7](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.6...v2.0.7) (2024-01-29)
+
+
+### Bug Fixes
+
+* **flow-form:** 优化移动端滑动 ([fb318af](https://github.com/SoulLyoko/yusui-tools/commit/fb318af059df8b695472daf9438fd39f9982f415))
+* **flow-pages:** 修复表格配置合并 ([c85b105](https://github.com/SoulLyoko/yusui-tools/commit/c85b1059d7fe3bae0fd2b618b5c6d76397554b4a))
+* **form-design:** 组件不可见时调低透明度 ([29d7ff4](https://github.com/SoulLyoko/yusui-tools/commit/29d7ff4d69fd000a2f774ba2482f9a76b28cbc51))
+
+
+
 ## [2.0.6](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.4...v2.0.6) (2024-01-09)
 
 
