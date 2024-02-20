@@ -31,8 +31,12 @@ onBeforeClick((activeBtn) => {
 })
 // 提交前的钩子，返回Promise.reject()可以阻止提交
 onBeforeSubmit((activeBtn) => {
-  if (activeBtn.buttonKey === 'flow_pass')
+  if (activeBtn.buttonKey === 'flow_pass') {
     console.log('正在提交')
+    formData.value = {
+      ...formData.value,
+    }
+  }
 })
 
 // 暴露异步validate方法作为提交前的校验

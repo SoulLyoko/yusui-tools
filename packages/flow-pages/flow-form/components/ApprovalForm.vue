@@ -114,7 +114,8 @@ watchEffect(async () => {
   if (checkField('specifyNode') && !approvalFormData.value.jumpTaskNodeKey)
     return
 
-  resetNodes()
+  await resetNodes()
+  /** 解除以下依赖的跟踪 */
   /** 获取审批人和传阅人节点数据 */
   try {
     treeLoading.value = true
