@@ -1,18 +1,23 @@
-import type { CollectionsData, IconSelectProps, IconsData } from '../types'
 import type { Ref } from 'vue'
+import type { IconSelectProps, IconifyInfo, IconsData } from '../types'
 
 import { computed, ref, watchEffect } from 'vue'
 
 export function useLocalIcons(props: IconSelectProps, popVisible: Ref<boolean>) {
-  const collectionsData = ref<CollectionsData>({})
+  const iconInfoList = ref<IconifyInfo[]>([])
   const iconsData = ref<IconsData>({})
   const loading = ref(false)
   const activeTab = ref('')
 
+  const icons = computed<string[]>(() => {
+    const { prefix, icons } = iconsData.value
+    return Object.keys(icons ?? {}).map(icon => `${prefix}:${icon}`)
+  })
+
   watchEffect(() => {
     if (popVisible.value && Array.isArray(props.collections)) {
-      collectionsData.value = Object.fromEntries(props.collections.map(e => [e.info.prefix, e.info]))
-      activeTab.value = Object.keys(collectionsData.value ?? {})[0]
+      iconInfoList.value = props.collections.map(e => e.info)
+      activeTab.value = iconInfoList.value[0].prefix ?? ''
     }
   })
 
@@ -23,10 +28,5 @@ export function useLocalIcons(props: IconSelectProps, popVisible: Ref<boolean>) 
     }
   })
 
-  const icons = computed<string[]>(() => {
-    const { prefix, icons } = iconsData.value
-    return Object.keys(icons ?? {}).map(icon => `${prefix}:${icon}`)
-  })
-
-  return { collectionsData, iconsData, icons, loading, activeTab }
+  return { iconInfoList, iconsData, icons, loading, activeTab }
 }

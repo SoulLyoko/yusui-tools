@@ -18,4 +18,12 @@ describe('test IconSelect', () => {
     await wrapper.find('.icon-select-input').trigger('click')
     expect(document.querySelector('.icon-select-popper')).not.toBeNull()
   })
+
+  it('should sorted by collections', async () => {
+    await wrapper.setProps({ collections: 'icon-park,ant-design' })
+    await wrapper.find('.icon-select-input').trigger('click')
+    const tabs = document.querySelectorAll('.el-tabs__item')
+    expect(tabs.item(0).id).toEqual('tab-icon-park')
+    expect(tabs.item(1).id).toEqual('tab-ant-design')
+  })
 })

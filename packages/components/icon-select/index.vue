@@ -18,7 +18,7 @@ const { iframeSrc } = useIframeSrc(props)
 const { popVisible, onPopShow, onPopHide } = usePopCliboard(props, modelValue)
 
 const isLocal = computed(() => Array.isArray(props.collections))
-const { value: { collectionsData, icons, loading, activeTab } } = computed(() => {
+const { value: { iconInfoList, icons, loading, activeTab } } = computed(() => {
   return isLocal.value ? useLocalIcons(props, popVisible) : useRemoteIcons(props, popVisible)
 })
 
@@ -37,7 +37,7 @@ const { searchValue, displayIcons, resetDisplayIcons, loadDisplayIcons } = useDi
 
     <template v-if="collections">
       <el-tabs v-model="activeTab" class="icon-select-tabs" @tab-change="resetDisplayIcons">
-        <el-tab-pane v-for="(collection, key) in collectionsData" :key="collection.name" :label="collection.name" :name="key" />
+        <el-tab-pane v-for="iconInfo in iconInfoList" :key="iconInfo.name" :label="iconInfo.name" :name="iconInfo.prefix" />
       </el-tabs>
       <el-input v-model="searchValue" class="icon-select-search" placeholder="输入图标名称搜索" prefix-icon="el-icon-search" clearable />
       <el-skeleton :loading="loading" :count="10">
