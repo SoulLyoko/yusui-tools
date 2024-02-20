@@ -130,9 +130,23 @@ function setCheckedNodes(nodes: ApprovalNode[]) {
 </script>
 
 <template>
-  <el-tag v-for="item in modelValue" :key="item.id" type="info" closable @close="onTagClose(item)">
-    {{ item.title }}
-  </el-tag>
+  <el-popover placement="bottom" :width="600" :disabled="modelValue.length <= 9">
+    <template #reference>
+      <el-space wrap>
+        <el-tag v-for="item in modelValue.filter((e, i) => i < 9)" :key="item.id" type="info" closable @close="onTagClose(item)">
+          {{ item.title }}
+        </el-tag>
+        <el-tag v-if="modelValue.length > 9" type="info">
+          +{{ modelValue.length - 9 }}
+        </el-tag>
+      </el-space>
+    </template>
+    <el-space wrap size="small">
+      <el-tag v-for="item in modelValue.filter((e, i) => i >= 9)" :key="item.id" type="info" closable @close="onTagClose(item)">
+        {{ item.title }}
+      </el-tag>
+    </el-space>
+  </el-popover>
   <el-tree ref="treeRef" class="approval-tree" :class="`mode-${mode}`" :data="treeData" v-bind="treeProps">
     <template #default="{ data: nodeData }">
       <div>
