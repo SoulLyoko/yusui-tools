@@ -145,12 +145,14 @@ async function onSubmit() {
 
     .el-dialog__headerbtn {
       top: 0;
+      z-index: 1;
     }
 
     .el-drawer__close-btn {
       position: absolute;
       top: 10px;
       right: 10px;
+      z-index: 1;
     }
   }
 

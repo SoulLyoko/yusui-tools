@@ -2,10 +2,12 @@
 import { ref } from 'vue'
 import { useDictConfigProvider } from '@yusui/composables'
 
-const single = ref('')
+const single = ref('value1')
 const multiple = ref([])
 const singletree = ref('')
 const multipletree = ref([])
+
+const switchValue = ref('')
 
 const dicData = [
   {
@@ -55,6 +57,12 @@ function request({ url }: { url: keyof typeof dicMap }) {
     }, 1000)
   })
 }
+
+const refDicValue = ref('value1')
+const refDicData = ref<any[]>([])
+setTimeout(() => {
+  refDicData.value = dicData
+}, 3000)
 </script>
 
 <template>
@@ -66,10 +74,11 @@ function request({ url }: { url: keyof typeof dicMap }) {
   <br>
   select: <VDict v-model="single" :dic-data="dicData" type="select" />
   <br>
-  switch: <VDict v-model="single" :dic-data="dicData" type="switch" />
+  switch: <VDict v-model="switchValue" :dic-data="dicData" type="switch" />
   <br>
   text: <VDict :model-value="single" :dic-data="dicData" type="text" />
   <br>
+  refDicText: <VDict :model-value="refDicValue" :dic-data="refDicData" type="text" />
 
   <br>
   Multiple Value:

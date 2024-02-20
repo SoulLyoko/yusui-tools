@@ -10,6 +10,6 @@ const { selectedLabel } = useDict(props)
 
 <template>
   <el-text v-bind="$attrs">
-    {{ selectedLabel ?? props.modelValue }}
+    {{ selectedLabel }}
   </el-text>
 </template>
