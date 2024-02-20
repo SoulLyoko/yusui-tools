@@ -43,4 +43,9 @@ export const CONFIG_DEFAULT: FlowPagesConfig = {
       res: 'res.data',
     },
   },
+  flowParams: {
+    'flow.approval.autocheck': true,
+    'flow.approval.autocomment': true,
+    'flow.approval.tree.horizontal': true,
+  },
 }

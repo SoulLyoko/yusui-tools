@@ -13,6 +13,7 @@ export enum TaskStatus {
   '失败' = 3,
   '撤销' = 4,
   '终止' = 5,
+  '退回' = 6,
 }
 /** 流程状态 */
 export enum FlowStatus {
