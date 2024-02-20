@@ -38,7 +38,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const tabsRef = ref()
   if (isMobile()) {
     useSwipe(tabsRef, {
-      threshold: 100,
+      threshold: 300,
       onSwipeEnd(e, direction) {
         if (!['left', 'right'].includes(direction))
           return
@@ -60,8 +60,10 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
       .then(async (res) => {
         flowDetail.value = res.data
         formData.value = { ...res.data.formData, ...formData.value }
-        await afterGetDetail?.value?.(res.data)
-        await emitter.emitter.emitAsync('afterGetDetail', res.data)
+        setTimeout(async () => {
+          await afterGetDetail?.value?.(res.data)
+          await emitter.emitter.emitAsync('afterGetDetail', res.data)
+        }, 300)
       })
       .finally(() => {
         formLoading.value = false
@@ -82,7 +84,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
 
   const state = {
     ...vModels,
-    ...useEmitter(),
+    ...emitter,
     formData,
     formVariables,
     tabRefs,
