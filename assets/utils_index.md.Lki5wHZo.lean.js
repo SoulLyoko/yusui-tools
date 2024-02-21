@@ -1,1 +1,0 @@
-import{_ as a,c as s,o as t,R as i}from"./chunks/framework.Zz1SbNKh.js";const k=JSON.parse('{"title":"Plugins","description":"","frontmatter":{},"headers":[],"relativePath":"utils/index.md","filePath":"utils/index.md"}'),e={name:"utils/index.md"},n=i("",3),l=[n];function o(r,d,h,c,p,_){return t(),s("div",null,l)}const g=a(e,[["render",o]]);export{k as __pageData,g as default};
