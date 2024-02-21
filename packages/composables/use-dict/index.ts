@@ -1,7 +1,8 @@
+import type { MaybeRefOrGetter } from 'vue'
 import type { DicItem } from '@smallwei/avue'
 import type { UseDictOptions, UseDictReturn } from './types'
 
-import { computed, toValue, watch } from 'vue'
+import { computed, unref, watch } from 'vue'
 import { useRequest } from 'vue-request'
 import { get } from 'lodash-unified'
 import { filterTree, findTree, serialize } from '@yusui/utils'
@@ -12,6 +13,10 @@ import { useDictConfigProvider } from './config'
 export * from './config'
 export * from './constants'
 export * from './types'
+
+function toValue(source: MaybeRefOrGetter) {
+  return typeof source === 'function' ? source() : unref(source)
+}
 
 export function useDict(options: UseDictOptions = {}): UseDictReturn {
   const config = useDictConfigProvider(options)
