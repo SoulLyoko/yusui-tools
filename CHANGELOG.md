@@ -1,3 +1,13 @@
+## [2.0.9](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.8...v2.0.9) (2024-02-21)
+
+
+### Bug Fixes
+
+* **IconSelect:** 处理collections为匹配方式时的问题 ([e4b6da9](https://github.com/SoulLyoko/yusui-tools/commit/e4b6da935d9dbcbde20086344097945d3e4b3450))
+* **useDict:** 内部实现toValue ([6040b4a](https://github.com/SoulLyoko/yusui-tools/commit/6040b4acec5dcf6b802837c063b18d994114b0c8))
+
+
+
 ## [2.0.8](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.7...v2.0.8) (2024-02-21)
 
 
