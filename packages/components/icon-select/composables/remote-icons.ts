@@ -8,14 +8,21 @@ export function useRemoteIcons(props: IconSelectProps, popVisible: Ref<boolean>)
   const activeTab = ref('')
 
   const fetchColectionsUrl = computed(() => `https://api.iconify.design/collections?prefixes=${typeof props.collections === 'string' ? props.collections : ''}`)
-  const { data: collectionsData, execute: fetchColections } = useFetch(fetchColectionsUrl, { immediate: false, initialData: [] }).json<CollectionsData>()
+  const { data: collectionsData, execute: fetchColections } = useFetch(fetchColectionsUrl, { immediate: false }).json<CollectionsData>()
 
   const fetchIconsUrl = computed(() => `https://api.iconify.design/collection?prefix=${activeTab.value}`)
   const { data: iconsData, isFetching: loading, execute: fetchIcons } = useFetch(fetchIconsUrl, { immediate: false }).json<IconsData>()
 
   const iconInfoList = computed<IconifyInfo[]>(() => {
-    if (typeof props.collections === 'string')
-      return props.collections.split(',').map(c => ({ ...collectionsData.value![c], prefix: c })).filter(e => e)
+    if (typeof props.collections === 'string' && collectionsData.value) {
+      const collections = Object.entries(collectionsData.value).map(([prefix, collection]) => ({ ...collection, prefix }))
+      return props.collections.split(',').map((n) => {
+        if (n.endsWith('-'))
+          return collections.filter(e => e.prefix.includes(n))
+        else
+          return collections.filter(e => e.prefix === n)
+      }).flat().filter(e => e)
+    }
     return []
   })
 
