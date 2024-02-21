@@ -1,3 +1,22 @@
+## [2.0.8](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.7...v2.0.8) (2024-02-21)
+
+
+### Bug Fixes
+
+* **flow-form:** 非待办时禁用表单 ([58c1e17](https://github.com/SoulLyoko/yusui-tools/commit/58c1e1778ab0078053628ea7fa60bb4b9a142bc1))
+* **flow-form:** 修复在onBeforeSubmit修改表单值导致审批窗口重新加载的问题 ([8088646](https://github.com/SoulLyoko/yusui-tools/commit/8088646c11222f20d8bd30ec78906c92c9f685e8))
+* **flow-form:** 修复afterGetDetail不触发的问题 ([5055e72](https://github.com/SoulLyoko/yusui-tools/commit/5055e727447dc0dba007db0575728ed0e596e66a))
+* **IconSelect:** tabs遵循collections的排序 ([71a294f](https://github.com/SoulLyoko/yusui-tools/commit/71a294f1e568657daba57b499b30b261632232f3))
+* **useDict:** 修复dicData丢失响应的问题 ([2391056](https://github.com/SoulLyoko/yusui-tools/commit/2391056b23dddf2fb01f86db0d373af43db022b9))
+
+
+### Features
+
+* **flow-form:** 审批树已选择项过多时以弹出的形式展示剩余项 ([050aee0](https://github.com/SoulLyoko/yusui-tools/commit/050aee02f0c47efe5a571aac9abb594e8cc23bf1))
+* **flow-pages:** 从useProvideState中导出流程参数和按钮处理 ([e67da1d](https://github.com/SoulLyoko/yusui-tools/commit/e67da1d7a788a17ef175cb1e8383835874cd9801))
+
+
+
 ## [2.0.7](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.6...v2.0.7) (2024-01-29)
 
 
