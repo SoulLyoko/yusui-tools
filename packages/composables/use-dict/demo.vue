@@ -40,7 +40,7 @@ function request({ url }: { url: keyof typeof dicMap }) {
           data: dicMap[url],
         },
       })
-    }, 1000)
+    }, 3000)
   })
 }
 
@@ -52,7 +52,7 @@ const {
   selectedItem,
 } = useDict({ modelValue: selectValue, dicData })
 
-const treeSelectValue = ref('')
+const treeSelectValue = ref('value1-1')
 const {
   data: treeSelectData,
   loading: treeSelectLoading,

@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { AvueCrudOption } from '@smallwei/avue'
 import type { TabsProps } from 'element-plus'
 import type { Res } from '@yusui/types'
-import type { FlowFile } from '../api'
+import type { FlowFile, FlowParamMap } from '../api'
 import type { UseFlowFormOptions } from '../composables'
 import type { ButtonHandler, FlowFormState } from '../flow-form'
 
@@ -66,6 +66,8 @@ export interface FlowPagesConfig {
       res?: string
     }
   }
+  /** 流程参数 */
+  flowParams?: Partial<FlowParamMap>
 }
 
 export interface RequestInstance extends AxiosInstance {

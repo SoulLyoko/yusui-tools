@@ -15,7 +15,7 @@ const icon = ref('')
   <br>
   从icones获取: <IconSelect v-model="icon" source="icones" />
   <br>
-  指定图标集: <IconSelect v-model="icon" collections="ant-design,icon-park" />
+  指定图标集: <IconSelect v-model="icon" collections="icon-park,icon-park-,ant-design" />
   <br>
   本地图标集: <IconSelect v-model="icon" :collections="localCollections" :width="800" />
 </template>

@@ -4,11 +4,11 @@ import type { AvueCrudOption } from '@smallwei/avue'
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { durationFormat } from '@yusui/utils'
-import { FlowDesignWrapper, isMobile, useConfigProvider, useFlowParamApi } from '@yusui/flow-pages'
+import { FlowDesignWrapper, isMobile } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
 
-const { flowDetail } = useInjectState()
+const { flowDetail, useFlowParam } = useInjectState()
 
 const activeType = ref(isMobile() ? 'timeline' : 'table')
 const typeList = [
@@ -45,8 +45,7 @@ const tableOption: AvueCrudOption = {
   ],
 }
 
-const { request } = useConfigProvider()
-const { data: handleTypeDic } = useFlowParamApi(request).useParam('flow.handle.type')
+const handleTypeDic = useFlowParam('flow.handle.type')
 function findHandleTypeDicItem(value: number) {
   return handleTypeDic.value?.find(e => e.value === value)
 }

@@ -3,7 +3,7 @@ import type { AvueFormOption } from '@smallwei/avue'
 
 import { defineComponent, getCurrentInstance, h, ref, resolveComponent, watchEffect } from 'vue'
 import { jsonParse } from '@yusui/form-design'
-import { asyncValidate } from '@yusui/flow-pages'
+import { TaskStatus, asyncValidate } from '@yusui/flow-pages'
 
 import { useFormDefaults, useInjectState } from '../composables'
 
@@ -17,9 +17,10 @@ export default defineComponent({
     const option = ref<AvueFormOption>({})
     watchEffect(() => {
       const { formOption } = flowDetail.value.process ?? {}
+      const isNotTodo = flowDetail.value.task && flowDetail.value.task.status !== TaskStatus['待办']
       // 给表单配置传递this组件实例
       option.value = jsonParse.bind(proxy)(formOption || '{"menuBtn":false}')
-      option.value.detail = detail.value
+      option.value.detail = detail.value || isNotTodo
     })
 
     const formRef = ref()

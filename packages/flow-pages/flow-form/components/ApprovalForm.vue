@@ -4,7 +4,7 @@ import type { ApprovalFormData, ApprovalNode } from '@yusui/flow-pages'
 
 import { computed, nextTick, ref, watchEffect } from 'vue'
 import { findTree } from '@yusui/utils'
-import { asyncValidate, isMobile, useConfigProvider, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
+import { asyncValidate, isMobile, useConfigProvider, useFlowTaskApi } from '@yusui/flow-pages'
 
 import { useInjectState } from '../composables'
 import CommonComments from './CommonComments.vue'
@@ -15,16 +15,18 @@ const emit = defineEmits(['submit'])
 
 const { request } = useConfigProvider()
 const { getApprovalNode } = useFlowTaskApi(request)
-const { useParam } = useFlowParamApi(request)
 
-const { formData, approvalFormData, activeBtn, approvalVisible, formVariables, flowDetail } = useInjectState()
+const { formData, approvalFormData, activeBtn, approvalVisible, formVariables, flowDetail, submitLoading, useFlowParam } = useInjectState()
+
+const autoCheck = useFlowParam('flow.approval.autocheck')
+const autoComment = useFlowParam('flow.approval.autocomment')
+const treeHorizontal = useFlowParam('flow.approval.tree.horizontal')
 
 const approvalNodes = ref<ApprovalNode[]>([])
 const checkedApprovalNodes = ref<ApprovalNode[]>([])
 const circulateNodes = ref<ApprovalNode[]>([])
 const checkedCirculateNodes = ref<ApprovalNode[]>([])
 
-const submitLoading = ref(false)
 const treeLoading = ref(false)
 
 const formRef = ref<AvueFormInstance>()
@@ -90,16 +92,13 @@ function circulateValidator(rule: any, value: any, callback: (msg?: string) => v
     return callback('请选择传阅人')
 }
 
-const { data: autoCheck } = useParam('flow.approval.autocheck')
-const { data: autoComment } = useParam('flow.approval.autocomment')
-
 watchEffect(async () => {
   /** 弹窗表单未加载完成 */
   if (!approvalVisible.value || !formRef.value)
     return
   nextTick(() => {
     formRef.value!.resetForm()
-    approvalFormData.value.comment = formData.value.comment || (autoComment.value === 'true' && activeBtn.value.name) || ''
+    approvalFormData.value.comment = formData.value.comment || (autoComment.value && activeBtn.value.name) || ''
   })
 
   resetNodes()
@@ -108,13 +107,15 @@ watchEffect(async () => {
 /** 分开监听jumpTaskNodeKey，不然会导致jumpTaskNodeKey被清空 */
 watchEffect(async () => {
   /** 不显示审批人 */
-  if (!checkField('assignee'))
+  if (!checkField('assignee') || !approvalVisible.value)
     return
   /** 显示指定节点但未选择节点 */
   if (checkField('specifyNode') && !approvalFormData.value.jumpTaskNodeKey)
     return
 
-  resetNodes()
+  /** await解除以下依赖的跟踪 */
+  await resetNodes()
+
   /** 获取审批人和传阅人节点数据 */
   try {
     treeLoading.value = true
@@ -144,7 +145,6 @@ function resetNodes() {
 
 async function onConfirm() {
   await asyncValidate(formRef)
-  submitLoading.value = true
 
   const { data: assigneeData, outgoing } = getApprovalDataSet(checkedApprovalNodes.value)
   const { data: circulateData } = getApprovalDataSet(checkedCirculateNodes.value)
@@ -184,14 +184,14 @@ function getApprovalDataSet(nodes: ApprovalNode[]) {
         <el-skeleton v-if="treeLoading" />
         <ApprovalTree
           v-else key="AssigneeTree" v-model="checkedApprovalNodes" :data="approvalNodes"
-          :auto-check="autoCheck === 'true'" :mode="isMobile() ? 'vertical' : 'horizontal'"
+          :auto-check="autoCheck" :mode="(isMobile() || !treeHorizontal) ? 'vertical' : 'horizontal' "
         />
       </template>
       <template #circulate>
         <el-skeleton v-if="treeLoading" />
         <ApprovalTree
           v-else key="CirculateTree" v-model="checkedCirculateNodes" :data="circulateNodes"
-          :mode="isMobile() ? 'vertical' : 'horizontal'"
+          :mode="(isMobile() || !treeHorizontal) ? 'vertical' : 'horizontal'"
         />
       </template>
       <template #comment>
@@ -203,7 +203,7 @@ function getApprovalDataSet(nodes: ApprovalNode[]) {
       <el-button @click="approvalVisible = false">
         取 消
       </el-button>
-      <el-button type="primary" @click="onConfirm">
+      <el-button type="primary" :loading="submitLoading" @click="onConfirm">
         确 定
       </el-button>
     </template>

@@ -1,5 +1,5 @@
-import type { CollectionsData, IconSelectProps, IconsData } from '../types'
 import type { Ref } from 'vue'
+import type { CollectionsData, IconSelectProps, IconifyInfo, IconsData } from '../types'
 
 import { computed, ref, watchEffect } from 'vue'
 import { useFetch } from '@vueuse/core'
@@ -13,16 +13,17 @@ export function useRemoteIcons(props: IconSelectProps, popVisible: Ref<boolean>)
   const fetchIconsUrl = computed(() => `https://api.iconify.design/collection?prefix=${activeTab.value}`)
   const { data: iconsData, isFetching: loading, execute: fetchIcons } = useFetch(fetchIconsUrl, { immediate: false }).json<IconsData>()
 
-  watchEffect(async () => {
-    if (popVisible.value && typeof props.collections === 'string') {
-      await fetchColections()
-      activeTab.value = Object.keys(collectionsData.value ?? {})[0]
+  const iconInfoList = computed<IconifyInfo[]>(() => {
+    if (typeof props.collections === 'string' && collectionsData.value) {
+      const collections = Object.entries(collectionsData.value).map(([prefix, collection]) => ({ ...collection, prefix }))
+      return props.collections.split(',').map((n) => {
+        if (n.endsWith('-'))
+          return collections.filter(e => e.prefix.includes(n))
+        else
+          return collections.filter(e => e.prefix === n)
+      }).flat().filter(e => e)
     }
-  })
-
-  watchEffect(() => {
-    if (popVisible.value && activeTab.value && typeof props.collections == 'string')
-      fetchIcons()
+    return []
   })
 
   const icons = computed<string[]>(() => {
@@ -37,5 +38,17 @@ export function useRemoteIcons(props: IconSelectProps, popVisible: Ref<boolean>)
     return []
   })
 
-  return { collectionsData, iconsData, icons, loading, activeTab }
+  watchEffect(() => {
+    if (popVisible.value && activeTab.value && typeof props.collections == 'string')
+      fetchIcons()
+  })
+
+  watchEffect(async () => {
+    if (popVisible.value && typeof props.collections === 'string') {
+      await fetchColections()
+      // activeTab.value = Object.keys(collectionsData.value ?? {})[0]
+      activeTab.value = iconInfoList.value[0].prefix ?? ''
+    }
+  })
+  return { iconInfoList, iconsData, icons, loading, activeTab }
 }

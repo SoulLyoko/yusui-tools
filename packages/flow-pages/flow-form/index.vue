@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import type { FlowButton } from '@yusui/flow-pages'
-
-import { ElMessage } from 'element-plus'
-import { flowFormEmits, flowFormProps, isMobile, useButtonHandler, useConfigProvider, useProvideState } from '@yusui/flow-pages'
+import { flowFormEmits, flowFormProps, isMobile, useConfigProvider, useProvideState } from '@yusui/flow-pages'
 
 import ButtonList from './components/ButtonList.vue'
 import InternalApprovalForm from './components/ApprovalForm.vue'
@@ -21,54 +18,11 @@ const {
   tabRefs,
   tabList,
   activeTab,
-  activeBtn,
   formLoading,
-  approvalVisible,
-  submitLoading,
-  beforeClick,
-  beforeSubmit,
-  afterSubmit,
   tabsRef,
-  emitter,
+  onButtonClick,
+  onSubmit,
 } = state
-
-/** 按钮点击时如果配置了显示审批窗口，则显示审批窗口，否则直接提交流程 */
-async function onButtonClick(btn: FlowButton) {
-  activeBtn.value = btn
-  if (btn.validate === 1) {
-    for (const tabRef of Object.values(tabRefs.value))
-      await tabRef?.validate?.()
-  }
-  await beforeClick?.value?.(btn)
-  await emitter.emitAsync('beforeClick', btn)
-  if (btn?.approval !== 'false')
-    approvalVisible.value = true
-  else
-    onSubmit()
-}
-
-const buttonHandler = useButtonHandler(state)
-async function onSubmit() {
-  try {
-    submitLoading.value = true
-    await beforeSubmit?.value?.(activeBtn.value!)
-    await emitter.emitAsync('beforeSubmit', activeBtn.value!)
-    const { buttonKey } = activeBtn.value
-    const handler = buttonHandler[buttonKey!]
-    if (!handler) {
-      ElMessage.error('无法找到相应的操作')
-      return
-    }
-    const res = await handler?.()
-    await afterSubmit?.value?.(res)
-    await emitter.emitAsync('afterSubmit', res)
-    approvalVisible.value = false
-    emit('complete', activeBtn.value!)
-  }
-  finally {
-    submitLoading.value = false
-  }
-}
 </script>
 
 <template>
@@ -145,12 +99,14 @@ async function onSubmit() {
 
     .el-dialog__headerbtn {
       top: 0;
+      z-index: 1;
     }
 
     .el-drawer__close-btn {
       position: absolute;
       top: 10px;
       right: 10px;
+      z-index: 1;
     }
   }
 

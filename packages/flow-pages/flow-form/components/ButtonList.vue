@@ -12,7 +12,7 @@ import { useInjectState } from '../composables'
 const emit = defineEmits<{ (e: 'click', btn: FlowButton): void }>()
 
 const { userInfo, request } = useConfigProvider()
-const { flowDetail } = useInjectState()
+const { flowDetail, submitLoading } = useInjectState()
 
 const { data: allButtonList } = useFlowButtonApi(request).useList()
 
@@ -60,7 +60,7 @@ const displayButtonList = computed(() => {
 </script>
 
 <template>
-  <el-button v-for="btn in displayButtonList" :key="btn.buttonKey" :type="btn.buttonType" @click="emit('click', btn)">
+  <el-button v-for="btn in displayButtonList" :key="btn.buttonKey" :type="btn.buttonType" :loading="submitLoading" @click="emit('click', btn)">
     <Icon v-if="btn.icon" :icon="btn.icon" />
     {{ btn.name }}
   </el-button>

@@ -1,5 +1,5 @@
 import { sleep } from '@yusui/utils'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 import { useDict } from '.'
 
@@ -29,6 +29,30 @@ describe('useDict', () => {
       dicUrl: '/dict/dicData',
     })
     await sleep()
+    expect(data.value).toEqual(dicData)
+  })
+
+  it('should return data with reactive options', async () => {
+    const reactiveOptions = reactive({
+      dicData: [] as any[],
+    })
+    setTimeout(() => {
+      reactiveOptions.dicData = dicData
+    }, 100)
+    const { data } = useDict(reactiveOptions)
+    await sleep(100)
+    expect(data.value).toEqual(dicData)
+  })
+
+  it('should return data with ref dicData', async () => {
+    const refDicData = ref<any[]>([])
+    setTimeout(() => {
+      refDicData.value = dicData
+    }, 100)
+    const { data } = useDict({
+      dicData: refDicData,
+    })
+    await sleep(100)
     expect(data.value).toEqual(dicData)
   })
 

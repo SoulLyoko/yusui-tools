@@ -7,5 +7,5 @@ import { CONFIG_DEFAULT } from '../constants'
 
 const globalConfigState = reactive(cloneDeep(CONFIG_DEFAULT))
 export function useConfigProvider(config?: FlowPagesConfig) {
-  return merge(globalConfigState, config)
+  return merge(globalConfigState, config) as FlowPagesConfig
 }

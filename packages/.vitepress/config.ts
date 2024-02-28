@@ -196,11 +196,11 @@ export default defineConfig({
             {
               text: '页面',
               items: [
+                { text: '流程设计', link: '/flow-pages/pages/flow-manage/index' },
+                { text: '流程运维', link: '/flow-pages/pages/flow-ops/index' },
                 { text: '表单模板', link: '/flow-pages/pages/form-template/index' },
                 { text: '流程模板', link: '/flow-pages/pages/flow-template/index' },
                 { text: '建表设计', link: '/flow-pages/pages/table-template/index' },
-                { text: '流程运维', link: '/flow-pages/pages/flow-ops/index' },
-                { text: '流程设计', link: '/flow-pages/pages/flow-manage/index' },
                 { text: '流程参数', link: '/flow-pages/pages/flow-param/index' },
                 { text: '流程按钮', link: '/flow-pages/pages/flow-button/index' },
                 { text: '工作台', link: '/flow-pages/pages/flow-workbench/index' },

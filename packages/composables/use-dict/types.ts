@@ -1,11 +1,11 @@
-import type { MaybeRef, Ref } from 'vue'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { AxiosInstance } from 'axios'
 import type { DicItem, DicProps } from '@smallwei/avue'
 import type { useRequest } from 'vue-request'
 
 export interface UseDictOptions {
   /** 绑定值 */
-  modelValue?: MaybeRef<UseDictValue>
+  modelValue?: MaybeRefOrGetter<UseDictValue>
   /** 请求实例 */
   request?: AxiosInstance
   // /** 数据类型用于数组和字符串之间的转化 */
@@ -15,7 +15,7 @@ export interface UseDictOptions {
   /** 数据字典属性的配置对象 */
   props?: DicProps
   /** 数据字典值 */
-  dicData?: MaybeRef<DicItem[]>
+  dicData?: MaybeRefOrGetter<DicItem[]>
   /** 数据字典接口url地址 */
   dicUrl?: string
   /** 数据字典接口url携带请求参数 */

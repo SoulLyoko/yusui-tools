@@ -46,11 +46,13 @@ export interface FlowParamMap {
   /** 自动建表设计默认字段 */
   'table.default.fields': TableField[]
   /** 只有一个节点时自动选择 */
-  'flow.approval.autocheck': 'true' | 'fasle'
+  'flow.approval.autocheck': boolean
   /** 自动填入意见 */
-  'flow.approval.autocomment': 'true' | 'fasle'
+  'flow.approval.autocomment': boolean
   /** 流程动态审批人 */
   'flow.trends.user': DicItem[]
+  /** 审批树人名的排列方向 */
+  'flow.approval.tree.horizontal': boolean
 }
 export type FlowParamValue<K> = K extends keyof FlowParamMap ? FlowParamMap[K] : any
 
@@ -71,7 +73,8 @@ export function useFlowParamApi(request: RequestInstance) {
   }
   const getList = (params: Page & FlowParam) => request.get<ResRecords<FlowParam[]>>(url.list, { params })
   /** 获取所有流程参数键值对 */
-  const getAllParam = () => request.get<ResData<FlowParamMap>>(url.all)
+  const getParams = () => request.get<ResData<FlowParamMap>>(url.all)
+  const useParams = useRes(getParams, { res: 'data' })
   /** 根据key获取流程参数 */
   const getParam = <K extends keyof FlowParamMap>(key: K) => request.get<ResData<FlowParamValue<K>>>(url.key, { params: { paramKey: key } })
   const useParam = <K extends keyof FlowParamMap>(key: K) => useRes(getParam, { res: 'data', modify: false, defaultParams: [key] })
@@ -81,7 +84,8 @@ export function useFlowParamApi(request: RequestInstance) {
   return {
     url,
     getList,
-    getAllParam,
+    getParams,
+    useParams,
     getParam,
     useParam,
     create,

@@ -1,20 +1,34 @@
 import type { FlowFormEmit, FlowFormProps } from '../types'
 import type { InjectionKey } from 'vue'
+import type { FlowButton, FlowParamMap } from '@yusui/flow-pages'
 
 import { computed, defineAsyncComponent, inject, provide, ref, watchEffect } from 'vue'
 import { clamp, useSwipe, useVModels } from '@vueuse/core'
-import { isMobile, useConfigProvider, useEmitter, useFlowTaskApi } from '@yusui/flow-pages'
+import { isMobile, useButtonHandler, useConfigProvider, useEmitter, useFlowParamApi, useFlowTaskApi } from '@yusui/flow-pages'
+import { ElMessage } from 'element-plus'
 
 export const injectionKey: InjectionKey<ReturnType<typeof useProvideState>> = Symbol('flowFormState')
 
 export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const vModels = useVModels(props, undefined, { passive: true, deep: true })
-  const { flowDetail, modelValue: formData, formLoading, activeTab, afterGetDetail } = vModels
+  const {
+    flowDetail,
+    modelValue: formData,
+    formLoading,
+    submitLoading,
+    activeTab,
+    activeBtn,
+    approvalVisible,
+    afterGetDetail,
+    beforeClick,
+    beforeSubmit,
+    afterSubmit,
+  } = vModels
 
-  const { emitter } = useEmitter()
+  const emitter = useEmitter()
 
   /** 标签页 */
-  const { tabs, customForm, request } = useConfigProvider()
+  const { tabs, customForm, request, flowParams: defaultFlowParams } = useConfigProvider()
   const tabRefs = ref<Record<string, any>>({})
   const tabList = computed(() => {
     return tabs?.filter((tab) => {
@@ -38,6 +52,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const tabsRef = ref()
   if (isMobile()) {
     useSwipe(tabsRef, {
+      threshold: 300,
       onSwipeEnd(e, direction) {
         if (!['left', 'right'].includes(direction))
           return
@@ -59,13 +74,23 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
       .then(async (res) => {
         flowDetail.value = res.data
         formData.value = { ...res.data.formData, ...formData.value }
-        await afterGetDetail?.value?.(res.data)
-        await emitter.emitAsync('afterGetDetail', res.data)
+        setTimeout(async () => {
+          await afterGetDetail?.value?.(res.data)
+          await emitter.emitter.emitAsync('afterGetDetail', res.data)
+        }, 300)
       })
       .finally(() => {
         formLoading.value = false
       })
   })
+
+  /** 流程参数 */
+  const { useParams } = useFlowParamApi(request)
+  const { data: flowParamsData } = useParams()
+  const flowParams = computed(() => ({ ...defaultFlowParams, ...flowParamsData.value } as FlowParamMap))
+  function useFlowParam<K extends keyof FlowParamMap>(key: K) {
+    return computed<FlowParamMap[K]>(() => flowParams.value[key])
+  }
 
   /** 表单变量 */
   const formVariables = computed(() => {
@@ -81,7 +106,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
 
   const state = {
     ...vModels,
-    ...useEmitter(),
+    ...emitter,
     formData,
     formVariables,
     tabRefs,
@@ -89,9 +114,52 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
     detail,
     tabsRef,
     emit,
+    onButtonClick,
+    onSubmit,
+    flowParams,
+    useFlowParam,
   }
 
   provide(injectionKey, state)
+
+  /** 按钮点击时如果配置了显示审批窗口则显示，否则直接提交流程 */
+  async function onButtonClick(btn: FlowButton) {
+    activeBtn.value = btn
+    if (btn.validate === 1) {
+      for (const tabRef of Object.values(tabRefs.value))
+        await tabRef?.validate?.()
+    }
+    await beforeClick?.value?.(btn)
+    await emitter.emitter.emitAsync('beforeClick', btn)
+    if (btn?.approval !== 'false')
+      approvalVisible.value = true
+    else
+      onSubmit()
+  }
+
+  /** 提交处理 */
+  const buttonHandler = useButtonHandler(state)
+  async function onSubmit() {
+    try {
+      submitLoading.value = true
+      await beforeSubmit?.value?.(activeBtn.value!)
+      await emitter.emitter.emitAsync('beforeSubmit', activeBtn.value!)
+      const { buttonKey } = activeBtn.value
+      const handler = buttonHandler[buttonKey!]
+      if (!handler) {
+        ElMessage.error('没有找到相应的操作')
+        return
+      }
+      const res = await handler?.()
+      await afterSubmit?.value?.(res)
+      await emitter.emitter.emitAsync('afterSubmit', res)
+      approvalVisible.value = false
+      emit('complete', activeBtn.value!)
+    }
+    finally {
+      submitLoading.value = false
+    }
+  }
 
   return state
 }
