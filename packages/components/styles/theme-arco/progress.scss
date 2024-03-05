@@ -1,0 +1,53 @@
+.el-progress {
+  .el-progress-bar__outer {
+    background-color: var(--el-fill-color);
+  }
+
+  .el-progress-bar__outer[style='height: 6px;'] {
+    height: 4px !important;
+  }
+
+  .el-progress-bar__inner--indeterminate {
+    animation: unset;
+  }
+
+  .el-progress-circle path:last-child[stroke='#20a0ff'] {
+    stroke: var(--el-color-primary);
+  }
+
+  &.is-success .el-progress-circle path:last-child {
+    stroke: var(--el-color-success);
+  }
+
+  &.is-warning .el-progress-circle path:last-child {
+    stroke: var(--el-color-warning);
+  }
+
+  &.is-exception .el-progress-circle path:last-child {
+    stroke: var(--el-color-danger);
+  }
+
+  .el-progress-circle {
+    width: 64px !important;
+    height: 64px !important;
+
+    path.el-progress-circle__path {
+      stroke-width: 6;
+    }
+
+    path.el-progress-circle__track {
+      stroke-width: 4;
+      stroke: var(--el-fill-color);
+    }
+  }
+
+  .el-progress-circle + .el-progress__text {
+    span {
+      font-size: 14px;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+}

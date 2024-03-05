@@ -1,0 +1,19 @@
+.el-carousel {
+  --el-carousel-indicator-height: 4px;
+  --el-carousel-indicator-width: 12px;
+  --el-carousel-arrow-size: 24px;
+  --el-carousel-arrow-font-size: 14px;
+  --el-carousel-arrow-background: hsla(0, 0%, 100%, 0.3);
+  --el-carousel-arrow-hover-background: hsla(0, 0%, 100%, 0.5);
+
+  .el-carousel__button {
+    border-radius: var(--el-carousel-indicator-height);
+  }
+
+  .el-carousel__indicator--vertical .el-carousel__button {
+    height: var(--el-carousel-indicator-width);
+  }
+
+  .el-carousel__arrow {
+  }
+}

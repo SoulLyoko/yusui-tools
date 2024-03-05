@@ -1,0 +1,48 @@
+.el-pagination {
+  --el-pagination-border-radius: var(--el-border-radius-base);
+  --el-pagination-button-bg-color: var(--el-fill-color-light);
+
+  button {
+    &.btn-prev {
+      margin-right: 4px;
+    }
+
+    &.btn-next {
+      margin-left: 4px;
+    }
+
+    &:hover:not([disabled]) {
+      color: var(--el-pagination-text-color);
+      background-color: var(--el-pagination-button-bg-color);
+    }
+  }
+
+  .el-pager li.is-active {
+    font-weight: unset;
+  }
+
+  &:not(.is-background) .el-pager li {
+    margin: 0 4px;
+
+    &.is-active {
+      color: var(--el-color-primary);
+      background-color: var(--el-color-primary-light-9);
+
+      &.is-disabled {
+        color: var(--el-color-primary-light-7);
+        background-color: var(--el-fill-color-lighter);
+      }
+    }
+
+    &:hover:not(.is-active, .more, .is-disabled) {
+      color: var(--el-pagination-text-color);
+      background-color: var(--el-pagination-button-bg-color);
+    }
+  }
+
+  &.is-background {
+    .el-pager li.is-active.is-disabled {
+      background-color: var(--el-fill-color);
+    }
+  }
+}

@@ -66,7 +66,7 @@
   --el-fill-color-blank: #ffffff;
   --el-box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04),
     0px 8px 20px rgba(0, 0, 0, 0.08);
-  --el-box-shadow-light: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  --el-box-shadow-light: 0 4px 10px var(--el-color-info-light-8);
   --el-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
   --el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     0px 12px 32px rgba(0, 0, 0, 0.12), 0px 8px 16px -8px rgba(0, 0, 0, 0.16);
@@ -104,4 +104,7 @@
   --el-component-size-large: 40px;
   --el-component-size: 32px;
   --el-component-size-small: 24px;
+
+  --el-border-radius-medium: 4px;
+  --el-border-radius-large: 8px;
 }

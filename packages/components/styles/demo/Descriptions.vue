@@ -16,14 +16,14 @@ const items = [
     </el-descriptions-item>
   </el-descriptions>
 
-  <el-descriptions title="无边框" border>
+  <el-descriptions title="带边框" border>
     <el-descriptions-item v-for="item in items" :key="item.label" :label="item.label">
       {{ item.value }}
     </el-descriptions-item>
   </el-descriptions>
 
   <h3>垂直列表</h3>
-  <el-descriptions title="User Info" direction="vertical" border>
+  <el-descriptions title="带边框" direction="vertical" border>
     <el-descriptions-item v-for="item in items" :key="item.label" :label="item.label">
       {{ item.value }}
     </el-descriptions-item>

@@ -3,15 +3,22 @@
 .component-theme-arco {
   @import './button.scss';
   @import './calendar.scss';
+  @import './card.scss';
+  @import './carousel.scss';
   @import './cascader.scss';
   @import './checkbox.scss';
+  @import './collapse.scss';
   @import './color-picker.scss';
   @import './date-picker.scss';
+  @import './descriptions.scss';
   @import './form.scss';
   @import './input.scss';
   @import './input-number.scss';
+  @import './pagination.scss';
+  @import './progress.scss';
   @import './radio.scss';
   @import './rate.scss';
+  @import './result.scss';
   @import './select.scss';
   @import './slider.scss';
   @import './switch.scss';
