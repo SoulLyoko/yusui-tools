@@ -1,3 +1,12 @@
+# [3.0.0-beta.3](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2024-03-07)
+
+
+### Features
+
+* **request:** axios扩展 ([e4c011a](https://github.com/SoulLyoko/yusui-tools/commit/e4c011a29bed160f3059d53e8d3a01fdfa70bf47))
+
+
+
 # [3.0.0-beta.2](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2024-03-07)
 
 
