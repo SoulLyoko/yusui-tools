@@ -11,9 +11,10 @@ const { modelValue } = useVModels(props)
 const { data } = useDict(props)
 const dicProps = mergeDicProps(props.props)
 
+const attrs = useAttrs()
 const cascaderProps = computed(() => {
   return {
-    ...useAttrs(),
+    ...attrs,
     options: data.value,
     props: {
       ...dicProps,

@@ -14,7 +14,7 @@ const props = defineProps<{ modelValue: FormPropertyItem[] }>()
 const { modelValue: tableData } = useVModels(props, undefined, { defaultValue: [] })
 
 const [DefinePropSelect, PropSelect] = createReusableTemplate<{
-  modelValue: string
+  'modelValue': string
   'onUpdate:modelValue': (val: string) => void
 }>()
 

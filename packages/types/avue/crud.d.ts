@@ -1,6 +1,4 @@
-import type { TableProps } from 'element-plus/es/components/table/src/table/defaults'
-import type { Filters, TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
-import type { FormItemRule, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
+import type { FormItemRule, TableColumnCtx, TableProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import type { VNode } from 'vue'
 import type { ElSize, EmitFn } from '../helpers'
 
@@ -466,7 +464,7 @@ declare module '@smallwei/avue' {
     /** 当表格的筛选条件发生变化的时候会触发该事件 */
     'filter': (filters: [[text: string, symbol: string, value: string]]) => any
     /** 当表格的筛选条件发生变化的时候会触发该事件 */
-    'filter-change': (filters: Filters) => any
+    'filter-change': (filters: TableColumnCtx<T>['filters']) => any
     /** 当表格的排序条件发生变化的时候会触发该事件 */
     'sort-change': (args: { column: TableColumnCtx<T>, prop: string, order: 'ascsending' | 'descending' }) => any
     /** 当某一行被双击时会触发该事件 */
@@ -727,19 +725,19 @@ declare module '@smallwei/avue' {
 
   export interface AvueCrudSlots<T = any, D = TableRowData<T>> {
     /** 空数据插槽 */
-    empty: () => VNode[]
+    'empty': () => VNode[]
     /** 展开插槽 */
-    expand: (props: { row: D, index: number }) => VNode[]
+    'expand': (props: { row: D, index: number }) => VNode[]
     /** 菜单插槽 */
-    menu: (props: { row: D, type: MenuType, disabled: boolean, size: ElSize, index: number }) => VNode[]
+    'menu': (props: { row: D, type: MenuType, disabled: boolean, size: ElSize, index: number }) => VNode[]
     /** 表单菜单插槽 */
     'menu-form': (props: { disabled: boolean, size: ElSize, type: FormType }) => VNode[]
     /** 表格头部插槽 */
-    header: () => VNode[]
+    'header': () => VNode[]
     /** 表格底部部插槽 */
-    footer: () => VNode[]
+    'footer': () => VNode[]
     /** 分页插槽 */
-    page: () => VNode[]
+    'page': () => VNode[]
     /** 下拉菜单插槽 */
     'menu-btn': (props: { row: D, type: string, disabled: boolean, size: ElSize, index: number }) => VNode[]
     /** 左侧菜单插槽 */
@@ -747,7 +745,7 @@ declare module '@smallwei/avue' {
     /** 右侧菜单插槽 */
     'menu-right': (props: { size: ElSize }) => VNode[]
     /** 搜索栏插槽 */
-    search: (props: { row: D, search: D, size: ElSize }) => VNode[]
+    'search': (props: { row: D, search: D, size: ElSize }) => VNode[]
     /** 搜索栏菜单插槽 */
     'search-menu': (props: { row: D, search: D, disabled: boolean, size: ElSize }) => VNode[]
     /** 表单项或表单项标题插槽 */

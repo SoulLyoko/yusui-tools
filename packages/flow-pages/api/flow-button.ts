@@ -5,54 +5,54 @@ import type { RequestInstance } from '../types'
 import { useRes } from '@yusui/composables'
 
 export enum FlowButtonType {
-  '默认' = 'default',
-  '主要' = 'primary',
-  '成功' = 'success',
-  '警告' = 'warning',
-  '危险' = 'danger',
-  '信息' = 'info',
-  '文字' = 'text',
+  默认 = 'default',
+  主要 = 'primary',
+  成功 = 'success',
+  警告 = 'warning',
+  危险 = 'danger',
+  信息 = 'info',
+  文字 = 'text',
 }
 
 export enum FlowButtonKey {
-  '保存草稿' = 'flow_draft',
-  '发送' = 'flow_pass',
-  '退回' = 'flow_reject',
-  '终止' = 'flow_terminate',
-  '撤销' = 'flow_revoke',
-  '撤回到发起' = 'flow_withdraw',
-  '打印' = 'flow_print',
-  '转办' = 'flow_transfer',
-  '加签' = 'flow_add_instance',
-  '减签' = 'flow_del_instance',
-  '指定回退' = 'flow_rollback',
-  '绿色通道' = 'flow_green',
+  保存草稿 = 'flow_draft',
+  发送 = 'flow_pass',
+  退回 = 'flow_reject',
+  终止 = 'flow_terminate',
+  撤销 = 'flow_revoke',
+  撤回到发起 = 'flow_withdraw',
+  打印 = 'flow_print',
+  转办 = 'flow_transfer',
+  加签 = 'flow_add_instance',
+  减签 = 'flow_del_instance',
+  指定回退 = 'flow_rollback',
+  绿色通道 = 'flow_green',
 }
 
 export enum FlowButtonDisplay {
-  '显示' = 'true',
-  '隐藏' = 'false',
-  '发起人' = 'startUser',
-  '处理人' = 'assignee',
-  '已办' = 'done',
-  '待办' = 'todo',
-  '已办结' = 'finished',
-  '未办结' = 'unfinished',
-  '已发起' = 'started',
-  '未发起' = 'notstarted',
+  显示 = 'true',
+  隐藏 = 'false',
+  发起人 = 'startUser',
+  处理人 = 'assignee',
+  已办 = 'done',
+  待办 = 'todo',
+  已办结 = 'finished',
+  未办结 = 'unfinished',
+  已发起 = 'started',
+  未发起 = 'notstarted',
 }
 
 export enum FlowButtonApproval {
-  '不显示' = 'false',
-  '指定节点' = 'specifyNode',
-  '审批人' = 'assignee',
-  '传阅人' = 'circulate',
-  '意见' = 'comment',
+  不显示 = 'false',
+  指定节点 = 'specifyNode',
+  审批人 = 'assignee',
+  传阅人 = 'circulate',
+  意见 = 'comment',
 }
 
 export enum FlowButtonStatus {
-  '禁用' = 0,
-  '正常' = 1,
+  禁用 = 0,
+  正常 = 1,
 }
 
 /** 按钮配置 */

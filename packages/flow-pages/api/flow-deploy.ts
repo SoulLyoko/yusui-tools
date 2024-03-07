@@ -5,8 +5,8 @@ import type { RequestInstance } from '../types'
 import { useRes } from '@yusui/composables'
 
 export enum IsMainVersion {
-  '否' = 0,
-  '是' = 1,
+  否 = 0,
+  是 = 1,
 }
 
 /** 已部署流程 */

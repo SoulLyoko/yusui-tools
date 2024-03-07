@@ -11,9 +11,10 @@ const { modelValue } = useVModels(props)
 const { data, loading } = useDict(props)
 const dicProps = mergeDicProps(props.props)
 
+const attrs = useAttrs()
 const treeSelectProps = computed(() => {
   return {
-    ...useAttrs(),
+    ...attrs,
     data: data.value,
     multiple: props.multiple,
     nodeKey: dicProps.value,

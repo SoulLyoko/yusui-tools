@@ -4,5 +4,12 @@
     "outDir": "dist"
   },
   "include": ["packages"],
-  "exclude": ["packages/.vitepress", "**/demo.*", "**/*.test.*", "**/*.md", "packages/flow-pages", "packages/uvue"]
+  "exclude": [
+    "packages/.vitepress",
+    "**/demo.*",
+    "**/*.test.*",
+    "**/*.md",
+    "packages/flow-pages",
+    "packages/uvue"
+  ]
 }

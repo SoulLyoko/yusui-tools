@@ -6,8 +6,8 @@
 
 ```ts
 enum Status {
-  '失败' = 0,
-  '成功' = 1
+  失败 = 0,
+  成功 = 1
 }
 const dic = enumToDic(Status) // [{ label: "失败", value: 0 },{ label: "成功", value: 1 }]
 ```

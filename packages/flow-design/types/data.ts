@@ -1,11 +1,11 @@
 export enum AssigneeType {
-  '用户' = 'user',
-  '部门' = 'dept',
-  '岗位' = 'post',
-  '动态' = 'dynamic',
-  '指定节点' = 'userTask',
-  '指定用户' = 'specifyUser',
-  '自定义' = 'custom',
+  用户 = 'user',
+  部门 = 'dept',
+  岗位 = 'post',
+  动态 = 'dynamic',
+  指定节点 = 'userTask',
+  指定用户 = 'specifyUser',
+  自定义 = 'custom',
 }
 
 export interface AssigneeItem {

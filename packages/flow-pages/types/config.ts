@@ -73,16 +73,16 @@ export interface FlowPagesConfig {
 export interface RequestInstance extends AxiosInstance {
   <T = Res>(config: AxiosRequestConfig): Promise<T>
   <T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  getUri(config?: AxiosRequestConfig): string
-  request<T = Res>(config: AxiosRequestConfig): Promise<T>
-  get<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  delete<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  head<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  options<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  post<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  put<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  patch<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  postForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  putForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  patchForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
+  getUri: (config?: AxiosRequestConfig) => string
+  request: <T = Res>(config: AxiosRequestConfig) => Promise<T>
+  get: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  delete: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  head: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  options: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  post: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  put: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  patch: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  postForm: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  putForm: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  patchForm: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
 }

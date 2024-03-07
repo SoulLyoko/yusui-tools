@@ -3,7 +3,7 @@ import type { Emitter, EventHandlerMap, EventType } from 'mitt'
 import mitt from 'mitt'
 
 export interface EmitterAsync<Events extends Record<EventType, unknown>> extends Emitter<Events> {
-  emitAsync<Key extends keyof Events>(type: Key, event: Events[Key]): Promise<any>
+  emitAsync: <Key extends keyof Events>(type: Key, event: Events[Key]) => Promise<any>
 }
 
 /**

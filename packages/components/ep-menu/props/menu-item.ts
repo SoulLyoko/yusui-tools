@@ -22,5 +22,5 @@ export const menuItemEmits = {
 export type MenuItemProps = ExtractPropTypes<typeof menuItemProps>
 export type MenuItemEmits = typeof menuItemEmits
 export interface MenuItemSlots {
-  default(props: { route: RouteRecordRaw }): any
+  default: (props: { route: RouteRecordRaw }) => any
 }

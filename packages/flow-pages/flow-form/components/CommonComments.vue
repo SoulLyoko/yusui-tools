@@ -1,6 +1,6 @@
 <script setup lang="ts" name="common-comments">
 import type { CommonComment } from '@yusui/flow-pages'
-import type Node from 'element-plus/es/components/tree/src/model/node'
+import type { ElTreeNode } from '@yusui/types'
 
 import { computed, nextTick, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
@@ -39,7 +39,7 @@ async function delComment(data: CommonComment) {
   ElMessage.success('删除成功')
   refresh()
 }
-async function nodeDrop(draggingNode: Node, dropNode: Node) {
+async function nodeDrop(draggingNode: ElTreeNode, dropNode: ElTreeNode) {
   let data = dropNode.parent.data as CommonComment[]
   data = data.map((item, index) => {
     return { id: item.id, sort: index + 1 }

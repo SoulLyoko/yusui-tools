@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const list = [
-  { label: 'Primary', type: '' as const },
+  { label: 'Primary', type: 'primary' as const },
   { label: 'Success', type: 'success' as const },
   { label: 'Info', type: 'info' as const },
   { label: 'Warning', type: 'warning' as const },

@@ -11,10 +11,11 @@ const { modelValue } = useVModels(props)
 const { data, loading } = useDict(props)
 const { label, value } = mergeDicProps(props.props)
 
+const attrs = useAttrs()
 const switchProps = computed(() => {
   const [inactiveItem, activeItem] = data.value ?? []
   return {
-    ...useAttrs(),
+    ...attrs,
     loading: loading.value,
     inactiveText: inactiveItem?.[label!],
     inactiveValue: inactiveItem?.[value!],

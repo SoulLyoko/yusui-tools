@@ -28,8 +28,8 @@ describe('tool utils', () => {
 
   it('enumToDic', () => {
     enum Status {
-      '失败' = 0,
-      '成功' = 1,
+      失败 = 0,
+      成功 = 1,
     }
     expect(enumToDic(Status)).toEqual([
       { label: '失败', value: 0 },
@@ -39,8 +39,8 @@ describe('tool utils', () => {
 
   it('enumToDic props', () => {
     enum Status {
-      '失败' = 0,
-      '成功' = 1,
+      失败 = 0,
+      成功 = 1,
     }
     expect(enumToDic(Status, { label: 'name', value: 'id' })).toEqual([
       { name: '失败', id: 0 },

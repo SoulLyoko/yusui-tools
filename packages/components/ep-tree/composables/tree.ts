@@ -1,5 +1,5 @@
-import type Node from 'element-plus/es/components/tree/src/model/node'
 import type { Ref } from 'vue'
+import type { ElTreeNode } from '@yusui/types'
 import type { EpTreeProps, TreeInstance } from '../types'
 
 import { computed, nextTick, onMounted, useAttrs, watch } from 'vue'
@@ -33,7 +33,7 @@ export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any, tree
     )
   })
 
-  function onNodeClick(data: Node['data'], node: Node, e: any) {
+  function onNodeClick(data: ElTreeNode['data'], node: ElTreeNode, e: any) {
   // `onCheck` is trigger when `checkOnClickNode`
     if (props.multiple && props.checkOnClickNode)
       return
@@ -53,7 +53,7 @@ export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any, tree
     })
   }
 
-  function onCheck(data: Node['data'], { checkedKeys }: { checkedKeys: string[] }) {
+  function onCheck(data: ElTreeNode['data'], { checkedKeys }: { checkedKeys: string[] }) {
     // ignore when no checkbox, like only `checkOnClickNode` is true
     if (!props.multiple)
       return
@@ -76,7 +76,7 @@ export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any, tree
     })
   }
 
-  function filterNodeMethod(value: string, data: Node['data'], node: Node) {
+  function filterNodeMethod(value: string, data: ElTreeNode['data'], node: ElTreeNode) {
     if (props.filterNodeMethod)
       return props.filterNodeMethod(value, data, node)
     if (!value)

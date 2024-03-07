@@ -16,7 +16,7 @@ declare module '@smallwei/avue' {
     theme?: 'dark'
   }
   const Avue: {
-    install(app: import('vue').App, config?: AvueConfig): void
+    install: (app: import('vue').App, config?: AvueConfig) => void
     locale: { use: AnyFn, t: AnyFn, i18n: AnyFn }
     version: string
     [name: string]: import('vue').DefineComponent

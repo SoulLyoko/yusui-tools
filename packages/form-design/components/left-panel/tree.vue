@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type Node from 'element-plus/es/components/tree/src/model/node.d'
+import type { ElTreeNode } from '@yusui/types'
 import type { ElementTreeNode } from '../../types'
 import type { DesignActionKey } from '../../constants'
 
@@ -43,7 +43,7 @@ function onNodeClick(data: ElementTreeNode) {
 function updateList() {
   elementTree.value = treeData.value[0]
 }
-function onCopy(node: Node & { data: ElementTreeNode }) {
+function onCopy(node: ElTreeNode & { data: ElementTreeNode }) {
   const item = copyItem(node.data)
   treeRef.value?.append(item, node.parent)
   updateList()

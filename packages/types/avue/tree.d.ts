@@ -1,12 +1,11 @@
 import type { VNode } from 'vue'
 import type { ElTree } from 'element-plus'
-import type Node from 'element-plus/es/components/tree/src/model/node'
 import type { NodeDropType, TreeComponentProps, TreeOptionProps as _TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type'
-import type { ElSize } from '../helpers'
+import type { ElSize, ElTreeNode } from '../helpers'
 
 declare module '@smallwei/avue' {
   export type TreeFormType = 'add' | 'edit' | 'parentAdd'
-  export type TreeNode<T> = Node & { data: T }
+  export type TreeNode<T> = ElTreeNode & { data: T }
 
   export interface AvueTreeOption<T = any> extends
     Partial<Pick<TreeComponentProps, | 'checkStrictly'
@@ -53,13 +52,16 @@ declare module '@smallwei/avue' {
     leaf?: _TreeOptionProps['isLeaf']
   }
 
+  export interface AvueTreeProps<T = any> {
+    /** 表单数据 */
+    'modelValue'?: T
+    'onUpdate:modelValue'?: (form: T) => void
+  }
   export interface AvueTreeProps<T = any> extends
     Partial<Pick<TreeComponentProps, | 'expandOnClickNode'
     | 'checkOnClickNode'
     | 'filterNodeMethod'
     | 'indent'>> {
-    /** 表单数据 */
-    modelValue?: T
     /** 存放结构体的数据 */
     data?: T[]
     /** 组件配置属性 */
@@ -72,7 +74,6 @@ declare module '@smallwei/avue' {
     beforeOpen?: (done: () => void, type: TreeFormType) => void
     /** 弹窗关闭前 */
     beforeClose?: (done: () => void, type: TreeFormType) => void
-    'onUpdate:modelValue'?: (form: T) => void
     onChange?: (form: T) => void
     /** 新增节点回调 */
     onSave?: (node: TreeNode<T>, data: T, done: () => void, loading: () => void) => void
