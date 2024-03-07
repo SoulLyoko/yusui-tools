@@ -1,3 +1,17 @@
+# [3.0.0-beta.2](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **mix:** 虚拟模块的导入改为由外部完成 ([0155559](https://github.com/SoulLyoko/yusui-tools/commit/015555932d231ec885902d16f414e1d87a649155))
+
+
+### Features
+
+* **plugins:** 新增自动注册路由组件名称函数 ([06b7be9](https://github.com/SoulLyoko/yusui-tools/commit/06b7be9242b15b97575bd39b2065aeaf6f5731f0))
+
+
+
 # [3.0.0-beta.1](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.9...v3.0.0-beta.1) (2024-03-07)
 
 
