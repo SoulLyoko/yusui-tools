@@ -47,6 +47,7 @@ const entry = {
   'flow-design': resolve(__dirname, 'packages/flow-design/index.ts'),
   'mix': resolve(__dirname, 'packages/mix/index.ts'),
   'plugins': resolve(__dirname, 'packages/plugins/index.ts'),
+  'request': resolve(__dirname, 'packages/request/index.ts'),
   'types': resolve(__dirname, 'packages/types/index.ts'),
   'utils': resolve(__dirname, 'packages/utils/index.ts'),
 }
