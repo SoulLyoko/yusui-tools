@@ -1,6 +1,7 @@
 import type { Ref } from 'vue'
+import type { TreeInstance } from 'element-plus'
 import type { ElTreeNode } from '@yusui/types'
-import type { EpTreeProps, TreeInstance } from '../types'
+import type { EpTreeProps } from '../types'
 
 import { computed } from 'vue'
 

@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
-import type { EpTreeProps, TreeInstance } from '../types'
+import type { TreeInstance } from 'element-plus'
+import type { EpTreeProps } from '../types'
 
 import { computed, ref, watch } from 'vue'
 import { ElInput } from 'element-plus'

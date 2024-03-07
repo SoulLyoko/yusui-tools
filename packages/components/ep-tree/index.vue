@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { EpTreeProps, TreeInstance } from './types'
+import type { TreeInstance } from 'element-plus'
+import type { EpTreeProps } from './types'
 
 import { onMounted, reactive, ref } from 'vue'
 import { pickBy } from 'lodash-unified'
