@@ -17,6 +17,8 @@ import compression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { avuePatch, createEnvDts, loadProxy } from '@yusui/plugins'
 
+import { mergeConfig } from './utils'
+
 type ConfigType<T extends AnyFn> = Parameters<T>[0] | false
 
 export interface MixPluginsConfig {
@@ -62,7 +64,7 @@ const defaultConfig: MixPluginsConfig = {
 }
 
 export function mixPlugins(userConfig?: MixPluginsConfig) {
-  const config = { ...defaultConfig, ...userConfig }
+  const config = mergeConfig(defaultConfig, userConfig)
 
   const plugins: PluginOption[] = []
 

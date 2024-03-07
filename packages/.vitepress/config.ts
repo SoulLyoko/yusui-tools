@@ -23,6 +23,7 @@ export default defineConfig({
         items: [
           { text: '@yusui/components', link: '/components/index' },
           { text: '@yusui/composables', link: '/composables/index' },
+          { text: '@yusui/mix', link: '/mix/index' },
           { text: '@yusui/plugins', link: '/plugins/index' },
           { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
@@ -71,6 +72,15 @@ export default defineConfig({
           ],
         },
       ],
+      '/mix': [
+        {
+          text: 'Mix',
+          items: [
+            { text: 'Start', link: '/mix/index' },
+          ],
+        },
+
+      ],
       '/plugins': [
         {
           text: 'Plugins',
@@ -80,6 +90,7 @@ export default defineConfig({
             { text: 'createEnvDts', link: '/plugins/env-dts/index' },
             { text: 'loadProxy', link: '/plugins/load-proxy/index' },
             { text: 'setupExtend', link: '/plugins/setup-extend/index' },
+            { text: 'setupRouterComponents', link: '/plugins/router/index' },
             { text: 'uniPatch', link: '/plugins/uni-patch/index' },
             { text: 'uniUIPatch', link: '/plugins/uni-ui-patch/index' },
             { text: 'uviewPatch', link: '/plugins/uview-patch/index' },

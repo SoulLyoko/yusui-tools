@@ -16,6 +16,7 @@ dist-ssr
 **/types/auto-imports.d.ts
 **/types/components.d.ts
 **/types/typed-router.d.ts
+**/types/vite-env.d.ts
 
 
 # Editor directories and files
