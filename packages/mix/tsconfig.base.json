@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "vite-plugin-vue-layouts/client",
+      "unplugin-vue-router/client",
+      "element-plus/global",
+      "@yusui/components",
+      "@yusui/types/avue",
+      "@yusui/mix/global"
+    ],
+    "allowJs": true
+  },
+  "exclude": ["dist", "node_modules", "eslint.config.js"]
+}

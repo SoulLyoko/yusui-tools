@@ -1,15 +1,18 @@
 import path from 'node:path'
 
 import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
 
-import { avuePatch, compatibleTips } from '../../packages/plugins'
+import { mixPlugins } from '../../packages/mix/plugins'
 
-export default defineConfig({
-  plugins: [Vue(), avuePatch(), compatibleTips()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+export default defineConfig(() => {
+  return {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@yusui/components': path.resolve(__dirname, '../../packages/components'),
+        '@yusui/composables': path.resolve(__dirname, '../../packages/composables'),
+      },
     },
-  },
+    plugins: [...mixPlugins()],
+  }
 })

@@ -1,12 +1,9 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "extends": "@yusui/mix/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "moduleResolution": "Node",
     "paths": {
       "@/*": ["src/*"]
-    },
-    "types": []
-  },
-  "include": ["src"]
+    }
+  }
 }

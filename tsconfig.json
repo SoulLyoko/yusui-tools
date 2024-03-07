@@ -2,13 +2,13 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "moduleResolution": "node",
     "paths": {
       "@yusui/components": ["packages/components/index.ts"],
       "@yusui/composables": ["packages/composables/index.ts"],
       "@yusui/flow-design": ["packages/flow-design/index.ts"],
       "@yusui/flow-pages": ["packages/flow-pages/index.ts"],
       "@yusui/form-design": ["packages/form-design/index.ts"],
+      "@yusui/mix": ["packages/mix/index.ts"],
       "@yusui/plugins": ["packages/plugins/index.ts"],
       "@yusui/types": ["packages/types/index.ts"],
       "@yusui/utils": ["packages/utils/index.ts"],
@@ -23,6 +23,8 @@
       "vitest/globals",
       "element-plus/global",
       "@dcloudio/types",
+      "vite-plugin-vue-layouts/client",
+      "unplugin-vue-router/client",
       "./packages/types/avue"
     ],
     "allowJs": true
