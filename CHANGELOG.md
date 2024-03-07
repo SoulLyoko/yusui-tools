@@ -1,3 +1,26 @@
+# [3.0.0-beta.1](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.9...v3.0.0-beta.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* **avue-patch:** 适配avue3.3.2 ([de8cf64](https://github.com/SoulLyoko/yusui-tools/commit/de8cf64a7cae31cbeea9a29c12c2f5dbd3f28d0e))
+* **ep-menu:** 修复纵向折叠时子菜单不显示的问题 ([2226378](https://github.com/SoulLyoko/yusui-tools/commit/2226378bdd90a67fa98af2cfdd1ae41b78ca39f7))
+* **uvue:** 修复删除按钮在新增时的显示问题 ([56a2de8](https://github.com/SoulLyoko/yusui-tools/commit/56a2de8899ba63bcff710b1c15eef5952f12eba6))
+
+
+### Features
+
+* 新增antd模拟样式 ([8148a82](https://github.com/SoulLyoko/yusui-tools/commit/8148a82cab3787b508cd73ac89069987f123dfb3))
+* 新增antd模拟样式 ([acc3be9](https://github.com/SoulLyoko/yusui-tools/commit/acc3be9792648ac66c7cf228933382706e5ce9d5))
+* 新增antd模拟样式 ([fe0c668](https://github.com/SoulLyoko/yusui-tools/commit/fe0c66801b07233d37835c62774f00b6bfa68bc1))
+* 新增arco模拟样式 ([dc85018](https://github.com/SoulLyoko/yusui-tools/commit/dc850187a310d61e562c9ef901b5ebfbfd16ef17))
+* 新增arco模拟样式 ([f6cc18b](https://github.com/SoulLyoko/yusui-tools/commit/f6cc18b7249f6c0b2feef12e35203f754f85812f))
+* **components:**  新增CrudPlus组件,可以切换卡片和列表风格 ([77b0873](https://github.com/SoulLyoko/yusui-tools/commit/77b0873ab4f44212eee3069e223092c605c16476))
+* **mix:** 新增集中管理插件 ([4cdaf2e](https://github.com/SoulLyoko/yusui-tools/commit/4cdaf2ee500d428e6f2c2d8be29c52957b287704))
+* **uvue:** uvue-form增加表单类型的class ([956bf38](https://github.com/SoulLyoko/yusui-tools/commit/956bf38969f1b8f19c48aca3cbf1d2e5002a21e2))
+
+
+
 ## [2.0.9](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.8...v2.0.9) (2024-02-21)
 
 
