@@ -1,5 +1,3 @@
-export * from 'vue-request'
-export { useRes } from '@yusui/composables'
 export * from './adapter'
 export * from './handler'
 export * from './instance'
