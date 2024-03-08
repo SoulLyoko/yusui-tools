@@ -13,5 +13,5 @@
     ],
     "allowJs": true
   },
-  "exclude": ["node_modules", "**/node_modules", "**/dist", "**/*.js"]
+  "exclude": ["node_modules", "dist", "**/node_modules", "**/dist", "**/*.js"]
 }
