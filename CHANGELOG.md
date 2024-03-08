@@ -1,3 +1,13 @@
+# [3.0.0-beta.4](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2024-03-08)
+
+
+### Bug Fixes
+
+* **mix:** 移除flow-pages ([8b829e7](https://github.com/SoulLyoko/yusui-tools/commit/8b829e77a4855b5193041f53f2de294affa91061))
+* **request:** 移除vue-request的导出 ([a80120e](https://github.com/SoulLyoko/yusui-tools/commit/a80120eff5e7cc429a3a61b7b041d093a777cb33))
+
+
+
 # [3.0.0-beta.3](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2024-03-07)
 
 
