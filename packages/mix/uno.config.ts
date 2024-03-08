@@ -7,7 +7,7 @@ export default {
     pipeline: {
       include: [
         /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/, // the default
-        '**/src/**/*.{js,ts}', // include js/ts files
+        '**/src/**/*.{ts}', // include ts files
       ],
     },
   },
