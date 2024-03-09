@@ -7,11 +7,6 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@yusui/components": "workspace:*",
     "@yusui/mix": "workspace:*"
-  },
-  "devDependencies": {
-    "@yusui/plugins": "workspace:*",
-    "@yusui/types": "workspace:*"
   }
 }

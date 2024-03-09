@@ -756,19 +756,9 @@ importers:
 
   playgrounds/web:
     dependencies:
-      '@yusui/components':
-        specifier: workspace:*
-        version: link:../../packages/components
       '@yusui/mix':
         specifier: workspace:*
         version: link:../../packages/mix
-    devDependencies:
-      '@yusui/plugins':
-        specifier: workspace:*
-        version: link:../../packages/plugins
-      '@yusui/types':
-        specifier: workspace:*
-        version: link:../../packages/types
 
 packages:
 

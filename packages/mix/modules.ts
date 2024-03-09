@@ -20,8 +20,6 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
 import '@yusui/components/dist/index.css'
-import '@yusui/flow-design/dist/styles/index.css'
-import '@yusui/form-design/dist/styles/index.css'
 
 export { setupRouterComponents } from '@yusui/plugins'
 
@@ -29,12 +27,14 @@ export interface MixModulesConfig {
   router?: Partial<Parameters<typeof createRouter>[0]>
   elementPlus?: Partial<ConfigProviderProps>
   avue?: AvueConfig
+  persistedState?: Parameters<typeof createPersistedState>[0]
 }
 
 const defaultConfig: MixModulesConfig = {
   router: { history: createWebHistory(import.meta.env.BASE_URL) },
   elementPlus: { locale: zhCn },
   avue: {},
+  persistedState: {},
 }
 
 export function mixModules(userConfig?: MixModulesConfig) {

@@ -29,7 +29,7 @@ function buildTypes() {
   execSync('vue-tsc -p tsconfig.build.json')
   execSync('tsc-alias -p tsconfig.build.json')
 }
-function fixBuild() {
+function copyDist() {
   const packages = fs.readdirSync(path.join('dist'))
   packages.forEach((name) => {
     fs.copySync(path.join('dist', name), path.join('packages', name, 'dist'))
@@ -39,4 +39,4 @@ function fixBuild() {
 buildPackages()
 buildStyles()
 buildTypes()
-fixBuild()
+copyDist()

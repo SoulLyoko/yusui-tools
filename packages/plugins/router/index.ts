@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import type { EditableTreeNode } from 'unplugin-vue-router'
 
 /** 自动注册路由组件的名称 */
 export function setupRouterComponents(routes: RouteRecordRaw[]) {
@@ -18,4 +19,12 @@ export function setupRouterComponents(routes: RouteRecordRaw[]) {
 
     return { ...route, children } as RouteRecordRaw
   })
+}
+
+export function normalizeRoutes(node: EditableTreeNode) {
+  // / -> index
+  // /hi/[name] -> hi-name
+  // /[...all] => all
+  node.name = node.name === '/' ? 'index' : node.name.replace(/^\/|(\.\.\.)|\[|\]|\/$/g, '').replace(/\//g, '-')
+  node.path = node.fullPath
 }

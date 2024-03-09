@@ -15,7 +15,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 import { checker } from 'vite-plugin-checker'
 import compression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { avuePatch, createEnvDts, loadProxy } from '@yusui/plugins'
+import { avuePatch, createEnvDts, indexHtml, loadProxy, normalizeRoutes } from '@yusui/plugins'
 
 import { mergeConfig } from './utils'
 
@@ -34,7 +34,8 @@ export interface MixPluginsConfig {
   checker?: ConfigType<typeof checker>
   compression?: ConfigType<typeof compression>
   visualizer?: ConfigType<typeof visualizer>
-  avuePatch?: any
+  indexHtml?: boolean
+  avuePatch?: boolean
   envDts?: ConfigType<typeof createEnvDts>
   loadProxy?: ConfigType<typeof loadProxy>
 }
@@ -43,7 +44,10 @@ const defaultConfig: MixPluginsConfig = {
   vue: {},
   vueJsx: {},
   vueDevTools: {},
-  vueRouter: { dts: 'src/types/typed-router.d.ts' },
+  vueRouter: {
+    dts: 'src/types/typed-router.d.ts',
+    extendRoute: normalizeRoutes,
+  },
   vueLayouts: {},
   vueComponents: { dts: 'src/types/components.d.ts' },
   autoImport: {
@@ -58,7 +62,8 @@ const defaultConfig: MixPluginsConfig = {
   checker: { vueTsc: true },
   compression: {},
   visualizer: {},
-  avuePatch: {},
+  indexHtml: true,
+  avuePatch: true,
   envDts: { dts: 'src/types/vite-env.d.ts' },
   loadProxy: {},
 }
@@ -68,9 +73,10 @@ export function mixPlugins(userConfig?: MixPluginsConfig) {
 
   const plugins: PluginOption[] = []
 
+  config.indexHtml && plugins.push(indexHtml())
   config.vue && plugins.push(Vue(config.vue))
   config.vueJsx && plugins.push(VueJsx(config.vueJsx))
-  // https://github.com/webfansplz/vite-plugin-vue-devtools
+  // https://github.com/vuejs/devtools-next
   config.vueDevTools && plugins.push(VueDevTools(config.vueDevTools))
   // https://github.com/posva/unplugin-vue-router
   config.vueRouter && plugins.push(VueRouter(config.vueRouter))
@@ -90,7 +96,6 @@ export function mixPlugins(userConfig?: MixPluginsConfig) {
   config.compression && plugins.push(compression(config.compression))
   // https://github.com/btd/rollup-plugin-visualizer
   config.visualizer && plugins.push(visualizer(config.visualizer))
-
   // @yusui/plugins
   config.avuePatch && plugins.push(avuePatch())
   config.envDts && plugins.push(createEnvDts(config.envDts))

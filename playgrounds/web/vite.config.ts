@@ -14,5 +14,12 @@ export default defineConfig(() => {
       },
     },
     plugins: [...mixPlugins()],
+    server: {
+      port: 5174,
+      host: true,
+      warmup: {
+        clientFiles: ['./index.html', './src/**/*.vue', './src/**/*.ts'],
+      },
+    },
   }
 })

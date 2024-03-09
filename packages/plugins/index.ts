@@ -1,5 +1,6 @@
 export * from './avue-patch'
 export * from './env-dts'
+export * from './index-html'
 export * from './setup-extend'
 export * from './load-proxy'
 export * from './router'
