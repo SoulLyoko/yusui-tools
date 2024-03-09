@@ -1,3 +1,17 @@
+# [3.0.0-beta.5](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2024-03-09)
+
+
+### Bug Fixes
+
+* **mix:** 修复uno配置解析js文件会导致vue-dev-tools报错的问题 ([1f02f3a](https://github.com/SoulLyoko/yusui-tools/commit/1f02f3a74121a57aa323ac4f88691970eb147a47))
+
+
+### Features
+
+* **plugins:** indexHtml自动生成index.html的内容 ([f3f164d](https://github.com/SoulLyoko/yusui-tools/commit/f3f164d71e5418010437aad23d71c6c0fe1621ec))
+
+
+
 # [3.0.0-beta.4](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2024-03-08)
 
 
