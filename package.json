@@ -12,7 +12,7 @@
   "scripts": {
     "build": "esno scripts/build.ts",
     "build:dev": "pnpm build && pnpm dev",
-    "build:test": "pnpm remove:dist && pnpm lint && pnpm tc && pnpm test run && pnpm build && pnpm remove:dist && pnpm docs:build",
+    "build:dev:nuxt": "pnpm build && pnpm dev:nuxt",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "changelog:init": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "dev": "pnpm -F web dev",
@@ -27,6 +27,7 @@
     "release": "esno scripts/release.ts",
     "remove:dist": "esno scripts/remove-dist.ts",
     "test": "vitest",
+    "test:build": "pnpm remove:dist && pnpm lint && pnpm tc && pnpm test run && pnpm build && pnpm remove:dist && pnpm docs:build",
     "tc": "vue-tsc --noEmit",
     "upd": "taze major -r -l -I"
   },

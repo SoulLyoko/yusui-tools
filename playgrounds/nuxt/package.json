@@ -10,7 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@element-plus/nuxt": "^1.0.7",
+    "@smallwei/avue": "^3.3.2",
+    "@yusui/components": "workspace:*",
+    "@yusui/composables": "workspace:*",
+    "@yusui/request": "workspace:*",
+    "@yusui/types": "workspace:*",
+    "@yusui/utils": "workspace:*",
+    "element-plus": "^2.6.1",
     "nuxt": "^3.10.3",
+    "nuxt-open-fetch": "^0.6.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   }
