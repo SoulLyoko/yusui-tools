@@ -95,7 +95,7 @@ export function mixPlugins(userConfig?: MixPluginsConfig) {
   // https://github.com/alloc/vite-plugin-compress
   config.compression && plugins.push(compression(config.compression))
   // https://github.com/btd/rollup-plugin-visualizer
-  config.visualizer && plugins.push(visualizer(config.visualizer))
+  config.visualizer && plugins.push(visualizer(config.visualizer) as any)
   // @yusui/plugins
   config.avuePatch && plugins.push(avuePatch())
   config.envDts && plugins.push(createEnvDts(config.envDts))

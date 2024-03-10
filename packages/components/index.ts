@@ -23,8 +23,8 @@ export default {
   },
 }
 
-declare module '@vue/runtime-core' {
-  export interface GlobalComponents {
+declare module 'vue' {
+  interface GlobalComponents {
     ContextMenu: typeof ContextMenu
     EpMenu: typeof EpMenu
     EpTree: typeof EpTree

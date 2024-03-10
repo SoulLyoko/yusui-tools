@@ -1,13 +1,13 @@
 export { }
 
-declare module '@vue/runtime-core' {
-  export interface GlobalComponents {
+declare module 'vue' {
+  interface GlobalComponents {
     AvueCrud: typeof import('@smallwei/avue')['AvueCrud']
     AvueForm: typeof import('@smallwei/avue')['AvueForm']
     AvueTree: typeof import('@smallwei/avue')['AvueTree']
   }
 
-  export interface ComponentCustomProperties {
+  interface ComponentCustomProperties {
     $AVUE: Required<import('@smallwei/avue').AvueConfig>
     $Clipboard: (arg: { text: string }) => Promise<void>
     $Export: {
