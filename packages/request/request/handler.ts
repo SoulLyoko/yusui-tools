@@ -75,7 +75,7 @@ function handleLogout(config: RequestConfig) {
       confirmButtonText: btnText,
       showCancelButton: false,
       showClose: false,
-    })
+    }).then(config.logout)
   }
 }
 

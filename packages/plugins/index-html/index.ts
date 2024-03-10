@@ -69,7 +69,6 @@ export function indexHtml(): Plugin {
     transformIndexHtml: {
       order: 'pre',
       handler(html) {
-        console.log('🚀 ~ transformIndexHtml ~ html:', html)
         return {
           html,
           tags: [

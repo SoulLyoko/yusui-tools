@@ -1,7 +1,7 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import type { Res } from '@yusui/types'
+import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 
-export type RequestConfig<RD extends boolean = true> = AxiosRequestConfig & Partial<UniNamespace.UploadFileOption> & {
+export type RequestConfig<U extends string = string> = AxiosRequestConfig & Partial<UniNamespace.UploadFileOption> & {
+  url?: U
   /**
    * 是否登录验证未通过时退出登录
    * @default true
@@ -16,7 +16,7 @@ export type RequestConfig<RD extends boolean = true> = AxiosRequestConfig & Part
    * 是否返回response.data
    * @default true
    */
-  withResponseData?: RD
+  withResponseData?: boolean
   /**
    * 是否在headers中加入Authorization
    * @default true
@@ -55,21 +55,19 @@ export type RequestConfig<RD extends boolean = true> = AxiosRequestConfig & Part
   decrypt?: (data: any) => any
 }
 
-type WithData<T, D> = D extends true ? AxiosResponse<T> : T
-
-export interface RequestInstance<RD extends boolean = true> extends AxiosInstance {
-  <T = Res, R = WithData<T, RD>>(config: RequestConfig): Promise<R>
-  <T = Res, R = WithData<T, RD>>(url: string, config?: RequestConfig): Promise<R>
-  getUri: (config?: RequestConfig) => string
-  request: <T = Res, R = WithData<T, RD>>(config: RequestConfig) => Promise<R>
-  get: <T = Res, R = WithData<T, RD>>(url: string, config?: RequestConfig) => Promise<R>
-  delete: <T = Res, R = WithData<T, RD>>(url: string, config?: RequestConfig) => Promise<R>
-  head: <T = Res, R = WithData<T, RD>>(url: string, config?: RequestConfig) => Promise<R>
-  options: <T = Res, R = WithData<T, RD>>(url: string, config?: RequestConfig) => Promise<R>
-  post: <T = Res, R = WithData<T, RD>>(url: string, data?: any, config?: RequestConfig) => Promise<R>
-  put: <T = Res, R = WithData<T, RD>>(url: string, data?: any, config?: RequestConfig) => Promise<R>
-  patch: <T = Res, R = WithData<T, RD>>(url: string, data?: any, config?: RequestConfig) => Promise<R>
-  postForm: <T = Res, R = WithData<T, RD>>(url: string, data?: any, config?: RequestConfig) => Promise<R>
-  putForm: <T = Res, R = WithData<T, RD>>(url: string, data?: any, config?: RequestConfig) => Promise<R>
-  patchForm: <T = Res, R = WithData<T, RD>>(url: string, data?: any, config?: RequestConfig) => Promise<R>
+export interface RequestInstance<U extends string = string> extends AxiosInstance {
+  <R = any>(config: RequestConfig<U>): Promise<R>
+  <R = any>(url: U, config?: RequestConfig<U>): Promise<R>
+  getUri: (config?: RequestConfig<U>) => U
+  request: <R = any>(config: RequestConfig<U>) => Promise<R>
+  get: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
+  delete: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
+  head: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
+  options: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
+  post: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
+  put: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
+  patch: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
+  postForm: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
+  putForm: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
+  patchForm: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
 }

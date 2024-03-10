@@ -20,11 +20,11 @@
   ],
   "dependencies": {
     "axios": "^1.6.7",
+    "element-plus": "^2.6.0",
     "vue-request": "^2.0.4"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.4.8",
-    "@yusui/types": "workspace:*",
-    "element-plus": "^2.6.0"
+    "@yusui/types": "workspace:*"
   }
 }

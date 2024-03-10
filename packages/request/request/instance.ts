@@ -16,12 +16,12 @@ const defaultConfig: RequestConfig = {
   withClientID: true,
 }
 
-export function createRequest<RD extends boolean = true>(config: RequestConfig<RD> = {}) {
+export function createRequest<U extends string>(config: RequestConfig<U> = {}) {
   const instance = axios.create({
     adapter: config?.isApp ? uniAdapter : undefined,
     ...defaultConfig,
     ...config,
-  }) as RequestInstance<RD>
+  }) as RequestInstance<U>
   instance.interceptors.request.use(...requestInterceptors)
   instance.interceptors.response.use(...responseInterceptors)
   return instance
