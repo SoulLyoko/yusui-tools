@@ -1,3 +1,54 @@
+# [3.0.0-beta.6](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.2...v3.0.0-beta.6) (2024-03-10)
+
+
+### Bug Fixes
+
+* 修复全局组件类型在nuxt失效的问题 ([b0e070c](https://github.com/SoulLyoko/yusui-tools/commit/b0e070c17761699a712c0f72fdc0515530ead0b4))
+* **avue-patch:** 适配avue3.3.2 ([de8cf64](https://github.com/SoulLyoko/yusui-tools/commit/de8cf64a7cae31cbeea9a29c12c2f5dbd3f28d0e))
+* **ep-menu:** 修复纵向折叠时子菜单不显示的问题 ([2226378](https://github.com/SoulLyoko/yusui-tools/commit/2226378bdd90a67fa98af2cfdd1ae41b78ca39f7))
+* **ep-menu:** 修复纵向折叠时子菜单不显示的问题 ([b5e6278](https://github.com/SoulLyoko/yusui-tools/commit/b5e6278cb53128ee25d69d31a72963694a237edd))
+* **flow-form:** 非待办时禁用表单 ([58c1e17](https://github.com/SoulLyoko/yusui-tools/commit/58c1e1778ab0078053628ea7fa60bb4b9a142bc1))
+* **flow-form:** 修复在onBeforeSubmit修改表单值导致审批窗口重新加载的问题 ([8088646](https://github.com/SoulLyoko/yusui-tools/commit/8088646c11222f20d8bd30ec78906c92c9f685e8))
+* **flow-form:** 修复afterGetDetail不触发的问题 ([5055e72](https://github.com/SoulLyoko/yusui-tools/commit/5055e727447dc0dba007db0575728ed0e596e66a))
+* **flow-form:** 优化移动端滑动 ([fb318af](https://github.com/SoulLyoko/yusui-tools/commit/fb318af059df8b695472daf9438fd39f9982f415))
+* **flow-pages:** 修复表格配置合并 ([c85b105](https://github.com/SoulLyoko/yusui-tools/commit/c85b1059d7fe3bae0fd2b618b5c6d76397554b4a))
+* **form-design:** 组件不可见时调低透明度 ([29d7ff4](https://github.com/SoulLyoko/yusui-tools/commit/29d7ff4d69fd000a2f774ba2482f9a76b28cbc51))
+* **IconSelect:** 处理collections为匹配方式时的问题 ([e4b6da9](https://github.com/SoulLyoko/yusui-tools/commit/e4b6da935d9dbcbde20086344097945d3e4b3450))
+* **IconSelect:** tabs遵循collections的排序 ([71a294f](https://github.com/SoulLyoko/yusui-tools/commit/71a294f1e568657daba57b499b30b261632232f3))
+* **mix:** 修复uno配置解析js文件会导致vue-dev-tools报错的问题 ([1f02f3a](https://github.com/SoulLyoko/yusui-tools/commit/1f02f3a74121a57aa323ac4f88691970eb147a47))
+* **mix:** 虚拟模块的导入改为由外部完成 ([0155559](https://github.com/SoulLyoko/yusui-tools/commit/015555932d231ec885902d16f414e1d87a649155))
+* **mix:** 移除flow-pages ([8b829e7](https://github.com/SoulLyoko/yusui-tools/commit/8b829e77a4855b5193041f53f2de294affa91061))
+* **request:** 移除vue-request的导出 ([a80120e](https://github.com/SoulLyoko/yusui-tools/commit/a80120eff5e7cc429a3a61b7b041d093a777cb33))
+* **types:** 修复avue类型的导入 ([195d889](https://github.com/SoulLyoko/yusui-tools/commit/195d88993441d42ac33c98fb526e31845ad5a4ab))
+* **useDict:** 内部实现toValue ([6040b4a](https://github.com/SoulLyoko/yusui-tools/commit/6040b4acec5dcf6b802837c063b18d994114b0c8))
+* **useDict:** 修复dicData丢失响应的问题 ([2391056](https://github.com/SoulLyoko/yusui-tools/commit/2391056b23dddf2fb01f86db0d373af43db022b9))
+* **uvue:** 提交和删除问题，crudState增加defaults ([a3c85d6](https://github.com/SoulLyoko/yusui-tools/commit/a3c85d6a71aea29168e2655389d9ad6a72b82493))
+* **uvue:** 修复删除按钮在新增时的显示问题 ([56a2de8](https://github.com/SoulLyoko/yusui-tools/commit/56a2de8899ba63bcff710b1c15eef5952f12eba6))
+* **uvue:** 修复删除按钮在新增时的显示问题 ([e12dd2e](https://github.com/SoulLyoko/yusui-tools/commit/e12dd2ec12e47cda4d57495ed37484791509ba98))
+
+
+### Features
+
+* 新增antd模拟样式 ([8148a82](https://github.com/SoulLyoko/yusui-tools/commit/8148a82cab3787b508cd73ac89069987f123dfb3))
+* 新增antd模拟样式 ([acc3be9](https://github.com/SoulLyoko/yusui-tools/commit/acc3be9792648ac66c7cf228933382706e5ce9d5))
+* 新增antd模拟样式 ([fe0c668](https://github.com/SoulLyoko/yusui-tools/commit/fe0c66801b07233d37835c62774f00b6bfa68bc1))
+* 新增arco模拟样式 ([dc85018](https://github.com/SoulLyoko/yusui-tools/commit/dc850187a310d61e562c9ef901b5ebfbfd16ef17))
+* 新增arco模拟样式 ([f6cc18b](https://github.com/SoulLyoko/yusui-tools/commit/f6cc18b7249f6c0b2feef12e35203f754f85812f))
+* **components:**  新增CrudPlus组件,可以切换卡片和列表风格 ([77b0873](https://github.com/SoulLyoko/yusui-tools/commit/77b0873ab4f44212eee3069e223092c605c16476))
+* **flow-form:** 审批树已选择项过多时以弹出的形式展示剩余项 ([050aee0](https://github.com/SoulLyoko/yusui-tools/commit/050aee02f0c47efe5a571aac9abb594e8cc23bf1))
+* **flow-pages:** 从useProvideState中导出流程参数和按钮处理 ([e67da1d](https://github.com/SoulLyoko/yusui-tools/commit/e67da1d7a788a17ef175cb1e8383835874cd9801))
+* **mix:** 新增集中管理插件 ([4cdaf2e](https://github.com/SoulLyoko/yusui-tools/commit/4cdaf2ee500d428e6f2c2d8be29c52957b287704))
+* **plugins:** 新增自动注册路由组件名称函数 ([06b7be9](https://github.com/SoulLyoko/yusui-tools/commit/06b7be9242b15b97575bd39b2065aeaf6f5731f0))
+* **plugins:** indexHtml自动生成index.html的内容 ([f3f164d](https://github.com/SoulLyoko/yusui-tools/commit/f3f164d71e5418010437aad23d71c6c0fe1621ec))
+* **plugins:** uni-patch ([5380056](https://github.com/SoulLyoko/yusui-tools/commit/5380056688e6ef7cb10822db763a25614f24d350))
+* **request:** 加入url的类型提示 ([9670a81](https://github.com/SoulLyoko/yusui-tools/commit/9670a81adc8ada0331b76d4063e4f50807a016b4))
+* **request:** axios扩展 ([e4c011a](https://github.com/SoulLyoko/yusui-tools/commit/e4c011a29bed160f3059d53e8d3a01fdfa70bf47))
+* **uvue:** uvue-form表单增加删除按钮,useCrud增加自定义成功消息 ([b1cf0b4](https://github.com/SoulLyoko/yusui-tools/commit/b1cf0b43b550ded440b2e657a27c72cf248931d3))
+* **uvue:** uvue-form增加表单类型的class ([956bf38](https://github.com/SoulLyoko/yusui-tools/commit/956bf38969f1b8f19c48aca3cbf1d2e5002a21e2))
+* **uvue:** uvue-form增加表单类型的class ([d4684f5](https://github.com/SoulLyoko/yusui-tools/commit/d4684f552808e3722d7d161b79f2e17235acd87d))
+
+
+
 # [3.0.0-beta.5](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2024-03-09)
 
 
