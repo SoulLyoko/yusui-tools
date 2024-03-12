@@ -1,7 +1,7 @@
 import type { VNode } from 'vue'
 import type { ElTree } from 'element-plus'
 import type { NodeDropType, TreeComponentProps, TreeOptionProps as _TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type'
-import type { ElSize, ElTreeNode } from '../helpers'
+import type { ElSize, ElTreeNode } from '@yusui/types'
 
 declare module '@smallwei/avue' {
   export type TreeFormType = 'add' | 'edit' | 'parentAdd'

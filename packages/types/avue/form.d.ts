@@ -1,6 +1,6 @@
 import type { Component, VNode } from 'vue'
 import type { FormItemRule, TabsPaneContext, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
-import type { ElSize, EmitFn } from '../helpers'
+import type { ElSize, EmitFn } from '@yusui/types'
 
 declare module '@smallwei/avue' {
   export type FormType = 'add' | 'edit' | 'view'
