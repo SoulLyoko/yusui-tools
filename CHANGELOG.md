@@ -1,3 +1,21 @@
+# [3.0.0-beta.7](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.5...v3.0.0-beta.7) (2024-03-13)
+
+
+### Bug Fixes
+
+* 修复全局组件类型在nuxt失效的问题 ([b0e070c](https://github.com/SoulLyoko/yusui-tools/commit/b0e070c17761699a712c0f72fdc0515530ead0b4))
+* **request:** 退出登录确认 ([e824130](https://github.com/SoulLyoko/yusui-tools/commit/e8241303aeb4dba560a0fd7a0b82ea4204e5bd61))
+* **type/avue:** 修改helpers的导入路径 ([b0a3cfa](https://github.com/SoulLyoko/yusui-tools/commit/b0a3cfa46a22d13c7004c6cfbf18861238fdef4b))
+* **types/avue:** 子表单插槽 ([1202ed1](https://github.com/SoulLyoko/yusui-tools/commit/1202ed13209b27bdc0d921b2e1f2aad2d0fc6d86))
+
+
+### Features
+
+* **request:** 加入url的类型提示 ([9670a81](https://github.com/SoulLyoko/yusui-tools/commit/9670a81adc8ada0331b76d4063e4f50807a016b4))
+* **use-crud:** 删除前可自定义提示信息 ([c79c7aa](https://github.com/SoulLyoko/yusui-tools/commit/c79c7aa43cce1ddbfc0a7502709193b9175bfee7))
+
+
+
 # [3.0.0-beta.6](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.2...v3.0.0-beta.6) (2024-03-10)
 
 
