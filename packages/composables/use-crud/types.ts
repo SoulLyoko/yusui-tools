@@ -24,8 +24,10 @@ export interface CrudOption<T, P> {
   isPage: boolean
   /** 是否携带排序参数 */
   isSort: boolean
-  /** 删除前是否提示确认 */
-  delConfirm: boolean
+  /** 行删除前是否提示确认 */
+  delConfirm: boolean | ((row?: T) => string)
+  /** 批量删除前是否提示确认 */
+  batchDelConfirm: boolean | ((data?: T[]) => string)
   /** 获取数据后是否清除选择 */
   clearSelection: boolean
   /** 新增成功提示 */

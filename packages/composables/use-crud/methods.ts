@@ -154,7 +154,9 @@ export function useCrudMethods<T extends Data, P extends Data>({
       const { rowKey, remove, delConfirm, delSuccessMsg } = crudState.crudOption
       if (!remove)
         return
-      delConfirm && (await vm?.$messageBox?.confirm('确认进行删除操作？', '提示', { type: 'warning' }))
+      const defaultConfirm = () => vm?.$messageBox?.confirm('确认进行删除操作？', '提示', { type: 'warning' })
+      const confirmMethod = typeof delConfirm === 'function' ? delConfirm : defaultConfirm
+      delConfirm && (await confirmMethod(row))
       try {
         const res = await remove(data[rowKey])
         delSuccessMsg && vm?.$message?.success(delSuccessMsg)
@@ -175,13 +177,15 @@ export function useCrudMethods<T extends Data, P extends Data>({
       const [err] = await to(emitter.emitAsync('beforeBatchDel', data))
       if (err !== null)
         return
-      const { rowKey, remove, delConfirm, delSuccessMsg } = crudState.crudOption
+      const { rowKey, remove, batchDelConfirm, delSuccessMsg } = crudState.crudOption
       if (!remove)
         return
       const length = data.length
       if (!length)
         return vm?.$message?.warning('请选择删除项')
-      delConfirm && (await vm?.$messageBox?.confirm(`确认删除所选的${length}条数据？`, '提示', { type: 'warning' }))
+      const defaultConfirm = () => vm?.$messageBox?.confirm(`确认删除所选的${length}条数据？`, '提示', { type: 'warning' })
+      const confirmMethod = typeof batchDelConfirm === 'function' ? batchDelConfirm : defaultConfirm
+      batchDelConfirm && (await confirmMethod(data))
       const ids = data
         .map(item => item[rowKey])
         // 根据后端接口传数组或者逗号拼接的字符串
