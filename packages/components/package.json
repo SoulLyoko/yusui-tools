@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
-    "element-plus": "^2.6.0",
+    "element-plus": "^2.6.1",
     "sass": "^1.71.1",
     "vue": "^3.4.21"
   }

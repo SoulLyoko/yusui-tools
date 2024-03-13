@@ -28,7 +28,7 @@
   "devDependencies": {
     "@smallwei/avue": "^3.3.2",
     "@types/lodash-es": "^4.17.12",
-    "element-plus": "^2.6.0",
+    "element-plus": "^2.6.1",
     "sass": "^1.71.1",
     "vue": "^3.4.21"
   }
