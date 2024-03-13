@@ -748,14 +748,28 @@ declare module '@smallwei/avue' {
     'search': (props: { row: D, search: D, size: ElSize }) => VNode[]
     /** 搜索栏菜单插槽 */
     'search-menu': (props: { row: D, search: D, disabled: boolean, size: ElSize }) => VNode[]
-    /** 表单项或表单项标题插槽 */
-    [x: `${string}-form` | `${string}-label`]: (props: {
+    /** 表单项标题插槽 */
+    [x: `${string}-label`]: (props: {
       value: any
       column: AvueCrudColumn<T>
       size: ElSize
       disabled: boolean
       dic: DicItem[]
       type: FormType
+    }) => VNode[]
+    /** 表单项或子表单项插槽 */
+    [x: `${string}-form` ]: (props: {
+      // form
+      value: any
+      column: AvueCrudColumn<T>
+      size: ElSize
+      disabled: boolean
+      dic: DicItem[]
+      type: FormType
+      // dynamic
+      row: any
+      index: number
+      label: string
     }) => VNode[]
     /** 表单项校验错误插槽 */
     [x: `${string}-error`]: (props: {
