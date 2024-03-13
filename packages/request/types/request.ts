@@ -1,12 +1,16 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 
-export type RequestConfig<U extends string = string> = AxiosRequestConfig & Partial<UniNamespace.UploadFileOption> & {
-  url?: U
+export type RequestConfig = AxiosRequestConfig & Partial<UniNamespace.UploadFileOption> & {
   /**
-   * 是否登录验证未通过时退出登录
+   * 是否登录验证未通过时执行退出登录方法
    * @default true
    */
   withLogout?: boolean
+  /**
+   * 是否执行退出登录方法前弹出确认提示
+   * @default true
+   */
+  withLogoutConfirm?: boolean
   /**
    * 是否提示报错信息
    * @default true
@@ -55,19 +59,19 @@ export type RequestConfig<U extends string = string> = AxiosRequestConfig & Part
   decrypt?: (data: any) => any
 }
 
-export interface RequestInstance<U extends string = string> extends AxiosInstance {
-  <R = any>(config: RequestConfig<U>): Promise<R>
-  <R = any>(url: U, config?: RequestConfig<U>): Promise<R>
-  getUri: (config?: RequestConfig<U>) => U
-  request: <R = any>(config: RequestConfig<U>) => Promise<R>
-  get: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
-  delete: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
-  head: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
-  options: <R = any>(url: U, config?: RequestConfig<U>) => Promise<R>
-  post: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
-  put: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
-  patch: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
-  postForm: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
-  putForm: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
-  patchForm: <R = any>(url: U, data?: any, config?: RequestConfig<U>) => Promise<R>
+export interface RequestInstance extends AxiosInstance {
+  <R = any>(config: RequestConfig): Promise<R>
+  <R = any>(url: string, config?: RequestConfig): Promise<R>
+  getUri: (config?: RequestConfig) => string
+  request: <R = any>(config: RequestConfig) => Promise<R>
+  get: <R = any>(url: string, config?: RequestConfig) => Promise<R>
+  delete: <R = any>(url: string, config?: RequestConfig) => Promise<R>
+  head: <R = any>(url: string, config?: RequestConfig) => Promise<R>
+  options: <R = any>(url: string, config?: RequestConfig) => Promise<R>
+  post: <R = any>(url: string, data?: any, config?: RequestConfig) => Promise<R>
+  put: <R = any>(url: string, data?: any, config?: RequestConfig) => Promise<R>
+  patch: <R = any>(url: string, data?: any, config?: RequestConfig) => Promise<R>
+  postForm: <R = any>(url: string, data?: any, config?: RequestConfig) => Promise<R>
+  putForm: <R = any>(url: string, data?: any, config?: RequestConfig) => Promise<R>
+  patchForm: <R = any>(url: string, data?: any, config?: RequestConfig) => Promise<R>
 }

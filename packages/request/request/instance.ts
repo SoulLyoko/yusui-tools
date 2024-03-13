@@ -9,6 +9,7 @@ const defaultConfig: RequestConfig = {
   timeout: 60 * 1000, // ms
   withCredentials: true,
   withLogout: true,
+  withLogoutConfirm: true,
   withMessage: true,
   withResponseData: true,
   withToken: true,
@@ -16,12 +17,12 @@ const defaultConfig: RequestConfig = {
   withClientID: true,
 }
 
-export function createRequest<U extends string>(config: RequestConfig<U> = {}) {
+export function createRequest(config: RequestConfig = {}) {
   const instance = axios.create({
     adapter: config?.isApp ? uniAdapter : undefined,
     ...defaultConfig,
     ...config,
-  }) as RequestInstance<U>
+  }) as RequestInstance
   instance.interceptors.request.use(...requestInterceptors)
   instance.interceptors.response.use(...responseInterceptors)
   return instance

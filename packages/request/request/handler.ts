@@ -3,6 +3,7 @@ import type { AxiosResponse } from 'axios'
 import type { RequestConfig } from '../types'
 
 import { AxiosError } from 'axios'
+import { debounce } from 'lodash-es'
 // #ifdef H5
 import { ElMessage, ElMessageBox } from 'element-plus'
 // #endif
@@ -23,42 +24,19 @@ export function handleResponseCode(response: AxiosResponse) {
   response.status = code || 200
   if (/404/.test(msg))
     response.status = 404
-}
-
-/** 处理错误 */
-export function handleError(error: Partial<AxiosError<any, any>>) {
-  const { response } = error
-  if (!response) {
-    console.error(error)
-    return
-  }
-  const { status, data, config, request } = response
-  const { url, withMessage, withLogout, isApp, logout } = config as RequestConfig
-  const { msg } = data
-  const errorCode: Record<number, string> = {
-    400: '请求错误',
-    401: '登录状态已过期，请重新登录',
-    403: '当前操作没有权限',
-    404: `请求的地址不存在：${url}`,
-    405: '请求方法不正确',
-    408: '请求超时',
-    500: '内部服务器错误',
-    501: '请求方法未实现',
-    502: '网络错误',
-    503: '服务不可用',
-    504: '网络超时',
-    505: 'HTTP版本不受支持',
-  }
-  const errMsg = msg || errorCode[status] || '未知错误'
-  withMessage && (isApp ? uni.showToast({ title: errMsg, icon: 'none' }) : ElMessage.error({ message: errMsg, grouping: true, repeatNum: -99 }))
-  withLogout && status === 401 && logout && handleLogout(config)
-  return Promise.reject(new AxiosError(errMsg, `${status}`, config, request, response))
+  // 登录状态已过期
+  else if (/过期/.test(msg))
+    response.status = 401
 }
 
 /** 退出登录 */
-function handleLogout(config: RequestConfig) {
+const handleLogout = debounce((config: RequestConfig) => {
+  const { withLogoutConfirm, logout } = config
+  if (!withLogoutConfirm)
+    return logout?.()
+
   const title = '提示'
-  const content = '登录已失效，请重新登录'
+  const content = '登录状态已失效，请重新登录'
   const btnText = '重新登录'
   if (config.isApp) {
     uni.showModal({
@@ -77,6 +55,36 @@ function handleLogout(config: RequestConfig) {
       showClose: false,
     }).then(config.logout)
   }
+})
+
+/** 处理错误 */
+export function handleError(error: Partial<AxiosError<any, any>>) {
+  const { response } = error
+  if (!response) {
+    console.error(error)
+    return
+  }
+  const { status, data, config, request } = response
+  const { url, withMessage, withLogout, isApp, logout } = config as RequestConfig
+  const { msg } = data
+  const errorCode: Record<number, string> = {
+    400: '请求错误',
+    401: '登录状态已失效，请重新登录',
+    403: '当前操作没有权限',
+    404: `请求的地址不存在：${url}`,
+    405: '请求方法不正确',
+    408: '请求超时',
+    500: '内部服务器错误',
+    501: '请求方法未实现',
+    502: '网络错误',
+    503: '服务不可用',
+    504: '网络超时',
+    505: 'HTTP版本不受支持',
+  }
+  const errMsg = msg || errorCode[status] || '未知错误'
+  withMessage && (isApp ? uni.showToast({ title: errMsg, icon: 'none' }) : ElMessage.error({ message: errMsg, grouping: true, repeatNum: -99 }))
+  withLogout && status === 401 && logout && handleLogout(config)
+  return Promise.reject(new AxiosError(errMsg, `${status}`, config, request, response))
 }
 
 /** 处理加密 */
