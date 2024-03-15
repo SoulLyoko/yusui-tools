@@ -2,7 +2,7 @@ import type { RequestConfig, RequestInstance } from '../types'
 
 import axios from 'axios'
 
-import { uniAdapter } from './adapter'
+import { uniAdapter } from './uni-adapter'
 import { requestInterceptors, responseInterceptors } from './interceptors'
 
 const defaultConfig: RequestConfig = {

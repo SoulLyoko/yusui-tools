@@ -65,7 +65,7 @@ export function handleError(error: Partial<AxiosError<any, any>>) {
     return
   }
   const { status, data, config, request } = response
-  const { url, withMessage, withLogout, isApp, logout } = config as RequestConfig
+  const { url, withMessage, withLogout, isApp } = config as RequestConfig
   const { msg } = data
   const errorCode: Record<number, string> = {
     400: '请求错误',
@@ -83,7 +83,7 @@ export function handleError(error: Partial<AxiosError<any, any>>) {
   }
   const errMsg = msg || errorCode[status] || '未知错误'
   withMessage && (isApp ? uni.showToast({ title: errMsg, icon: 'none' }) : ElMessage.error({ message: errMsg, grouping: true, repeatNum: -99 }))
-  withLogout && status === 401 && logout && handleLogout(config)
+  withLogout && status === 401 && handleLogout(config)
   return Promise.reject(new AxiosError(errMsg, `${status}`, config, request, response))
 }
 
