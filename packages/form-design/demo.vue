@@ -36,13 +36,13 @@ const resources: Record<string, Resource> = {
     settings: Array.from({ length: form.settings?.length ?? 0 })
       .fill({}).concat({ label: '样式类', prop: 'class' }),
   } as Resource,
-  // 自定义组件,基于el-text封装(@yusui/components/v-text)
+  // 自定义组件,基于el-text封装(@yusui/components/pro-text)
   customText: {
     name: 'customText',
     title: '自定义文本',
     icon: 'el-icon-minus',
     group: '自定义分组',
-    props: { label: '自定义文本', component: 'v-text', value: '这是一个自定义文本', type: 'primary' },
+    props: { label: '自定义文本', component: 'pro-text', value: '这是一个自定义文本', type: 'primary' },
     settings: [
       {
         label: '显示内容',

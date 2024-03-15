@@ -1,36 +1,36 @@
 import type { App } from 'vue'
 
 import ContextMenu from './context-menu/index.vue'
-import EpMenu from './ep-menu/index.vue'
-import EpTree from './ep-tree/index.vue'
 import IconSelect from './icon-select/index.vue'
-import VDict from './v-dict/index.vue'
-import VText from './v-text/index.vue'
-import CrudPlus from './crud-plus/index.vue'
+import ProCrud from './pro-crud/index.vue'
+import ProDict from './pro-dict/index.vue'
+import ProMenu from './pro-menu/index.vue'
+import ProText from './pro-text/index.vue'
+import ProTree from './pro-tree/index.vue'
 
-export { EpMenu, EpTree, IconSelect, VDict, VText }
+export { ContextMenu, IconSelect, ProCrud, ProDict, ProMenu, ProText, ProTree }
 export * from './styles'
 
 export default {
   install(app: App) {
     app.component('ContextMenu', ContextMenu)
-    app.component('EpMenu', EpMenu)
-    app.component('EpTree', EpTree)
     app.component('IconSelect', IconSelect)
-    app.component('VDict', VDict)
-    app.component('VText', VText)
-    app.component('CrudPlus', CrudPlus as any)
+    app.component('ProCrud', ProCrud as any)
+    app.component('ProDict', ProDict)
+    app.component('ProMenu', ProMenu)
+    app.component('ProText', ProText)
+    app.component('ProTree', ProTree)
   },
 }
 
 declare module 'vue' {
   interface GlobalComponents {
     ContextMenu: typeof ContextMenu
-    EpMenu: typeof EpMenu
-    EpTree: typeof EpTree
     IconSelect: typeof IconSelect
-    VDict: typeof VDict
-    VText: typeof VText
-    CrudPlus: typeof CrudPlus
+    ProCrud: typeof ProCrud
+    ProDict: typeof ProDict
+    ProMenu: typeof ProMenu
+    ProText: typeof ProText
+    ProTree: typeof ProTree
   }
 }

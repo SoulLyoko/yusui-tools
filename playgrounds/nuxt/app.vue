@@ -13,7 +13,7 @@ request.get('/store/inventory')
   <div>
     <AvueForm />
     <el-button />
-    <VText />
+    <ProText />
     <Icon />
   </div>
 </template>

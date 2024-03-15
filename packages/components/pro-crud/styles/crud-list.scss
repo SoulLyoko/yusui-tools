@@ -1,0 +1,17 @@
+// 列表
+.pro-crud__list {
+  .pro-crud__list-item {
+    padding: 10px;
+    border-bottom: 1px solid var(--el-border-color);
+
+    .el-page-header__left:has(.el-page-header__content:empty) {
+      .el-page-header__back + .el-divider {
+        display: none;
+      }
+    }
+
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+}

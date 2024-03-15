@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { ref } from 'vue'
 
 const collapse = ref(false)
-const activeMenuIndex = ref('/components/ep-menu/index')
+const activeMenuIndex = ref('/components/pro-menu/index')
 const menuList = ref<RouteRecordRaw[]>([
   {
     name: 'components',
@@ -71,12 +71,12 @@ const menuList = ref<RouteRecordRaw[]>([
 
 <template>
   <h3>顶栏</h3>
-  <EpMenu v-model="activeMenuIndex" :routes="menuList" mode="horizontal" />
+  <ProMenu v-model="activeMenuIndex" :routes="menuList" mode="horizontal" />
 
   <h3>侧栏</h3>
   <div style="width:300px">
     <el-switch v-model="collapse" active-text="折叠" inactive-text="展开" />
-    <EpMenu v-model="activeMenuIndex" :routes="menuList" :collapse="collapse" />
+    <ProMenu v-model="activeMenuIndex" :routes="menuList" :collapse="collapse" />
   </div>
 </template>
 
