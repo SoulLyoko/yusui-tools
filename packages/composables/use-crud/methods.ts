@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import type { Data } from '@yusui/types'
 import type { CrudState, Emitter, UseCrudMethodsOptions } from './types'
 
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, nextTick } from 'vue'
 import { cloneDeep, get, isNil, omitBy, overSome, snakeCase } from 'lodash-unified'
 import { sleep, to } from '@yusui/utils'
 
@@ -285,6 +285,22 @@ export function useCrudMethods<T extends Data, P extends Data>({
       return getDataList()
     })
   /**
+   * 获取数据列表
+   */
+  const getInfoData
+    = options.getInfoData
+    ?? (async (id: any) => {
+      const [err] = await to(emitter.emitAsync('beforeGetInfo', crudState.formData))
+      if (err !== null)
+        return
+      const { getInfo, infoPath } = crudState.crudOption
+      if (!getInfo || !id)
+        return
+      const res = await getInfo(id)
+      crudState.formData = get({ res }, infoPath)
+      await emitter.emitAsync('afterGetInfo', res)
+    })
+  /**
    * 打开弹窗前回调
    * @param done 打开弹窗函数
    * @param type 表单类型 add|edit|view
@@ -296,6 +312,9 @@ export function useCrudMethods<T extends Data, P extends Data>({
       await emitter.emitAsync('beforeOpen', type)
       done()
       await emitter.emitAsync('afterOpen', type)
+      await nextTick()
+      const { rowKey } = crudState.crudOption
+      await getInfoData(crudState.formData[rowKey])
     })
   /**
    * 关闭弹窗前回调
@@ -313,6 +332,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
 
   return {
     getDataList,
+    getInfoData,
     handleSave,
     handleUpdate,
     handleDel,

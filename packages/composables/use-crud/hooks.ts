@@ -86,6 +86,14 @@ export function useHooks<T, P>() {
   const afterClose = (cb: (type: FormType) => Promise<any> | any | void) => {
     emitter.on('afterClose', async (...arg) => await cb?.(...arg))
   }
+  /** 获取详情前 beforeGetInfo((row)=>{}) */
+  const beforeGetInfo = (cb: (row: T) => Promise<any> | any | void) => {
+    emitter.on('beforeGetInfo', async (...arg) => await cb?.(...arg))
+  }
+  /** 获取详情后 afterGetInfo((res)=>{}) */
+  const afterGetInfo = (cb: (res: any) => Promise<any> | any | void) => {
+    emitter.on('afterGetInfo', async (...arg) => await cb?.(...arg))
+  }
 
   return {
     emitter,
@@ -109,5 +117,7 @@ export function useHooks<T, P>() {
     afterOpen,
     beforeClose,
     afterClose,
+    beforeGetInfo,
+    afterGetInfo,
   }
 }

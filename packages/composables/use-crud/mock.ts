@@ -51,16 +51,12 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     })
   }
   function create(row: T) {
-    const {
-      crudOption: { rowKey },
-    } = crudState
+    const { rowKey } = crudState.crudOption
     crudState.mockData.push({ [rowKey]: uuid(16, 10), ...row })
     return Promise.resolve({ code: 200, msg: '操作成功' })
   }
   function update(row: T) {
-    const {
-      crudOption: { rowKey },
-    } = crudState
+    const { rowKey } = crudState.crudOption
     crudState.mockData = crudState.mockData.map((item) => {
       if (item[rowKey] === row[rowKey])
         return row
@@ -70,9 +66,7 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     return Promise.resolve({ code: 200, msg: '操作成功' })
   }
   function remove(ids: string | number) {
-    const {
-      crudOption: { rowKey },
-    } = crudState
+    const { rowKey } = crudState.crudOption
     if (typeof ids === 'string') {
       const idsArr = ids.split(',')
       crudState.mockData = crudState.mockData.filter((item) => {
@@ -84,6 +78,15 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     }
     return Promise.resolve({ code: 200, msg: '操作成功' })
   }
+  function getInfo(id: string | number) {
+    const { rowKey } = crudState.crudOption
+    const findData = crudState.mockData.find(item => item[rowKey] === id)
+    return Promise.resolve({
+      code: 200,
+      msg: '操作成功',
+      data: findData,
+    })
+  }
 
-  return { getList, create, update, remove }
+  return { getList, create, update, remove, getInfo }
 }

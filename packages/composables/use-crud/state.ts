@@ -14,10 +14,12 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
         crudOption: {
           rowKey: options?.tableOption?.rowKey ?? 'id', // 行键值(id/_id/uuid/...)
           getList: (params: P) => getList(params), // 获取数据列表方法
+          getInfo: (id: string | number) => getInfo(id), // 获取数据详情方法
           create: (row: T) => create(row), // 添加数据方法
           update: (row: T) => update(row), // 编辑数据方法
-          remove: (ids: string | number) => remove(ids), // 删除单条数据方法
-          dataPath: 'res.data.records', // 接口返回数据的路径
+          remove: (ids: string | number) => remove(ids), // 删除数据方法
+          dataPath: 'res.data.records', // 接口返回列表数据的路径
+          infoPath: 'res.data', // 接口返回详情数据的路径
           totalPath: 'res.data.total', // 接口返回总数的路径
           currKey: 'current', // 当前页key
           sizeKey: 'size', // 每页条数key
@@ -57,7 +59,7 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
     ),
   ) as CrudState<T, P>
 
-  const { getList, create, update, remove } = useMock({ crudState })
+  const { getList, create, update, remove, getInfo } = useMock({ crudState })
 
   return crudState
 }

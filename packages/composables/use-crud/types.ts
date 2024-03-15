@@ -6,14 +6,18 @@ export interface CrudOption<T, P> {
   rowKey: string
   /** 获取数据列表方法 */
   getList: (() => Promise<any>) | ((params?: P) => Promise<any>) | ((params: P) => Promise<any>)
+  /** 获取详情方法 */
+  getInfo: (() => Promise<any>) | ((id?: any) => Promise<any>) | ((id: any) => Promise<any>)
   /** 添加数据方法 */
   create: (form: T | any) => Promise<any>
   /** 编辑数据方法 */
   update: (form: T | any) => Promise<any>
-  /** 删除单条数据方法 */
+  /** 删除数据方法 */
   remove: (id: any) => Promise<any>
-  /** 接口返回数据的路径 */
+  /** 接口返回列表数据的路径 */
   dataPath: string
+  /** 接口返回详情数据的路径 */
+  infoPath: string
   /** 接口返回总数的路径 */
   totalPath: string
   /** 当前页key */
@@ -83,6 +87,8 @@ export type Emitter<T, P> = EmitterAsync<{
   afterOpen: FormType
   beforeClose: FormType
   afterClose: FormType
+  beforeGetInfo: T
+  afterGetInfo: any
 }>
 
 export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>, 'crudOption' | 'pageOption'>> {
@@ -92,6 +98,7 @@ export interface UseCrudStateOptions<T, P> extends Partial<Omit<CrudState<T, P>,
 
 export interface UseCrudMethodsOptions<T, P> {
   getDataList?: () => any
+  getInfoData?: (id?: any) => any
   handleSave?: AvueCrudEmits<T>['row-save']
   handleUpdate?: AvueCrudEmits<T>['row-update']
   handleDel?: AvueCrudEmits<T>['row-del']

@@ -31,6 +31,9 @@ describe('useCrud', () => {
   function getList() {
     return resolve({ rows, size: 10, current: 1, total: rows.length })
   }
+  function getInfo() {
+    return resolve(rows[0])
+  }
   function create(row: RowData) {
     rows.push({ id: `${rows.length + 1}`, ...row })
     return resolve(row)
@@ -52,6 +55,7 @@ describe('useCrud', () => {
   const crudOption = {
     rowKey: 'id',
     getList,
+    getInfo,
     create,
     update,
     remove,
@@ -61,6 +65,7 @@ describe('useCrud', () => {
   const {
     crudState,
     getDataList,
+    getInfoData,
     beforeGetList,
     afterGetList,
     handleSave,
@@ -77,6 +82,8 @@ describe('useCrud', () => {
     batchDel,
     beforeBatchDel,
     afterBatchDel,
+    beforeGetInfo,
+    afterGetInfo,
   } = useCrud({
     crudOption,
   })
@@ -90,6 +97,16 @@ describe('useCrud', () => {
     expect(getListRes).not.toBeUndefined()
     expect(crudState.tableData).toEqual(rows)
     expect(crudState.pageOption.total).toBe(rows.length)
+  })
+
+  it('getInfoData success', async () => {
+    let formData, getInfoRes
+    beforeGetInfo(row => (formData = row))
+    afterGetInfo(res => (getInfoRes = res))
+    await getInfoData(rows[0].id)
+    expect(formData).not.toBeUndefined()
+    expect(getInfoRes).not.toBeUndefined()
+    expect(crudState.formData).toEqual(rows[0])
   })
 
   it('handleSave success', async () => {
@@ -159,6 +176,15 @@ describe('useCrud', () => {
     expect(crudState.pageOption.total).toBe(0)
   })
 
+  it('getInfoData reject', async () => {
+    beforeGetInfo(() => {
+      crudState.formData = {}
+      return Promise.reject()
+    })
+    await getInfoData(rows[0].id)
+    expect(crudState.formData).toEqual({})
+  })
+
   it('handleSave reject', async () => {
     let isReject = false
     beforeSave(() => Promise.reject('reject'))
@@ -192,7 +218,7 @@ describe('useCrud', () => {
 
 describe('useCrud mock', () => {
   const rows = useRows()
-  const { crudState, getDataList, handleSave, handleUpdate, handleDel, batchDel } = useCrud({
+  const { crudState, getDataList, handleSave, handleUpdate, handleDel, batchDel, getInfoData } = useCrud({
     mockData: rows,
     mockCache: 'test',
   })
@@ -200,6 +226,11 @@ describe('useCrud mock', () => {
   it('getDataList', async () => {
     await getDataList()
     expect(crudState.tableData).toEqual(rows)
+  })
+
+  it('getInfoData', async () => {
+    await getInfoData(rows[0].id)
+    expect(crudState.formData).toEqual(rows[0])
   })
 
   it('handleSave', async () => {

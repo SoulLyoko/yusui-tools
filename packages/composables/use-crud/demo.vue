@@ -4,9 +4,14 @@ import { useCrud } from '@yusui/composables'
 function getList() {
   return Promise.resolve({
     data: {
-      rows: [{ name: 'demo' }],
+      rows: [{ id: '1', value: 'value' }],
       count: 1,
     },
+  })
+}
+function getInfo() {
+  return Promise.resolve({
+    data: { id: '1', value: 'valueFormGetInfo' },
   })
 }
 function create() {
@@ -22,6 +27,7 @@ function remove() {
 const { bindVal, crudRef, getDataList } = useCrud({
   crudOption: {
     getList,
+    getInfo,
     create,
     update,
     remove,
@@ -29,8 +35,9 @@ const { bindVal, crudRef, getDataList } = useCrud({
     totalPath: 'res.data.count',
   },
   tableOption: {
+    rowKey: 'id',
     addBtn: false,
-    column: [{ label: '名称', prop: 'name' }],
+    column: [{ label: '值', prop: 'value' }],
   },
 })
 getDataList()

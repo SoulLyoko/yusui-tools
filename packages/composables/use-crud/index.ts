@@ -46,11 +46,14 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     afterOpen: afterOpenHook,
     beforeClose: beforeCloseHook,
     afterClose: afterCloseHook,
+    beforeGetInfo,
+    afterGetInfo,
   } = useHooks<T, P>()
 
   /** methods */
   const {
     getDataList,
+    getInfoData,
     handleSave,
     handleUpdate,
     handleDel,
@@ -106,6 +109,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     crudStateRefs,
     bindVal,
     getDataList,
+    getInfoData,
     handleSave,
     handleUpdate,
     handleDel,
@@ -130,5 +134,7 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     afterOpen: afterOpenHook,
     beforeClose: beforeCloseHook,
     afterClose: afterCloseHook,
+    beforeGetInfo,
+    afterGetInfo,
   }
 }
