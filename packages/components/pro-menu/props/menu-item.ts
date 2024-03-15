@@ -16,7 +16,6 @@ export const menuItemProps = {
 
 export const menuItemEmits = {
   click: (_route: RouteRecordRaw) => true,
-  contextmenu: (_route: RouteRecordRaw) => true,
 }
 
 export type MenuItemProps = ExtractPropTypes<typeof menuItemProps>

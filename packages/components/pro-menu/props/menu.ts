@@ -16,8 +16,7 @@ export const menuProps = {
 
 export const menuEmits = {
   ...elMenuEmits,
-  itemClick: (_route: RouteRecordRaw) => true,
-  itemContextmenu: (_route: RouteRecordRaw) => true,
+  click: (_route: RouteRecordRaw) => true,
 }
 
 export type MenuProps = ExtractPropTypes<typeof menuProps>

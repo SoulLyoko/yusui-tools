@@ -27,11 +27,8 @@ function onMenuSelect(...args: Parameters<MenuEmits['select']>) {
   activeMenuIndex!.value = args[0]
   emit('select', ...args)
 }
-function onMenuItemClick(route: RouteRecordRaw) {
-  emit('itemClick', route)
-}
-function onMenuItemContextmenu(route: RouteRecordRaw) {
-  emit('itemContextmenu', route)
+function onClick(route: RouteRecordRaw) {
+  emit('click', route)
 }
 
 const menuRef = ref()
@@ -44,10 +41,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-menu v-bind="bindMenuProps" ref="menuRef" class="pro-menu" :default-active="activeMenuIndex" @select="onMenuSelect">
+  <el-menu
+    v-bind="bindMenuProps" ref="menuRef" class="pro-menu" :default-active="activeMenuIndex"
+    @select="onMenuSelect"
+  >
     <MenuItem
       v-for="route in routes" :key="route[indexKey]" v-bind="bindMenuItemProps" :route="route"
-      @click="onMenuItemClick" @contextmenu="onMenuItemContextmenu"
+      @click="onClick"
     >
       <template v-if="$slots.default" #default="scope">
         <slot v-bind="scope" />
