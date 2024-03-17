@@ -1,24 +1,34 @@
+import { alias } from '../../vite.config'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  alias: {
-    '@yusui/request': '../../packages/request/index.ts',
-    '@yusui/request/openapi': '../../packages/request/openapi/index.ts',
-    '@yusui/components': '../../packages/components/index.ts',
-    '@yusui/composables': '../../packages/composables/index.ts',
-  },
-  ssr: false,
-  devtools: { enabled: true },
+  alias: Object.fromEntries(Object.values(alias).map(e => [e.find, e.replacement])),
+  extends: ['../../packages/nuxt'],
   imports: { dirs: ['api'] },
-  modules: [
-    '@element-plus/nuxt',
-  ],
-  nitro: {
-    devProxy: {
-      '/api': {
-        target: 'https://petstore3.swagger.io/api/v3',
-        changeOrigin: true,
-        prependPath: true,
+  srcDir: 'src/',
+  openapi: {
+    serversPath: 'src/api/openapi',
+    schemas: {
+      pet: 'https://petstore3.swagger.io/api/v3/openapi.json',
+    },
+    hook: {
+      // 自定义函数名
+      customFunctionName(operationObject) {
+        const { method, path } = operationObject
+        return method + path
       },
+      // 自定义文件名
+      customFileNames(_, apiPath) {
+        return [apiPath.split('/')[1]]
+      },
+    },
+  },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        types: ['element-plus/global'],
+      },
+      exclude: ['../../packages/composables'],
     },
   },
 })

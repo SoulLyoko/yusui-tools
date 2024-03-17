@@ -3,6 +3,7 @@
 declare module 'vue' {
   interface GlobalComponents {
     Icon: typeof import('@iconify/vue')['Icon']
+    Chart: typeof import('vue-echarts')['default']
   }
 }
 

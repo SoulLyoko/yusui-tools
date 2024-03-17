@@ -10,6 +10,7 @@
       "@yusui/form-design": ["packages/form-design/index.ts"],
       "@yusui/plugins": ["packages/plugins/index.ts"],
       "@yusui/request": ["packages/request/index.ts"],
+      "@yusui/request/openapi": ["packages/request/openapi/index.ts"],
       "@yusui/types": ["packages/types/index.ts"],
       "@yusui/utils": ["packages/utils/index.ts"],
       "@yusui/uvue": ["packages/uvue/index.ts"],
@@ -27,5 +28,5 @@
     "allowJs": true
   },
   "include": ["packages", "packages/.vitepress/**/*"],
-  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache", "**/*.js"]
+  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache", "**/*.js", "packages/nuxt"]
 }
