@@ -8,7 +8,6 @@
       "@yusui/flow-design": ["packages/flow-design/index.ts"],
       "@yusui/flow-pages": ["packages/flow-pages/index.ts"],
       "@yusui/form-design": ["packages/form-design/index.ts"],
-      "@yusui/mix": ["packages/mix/index.ts"],
       "@yusui/plugins": ["packages/plugins/index.ts"],
       "@yusui/request": ["packages/request/index.ts"],
       "@yusui/types": ["packages/types/index.ts"],

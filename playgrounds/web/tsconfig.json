@@ -1,9 +1,0 @@
-{
-  "extends": "@yusui/mix/tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  }
-}

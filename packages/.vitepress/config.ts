@@ -23,7 +23,6 @@ export default defineConfig({
         items: [
           { text: '@yusui/components', link: '/components/index' },
           { text: '@yusui/composables', link: '/composables/index' },
-          { text: '@yusui/mix', link: '/mix/index' },
           { text: '@yusui/plugins', link: '/plugins/index' },
           { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
@@ -71,15 +70,6 @@ export default defineConfig({
             { text: 'useRes', link: '/composables/use-res/index' },
           ],
         },
-      ],
-      '/mix': [
-        {
-          text: 'Mix',
-          items: [
-            { text: 'Start', link: '/mix/index' },
-          ],
-        },
-
       ],
       '/plugins': [
         {
