@@ -5,12 +5,12 @@ import { sleep } from '@yusui/utils'
 
 import { handleDecryption, handleEncryption, handleError, handleHeaders } from '.'
 
-vi.mock('axios', async () => {
-  class AxiosError { }
-  return { AxiosError }
-})
+describe('test request handler', () => {
+  vi.mock('axios', async () => {
+    class AxiosError { }
+    return { AxiosError }
+  })
 
-describe('request handler', () => {
   it('should handle headers', () => {
     const token = 'token'
     const clientId = 'clientId'

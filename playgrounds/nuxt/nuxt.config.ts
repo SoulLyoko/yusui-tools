@@ -1,10 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  alias: {
+    '@yusui/request': '../../packages/request/index.ts',
+    '@yusui/request/openapi': '../../packages/request/openapi/index.ts',
+    '@yusui/components': '../../packages/components/index.ts',
+    '@yusui/composables': '../../packages/composables/index.ts',
+  },
   ssr: false,
   devtools: { enabled: true },
+  imports: { dirs: ['api'] },
   modules: [
     '@element-plus/nuxt',
-    'nuxt-open-fetch',
   ],
   nitro: {
     devProxy: {
@@ -12,25 +18,6 @@ export default defineNuxtConfig({
         target: 'https://petstore3.swagger.io/api/v3',
         changeOrigin: true,
         prependPath: true,
-      },
-    },
-  },
-  openFetch: {
-    clients: {
-      pet: {
-        baseURL: '/api',
-        schema: 'https://petstore3.swagger.io/api/v3/openapi.json',
-      },
-    },
-    openAPITS: {
-      pathParamsAsTypes: true,
-      transform(schemaObject, options) {
-        Object.values(options.ctx.parameters).forEach((p) => {
-          p.required = undefined
-        })
-        schemaObject.required = undefined
-        if (schemaObject.format === 'binary')
-          return 'Blob'
       },
     },
   },

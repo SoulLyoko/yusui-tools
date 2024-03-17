@@ -18,12 +18,10 @@
       "preact": ["node_modules/preact"]
     },
     "types": [
+      "@dcloudio/types",
+      "element-plus/global",
       "vite/client",
       "vitest/globals",
-      "element-plus/global",
-      "@dcloudio/types",
-      "vite-plugin-vue-layouts/client",
-      "unplugin-vue-router/client",
       "./packages/types/avue"
     ],
     "allowJs": true

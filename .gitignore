@@ -17,6 +17,7 @@ dist-ssr
 **/types/components.d.ts
 **/types/typed-router.d.ts
 **/types/vite-env.d.ts
+playgrounds/nuxt/api/openapi
 
 # Nuxt dev/build outputs
 .output

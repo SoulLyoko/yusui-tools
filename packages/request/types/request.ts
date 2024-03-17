@@ -1,6 +1,10 @@
+/// <reference types="@dcloudio/types" />
+
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 
 export type RequestConfig = AxiosRequestConfig & Partial<UniNamespace.UploadFileOption> & {
+  /** @deprecated 兼容旧版 */
+  requestType?: string
   /**
    * 是否登录验证未通过时执行退出登录方法
    * @default true

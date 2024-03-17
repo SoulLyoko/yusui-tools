@@ -11,7 +11,7 @@ const external = [
   /@logicflow/,
   '@iconify/vue',
   '@smallwei/avue',
-  '@umijs/openapi',
+  /@umijs\/openapi/,
   /@vitejs/,
   /@vue/,
   /@yusui/,
@@ -48,6 +48,7 @@ const entry = {
   'flow-design': resolve(__dirname, 'packages/flow-design/index.ts'),
   'plugins': resolve(__dirname, 'packages/plugins/index.ts'),
   'request': resolve(__dirname, 'packages/request/index.ts'),
+  'request/openapi': resolve(__dirname, 'packages/request/openapi/index.ts'),
   'types': resolve(__dirname, 'packages/types/index.ts'),
   'utils': resolve(__dirname, 'packages/utils/index.ts'),
 }
