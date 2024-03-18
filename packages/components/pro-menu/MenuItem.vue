@@ -34,7 +34,7 @@ const debounceEmit = debounce((event, data) => emit(event, data))
     </template>
     <MenuItem
       v-for="childRoute in route.children" :key="childRoute[indexKey]" :route="childRoute"
-      @click="debounceEmit('click', childRoute)"
+      @click="debounceEmit('click', $event)"
     >
       <template v-if="$slots.default" #default="scope">
         <slot v-bind="scope" />

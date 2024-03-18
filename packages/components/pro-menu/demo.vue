@@ -2,7 +2,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 import { ref } from 'vue'
-import { useRouter } from 'vitepress'
 
 const menuList = ref<RouteRecordRaw[]>([
   {
@@ -83,11 +82,8 @@ const menuList = ref<RouteRecordRaw[]>([
   },
 ])
 
-const router = useRouter()
 function onMenuClick(route: RouteRecordRaw) {
   console.log('click', route)
-  if (!route.children?.length)
-    router.go(route.path)
 }
 const activeMenuIndex = ref('/components/pro-menu/index')
 
