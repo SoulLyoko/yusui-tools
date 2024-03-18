@@ -1,3 +1,14 @@
+# [3.0.0-beta.8](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2024-03-18)
+
+
+### Features
+
+* **nuxt:** nuxt layer ([668f4d7](https://github.com/SoulLyoko/yusui-tools/commit/668f4d7e151b8c3ea69247fb9f73c7b729088641))
+* **request:** 可以通过openapi生成请求接口代码 ([44d081c](https://github.com/SoulLyoko/yusui-tools/commit/44d081c35b9bb5e63e51b9af143883fc587031e4))
+* **use-crud:** 新增获取数据详情的方法 ([6e71a5c](https://github.com/SoulLyoko/yusui-tools/commit/6e71a5cc858a5c98a99c45a823fa029daff3ad70))
+
+
+
 # [3.0.0-beta.7](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.5...v3.0.0-beta.7) (2024-03-13)
 
 
