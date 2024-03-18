@@ -52,6 +52,7 @@ export default defineConfig({
             { text: 'IconSelect', link: '/components/icon-select/index' },
             { text: 'ProCrud', link: '/components/pro-crud/index' },
             { text: 'ProDict', link: '/components/pro-dict/index' },
+            { text: 'ProHtml', link: '/components/pro-html/index' },
             { text: 'ProMenu', link: '/components/pro-menu/index' },
             { text: 'ProText', link: '/components/pro-text/index' },
             { text: 'ProTree', link: '/components/pro-tree/index' },
