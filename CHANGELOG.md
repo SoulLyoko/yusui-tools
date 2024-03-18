@@ -1,3 +1,12 @@
+# [3.0.0-beta.10](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2024-03-18)
+
+
+### Bug Fixes
+
+* **nuxt:** 从appConfig读取组件配置 ([ba41057](https://github.com/SoulLyoko/yusui-tools/commit/ba41057a4c3bbd56f00dba6cd7804d50b228cb47))
+
+
+
 # [3.0.0-beta.9](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2024-03-18)
 
 
