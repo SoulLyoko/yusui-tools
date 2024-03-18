@@ -1,3 +1,18 @@
+# [3.0.0-beta.11](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2024-03-18)
+
+
+### Bug Fixes
+
+* **request:** 弹出退出登录确认框前先关闭 ([e3c3a64](https://github.com/SoulLyoko/yusui-tools/commit/e3c3a6485034a49d62433739513a13b4a5c33d9f))
+
+
+### Features
+
+* **components:** 新增ProHtml组件用于显示HTML内容 ([41fe296](https://github.com/SoulLyoko/yusui-tools/commit/41fe29633ea887ff2899c466f3a983e32fab5016))
+* **nuxt:** register注册全局组件 ([65fccc8](https://github.com/SoulLyoko/yusui-tools/commit/65fccc878a8d39254ca097e8bd4512a469724b9a))
+
+
+
 # [3.0.0-beta.10](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2024-03-18)
 
 
