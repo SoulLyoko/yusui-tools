@@ -18,17 +18,20 @@
   ],
   "dependencies": {
     "@element-plus/nuxt": "^1.0.7",
+    "@iconify/vue": "^4.1.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
+    "@smallwei/avue": "^3.3.3",
     "@unocss/nuxt": "^0.58.6",
     "@vueuse/nuxt": "^10.9.0",
+    "@yusui/components": "workspace:*",
+    "@yusui/plugins": "workspace:*",
+    "@yusui/request": "workspace:*",
     "echarts": "^5.5.0",
     "nuxt-lodash": "^2.5.3",
     "vue-echarts": "^6.6.9"
   },
   "devDependencies": {
-    "@yusui/plugins": "workspace:*",
-    "@yusui/request": "workspace:*",
     "nuxt": "^3.11.0"
   }
 }

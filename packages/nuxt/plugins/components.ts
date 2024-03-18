@@ -1,3 +1,6 @@
+import type { AvueConfig } from '@smallwei/avue'
+import type { ConfigProviderProps } from 'element-plus'
+
 import ElementPlus, { ElOverlay } from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import Avue from '@smallwei/avue'
@@ -9,23 +12,42 @@ import 'echarts'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
-import '@yusui/components/dist/index.css'
+
+// import '@yusui/components/dist/index.css'
+
+declare module 'nuxt/schema' {
+  interface CustomAppConfig {
+    avue?: AvueConfig
+    elementPlus?: Partial<ConfigProviderProps>
+  }
+}
+declare module '@nuxt/schema' {
+  interface CustomAppConfig {
+    avue?: AvueConfig
+    elementPlus?: Partial<ConfigProviderProps>
+  }
+}
 
 export default defineNuxtPlugin({
   name: '@yusui/nuxt/plugins/components',
-  setup(nuxt) {
-    disableCache('local')
-    enableCache('session')
-    nuxt.vueApp.component('Icon', Icon)
+  hooks: {
+    'app:created': (app) => {
+      disableCache('local')
+      enableCache('session')
+      app.component('Icon', Icon)
 
-    Chart.props.autoresize = { type: [Boolean, Object], default: true }
-    nuxt.vueApp.component('Chart', Chart)
+      Chart.props.autoresize = { type: [Boolean, Object], default: true }
+      app.component('Chart', Chart)
 
-    nuxt.vueApp.use(ElementPlus, { locale: zhCn })
-    nuxt.vueApp.component('ElOverlay', ElOverlay)
-    nuxt.vueApp.use(Avue)
+      const { elementPlus: elementPlusConfig, avue: avueConfig } = app.$nuxt._appConfig
 
-    IconSelect.props.collections.default = 'icon-park,icon-park-'
-    nuxt.vueApp.use(YsComponents)
+      app.use(ElementPlus, { locale: zhCn, ...elementPlusConfig })
+      app.component('ElOverlay', ElOverlay)
+
+      app.use(Avue, avueConfig)
+
+      IconSelect.props.collections.default = 'icon-park,icon-park-'
+      app.use(YsComponents)
+    },
   },
 })
