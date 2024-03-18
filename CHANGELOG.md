@@ -1,3 +1,12 @@
+# [3.0.0-beta.12](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2024-03-18)
+
+
+### Bug Fixes
+
+* **components:** 导出ProMenu ([f52e420](https://github.com/SoulLyoko/yusui-tools/commit/f52e420dc1e3a2d6e0197fcf3dddf381643c19ad))
+
+
+
 # [3.0.0-beta.11](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2024-03-18)
 
 
