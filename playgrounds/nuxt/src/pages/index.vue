@@ -6,7 +6,7 @@ const userStore = useUserStore()
 
 <template>
   <div>
-    <Icon icon="ep:plus" />
+    <Icon />
     <Chart />
     userInfo: {{ userStore.userInfo }}
     <h1>Nuxt Routing set up successfully!</h1>

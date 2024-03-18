@@ -9,6 +9,8 @@ import openapi from './modules/openapi'
 export default defineNuxtConfig({
   // internal config
   ssr: false,
+  experimental: { typedPages: true },
+  typescript: { typeCheck: true },
   devtools: {
     enabled: true,
     timeline: { enabled: true },
@@ -19,16 +21,6 @@ export default defineNuxtConfig({
         icon: 'simple-icons:iconify',
         view: { type: 'iframe', src: 'https://icon-sets.iconify.design/' },
       },
-    ],
-  },
-  experimental: { typedPages: true },
-  typescript: { typeCheck: true },
-  nitro: {
-    devProxy: env.VITE_PROXY ? transformProxy(env.VITE_PROXY) as any : {},
-  },
-  vite: {
-    plugins: [
-      createEnvDts({ dts: 'types/vite-env.d.ts' }),
     ],
   },
   hooks: {
@@ -47,6 +39,14 @@ export default defineNuxtConfig({
           pages.splice(pages.indexOf(page), 1)
       }
     },
+  },
+  nitro: {
+    devProxy: env.VITE_PROXY ? transformProxy(env.VITE_PROXY) as any : {},
+  },
+  vite: {
+    plugins: [
+      createEnvDts({ dts: 'types/vite-env.d.ts' }),
+    ],
   },
   // modules config
   modules: [
