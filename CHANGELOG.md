@@ -1,3 +1,12 @@
+# [3.0.0-beta.9](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2024-03-18)
+
+
+### Bug Fixes
+
+* **pro-menu:** sub-menu点击 ([fb67b12](https://github.com/SoulLyoko/yusui-tools/commit/fb67b12c58883a0e47d502e171043e0db4d8c51d))
+
+
+
 # [3.0.0-beta.8](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2024-03-18)
 
 
