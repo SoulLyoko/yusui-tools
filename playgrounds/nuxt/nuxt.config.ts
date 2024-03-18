@@ -4,7 +4,7 @@ import { alias } from '../../vite.config'
 export default defineNuxtConfig({
   alias: Object.fromEntries(Object.values(alias).map(e => [e.find, e.replacement])),
   extends: ['../../packages/nuxt'],
-  imports: { dirs: ['api'] },
+  imports: { dirs: ['api', 'stores'] },
   srcDir: 'src/',
   openapi: {
     serversPath: 'src/api/openapi',
@@ -21,14 +21,6 @@ export default defineNuxtConfig({
       customFileNames(_, apiPath) {
         return [apiPath.split('/')[1]]
       },
-    },
-  },
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        types: ['element-plus/global'],
-      },
-      exclude: ['../../packages/composables'],
     },
   },
 })

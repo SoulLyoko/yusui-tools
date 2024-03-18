@@ -9,8 +9,7 @@ import 'echarts'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
-
-// import '@yusui/components/dist/index.css'
+import '@yusui/components/dist/index.css'
 
 export default defineNuxtPlugin({
   name: '@yusui/nuxt/plugins/components',

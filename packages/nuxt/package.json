@@ -12,8 +12,9 @@
   },
   "main": "./nuxt.config.ts",
   "files": [
+    "modules",
     "nuxt.config.ts",
-    "src"
+    "plugins"
   ],
   "dependencies": {
     "@element-plus/nuxt": "^1.0.7",

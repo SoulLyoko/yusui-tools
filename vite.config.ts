@@ -56,6 +56,7 @@ const entry = {
 const unpkg = {
   'flow-pages': resolve(__dirname, 'packages/flow-pages/index.ts'),
   'uvue': resolve(__dirname, 'packages/uvue/index.ts'),
+  'nuxt': resolve(__dirname, 'packages/nuxt/nuxt.config.ts'),
 }
 
 export const alias = Object.entries({ ...entry, ...unpkg })

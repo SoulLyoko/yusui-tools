@@ -60,6 +60,5 @@ export default defineNuxtConfig({
   ],
   elementPlus: { importStyle: false },
   lodash: { prefix: '_', upperAfterPrefix: false },
-  pinia: { storesDirs: ['src/stores'] },
   piniaPersistedstate: { storage: 'localStorage' },
 })
