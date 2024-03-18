@@ -5,10 +5,11 @@ import IconSelect from './icon-select/index.vue'
 import ProCrud from './pro-crud/index.vue'
 import ProDict from './pro-dict/index.vue'
 import ProHtml from './pro-html/index.vue'
+import ProMenu from './pro-menu/index.vue'
 import ProText from './pro-text/index.vue'
 import ProTree from './pro-tree/index.vue'
 
-export { ContextMenu, IconSelect, ProCrud, ProDict, ProHtml, ProText, ProTree }
+export { ContextMenu, IconSelect, ProCrud, ProDict, ProHtml, ProMenu, ProText, ProTree }
 export * from './styles'
 
 export default {
@@ -18,7 +19,7 @@ export default {
     app.component('ProCrud', ProCrud as any)
     app.component('ProDict', ProDict)
     app.component('ProHtml', ProHtml)
-    app.component('ProHtml', ProHtml)
+    app.component('ProMenu', ProMenu)
     app.component('ProText', ProText)
     app.component('ProTree', ProTree)
   },
@@ -31,6 +32,7 @@ declare module 'vue' {
     ProCrud: typeof ProCrud
     ProDict: typeof ProDict
     ProHtml: typeof ProHtml
+    ProMenu: typeof ProMenu
     ProText: typeof ProText
     ProTree: typeof ProTree
   }

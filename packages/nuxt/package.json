@@ -7,10 +7,7 @@
   "license": "MIT",
   "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
-  "exports": {
-    "./*": "./*.ts"
-  },
-  "main": "./nuxt.config.ts",
+  "main": "nuxt.config.ts",
   "files": [
     "modules",
     "nuxt.config.ts",
