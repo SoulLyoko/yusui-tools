@@ -48,6 +48,7 @@ const handleLogout = debounce((config: RequestConfig) => {
     })
   }
   else {
+    ElMessageBox.close()
     ElMessageBox.confirm(content, title, {
       type: 'info',
       confirmButtonText: btnText,
