@@ -32,7 +32,7 @@ export function handleResponseCode(response: AxiosResponse) {
 /** 退出登录 */
 const handleLogout = debounce((config: RequestConfig) => {
   const { withLogoutConfirm, logout } = config
-  if (!withLogoutConfirm)
+  if (!withLogoutConfirm || !logout)
     return logout?.()
 
   const title = '提示'
