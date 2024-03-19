@@ -1,3 +1,13 @@
+# [3.0.0-beta.13](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2024-03-19)
+
+
+### Bug Fixes
+
+* **request:** 优化退出登录提示 ([a3fcff7](https://github.com/SoulLyoko/yusui-tools/commit/a3fcff781e49c9bb7f23288a2f0f6363f36f2cc9))
+* **use-crud:** getInfo的问题 ([36f50e4](https://github.com/SoulLyoko/yusui-tools/commit/36f50e47d4768ef0daa80943bc03013e70a8df47))
+
+
+
 # [3.0.0-beta.12](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2024-03-18)
 
 
