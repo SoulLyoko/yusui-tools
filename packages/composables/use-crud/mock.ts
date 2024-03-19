@@ -78,15 +78,6 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     }
     return Promise.resolve({ code: 200, msg: '操作成功' })
   }
-  function getInfo(id: string | number) {
-    const { rowKey } = crudState.crudOption
-    const findData = crudState.mockData.find(item => item[rowKey] === id)
-    return Promise.resolve({
-      code: 200,
-      msg: '操作成功',
-      data: findData,
-    })
-  }
 
-  return { getList, create, update, remove, getInfo }
+  return { getList, create, update, remove }
 }

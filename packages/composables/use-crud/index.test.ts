@@ -218,7 +218,7 @@ describe('useCrud', () => {
 
 describe('useCrud mock', () => {
   const rows = useRows()
-  const { crudState, getDataList, handleSave, handleUpdate, handleDel, batchDel, getInfoData } = useCrud({
+  const { crudState, getDataList, handleSave, handleUpdate, handleDel, batchDel } = useCrud({
     mockData: rows,
     mockCache: 'test',
   })
@@ -226,11 +226,6 @@ describe('useCrud mock', () => {
   it('getDataList', async () => {
     await getDataList()
     expect(crudState.tableData).toEqual(rows)
-  })
-
-  it('getInfoData', async () => {
-    await getInfoData(rows[0].id)
-    expect(crudState.formData).toEqual(rows[0])
   })
 
   it('handleSave', async () => {

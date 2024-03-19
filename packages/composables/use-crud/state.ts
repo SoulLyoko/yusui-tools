@@ -14,7 +14,6 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
         crudOption: {
           rowKey: options?.tableOption?.rowKey ?? 'id', // 行键值(id/_id/uuid/...)
           getList: (params: P) => getList(params), // 获取数据列表方法
-          getInfo: (id: string | number) => getInfo(id), // 获取数据详情方法
           create: (row: T) => create(row), // 添加数据方法
           update: (row: T) => update(row), // 编辑数据方法
           remove: (ids: string | number) => remove(ids), // 删除数据方法
@@ -59,7 +58,7 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
     ),
   ) as CrudState<T, P>
 
-  const { getList, create, update, remove, getInfo } = useMock({ crudState })
+  const { getList, create, update, remove } = useMock({ crudState })
 
   return crudState
 }
