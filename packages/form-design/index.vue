@@ -23,7 +23,14 @@ const { workType, deviceType } = useProvideState(props, emit)
     </el-aside>
     <el-container>
       <el-header class="main-header" height="auto">
-        <MainHeader />
+        <MainHeader>
+          <template #header-left>
+            <slot name="header-left" />
+          </template>
+          <template #header-right>
+            <slot name="header-right" />
+          </template>
+        </MainHeader>
       </el-header>
       <el-main class="main-workspace">
         <MainWorkspace :class="`device-${deviceType}`" />

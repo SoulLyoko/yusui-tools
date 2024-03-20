@@ -17,7 +17,7 @@ const workTypes = [
 
 <template>
   <el-row :gutter="20">
-    <el-col :span="8" style="align-self: center">
+    <el-col :span="10" style="align-self: center">
       <el-button-group size="small">
         <el-button
           :disabled="historyIndex === 0"
@@ -38,8 +38,9 @@ const workTypes = [
           @click="resetHistory()"
         />
       </el-button-group>
+      <slot name="header-left" />
     </el-col>
-    <el-col :span="8" style="text-align: center">
+    <el-col :span="4" style="text-align: center">
       <el-radio-group v-model="deviceType" size="small" style="font-size: unset">
         <el-radio-button v-for="item in deviceTypes" :key="item.value" :label="item.value">
           <el-link
@@ -52,7 +53,8 @@ const workTypes = [
         </el-radio-button>
       </el-radio-group>
     </el-col>
-    <el-col :span="8" style="text-align: right">
+    <el-col :span="10" style="text-align: right">
+      <slot name="header-right" />
       <el-radio-group v-model="workType" size="small" style="font-size: unset">
         <el-radio-button v-for="item in workTypes" :key="item.value" :label="item.value">
           <el-link

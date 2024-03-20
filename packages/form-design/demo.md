@@ -16,7 +16,7 @@ aside: false
 | ------------- | ----------------------------------- | ------------------------------------------- | ------ | ---------- |
 | v-model       | 绑定的值                            | AvueFormOpition                             | -      | -          |
 | groupList     | 左侧分组,可以用来修改排序或显示状态 | string[]                                    | -      | -          |
-| resources     | 定义物料库及其可配置项              | Record<string,Resource>                     | -      | -          |
+| resources     | 定义物料库及其可配置项              | Record<string,[Resource](#resource)>        | -      | -          |
 | baseOption    | 定义选中组件时右侧的基础配置        | Resource['settings']                        | -      | -          |
 | advanceOption | 定义选中组件时右侧的高级配置        | Resource['settings']                        | -      | -          |
 | leftWidth     | 左侧宽度                            | string                                      | -      | 200px      |
@@ -48,5 +48,8 @@ aside: false
 ## 类型定义
 
 ::: details
-<<< @/form-design/types/index.ts
+<<< @/form-design/constants/enum.ts
+<<< @/form-design/types/design.ts
+<<< @/form-design/types/props.ts
+<<< @/form-design/types/state.ts
 :::

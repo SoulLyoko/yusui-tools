@@ -90,5 +90,12 @@ const groupList = ['自定义分组', ...defaultGroupList]
   <FormDesign
     v-model="option" :base-option="baseOption" :resources="resources" :group-list="groupList"
     style="height: 800px"
-  />
+  >
+    <template #header-left>
+      左侧slot
+    </template>
+    <template #header-right>
+      右侧slot
+    </template>
+  </FormDesign>
 </template>
