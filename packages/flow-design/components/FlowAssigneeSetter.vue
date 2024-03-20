@@ -16,7 +16,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const loading = ref(false)
 const type = computed(() => props.tableData?.row?.type as keyof typeof dicMap.value)
-const isMultiple = computed(() => ['dept', 'post', 'user', 'specifyUser'].includes(type.value!))
+const isMultiple = computed(() => ['dept', 'post', 'user', 'role', 'specifyUser'].includes(type.value!))
 
 const { dataOptions } = useInjectState()
 const dicMap = computed(() => {
@@ -24,12 +24,14 @@ const dicMap = computed(() => {
     flowAssigneeUserDic = [],
     flowAssigneeDeptDic = [],
     flowAssigneePostDic = [],
+    flowAssigneeRoleDic = [],
     flowAssigneeDynamicDic = [],
   } = dataOptions.value ?? {}
   return {
     user: flowAssigneeUserDic,
     dept: flowAssigneeDeptDic,
     post: flowAssigneePostDic,
+    role: flowAssigneeRoleDic,
     dynamic: flowAssigneeDynamicDic,
     specifyUser: flowAssigneeUserDic,
     userTask: [],
@@ -112,7 +114,7 @@ const treeSelectProps = computed(() => {
 </script>
 
 <template>
-  <div v-if="['dept', 'post', 'user', 'specifyUser', 'dynamic'].includes(type!)" style="display:flex">
+  <div v-if="['dept', 'post', 'user', 'role', 'specifyUser', 'dynamic'].includes(type!)" style="display:flex">
     <el-tree-select v-model="treeValue" v-bind="treeSelectProps" style="width:100%" />
     <el-button v-if="treeSelectProps.multiple" text type="primary" icon="el-icon-check" @click="handleSelectAll">
       全选

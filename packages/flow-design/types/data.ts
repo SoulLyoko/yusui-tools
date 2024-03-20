@@ -1,15 +1,28 @@
 export enum AssigneeType {
   用户 = 'user',
   部门 = 'dept',
+  角色 = 'role',
   岗位 = 'post',
   动态 = 'dynamic',
   指定节点 = 'userTask',
   指定用户 = 'specifyUser',
   自定义 = 'custom',
 }
+export enum ParticipateType {
+  用户 = 'user',
+  部门 = 'dept',
+  角色 = 'role',
+  岗位 = 'post',
+}
 
 export interface AssigneeItem {
   type?: AssigneeType
+  value?: string
+  idVal?: string
+  values?: any[]
+}
+export interface ParticipateItem {
+  type?: ParticipateType
   value?: string
   idVal?: string
   values?: any[]
@@ -120,4 +133,12 @@ export interface FlowFormData {
   taskListener?: ListenerItem[]
   /** 时限控制 */
   timeLimit?: TimeLimitItem[]
+  /** 参与人员 */
+  participate?: ParticipateItem[]
+  /** 开启自动去重 */
+  enableAutoDistinct?: boolean
+  /** 开启审批撤销 */
+  enableRevoke?: boolean
+  /** 开启意见必填 */
+  enableCommentRequired?: boolean
 }

@@ -37,10 +37,12 @@ export interface FlowDesignProps {
     flowButtonValidateDic?: DicItem[]
     /** 人员配置用户选择 */
     flowAssigneeUserDic?: DicItem[]
-    /** 人员配置用户部门 */
+    /** 人员配置部门选择 */
     flowAssigneeDeptDic?: DicItem[]
     /** 人员配置岗位选择 */
     flowAssigneePostDic?: DicItem[]
+    /** 人员配置角色选择 */
+    flowAssigneeRoleDic?: DicItem[]
     /** 人员配置动态选择 */
     flowAssigneeDynamicDic?: DicItem[]
   }

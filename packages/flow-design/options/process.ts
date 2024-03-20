@@ -13,6 +13,27 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
     value: true,
   },
   {
+    label: '开启自动去重',
+    prop: 'enableAutoDistinct',
+    type: 'switch',
+    labelWidth: 100,
+    value: true,
+  },
+  {
+    label: '开启审批撤销',
+    prop: 'enableRevoke',
+    type: 'switch',
+    labelWidth: 100,
+    value: true,
+  },
+  {
+    label: '开启意见必填',
+    prop: 'enableCommentRequired',
+    type: 'switch',
+    labelWidth: 100,
+    value: true,
+  },
+  {
     label: '默认驳回节点',
     prop: 'rollbackNode',
     type: 'select',

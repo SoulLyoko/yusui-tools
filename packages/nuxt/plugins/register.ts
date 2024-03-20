@@ -32,7 +32,7 @@ export default defineNuxtPlugin({
 
       app.use(Avue, { ...avueConfig })
 
-      IconSelect.props.collections.default = 'icon-park,icon-park-'
+      IconSelect.props.collections.default = 'icon-park-,icon-park'
       app.use(YsComponents)
     },
   },

@@ -6,10 +6,12 @@ import {
   baseColumn,
   buttonColumn,
   circulateColumn,
+  executionListenerColumn,
   formPropertyColumn,
   gatewayColumn,
   multiInstanceColumn,
   noteColumn,
+  participateColumn,
   processColumn,
   propertyColumn,
   sequenceFlowColumn,
@@ -27,6 +29,7 @@ export * from './formProperty'
 export * from './gateway'
 export * from './multiInstance'
 export * from './note'
+export * from './participate'
 export * from './process'
 export * from './property'
 export * from './sequenceFlow'
@@ -34,6 +37,7 @@ export * from './serial'
 export * from './serviceTask'
 export * from './taskListener'
 export * from './timeLimit'
+export * from './userTask'
 export * from './userTask'
 
 export const defaultGroup: AvueFormGroup<FlowFormData>[] = [{ label: '基本配置', prop: 'base', column: baseColumn }]
@@ -83,7 +87,9 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   ],
   process: [
     { label: '流程配置', prop: 'baseGroup', column: processColumn },
+    { label: '参与人员配置', prop: 'participateGroup', collapse: false, column: participateColumn },
     { label: '流水号配置', prop: 'serialGroup', column: serialColumn },
+    { label: '执行监听', prop: 'executionListenerGroup', collapse: false, column: executionListenerColumn },
     { label: '扩展属性', prop: 'propertyGroup', collapse: false, column: propertyColumn },
   ],
   group: [
