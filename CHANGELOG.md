@@ -1,3 +1,13 @@
+# [3.0.0-beta.14](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2024-03-20)
+
+
+### Features
+
+* **flow-design:** 参与人员配置 ([5816110](https://github.com/SoulLyoko/yusui-tools/commit/5816110e65cb1af1782532892acb224bdb8bd56f))
+* **form-design:** 头部两侧插槽 ([416a6cc](https://github.com/SoulLyoko/yusui-tools/commit/416a6cc010d2bc8e68935705247bf8f8f5dc68d3))
+
+
+
 # [3.0.0-beta.13](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2024-03-19)
 
 
