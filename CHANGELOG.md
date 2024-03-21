@@ -1,3 +1,12 @@
+# [3.0.0-beta.15](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2024-03-21)
+
+
+### Bug Fixes
+
+* **use-crud:** getInfo的类型 ([642feeb](https://github.com/SoulLyoko/yusui-tools/commit/642feeb32ed60a9448ca37facb8311f6c5524fdc))
+
+
+
 # [3.0.0-beta.14](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2024-03-20)
 
 
