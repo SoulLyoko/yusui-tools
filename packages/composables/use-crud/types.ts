@@ -7,7 +7,7 @@ export interface CrudOption<T, P> {
   /** 获取数据列表方法 */
   getList: (() => Promise<any>) | ((params?: P) => Promise<any>) | ((params: P) => Promise<any>)
   /** 获取详情方法 */
-  getInfo: (() => Promise<any>) | ((id?: any) => Promise<any>) | ((id: any) => Promise<any>)
+  getInfo: (id: any) => Promise<any>
   /** 添加数据方法 */
   create: (form: T | any) => Promise<any>
   /** 编辑数据方法 */

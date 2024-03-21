@@ -182,7 +182,7 @@ function handleClose() {
     <div v-loading="loading" style="height: calc(100vh - 144px);">
       <avue-form
         v-if="activeStep === 0" ref="formRef" v-model="formData" v-model:defaults="formDefaults"
-        :option="designFormOption" style="width: 50%; magin: 0 auto;"
+        :option="designFormOption" style="width: 50%; margin: 0 auto;"
       />
       <FormDesignWrapper v-if="activeStep === 1" v-model="formData.formOption" :fields="tableFields" />
       <FlowDesignWrapper v-if="activeStep === 2" v-model="formData.flowData" :flow-form-option="formData.formOption" />
