@@ -1,3 +1,5 @@
+/// <reference path="./global.d.ts" />
+
 import type { App } from 'vue'
 
 import ContextMenu from './context-menu/index.vue'
@@ -23,17 +25,4 @@ export default {
     app.component('ProText', ProText)
     app.component('ProTree', ProTree)
   },
-}
-
-declare module 'vue' {
-  interface GlobalComponents {
-    ContextMenu: typeof ContextMenu
-    IconSelect: typeof IconSelect
-    ProCrud: typeof ProCrud
-    ProDict: typeof ProDict
-    ProHtml: typeof ProHtml
-    ProMenu: typeof ProMenu
-    ProText: typeof ProText
-    ProTree: typeof ProTree
-  }
 }
