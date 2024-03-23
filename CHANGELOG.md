@@ -1,3 +1,12 @@
+# [3.0.0-beta.17](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2024-03-23)
+
+
+### Bug Fixes
+
+* **components:** 添加发布global.d.ts ([772ed77](https://github.com/SoulLyoko/yusui-tools/commit/772ed77a37426746ef3bebf950b1085e1d6beec7))
+
+
+
 # [3.0.0-beta.16](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2024-03-23)
 
 
