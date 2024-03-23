@@ -1,5 +1,3 @@
-/// <reference path="./global.d.ts" />
-
 import type { App } from 'vue'
 
 import ContextMenu from './context-menu/index.vue'
