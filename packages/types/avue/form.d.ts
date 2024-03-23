@@ -85,6 +85,10 @@ declare module '@smallwei/avue' {
     dicFormatter?: (res: any) => DicItem[]
     /** 数据字典接口请求方式 */
     dicMethod?: string
+    /** 字典级联字段 */
+    cascader?: string[]
+    /** 级联的默认选项序号 */
+    cascaderIndex?: number
 
     /** 子表单 */
     children?: {

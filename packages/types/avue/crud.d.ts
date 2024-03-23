@@ -5,6 +5,7 @@ import type { ElSize, EmitFn } from '@yusui/types'
 declare module '@smallwei/avue' {
   export type Align = 'left' | 'center' | 'right'
   export type MenuType = 'button' | 'icon' | 'text' | 'menu'
+  export type Fixed = boolean | 'left' | 'right'
   export type TableRowData<T> = { $cellEdit?: boolean, $index?: number } & FormRowData<T>
   export type CellEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, cell: any, event: Event) => void
   export type RowEvent<T> = (row: TableRowData<T>, column: TableColumnCtx<T>, event: Event) => void
@@ -25,6 +26,8 @@ declare module '@smallwei/avue' {
     pageSizes?: number[]
     /** 页码按钮的数量，当总页数超过该值时会折叠 */
     pagerCount?: number
+    /** 分页布局 */
+    layout?: string
   }
 
   export interface SumColumn {
@@ -42,7 +45,7 @@ declare module '@smallwei/avue' {
     /** 对应列的最小宽度，与 width 的区别是 width 是固定的，minWidth 会把剩余宽度按比例分配给设置了 minWidth 的列 */
     minWidth?: number | string
     /** 列是否固定在左侧或者右侧，true 表示固定在左侧 */
-    fixed?: boolean | 'left' | 'right'
+    fixed?: Fixed
     /** 对应列是否可以排序，如果设置为 'custom'，则代表用户希望远程排序，需要监听 Table 的 sort-change 事件 */
     sortable?: boolean | 'custom'
     /** 用来格式化内容 */
@@ -156,7 +159,7 @@ declare module '@smallwei/avue' {
     /** 序号列宽度 */
     indexWidth?: number
     /** 序号列是否冻结 */
-    indexFixed?: boolean
+    indexFixed?: Fixed
     /** 序号列标题名称 */
     indexLabel?: string
     /** 是否显示操作栏 */
@@ -166,7 +169,7 @@ declare module '@smallwei/avue' {
     /** 操作栏标题 */
     menuTitle?: string
     /** 操作列是否冻结 */
-    menuFixed?: boolean
+    menuFixed?: Fixed
     /** 操作菜单的按钮样式 */
     menuType?: MenuType
     /** 操作栏表头的对齐方式 */
@@ -182,7 +185,7 @@ declare module '@smallwei/avue' {
     /** 表格勾选列的宽度 */
     selectionWidth?: number
     /** 表格勾选列 */
-    selectionFixed?: boolean
+    selectionFixed?: Fixed
     /** 清空选中按钮（当selection为true起作用） */
     selectClearBtn?: boolean
     /** 仅对 selection为true 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 rowKey） */
@@ -194,7 +197,7 @@ declare module '@smallwei/avue' {
     /** 展开折叠行宽度 */
     expandWidth?: number
     /** 展开列是否行冻结 */
-    expandFixed?: boolean
+    expandFixed?: Fixed
     /** 表格边框 */
     border?: boolean
     /** 是列的宽度是否自撑开属性 */
