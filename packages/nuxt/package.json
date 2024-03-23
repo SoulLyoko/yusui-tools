@@ -1,7 +1,7 @@
 {
   "name": "@yusui/nuxt",
   "type": "module",
-  "version": "3.0.0-beta.15",
+  "version": "3.0.0-beta.16",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",

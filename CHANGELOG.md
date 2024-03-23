@@ -1,3 +1,13 @@
+# [3.0.0-beta.16](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2024-03-23)
+
+
+### Bug Fixes
+
+* avue types ([593d4b9](https://github.com/SoulLyoko/yusui-tools/commit/593d4b962e3a5ecd227f47dca4058558e0b4f7a1))
+* **components:** 提取global.d.ts ([05747b4](https://github.com/SoulLyoko/yusui-tools/commit/05747b4758a44dad29c248f87231cc64ea1dc864))
+
+
+
 # [3.0.0-beta.15](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2024-03-21)
 
 
