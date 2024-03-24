@@ -1,3 +1,12 @@
+# [3.0.0-beta.18](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2024-03-24)
+
+
+### Features
+
+* **use-dict:** props的label和value属性支持深层属性 ([8864eb3](https://github.com/SoulLyoko/yusui-tools/commit/8864eb3b738bdfcb737d0cfb9018b082969f8496))
+
+
+
 # [3.0.0-beta.17](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2024-03-23)
 
 
