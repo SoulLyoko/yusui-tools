@@ -50,15 +50,15 @@ export function useDict(options: UseDictOptions = {}): UseDictReturn {
   const selectedItem = computed(() => {
     const value = toValue(options.modelValue)
     if (Array.isArray(value))
-      return filterTree(data.value ?? [], item => value?.some(e => e === item[dicProps.value!]))
+      return filterTree(data.value ?? [], item => value?.some(e => e === get(item, dicProps.value!)))
     else
-      return findTree(data.value ?? [], item => item[dicProps.value!] === value)
+      return findTree(data.value ?? [], item => value === get(item, dicProps.value!))
   })
   const selectedLabel = computed(() => {
     if (Array.isArray(selectedItem.value))
-      return selectedItem.value?.map(e => e[dicProps.label!]).join(',')
+      return selectedItem.value?.map(e => get(e, dicProps.label!)).join(',')
     else
-      return selectedItem.value?.[dicProps.label!] as string
+      return get(selectedItem.value, dicProps.label!) as string
   })
 
   return {
