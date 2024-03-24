@@ -1,3 +1,12 @@
+# [3.0.0-beta.19](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2024-03-24)
+
+
+### Features
+
+* **pro-dict:** props的label,value,disabled属性支持深层属性 ([6585776](https://github.com/SoulLyoko/yusui-tools/commit/6585776717c33078aae1e76bcc1883252390f575))
+
+
+
 # [3.0.0-beta.18](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2024-03-24)
 
 
