@@ -38,6 +38,7 @@ useDictConfigProvider({ request })
 | value    | String | 'value'    | 字典值属性名                             |
 | children | String | 'children' | 字典子项属性名                           |
 | disabled | String | 'disabled' | 字典禁用项属性名                         |
+| desc     | String | 'desc'     | 字典描述属性名                           |
 | res      | String | 'data'     | 字典请求返回的数据结构(如'data.records') |
 
 ## UseDictReturn

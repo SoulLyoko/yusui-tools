@@ -4,6 +4,7 @@ declare module '@smallwei/avue' {
     value?: any
     display?: boolean
     disabled?: boolean
+    desc?: string
     children?: DicItem[]
   }
 
@@ -16,6 +17,8 @@ declare module '@smallwei/avue' {
     children?: string
     /** 选项的禁用为选项对象的某个属性值 */
     disabled?: string
+    /** 选项的描述为选项对象的某个属性值  */
+    desc?: string
     /** 选项返回结构的层级(例如data.data) */
     res?: string
   }

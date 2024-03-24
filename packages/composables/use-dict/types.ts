@@ -33,4 +33,8 @@ export type UseDictValue = string | number | boolean | string[] | number[] | und
 export interface UseDictReturn extends ReturnType<typeof useRequest<DicItem[]>> {
   selectedItem: Ref<DicItem | DicItem[] | null>
   selectedLabel: Ref<string | undefined>
+  getLabel: (item?: DicItem) => any
+  getValue: (item?: DicItem) => any
+  getDesc: (item?: DicItem) => any
+  getDisabled: (item?: DicItem) => any
 }

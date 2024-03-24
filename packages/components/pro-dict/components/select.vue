@@ -2,13 +2,12 @@
 import type { ProDictProps } from '../types'
 
 import { useVModels } from '@vueuse/core'
-import { mergeDicProps, useDict } from '@yusui/composables'
+import { useDict } from '@yusui/composables'
 
 const props = defineProps<ProDictProps>()
 const { modelValue } = useVModels(props)
 
-const { data, loading } = useDict(props)
-const { label, value, disabled } = mergeDicProps(props.props)
+const { data, loading, getLabel, getValue, getDisabled } = useDict(props)
 </script>
 
 <template>
@@ -16,10 +15,10 @@ const { label, value, disabled } = mergeDicProps(props.props)
     <el-option
       v-for="item in data"
       v-bind="item"
-      :key="item[value!]"
-      :label="item[label!]"
-      :value="item[value!]"
-      :disabled="item[disabled!]"
+      :key="getValue(item)"
+      :label="getLabel(item)"
+      :value="getValue(item)"
+      :disabled="getDisabled(item)"
     />
   </el-select>
 </template>

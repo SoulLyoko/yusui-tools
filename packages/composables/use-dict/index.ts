@@ -27,6 +27,19 @@ export function useDict(options: UseDictOptions = {}): UseDictReturn {
   const requestResult = useRequest(getDict, { cacheKey })
   const { data, mutate } = requestResult
 
+  function getLabel(item?: DicItem) {
+    return get(item, dicProps.label!)
+  }
+  function getValue(item?: DicItem) {
+    return get(item, dicProps.value!)
+  }
+  function getDesc(item?: DicItem) {
+    return get(item, dicProps.desc!)
+  }
+  function getDisabled(item?: DicItem) {
+    return get(item, dicProps.disabled!)
+  }
+
   function getDict(): Promise<DicItem[]> {
     const { request } = config
     const { dicQuery = {}, dicHeaders = {}, dicFormatter, dicMethod = 'get', dicUrl } = options
@@ -65,5 +78,9 @@ export function useDict(options: UseDictOptions = {}): UseDictReturn {
     ...requestResult,
     selectedItem,
     selectedLabel,
+    getLabel,
+    getValue,
+    getDesc,
+    getDisabled,
   }
 }

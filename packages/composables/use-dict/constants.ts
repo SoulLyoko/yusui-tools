@@ -5,6 +5,7 @@ const defaultDicProps: DicProps = {
   value: 'value',
   children: 'children',
   disabled: 'disabled',
+  desc: 'desc',
   res: 'data',
 }
 
