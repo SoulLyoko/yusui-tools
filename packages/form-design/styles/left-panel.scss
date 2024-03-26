@@ -1,8 +1,10 @@
 .left-panel {
   .el-tabs {
     height: 100%;
+
     .el-tabs__content {
       height: calc(100% - 60px);
+
       .el-tab-pane {
         height: 100%;
         overflow-y: auto;
@@ -37,13 +39,16 @@
   .el-tree-node.is-current > .el-tree-node__content {
     background-color: var(--el-fill-color);
   }
+
   .tree-item {
     position: relative;
     width: 100%;
+
     .item-actions {
       position: absolute;
       top: -2px;
       right: 0;
+
       .el-link {
         margin-right: 4px;
       }
@@ -58,9 +63,11 @@
     justify-content: space-between;
     padding: 4px 8px;
     cursor: pointer;
+
     &:hover {
       background-color: var(--el-fill-color);
     }
+
     &.is-active {
       background-color: var(--el-fill-color);
     }

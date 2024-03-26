@@ -1,19 +1,23 @@
 .right-panel {
   .settings-form {
-    height: calc(100% - 6px);
+    height: calc(100% - 8px);
   }
+
   .settings-form > .el-form,
   .settings-form > .el-form > .avue-form__tabs {
     height: 100%;
   }
+
   .settings-form > .el-form > .avue-form__tabs {
     > .avue-group[index='1'][active='1'] {
       height: 100%;
+
       > .el-collapse {
         height: calc(100% - 60px);
         overflow-y: auto;
       }
     }
+
     > .avue-group[index='2'][active='2'],
     > .avue-group[index='3'][active='3'] {
       height: calc(100% - 60px);

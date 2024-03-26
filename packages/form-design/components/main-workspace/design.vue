@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import type { AvueFormOption } from '@smallwei/avue'
 import type { ElementTreeNode } from '../../types'
 import type { DesignActionKey, HistoryTypeKey } from '../../constants'
 
 import { nextTick } from 'vue'
 import { useVModels } from '@vueuse/core'
-import { cloneDeep, isFunction, omitBy } from 'lodash-unified'
 import Draggable from 'vuedraggable'
 
 // eslint-disable-next-line import/no-self-import
 import Design from './design.vue'
+import DesignItem from './design-item.vue'
 import { useInjectState } from '../../composables'
 import { checkRules, copyItem } from '../../utils'
 
@@ -19,28 +18,6 @@ const { list } = useVModels(props, emit, { passive: true, deep: true })
 
 const { activeElement, hoverElement, formOption, setActiveElement, recordHistory, getResource } = useInjectState()
 
-function getItemOption(element: ElementTreeNode): AvueFormOption {
-  const common = { ...cloneDeep(formOption.value), span: 24, menuBtn: false }
-  const { designOption } = getResource(element.name) ?? {}
-  if (typeof designOption === 'object') {
-    return { ...common, ...designOption }
-  }
-  else if (typeof designOption === 'function') {
-    return { ...common, ...designOption(element) }
-  }
-  else {
-    const column = []
-    if (element.props) {
-      column.push({
-        ...omitBy(element.props, isFunction),
-        span: 24,
-        display: true,
-        style: { opacity: element.props.display === false ? 0.3 : 1 },
-      })
-    }
-    return { ...common, column }
-  }
-}
 function getItemSpan(element: ElementTreeNode) {
   if (getResource(element.name)?.isContainer)
     return 24
@@ -130,7 +107,7 @@ function showActions(element: ElementTreeNode, type: DesignActionKey) {
         @mouseover.stop="hoverElement = element || {}"
         @mouseleave.stop="hoverElement = {}"
       >
-        <avue-form v-if="element.name !== 'form'" :option="getItemOption(element)" />
+        <DesignItem :element="element" />
         <Design
           v-if="getResource(element.name)?.isContainer"
           class="is-container"

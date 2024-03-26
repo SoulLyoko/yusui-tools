@@ -14,7 +14,7 @@ export type ComponentProps = AvueFormOption & AvueFormGroup & AvueFormColumn & {
 
 export type SettingsFunc = (context: { elementTree: ElementTreeNode, activeElement: ElementTreeNode }) => AvueFormColumn[]
 
-export type DesignOptionFunc = (element: ElementTreeNode) => AvueFormOption
+export type DesignOptionFunc = (element: ElementTreeNode) => AvueFormColumn
 
 /** 左侧物料组件 */
 export interface Resource {
@@ -41,7 +41,7 @@ export interface Resource {
   /** 是否容器组件 */
   isContainer?: boolean
   /** 设计面板渲染配置 */
-  designOption?: AvueFormOption | DesignOptionFunc
+  designOption?: AvueFormColumn | DesignOptionFunc
   /** 禁用组件，将不会出现在组件面板中 */
   disabled?: boolean
   /** 设计面板中禁用复制、删除等动作 */
