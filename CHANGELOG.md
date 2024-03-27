@@ -1,3 +1,17 @@
+# [3.0.0-beta.20](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.19...v3.0.0-beta.20) (2024-03-27)
+
+
+### Bug Fixes
+
+* **form-design:** 优化设计器性能 ([4594b9f](https://github.com/SoulLyoko/yusui-tools/commit/4594b9fa9381fd54cad795a08d4b3175df78925d))
+
+
+### Features
+
+* **flow-design:** 流程配置改为弹窗方式，增加一些新的配置项 ([d1bfe5c](https://github.com/SoulLyoko/yusui-tools/commit/d1bfe5c5e65f8e47c540380bdbb2e4b1565b6c64))
+
+
+
 # [3.0.0-beta.19](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2024-03-24)
 
 
