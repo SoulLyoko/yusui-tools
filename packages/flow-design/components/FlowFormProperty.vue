@@ -32,15 +32,16 @@ const tableOption = computed(() => {
   return {
     rowKey: 'prop',
     defaultExpandAll: true,
+    index: false,
+    align: 'center',
     column: [
-      { prop: '_index', hide: true },
       { label: '', prop: 'prop', component: PropSelect, type: 'select', dicData: propDic.value ?? [] },
-      { label: '显示', prop: 'display', width: 40, component: FlowCheckbox },
-      { label: '禁用', prop: 'disabled', width: 40, component: FlowCheckbox },
-      { label: '详情', prop: 'detail', width: 40, component: FlowCheckbox },
-      { label: '只读', prop: 'readonly', width: 40, component: FlowCheckbox },
-      { label: '必填', prop: 'required', width: 40, component: FlowCheckbox },
-      { label: '校验', prop: 'validate', width: 40, component: FlowCheckbox },
+      { label: '显示', prop: 'display', width: 60, component: FlowCheckbox },
+      { label: '禁用', prop: 'disabled', width: 60, component: FlowCheckbox },
+      { label: '详情', prop: 'detail', width: 60, component: FlowCheckbox },
+      { label: '只读', prop: 'readonly', width: 60, component: FlowCheckbox },
+      { label: '必填', prop: 'required', width: 60, component: FlowCheckbox },
+      { label: '校验', prop: 'validate', width: 60, component: FlowCheckbox },
     ],
   }
 })
@@ -76,7 +77,7 @@ function showAddChildBtn(prop: string) {
   </DefinePropSelect>
 
   <div>
-    <div style="position:absolute;left:12px;top:16px;z-index:10;">
+    <div style="position:absolute;left:8px;top:4px;z-index:10;">
       <el-button type="primary" icon="el-icon-plus" size="small" circle @click="handleAdd" />
       <strong> 字段</strong>
     </div>

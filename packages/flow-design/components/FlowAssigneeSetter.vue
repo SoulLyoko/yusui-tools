@@ -2,7 +2,7 @@
 import type { AssigneeItem } from '../types'
 
 import { computed, ref, watch } from 'vue'
-import { filterTree } from '@yusui/utils'
+import { filterTree, treeMap } from '@yusui/utils'
 
 import { useInjectState } from '../composables/state'
 import FlowNodeSelect from './FlowNodeSelect.vue'
@@ -33,7 +33,7 @@ const dicMap = computed(() => {
     post: flowAssigneePostDic,
     role: flowAssigneeRoleDic,
     dynamic: flowAssigneeDynamicDic,
-    specifyUser: flowAssigneeUserDic,
+    specifyUser: treeMap(flowAssigneeUserDic, e => ({ ...e, type: 'specifyUser' })),
     userTask: [],
   }
 })

@@ -14,6 +14,26 @@ export enum ParticipateType {
   角色 = 'role',
   岗位 = 'post',
 }
+export enum ApprovalTaskNodeType {
+  人工审批 = 'manualApproval',
+  自动通过 = 'autoPass',
+  自动拒绝 = 'autoReject',
+}
+export enum ApprovalReturnMethod {
+  上一个节点 = 'prevNode',
+  开始节点 = 'startNode',
+  自动结束 = 'autoComplete',
+  自选节点 = 'selectNode',
+}
+export enum MultiPersonApprovalType {
+  依次审批 = 'sequentialApproval',
+  会签 = 'countersign',
+  或签 = 'orsign',
+}
+export enum UserTaskEmptyApproveType {
+  自动通过 = 'autoPass',
+  自动转交给某个人 = 'autoTransfer',
+}
 
 export interface AssigneeItem {
   type?: AssigneeType
@@ -70,14 +90,24 @@ export interface TimeLimitItem {
   min?: number
   max?: number
 }
-export interface Serial {
-  name?: string
-  prefix?: string
-  dateFormat?: string
-  suffixLength?: string
-  startSequence?: string
-  connector?: string
-  cycle?: string
+export interface ProcessConfig {
+  snTemplate: string
+  printTemplate: string
+  titleTemplate: string
+  abstractTemplate: string
+  enableAutoDistinct: boolean
+  enableRevoke: boolean
+  enableCommentRequired: boolean
+  handleInteractiveMode: string
+  isTaskStart: boolean
+}
+export interface ApprovalConfig {
+  taskNodeType?: string
+  approvalReturnMethod?: string
+  multiPersonApprovalType?: string
+  userTaskEmptyApproveType?: string
+  userTaskEmptyApproveUser?: string
+  enableReceiptDisplay?: string
 }
 
 export interface FlowFormData {
@@ -127,18 +157,16 @@ export interface FlowFormData {
   formProperty?: FormPropertyItem[]
   /** 扩展属性 */
   property?: PropertyItem[]
-  /** 流水号 */
-  serial?: Serial
   /** 任务监听 */
   taskListener?: ListenerItem[]
   /** 时限控制 */
   timeLimit?: TimeLimitItem[]
   /** 参与人员 */
-  participate?: ParticipateItem[]
-  /** 开启自动去重 */
-  enableAutoDistinct?: boolean
-  /** 开启审批撤销 */
-  enableRevoke?: boolean
-  /** 开启意见必填 */
-  enableCommentRequired?: boolean
+  participateConfig?: ParticipateItem[]
+  /** 流程基础配置 */
+  config?: ProcessConfig
+  /** 审批配置 */
+  approval?: ApprovalConfig
+  /** 通知配置 */
+  notice?: ApprovalConfig
 }

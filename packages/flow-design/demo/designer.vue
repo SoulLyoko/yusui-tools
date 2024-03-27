@@ -41,6 +41,18 @@ const dataOptions = {
     { label: '动态1', value: 'dynamic1', id: 'dynamic1' },
     { label: '动态2', value: 'dynamic2', id: 'dynamic2' },
   ],
+  snTemplateDic: [
+    { label: '流水号模板1', value: 'sn1', id: 'sn1' },
+    { label: '流水号模板2', value: 'sn2', id: 'sn2' },
+  ],
+  printTemplateDic: [
+    { label: '打印模板1', value: 'print1', id: 'print1' },
+    { label: '打印模板2', value: 'print2', id: 'print2' },
+  ],
+  noticeTypeDic: [
+    { label: '通知类型1', value: 'notice1', id: 'notice1' },
+    { label: '通知类型2', value: 'notice2', id: 'notice2' },
+  ],
 }
 </script>
 

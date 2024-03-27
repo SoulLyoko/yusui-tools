@@ -7,7 +7,7 @@ export const participateColumn: AvueFormColumn<FlowFormData>[] = [
   {
     label: '',
     labelWidth: 0,
-    prop: 'participate',
+    prop: 'participateConfig',
     type: 'dynamic',
     component: FlowParticipate,
     value: [],

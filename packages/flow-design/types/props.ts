@@ -2,6 +2,37 @@ import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption, D
 import type { Definition, EdgeConfig, LogicFlow, NodeConfig } from '@logicflow/core'
 import type { ButtonItem, FlowFormData, StyleItem, TooltipItem, TurboData } from '../types'
 
+export interface DataOptions {
+  /** 按钮数据 */
+  buttonList?: ButtonItem[]
+  /** 表单字段数据 */
+  formPropertyList?: AvueFormColumn[]
+  /** 字段字典 */
+  fieldsDic?: DicItem[]
+  /** 按钮显示字典 */
+  flowButtonDisplayDic?: DicItem[]
+  /** 按钮审批字典 */
+  flowButtonApprovalDic?: DicItem[]
+  /** 按钮校验字典 */
+  flowButtonValidateDic?: DicItem[]
+  /** 人员配置用户选择 */
+  flowAssigneeUserDic?: DicItem[]
+  /** 人员配置部门选择 */
+  flowAssigneeDeptDic?: DicItem[]
+  /** 人员配置岗位选择 */
+  flowAssigneePostDic?: DicItem[]
+  /** 人员配置角色选择 */
+  flowAssigneeRoleDic?: DicItem[]
+  /** 人员配置动态选择 */
+  flowAssigneeDynamicDic?: DicItem[]
+  /** 流水号模板字典 */
+  snTemplateDic?: DicItem[]
+  /** 打印模板字典 */
+  printTemplateDic?: DicItem[]
+  /** 通知方式字典 */
+  noticeType?: DicItem[]
+}
+
 export interface FlowDesignProps {
   /** LogicFlow实例 */
   lf?: LogicFlow
@@ -19,33 +50,8 @@ export interface FlowDesignProps {
   formOption?: AvueFormOption
   /** 当前表单控制配置 */
   formDefaults?: AvueFormDefaults
-  /** 表单宽度 */
-  formWidth?: string
   /** 表单配置数据 */
-  dataOptions?: {
-    /** 按钮数据 */
-    buttonList?: ButtonItem[]
-    /** 表单字段数据 */
-    formPropertyList?: AvueFormColumn[]
-    /** 字段字典 */
-    fieldsDic?: DicItem[]
-    /** 按钮显示字典 */
-    flowButtonDisplayDic?: DicItem[]
-    /** 按钮审批字典 */
-    flowButtonApprovalDic?: DicItem[]
-    /** 按钮校验字典 */
-    flowButtonValidateDic?: DicItem[]
-    /** 人员配置用户选择 */
-    flowAssigneeUserDic?: DicItem[]
-    /** 人员配置部门选择 */
-    flowAssigneeDeptDic?: DicItem[]
-    /** 人员配置岗位选择 */
-    flowAssigneePostDic?: DicItem[]
-    /** 人员配置角色选择 */
-    flowAssigneeRoleDic?: DicItem[]
-    /** 人员配置动态选择 */
-    flowAssigneeDynamicDic?: DicItem[]
-  }
+  dataOptions?: DataOptions
   /** 查看器模式 */
   type?: 'viewer'
   /** 设置节点的样式 */

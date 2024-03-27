@@ -1,77 +1,73 @@
 import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
 
-import FlowNodeSelect from '../components/FlowNodeSelect.vue'
-import FlowFieldsSelect from '../components/FlowFieldsSelect.vue'
+import FlowDataOptions from '../components/FlowDataOptions.vue'
 
 export const processColumn: AvueFormColumn<FlowFormData>[] = [
   {
-    label: '跳过第一节点',
-    prop: 'skipFirstNode',
-    type: 'switch',
-    labelWidth: 100,
-    value: true,
-  },
-  {
-    label: '开启自动去重',
-    prop: 'enableAutoDistinct',
-    type: 'switch',
-    labelWidth: 100,
-    value: true,
-  },
-  {
-    label: '开启审批撤销',
-    prop: 'enableRevoke',
-    type: 'switch',
-    labelWidth: 100,
-    value: true,
-  },
-  {
-    label: '开启意见必填',
-    prop: 'enableCommentRequired',
-    type: 'switch',
-    labelWidth: 100,
-    value: true,
-  },
-  {
-    label: '默认驳回节点',
-    prop: 'rollbackNode',
-    type: 'select',
-    labelWidth: 100,
-    component: FlowNodeSelect,
-    params: { filterType: 'userTask' },
-  },
-  {
-    label: '优先级字段',
-    prop: 'priority',
-    type: 'select',
-    component: FlowFieldsSelect,
-    filterable: true,
-    allowCreate: true,
-    defaultFirstOption: true,
-  },
-  {
-    label: '表单标题',
-    prop: 'formTitle',
-    separator: '-',
-    type: 'select',
-    component: FlowFieldsSelect,
-    dataType: 'string',
-    multiple: true,
-    filterable: true,
-    allowCreate: true,
-    defaultFirstOption: true,
-  },
-  {
-    label: '标题分隔符',
-    prop: 'formTitleSeparator',
-    value: '-',
-    control(val) {
-      return {
-        formTitle: {
-          separator: val,
+    label: '',
+    labelWidth: 0,
+    prop: 'config',
+    component: 'avue-form',
+    option: {
+      menuBtn: false,
+      span: 24,
+      labelWidth: 100,
+      column: [
+        {
+          label: '流水号模板',
+          prop: 'snTemplate',
+          component: FlowDataOptions,
+          dataKey: 'snTemplateDic',
         },
-      }
+        {
+          label: '打印模板',
+          prop: 'printTemplate',
+          component: FlowDataOptions,
+          dataKey: 'printTemplateDic',
+        },
+        {
+          label: '标题模板',
+          prop: 'titleTemplate',
+          type: 'textarea',
+        },
+        {
+          label: '摘要模板',
+          prop: 'abstractTemplate',
+          type: 'textarea',
+        },
+        {
+          label: '从任务节点启动流程',
+          prop: 'isTaskStart',
+          type: 'switch',
+          labelWidth: 150,
+          value: true,
+        },
+        {
+          label: '开启自动去重',
+          prop: 'enableAutoDistinct',
+          type: 'switch',
+          value: true,
+        },
+        {
+          label: '开启审批撤销',
+          prop: 'enableRevoke',
+          type: 'switch',
+          value: true,
+        },
+        {
+          label: '开启意见必填',
+          prop: 'enableCommentRequired',
+          type: 'switch',
+          value: true,
+        },
+        {
+          label: '开启连续处理',
+          prop: 'enableContinuousApproval',
+          type: 'switch',
+          value: true,
+        },
+      ],
     },
   },
 ]

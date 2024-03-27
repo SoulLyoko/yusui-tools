@@ -16,7 +16,7 @@ const tableOption = computed(() => {
     rowKey: 'type',
     addBtn: true,
     column: [
-      { label: '类型', prop: 'type', type: 'select', width: 120, dicData: enumToDic(ParticipateType) },
+      { label: '类型', prop: 'type', type: 'select', width: 150, dicData: enumToDic(ParticipateType) },
       { label: '值', prop: 'value', component: FlowAssigneeSetter },
     ],
   }

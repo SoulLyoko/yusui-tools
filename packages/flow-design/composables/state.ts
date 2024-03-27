@@ -18,21 +18,25 @@ export function useProvideState(props: FlowDesignProps) {
     formDefaults,
     dataOptions,
   } = vModels as Required<typeof vModels>
+
+  const formRef = ref<AvueFormInstance>()
   const formLoading = ref(false)
+  const formVisible = ref(false)
   const editorVisible = ref(false)
 
   function onUpdateFormData(val: any) {
     const id = elementData.value?.id
     id && lf.value?.setProperties(id, val)
     id && lf.value?.updateText(id, val.name)
+    formVisible.value = false
   }
 
-  const formRef = ref<AvueFormInstance>()
   const state = {
     lf,
     graphData,
     elementData,
     formRef,
+    formVisible,
     formData,
     formDefaults,
     formLoading,

@@ -39,7 +39,6 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
         if (eq)
           return
         lf.value?.render(val)
-        lf.value?.emit('element:click', { isForce: true })
       },
       { immediate: true },
     )

@@ -11,25 +11,23 @@ export function useModelerListener({
   elementData,
   formData,
   formLoading,
+  formVisible,
   formOption,
   formOptions,
   editorVisible,
 }: FlowDesignState) {
-  async function selectElement({ data, isForce } = { data: {} as EdgeConfig | NodeConfig, isForce: false }) {
-    const processNode = lf.value?.graphModel.nodes.find(node => node.type === 'process')
-    if (!data && processNode?.id)
-      data = lf.value?.getNodeDataById(processNode.id) as NodeConfig
-    if (data?.id === elementData.value?.id && data?.type === elementData.value?.type && !isForce)
+  async function selectElement({ data }: { data?: EdgeConfig | NodeConfig }) {
+    if (!data || !data.type || !data.id)
       return
 
-    data.type !== 'process' && lf.value?.selectElementById(data.id!)
-
     formLoading.value = true
+    formVisible.value = true
     await nextTick()
     elementData.value = data
     formOption.value = {
       menuBtn: false,
       span: 24,
+      tabs: true,
       labelPosition: 'left',
       group: formOptions.value?.[data.type!] ?? defaultGroup,
     }
@@ -38,10 +36,9 @@ export function useModelerListener({
   }
 
   lf.value?.on('element:click', selectElement)
-  lf.value?.on('blank:click', selectElement)
-  lf.value?.on('node:add', selectElement)
-  lf.value?.on('node:dnd-add', selectElement)
-  lf.value?.on('node:delete', () => selectElement())
+  // lf.value?.on('node:add', selectElement)
+  // lf.value?.on('node:dnd-add', selectElement)
+  // lf.value?.on('node:delete', () => selectElement({}))
   lf.value?.on('history:change', () => {
     graphData.value = lf.value?.getGraphData()
   })
