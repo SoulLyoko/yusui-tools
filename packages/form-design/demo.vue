@@ -23,18 +23,18 @@ function baseOption(context: any) {
     { ...commonOption, props: { label: 'name', value: 'name', desc: 'comment' } },
     // 为字段标题增加可选项
     { ...commonOption, props: { label: 'comment', value: 'comment', desc: 'name' } },
-    // 最后添加一个样式类
+    // 最后添加一个样式属性
     ...Array.from({ length: (defaultBaseOption?.length ?? 0) - 2 })
-      .fill({}).concat({ label: '样式类', prop: 'class' }),
+      .fill({}).concat({ label: '样式', prop: 'style', type: 'textarea' }),
   ]
 }
 
 // 扩展物料库
 const resources: Record<string, Resource> = {
-  // 给表单增加一个样式类的配置
+  // 给表单增加一个样式属性
   form: {
     settings: Array.from({ length: form.settings?.length ?? 0 })
-      .fill({}).concat({ label: '样式类', prop: 'class' }),
+      .fill({}).concat({ label: '样式', prop: 'style', type: 'textarea' }),
   } as Resource,
   // 自定义组件,基于el-text封装(@yusui/components/pro-text)
   customText: {

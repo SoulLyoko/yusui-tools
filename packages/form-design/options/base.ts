@@ -116,6 +116,10 @@ const basic: AvueFormColumn[] = [
     prop: 'rules',
     component: RulesSetter,
   },
+  {
+    label: '样式类',
+    prop: 'class',
+  },
 ]
 
 const dynamic: AvueFormColumn[] = [

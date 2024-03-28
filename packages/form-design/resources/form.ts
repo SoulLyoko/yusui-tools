@@ -180,5 +180,9 @@ export const form: Resource = {
       tooltip: true,
       defaultValue: '{}',
     },
+    {
+      label: '样式类',
+      prop: 'class',
+    },
   ],
 }
