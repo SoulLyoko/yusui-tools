@@ -12,17 +12,18 @@ aside: false
 
 ## 属性
 
-| 名称          | 说明                                | 类型                                        | 可选值 | 默认值     |
-| ------------- | ----------------------------------- | ------------------------------------------- | ------ | ---------- |
-| v-model       | 绑定的值                            | AvueFormOpition                             | -      | -          |
-| groupList     | 左侧分组,可以用来修改排序或显示状态 | string[]                                    | -      | -          |
-| resources     | 定义物料库及其可配置项              | Record<string,[Resource](#resource)>        | -      | -          |
-| baseOption    | 定义选中组件时右侧的基础配置        | Resource['settings']                        | -      | -          |
-| advanceOption | 定义选中组件时右侧的高级配置        | Resource['settings']                        | -      | -          |
-| leftWidth     | 左侧宽度                            | string                                      | -      | 200px      |
-| rightWidth    | 右侧宽度                            | string                                      | -      | 200px      |
-| adapterIn     | 输入格式化                          | (option: AvueFormOption) => ElementTreeNode | -      | adapterIn  |
-| adapterOut    | 输出格式化                          | (tree: ElementTreeNode) => AvueFormOption   | -      | adapterOut |
+| 名称            | 说明                                | 类型                                        | 可选值 | 默认值     |
+| --------------- | ----------------------------------- | ------------------------------------------- | ------ | ---------- |
+| v-model         | 绑定的表单配置json                  | AvueFormOpition                             | -      | -          |
+| groupList       | 左侧分组,可以用来修改排序或显示状态 | string[]                                    | -      | -          |
+| resources       | 定义物料库及其可配置项              | Record<string,[Resource](#resource)>        | -      | -          |
+| baseOption      | 定义选中组件时右侧的基础配置        | Resource['settings']                        | -      | -          |
+| advanceOption   | 定义选中组件时右侧的高级配置        | Resource['settings']                        | -      | -          |
+| leftWidth       | 左侧宽度                            | string                                      | -      | 200px      |
+| rightWidth      | 右侧宽度                            | string                                      | -      | 200px      |
+| adapterIn       | 输入格式化                          | (option: AvueFormOption) => ElementTreeNode | -      | adapterIn  |
+| adapterOut      | 输出格式化                          | (tree: ElementTreeNode) => AvueFormOption   | -      | adapterOut |
+| resourcesMerger | 自定义物料库合并函数                | MergeWithCustomizer                         | -      |            |
 
 ## Resource
 

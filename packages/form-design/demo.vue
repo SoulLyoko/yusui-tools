@@ -1,31 +1,32 @@
 <script setup lang="ts">
+import type { MergeWithCustomizer } from 'lodash'
 import type { Resource } from './types'
 
 import { ref } from 'vue'
 
-import { form } from './resources'
 import { SwitchSetter } from './setters'
 import { base, groupList as defaultGroupList } from './options'
 
 const option = ref({})
 
-const filesDic = [
+const groupList = ['自定义分组', ...defaultGroupList]
+
+const fieldsDic = [
   { name: 'createTime', comment: '操作时间' },
   { name: 'createBy', comment: '操作人' },
 ]
-
 // 扩展基础配置
 function baseOption(context: any) {
   const defaultBaseOption = base(context)
-  const commonOption = { type: 'select', dicData: filesDic, filterable: true, allowCreate: true, defaultFirstOption: true }
+  const commonOption = { type: 'select', dicData: fieldsDic, filterable: true, allowCreate: true, defaultFirstOption: true }
   return [
     // 为字段标识增加可选项
-    { ...commonOption, props: { label: 'name', value: 'name', desc: 'comment' } },
+    { ...defaultBaseOption[0], ...commonOption, props: { label: 'name', value: 'name', desc: 'comment' } },
     // 为字段标题增加可选项
-    { ...commonOption, props: { label: 'comment', value: 'comment', desc: 'name' } },
-    // 最后添加一个样式属性
-    ...Array.from({ length: (defaultBaseOption?.length ?? 0) - 2 })
-      .fill({}).concat({ label: '样式', prop: 'style', type: 'textarea' }),
+    { ...defaultBaseOption[1], ...commonOption, props: { label: 'comment', value: 'comment', desc: 'name' } },
+    ...defaultBaseOption.filter((_, i) => i >= 2),
+    // 给基础配置增加一个样式属性
+    { label: '样式', prop: 'style', type: 'textarea' },
   ]
 }
 
@@ -33,9 +34,8 @@ function baseOption(context: any) {
 const resources: Record<string, Resource> = {
   // 给表单增加一个样式属性
   form: {
-    settings: Array.from({ length: form.settings?.length ?? 0 })
-      .fill({}).concat({ label: '样式', prop: 'style', type: 'textarea' }),
-  } as Resource,
+    settings: [{ label: '样式', prop: 'style', type: 'textarea' }],
+  },
   // 自定义组件,基于el-text封装(@yusui/components/pro-text)
   customText: {
     name: 'customText',
@@ -83,13 +83,18 @@ const resources: Record<string, Resource> = {
   },
 }
 
-const groupList = ['自定义分组', ...defaultGroupList]
+const resourcesMerger: MergeWithCustomizer = (value, srcValue, key) => {
+  if (key === 'form' && value.settings) {
+    value.settings.push(...srcValue.settings)
+    return value
+  }
+}
 </script>
 
 <template>
   <FormDesign
-    v-model="option" :base-option="baseOption" :resources="resources" :group-list="groupList"
-    style="height: 800px"
+    v-model="option" :group-list="groupList" :base-option="baseOption" :resources="resources"
+    :resources-merger="resourcesMerger" style="height: 800px"
   >
     <template #header-left>
       左侧slot

@@ -4,7 +4,7 @@ import type { HistoryTypeKey } from '../constants'
 
 import { computed, inject, provide, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
-import { cloneDeep, isEqual, merge, omit } from 'lodash-unified'
+import { cloneDeep, isEqual, mergeWith, omit } from 'lodash-unified'
 
 import * as defaultResources from '../resources'
 import { adapterIn, adapterOut } from '../utils'
@@ -18,11 +18,13 @@ export function useProvideState(props: FormDesignProps, emit: FormDesignEmit) {
 
   const groupList = computed(() => props.groupList || defaultGroupList)
   const resources = computed<Record<string, Resource>>(() =>
-    merge(cloneDeep({ ...defaultResources }), props.resources),
+    mergeWith(cloneDeep({ ...defaultResources }), props.resources, props.resourcesMerger),
   )
-  const baseOption = computed(() => merge(resolveSettings(defaultBaseOption), resolveSettings(props.baseOption)))
+  const baseOption = computed(() =>
+    props.baseOption ? resolveSettings(props.baseOption) : resolveSettings(defaultBaseOption),
+  )
   const advanceOption = computed(() =>
-    merge(resolveSettings(defaultAdvanceOption), resolveSettings(props.advanceOption)),
+    props.advanceOption ? resolveSettings(props.advanceOption) : resolveSettings(defaultAdvanceOption),
   )
 
   const elementTree = ref<ElementTreeNode>({})

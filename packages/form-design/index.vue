@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormDesignEmits, FormDesignProps } from './types'
+import type { FormDesignProps } from './types'
 
 import { useProvideState } from './composables'
 import LeftPanel from './components/left-panel/index.vue'
@@ -12,7 +12,8 @@ const props = withDefaults(
   defineProps<FormDesignProps>(),
   { adapterIn, adapterOut },
 )
-const emit = defineEmits<FormDesignEmits>()
+const emit = defineEmits<{ reset: [] }>()
+
 const { workType, deviceType } = useProvideState(props, emit)
 </script>
 
