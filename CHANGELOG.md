@@ -1,3 +1,18 @@
+# [3.0.0-beta.21](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.20...v3.0.0-beta.21) (2024-03-28)
+
+
+### Bug Fixes
+
+* **form-design:** label显示问题 ([3623357](https://github.com/SoulLyoko/yusui-tools/commit/36233570f0dacc4593f24fccf44c5960cfecead3))
+
+
+### Features
+
+* **form-design:** 修改配置合并策略，新增自定义物料库合并函数 ([560fe0a](https://github.com/SoulLyoko/yusui-tools/commit/560fe0a0139f4db6dd791bafdac669be749bc3f9))
+* **form-design:** form和base配置添加样式类属性 ([05af861](https://github.com/SoulLyoko/yusui-tools/commit/05af861ceed82a1ae8e21b05e0798c87fe1e22de))
+
+
+
 # [3.0.0-beta.20](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.19...v3.0.0-beta.20) (2024-03-27)
 
 
