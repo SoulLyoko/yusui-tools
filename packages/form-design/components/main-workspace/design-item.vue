@@ -4,7 +4,7 @@ import type { ElementTreeNode } from '../../types'
 
 import { computed, ref } from 'vue'
 import Avue from '@smallwei/avue'
-import { cloneDeep, isFunction, isNil, omitBy } from 'lodash-unified'
+import { isFunction, isNil, omitBy, pick } from 'lodash-unified'
 
 import { useInjectState } from '../../composables'
 
@@ -22,21 +22,28 @@ const option = computed<AvueFormColumn>(() => {
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     modelValue.value = props.element.props?.value
 
-  const common = cloneDeep(formOption.value)
+  const common = pick(formOption.value, ['detail', 'disabled', 'readonly'])
   const { designOption } = getResource(props.element.name) ?? {}
+  let column: AvueFormColumn = {}
+
   if (typeof designOption === 'object') {
-    return { ...common, ...designOption }
+    column = { ...common, ...designOption }
   }
   else if (typeof designOption === 'function') {
-    return { ...common, ...designOption(props.element) }
+    column = { ...common, ...designOption(props.element) }
   }
   else {
-    const column = {
+    column = {
       ...common,
       ...omitBy(props.element.props, isFunction),
-      style: { width: '100%', opacity: props.element.props?.display === false ? 0.3 : 1 },
     }
-    return column
+  }
+
+  const { labelWidth, display } = column
+  return {
+    ...column,
+    labelWidth: typeof labelWidth === 'number' ? `${labelWidth}px` : labelWidth,
+    style: { width: '100%', opacity: display === false ? 0.3 : 1 },
   }
 })
 

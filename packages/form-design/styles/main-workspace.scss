@@ -1,5 +1,6 @@
 .draggable-list {
-  height: 100%;
+  height: max-content;
+  min-height: 100%;
   padding-bottom: 40px;
   align-content: flex-start;
 
