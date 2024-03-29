@@ -48,7 +48,7 @@ const displayButtonList = computed(() => {
     notstarted: !flowInstanceId,
   }
 
-  const { button: buttonProperties } = flowDetail.value?.properties || {}
+  const { features: buttonProperties } = flowDetail.value?.properties || {}
   const filterBtn = mergeButton(allButtonList.value ?? [], buttonProperties ?? [])?.filter((item) => {
     const displayList = item.display?.split(',')
     const and = displayList?.filter(condition => condition in andCondition).every(condition => andCondition[condition as AndConditionKey])

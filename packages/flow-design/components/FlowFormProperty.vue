@@ -32,7 +32,7 @@ onMounted(async () => {
   await sleep()
   tableDataModel.value = formOptions.value.map((option) => {
     return {
-      ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail']),
+      ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail', 'readonly']),
       children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
     }
   })
@@ -47,6 +47,7 @@ const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
       { label: '表单显示', prop: 'display', type: 'switch', value: true, span: 6 },
       { label: '表单禁用', prop: 'disabled', type: 'switch', value: false, span: 6 },
       { label: '表单详情', prop: 'detail', type: 'switch', value: false, span: 6 },
+      { label: '表单只读', prop: 'readonly', type: 'switch', value: false, span: 6 },
       {
         prop: 'children',
         type: 'dynamic',

@@ -5,17 +5,17 @@ import type { ButtonItem, FlowFormData, StyleItem, TooltipItem, TurboData } from
 export interface DataOptions {
   /** 按钮数据 */
   buttonList?: ButtonItem[]
-  /** 表单字段数据 */
+  /** @deprecated 表单字段数据 */
   formPropertyList?: AvueFormColumn[]
   /** 多表单配置 */
   formOptions?: AvueFormOption[]
-  /** 字段字典 */
+  /** @deprecated 字段字典 */
   fieldsDic?: DicItem[]
   /** 按钮显示字典 */
   flowButtonDisplayDic?: DicItem[]
   /** 按钮审批字典 */
   flowButtonApprovalDic?: DicItem[]
-  /** 按钮校验字典 */
+  /** @deprecated 按钮校验字典 */
   flowButtonValidateDic?: DicItem[]
   /** 人员配置用户选择 */
   flowAssigneeUserDic?: DicItem[]
@@ -32,7 +32,7 @@ export interface DataOptions {
   /** 打印模板字典 */
   printTemplateDic?: DicItem[]
   /** 通知方式字典 */
-  noticeType?: DicItem[]
+  noticeTypeDic?: DicItem[]
 }
 
 export interface FlowDesignProps {

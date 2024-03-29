@@ -7,7 +7,7 @@ export const buttonColumn: AvueFormColumn<FlowFormData>[] = [
   {
     label: '',
     labelWidth: 0,
-    prop: 'button',
+    prop: 'features',
     type: 'dynamic',
     component: FlowButton,
     value: [],

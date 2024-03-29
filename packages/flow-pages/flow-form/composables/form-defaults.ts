@@ -30,11 +30,11 @@ export function useFormDefaults(flowDetail: MaybeRef<FlowDetail>) {
   const defaults = ref<AvueFormDefaults>({})
 
   watchEffect(async () => {
-    const { formProperty } = unref(flowDetail)?.properties || {}
-    if (!formProperty?.length)
+    const { fields } = unref(flowDetail)?.properties || {}
+    if (!fields?.length)
       return
     await nextTick()
-    mergeColumn(Object.values(defaults.value), formProperty)
+    mergeColumn(Object.values(defaults.value), fields)
   })
 
   return defaults

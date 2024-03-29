@@ -32,7 +32,7 @@ export function useProvideState(props: FlowFormProps, emit: FlowFormEmit) {
   const tabRefs = ref<Record<string, any>>({})
   const tabList = computed(() => {
     return tabs?.filter((tab) => {
-      const tabProperty = flowDetail.value?.properties?.formProperty?.find(e => e.prop === tab.prop)
+      const tabProperty = flowDetail.value?.properties?.fields?.find(e => e.prop === tab.prop)
       const mergedTab = { ...tab, display: tabProperty?.display ?? tab.display }
       return mergedTab?.display !== false
     }).map((tab) => {

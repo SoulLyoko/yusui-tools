@@ -184,11 +184,11 @@ export interface FlowFormData {
   /** 传阅配置 */
   circulate?: CirculateItem[]
   /** 按钮配置 */
-  button?: ButtonItem[]
+  features?: ButtonItem[]
   /** 执行监听 */
   executionListener?: ListenerItem[]
   /** 表单配置，第一层是表单的配置，children才是字段的配置 */
-  formProperty?: FormPropertyItem[]
+  fields?: FormPropertyItem[]
   /** 扩展属性 */
   property?: PropertyItem[]
   /** 任务监听 */
