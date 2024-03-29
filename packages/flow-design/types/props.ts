@@ -7,6 +7,8 @@ export interface DataOptions {
   buttonList?: ButtonItem[]
   /** 表单字段数据 */
   formPropertyList?: AvueFormColumn[]
+  /** 多表单配置 */
+  formOptions?: AvueFormOption[]
   /** 字段字典 */
   fieldsDic?: DicItem[]
   /** 按钮显示字典 */

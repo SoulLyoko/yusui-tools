@@ -38,8 +38,6 @@ export * from './sequenceFlow'
 export * from './serviceTask'
 export * from './taskListener'
 export * from './timeLimit'
-export * from './userTask'
-export * from './userTask'
 
 export const defaultGroup: AvueFormGroup<FlowFormData>[] = [{ label: '基本配置', prop: 'base', column: baseColumn }]
 
@@ -59,7 +57,6 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
     { label: '人员配置', prop: 'assigneeGroup', column: assigneeColumn },
     { label: '审批配置', prop: 'approval', column: approvalColumn },
-    // { label: '多实例配置', prop: 'multiInstanceGroup', column: multiInstanceColumn },
     { label: '按钮配置', prop: 'buttonGroup', column: buttonColumn },
     { label: '表单配置', prop: 'formPropertyGroup', column: formPropertyColumn },
     // { label: '任务监听', prop: 'taskListenerGroup', column: taskListenerColumn },

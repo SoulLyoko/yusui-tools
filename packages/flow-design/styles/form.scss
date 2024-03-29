@@ -1,0 +1,18 @@
+.lf-form-dialog {
+  .lf-form {
+    .el-tabs.el-tabs--top.avue-form__tabs {
+      padding: 0;
+    }
+  }
+
+  .lf-form {
+    .avue-dynamic .cell {
+      .el-table__expand-icon + .el-form-item {
+        width: calc(100% - 20px);
+      }
+      .el-table__indent + .el-table__placeholder + .el-form-item {
+        width: calc(100% - 40px);
+      }
+    }
+  }
+}

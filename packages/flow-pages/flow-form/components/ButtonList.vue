@@ -18,7 +18,7 @@ const { data: allButtonList } = useFlowButtonApi(request).useList()
 
 function mergeButton(button: FlowButton[], source: ButtonItem[]) {
   return button.map((btn) => {
-    const findSource = source.find(e => e.buttonKey === btn.buttonKey)
+    const findSource = source.find(e => e.key === btn.buttonKey)
     const result = { ...btn, ...pick(findSource, ['display', 'approval', 'validate']) } as FlowButton
     return result
   })

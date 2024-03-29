@@ -1,4 +1,4 @@
-import type { AvueFormColumn } from '@smallwei/avue'
+import type { AvueFormOption } from '@smallwei/avue'
 import type { ButtonItem, FormPropertyItem } from '../types'
 import type { Definition } from '@logicflow/core'
 
@@ -10,7 +10,7 @@ import { defaultFormProperty } from '../constants'
 export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
   const result: ButtonItem[] = []
   button.forEach((btn) => {
-    const findSource = source.find(e => e.buttonKey === btn.buttonKey)
+    const findSource = source.find(e => e.key === btn.key)
     if (!findSource)
       return
     const conditions = [
@@ -24,12 +24,13 @@ export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
       return
     result.push(findSource)
   })
-  return uniqBy(result, 'buttonKey')
+  return uniqBy(result, 'key')
 }
 
 /** 保留修改过的表单配置并去重 */
-export function mergeFormProperty(column: AvueFormColumn[], source: FormPropertyItem[]): FormPropertyItem[] {
+export function mergeFormProperty(option: AvueFormOption, source: FormPropertyItem[]): FormPropertyItem[] {
   const result: FormPropertyItem[] = []
+  const column = [...option.column ?? [], ...option.group?.map(e => e.column ?? [])?.flat() ?? []]
   column.forEach((col) => {
     const findSource = source.find(e => e.prop === col.prop)
     if (!findSource)

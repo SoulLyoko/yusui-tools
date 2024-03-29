@@ -27,8 +27,8 @@ onMounted(() => {
 
   <el-container v-else class="lf-container">
     <el-main :id="containerId" class="lf-main" />
-    <el-dialog v-if="!formLoading && formVisible" v-model="formVisible">
-      <avue-form ref="formRef" v-model="formData" v-model:defaults="formDefaults" :option="formOption" />
+    <el-dialog v-if="!formLoading && formVisible" v-model="formVisible" class="lf-form-dialog">
+      <avue-form ref="formRef" v-model="formData" v-model:defaults="formDefaults" class="lf-form" :option="formOption" />
       <template #footer>
         <el-button @click="formVisible = false">
           取消

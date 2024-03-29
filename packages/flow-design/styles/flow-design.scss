@@ -10,19 +10,6 @@
 }
 .lf-aside {
   padding-left: 20px;
-  .avue-form {
-    .el-slider__input {
-      width: 60px;
-    }
-    .avue-dynamic .cell {
-      .el-table__expand-icon + .el-form-item {
-        width: calc(100% - 20px);
-      }
-      .el-table__indent + .el-table__placeholder + .el-form-item {
-        width: calc(100% - 40px);
-      }
-    }
-  }
 }
 
 .lf-drag-able {

@@ -25,12 +25,12 @@ const tableOption = computed(() => {
     buttonList = [],
   } = dataOptions.value ?? {}
   const buttonSelectDic = buttonList?.map((e) => {
-    return { label: e.name, value: e.buttonKey, desc: e.buttonKey }
+    return { label: e.name, value: e.key, desc: e.key }
   })
   return {
-    rowKey: 'buttonKey',
+    rowKey: 'key',
     column: [
-      { label: '按钮', prop: 'buttonKey', width: 150, type: 'select', dicData: buttonSelectDic ?? [], filterable: true },
+      { label: '按钮', prop: 'key', width: 150, type: 'select', dicData: buttonSelectDic ?? [], filterable: true },
       { label: '显示条件', prop: 'display', type: 'select', multiple: true, dataType: 'string', dicData: flowButtonDisplayDic ?? [] },
       { label: '审批窗口', prop: 'approval', type: 'select', multiple: true, dataType: 'string', dicData: flowButtonApprovalDic ?? [] },
       { label: '是否校验', prop: 'validate', type: 'switch', width: 60, dicData: flowButtonValidateDic ?? [] },

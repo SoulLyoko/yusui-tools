@@ -7,11 +7,11 @@ const formOptions = useOptions()
 
 const dataOptions = {
   buttonList: [
-    { name: '保存草稿', buttonKey: 'flow_draft' },
-    { name: '发送', buttonKey: 'flow_pass' },
+    { name: '保存草稿', key: 'flow_draft' },
+    { name: '发送', key: 'flow_pass' },
   ],
   formPropertyList: [
-    { label: '字段1', prop: 'field1' },
+    { label: '字段1', prop: 'field1', type: 'dynamic', children: { column: [{ label: '字段5', prop: 'field5' }] } },
     { label: '字段2', prop: 'field2' },
     { label: '审批表单', prop: 'formTab' },
     { label: '附件资料', prop: 'fileTab' },
@@ -52,6 +52,17 @@ const dataOptions = {
   noticeTypeDic: [
     { label: '通知类型1', value: 'notice1', id: 'notice1' },
     { label: '通知类型2', value: 'notice2', id: 'notice2' },
+  ],
+  formOptions: [
+    {
+      label: '表单1',
+      prop: 'form1',
+      column: [
+        { label: '字段1', prop: 'field1', type: 'dynamic', children: { column: [{ label: '字段5', prop: 'field5' }] } },
+        { label: '字段2', prop: 'field2' },
+      ],
+    },
+    { label: '表单2', prop: 'form2', column: [{ label: '字段3', prop: 'field3' }, { label: '字段4', prop: 'field4' }] },
   ],
 }
 </script>

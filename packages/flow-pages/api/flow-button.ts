@@ -62,6 +62,10 @@ export interface FlowButton {
   buttonKey?: FlowButtonKey
   /** element的按钮类型 */
   buttonType?: ButtonType
+  /** 按钮的key */
+  key?: FlowButtonKey
+  /** element的按钮类型 */
+  type?: ButtonType
   /** 显示类型 */
   display?: FlowButtonDisplay
   /** 审批弹窗显示 */

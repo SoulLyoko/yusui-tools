@@ -28,6 +28,7 @@ export function useModelerListener({
       menuBtn: false,
       span: 24,
       tabs: true,
+      tabsType: 'card',
       labelPosition: 'left',
       group: formOptions.value?.[data.type!] ?? defaultGroup,
     }

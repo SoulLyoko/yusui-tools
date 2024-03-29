@@ -1,3 +1,4 @@
+/** 审批人配置类型 */
 export enum AssigneeType {
   用户 = 'user',
   部门 = 'dept',
@@ -8,58 +9,77 @@ export enum AssigneeType {
   指定用户 = 'specifyUser',
   自定义 = 'custom',
 }
+
+/** 参与人配置类型 */
 export enum ParticipateType {
   用户 = 'user',
   部门 = 'dept',
   角色 = 'role',
   岗位 = 'post',
 }
+
+/** 任务节点类型 */
 export enum ApprovalTaskNodeType {
   人工审批 = 'manualApproval',
   自动通过 = 'autoPass',
   自动拒绝 = 'autoReject',
 }
+
+/** 审批退回类型 */
 export enum ApprovalReturnMethod {
   上一个节点 = 'prevNode',
   开始节点 = 'startNode',
   自动结束 = 'autoComplete',
   自选节点 = 'selectNode',
 }
+
+/** 多人审批类型 */
 export enum MultiPersonApprovalType {
   依次审批 = 'sequentialApproval',
   会签 = 'countersign',
   或签 = 'orsign',
 }
+
+/** 审批人员为空类型 */
 export enum UserTaskEmptyApproveType {
   自动通过 = 'autoPass',
   自动转交给某个人 = 'autoTransfer',
 }
 
+/** 审批人配置项 */
 export interface AssigneeItem {
   type?: AssigneeType
   value?: string
   idVal?: string
   values?: any[]
 }
+
+/** 参与人配置项 */
 export interface ParticipateItem {
   type?: ParticipateType
   value?: string
   idVal?: string
   values?: any[]
 }
+
+/** 传阅人配置项 */
 export interface CirculateItem {
   type?: string
   value?: string
   idVal?: string
   values?: any[]
 }
+
+/** 按钮配置项 */
 export interface ButtonItem {
   name?: string
-  buttonKey?: string
+  key?: string
   display?: string
   approval?: string
-  validate?: number
+  validate?: boolean
 }
+
+/** 监听器配置项 */
 export interface ListenerItem {
   eventName?: string
   eventType?: string
@@ -70,10 +90,14 @@ export interface ListenerItem {
     fieldValue?: string
   }[]
 }
+
+/** 其它属性配置项 */
 export interface PropertyItem {
   name?: string
   value?: string
 }
+
+/** 表单属性配置项 */
 export interface FormPropertyItem {
   label?: string
   prop?: string
@@ -85,11 +109,15 @@ export interface FormPropertyItem {
   validate?: boolean
   children?: FormPropertyItem[]
 }
+
+/** 时限配置项 */
 export interface TimeLimitItem {
   name?: string
   min?: number
   max?: number
 }
+
+/** 流程配置 */
 export interface ProcessConfig {
   snTemplate: string
   printTemplate: string
@@ -101,13 +129,31 @@ export interface ProcessConfig {
   handleInteractiveMode: string
   isTaskStart: boolean
 }
+
+/** 审批人配置 */
 export interface ApprovalConfig {
-  taskNodeType?: string
-  approvalReturnMethod?: string
-  multiPersonApprovalType?: string
-  userTaskEmptyApproveType?: string
+  taskNodeType?: ApprovalTaskNodeType
+  approvalReturnMethod?: ApprovalReturnMethod
+  multiPersonApprovalType?: MultiPersonApprovalType
+  userTaskEmptyApproveType?: UserTaskEmptyApproveType
   userTaskEmptyApproveUser?: string
-  enableReceiptDisplay?: string
+  enableReceiptDisplay?: boolean
+}
+
+/** 通知配置 */
+export interface NoticeConfig {
+  enableBackNotice?: boolean
+  processBackNoticeChannel?: string
+  processBackNoticeTemplate?: string
+  enableTodoNotice?: boolean
+  processTodoNoticeChannel?: string
+  processTodoNoticeTemplate?: string
+  enableCopyNotice?: boolean
+  processCopyNoticeChannel?: string
+  processCopyNoticeTemplate?: string
+  enableCompleteNotice?: boolean
+  processCompleteNoticeChannel?: string
+  processCompleteNoticeTemplate?: string
 }
 
 export interface FlowFormData {
@@ -117,18 +163,6 @@ export interface FlowFormData {
   name?: string
   /** 节点描述 */
   desc?: string
-  /** 跳过第一节点 */
-  skipFirstNode?: boolean
-  /** 驳回节点 */
-  rollbackNode?: string
-  /** 优先级 */
-  priority?: number
-  /** 表单标题 */
-  formTitle?: string
-  /** 表单标题分隔符 */
-  formTitleSeparator?: string
-  /** 回到驳回人 */
-  backToRejecter?: boolean
   /** 多实例类型 */
   multiInstanceType?: string
   /** 完成条件 */
@@ -153,7 +187,7 @@ export interface FlowFormData {
   button?: ButtonItem[]
   /** 执行监听 */
   executionListener?: ListenerItem[]
-  /** 表单配置 */
+  /** 表单配置，第一层是表单的配置，children才是字段的配置 */
   formProperty?: FormPropertyItem[]
   /** 扩展属性 */
   property?: PropertyItem[]
@@ -168,5 +202,5 @@ export interface FlowFormData {
   /** 审批配置 */
   approval?: ApprovalConfig
   /** 通知配置 */
-  notice?: ApprovalConfig
+  notice?: NoticeConfig
 }
