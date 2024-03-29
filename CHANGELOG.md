@@ -1,3 +1,12 @@
+# [3.0.0-beta.23](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.22...v3.0.0-beta.23) (2024-03-29)
+
+
+### Bug Fixes
+
+* **flow-design:** 修改按钮和表单配置的字段 ([0ca4655](https://github.com/SoulLyoko/yusui-tools/commit/0ca465513d4c2e8f9646d026518173658297ae89))
+
+
+
 # [3.0.0-beta.22](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.21...v3.0.0-beta.22) (2024-03-29)
 
 
