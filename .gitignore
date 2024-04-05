@@ -17,14 +17,6 @@ dist-ssr
 **/types/components.d.ts
 **/types/typed-router.d.ts
 **/types/vite-env.d.ts
-playgrounds/nuxt/**/openapi
-
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
 
 # Editor directories and files
 .idea

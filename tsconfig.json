@@ -28,5 +28,5 @@
     "allowJs": true
   },
   "include": ["packages", "packages/.vitepress/**/*"],
-  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache", "**/*.js", "packages/nuxt"]
+  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache", "**/*.js"]
 }

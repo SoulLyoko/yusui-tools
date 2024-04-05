@@ -10,7 +10,6 @@
     "**/*.test.*",
     "**/*.md",
     "packages/flow-pages",
-    "packages/uvue",
-    "packages/nuxt"
+    "packages/uvue"
   ]
 }
