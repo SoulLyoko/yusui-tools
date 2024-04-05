@@ -24,11 +24,11 @@
   ],
   "dependencies": {
     "@vue/compiler-sfc": "^3.4.21",
-    "magic-string": "^0.30.8"
+    "magic-string": "^0.30.9"
   },
   "devDependencies": {
     "@dcloudio/uni-mp-vue": "vue3",
     "@dcloudio/uni-ui": "^1.5.2",
-    "uview-plus": "^3.1.45"
+    "uview-plus": "^3.1.49"
   }
 }

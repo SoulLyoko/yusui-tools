@@ -38,10 +38,10 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.3.2",
-    "element-plus": "^2.6.1",
+    "@smallwei/avue": "^3.4.0",
+    "element-plus": "^2.6.3",
     "monaco-editor": "^0.47.0",
-    "sass": "^1.71.1",
+    "sass": "^1.74.1",
     "vue": "^3.4.21"
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable import/newline-after-import */
 import type { AxiosResponse } from 'axios'
 import type { RequestConfig } from '../types'
 

@@ -52,9 +52,9 @@
     "@yusui/utils": "workspace:*",
     "@yusui/uvue": "workspace:*",
     "dayjs": "^1.11.10",
-    "uview-plus": "3.1.45",
+    "uview-plus": "3.1.49",
     "vue": "^3.4.21",
-    "vue-i18n": "^9.10.1",
+    "vue-i18n": "^9.11.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
@@ -66,10 +66,10 @@
     "@vue/tsconfig": "^0.5.1",
     "@yusui/plugins": "workspace:*",
     "@yusui/types": "workspace:*",
-    "postcss": "^8.4.35",
-    "sass": "^1.71.1",
-    "typescript": "^5.4.2",
-    "vite": "5.1.6",
+    "postcss": "^8.4.38",
+    "sass": "^1.74.1",
+    "typescript": "^5.4.4",
+    "vite": "5.2.8",
     "vue-tsc": "^1.8.27"
   }
 }

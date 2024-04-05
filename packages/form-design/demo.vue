@@ -3,9 +3,7 @@ import type { MergeWithCustomizer } from 'lodash'
 import type { Resource } from './types'
 
 import { ref } from 'vue'
-
-import { SwitchSetter } from './setters'
-import { base, groupList as defaultGroupList } from './options'
+import { SwitchSetter, base, groupList as defaultGroupList } from '@yusui/form-design'
 
 const option = ref({})
 
