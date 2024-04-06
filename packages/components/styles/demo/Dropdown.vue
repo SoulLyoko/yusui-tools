@@ -5,7 +5,7 @@
 <template>
   <h3>基础用法</h3>
   <el-dropdown trigger="click">
-    <el-button link type="primary">
+    <el-button text type="primary">
       Dropdown List
       <Icon icon="ep:arrow-down" class="el-icon--right" />
     </el-button>

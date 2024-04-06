@@ -1,0 +1,33 @@
+.el-message {
+  --el-message-bg-color: var(--el-bg-color);
+  --el-message-border-color: var(--el-border-color);
+
+  box-shadow: var(--el-box-shadow-light);
+  padding: 10px 16px;
+
+  .el-message__icon {
+    font-size: 18px;
+  }
+
+  .el-message__icon.el-message-icon--info {
+    color: var(--el-color-primary);
+  }
+
+  .el-message__content {
+    color: var(--el-text-color-primary);
+  }
+
+  .el-message__closeBtn {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    border-radius: var(--el-border-radius-circle);
+    transition: 0.1s linear;
+    color: var(--el-text-color-primary);
+    margin-right: -8px;
+
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+}

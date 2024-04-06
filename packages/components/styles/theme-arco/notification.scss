@@ -1,0 +1,28 @@
+.el-notification {
+  --el-notification-padding: 20px 24px;
+
+  border: none;
+
+  .el-notification__title {
+    font-weight: inherit;
+  }
+
+  .el-notification--info {
+    --el-notification-icon-color: var(--el-color-primary);
+  }
+
+  .el-notification__closeBtn {
+    top: 8px;
+    right: 8px;
+    color: inherit;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    border-radius: var(--el-border-radius-circle);
+    transition: 0.1s linear;
+    color: var(--el-text-color-primary);
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+}

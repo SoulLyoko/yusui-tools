@@ -1,0 +1,23 @@
+.el-message-box {
+  --el-messagebox-border-radius: var(--el-border-radius-large);
+  --el-messagebox-padding-primary: 0;
+
+  box-shadow: none;
+
+  .el-message-box__header,
+  .el-message-box__container,
+  .el-message-box__btns {
+    padding: 12px 20px;
+  }
+
+  .el-message-box__headerbtn {
+    width: 20px;
+    height: 20px;
+    top: 12px;
+    right: 16px;
+  }
+
+  .el-message-box__status.el-message-box-icon--info {
+    --el-messagebox-color: var(--el-color-primary);
+  }
+}

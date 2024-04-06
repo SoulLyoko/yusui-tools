@@ -8,6 +8,7 @@
     --el-checkbox-checked-icon-color
   );
   --el-checkbox-checked-text-color: var(--el-text-color-primary);
+  --el-checkbox-input-border-color-hover: var(--el-border-color-dark);
 
   .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
     transform: unset;
@@ -35,8 +36,14 @@
   }
 
   &:hover:not(.is-disabled) {
-    .el-checkbox__input:not(.is-checked) .el-checkbox__inner {
-      border-color: var(--el-border-color-dark);
+    .el-checkbox__inner {
+      transition: 0.1s linear;
+    }
+
+    .el-checkbox__input:not(.is-checked, .is-indeterminate)
+      .el-checkbox__inner {
+      border-color: var(--el-checkbox-input-border-color-hover);
+      box-shadow: 0px 0px 0px 5px var(--el-fill-color-light);
     }
   }
 }

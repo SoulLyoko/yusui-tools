@@ -1,0 +1,10 @@
+.avue-form {
+  .avue-group > .el-collapse {
+    --el-collapse-content-bg-color: unset;
+    border: none;
+
+    .el-collapse-item__content {
+      padding: 0;
+    }
+  }
+}

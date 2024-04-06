@@ -16,7 +16,7 @@ const themes = {
 }
 
 export function useComponentTheme(options?: UseComponentThemeOptions) {
-  const theme = useLocalStorage('component-theme-scheme', options?.initialValue) as Ref<Theme>
+  const theme = useLocalStorage('component-theme-scheme', options?.initialValue ?? 'element') as Ref<Theme>
 
   watch(theme, onChange, { immediate: true })
 

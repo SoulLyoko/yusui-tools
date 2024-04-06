@@ -9,6 +9,7 @@
   --el-menu-base-level-padding: 16px;
 
   --el-menu-active-bg-color: var(--el-color-primary-light-9);
+  --el-menu-item-margin: 4px;
 }
 
 .el-menu--horizontal > .el-menu-item:not(.is-disabled):focus,
@@ -36,7 +37,7 @@
   .el-menu-item,
   .el-sub-menu__title {
     border-radius: var(--el-border-radius-small);
-    margin: 4px;
+    margin: var(--el-menu-item-margin);
   }
 
   .el-menu-item.is-active {
@@ -68,4 +69,11 @@
   .el-menu.el-menu--inline {
     overflow: hidden;
   }
+}
+
+.el-menu--collapse {
+  width: calc(
+    var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2 +
+      var(--el-menu-item-margin) * 2
+  );
 }

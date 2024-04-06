@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useToggle } from '@vueuse/core'
 
 const list = [
   { label: 'Primary', type: 'primary' as const },
@@ -9,7 +9,7 @@ const list = [
   { label: 'Danger', type: 'danger' as const },
 ]
 
-const checked = ref(false)
+const [check, toggleCheck] = useToggle()
 </script>
 
 <template>
@@ -53,7 +53,9 @@ const checked = ref(false)
   </el-space>
 
   <h3>可选中标签</h3>
-  <el-check-tag :checked="checked" @change="checked = !checked">
-    Toggle me
-  </el-check-tag>
+  <el-space>
+    <el-check-tag v-for="item in list" :key="item.label" :checked="check" :type="item.type" @change="toggleCheck()">
+      {{ item.label }}
+    </el-check-tag>
+  </el-space>
 </template>

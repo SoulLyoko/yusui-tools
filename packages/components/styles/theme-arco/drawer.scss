@@ -1,0 +1,31 @@
+.el-drawer {
+  --el-drawer-padding-primary: 12px 16px;
+
+  box-shadow: none;
+
+  .el-drawer__header {
+    margin-bottom: 0;
+    padding: var(--el-drawer-padding-primary);
+    color: var(--el-text-color-primary);
+    font-weight: var(--el-font-weight-strong);
+    border-bottom: var(--el-border);
+  }
+
+  .el-drawer__footer {
+    padding: 16px;
+    border-top: var(--el-border);
+  }
+
+  .el-drawer__close {
+    color: inherit;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    border-radius: var(--el-border-radius-circle);
+    transition: 0.1s linear;
+    color: var(--el-text-color-primary);
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+}

@@ -58,11 +58,10 @@ function onReset() {
     label-width="100px"
   >
     <el-form-item v-for="item in formItems" :key="item.prop" :label="item.prop" :prop="item.prop" required>
-      <component :is="item.component" v-model="form[item.prop as keyof typeof form]" v-bind="item.props">
-        <template v-if="item.component === 'el-select'">
-          <el-option v-for="option in item.props?.options" :key="option.value" :label="option.label" :value="option.value" />
-        </template>
-      </component>
+      <el-select v-if="item.component === 'el-select'" v-model="form[item.prop as keyof typeof form]" v-bind="item.props">
+        <el-option v-for="option in item.props?.options" :key="option.value" :label="option.label" :value="option.value" />
+      </el-select>
+      <component :is="item.component" v-else v-model="form[item.prop as keyof typeof form]" v-bind="item.props" />
     </el-form-item>
 
     <el-form-item>

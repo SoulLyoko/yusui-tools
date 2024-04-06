@@ -53,5 +53,5 @@ const data = [
 </script>
 
 <template>
-  <el-tree :data="data" show-checkbox default-expand-all node-key="id" highlight-current />
+  <el-tree :data="data" show-checkbox default-expand-all node-key="id" highlight-current draggable />
 </template>

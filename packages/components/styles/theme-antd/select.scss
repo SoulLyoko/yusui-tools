@@ -1,4 +1,8 @@
 .el-select {
+  .el-select__selected-item .el-tag {
+    background-color: var(--el-fill-color);
+  }
+
   &.el-select--disabled {
     .el-tag.el-tag--info {
       --el-tag-text-color: var(--el-text-color-placeholder);
@@ -8,12 +12,13 @@
 
 .el-select-dropdown {
   .el-select-dropdown__list {
-    margin: 4px !important;
+    margin: 4px;
+    padding: 0;
 
     .el-select-dropdown__item {
       border-radius: var(--el-border-radius-small);
 
-      &.selected {
+      &.is-selected {
         color: inherit;
         background-color: var(--el-color-primary-light-9);
       }

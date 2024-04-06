@@ -56,8 +56,10 @@
 
       &.in-active-path,
       &.is-active {
-        background-color: var(--el-fill-color-light);
         font-weight: inherit;
+        &:not(:has(.el-checkbox)) {
+          background-color: var(--el-fill-color-light);
+        }
       }
     }
   }

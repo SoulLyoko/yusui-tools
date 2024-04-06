@@ -1,0 +1,12 @@
+.el-table {
+  --el-table-border-color: var(--el-border-color);
+  --el-table-header-text-color: var(--el-text-color-primary);
+  --el-table-header-bg-color: var(--el-fill-color-light);
+  --el-table-row-hover-bg-color: var(--el-fill-color-lighter);
+  --el-table-fixed-left-column: inset 6px 0 8px -3px rgba(0, 0, 0, 0.15);
+  --el-table-fixed-right-column: inset -6px 0 8px -3px rgba(0, 0, 0, 0.15);
+
+  .el-table__footer-wrapper tfoot td.el-table__cell {
+    background-color: var(--el-table-header-bg-color);
+  }
+}

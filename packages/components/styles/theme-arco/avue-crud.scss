@@ -1,0 +1,31 @@
+.avue-dialog.el-dialog {
+  border-radius: var(--el-dialog-border-radius);
+
+  .avue-crud__dialog__menu {
+    top: -2px;
+    right: 20px;
+
+    i {
+      color: var(--el-text-color-primary);
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      border-radius: var(--el-border-radius-circle);
+      transition: 0.1s linear;
+
+      &:hover {
+        background-color: var(--el-fill-color-light);
+      }
+    }
+  }
+
+  .el-dialog__body {
+    padding-bottom: 60px;
+    overflow: auto;
+  }
+
+  .avue-dialog__footer {
+    border-radius: 0 0 var(--el-dialog-border-radius)
+      var(--el-dialog-border-radius);
+  }
+}

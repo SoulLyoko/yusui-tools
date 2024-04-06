@@ -1,0 +1,47 @@
+.el-tree {
+  --el-tree-expand-icon-color: var(--el-text-color-primary);
+
+  .el-tree-node__expand-icon {
+    > svg {
+      transition: 0.1s linear;
+    }
+
+    &:hover > svg {
+      border-radius: var(--el-border-radius-circle);
+      background-color: var(--el-fill-color-light);
+      box-shadow: 0px 0px 0px 2px var(--el-fill-color-light);
+    }
+  }
+
+  .el-tree-node__content {
+    cursor: inherit;
+
+    &:hover {
+      background-color: unset;
+    }
+  }
+
+  .el-tree-node__label {
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: var(--el-border-radius-small);
+
+    &:hover {
+      background-color: var(--el-tree-node-hover-bg-color);
+    }
+  }
+
+  &.el-tree--highlight-current
+    .el-tree-node.is-current
+    > .el-tree-node__content {
+    background-color: unset;
+
+    .el-tree-node__label {
+      color: var(--el-color-primary);
+    }
+  }
+
+  .el-tree-node:focus > .el-tree-node__content {
+    background-color: unset;
+  }
+}

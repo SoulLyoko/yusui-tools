@@ -1,0 +1,30 @@
+.el-alert {
+  --el-alert-close-font-size: 12px;
+
+  .el-alert__close-btn {
+    top: 14px;
+  }
+
+  &.el-alert--info.is-light {
+    background-color: var(--el-color-primary-light-9);
+    color: var(--el-color-primary);
+  }
+
+  &.is-light {
+    .el-alert__title {
+      color: var(--el-text-color-primary);
+    }
+
+    .el-alert__title.with-description {
+      font-weight: var(--el-font-weight-strong);
+    }
+
+    .el-alert__description {
+      color: var(--el-text-color-secondary);
+    }
+
+    .el-alert__close-btn {
+      color: var(--el-text-color-secondary);
+    }
+  }
+}

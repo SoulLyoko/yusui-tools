@@ -1,10 +1,6 @@
 .el-button {
   --el-button-border-radius: var(--el-border-radius-base);
 
-  &:not(.is-circle, .is-round) {
-    border-radius: var(--el-button-border-radius);
-  }
-
   &.el-button--large {
     --el-button-border-radius: var(--el-border-radius-large);
   }

@@ -1,14 +1,16 @@
 .el-drawer {
+  --el-drawer-padding-primary: 24px;
+
   .el-drawer__header {
     margin-bottom: 0;
-    padding: 16px 20px;
+    padding: 16px 24px;
     color: var(--el-text-color-primary);
     font-weight: var(--el-font-weight-strong);
     border-bottom: 1px solid var(--el-border-color-light);
   }
 
   .el-drawer__footer {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-top: 1px solid var(--el-border-color-light);
   }
 }

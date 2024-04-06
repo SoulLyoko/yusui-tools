@@ -1,0 +1,9 @@
+.el-statistic {
+  --el-statistic-title-font-size: var(--el-font-size-base);
+  --el-statistic-title-color: var(--el-text-color-secondary);
+  --el-statistic-content-font-size: 26px;
+
+  .el-statistic__head {
+    margin-bottom: 8px;
+  }
+}

@@ -1,7 +1,7 @@
 .el-steps {
-  --el-step-icon-width: 32px;
-  --el-step-horizontal-line-margin: 16px;
-  --el-step-vertical-line-margin: 8px;
+  --el-step-icon-width: 28px;
+  --el-step-horizontal-line-margin: 12px;
+  --el-step-vertical-line-margin: 6px;
 
   &:not(.el-steps--simple) .el-step__icon {
     width: var(--el-step-icon-width);
@@ -14,6 +14,16 @@
     .el-step__head {
       display: flex;
       align-items: center;
+    }
+
+    .el-step__arrow:before {
+      height: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .el-step__arrow:after {
+      height: 6px;
+      transform: rotate(45deg) translate(2px, 2px);
     }
   }
 
@@ -108,29 +118,15 @@
 
   .el-step__main {
     .el-step__title {
-      &.is-finish,
-      &.is-success {
-        color: var(--el-text-color-primary);
-      }
+      color: var(--el-text-color-primary);
 
       &.is-process {
-        font-weight: inherit;
-      }
-
-      &.is-wait {
-        color: var(--el-text-color-secondary);
+        font-weight: var(--el-font-weight-strong);
       }
     }
 
     .el-step__description {
-      &.is-finish,
-      &.is-success {
-        color: var(--el-text-color-secondary);
-      }
-
-      &.is-wait {
-        color: var(--el-text-color-secondary);
-      }
+      color: var(--el-text-color-placeholder);
     }
   }
 }

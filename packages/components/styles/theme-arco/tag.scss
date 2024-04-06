@@ -1,0 +1,48 @@
+.el-tag:not(.el-tag--plain) {
+  border-color: transparent;
+}
+
+.el-check-tag {
+  background-color: unset;
+  font-weight: inherit;
+  color: var(--el-text-color-primary);
+
+  --el-check-tag-hover-bg: var(--el-fill-color-light);
+  --el-check-tag-checked-bg: var(--el-color-primary-light-9);
+  --el-check-tag-checked-color: var(--el-color-primary);
+  --el-check-tag-checked-hover-bg: var(--el-color-primary-light-8);
+
+  &.el-check-tag--success {
+    --el-check-tag-checked-bg: var(--el-color-success-light-9);
+    --el-check-tag-checked-color: var(--el-color-success);
+    --el-check-tag-checked-hover-bg: var(--el-color-success-light-8);
+  }
+  &.el-check-tag--info {
+    --el-check-tag-checked-bg: var(--el-color-info-light-9);
+    --el-check-tag-checked-color: var(--el-color-info);
+    --el-check-tag-checked-hover-bg: var(--el-color-info-light-8);
+  }
+  &.el-check-tag--warning {
+    --el-check-tag-checked-bg: var(--el-color-warning-light-9);
+    --el-check-tag-checked-color: var(--el-color-warning);
+    --el-check-tag-checked-hover-bg: var(--el-color-warning-light-8);
+  }
+  &.el-check-tag--danger {
+    --el-check-tag-checked-bg: var(--el-color-danger-light-9);
+    --el-check-tag-checked-color: var(--el-color-danger);
+    --el-check-tag-checked-hover-bg: var(--el-color-danger-light-8);
+  }
+
+  &:hover {
+    background-color: var(--el-check-tag-hover-bg);
+  }
+
+  &.is-checked {
+    background-color: var(--el-check-tag-checked-bg);
+    color: var(--el-check-tag-checked-color);
+
+    &:hover {
+      background-color: var(--el-check-tag-checked-hover-bg);
+    }
+  }
+}

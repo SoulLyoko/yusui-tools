@@ -1,9 +1,17 @@
 .avue-dialog {
   border-radius: var(--el-dialog-border-radius);
 
+  .el-dialog__header {
+    padding-bottom: 12px;
+  }
+
+  .avue-crud__dialog__menu {
+    top: -7px;
+    right: 24px;
+  }
+
   .el-dialog__body {
-    padding-bottom: 50px;
-    border-radius: var(--el-dialog-border-radius);
+    padding-bottom: 40px;
     overflow: auto;
   }
 

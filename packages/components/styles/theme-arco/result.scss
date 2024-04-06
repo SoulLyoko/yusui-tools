@@ -19,7 +19,7 @@
   }
 
   .icon-info {
-    --el-result-color: var(--el-color-info-light-9);
+    --el-result-color: var(--el-color-primary-light-9);
   }
 
   .el-result__icon {
@@ -38,7 +38,7 @@
     }
 
     &:has(.icon-info) {
-      --el-result-icon-bg-color: var(--el-color-info);
+      --el-result-icon-bg-color: var(--el-color-primary);
     }
 
     &::after {

@@ -1,7 +1,11 @@
 .el-tree-select__popper {
+  .el-select-dropdown__list {
+    padding: 4px;
+  }
+
   .el-tree-node__content:not(:has(.el-checkbox)) {
     .el-select-dropdown__item.is-selected {
-      background-color: var(--el-color-primary-light-9) !important;
+      color: var(--el-color-primary);
     }
   }
 
@@ -16,16 +20,12 @@
       background-color: var(--el-tree-node-hover-bg-color) !important;
     }
 
-    &.is-selected {
+    &.selected {
       font-weight: inherit;
 
       &::after {
         display: none;
       }
     }
-  }
-
-  :not(.el-checkbox) + .el-select-dropdown__item.selected {
-    background-color: var(--el-color-primary-light-9) !important;
   }
 }

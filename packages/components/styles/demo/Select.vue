@@ -13,7 +13,7 @@ const options = [
 
 <template>
   <h3>基础用法</h3>
-  <el-select v-model="value" placeholder="Select" clearable>
+  <el-select v-model="value" placeholder="Select" clearable filterable allow-create>
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -24,7 +24,7 @@ const options = [
   </el-select>
 
   <h3>多选</h3>
-  <el-select v-model="mvalue" placeholder="Select" multiple clearable>
+  <el-select v-model="mvalue" placeholder="Select" multiple clearable filterable allow-create>
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -35,8 +35,8 @@ const options = [
   </el-select>
 
   <h3>禁用状态</h3>
-  <el-space>
-    <el-select v-model="value" placeholder="Select" disabled />
-    <el-select v-model="mvalue" placeholder="Select" multiple disabled />
-  </el-space>
+  <el-select v-model="value" placeholder="Select" disabled />
+  <br>
+  <br>
+  <el-select v-model="mvalue" placeholder="Select" multiple disabled />
 </template>

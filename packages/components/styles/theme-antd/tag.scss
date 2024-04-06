@@ -30,21 +30,53 @@
   color: var(--el-text-color-primary);
   font-weight: inherit;
 
+  --el-check-tag-hover-bg: var(--el-fill-color);
+  --el-check-tag-hover-color: var(--el-color-primary);
+  --el-check-tag-checked-bg: var(--el-color-primary);
+  --el-check-tag-checked-color: var(--el-fill-color-blank);
+  --el-check-tag-checked-hover-bg: var(--el-color-primary-light-3);
+  --el-check-tag-checked-active-bg: var(--el-color-primary-dark-2);
+
+  &.el-check-tag--success {
+    --el-check-tag-hover-color: var(--el-color-success);
+    --el-check-tag-checked-bg: var(--el-color-success);
+    --el-check-tag-checked-hover-bg: var(--el-color-success-light-3);
+    --el-check-tag-checked-active-bg: var(--el-color-success-dark-2);
+  }
+  &.el-check-tag--info {
+    --el-check-tag-hover-color: var(--el-color-info);
+    --el-check-tag-checked-bg: var(--el-color-info);
+    --el-check-tag-checked-hover-bg: var(--el-color-info-light-3);
+    --el-check-tag-checked-active-bg: var(--el-color-info-dark-2);
+  }
+  &.el-check-tag--warning {
+    --el-check-tag-hover-color: var(--el-color-warning);
+    --el-check-tag-checked-bg: var(--el-color-warning);
+    --el-check-tag-checked-hover-bg: var(--el-color-warning-light-3);
+    --el-check-tag-checked-active-bg: var(--el-color-warning-dark-2);
+  }
+  &.el-check-tag--danger {
+    --el-check-tag-hover-color: var(--el-color-danger);
+    --el-check-tag-checked-bg: var(--el-color-danger);
+    --el-check-tag-checked-hover-bg: var(--el-color-danger-light-3);
+    --el-check-tag-checked-active-bg: var(--el-color-danger-dark-2);
+  }
+
   &:hover {
-    background-color: var(--el-fill-color);
-    color: var(--el-color-primary);
+    background-color: var(--el-check-tag-hover-bg);
+    color: var(--el-check-tag-hover-color);
   }
 
   &.is-checked {
-    background-color: var(--el-color-primary);
-    color: var(--el-fill-color-blank);
+    background-color: var(--el-check-tag-checked-bg);
+    color: var(--el-check-tag-checked-color);
 
     &:hover {
-      background-color: var(--el-color-primary-light-3);
+      background-color: var(--el-check-tag-checked-hover-bg);
     }
 
     &:active {
-      background-color: var(--el-color-primary-dark-2);
+      background-color: var(--el-check-tag-checked-active-bg);
     }
   }
 }

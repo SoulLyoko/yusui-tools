@@ -68,4 +68,25 @@ const list = [
   <el-button size="small">
     Small
   </el-button>
+
+  <h3>按钮组</h3>
+  <el-space>
+    <el-button-group>
+      <el-button type="primary" icon="el-icon-arrow-left">
+        Previous Page
+      </el-button>
+      <el-button type="primary">
+        Next Page
+        <el-icon class="el-icon--right">
+          <Icon icon="ep:arrow-right" />
+        </el-icon>
+      </el-button>
+    </el-button-group>
+
+    <el-button-group>
+      <el-button icon="el-icon-edit" />
+      <el-button icon="el-icon-share" />
+      <el-button icon="el-icon-delete" />
+    </el-button-group>
+  </el-space>
 </template>

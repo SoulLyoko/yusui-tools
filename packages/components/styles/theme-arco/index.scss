@@ -1,6 +1,9 @@
 @import './root.scss';
 
 .component-theme-arco {
+  @import './alert.scss';
+  @import './avue-crud.scss';
+  @import './avue-form.scss';
   @import './button.scss';
   @import './calendar.scss';
   @import './card.scss';
@@ -11,17 +14,33 @@
   @import './color-picker.scss';
   @import './date-picker.scss';
   @import './descriptions.scss';
+  @import './dialog.scss';
+  @import './drawer.scss';
+  @import './dropdown.scss';
   @import './form.scss';
-  @import './input.scss';
   @import './input-number.scss';
+  @import './input.scss';
+  @import './menu.scss';
+  @import './message-box.scss';
+  @import './message.scss';
+  @import './notification.scss';
   @import './pagination.scss';
+  @import './popconfirm.scss';
   @import './progress.scss';
   @import './radio.scss';
   @import './rate.scss';
   @import './result.scss';
   @import './select.scss';
   @import './slider.scss';
+  @import './statistic.scss';
+  @import './steps.scss';
   @import './switch.scss';
+  @import './table.scss';
+  @import './tabs.scss';
+  @import './tag.scss';
   @import './time-picker.scss';
+  @import './timeline.scss';
   @import './transfer.scss';
+  @import './tree-select.scss';
+  @import './tree.scss';
 }
