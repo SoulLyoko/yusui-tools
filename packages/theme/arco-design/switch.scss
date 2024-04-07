@@ -1,5 +1,6 @@
 .el-switch {
   --el-switch-off-color: var(--el-fill-color-dark);
+  --el-switch-border-color: transparent;
 
   &.is-disabled {
     opacity: 0.4;

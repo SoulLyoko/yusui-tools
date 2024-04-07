@@ -21,8 +21,9 @@ const componentIs = computed(() => {
   return componentTypeMap[props.type || 'select']
 })
 
+const attrs = useAttrs()
 const componentProps = computed(() => {
-  return { ...props, ...useAttrs() }
+  return { ...props, ...attrs }
 })
 </script>
 

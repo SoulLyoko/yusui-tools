@@ -24,6 +24,7 @@ export default defineConfig({
           { text: '@yusui/components', link: '/components/index' },
           { text: '@yusui/composables', link: '/composables/index' },
           { text: '@yusui/plugins', link: '/plugins/index' },
+          { text: '@yusui/theme', link: '/theme/index' },
           { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
           { text: '@yusui/uvue', link: '/uvue/index' },
@@ -56,7 +57,6 @@ export default defineConfig({
             { text: 'ProMenu', link: '/components/pro-menu/index' },
             { text: 'ProText', link: '/components/pro-text/index' },
             { text: 'ProTree', link: '/components/pro-tree/index' },
-            { text: 'Theme', link: '/components/styles/index.md' },
           ],
         },
       ],
@@ -85,6 +85,14 @@ export default defineConfig({
             { text: 'uniPatch', link: '/plugins/uni-patch/index' },
             { text: 'uniUIPatch', link: '/plugins/uni-ui-patch/index' },
             { text: 'uviewPatch', link: '/plugins/uview-patch/index' },
+          ],
+        },
+      ],
+      '/theme': [
+        {
+          text: 'Theme',
+          items: [
+            { text: 'Start', link: '/theme/index' },
           ],
         },
       ],

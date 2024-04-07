@@ -3,31 +3,31 @@ import type { MaybeRefOrGetter, Ref } from 'vue'
 import { watch } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 
-export interface UseComponentThemeOptions {
+export interface UseThemeOptions {
   initialValue?: MaybeRefOrGetter<Theme>
 }
 
 export type Theme = keyof typeof themes | undefined
 
 const themes = {
-  element: 'element',
-  antd: 'antd',
-  arco: 'arco',
+  'element-plus': 'element-plus',
+  'ant-design': 'ant-design',
+  'arco-design': 'arco-design',
 }
 
-export function useComponentTheme(options?: UseComponentThemeOptions) {
-  const theme = useLocalStorage('component-theme-scheme', options?.initialValue ?? 'element') as Ref<Theme>
+export function useTheme(options?: UseThemeOptions) {
+  const theme = useLocalStorage('theme-scheme', options?.initialValue ?? 'element-plus') as Ref<Theme>
 
   watch(theme, onChange, { immediate: true })
 
   function onChange(val?: Theme) {
     document.documentElement.classList.forEach((item) => {
-      if (item.startsWith('component-theme-'))
+      if (item.startsWith('theme-'))
         document.documentElement.classList.remove(item)
     })
-    if (!val || val === 'element')
+    if (!val || val === 'element-plus')
       return
-    document.documentElement.classList.add(`component-theme-${val}`)
+    document.documentElement.classList.add(`theme-${val}`)
   }
 
   return { theme, themes }

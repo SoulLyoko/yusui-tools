@@ -5,9 +5,15 @@
     top: 14px;
   }
 
-  &.el-alert--info.is-light {
-    background-color: var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
+  &.el-alert--info {
+    &.is-light {
+      background-color: var(--el-color-primary-light-9);
+      color: var(--el-color-primary);
+    }
+
+    &.is-dark {
+      background-color: var(--el-color-primary);
+    }
   }
 
   &.is-light {
@@ -25,6 +31,10 @@
 
     .el-alert__close-btn {
       color: var(--el-text-color-secondary);
+
+      &:hover {
+        color: var(--el-text-color-primary);
+      }
     }
   }
 }

@@ -1,7 +1,9 @@
 .el-button {
   border-color: transparent;
 
-  &.is-disabled {
+  &.is-disabled,
+  &:hover,
+  &.is-disabled:hover {
     border-color: transparent;
   }
 
@@ -17,10 +19,11 @@
     --el-button-hover-text-color: var(--el-button-text-color);
     --el-button-hover-bg-color: var(--el-fill-color);
     --el-button-active-bg-color: var(--el-fill-color-dark);
+    --el-button-disabled-bg-color: var(--el-fill-color-lighter);
   }
 
   &.is-plain {
-    &:hover {
+    &:hover:not(.is-disabled) {
       color: var(--el-button-text-color);
     }
 

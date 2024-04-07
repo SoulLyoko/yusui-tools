@@ -446,6 +446,22 @@ importers:
         specifier: workspace:*
         version: link:../types
 
+  packages/theme:
+    dependencies:
+      '@vueuse/core':
+        specifier: ^10.9.0
+        version: 10.9.0(vue@3.4.21)
+    devDependencies:
+      element-plus:
+        specifier: ^2.6.3
+        version: 2.6.3(vue@3.4.21)
+      sass:
+        specifier: ^1.74.1
+        version: 1.74.1
+      vue:
+        specifier: ^3.4.21
+        version: 3.4.21(typescript@5.4.4)
+
   packages/types:
     devDependencies:
       element-plus:

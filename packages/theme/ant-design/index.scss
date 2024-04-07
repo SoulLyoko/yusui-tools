@@ -1,23 +1,24 @@
 @import './root.scss';
+@import './dark.scss';
 
-.component-theme-arco {
+.theme-ant-design {
   @import './alert.scss';
+  @import './autocomplete.scss';
   @import './avue-crud.scss';
   @import './avue-form.scss';
   @import './button.scss';
   @import './calendar.scss';
   @import './card.scss';
   @import './carousel.scss';
+  @import './collapse.scss';
   @import './cascader.scss';
   @import './checkbox.scss';
-  @import './collapse.scss';
   @import './color-picker.scss';
   @import './date-picker.scss';
   @import './descriptions.scss';
   @import './dialog.scss';
   @import './drawer.scss';
   @import './dropdown.scss';
-  @import './form.scss';
   @import './input-number.scss';
   @import './input.scss';
   @import './menu.scss';
@@ -26,6 +27,7 @@
   @import './notification.scss';
   @import './pagination.scss';
   @import './popconfirm.scss';
+  @import './popper.scss';
   @import './progress.scss';
   @import './radio.scss';
   @import './rate.scss';

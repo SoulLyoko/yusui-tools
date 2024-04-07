@@ -1,8 +1,20 @@
 # Theme
 
-:::tip
+::: tip
 通过切换顶部的组件主题来查看效果
 :::
+
+## Install
+
+```bash
+pnpm i @yusui/theme
+```
+
+## Usage
+
+```js
+import '@yusui/theme/dist/index.css'
+```
 
 ## Button 按钮
 

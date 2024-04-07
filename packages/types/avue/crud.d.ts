@@ -284,18 +284,32 @@ declare module '@smallwei/avue' {
     emptyBtnIcon?: string
     /** 打印按钮 */
     printBtn?: boolean
+    /** 打印按钮图标 */
+    printBtnIcon?: string
     /** 导出按钮 */
     excelBtn?: boolean
+    /** 导出按钮图标 */
+    excelBtnIcon?: string
     /** 自定义过滤按钮 */
     filterBtn?: boolean
+    /** 自定义过滤按钮图标 */
+    filterBtnIcon?: string
     /** 刷新数据按钮 */
     refreshBtn?: boolean
-    /** 列操作按钮 */
+    /** 刷新数据按钮图标 */
+    refreshBtnIcon?: string
+    /** 列操作按钮图标 */
     columnBtn?: boolean
+    /** 列操作按钮 */
+    columnBtnIcon?: string
     /** 搜索显隐按钮 */
     searchShowBtn?: boolean
     /** 行数据复制按钮 */
     copyBtn?: boolean
+    /** 卡片模式按钮 */
+    gridBtn?: boolean
+    /** 卡片模式按钮图标 */
+    gridBtnIcon?: string
     /** 新增窗口标题 */
     addTitle?: string
     /** 编辑窗口标题 */

@@ -1,0 +1,29 @@
+{
+  "name": "@yusui/theme",
+  "version": "3.0.0-beta.23",
+  "description": "Collection of development tools",
+  "author": "SoulLyoko<https://github.com/SoulLyoko>",
+  "license": "MIT",
+  "homepage": "https://github.com/SoulLyoko/yusui-tools#readme",
+  "repository": "https://github.com/SoulLyoko/yusui-tools.git",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./*": "./*"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@vueuse/core": "^10.9.0"
+  },
+  "devDependencies": {
+    "element-plus": "^2.6.3",
+    "sass": "^1.74.1",
+    "vue": "^3.4.21"
+  }
+}

@@ -6,6 +6,7 @@
   "include": ["packages"],
   "exclude": [
     "packages/.vitepress",
+    "**/demo",
     "**/demo.*",
     "**/*.test.*",
     "**/*.md",

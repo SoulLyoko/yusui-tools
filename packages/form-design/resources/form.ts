@@ -11,6 +11,10 @@ export const form: Resource = {
   disabledSettings: ['base', 'event', 'advance'],
   settings: [
     {
+      label: '表单宽度',
+      prop: 'labelWidth',
+    },
+    {
       label: '标签位置',
       prop: 'labelPosition',
       type: 'radio',

@@ -13,9 +13,10 @@ import Layout from './Layout.vue'
 import components from '../components'
 import YSComponents from '../../components/index'
 import '../../components/index.scss'
+import '../../theme/index.scss'
 import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'
-import { dicRequest, request } from './request'
+import { avueRequest, request } from './request'
 
 export default {
   extends: DefaultTheme,
@@ -35,7 +36,7 @@ export default {
         })
       })
       const { default: Avue } = await import('@smallwei/avue')
-      app.use(Avue, { axios: dicRequest })
+      app.use(Avue, { axios: avueRequest })
       const { FlowDesign } = await import('@yusui/flow-design')
       const { FormDesign } = await import('@yusui/form-design')
       const { default: FlowPages, CONFIG_DEFAULT } = await import('@yusui/flow-pages')

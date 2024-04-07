@@ -54,7 +54,7 @@ function request({ url }: { url: keyof typeof dicMap }) {
           data: dicMap[url],
         },
       })
-    }, 1000)
+    }, 3000)
   })
 }
 
@@ -69,6 +69,8 @@ setTimeout(() => {
   Single Value:
   <br>
   request: <ProDict v-model="single" dic-url="/dict/dicData" />
+  <br>
+  refDicData: <ProDict v-model="single" :dic-data="refDicData" />
   <br>
   radio: <ProDict v-model="single" :dic-data="dicData" type="radio" />
   <br>

@@ -40,8 +40,9 @@ jobs:
             @yusui/flow-design
             @yusui/flow-pages
             @yusui/form-design
-            @yusui/mix
             @yusui/plugins
+            @yusui/request
+            @yusui/theme
             @yusui/types
             @yusui/utils
             @yusui/uvue

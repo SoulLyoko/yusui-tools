@@ -10,7 +10,6 @@ import ProText from './pro-text/index.vue'
 import ProTree from './pro-tree/index.vue'
 
 export { ContextMenu, IconSelect, ProCrud, ProDict, ProHtml, ProMenu, ProText, ProTree }
-export * from './styles'
 
 export default {
   install(app: App) {

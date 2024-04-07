@@ -49,6 +49,7 @@ const entry = {
   'plugins': resolve(__dirname, 'packages/plugins/index.ts'),
   'request': resolve(__dirname, 'packages/request/index.ts'),
   'request/openapi': resolve(__dirname, 'packages/request/openapi/index.ts'),
+  'theme': resolve(__dirname, 'packages/theme/index.ts'),
   'types': resolve(__dirname, 'packages/types/index.ts'),
   'utils': resolve(__dirname, 'packages/utils/index.ts'),
 }

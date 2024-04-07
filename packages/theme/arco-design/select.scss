@@ -1,4 +1,8 @@
 .el-select {
+  .el-tag.el-tag--info {
+    border: var(--el-border);
+  }
+
   .el-select__wrapper:not(.is-disabled, .is-focused) {
     box-shadow: none;
     background-color: var(--el-fill-color-light);
@@ -10,14 +14,13 @@
     .el-tag.el-tag--info {
       --el-tag-bg-color: var(--el-fill-color-blank);
       --el-tag-text-color: var(--el-text-color-primary);
-      background-color: var(--el-tag-bg-color);
     }
   }
 
   .el-select__wrapper.is-disabled {
     .el-tag.el-tag--info {
-      border: var(--el-border);
-      color: var(--el-text-color-disabled);
+      --el-tag-bg-color: var(--el-color-info-light-9);
+      --el-tag-text-color: var(--el-text-color-disabled);
     }
   }
 }

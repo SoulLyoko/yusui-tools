@@ -6,6 +6,7 @@ const option = reactive({
   card: false,
   stripe: false,
   searchSpan: 8,
+  selection: true,
   group: [
     {
       label: '基础信息',

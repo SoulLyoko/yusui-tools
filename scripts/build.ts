@@ -14,7 +14,7 @@ function buildPackages() {
   execSync('vite build')
 }
 function buildStyles() {
-  const packagesToBuild = ['components', 'flow-design', 'form-design']
+  const packagesToBuild = ['components', 'flow-design', 'form-design', 'theme']
   const tasks = packagesToBuild.map((packageName) => {
     return () =>
       src(`packages/${packageName}/**/*.scss`)
