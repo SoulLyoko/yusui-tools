@@ -1,3 +1,12 @@
+# [3.0.0-beta.24](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.23...v3.0.0-beta.24) (2024-04-07)
+
+
+### Features
+
+* 新增arco模拟样式 ([dc79d8b](https://github.com/SoulLyoko/yusui-tools/commit/dc79d8b576f9be92a7cfc55f09b352173d479457))
+
+
+
 # [3.0.0-beta.23](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.22...v3.0.0-beta.23) (2024-03-29)
 
 
