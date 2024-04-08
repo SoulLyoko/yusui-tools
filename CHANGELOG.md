@@ -1,3 +1,13 @@
+# [3.0.0-beta.25](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.24...v3.0.0-beta.25) (2024-04-08)
+
+
+### Bug Fixes
+
+* **flow-design:** 组件FlowDataOptions默认可清空 ([07b7034](https://github.com/SoulLyoko/yusui-tools/commit/07b7034ed4c32171c5411c11a3a92fa15a459f3e))
+* **request:** 设置AxiosError的status属性 ([23bffd0](https://github.com/SoulLyoko/yusui-tools/commit/23bffd05d8f0fcd2cbad040b6e5251606422ea50))
+
+
+
 # [3.0.0-beta.24](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.23...v3.0.0-beta.24) (2024-04-07)
 
 
