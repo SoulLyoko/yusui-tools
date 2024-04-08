@@ -84,7 +84,9 @@ export function handleError(error: Partial<AxiosError<any, any>>) {
   const errMsg = msg || errorCode[status] || '未知错误'
   withMessage && (isApp ? uni.showToast({ title: errMsg, icon: 'none' }) : ElMessage.error({ message: errMsg, grouping: true, repeatNum: -99 }))
   withLogout && status === 401 && handleLogout(config)
-  return Promise.reject(new AxiosError(errMsg, `${status}`, config, request, response))
+  const axiosError = new AxiosError(errMsg, `${status}`, config, request, response)
+  axiosError.status = response.status
+  return Promise.reject(axiosError)
 }
 
 /** 处理加密 */
