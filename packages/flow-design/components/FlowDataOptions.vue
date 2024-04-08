@@ -16,5 +16,5 @@ const dic = computed(() => {
 </script>
 
 <template>
-  <ProDict :dic-data="dic" />
+  <ProDict :dic-data="dic" clearable />
 </template>
