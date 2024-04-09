@@ -1,3 +1,5 @@
+@import './utils.scss';
+
 .el-dialog {
   --el-dialog-border-radius: var(--el-border-radius-medium);
   --el-dialog-title-font-size: var(--el-font-size-medium);
@@ -23,20 +25,9 @@
   }
 
   .el-dialog__headerbtn {
-    width: 20px;
-    height: 20px;
+    @include overlay-button;
+
     top: 12px;
     right: 16px;
-    font-size: 12px;
-    border-radius: var(--el-border-radius-circle);
-    transition: 0.1s linear;
-
-    &:hover {
-      background-color: var(--el-fill-color-light);
-    }
-
-    .el-dialog__close {
-      color: var(--el-text-color-primary);
-    }
   }
 }

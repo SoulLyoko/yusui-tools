@@ -1,3 +1,5 @@
+@import './utils.scss';
+
 .el-message {
   --el-message-bg-color: var(--el-bg-color);
   --el-message-border-color: var(--el-border-color);
@@ -18,16 +20,8 @@
   }
 
   .el-message__closeBtn {
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    border-radius: var(--el-border-radius-circle);
-    transition: 0.1s linear;
-    color: var(--el-text-color-primary);
-    margin-right: -8px;
+    @include overlay-button;
 
-    &:hover {
-      background-color: var(--el-fill-color-light);
-    }
+    margin-right: -8px;
   }
 }

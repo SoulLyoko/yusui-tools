@@ -1,3 +1,5 @@
+@import './utils.scss';
+
 .el-drawer {
   --el-drawer-padding-primary: 12px 16px;
 
@@ -17,15 +19,6 @@
   }
 
   .el-drawer__close {
-    color: inherit;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    border-radius: var(--el-border-radius-circle);
-    transition: 0.1s linear;
-    color: var(--el-text-color-primary);
-    &:hover {
-      background-color: var(--el-fill-color-light);
-    }
+    @include overlay-button;
   }
 }

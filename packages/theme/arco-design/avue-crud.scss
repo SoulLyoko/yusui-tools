@@ -1,21 +1,17 @@
+@import './utils.scss';
+
 .avue-dialog.el-dialog {
   border-radius: var(--el-dialog-border-radius);
 
   .avue-crud__dialog__menu {
-    top: -1px;
+    @include overlay-button;
+
+    top: 0px;
     right: 20px;
 
     i {
-      color: var(--el-text-color-primary);
-      font-size: 12px;
-      width: 20px;
-      height: 20px;
-      border-radius: var(--el-border-radius-circle);
-      transition: 0.1s linear;
-
-      &:hover {
-        background-color: var(--el-fill-color-light);
-      }
+      color: inherit;
+      font-size: inherit;
     }
   }
 

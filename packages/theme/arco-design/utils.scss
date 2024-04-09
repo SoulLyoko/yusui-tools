@@ -1,0 +1,20 @@
+@mixin overlay-button {
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  color: var(--el-text-color-primary);
+  border-radius: var(--el-border-radius-circle);
+  transition: 0.1s linear;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: var(--el-fill-color-light);
+  }
+}
