@@ -12,7 +12,7 @@ export const form: Resource = {
   settings: [
     {
       label: '表单宽度',
-      prop: 'labelWidth',
+      prop: 'formWidth',
     },
     {
       label: '标签位置',

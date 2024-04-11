@@ -212,6 +212,8 @@ declare module '@smallwei/avue' {
     scrollToError?: boolean
     /** 滚动到错误项配置 */
     scrollIntoViewOptions?: ScrollIntoViewOptions
+    /** 表单宽度 */
+    formWidth?: number | string
     [x: string]: any
   }
 
