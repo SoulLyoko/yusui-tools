@@ -1,3 +1,14 @@
+# [3.0.0-beta.26](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.25...v3.0.0-beta.26) (2024-04-12)
+
+
+### Bug Fixes
+
+* 表单宽度formWidth ([e2b03a6](https://github.com/SoulLyoko/yusui-tools/commit/e2b03a681f091a87d8c754e7eb68011b8709342d))
+* **pro-tree:** tag回显自定义label ([65502a1](https://github.com/SoulLyoko/yusui-tools/commit/65502a112451d1a840b0b57af7cf7bd78404455a))
+* **theme:** 统一弹窗按钮样式 ([35743cc](https://github.com/SoulLyoko/yusui-tools/commit/35743cc972a0b18b63378935b207258b53b7c255))
+
+
+
 # [3.0.0-beta.25](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.24...v3.0.0-beta.25) (2024-04-08)
 
 
