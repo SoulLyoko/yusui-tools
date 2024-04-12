@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TreeInstance } from 'element-plus'
-import type { EpTreeProps } from './types'
+import type { ProTreeProps } from './types'
 
 import { onMounted, reactive, ref } from 'vue'
 import { pickBy } from 'lodash-unified'
@@ -8,7 +8,7 @@ import { pickBy } from 'lodash-unified'
 import { useInput, useTag, useTree } from './composables'
 
 const props = withDefaults(
-  defineProps<EpTreeProps>(),
+  defineProps<ProTreeProps>(),
   { nodeKey: 'value', tagType: 'info', placeholder: '输入关键字搜索' },
 )
 const emit = defineEmits(['update:modelValue'])

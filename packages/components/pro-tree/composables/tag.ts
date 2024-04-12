@@ -1,11 +1,11 @@
 import type { Ref } from 'vue'
 import type { TreeInstance } from 'element-plus'
 import type { ElTreeNode } from '@yusui/types'
-import type { EpTreeProps } from '../types'
+import type { ProTreeProps } from '../types'
 
 import { computed } from 'vue'
 
-export function useTag(props: EpTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
+export function useTag(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
   const checkedNodes = computed(() => {
     if (props.multiple) {
       const nodeDatas = treeRef.value?.getCheckedNodes(!props.checkStrictly)

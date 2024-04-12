@@ -1,12 +1,12 @@
 import type { Ref } from 'vue'
 import type { TreeInstance } from 'element-plus'
-import type { EpTreeProps } from '../types'
+import type { ProTreeProps } from '../types'
 
 import { computed, ref, toRefs, watch } from 'vue'
 import { ElInput } from 'element-plus'
 import { pick } from 'lodash-unified'
 
-export function useInput(props: EpTreeProps, { treeRef }: { treeRef: Ref<TreeInstance | undefined> }) {
+export function useInput(props: ProTreeProps, { treeRef }: { treeRef: Ref<TreeInstance | undefined> }) {
   const searchValue = ref('')
   watch(searchValue, (val) => {
     treeRef.value?.filter(val)
