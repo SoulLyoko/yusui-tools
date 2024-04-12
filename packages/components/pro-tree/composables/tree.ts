@@ -3,7 +3,7 @@ import type { TreeInstance } from 'element-plus'
 import type { ElTreeNode } from '@yusui/types'
 import type { EpTreeProps } from '../types'
 
-import { computed, nextTick, onMounted, useAttrs, watch } from 'vue'
+import { computed, nextTick, onMounted, toRefs, useAttrs, watch } from 'vue'
 import { ElTree } from 'element-plus'
 import { isEqual, pick } from 'lodash-unified'
 
@@ -35,7 +35,7 @@ export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any, tree
   })
 
   function onNodeClick(data: ElTreeNode['data'], node: ElTreeNode, e: any) {
-  // `onCheck` is trigger when `checkOnClickNode`
+    // `onCheck` is trigger when `checkOnClickNode`
     if (props.multiple && props.checkOnClickNode)
       return
 
@@ -86,7 +86,8 @@ export function useTree(props: EpTreeProps, { emit, treeRef }: { emit: any, tree
   }
 
   return {
-    ...pick(props, Object.keys(ElTree.props)),
+    ...pick(toRefs(props), Object.keys(ElTree.props)),
+    ...attrs,
     showCheckbox: computed(() => props.multiple),
     highlightCurrent: computed(() => !props.multiple),
     expandOnClickNode: computed(() => !props.checkStrictly && props.expandOnClickNode),

@@ -31,11 +31,22 @@ onMounted(() => {
   <div class="pro-tree">
     <el-input v-bind="reactive(inputProps)">
       <template #prefix>
-        <el-space wrap>
-          <el-tag v-for="item in checkedNodes" :key="item[nodeKey]" closable :type="tagType" @close="onTagClose(item)">
-            {{ item.label }}
-          </el-tag>
-        </el-space>
+        <slot name="prefix">
+          <el-space wrap>
+            <el-tag v-for="item in checkedNodes" :key="item.key" closable :type="tagType" @close="onTagClose(item)">
+              {{ item.label }}
+            </el-tag>
+          </el-space>
+        </slot>
+      </template>
+      <template v-if="$slots.suffix" #suffix>
+        <slot name="suffix" />
+      </template>
+      <template v-if="$slots.prepend" #prepend>
+        <slot name="prepend" />
+      </template>
+      <template v-if="$slots.append" #append>
+        <slot name="append" />
       </template>
     </el-input>
     <el-tree ref="treeRef" v-bind="reactive(treeProps)">

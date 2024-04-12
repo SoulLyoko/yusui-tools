@@ -6,6 +6,10 @@ import { computed, useAttrs } from 'vue'
 import { DictCascader, DictCheckbox, DictRadio, DictSelect, DictSwitch, DictText, DictTreeSelect } from './components'
 
 const props = defineProps<ProDictProps>()
+const attrs = useAttrs()
+const componentProps = computed(() => {
+  return { ...props, ...attrs }
+})
 
 const componentTypeMap = {
   'cascader': DictCascader,
@@ -19,11 +23,6 @@ const componentTypeMap = {
 
 const componentIs = computed(() => {
   return componentTypeMap[props.type || 'select']
-})
-
-const attrs = useAttrs()
-const componentProps = computed(() => {
-  return { ...props, ...attrs }
 })
 </script>
 

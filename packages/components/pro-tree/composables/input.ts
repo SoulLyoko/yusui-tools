@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import type { TreeInstance } from 'element-plus'
 import type { EpTreeProps } from '../types'
 
-import { computed, ref, watch } from 'vue'
+import { computed, ref, toRefs, watch } from 'vue'
 import { ElInput } from 'element-plus'
 import { pick } from 'lodash-unified'
 
@@ -21,7 +21,7 @@ export function useInput(props: EpTreeProps, { treeRef }: { treeRef: Ref<TreeIns
   })
 
   return {
-    ...pick(props, Object.keys(ElInput.props)),
+    ...pick(toRefs(props), Object.keys(ElInput.props)),
     placeholder,
     'modelValue': searchValue,
     'onUpdate:modelValue': (val: string) => (searchValue.value = val),
