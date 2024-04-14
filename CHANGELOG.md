@@ -1,3 +1,55 @@
+# [3.0.0-beta.27](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.6...v3.0.0-beta.27) (2024-04-14)
+
+
+### Bug Fixes
+
+* 表单宽度formWidth ([e2b03a6](https://github.com/SoulLyoko/yusui-tools/commit/e2b03a681f091a87d8c754e7eb68011b8709342d))
+* avue types ([593d4b9](https://github.com/SoulLyoko/yusui-tools/commit/593d4b962e3a5ecd227f47dca4058558e0b4f7a1))
+* **components:** 导出ProMenu ([f52e420](https://github.com/SoulLyoko/yusui-tools/commit/f52e420dc1e3a2d6e0197fcf3dddf381643c19ad))
+* **components:** 提取global.d.ts ([05747b4](https://github.com/SoulLyoko/yusui-tools/commit/05747b4758a44dad29c248f87231cc64ea1dc864))
+* **components:** 添加发布global.d.ts ([772ed77](https://github.com/SoulLyoko/yusui-tools/commit/772ed77a37426746ef3bebf950b1085e1d6beec7))
+* **flow-design:** 监听器 ([81e6444](https://github.com/SoulLyoko/yusui-tools/commit/81e64444784a2eb1cc01a89fa667cefe57278410))
+* **flow-design:** 修改按钮和表单配置的字段 ([0ca4655](https://github.com/SoulLyoko/yusui-tools/commit/0ca465513d4c2e8f9646d026518173658297ae89))
+* **flow-design:** 移除传阅任务 ([84c87b0](https://github.com/SoulLyoko/yusui-tools/commit/84c87b0162962be7422d97ba57b0197082b270b7))
+* **flow-design:** 组件FlowDataOptions默认可清空 ([07b7034](https://github.com/SoulLyoko/yusui-tools/commit/07b7034ed4c32171c5411c11a3a92fa15a459f3e))
+* **form-design:** 优化设计器性能 ([4594b9f](https://github.com/SoulLyoko/yusui-tools/commit/4594b9fa9381fd54cad795a08d4b3175df78925d))
+* **form-design:** label显示问题 ([3623357](https://github.com/SoulLyoko/yusui-tools/commit/36233570f0dacc4593f24fccf44c5960cfecead3))
+* **nuxt:** 从appConfig读取组件配置 ([ba41057](https://github.com/SoulLyoko/yusui-tools/commit/ba41057a4c3bbd56f00dba6cd7804d50b228cb47))
+* **pro-menu:** sub-menu点击 ([fb67b12](https://github.com/SoulLyoko/yusui-tools/commit/fb67b12c58883a0e47d502e171043e0db4d8c51d))
+* **pro-tree:** 修改Props的命名为ProTreeProps ([723ba77](https://github.com/SoulLyoko/yusui-tools/commit/723ba7760730395ee6724119394494ecf0e6c4ff))
+* **pro-tree:** tag回显自定义label ([65502a1](https://github.com/SoulLyoko/yusui-tools/commit/65502a112451d1a840b0b57af7cf7bd78404455a))
+* **request:** 弹出退出登录确认框前先关闭 ([e3c3a64](https://github.com/SoulLyoko/yusui-tools/commit/e3c3a6485034a49d62433739513a13b4a5c33d9f))
+* **request:** 设置AxiosError的status属性 ([23bffd0](https://github.com/SoulLyoko/yusui-tools/commit/23bffd05d8f0fcd2cbad040b6e5251606422ea50))
+* **request:** 退出登录确认 ([e824130](https://github.com/SoulLyoko/yusui-tools/commit/e8241303aeb4dba560a0fd7a0b82ea4204e5bd61))
+* **request:** 优化退出登录提示 ([a3fcff7](https://github.com/SoulLyoko/yusui-tools/commit/a3fcff781e49c9bb7f23288a2f0f6363f36f2cc9))
+* **theme:** 统一弹窗按钮样式 ([35743cc](https://github.com/SoulLyoko/yusui-tools/commit/35743cc972a0b18b63378935b207258b53b7c255))
+* **type/avue:** 修改helpers的导入路径 ([b0a3cfa](https://github.com/SoulLyoko/yusui-tools/commit/b0a3cfa46a22d13c7004c6cfbf18861238fdef4b))
+* **types/avue:** 子表单插槽 ([1202ed1](https://github.com/SoulLyoko/yusui-tools/commit/1202ed13209b27bdc0d921b2e1f2aad2d0fc6d86))
+* **use-crud:** getInfo的类型 ([642feeb](https://github.com/SoulLyoko/yusui-tools/commit/642feeb32ed60a9448ca37facb8311f6c5524fdc))
+* **use-crud:** getInfo的问题 ([36f50e4](https://github.com/SoulLyoko/yusui-tools/commit/36f50e47d4768ef0daa80943bc03013e70a8df47))
+
+
+### Features
+
+* 新增arco模拟样式 ([dc79d8b](https://github.com/SoulLyoko/yusui-tools/commit/dc79d8b576f9be92a7cfc55f09b352173d479457))
+* **components:** 新增ProHtml组件用于显示HTML内容 ([41fe296](https://github.com/SoulLyoko/yusui-tools/commit/41fe29633ea887ff2899c466f3a983e32fab5016))
+* **flow-design:** 表单配置支持多表单 ([79a515d](https://github.com/SoulLyoko/yusui-tools/commit/79a515df6000ce74e34a1e57fa0bef70835575de))
+* **flow-design:** 参与人员配置 ([5816110](https://github.com/SoulLyoko/yusui-tools/commit/5816110e65cb1af1782532892acb224bdb8bd56f))
+* **flow-design:** 流程配置导入导出 ([fe53e58](https://github.com/SoulLyoko/yusui-tools/commit/fe53e58ec3a6b0f15873521e7a6692eb3170cf59))
+* **flow-design:** 流程配置改为弹窗方式，增加一些新的配置项 ([d1bfe5c](https://github.com/SoulLyoko/yusui-tools/commit/d1bfe5c5e65f8e47c540380bdbb2e4b1565b6c64))
+* **form-design:** 头部两侧插槽 ([416a6cc](https://github.com/SoulLyoko/yusui-tools/commit/416a6cc010d2bc8e68935705247bf8f8f5dc68d3))
+* **form-design:** 修改配置合并策略，新增自定义物料库合并函数 ([560fe0a](https://github.com/SoulLyoko/yusui-tools/commit/560fe0a0139f4db6dd791bafdac669be749bc3f9))
+* **form-design:** form和base配置添加样式类属性 ([05af861](https://github.com/SoulLyoko/yusui-tools/commit/05af861ceed82a1ae8e21b05e0798c87fe1e22de))
+* **nuxt:** nuxt layer ([668f4d7](https://github.com/SoulLyoko/yusui-tools/commit/668f4d7e151b8c3ea69247fb9f73c7b729088641))
+* **nuxt:** register注册全局组件 ([65fccc8](https://github.com/SoulLyoko/yusui-tools/commit/65fccc878a8d39254ca097e8bd4512a469724b9a))
+* **pro-dict:** props的label,value,disabled属性支持深层属性 ([6585776](https://github.com/SoulLyoko/yusui-tools/commit/6585776717c33078aae1e76bcc1883252390f575))
+* **request:** 可以通过openapi生成请求接口代码 ([44d081c](https://github.com/SoulLyoko/yusui-tools/commit/44d081c35b9bb5e63e51b9af143883fc587031e4))
+* **use-crud:** 删除前可自定义提示信息 ([c79c7aa](https://github.com/SoulLyoko/yusui-tools/commit/c79c7aa43cce1ddbfc0a7502709193b9175bfee7))
+* **use-crud:** 新增获取数据详情的方法 ([6e71a5c](https://github.com/SoulLyoko/yusui-tools/commit/6e71a5cc858a5c98a99c45a823fa029daff3ad70))
+* **use-dict:** props的label和value属性支持深层属性 ([8864eb3](https://github.com/SoulLyoko/yusui-tools/commit/8864eb3b738bdfcb737d0cfb9018b082969f8496))
+
+
+
 # [3.0.0-beta.26](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.25...v3.0.0-beta.26) (2024-04-12)
 
 
