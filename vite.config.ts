@@ -21,6 +21,7 @@ const external = [
   /dayjs/,
   'echarts',
   /element-plus/,
+  'file-saver',
   'json5',
   /lodash/,
   'magic-string',

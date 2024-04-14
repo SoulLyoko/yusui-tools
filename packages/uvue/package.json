@@ -23,7 +23,7 @@
   "devDependencies": {
     "@dcloudio/uni-app": "vue3",
     "@yusui/types": "workspace:*",
-    "uview-plus": "3.1.49",
+    "uview-plus": "3.2.6",
     "vue": "^3.4.21"
   }
 }

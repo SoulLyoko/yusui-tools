@@ -2,5 +2,5 @@ import { defineConfig } from 'taze'
 
 export default defineConfig({
   // ignore packages from bumping
-  exclude: ['@dcloudio/*', 'gulp', 'vite-plugin-mock', 'vue-tsc'],
+  exclude: ['@dcloudio/*', 'eslint', 'gulp', 'vite-plugin-mock', 'vue-tsc'],
 })

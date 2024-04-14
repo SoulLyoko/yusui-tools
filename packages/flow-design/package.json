@@ -26,8 +26,8 @@
     "@antv/layout": "^0.3.25",
     "@guolao/vue-monaco-editor": "^1.5.1",
     "@iconify/vue": "^4.1.1",
-    "@logicflow/core": "^1.2.25",
-    "@logicflow/extension": "^1.2.25",
+    "@logicflow/core": "^1.2.26",
+    "@logicflow/extension": "^1.2.26",
     "@vueuse/core": "^10.9.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
@@ -38,10 +38,10 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.4.0",
+    "@smallwei/avue": "^3.4.1",
     "@types/file-saver": "^2.0.7",
-    "element-plus": "^2.6.3",
-    "sass": "^1.74.1",
+    "element-plus": "^2.7.0",
+    "sass": "^1.75.0",
     "vue": "^3.4.21"
   }
 }

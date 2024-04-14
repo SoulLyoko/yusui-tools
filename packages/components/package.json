@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
-    "element-plus": "^2.6.3",
-    "sass": "^1.74.1",
+    "element-plus": "^2.7.0",
+    "sass": "^1.75.0",
     "vue": "^3.4.21"
   }
 }

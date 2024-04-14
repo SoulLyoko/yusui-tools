@@ -21,7 +21,7 @@
     "dist"
   ],
   "devDependencies": {
-    "element-plus": "^2.6.3",
+    "element-plus": "^2.7.0",
     "vue": "^3.4.21"
   }
 }
