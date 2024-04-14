@@ -18,6 +18,7 @@ import {
   propertyColumn,
   sequenceFlowColumn,
   serviceTaskColumn,
+  taskListenerColumn,
 } from '.'
 
 export * from './approval'
@@ -46,12 +47,13 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
     { label: '表单配置', prop: 'formPropertyGroup', column: formPropertyColumn },
     { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
+    { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
   ],
   endEvent: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
     { label: '表单配置', prop: 'formPropertyGroup', column: formPropertyColumn },
     { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
-    // { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
+    { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
   ],
   userTask: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
@@ -59,8 +61,8 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '审批配置', prop: 'approval', column: approvalColumn },
     { label: '按钮配置', prop: 'buttonGroup', column: buttonColumn },
     { label: '表单配置', prop: 'formPropertyGroup', column: formPropertyColumn },
-    // { label: '任务监听', prop: 'taskListenerGroup', column: taskListenerColumn },
-    // { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
+    { label: '任务监听', prop: 'taskListenerGroup', column: taskListenerColumn },
+    { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
     // { label: '时限控制', prop: 'timeLimitGroup', column: timeLimitColumn },
     { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
   ],
