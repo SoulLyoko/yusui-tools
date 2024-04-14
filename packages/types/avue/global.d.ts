@@ -10,6 +10,17 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     $AVUE: Required<import('@smallwei/avue').AvueConfig>
     $Clipboard: (arg: { text: string }) => Promise<void>
+    $DialogForm: <T = any>(
+      option: Partial<import('element-plus').DialogProps> &
+      Partial<import('element-plus').DrawerProps> &
+      {
+        type?: 'dialog' | 'drawer'
+        data?: T
+        menuPosition?: import('@smallwei/avue').MenuPosition
+        option?: import('@smallwei/avue').AvueFormOption<T>
+        callback?: (cb: { data: T, close: () => void, done: () => void }) => void
+      }
+    ) => void
     $Export: {
       excel: (arg: { title: string, columns: { label: string, prop: string }[], data: any[] }) => void
       xlsx: (raw: File) => Promise<{ results: any[] }>

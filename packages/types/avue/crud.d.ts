@@ -191,7 +191,7 @@ declare module '@smallwei/avue' {
     /** 仅对 selection为true 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 rowKey） */
     reserveSelection?: boolean
     /** selection为true 的列有效，类型为 Function，Function 的返回值用来决定这一行的 CheckBox 是否可以勾选 */
-    selectable?: (row: D) => boolean
+    selectable?: (row: D, index: number) => boolean
     /** 展开折叠行 */
     expand?: boolean
     /** 展开折叠行宽度 */
@@ -746,7 +746,14 @@ declare module '@smallwei/avue' {
     /** 展开插槽 */
     'expand': (props: { row: D, index: number }) => VNode[]
     /** 菜单插槽 */
-    'menu': (props: { row: D, type: MenuType, disabled: boolean, size: ElSize, index: number }) => VNode[]
+    'menu': (props: {
+      row: D
+      column: TableColumnCtx<T> & AvueCrudColumn<T>
+      type: MenuType
+      disabled: boolean
+      size: ElSize
+      index: number
+    }) => VNode[]
     /** 表单菜单插槽 */
     'menu-form': (props: { disabled: boolean, size: ElSize, type: FormType }) => VNode[]
     /** 表格头部插槽 */
@@ -756,7 +763,7 @@ declare module '@smallwei/avue' {
     /** 分页插槽 */
     'page': () => VNode[]
     /** 下拉菜单插槽 */
-    'menu-btn': (props: { row: D, type: string, disabled: boolean, size: ElSize, index: number }) => VNode[]
+    'menu-btn': AvueCrudSlots<T>['menu']
     /** 左侧菜单插槽 */
     'menu-left': (props: { size: ElSize }) => VNode[]
     /** 右侧菜单插槽 */
@@ -778,7 +785,7 @@ declare module '@smallwei/avue' {
     [x: `${string}-form` ]: (props: {
       // form
       value: any
-      column: AvueCrudColumn<T>
+      column: AvueCrudColumn<T> & AvueCrudColumn<T>
       size: ElSize
       disabled: boolean
       dic: DicItem[]
@@ -811,6 +818,7 @@ declare module '@smallwei/avue' {
     /** 列插槽 */
     [x: string]: (props: {
       row: D
+      column: TableColumnCtx<T>
       index: number
       dic: DicItem[]
       size: ElSize

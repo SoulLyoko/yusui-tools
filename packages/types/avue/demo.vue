@@ -20,12 +20,11 @@ const tableData = ref<User[]>([{ name: 'admin' }])
 const tableOption: AvueCrudOption<User> = {
   searchBtn: false,
   emptyBtn: false,
-  // addBtn: false,
-  editBtn: false,
-  delBtn: false,
   refreshBtn: false,
   columnBtn: false,
   searchShowBtn: false,
+  gridBtn: false,
+  menuType: 'menu',
   column: [{
     label: '名称',
     prop: 'name',
@@ -58,7 +57,7 @@ const formOption: AvueFormOption<User> = {
     labelWidth: 300,
     span: 24,
     dicData: [{ label: '管理员', value: 'admin' }],
-    rules: [{ required: true }],
+    rules: [{ required: true, message: '名称为必填项' }],
   }],
 }
 const formRef = ref<AvueFormInstance>()
@@ -118,6 +117,9 @@ const treeOption: AvueTreeOption<User> = {
     <template #menu="props">
       #menu {{ props }}
     </template>
+    <template #menu-btn="props">
+      #menu-btn {{ props }}
+    </template>
 
     <template #name-label="props">
       #name-label: {{ props }}
@@ -160,4 +162,9 @@ const treeOption: AvueTreeOption<User> = {
       {{ props?.data }}
     </template>
   </avue-tree>
+
+  <h2>DialogForm</h2>
+  <el-button @click="$DialogForm({ title: 'DialogForm', option: formOption, callback: ({ close }) => close() })">
+    open
+  </el-button>
 </template>

@@ -2,10 +2,9 @@ import type { Plugin } from 'vite'
 
 /**
  * avue-crud 菜单按钮颜色
- * [column-menu](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/crud/column/column-menu.vue#L62)
+ * [column-menu](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/crud/column/column-menu.vue#L64)
  */
 export function fixMenuBtnType(code: string) {
-  const devMatchReg = (btn: string) => new RegExp(`primary('\\),\\\\n\\s*class: Object\\(vue__WEBPACK_IMPORTED_MODULE_0__\\[\\\\"normalizeClass\\\\"\\]\\)\\(_ctx.b\\('${btn}'\\)\\))`)
   return (
     code
       // prod
@@ -22,9 +21,18 @@ export function fixMenuBtnType(code: string) {
         'type:e.menuText("danger"),class:Object(l.normalizeClass)(e.b("delBtn"))',
       )
       // dev
-      .replace(devMatchReg('cancelBtn'), 'danger$1')
-      .replace(devMatchReg('viewBtn'), 'default$1')
-      .replace(devMatchReg('delBtn'), 'danger$1')
+      .replace(
+        'type: e2.menuText("primary"), class: Object(l.normalizeClass)(e2.b("cancelBtn"))',
+        'type: e2.menuText("danger"), class: Object(l.normalizeClass)(e2.b("cancelBtn"))',
+      )
+      .replace(
+        'type: e2.menuText("primary"), class: Object(l.normalizeClass)(e2.b("viewBtn"))',
+        'type: e2.menuText("default"), class: Object(l.normalizeClass)(e2.b("viewBtn"))',
+      )
+      .replace(
+        'type: e2.menuText("primary"), class: Object(l.normalizeClass)(e2.b("delBtn"))',
+        'type: e2.menuText("danger"), class: Object(l.normalizeClass)(e2.b("delBtn"))',
+      )
   )
 }
 
@@ -38,7 +46,7 @@ export function fixFormRow(code: string) {
       // prod
       .replace('modelValue:e.form[t.prop]', 'modelValue:e.form[t.prop],tableData:{row:e.form}')
       // dev
-      .replace('modelValue: _ctx.form[column.prop]', 'modelValue: _ctx.form[column.prop], tableData: { row: _ctx.form }')
+      .replace('modelValue: e2.form[t3.prop]', 'modelValue: e2.form[t3.prop], tableData: { row: e2.form }')
   )
 }
 
@@ -52,13 +60,13 @@ export function fixMenuBtnSlot(code: string) {
       // prod
       .replace('e.$slots,"menuBtn"', 'e.$slots,"menu-btn"')
       // dev
-      .replace('_ctx.$slots, \\"menuBtn\\"', '_ctx.$slots, \\"menu-btn\\"')
+      .replace('e2.$slots, "menuBtn"', 'e2.$slots, "menu-btn"')
   )
 }
 
 /**
  * 表单分组
- * [form](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/form/index.vue#L326)
+ * [form](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/form/index.vue#L350)
  * @deprecated v3.2.21已修复
  */
 export function fixFormGroup(code: string) {

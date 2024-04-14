@@ -64,8 +64,8 @@ const btnList = computed(() => {
             {{ item.title }}
           </el-dropdown-item>
           <slot
-            name="menu-btn" :row="any(row)" :index="index" :type="menuType" :disabled="crudRef!.btnDisabled"
-            :size="crudRef!.size"
+            name="menu-btn" :row="any(row)" :column="any({})" :index="index" :type="menuType"
+            :disabled="crudRef!.btnDisabled" :size="crudRef!.size"
           />
         </el-dropdown-menu>
       </template>
@@ -82,7 +82,7 @@ const btnList = computed(() => {
   </template>
 
   <slot
-    name="menu" :row="any(row)" :index="index" :type="menuType" :disabled="crudRef!.btnDisabled"
+    name="menu" :row="any(row)" :column="any({})" :index="index" :type="menuType" :disabled="crudRef!.btnDisabled"
     :size="crudRef!.size"
   />
 </template>

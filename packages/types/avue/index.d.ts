@@ -4,8 +4,6 @@
 /// <reference path="./tree.d.ts" />
 /// <reference path="./global.d.ts" />
 
-type AnyFn = (...args: any[]) => any
-
 declare module '@smallwei/avue' {
   const avueConfig: {
     appendToBody?: boolean
@@ -14,6 +12,8 @@ declare module '@smallwei/avue' {
     menuType?: MenuType
     size?: import('../helpers').ElSize
     theme?: 'dark'
+    crudOption?: AvueCrudOption
+    formOption?: AvueFormOption
   }
   const Avue: {
     install: (app: import('vue').App, config?: AvueConfig) => void
@@ -21,6 +21,8 @@ declare module '@smallwei/avue' {
     version: string
     [name: string]: import('vue').DefineComponent
   }
+
+  type AnyFn = (...args: any[]) => any
   export type AvueConfig = typeof avueConfig
   export default Avue
 }
