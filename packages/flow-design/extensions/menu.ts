@@ -69,12 +69,12 @@ export class Menu extends _Menu {
       className: 'lf-menu-service-task',
       callback: (ele: NodeConfig) => this.addNode(ele, { type: 'serviceTask', x: ele.x + 200, y: ele.y }),
     }
-    const addCirculateTask = {
-      text: '传阅任务',
-      icon: true,
-      className: 'lf-menu-circulate-task',
-      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'circulateTask', x: ele.x + 200, y: ele.y }),
-    }
+    // const addCirculateTask = {
+    //   text: '传阅任务',
+    //   icon: true,
+    //   className: 'lf-menu-circulate-task',
+    //   callback: (ele: NodeConfig) => this.addNode(ele, { type: 'circulateTask', x: ele.x + 200, y: ele.y }),
+    // }
     const addEndEvent = {
       text: '结束',
       icon: true,
@@ -112,7 +112,7 @@ export class Menu extends _Menu {
           case 'exclusiveGateway':
           case 'parallelGateway':
           case 'circulateTask':
-            menuList = [back, addUserTask, addServiceTask, addCirculateTask, addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
+            menuList = [back, addUserTask, addServiceTask, /** addCirculateTask, */ addExclusiveGateway, addParallelGateway, addEndEvent, addNote]
             break
           case 'endEvent':
           case 'sequenceFlow':
@@ -163,12 +163,12 @@ export class Menu extends _Menu {
       className: 'lf-menu-service-task',
       callback: (ele: NodeConfig) => this.changeNodeType(ele, 'serviceTask'),
     }
-    const changeToCirculateTask = {
-      text: '传阅任务',
-      icon: true,
-      className: 'lf-menu-circulate-task',
-      callback: (ele: NodeConfig) => this.changeNodeType(ele, 'circulateTask'),
-    }
+    // const changeToCirculateTask = {
+    //   text: '传阅任务',
+    //   icon: true,
+    //   className: 'lf-menu-circulate-task',
+    //   callback: (ele: NodeConfig) => this.changeNodeType(ele, 'circulateTask'),
+    // }
     // 修改节点类型
     const change = {
       text: '切换类型',
@@ -190,10 +190,10 @@ export class Menu extends _Menu {
             menuList = [back, changeToExclusiveGateway]
             break
           case 'userTask':
-            menuList = [back, changeToServiceTask, changeToCirculateTask]
+            menuList = [back, changeToServiceTask] /** changeToCirculateTask */
             break
           case 'serviceTask':
-            menuList = [back, changeToUserTask, changeToCirculateTask]
+            menuList = [back, changeToUserTask] /** changeToCirculateTask */
             break
           case 'circulateTask':
             menuList = [back, changeToUserTask, changeToServiceTask]

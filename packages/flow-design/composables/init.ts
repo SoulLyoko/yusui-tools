@@ -35,10 +35,8 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
         // const eq = isEqual(val, lf.value?.getGraphData());
         const newVal = JSON.stringify(val)
         const oldVal = JSON.stringify(lf.value?.getGraphData())
-        const eq = newVal === oldVal
-        if (eq)
-          return
-        lf.value?.render(val)
+        if (newVal !== oldVal)
+          lf.value?.render(val)
       },
       { immediate: true },
     )
