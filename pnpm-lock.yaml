@@ -272,6 +272,9 @@ importers:
       dagre:
         specifier: ^0.8.5
         version: 0.8.5
+      file-saver:
+        specifier: ^2.0.5
+        version: 2.0.5
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -285,6 +288,9 @@ importers:
       '@smallwei/avue':
         specifier: ^3.4.0
         version: 3.4.0(element-plus@2.6.3)(vue@3.4.21)
+      '@types/file-saver':
+        specifier: ^2.0.7
+        version: 2.0.7
       element-plus:
         specifier: ^2.6.3
         version: 2.6.3(vue@3.4.21)
@@ -5557,6 +5563,10 @@ packages:
     resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
     dev: true
 
+  /@types/file-saver@2.0.7:
+    resolution: {integrity: sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==}
+    dev: true
+
   /@types/fs-extra@11.0.4:
     resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
     dependencies:
@@ -10314,6 +10324,10 @@ packages:
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.0.4
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /file-type@9.0.0:
     resolution: {integrity: sha512-Qe/5NJrgIOlwijpq3B7BEpzPFcgzggOTagZmkXQY4LA6bsXKTUstK7Wp12lEJ/mLKTpvIZxmIuRcLYWT6ov9lw==}
