@@ -1,3 +1,12 @@
+# [3.0.0-beta.28](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.27...v3.0.0-beta.28) (2024-04-14)
+
+
+### Bug Fixes
+
+* avue types ([9e299eb](https://github.com/SoulLyoko/yusui-tools/commit/9e299ebeb2ea5b18602ca9591ecce887f5da1e03))
+
+
+
 # [3.0.0-beta.27](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.6...v3.0.0-beta.27) (2024-04-14)
 
 
