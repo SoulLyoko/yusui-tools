@@ -27,7 +27,7 @@ export const executionListenerColumn: AvueFormColumn<FlowFormData>[] = [
       // type: 'form',
       // index: false,
       column: [
-        { label: '事件', prop: 'name', type: 'select', dicData: eventNameDic },
+        { label: '名称', prop: 'name', type: 'select', dicData: eventNameDic },
         { label: '类型', prop: 'type', type: 'select', dicData: eventTypeDic },
         { label: '值', prop: 'value', type: 'textarea', minRows: 1, span: 24 },
         // {
