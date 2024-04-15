@@ -1,0 +1,9 @@
+.pro-tree {
+  display: flex;
+  flex-direction: column;
+
+  > .el-input + .el-tree {
+    margin-top: 8px;
+    overflow: auto;
+  }
+}
