@@ -1,3 +1,21 @@
+# [3.0.0-beta.29](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.26...v3.0.0-beta.29) (2024-04-15)
+
+
+### Bug Fixes
+
+* avue types ([9e299eb](https://github.com/SoulLyoko/yusui-tools/commit/9e299ebeb2ea5b18602ca9591ecce887f5da1e03))
+* **flow-design:** 监听器 ([81e6444](https://github.com/SoulLyoko/yusui-tools/commit/81e64444784a2eb1cc01a89fa667cefe57278410))
+* **flow-design:** 移除传阅任务 ([84c87b0](https://github.com/SoulLyoko/yusui-tools/commit/84c87b0162962be7422d97ba57b0197082b270b7))
+* **flow-design:** taskListener ([eaa70ad](https://github.com/SoulLyoko/yusui-tools/commit/eaa70ad3c74621db725a21b545532180517c928c))
+* **pro-tree:** 修改Props的命名为ProTreeProps ([723ba77](https://github.com/SoulLyoko/yusui-tools/commit/723ba7760730395ee6724119394494ecf0e6c4ff))
+
+
+### Features
+
+* **flow-design:** 流程配置导入导出 ([fe53e58](https://github.com/SoulLyoko/yusui-tools/commit/fe53e58ec3a6b0f15873521e7a6692eb3170cf59))
+
+
+
 # [3.0.0-beta.28](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.27...v3.0.0-beta.28) (2024-04-14)
 
 
