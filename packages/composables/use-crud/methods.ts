@@ -1,4 +1,4 @@
-import type { AvueCrudEmits, AvueCrudInstance, FormType } from '@smallwei/avue'
+import type { AvueCrudEmits, AvueCrudInstance } from '@smallwei/avue'
 import type { Ref } from 'vue'
 import type { Data } from '@yusui/types'
 import type { CrudState, Emitter, UseCrudMethodsOptions } from './types'
@@ -86,7 +86,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const handleSave
     = options.handleSave
-    ?? (async (row: T, done?: () => void, loading?: () => void) => {
+    ?? (async (row, done, loading) => {
       const data = cloneDeep({ ...crudState.formData, ...row })
       const [err1] = await to(emitter.emitAsync('beforeSave', data))
       const [err2] = await to(emitter.emitAsync('beforeSubmit', data))
@@ -118,7 +118,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const handleUpdate
     = options.handleUpdate
-    ?? (async (row: T, index?: number, done?: () => void, loading?: () => void) => {
+    ?? (async (row, index, done, loading) => {
       const data = cloneDeep({ ...crudState.formData, ...row })
       const [err1] = await to(emitter.emitAsync('beforeUpdate', data))
       const [err2] = await to(emitter.emitAsync('beforeSubmit', data))
@@ -146,7 +146,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const handleDel
     = options.handleDel
-    ?? (async (row: T) => {
+    ?? (async (row) => {
       const data = cloneDeep(row)
       const [err] = await to(emitter.emitAsync('beforeDel', data))
       if (err !== null)
@@ -207,7 +207,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const searchChange
     = options.searchChange
-    ?? (async (form: P, done: () => void) => {
+    ?? (async (form, done) => {
       crudState.pageOption.currentPage = 1
       Object.keys(crudState.searchForm).forEach((key) => {
         delete crudState.searchForm[key]
@@ -243,7 +243,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const selectionChange
     = options.selectionChange
-    ?? ((rows: T[]) => {
+    ?? ((rows) => {
       crudState.dataSelections = rows
     })
   /**
@@ -252,7 +252,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const pageSizeChange
     = options.pageSizeChange
-    ?? ((size: number) => {
+    ?? ((size) => {
       crudState.pageOption.pageSize = size
       return getDataList()
     })
@@ -262,7 +262,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const pageCurrentChange
     = options.pageCurrentChange
-    ?? ((current: number) => {
+    ?? ((current) => {
       crudState.pageOption.currentPage = current
       return getDataList()
     })
@@ -289,7 +289,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const getInfoData
     = options.getInfoData
-    ?? (async (id: any) => {
+    ?? (async (id) => {
       const [err] = await to(emitter.emitAsync('beforeGetInfo', crudState.formData))
       if (err !== null)
         return
@@ -307,7 +307,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const beforeOpen
     = options.beforeOpen
-    ?? (async (done: () => void, type: FormType) => {
+    ?? (async (done, type) => {
       crudState.formType = type
       await emitter.emitAsync('beforeOpen', type)
       done()
@@ -323,7 +323,7 @@ export function useCrudMethods<T extends Data, P extends Data>({
    */
   const beforeClose
     = options.beforeClose
-    ?? (async (done: () => void, type: FormType) => {
+    ?? (async (done, type) => {
       crudState.formType = type
       await emitter.emitAsync('beforeClose', type)
       done()

@@ -254,9 +254,9 @@ declare module '@smallwei/avue' {
     /** 表单重置事件 */
     'reset-change': Fn
     /** 模拟数据事件 */
-    'mock-data': Fn
+    'mock-change': (form: T) => any
     /** 分组点击事件 */
-    'tab-click': ((paneOrTabs: TabsPaneContext | string[], ev?: Event) => any)
+    'tab-click': (paneOrTabs: TabsPaneContext | string[], ev?: Event) => any
     /** 表单提交事件 */
     'submit': (form: T, done: Fn) => any
     /** 表单校验错误事件 */
@@ -265,25 +265,6 @@ declare module '@smallwei/avue' {
     'update:defaults': (defaluts: AvueFormDefaults<T>) => any
 
   }
-
-  // export interface AvueFormEmits<T = any, D = FormRowData<T>> {
-  // /** 更新表单值 */
-  // 'update:modelValue'?: (row: D) => any
-  // /** 更新表单状态 */
-  // 'update:status'?: (disabled: boolean) => any
-  // /** 表单重置回调事件 */
-  // 'reset-change'?: Fn
-  // /** 模拟数据事件 */
-  // 'mock-change'?: Fn
-  // /** 分组点击事件 */
-  // 'tab-click'?: ((activeTabs: string[]) => any) | ((pane: TabsPaneContext, ev: Event) => any)
-  // /** 表单提交回调事件 */
-  // 'submit'?: (form: T, done: Fn) => any
-  // /** 表单校验错误事件 */
-  // 'error'?: (msg: string) => any
-  // /** 更新配置项结构 */
-  // 'update:defaults'?: (defaluts: AvueFormDefaults<T>) => any
-  // }
 
   export interface AvueFormData<T = any, D = TableRowData<T>> {
     DIC: Record<string, DicItem[]>

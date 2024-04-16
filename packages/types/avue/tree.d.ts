@@ -79,33 +79,33 @@ declare module '@smallwei/avue' {
 
   export interface AvueTreeEmits<T = any> {
     /** 更新表单值 */
-    'onUpdate:modelValue'?: (form: T) => void
+    'update:modelValue': (form: T) => any
     /** 表单更新事件 */
-    'change'?: (form: T) => void
+    'change': (form: T) => any
     /** 新增节点回调 */
-    'save'?: (node: TreeNode<T>, data: T, done: (form?: T) => void, loading: Fn) => void
+    'save': (node: TreeNode<T>, data: T, done: (form?: T) => void, loading: Fn) => any
     /** 修改节点回调 */
-    'update'?: (node: TreeNode<T>, data: T, done: (form?: T) => void, loading: Fn) => void
+    'update': (node: TreeNode<T>, data: T, done: (form?: T) => void, loading: Fn) => any
     /** 删除节点回调 */
-    'del'?: (node: TreeNode<T>, done: Fn) => void
+    'del': (node: TreeNode<T>, done: Fn) => any
     /** 当复选框被点击的时候触发 */
-    'check-change'?: (data: T, checked: boolean, indeterminate: boolean) => void
+    'check-change': (data: T, checked: boolean, indeterminate: boolean) => any
     /** 当节点被点击的时候触发 */
-    'node-click'?: (data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => void
+    'node-click': (data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => any
     /** 节点开始拖拽时触发的事件 */
-    'node-drag-start'?: (node: TreeNode<T>, event: Event) => void
+    'node-drag-start': (node: TreeNode<T>, event: Event) => any
     /** 拖拽进入其他节点时触发的事件 */
-    'node-drag-enter'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
+    'node-drag-enter': (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => any
     /** 拖拽离开某个节点时触发的事件 */
-    'node-drag-leave'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
+    'node-drag-leave': (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => any
     /** 在拖拽节点时触发的事件 */
-    'node-drag-over'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
+    'node-drag-over': (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => any
     /** 拖拽结束时（可能未成功）触发的事件 */
-    'node-drag-end'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => void
+    'node-drag-end': (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => any
     /** 拖拽成功完成时触发的事件 */
-    'node-drop'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => void
+    'node-drop': (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => any
     /** 节点右击事件 */
-    'node-contextmenu'?: (event: Event, data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => void
+    'node-contextmenu': (event: Event, data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => any
   }
 
   export interface AvueTreeData<T> {
@@ -221,7 +221,7 @@ declare module '@smallwei/avue' {
   export const AvueTree: new<T = any>(props: AvueTreeProps<T>) =>
     {
       $props: AvueTreeProps<T>
-      $emits: EmitFn<AvueTreeEmits<T>>
+      $emit: EmitFn<AvueTreeEmits<T>>
       $slots: AvueTreeSlots<T>
       $data: AvueTreeData<T>
     } & AvueTreeProps<T> & AvueTreeComputed<T> & AvueTreeMethods<T>
