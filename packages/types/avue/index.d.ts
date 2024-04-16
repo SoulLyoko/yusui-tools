@@ -22,7 +22,8 @@ declare module '@smallwei/avue' {
     [name: string]: import('vue').DefineComponent
   }
 
-  type AnyFn = (...args: any[]) => any
+  export type AnyFn = (...args: any[]) => any
+  export type Fn = () => void
   export type AvueConfig = typeof avueConfig
   export default Avue
 }

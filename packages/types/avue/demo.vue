@@ -155,6 +155,9 @@ const treeOption: AvueTreeOption<User> = {
 
   <h2>AvueTree</h2>
   <avue-tree ref="treeRef" :data="treeData" :option="treeOption">
+    <template #add-btn>
+      addBtn
+    </template>
     <template #menu="props">
       {{ props?.node.data }}
     </template>

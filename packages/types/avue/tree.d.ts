@@ -1,7 +1,7 @@
 import type { VNode } from 'vue'
 import type { ElTree } from 'element-plus'
 import type { NodeDropType, TreeComponentProps, TreeOptionProps as _TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type'
-import type { ElSize, ElTreeNode } from '@yusui/types'
+import type { ElSize, ElTreeNode, EmitFn } from '@yusui/types'
 
 declare module '@smallwei/avue' {
   export type TreeFormType = 'add' | 'edit' | 'parentAdd'
@@ -44,6 +44,8 @@ declare module '@smallwei/avue' {
     filterText?: string
     /** 懒加载函数 */
     treeLoad?: TreeComponentProps['load']
+    /** 表单弹窗标题 */
+    title?: string
   }
 
   export interface TreeOptionProps extends _TreeOptionProps {
@@ -53,15 +55,14 @@ declare module '@smallwei/avue' {
   }
 
   export interface AvueTreeProps<T = any> {
-    /** 表单数据 */
-    'modelValue'?: T
-    'onUpdate:modelValue'?: (form: T) => void
   }
   export interface AvueTreeProps<T = any> extends
     Partial<Pick<TreeComponentProps, | 'expandOnClickNode'
     | 'checkOnClickNode'
     | 'filterNodeMethod'
     | 'indent'>> {
+    /** 表单数据 */
+    modelValue?: T
     /** 存放结构体的数据 */
     data?: T[]
     /** 组件配置属性 */
@@ -69,34 +70,79 @@ declare module '@smallwei/avue' {
     /** 加载状态 */
     loading?: boolean
     /** 按钮权限 */
-    permission?: object
+    permission?: AvueTreeOption<T> | ((key: string, data: T) => boolean)
     /** 弹窗打开前 */
-    beforeOpen?: (done: () => void, type: TreeFormType) => void
+    beforeOpen?: (done: Fn, type: TreeFormType) => void
     /** 弹窗关闭前 */
-    beforeClose?: (done: () => void, type: TreeFormType) => void
-    onChange?: (form: T) => void
+    beforeClose?: (done: Fn, type: TreeFormType) => void
+  }
+
+  export interface AvueTreeEmits<T = any> {
+    /** 更新表单值 */
+    'onUpdate:modelValue'?: (form: T) => void
+    /** 表单更新事件 */
+    'change'?: (form: T) => void
     /** 新增节点回调 */
-    onSave?: (node: TreeNode<T>, data: T, done: () => void, loading: () => void) => void
+    'save'?: (node: TreeNode<T>, data: T, callback: (form: T) => void, done: Fn) => void
     /** 修改节点回调 */
-    onUpdate?: (node: TreeNode<T>, data: T, done: () => void, loading: () => void) => void
+    'update'?: (node: TreeNode<T>, data: T, callback: (form: T) => void, done: Fn) => void
     /** 删除节点回调 */
-    onDel?: (node: TreeNode<T>, done: () => void) => void
+    'del'?: (node: TreeNode<T>, done: Fn) => void
     /** 当复选框被点击的时候触发 */
-    onCheckChange?: (data: T, checked: boolean, indeterminate: boolean) => void
+    'check-change'?: (data: T, checked: boolean, indeterminate: boolean) => void
     /** 当节点被点击的时候触发 */
-    onNodeClick?: (data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => void
+    'node-click'?: (data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => void
     /** 节点开始拖拽时触发的事件 */
-    onNodeDragStart?: (node: TreeNode<T>, event: Event) => void
+    'node-drag-start'?: (node: TreeNode<T>, event: Event) => void
     /** 拖拽进入其他节点时触发的事件 */
-    onNodeDragEnter?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
+    'node-drag-enter'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
     /** 拖拽离开某个节点时触发的事件 */
-    onNodeDragLeave?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
+    'node-drag-leave'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
     /** 在拖拽节点时触发的事件 */
-    onNodeDragOver?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
+    'node-drag-over'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, event: Event) => void
     /** 拖拽结束时（可能未成功）触发的事件 */
-    onNodeDragEnd?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => void
+    'node-drag-end'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => void
     /** 拖拽成功完成时触发的事件 */
-    onNodeDrop?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => void
+    'node-drop'?: (draggingNode: TreeNode<T>, dropNode: TreeNode<T>, dropType: NodeDropType, event: Event) => void
+    /** 节点右击事件 */
+    'node-contextmenu'?: (event: Event, data: T, node: TreeNode<T>, nodeComponent: ComponentInternalInstance) => void
+  }
+
+  export interface AvueTreeData<T> {
+    filterValue: string
+    client: { x: number, y: number, show: boolean }
+    box: boolean
+    type: string
+    node: TreeNode<T>
+    obj: T
+    form: T
+  }
+
+  export interface AvueTreeComputed<T = any> {
+    virtualize: AvueTreeOption['virtualize']
+    componentName: 'elTreeV2' | 'elTree'
+    styleName: { top: string, left: string }
+    treeProps: TreeOptionProps
+    menu: boolean
+    title: AvueTreeOption['title']
+    treeLoad: AvueTreeOption['treeLoad']
+    checkStrictly: AvueTreeOption['checkStrictly']
+    accordion: AvueTreeOption['accordion']
+    multiple: AvueTreeOption['multiple']
+    lazy: AvueTreeOption['lazy']
+    treeLoad: AvueTreeOption['treeLoad']
+    addText: string
+    addFlag: boolean
+    size: AvueTreeOption['size']
+    props: TreeOptionProps
+    leafKey: TreeOptionProps['leaf']
+    valueKey: AvueTreeOption['value']
+    labelKey: AvueTreeOption['label']
+    childrenKey: AvueTreeOption['children']
+    nodeKey: AvueTreeOption['nodeKey']
+    defaultExpandAll: AvueTreeOption['defaultExpandAll']
+    defaultExpandedKeys: AvueTreeOption['defaultExpandedKeys']
+    formOption: AvueFormOption<T>
   }
 
   export interface AvueTreeMethods<T = any> extends
@@ -118,15 +164,67 @@ declare module '@smallwei/avue' {
     | 'remove'
     | 'append'
     | 'insertBefore'
-    | 'insertAfter'> { }
+    | 'insertAfter'> {
+    /** 节点开始拖拽时触发的事件 */
+    handleDragStart: AvueTreeEmits<T>['node-drag-start']
+    /** 拖拽进入其他节点时触发的事件 */
+    handleDragEnter: AvueTreeEmits<T>['node-drag-enter']
+    /** 拖拽离开某个节点时触发的事件 */
+    handleDragLeave: AvueTreeEmits<T>['node-drag-leave']
+    /** 在拖拽节点时触发的事件 */
+    handleDragOver: AvueTreeEmits<T>['node-drag-over']
+    /** 拖拽结束时（可能未成功）触发的事件 */
+    handleDragEnd: AvueTreeEmits<T>['node-drag-end']
+    /** 拖拽成功完成时触发的事件 */
+    handleDrop: AvueTreeEmits<T>['node-drop']
+    /** 获取按钮文字 */
+    menuIcon: (value: string) => string
+    /** 获取按钮权限 */
+    getPermission: (key: string) => boolean
+    /** 初始化函数 */
+    initFun: Fn
+    /** 节点右击事件 */
+    nodeContextmenu: AvueTreeEmits<T>['node-contextmenu']
+    /** 当复选框被点击的时候触发 */
+    handleCheckChange: AvueTreeEmits<T>['check-change']
+    /** 表单提交事件 */
+    handleSubmit: (form: T, done: Fn) => void
+    /** 当节点被点击的时候触发 */
+    nodeClick: AvueTreeEmits<T>['node-click']
+    /** 对树节点进行筛选时执行的方法 */
+    filterNode: AvueTreeProps<T>['filterNodeMethod']
+    /** 关闭表单弹窗 */
+    hide: (done: Fn) => void
+    /** 保存表单 */
+    save: (data: T, done: Fn) => void
+    /** 更新表单 */
+    update: (data: T, done: Fn) => void
+    /** 打开表单编辑弹窗 */
+    rowEdit: () => void
+    /** 打开表单新增顶级弹窗 */
+    parentAdd: () => void
+    /** 打开表单新增弹窗 */
+    rowAdd: () => void
+    /** 打开表单弹窗 */
+    show: () => void
+    /** 删除节点 */
+    rowRemove: () => void
+    findData: (id: string) => T
+  }
 
   export interface AvueTreeSlots<T = any> {
-    menu: (arg: { node: TreeNode<T> }) => VNode[]
-    default: (arg: { node: TreeNode<T>, data: T }) => VNode[]
+    'menu': (props: { node: TreeNode<T> }) => VNode[]
+    'default': (props: { node: TreeNode<T>, data: T }) => VNode[]
+    'add-btn': () => VNode[]
   }
 
   export const AvueTree: new<T = any>(props: AvueTreeProps<T>) =>
-    { $props: AvueTreeProps<T>, $slots: AvueTreeSlots<T> } & AvueTreeProps<T> & AvueTreeMethods<T>
+    {
+      $props: AvueTreeProps<T>
+      $emits: EmitFn<AvueTreeEmits<T>>
+      $slots: AvueTreeSlots<T>
+      $data: AvueTreeData<T>
+    } & AvueTreeProps<T> & AvueTreeComputed<T> & AvueTreeMethods<T>
 
   export type AvueTreeInstance<T = any> = InstanceType<typeof AvueTree<T>>
 }

@@ -97,7 +97,7 @@ declare module '@smallwei/avue' {
       /** 新增方法 */
       rowAdd?: (done: (row: any) => void) => void
       /** 删除方法 */
-      rowDel?: (row: any, done: () => void) => void
+      rowDel?: (row: any, done: Fn) => void
       /** 限制当前最大行数 */
       limit?: number
     } & AvueCrudOption
@@ -231,15 +231,15 @@ declare module '@smallwei/avue' {
     uploadBefore?: (
       file: UploadRawFile,
       done: (file?: File) => void,
-      loading: () => void,
+      loading: Fn,
       column: AvueFormColumn<T>
     ) => void
     /** upload组件上传后的回调,done用于结束操作，loading用于中断操作 */
-    uploadAfter?: (res: any, done: () => void, loading: () => void, column: AvueFormColumn<T>) => void
+    uploadAfter?: (res: any, done: Fn, loading: Fn, column: AvueFormColumn<T>) => void
     /** upload组件删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除 */
     uploadDelete?: (file: UploadFile, column: AvueFormColumn<T>) => boolean | Promise<any> | void
     /** upload组件查看回调 */
-    uploadPreview?: (file: UploadFile, column: AvueFormColumn<T>, done: () => void) => void
+    uploadPreview?: (file: UploadFile, column: AvueFormColumn<T>, done: Fn) => void
     /** upload组件上传失败错误回调 */
     uploadError?: (error: Error, column: AvueFormColumn<T>) => void
     /** upload组件上传超过长度限制回调 */
@@ -252,13 +252,13 @@ declare module '@smallwei/avue' {
     /** 更新表单状态 */
     'update:status': (disabled: boolean) => any
     /** 表单重置事件 */
-    'reset-change': () => void
+    'reset-change': Fn
     /** 模拟数据事件 */
-    'mock-data': () => void
+    'mock-data': Fn
     /** 分组点击事件 */
     'tab-click': ((paneOrTabs: TabsPaneContext | string[], ev?: Event) => any)
     /** 表单提交事件 */
-    'submit': (form: T, done: () => void) => any
+    'submit': (form: T, done: Fn) => any
     /** 表单校验错误事件 */
     'error': (msg: string) => any
     /** 更新配置项结构 */
@@ -272,13 +272,13 @@ declare module '@smallwei/avue' {
   // /** 更新表单状态 */
   // 'update:status'?: (disabled: boolean) => any
   // /** 表单重置回调事件 */
-  // 'reset-change'?: () => void
+  // 'reset-change'?: Fn
   // /** 模拟数据事件 */
-  // 'mock-change'?: () => void
+  // 'mock-change'?: Fn
   // /** 分组点击事件 */
   // 'tab-click'?: ((activeTabs: string[]) => any) | ((pane: TabsPaneContext, ev: Event) => any)
   // /** 表单提交回调事件 */
-  // 'submit'?: (form: T, done: () => void) => any
+  // 'submit'?: (form: T, done: Fn) => any
   // /** 表单校验错误事件 */
   // 'error'?: (msg: string) => any
   // /** 更新配置项结构 */
@@ -340,15 +340,15 @@ declare module '@smallwei/avue' {
     getDisabled: (column: AvueFormColumn<T>) => boolean
     isGroupShow: (item: any, index: number) => boolean
     /** 处理表单数据 */
-    dataFormat: () => void
+    dataFormat: Fn
     /** 设置表单控制 */
-    setControl: () => void
+    setControl: Fn
     /** 设置表单数据 */
-    setForm: () => void
+    setForm: Fn
     /** 更新表单数据 */
-    setVal: () => void
+    setVal: Fn
     /** 设置表单项标题 */
-    setLabel: () => void
+    setLabel: Fn
     /** 分组点击事件 */
     handleGroupClick: AvueFormEmits<T>['tab-click']
     /** 分组点击事件 */
@@ -366,11 +366,11 @@ declare module '@smallwei/avue' {
     /** 字段值变化 */
     handleChange: (list: AvueFormColumn<T>[], column: AvueFormColumn<T>) => void
     /** 打印表单 */
-    handlePrint: () => void
+    handlePrint: Fn
     /** 字段值变化 */
     propChange: (option: AvueFormColumn<T>[], column: AvueFormColumn<T>) => void
     /** 模拟数据 */
-    handleMock: () => void
+    handleMock: Fn
     /** 是否详情 */
     vaildDetail: (column: AvueFormColumn<T>) => boolean
     /** 是否禁用 */
@@ -382,32 +382,32 @@ declare module '@smallwei/avue' {
     /** 校验子表单 */
     validateCellForm: () => Promise<string>
     /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */
-    validate: (callback?: (valid: boolean, done: () => void, msg: string) => void) => Promise<boolean>
+    validate: (callback?: (valid: boolean, done: Fn, msg: string) => void) => Promise<boolean>
     /** 对整个表单进行重置 */
     resetForm: (reset?: boolean) => void
     /** 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果 */
-    resetFields: () => void
+    resetFields: Fn
     /** 表单禁用状态 */
-    show: () => void
+    show: Fn
     /** 表单启用状态 */
-    hide: () => void
+    hide: Fn
     /** 对整个表单进行提交 */
-    submit: () => void
+    submit: Fn
 
     /** 重新初始化（多数用于服务端加载或者更新网络字典） */
-    init: () => void
+    init: Fn
     /** 重新初始化字典 */
-    dicInit: () => void
+    dicInit: Fn
     /** 更新字典 */
     updateDic: (prop?: string, list?: DicItem[]) => void
     /** 设置字典列表 */
     handleSetDic: (list: DicItem[], res: Record<string, DicItem[]>) => void
     /** 加载本地字典 */
-    handleLocalDic: () => void
+    handleLocalDic: Fn
     /** 加载网络字典 */
-    handleLoadDic: () => void
+    handleLoadDic: Fn
     /** 加载级联字典 */
-    handleLoadCascaderDic: () => void
+    handleLoadCascaderDic: Fn
   }
 
   export interface AvueFormSlots<T = any, D = FormRowData<T>> {

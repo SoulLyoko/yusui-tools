@@ -421,9 +421,9 @@ declare module '@smallwei/avue' {
     /** 表格的分页数据 v-model */
     page?: PageOption
     /** 打开前的回调，会暂停Dialog的打开，done用于关闭Dialog，type为当前窗口的类型 */
-    beforeOpen?: (done: () => void, type: FormType) => void
+    beforeOpen?: (done: Fn, type: FormType) => void
     /** 关闭前的回调，会暂停Dialog的打开，done用于关闭Dialog，type为当前窗口的类型 */
-    beforeClose?: (done: () => void, type: FormType) => void
+    beforeClose?: (done: Fn, type: FormType) => void
     /** 单元格的className的回调方法，也可以使用字符串为所有单元格设置一个固定的className */
     cellClassName?: TableProps<T>['cellClassName']
     /** 表头单元格的className的回调方法，也可以使用字符串为所有表头单元格设置一个固定的className */
@@ -440,15 +440,15 @@ declare module '@smallwei/avue' {
     uploadBefore?: (
       file: UploadRawFile,
       done: (File?: File) => void,
-      loading: () => void,
+      loading: Fn,
       column: AvueCrudColumn<T>
     ) => void
     /** 图片上传后的回调，done用于结束操作，loading用于中断操作 */
-    uploadAfter?: (res: any, done: () => void, loading: () => void, column: AvueCrudColumn<T>) => void
+    uploadAfter?: (res: any, done: Fn, loading: Fn, column: AvueCrudColumn<T>) => void
     /** 删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除 */
     uploadDelete?: (file: UploadFile, column: AvueCrudColumn<T>) => boolean | Promise<any> | void
     /** 查看前的回调 */
-    uploadPreview?: (file: UploadFile, column: AvueCrudColumn<T>, done: () => void) => void
+    uploadPreview?: (file: UploadFile, column: AvueCrudColumn<T>, done: Fn) => void
     /** 上传失败错误回调 */
     uploadError?: (error: Error, column: AvueCrudColumn<T>) => void
     /** 上传超过长度限制回调 */
@@ -507,7 +507,7 @@ declare module '@smallwei/avue' {
     /** 更新分页数据 */
     'update:page': (page: PageOption) => any
     /** 点击搜索后触发该事件 */
-    'search-change': (form: any, done: () => void) => any
+    'search-change': (form: any, done: Fn) => any
     /** 清空搜索回调方法 */
     'search-reset': () => any
     /** 分页加载事件 */
@@ -525,9 +525,9 @@ declare module '@smallwei/avue' {
     /** 行数据删除时触发该事件 */
     'row-del': (row: D, index: number) => any
     /** 新增数据后点击确定触发该事件 */
-    'row-save': (row: D, done: () => void, loading: () => void) => any
+    'row-save': (row: D, done: Fn, loading: Fn) => any
     /** 编辑数据后确定触发该事件 */
-    'row-update': (row: D, index: number, done: () => void, loading: () => void) => any
+    'row-update': (row: D, index: number, done: Fn, loading: Fn) => any
     /** 表单数据更新事件 */
     'change': (row: D) => any
     /** 更新配置项结构 */
@@ -597,11 +597,11 @@ declare module '@smallwei/avue' {
     /** 获取按钮权限 */
     getPermission: (key: string, row?: D, index?: number) => boolean
     /** 获取表格计算高度 */
-    getTableHeight: () => void
+    getTableHeight: Fn
     /** 对Crud进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 */
-    doLayout: () => void
+    doLayout: Fn
     /** 进行重新初始化渲染 */
-    refreshTable: (callback?: () => void) => void
+    refreshTable: (callback?: Fn) => void
     /** 树懒加载事件 */
     treeLoad: AvueCrudEmits<T>['tree-load']
     /** 获取按钮文字 */
@@ -611,9 +611,9 @@ declare module '@smallwei/avue' {
     /** 对部分表单字段进行校验的方法 */
     validateField: (props: string[]) => void
     /** 用于多选表格，清空用户的选择 */
-    clearSelection: () => void
+    clearSelection: Fn
     /** 用于多选表格，切换所有行的选中状态 */
-    toggleAllSelection: () => void
+    toggleAllSelection: Fn
     /** 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则可直接设置这一行选中与否 */
     toggleRowSelection: (row?: D, selected?: boolean) => void
     /** 用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） */
@@ -621,7 +621,7 @@ declare module '@smallwei/avue' {
     /** 用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态 */
     setCurrentRow: (row?: D) => void
     /** 初始化表格数据 */
-    dataInit: () => void
+    dataInit: Fn
     /** 拖动表头事件 */
     headerDragend: AvueCrudEmits<T>['header-dragend']
     /** 表头排序 */
@@ -633,7 +633,7 @@ declare module '@smallwei/avue' {
     /** 行单选事件 */
     currentRowChange: AvueCrudEmits<T>['current-row-change']
     /** 刷新事件 */
-    refreshChange: () => void
+    refreshChange: Fn
     /** 用于多选表格，切换某些行的选中状态 */
     toggleSelection: (rows?: D[]) => void
     /** 行多选事件 */
@@ -651,7 +651,7 @@ declare module '@smallwei/avue' {
     /** 行单击事件 */
     rowClick: AvueCrudEmits<T>['row-click']
     /** 用于清空排序条件，数据会恢复成未排序的状态 */
-    clearSort: () => void
+    clearSort: Fn
     /** 单元格hover进入事件 */
     cellMouseEnter: AvueCrudEmits<T>['cell-mouse-enter']
     /** 单元格hover退出事件 */
@@ -679,17 +679,17 @@ declare module '@smallwei/avue' {
     /** 对子表单字段进行校验 */
     validateCellForm: (prop: string) => Promise<void>
     /** 打开表单新增窗口 */
-    rowAdd: () => void
+    rowAdd: Fn
     /** 表单保存调用 */
     rowSave: (row: D) => void
     /** 表单更新调用 */
     rowUpdate: (row: D) => void
     /** 关闭弹窗 */
-    closeDialog: () => void
+    closeDialog: Fn
     /** 获取prop的ref对象 */
     getPropRef: (props: string) => void
     /** 更新表单数据事件 */
-    setVal: () => void
+    setVal: Fn
     /** 打开表单编辑窗口 */
     rowEdit: (row: D, index?: number) => void
     /** 打开表单新增窗口，并复制当前行数据 */
@@ -705,39 +705,39 @@ declare module '@smallwei/avue' {
     /** TODO: */
     tableDrop: (...args: T[]) => void
     /** TODO: */
-    findData: (id: string) => any
+    findData: (id: string) => T
 
     /** 重新初始化 */
-    init: () => void
+    init: Fn
     /** 重新初始化字典 */
-    dicInit: () => void
+    dicInit: Fn
     /** 更新字典 */
     updateDic: (prop?: string, list?: DicItem[]) => void
     /** 设置字典列表 */
     handleSetDic: (list: DicItem[], res: Record<string, DicItem[]>) => void
     /** 加载本地字典 */
-    handleLocalDic: () => void
+    handleLocalDic: Fn
     /** 加载网络字典 */
-    handleLoadDic: () => void
+    handleLoadDic: Fn
     /** 加载级联字典 */
-    handleLoadCascaderDic: () => void
+    handleLoadCascaderDic: Fn
 
     /** 导出表格 */
-    rowExcel: () => void
+    rowExcel: Fn
     /** 打印表格 */
-    rowPrint: () => void
+    rowPrint: Fn
 
     /** 清空搜索栏目的值 */
-    searchReset: () => void
+    searchReset: Fn
     /** 清空搜索栏目的值 */
     searchChange: AvueCrudEmits<T>['search-change']
 
     /** 移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果 */
     clearValidate: (props?: string | string[]) => void
     /** 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise */
-    validate: (callback?: (valid: boolean, done: () => void, msg: string) => void) => Promise<boolean>
+    validate: (callback?: (valid: boolean, done: Fn, msg: string) => void) => Promise<boolean>
     /** 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果 */
-    resetForm: () => void
+    resetForm: Fn
   }
 
   export interface AvueCrudSlots<T = any, D = TableRowData<T>> {
@@ -844,7 +844,7 @@ declare module '@smallwei/avue' {
       $props: AvueCrudProps<T>
       $emit: EmitFn<AvueCrudEmits<T>>
       $slots: AvueCrudSlots<T>
-      $data: AvueCrudInstanceData<T>
+      $data: AvueCrudData<T>
     } & AvueCrudProps<T> & AvueCrudData<T> & AvueCrudComputed<T> & AvueCrudMethods<T>
 
   export type AvueCrudInstance<T = any> = InstanceType<typeof AvueCrud<T>>
