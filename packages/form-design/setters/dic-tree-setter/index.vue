@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvueTreeProps } from '@smallwei/avue'
+import type { AvueTreeEmits } from '@smallwei/avue'
 
 import { ref } from 'vue'
 import { useVModels } from '@vueuse/core'
@@ -33,9 +33,9 @@ function beforeOpen(done: () => void, type: string) {
   }, 100)
 }
 
-const onSave: AvueTreeProps['onSave'] = (node, data, done) => done()
-const onUpdate: AvueTreeProps['onUpdate'] = (node, data, done) => done()
-const onDel: AvueTreeProps['onDel'] = (data, done) => done()
+const onSave: AvueTreeEmits['save'] = (node, data, done) => done()
+const onUpdate: AvueTreeEmits['update'] = (node, data, done) => done()
+const onDel: AvueTreeEmits['del'] = (data, done) => done()
 </script>
 
 <template>

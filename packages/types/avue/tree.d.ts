@@ -83,9 +83,9 @@ declare module '@smallwei/avue' {
     /** 表单更新事件 */
     'change'?: (form: T) => void
     /** 新增节点回调 */
-    'save'?: (node: TreeNode<T>, data: T, callback: (form: T) => void, done: Fn) => void
+    'save'?: (node: TreeNode<T>, data: T, done: (form?: T) => void, loading: Fn) => void
     /** 修改节点回调 */
-    'update'?: (node: TreeNode<T>, data: T, callback: (form: T) => void, done: Fn) => void
+    'update'?: (node: TreeNode<T>, data: T, done: (form?: T) => void, loading: Fn) => void
     /** 删除节点回调 */
     'del'?: (node: TreeNode<T>, done: Fn) => void
     /** 当复选框被点击的时候触发 */
