@@ -1,3 +1,13 @@
+# [3.0.0-beta.30](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.29...v3.0.0-beta.30) (2024-04-16)
+
+
+### Bug Fixes
+
+* **components:** pro-tree样式 ([df16b50](https://github.com/SoulLyoko/yusui-tools/commit/df16b50d80507de80565bab4944de634ddc478d9))
+* **types:** avue-tree types ([ccc1fe6](https://github.com/SoulLyoko/yusui-tools/commit/ccc1fe6398ca63b034705b52219951ab58b976c4))
+
+
+
 # [3.0.0-beta.29](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.26...v3.0.0-beta.29) (2024-04-15)
 
 
