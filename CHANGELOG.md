@@ -1,3 +1,18 @@
+# [3.0.0-beta.31](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.30...v3.0.0-beta.31) (2024-04-17)
+
+
+### Bug Fixes
+
+* 类型 ([24ff911](https://github.com/SoulLyoko/yusui-tools/commit/24ff911c1f764d358fd1b9fc83b1303f28eababd))
+* type errors ([fc96fb4](https://github.com/SoulLyoko/yusui-tools/commit/fc96fb4f4c615cd3dfde0223cd2bac254130e3ae))
+
+
+### Features
+
+* **pro-tree:** 支持清除，标签事件 ([8fa34b9](https://github.com/SoulLyoko/yusui-tools/commit/8fa34b90196fc6ad64f47b81b24616fd3e78c2c6))
+
+
+
 # [3.0.0-beta.30](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.29...v3.0.0-beta.30) (2024-04-16)
 
 
