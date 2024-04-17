@@ -1,8 +1,7 @@
 <script setup lang="ts">
-defineProps<{
-  modelValue?: string
-  tag?: string
-}>()
+import type { ProHtmlProps } from './types'
+
+defineProps<ProHtmlProps>()
 </script>
 
 <template>

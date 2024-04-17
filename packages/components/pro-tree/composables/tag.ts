@@ -21,10 +21,15 @@ export function useTag(props: ProTreeProps, { emit, treeRef }: { emit: any, tree
   function onTagClose(node: ElTreeNode) {
     const checkedKeys = props.multiple ? (props.modelValue as string[]).filter(e => e !== node.key) : ''
     emit('update:modelValue', checkedKeys)
+    emit('tag-close', node)
+  }
+  function onTagClick(node: ElTreeNode) {
+    emit('tag-click', node)
   }
 
   return {
     checkedNodes,
     onTagClose,
+    onTagClick,
   }
 }

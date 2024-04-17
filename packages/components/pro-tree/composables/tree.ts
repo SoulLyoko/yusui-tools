@@ -17,7 +17,7 @@ export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, tre
         if (props.multiple) {
           nextTick(() => {
             if (!isEqual(treeRef.value?.getCheckedKeys(), props.modelValue || []))
-              treeRef.value?.setCheckedKeys(props.modelValue as string[])
+              treeRef.value?.setCheckedKeys(props.modelValue as string[] || [])
           })
         }
         else {
@@ -67,7 +67,7 @@ export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, tre
       emit('update:modelValue', treeRef.value?.getCheckedKeys(true))
 
     nextTick(() => {
-      treeRef.value?.setCheckedKeys(props.modelValue as string[])
+      treeRef.value?.setCheckedKeys(props.modelValue as string[] || [])
       attrs.onCheck?.(data, {
         checkedKeys: treeRef.value?.getCheckedKeys(),
         checkedNodes: treeRef.value?.getCheckedNodes(),

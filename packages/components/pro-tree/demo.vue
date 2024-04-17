@@ -54,13 +54,13 @@ const treeData = [
   },
 ]
 
-const singleValue = ref('')
+const singleValue = ref()
 const multiValue = ref([])
 </script>
 
 <template>
   单选：
-  <ProTree v-model="singleValue" :data="treeData" />
+  <ProTree v-model="singleValue" :data="treeData" clearable />
   多选：
-  <ProTree v-model="multiValue" :data="treeData" multiple />
+  <ProTree v-model="multiValue" :data="treeData" multiple clearable />
 </template>

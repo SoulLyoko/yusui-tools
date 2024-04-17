@@ -2,26 +2,37 @@ import type { Ref } from 'vue'
 import type { TreeInstance } from 'element-plus'
 import type { ProTreeProps } from '../types'
 
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, ref, toRefs, useAttrs, watch } from 'vue'
 import { ElInput } from 'element-plus'
 import { pick } from 'lodash-unified'
 
-export function useInput(props: ProTreeProps, { treeRef }: { treeRef: Ref<TreeInstance | undefined> }) {
+export function useInput(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
+  const attrs = useAttrs() as any
+
   const searchValue = ref('')
   watch(searchValue, (val) => {
     treeRef.value?.filter(val)
   })
+  watch(() => props.modelValue, () => {
+    searchValue.value = ''
+  })
 
   const placeholder = computed(() => {
-    if (Array.isArray(props.modelValue))
-      return props.modelValue.length ? '' : props.placeholder
-    else if (typeof props.modelValue === 'string')
-      return props.modelValue ? '' : props.placeholder
-    return ''
+    if (typeof props.modelValue === 'number' || props.modelValue?.length)
+      return ''
+    return props.placeholder
   })
+
+  function onClear() {
+    searchValue.value = ''
+    emit('update:modelValue')
+    attrs.onClear?.()
+  }
 
   return {
     ...pick(toRefs(props), Object.keys(ElInput.props)),
+    ...attrs,
+    onClear,
     placeholder,
     'modelValue': searchValue,
     'onUpdate:modelValue': (val: string) => (searchValue.value = val),

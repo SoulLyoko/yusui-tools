@@ -2,6 +2,19 @@
   display: flex;
   flex-direction: column;
 
+  > .el-input > .el-input__wrapper {
+    .el-input__prefix {
+      padding: 2px 0;
+      max-width: 80%;
+    }
+
+    &:not(.is-focus, :hover) {
+      .el-input__clear {
+        display: none;
+      }
+    }
+  }
+
   > .el-input + .el-tree {
     margin-top: 8px;
     overflow: auto;
