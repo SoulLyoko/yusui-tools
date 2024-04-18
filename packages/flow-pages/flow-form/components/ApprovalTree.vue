@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// eslint-disable-next-line ts/consistent-type-imports
 import type { ElTree } from 'element-plus'
 import type { LoadFunction } from 'element-plus/es/components/tree/src/tree.type'
 import type { ApprovalNode } from '@yusui/flow-pages'
@@ -30,7 +29,6 @@ const treeData = computed(() => {
     const id = uuid()
     item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
     item.incoming = parent?.incoming ?? item.incoming
-    item.multiple = parent?.multiple ?? item.multiple
     item.parentId = parent?.id ?? item.parentId
     return { ...item, id }
   })
@@ -45,14 +43,14 @@ const treeProps = {
   defaultExpandAll: true,
   lazy: true,
   showCheckbox: true,
+  checkOnClickNode: true,
   nodeKey: 'id',
   load: treeLoad,
   onCheck,
   props: {
     label: 'title',
-    class(data: ApprovalNode) {
-      return `node-${data.type}`
-    },
+    disabled: (data: ApprovalNode) => data.type !== 'user',
+    class: (data: ApprovalNode) => `node-${data.type}`,
   },
 }
 
@@ -88,6 +86,8 @@ function getUniqueNode(data: ApprovalNode[]): ApprovalNode | undefined {
 }
 
 async function onCheck(data: ApprovalNode, { checkedNodes }: { checkedNodes: ApprovalNode[] }) {
+  if (data.type !== 'user')
+    return
   let nodes = checkedNodes.filter(e => e.type === 'user')
   const isChecked = nodes.some(e => e.id === data.id)
   if (treeData.value.every(e => !e.multiple) && isChecked) {
