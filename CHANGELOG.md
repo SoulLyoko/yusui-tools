@@ -1,3 +1,12 @@
+## [2.0.10](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.9...v2.0.10) (2024-04-18)
+
+
+### Bug Fixes
+
+* **flow-form:** 审批节点选择问题 ([4db16a9](https://github.com/SoulLyoko/yusui-tools/commit/4db16a9ec0122318093ed189b121fe99d598d538))
+
+
+
 ## [2.0.9](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.8...v2.0.9) (2024-02-21)
 
 
