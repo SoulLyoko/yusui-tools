@@ -1,9 +1,9 @@
-import type { AsyncComponentLoader, Component } from 'vue'
+import type { AsyncComponentLoader, Component, ComputedRef } from 'vue'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { AvueCrudOption } from '@smallwei/avue'
 import type { TabsProps } from 'element-plus'
 import type { Res } from '@yusui/types'
-import type { FlowFile, FlowParamMap } from '../api'
+import type { CommitTaskData, FlowFile, FlowParamMap } from '../api'
 import type { UseFlowFormOptions } from '../composables'
 import type { ButtonHandler, FlowFormState } from '../flow-form'
 
@@ -39,7 +39,7 @@ export interface FlowPagesConfig {
   /** 打开流程表单弹窗的默认配置 */
   useFlowFormOptions?: UseFlowFormOptions
   /** 按钮处理 */
-  buttonHandler?: (state: FlowFormState) => ButtonHandler
+  buttonHandler?: (state: FlowFormState, data: ComputedRef<CommitTaskData>) => ButtonHandler
   /** avue表格统一配置 */
   tableOption?: AvueCrudOption
   /** 上传配置 */
@@ -73,16 +73,16 @@ export interface FlowPagesConfig {
 export interface RequestInstance extends AxiosInstance {
   <T = Res>(config: AxiosRequestConfig): Promise<T>
   <T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  getUri(config?: AxiosRequestConfig): string
-  request<T = Res>(config: AxiosRequestConfig): Promise<T>
-  get<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  delete<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  head<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  options<T = Res>(url: string, config?: AxiosRequestConfig): Promise<T>
-  post<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  put<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  patch<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  postForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  putForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  patchForm<T = Res>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
+  getUri: (config?: AxiosRequestConfig) => string
+  request: <T = Res>(config: AxiosRequestConfig) => Promise<T>
+  get: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  delete: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  head: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  options: <T = Res>(url: string, config?: AxiosRequestConfig) => Promise<T>
+  post: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  put: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  patch: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  postForm: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  putForm: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
+  patchForm: <T = Res>(url: string, data?: any, config?: AxiosRequestConfig) => Promise<T>
 }

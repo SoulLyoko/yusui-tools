@@ -74,6 +74,6 @@ export function useButtonHandler(state: FlowFormState): ButtonHandler {
       if (isInstance())
         return greenChannel(data.value)
     },
-    ...extraButtonHandler?.(state),
+    ...extraButtonHandler?.(state, data),
   }
 }
