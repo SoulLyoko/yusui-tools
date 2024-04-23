@@ -1,3 +1,13 @@
+## [2.0.11](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.10...v2.0.11) (2024-04-23)
+
+
+### Bug Fixes
+
+* **flow-form:** 节点根据根节点的multiple决定是否能够多选 ([9c4956d](https://github.com/SoulLyoko/yusui-tools/commit/9c4956d47213dcc28abafc4ed7c13db216562032))
+* **flow-form:** buttonHandler传递data ([72a315a](https://github.com/SoulLyoko/yusui-tools/commit/72a315abe53d613bcf8b2f7ab4a0eabffb502fe9))
+
+
+
 ## [2.0.10](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.9...v2.0.10) (2024-04-18)
 
 
