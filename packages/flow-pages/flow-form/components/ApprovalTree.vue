@@ -29,6 +29,7 @@ const treeData = computed(() => {
     const id = uuid()
     item.taskNodeKey = parent?.taskNodeKey ?? item.taskNodeKey
     item.incoming = parent?.incoming ?? item.incoming
+    item.multiple = parent?.multiple ?? item.multiple
     item.parentId = parent?.id ?? item.parentId
     return { ...item, id }
   })
@@ -90,10 +91,10 @@ async function onCheck(data: ApprovalNode, { checkedNodes }: { checkedNodes: App
     return
   let nodes = checkedNodes.filter(e => e.type === 'user')
   const isChecked = nodes.some(e => e.id === data.id)
-  if (treeData.value.every(e => !e.multiple) && isChecked) {
-    nodes = [data]
-  }
-  else if (!data.multiple && isChecked) {
+  // if (treeData.value.every(e => !e.multiple) && isChecked) {
+  //   nodes = [data]
+  // }
+  if (!data.multiple && isChecked) {
     const currentNode = treeRef.value?.getNode(data)
     const currentChildren = currentNode!.parent.data.children as ApprovalNode[]
     const siblingNodes = currentChildren.filter(e => e.id !== data.id)
