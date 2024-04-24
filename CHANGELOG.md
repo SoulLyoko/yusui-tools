@@ -1,3 +1,12 @@
+## [2.0.12](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.11...v2.0.12) (2024-04-24)
+
+
+### Bug Fixes
+
+* **flow-form:** 通过和接收时更新表单 ([48fa7f1](https://github.com/SoulLyoko/yusui-tools/commit/48fa7f190d5d1e5761cb6920e1940c05b6ff305a))
+
+
+
 ## [2.0.11](https://github.com/SoulLyoko/yusui-tools/compare/v2.0.10...v2.0.11) (2024-04-23)
 
 
