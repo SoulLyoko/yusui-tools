@@ -152,6 +152,7 @@ async function onConfirm() {
   approvalFormData.value.assignee = assigneeData
   approvalFormData.value.circulate = circulateData
   approvalFormData.value.outgoing = [...outgoing]
+  updateFormData()
   emit('submit')
 }
 
@@ -168,6 +169,18 @@ function getApprovalDataSet(nodes: ApprovalNode[]) {
     incoming && outgoing.add(incoming)
   })
   return { dataSet, data, outgoing }
+}
+
+function updateFormData() {
+  if (activeBtn.value.buttonKey !== 'flow_pass')
+    return
+  const upSendValue = flowDetail.value.properties?.property?.find(e => e.name === 'upSend')?.value
+  const upReceiveValue = approvalNodes.value[0]?.taskNodeProperties?.property?.find(e => e.name === 'upReceive')?.value
+  if (!upSendValue && !upReceiveValue)
+    return
+  const upSend = JSON.parse(upSendValue || '{}')
+  const upReceive = JSON.parse(upReceiveValue || '{}')
+  formData.value = { ...formData.value, ...upSend, ...upReceive }
 }
 </script>
 

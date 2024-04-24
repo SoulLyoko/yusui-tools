@@ -8,28 +8,28 @@ import { useRes } from '@yusui/composables'
 
 /** 任务状态 */
 export enum TaskStatus {
-  '已办' = 1,
-  '待办' = 2,
-  '失败' = 3,
-  '撤销' = 4,
-  '终止' = 5,
-  '退回' = 6,
+  已办 = 1,
+  待办 = 2,
+  失败 = 3,
+  撤销 = 4,
+  终止 = 5,
+  退回 = 6,
 }
 /** 流程状态 */
 export enum FlowStatus {
-  '已办结' = 1,
-  '未办结' = 2,
-  '已终止' = 3,
+  已办结 = 1,
+  未办结 = 2,
+  已终止 = 3,
 }
 /** 操作类型 */
 export enum HandleType {
-  '系统执行' = 1,
-  '用户办理' = 2,
-  '任务撤销' = 3,
-  '任务退回' = 4,
-  '流程终止' = 5,
-  '任务转办' = 6,
-  '绿色通道' = 7,
+  系统执行 = 1,
+  用户办理 = 2,
+  任务撤销 = 3,
+  任务退回 = 4,
+  流程终止 = 5,
+  任务转办 = 6,
+  绿色通道 = 7,
 }
 
 /** 流程详情 */
@@ -188,7 +188,7 @@ export interface ApprovalNode {
   /** 节点id，只有一级节点有 */
   taskNodeKey?: string
   /** 节点配置，只有一级节点有 */
-  taskNodeProperties?: any
+  taskNodeProperties?: FlowFormData
   /** 流进线id，只有一级节点有 */
   incoming?: string
   /** 是否多选，只有一级节点有 */
