@@ -2,11 +2,12 @@
 import type { AvueFormOption, DicItem } from '@smallwei/avue'
 import type { FormPropertyItem } from '../types'
 
-import { computed, onMounted, ref } from 'vue'
+import { computed, defineComponent, h, onMounted, ref } from 'vue'
 import { createReusableTemplate, useVModels } from '@vueuse/core'
 import { filterTree, sleep } from '@yusui/utils'
 import { pick } from 'lodash-unified'
 
+import FlowJsonEditor from './FlowJsonEditor.vue'
 import { useInjectState } from '../composables/state'
 import { formColumnToDic, mergeFormProperty } from '../utils'
 import { defaultFormProperty } from '../constants'
@@ -38,6 +39,30 @@ onMounted(async () => {
   })
 })
 
+const EditorSetter = defineComponent({
+  inheritAttrs: false,
+  props: {
+    tableData: { type: Object, default: () => ({}) },
+  },
+  setup(props) {
+    const value = computed({
+      get() {
+        return props.tableData.row
+      },
+      set(val) {
+        Object.assign(props.tableData.row, val)
+      },
+    })
+    return { value }
+  },
+  render() {
+    return h(FlowJsonEditor, {
+      'modelValue': this.value,
+      'onUpdate:modelValue': (val: any) => (this.value = val),
+    })
+  },
+})
+
 const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
   const formOption = formOptions.value[activeTab.value]
   const propDic = formColumnToDic(formOption?.column ?? [])
@@ -66,6 +91,7 @@ const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
             { label: '只读', prop: 'readonly', width: 60, component: FlowCheckbox },
             { label: '必填', prop: 'required', width: 60, component: FlowCheckbox },
             { label: '校验', prop: 'validate', width: 60, component: FlowCheckbox },
+            { label: '高级', prop: '', width: 100, component: EditorSetter },
           ],
         },
       },
