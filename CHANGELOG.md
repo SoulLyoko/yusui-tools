@@ -1,3 +1,12 @@
+# [3.0.0-beta.32](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.31...v3.0.0-beta.32) (2024-04-28)
+
+
+### Features
+
+* **flow-design:** 表单配置高级编辑 ([a6997db](https://github.com/SoulLyoko/yusui-tools/commit/a6997dbfa892a9d92cb59386005b5f9beea0d130))
+
+
+
 # [3.0.0-beta.31](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.30...v3.0.0-beta.31) (2024-04-17)
 
 
