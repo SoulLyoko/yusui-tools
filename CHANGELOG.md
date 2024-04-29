@@ -1,3 +1,12 @@
+# [3.0.0-beta.33](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.32...v3.0.0-beta.33) (2024-04-29)
+
+
+### Features
+
+* **flow-design:** 打印模板、套红模板 ([889e3ce](https://github.com/SoulLyoko/yusui-tools/commit/889e3ce1140f38a0925bcb9370cf605e362885df))
+
+
+
 # [3.0.0-beta.32](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.31...v3.0.0-beta.32) (2024-04-28)
 
 
