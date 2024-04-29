@@ -3,6 +3,7 @@ import type { TemplateItem } from '../types'
 
 import { computed, defineComponent, h } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { set } from 'lodash-unified'
 import { ProDict } from '@yusui/components'
 
 import { useInjectState } from '../composables/state'
@@ -20,8 +21,7 @@ const TemplateSelect = defineComponent({
   setup(props) {
     function onChange(value: string) {
       const item = props.dicData?.find(e => e.value === value)
-      // eslint-disable-next-line vue/no-mutating-props
-      props.tableData.row.children = item?.children ?? []
+      set(props.tableData, 'row.children', item?.children ?? [])
     }
 
     return { onChange }
