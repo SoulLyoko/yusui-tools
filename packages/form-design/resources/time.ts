@@ -31,7 +31,7 @@ export const time: Resource = {
     },
     {
       label: '范围分割符',
-      prop: 'rangeSpearator',
+      prop: 'rangeSeparator',
     },
     {
       label: '默认显示时间',

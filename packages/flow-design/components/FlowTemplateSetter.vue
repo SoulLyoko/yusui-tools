@@ -7,11 +7,10 @@ import { set } from 'lodash-unified'
 import { ProDict } from '@yusui/components'
 
 import { useInjectState } from '../composables/state'
+import { formColumnToDic, getFormColumn } from '../utils'
 
 const props = defineProps<{ modelValue: TemplateItem[], dataKey?: string }>()
 const { modelValue: tableData } = useVModels(props, undefined, { defaultValue: [] })
-
-const { dataOptions } = useInjectState()
 
 const TemplateSelect = defineComponent({
   props: {
@@ -31,14 +30,21 @@ const TemplateSelect = defineComponent({
   },
 })
 
+const { dataOptions } = useInjectState()
+const allColumn = computed(() => {
+  const formOptions = dataOptions.value?.formOptions?.filter(e => e.prop) ?? []
+  return formOptions.map(e => getFormColumn(e)).flat()
+})
+
 const tableOption = computed(() => {
   // @ts-ignore
-  const dicData = dataOptions.value?.[props.dataKey] ?? []
+  const templateDic = dataOptions.value?.[props.dataKey] ?? []
+  const propDic = formColumnToDic(allColumn.value ?? [])
   return {
     type: 'form',
     index: false,
     column: [
-      { label: '模板', prop: 'value', type: 'select', dicData, component: TemplateSelect },
+      { label: '模板', prop: 'value', type: 'select', dicData: templateDic, component: TemplateSelect },
       {
         label: '字段映射',
         prop: 'children',
@@ -47,8 +53,8 @@ const tableOption = computed(() => {
         children: {
           column: [
             { label: '模板书签', prop: 'label' },
-            { label: '表单字段', prop: 'value' },
-            { label: '默认值', prop: 'defautValue' },
+            { label: '表单字段', prop: 'value', type: 'select', dicData: propDic, filterable: true },
+            { label: '默认值', prop: 'defaultValue' },
           ],
         },
       },

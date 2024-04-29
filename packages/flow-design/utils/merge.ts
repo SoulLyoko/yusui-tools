@@ -5,6 +5,7 @@ import type { Definition } from '@logicflow/core'
 import { uniqBy } from 'lodash-unified'
 
 import { defaultFormProperty } from '../constants'
+import { getFormColumn } from './transfer'
 
 /** 保留修改过的按钮配置并去重 */
 export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
@@ -30,7 +31,7 @@ export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
 /** 保留修改过的表单配置并去重 */
 export function mergeFormProperty(option: AvueFormOption, source: FormPropertyItem[]): FormPropertyItem[] {
   const result: FormPropertyItem[] = []
-  const column = [...option.column ?? [], ...option.group?.map(e => e.column ?? [])?.flat() ?? []]
+  const column = getFormColumn(option)
   column.forEach((col) => {
     const findSource = source.find(e => e.prop === col.prop)
     if (!findSource)
