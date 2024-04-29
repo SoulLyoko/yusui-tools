@@ -9,7 +9,7 @@ import { useInjectState } from '../composables/state'
 const props = defineProps<{ dicData?: DicItem[], dataKey?: string }>()
 
 const { dataOptions } = useInjectState()
-const dic = computed(() => {
+const dic = computed<DicItem[]>(() => {
   // @ts-ignore
   return dataOptions.value?.[props.dataKey] ?? []
 })

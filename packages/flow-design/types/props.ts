@@ -31,6 +31,8 @@ export interface DataOptions {
   snTemplateDic?: DicItem[]
   /** 打印模板字典 */
   printTemplateDic?: DicItem[]
+  /** 套红模板字典 */
+  redTemplateDic?: DicItem[]
   /** 通知方式字典 */
   noticeTypeDic?: DicItem[]
 }

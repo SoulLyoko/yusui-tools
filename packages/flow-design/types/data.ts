@@ -98,7 +98,7 @@ export interface PropertyItem {
 }
 
 /** 表单属性配置项 */
-export interface FormPropertyItem {
+export interface FormPropertyItem extends Record<string, any> {
   label?: string
   prop?: string
   display?: boolean
@@ -119,15 +119,14 @@ export interface TimeLimitItem {
 
 /** 流程配置 */
 export interface ProcessConfig {
-  snTemplate: string
-  printTemplate: string
-  titleTemplate: string
-  abstractTemplate: string
-  enableAutoDistinct: boolean
-  enableRevoke: boolean
-  enableCommentRequired: boolean
-  handleInteractiveMode: string
-  isTaskStart: boolean
+  snTemplate?: string
+  titleTemplate?: string
+  abstractTemplate?: string
+  enableAutoDistinct?: boolean
+  enableRevoke?: boolean
+  enableCommentRequired?: boolean
+  handleInteractiveMode?: string
+  isTaskStart?: boolean
 }
 
 /** 审批人配置 */
@@ -154,6 +153,18 @@ export interface NoticeConfig {
   enableCompleteNotice?: boolean
   processCompleteNoticeChannel?: string
   processCompleteNoticeTemplate?: string
+}
+
+/** 模板配置项 */
+export interface TemplateItem {
+  /** 选择的模板 */
+  value?: string
+  /** 字段映射项 */
+  children?: {
+    label?: string
+    value?: string
+    defautValue?: string
+  }[]
 }
 
 export interface FlowFormData {
@@ -203,4 +214,8 @@ export interface FlowFormData {
   approval?: ApprovalConfig
   /** 通知配置 */
   notice?: NoticeConfig
+  /** 打印模板配置 */
+  printTemplate?: TemplateItem[]
+  /** 套红模板配置 */
+  redTemplate?: TemplateItem[]
 }

@@ -14,8 +14,10 @@ import {
   noteColumn,
   noticeColumn,
   participateColumn,
+  printTemplateColumn,
   processColumn,
   propertyColumn,
+  redTemplateColumn,
   sequenceFlowColumn,
   serviceTaskColumn,
   taskListenerColumn,
@@ -33,8 +35,10 @@ export * from './multiInstance'
 export * from './note'
 export * from './notice'
 export * from './participate'
+export * from './printTemplate'
 export * from './process'
 export * from './property'
+export * from './redTemplate'
 export * from './sequenceFlow'
 export * from './serviceTask'
 export * from './taskListener'
@@ -90,8 +94,11 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '基本配置', prop: 'baseGroup', column: processColumn },
     { label: '参与人员配置', prop: 'participateGroup', column: participateColumn },
     { label: '通知配置', prop: 'noticeGroup', column: noticeColumn },
+    { label: '打印配置', prop: 'printTemplateGroup', column: printTemplateColumn },
+    { label: '套红配置', prop: 'redTemplateGroup', column: redTemplateColumn },
     { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
     { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
+
   ],
   group: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },

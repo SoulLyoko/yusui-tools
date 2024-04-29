@@ -19,12 +19,9 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
           prop: 'snTemplate',
           component: FlowDataOptions,
           dataKey: 'snTemplateDic',
-        },
-        {
-          label: '打印模板',
-          prop: 'printTemplate',
-          component: FlowDataOptions,
-          dataKey: 'printTemplateDic',
+          filterable: true,
+          allowCreate: true,
+          defaultFirstOption: true,
         },
         {
           label: '标题模板',

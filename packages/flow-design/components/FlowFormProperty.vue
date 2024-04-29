@@ -2,16 +2,16 @@
 import type { AvueFormOption, DicItem } from '@smallwei/avue'
 import type { FormPropertyItem } from '../types'
 
-import { computed, defineComponent, h, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { createReusableTemplate, useVModels } from '@vueuse/core'
 import { filterTree, sleep } from '@yusui/utils'
 import { pick } from 'lodash-unified'
 
-import FlowJsonEditor from './FlowJsonEditor.vue'
 import { useInjectState } from '../composables/state'
 import { formColumnToDic, mergeFormProperty } from '../utils'
 import { defaultFormProperty } from '../constants'
 import FlowCheckbox from './FlowCheckbox.vue'
+import FlowDynamicRowEditor from './FlowDynamicRowEditor.vue'
 
 const props = defineProps<{ modelValue: FormPropertyItem[] }>()
 const { modelValue: tableDataModel } = useVModels(props, undefined, { defaultValue: { modelValue: [] } })
@@ -37,30 +37,6 @@ onMounted(async () => {
       children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
     }
   })
-})
-
-const EditorSetter = defineComponent({
-  inheritAttrs: false,
-  props: {
-    tableData: { type: Object, default: () => ({}) },
-  },
-  setup(props) {
-    const value = computed({
-      get() {
-        return props.tableData.row
-      },
-      set(val) {
-        Object.assign(props.tableData.row, val)
-      },
-    })
-    return { value }
-  },
-  render() {
-    return h(FlowJsonEditor, {
-      'modelValue': this.value,
-      'onUpdate:modelValue': (val: any) => (this.value = val),
-    })
-  },
 })
 
 const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
@@ -91,7 +67,11 @@ const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
             { label: '只读', prop: 'readonly', width: 60, component: FlowCheckbox },
             { label: '必填', prop: 'required', width: 60, component: FlowCheckbox },
             { label: '校验', prop: 'validate', width: 60, component: FlowCheckbox },
-            { label: '高级', prop: '', width: 100, component: EditorSetter },
+            // { label: '打印', prop: 'print', width: 60, component: FlowCheckbox },
+            // { label: '套红', prop: 'overprint', width: 60, component: FlowCheckbox },
+            // { label: '通过时更新', prop: 'upSend', width: 100 },
+            // { label: '接收时更新', prop: 'upReceive', width: 100 },
+            { label: '高级', prop: '', width: 100, component: FlowDynamicRowEditor },
           ],
         },
       },

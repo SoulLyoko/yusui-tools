@@ -46,8 +46,12 @@ const dataOptions = {
     { label: '流水号模板2', value: 'sn2', id: 'sn2' },
   ],
   printTemplateDic: [
-    { label: '打印模板1', value: 'print1', id: 'print1' },
-    { label: '打印模板2', value: 'print2', id: 'print2' },
+    { label: '打印模板1', value: 'print1', id: 'print1', children: [{ label: 'label1', value: 'value1', defaultValue: 'default1' }] },
+    { label: '打印模板2', value: 'print2', id: 'print2', children: [{ label: 'label2', value: 'value2', defaultValue: 'default2' }] },
+  ],
+  redTemplateDic: [
+    { label: '套红模板1', value: 'red1', id: 'red1', children: [{ label: 'label1', value: 'value1', defaultValue: 'default1' }] },
+    { label: '套红模板2', value: 'red2', id: 'red2', children: [{ label: 'label2', value: 'value2', defaultValue: 'default2' }] },
   ],
   noticeTypeDic: [
     { label: '通知类型1', value: 'notice1', id: 'notice1' },

@@ -1,7 +1,7 @@
 import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
 
-import FlowParticipate from '../components/FlowParticipate.vue'
+import FlowParticipateSetter from '../components/FlowParticipateSetter.vue'
 
 export const participateColumn: AvueFormColumn<FlowFormData>[] = [
   {
@@ -9,7 +9,7 @@ export const participateColumn: AvueFormColumn<FlowFormData>[] = [
     labelWidth: 0,
     prop: 'participateConfig',
     type: 'dynamic',
-    component: FlowParticipate,
+    component: FlowParticipateSetter,
     value: [],
   },
 ]
