@@ -1,3 +1,12 @@
+# [3.0.0-beta.35](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.34...v3.0.0-beta.35) (2024-04-29)
+
+
+### Bug Fixes
+
+* **flow-design:** 模板映射字段选择 ([a8e2b20](https://github.com/SoulLyoko/yusui-tools/commit/a8e2b20be837c9744f8be1dcc8bd194050829082))
+
+
+
 # [3.0.0-beta.34](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.33...v3.0.0-beta.34) (2024-04-29)
 
 
