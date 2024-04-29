@@ -1,3 +1,12 @@
+# [3.0.0-beta.34](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.33...v3.0.0-beta.34) (2024-04-29)
+
+
+### Bug Fixes
+
+* **flow-design:** 模板字段映射的设置问题 ([8dbaa95](https://github.com/SoulLyoko/yusui-tools/commit/8dbaa9535877c8eaae48c316675154444237910b))
+
+
+
 # [3.0.0-beta.33](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.32...v3.0.0-beta.33) (2024-04-29)
 
 
