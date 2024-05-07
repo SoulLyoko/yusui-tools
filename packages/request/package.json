@@ -24,14 +24,14 @@
     "dist"
   ],
   "dependencies": {
-    "@umijs/openapi": "^1.11.1",
+    "@umijs/openapi": "^1.12.1",
     "axios": "^1.6.8",
     "element-plus": "^2.7.0",
     "vue-request": "^2.0.4"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.4.8",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.10",
     "@yusui/types": "workspace:*"
   }
 }

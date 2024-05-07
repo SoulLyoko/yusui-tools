@@ -16,14 +16,14 @@
     "@vueuse/core": "^10.9.0",
     "@yusui/composables": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "dayjs": "^1.11.10",
+    "dayjs": "^1.11.11",
     "lodash-es": "^4.17.21",
     "vue-request": "^2.0.4"
   },
   "devDependencies": {
     "@dcloudio/uni-app": "vue3",
     "@yusui/types": "workspace:*",
-    "uview-plus": "3.2.6",
-    "vue": "^3.4.21"
+    "uview-plus": "3.2.16",
+    "vue": "^3.4.27"
   }
 }
