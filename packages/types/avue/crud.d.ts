@@ -1,5 +1,6 @@
 import type { FormItemRule, TableColumnCtx, TableProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
-import type { VNode } from 'vue'
+import type TableColumnPropsConstructor from 'element-plus/es/components/table/src/table-column/defaults'
+import type { ExtractPropTypes, VNode } from 'vue'
 import type { ElSize, EmitFn } from '@yusui/types'
 
 declare module '@smallwei/avue' {
@@ -12,6 +13,7 @@ declare module '@smallwei/avue' {
   export type HeaderEvent<T> = (column: TableColumnCtx<T>, event: Event) => void
   export type AvueCrudDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueCrudColumn<T>>
   // export type AvueCrudDefaults = Record<string, AvueCrudColumn>;
+  export type TableColumnProps = Partial<ExtractPropTypes<typeof TableColumnPropsConstructor>>
 
   export interface PageOption {
     /** 总条数,如果为0的话不显示分页 */
@@ -39,7 +41,7 @@ declare module '@smallwei/avue' {
     type?: 'sum' | 'avg' | 'count'
   }
 
-  export interface AvueCrudColumn<T = any, D = TableRowData<T>> extends AvueFormColumn<T> {
+  export interface AvueCrudColumn<T = any, D = TableRowData<T>> extends AvueFormColumn<T>, TableColumnProps {
     /** 对应列的宽度 */
     width?: number | string
     /** 对应列的最小宽度，与 width 的区别是 width 是固定的，minWidth 会把剩余宽度按比例分配给设置了 minWidth 的列 */
@@ -126,6 +128,7 @@ declare module '@smallwei/avue' {
     hide?: boolean
     /** 表格打开表单的时候是否重新拉取字典 */
     dicFlag?: boolean
+    renderForm?: AvueFormColumn<T>['render']
     [x: string]: any
   }
 
@@ -145,7 +148,7 @@ declare module '@smallwei/avue' {
     column?: AvueCrudColumn<T>[]
   }
 
-  export interface AvueCrudOption<T = any, D = TableRowData<T>> extends AvueFormOption<T> {
+  export interface AvueCrudOption<T = any, D = TableRowData<T>> extends AvueFormOption<T>, TableProps {
     /** 表格的高度，默认为自动高度。如果设置为auto，会自适应窗口高度，配合calcHeight参数去调节范围 */
     height?: number | string
     /** 表格的最大高度 */
@@ -200,10 +203,16 @@ declare module '@smallwei/avue' {
     expandFixed?: Fixed
     /** 表格边框 */
     border?: boolean
-    /** 是列的宽度是否自撑开属性 */
+    /** 列的宽度是否自撑开属性 */
     fit?: boolean
     /** 是否显示表格的表头 */
     showHeader?: boolean
+    /** 是否显示表格头部操作栏 */
+    header?: boolean
+    /** 是否显示表格头部左侧操作栏 */
+    headerLeft?: boolean
+    /** 是否显示表格头部右侧操作栏 */
+    headerRight?: boolean
     /** 是否要高亮当前行 */
     highlightCurrentRow?: boolean
     /** 行数据的Key的主键，用于其他相关操作 */
