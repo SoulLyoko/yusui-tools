@@ -53,6 +53,7 @@ export function fixFormRow(code: string) {
 /**
  * avue-crud 菜单按钮插槽
  * [column-menu](https://github.com/nmxiaowei/avue/blob/master/packages/element-ui/crud/column/column-menu.vue#L52)
+ * @deprecated v3.3.2已修复
  */
 export function fixMenuBtnSlot(code: string) {
   return (
@@ -87,7 +88,6 @@ export function avuePatch(): Plugin {
       if (/avue.js|avue.min.js/.test(id)) {
         code = fixMenuBtnType(code)
         code = fixFormRow(code)
-        code = fixMenuBtnSlot(code)
         return code
       }
     },

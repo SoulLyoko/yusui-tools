@@ -5,7 +5,7 @@
 /// <reference path="./global.d.ts" />
 
 declare module '@smallwei/avue' {
-  const avueConfig: {
+  export interface AvueConfig {
     appendToBody?: boolean
     axios?: import('axios').AxiosInstance
     calcHeight?: number
@@ -15,15 +15,13 @@ declare module '@smallwei/avue' {
     crudOption?: AvueCrudOption
     formOption?: AvueFormOption
   }
+
   const Avue: {
     install: (app: import('vue').App, config?: AvueConfig) => void
     locale: { use: AnyFn, t: AnyFn, i18n: AnyFn }
     version: string
-    [name: string]: import('vue').DefineComponent
+    [x: string]: any
   }
 
-  export type AnyFn = (...args: any[]) => any
-  export type Fn = () => void
-  export type AvueConfig = typeof avueConfig
   export default Avue
 }

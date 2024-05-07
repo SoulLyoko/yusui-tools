@@ -9,40 +9,13 @@ declare module 'vue' {
 
   interface ComponentCustomProperties {
     $AVUE: Required<import('@smallwei/avue').AvueConfig>
-    $Clipboard: (arg: { text: string }) => Promise<void>
-    $DialogForm: <T = any>(
-      option: Partial<import('element-plus').DialogProps> &
-      Partial<import('element-plus').DrawerProps> &
-      {
-        type?: 'dialog' | 'drawer'
-        data?: T
-        menuPosition?: import('@smallwei/avue').MenuPosition
-        option?: import('@smallwei/avue').AvueFormOption<T>
-        callback?: (cb: { data: T, close: () => void, done: () => void }) => void
-      }
-    ) => void
-    $Export: {
-      excel: (arg: { title: string, columns: { label: string, prop: string }[], data: any[] }) => void
-      xlsx: (raw: File) => Promise<{ results: any[] }>
-    }
-    $ImagePreview: (list: { url?: string, thumbUrl?: string }[], index?: number) => void
-    $Log: {
-      capsule: (title?: string, content?: string, type?: string) => void
-      colorful: (content?: string) => void
-      danger: (content?: string) => void
-      default: (content?: string) => void
-      primary: (content?: string) => void
-      success: (content?: string) => void
-      warning: (content?: string) => void
-    }
-    $Print: (selector: string | HTMLElement) => void
-    $Screenshot: (selector: string | HTMLElement, options?: any) => void
-    $Watermark: (option?: {
-      id?: string
-      fontSize?: string
-      width?: string
-      height?: string
-      text?: string
-    }) => void
+    $Clipboard: typeof import('@smallwei/avue')['$Clipboard']
+    $DialogForm: typeof import('@smallwei/avue')['$DialogForm']
+    $Export: typeof import('@smallwei/avue')['$Export']
+    $ImagePreview: typeof import('@smallwei/avue')['$ImagePreview']
+    $Log: typeof import('@smallwei/avue')['$Log']
+    $Print: typeof import('@smallwei/avue')['$Print']
+    $Screenshot: typeof import('@smallwei/avue')['$Screenshot']
+    $Watermark: typeof import('@smallwei/avue')['$Watermark']
   }
 }
