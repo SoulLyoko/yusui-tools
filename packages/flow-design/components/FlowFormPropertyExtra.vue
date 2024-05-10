@@ -24,7 +24,7 @@ const option = computed(() => {
     span: 24,
     menuBtn: false,
     labelWidth: 'auto',
-    column: dataOptions.value.formPropertyExtra ?? [],
+    column: dataOptions.value?.formPropertyExtra ?? [],
   }
 })
 </script>
