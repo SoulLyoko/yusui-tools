@@ -35,6 +35,8 @@ export interface DataOptions {
   redTemplateDic?: DicItem[]
   /** 通知方式字典 */
   noticeTypeDic?: DicItem[]
+  /** 表单字段配置扩展 */
+  formPropertyExtra?: AvueFormColumn[]
 }
 
 export interface FlowDesignProps {

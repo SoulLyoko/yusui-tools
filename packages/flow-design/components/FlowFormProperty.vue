@@ -5,16 +5,15 @@ import type { FormPropertyItem } from '../types'
 import { computed, onMounted, ref } from 'vue'
 import { createReusableTemplate, useVModels } from '@vueuse/core'
 import { filterTree, sleep } from '@yusui/utils'
-import { pick } from 'lodash-unified'
 
 import { useInjectState } from '../composables/state'
-import { formColumnToDic, mergeFormProperty } from '../utils'
+import { formColumnToDic } from '../utils'
 import { defaultFormProperty } from '../constants'
 import FlowCheckbox from './FlowCheckbox.vue'
-import FlowDynamicRowEditor from './FlowDynamicRowEditor.vue'
+import FlowFormPropertyExtra from './FlowFormPropertyExtra.vue'
 
 const props = defineProps<{ modelValue: FormPropertyItem[] }>()
-const { modelValue: tableDataModel } = useVModels(props, undefined, { defaultValue: { modelValue: [] } })
+const { modelValue: tableDataModel } = useVModels(props, undefined, { defaultValue: { modelValue: () => [] } })
 
 const [DefinePropSelect, PropSelect] = createReusableTemplate<{
   'modelValue': string
@@ -31,12 +30,12 @@ const activeTab = ref(0)
 
 onMounted(async () => {
   await sleep()
-  tableDataModel.value = formOptions.value.map((option) => {
-    return {
-      ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail', 'readonly']),
-      children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
-    }
-  })
+  // tableDataModel.value = formOptions.value.map((option) => {
+  //   return {
+  //     ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail', 'readonly']),
+  //     children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
+  //   }
+  // })
 })
 
 const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
@@ -67,11 +66,9 @@ const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
             { label: '只读', prop: 'readonly', width: 60, component: FlowCheckbox },
             { label: '必填', prop: 'required', width: 60, component: FlowCheckbox },
             { label: '校验', prop: 'validate', width: 60, component: FlowCheckbox },
-            // { label: '打印', prop: 'print', width: 60, component: FlowCheckbox },
-            // { label: '套红', prop: 'overprint', width: 60, component: FlowCheckbox },
-            // { label: '通过时更新', prop: 'upSend', width: 100 },
-            // { label: '接收时更新', prop: 'upReceive', width: 100 },
-            { label: '高级', prop: '', width: 100, component: FlowDynamicRowEditor },
+            // { label: '通过时更新值', prop: 'upSend', width: 110, placeholder: '请输入' },
+            // { label: '接收时更新值', prop: 'upReceive', width: 110, placeholder: '请输入' },
+            { label: '其它', prop: '', width: 100, component: FlowFormPropertyExtra },
           ],
         },
       },

@@ -68,6 +68,10 @@ const dataOptions = {
     },
     { label: '表单2', prop: 'form2', column: [{ label: '字段3', prop: 'field3' }, { label: '字段4', prop: 'field4' }] },
   ],
+  formPropertyExtra: [
+    { label: '通过时更新值', prop: 'upSend' },
+    { label: '接收时更新值', prop: 'upReceive' },
+  ],
 }
 </script>
 
