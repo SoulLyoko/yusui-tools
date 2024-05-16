@@ -53,7 +53,7 @@ declare module '@smallwei/avue' {
     /** 用来格式化内容 */
     formatter?: (row: D, value: any, label: string, column: AvueCrudColumn<T>[]) => any
     /** 当内容过长被隐藏时显示 tooltip */
-    overHidden?: boolean
+    overHidden?: TableProps<T>['showOverflowTooltip']
     /** 表格内容对齐方式 */
     align?: Align
     /** 表头对齐方式 */
@@ -128,6 +128,8 @@ declare module '@smallwei/avue' {
     hide?: boolean
     /** 表格打开表单的时候是否重新拉取字典 */
     dicFlag?: boolean
+    /** 列排序,序号越小越靠前 */
+    index?: number
     renderForm?: AvueFormColumn<T>['render']
     [x: string]: any
   }
@@ -148,7 +150,7 @@ declare module '@smallwei/avue' {
     column?: AvueCrudColumn<T>[]
   }
 
-  export interface AvueCrudOption<T = any, D = TableRowData<T>> extends AvueFormOption<T>, TableProps {
+  export interface AvueCrudOption<T = any, D = TableRowData<T>> extends AvueFormOption<T>, Parital<TableProps<T>> {
     /** 表格的高度，默认为自动高度。如果设置为auto，会自适应窗口高度，配合calcHeight参数去调节范围 */
     height?: number | string
     /** 表格的最大高度 */
@@ -407,6 +409,8 @@ declare module '@smallwei/avue' {
     treeProps?: TableProps<T>['treeProps']
     /** 展开层级 */
     expandLevel?: number
+    /** 当内容过长被隐藏时显示 tooltip */
+    overHidden?: TableProps<T>['showOverflowTooltip']
     /** 表格列配置属性 */
     column?: AvueCrudColumn<T>[]
     /** 分组表单,放入正常的column配置就行 */
@@ -518,7 +522,7 @@ declare module '@smallwei/avue' {
     /** 点击搜索后触发该事件 */
     'search-change': (form: any, done: Fn) => any
     /** 清空搜索回调方法 */
-    'search-reset': () => any
+    'search-reset': (form: any) => any
     /** 分页加载事件 */
     'on-load': (page: PageOption) => any
     /** 分页页码改变时会触发 */
@@ -540,7 +544,7 @@ declare module '@smallwei/avue' {
     /** 表单数据更新事件 */
     'change': (row: D) => any
     /** 更新配置项结构 */
-    'update:defaults': (defaluts: AvueCrudDefaults<T>) => any
+    'update:defaults': (defaults: AvueCrudDefaults<T>) => any
   }
 
   export interface AvueCrudData<T = any, D = TableRowData<T>> {

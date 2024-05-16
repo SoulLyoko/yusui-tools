@@ -1,5 +1,5 @@
 import type { Component, VNode } from 'vue'
-import type { FormItemRule, TabsPaneContext, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
+import type { FormItemProps, FormItemRule, FormProps, TabsPaneContext, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import type { ElSize, EmitFn } from '@yusui/types'
 
 declare module '@smallwei/avue' {
@@ -12,7 +12,7 @@ declare module '@smallwei/avue' {
   export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>
   // export type AvueFormDefaults = Record<string, AvueFormColumn>;
 
-  export interface AvueFormColumn<T = any, K = PropKeyType<T>, D = FormRowData<T>> {
+  export interface AvueFormColumn<T = any, K = PropKeyType<T>, D = FormRowData<T>> extends Partial<FormItemProps> {
     /** 标题名称 */
     label?: string
     /** 列字段(唯一不重复) */
@@ -33,6 +33,8 @@ declare module '@smallwei/avue' {
     size?: ElSize
     /** 栅格占据的列数 */
     span?: number
+    /** 移动端栅格占据的列数 */
+    xsSpan?: number
     /** 栅格间隔 */
     gutter?: number
     /** 栅格左侧的间隔格数 */
@@ -154,7 +156,7 @@ declare module '@smallwei/avue' {
     [x: string]: any
   }
 
-  export interface AvueFormOption<T = any> {
+  export interface AvueFormOption<T = any> extends Partial<Omit<FormProps, 'model' | 'rules'>> {
     /** 组件大小 */
     size?: ElSize
     /** 表单项配置 */
@@ -199,6 +201,8 @@ declare module '@smallwei/avue' {
     detail?: boolean
     /** 栅格 */
     span?: number
+    /** 移动端栅格 */
+    xsSpan?: number
     /** 间隔 */
     gutter?: number
     /** 表单只读 */
@@ -265,8 +269,7 @@ declare module '@smallwei/avue' {
     /** 表单校验错误事件 */
     'error': (msg: string) => any
     /** 更新配置项结构 */
-    'update:defaults': (defaluts: AvueFormDefaults<T>) => any
-
+    'update:defaults': (defaults: AvueFormDefaults<T>) => any
   }
 
   export interface AvueFormData<T = any, D = TableRowData<T>> {

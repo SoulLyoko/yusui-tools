@@ -26,20 +26,27 @@ const tableOption: AvueCrudOption<User> = {
   searchShowBtn: false,
   gridBtn: false,
   menuType: 'menu',
-  column: [{
-    label: '名称',
-    prop: 'name',
-    labelWidth: 400,
-    search: true,
-    searchLabelWidth: 300,
-    searchSpan: 24,
-    span: 24,
-    dicData: [{ label: '管理员', value: 'admin' }],
-    rules: [{ required: true }],
-    formatter(row) {
-      return row.name
+  column: [
+    {
+      label: '名称',
+      prop: 'name',
+      labelWidth: 400,
+      search: true,
+      searchLabelWidth: 300,
+      searchSpan: 24,
+      span: 24,
+      dicData: [{ label: '管理员', value: 'admin' }],
+      rules: [{ required: true }],
+      formatter(row) {
+        return row.name
+      },
     },
-  }],
+    {
+      label: '不存在的字段',
+      // @ts-expect-error
+      prop: 'notExist',
+    },
+  ],
 }
 const crudRef = ref<AvueCrudInstance<User>>()
 crudRef.value?.dicInit()
