@@ -29,6 +29,6 @@
   "devDependencies": {
     "@dcloudio/uni-mp-vue": "vue3",
     "@dcloudio/uni-ui": "^1.5.2",
-    "uview-plus": "^3.2.16"
+    "uview-plus": "^3.2.22"
   }
 }

@@ -41,7 +41,7 @@
     "@smallwei/avue": "^3.4.2",
     "@types/file-saver": "^2.0.7",
     "element-plus": "^2.7.0",
-    "sass": "^1.77.0",
+    "sass": "^1.77.1",
     "vue": "^3.4.27"
   }
 }
