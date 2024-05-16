@@ -1,3 +1,14 @@
+# [3.0.0-beta.38](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.37...v3.0.0-beta.38) (2024-05-16)
+
+
+### Bug Fixes
+
+* **form-design:** editor-setter中useAttrs的问题 ([a31abaa](https://github.com/SoulLyoko/yusui-tools/commit/a31abaaef5a99b950433e225568416338737bb69))
+* **types:** avue types ([ce1fa4f](https://github.com/SoulLyoko/yusui-tools/commit/ce1fa4f0473a759565d9a655d0f40975fa57ccde))
+* **use-crud:** beforeSearchReset和 ([c2096e5](https://github.com/SoulLyoko/yusui-tools/commit/c2096e525da3daffb9553781ddacfcf92e59cd4d))
+
+
+
 # [3.0.0-beta.37](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.36...v3.0.0-beta.37) (2024-05-10)
 
 
