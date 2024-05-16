@@ -6,12 +6,15 @@ import { useGraphData } from './data'
 const graphData = useGraphData()
 
 const styles = computed(() => {
-  return graphData.value.flowElementList?.map((item) => {
-    return {
-      id: item.key,
-      style: { fill: 'lightgreen' },
-    }
-  })
+  const startNode = graphData.value.flowElementList?.[0]
+  const taskNode = graphData.value.flowElementList?.[1]
+  const noexistNode = { key: 'noexist' }
+  return [
+    { id: startNode?.key, style: { fill: 'lightgreen' } },
+    { id: taskNode?.key, style: { fill: 'lightgreen' } },
+    { id: noexistNode.key, style: { fill: 'red' } }, // 不存在的节点不会被设置
+    { id: taskNode?.key, style: { fill: 'lightblue' } },
+  ]
 })
 const tooltips = computed(() => {
   return graphData.value.flowElementList?.map((item) => {
