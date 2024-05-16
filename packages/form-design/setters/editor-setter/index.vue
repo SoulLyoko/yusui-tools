@@ -44,13 +44,14 @@ const options = computed(() => {
   }
 })
 
+const attrs = useAttrs()
 const editorProps = computed(() => {
   return {
     value: editorValue.value,
     options: options.value,
     defaultLanguage: 'javascript',
     onMount: onEditorMount,
-    ...useAttrs(),
+    ...attrs,
   }
 })
 
