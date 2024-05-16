@@ -106,7 +106,7 @@ export interface UseCrudMethodsOptions<T, P> {
   filterRow?: (row: T) => T
   filterParams?: (params: P) => P
   searchChange?: (form: P, done: () => void) => any
-  searchReset?: () => any
+  searchReset?: (form: P) => any
   selectionChange?: AvueCrudEmits<T>['selection-change']
   pageSizeChange?: AvueCrudEmits<T>['size-change']
   pageCurrentChange?: AvueCrudEmits<T>['current-change']

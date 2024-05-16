@@ -54,21 +54,21 @@ export function useHooks<T, P>() {
   const afterBatchDel = (cb: (res: any) => Promise<any> | any | void) => {
     emitter.on('afterBatchDel', async (...arg) => await cb?.(...arg))
   }
-  /** 搜索前 beforeSearch(()=>{})  */
-  const beforeSearch = (cb: () => Promise<any> | any | void) => {
-    emitter.on('beforeSearch', async () => await cb?.())
+  /** 搜索前 beforeSearch((searchForm)=>{})  */
+  const beforeSearch = (cb: (searchForm: P) => Promise<any> | any | void) => {
+    emitter.on('beforeSearch', async (...arg) => await cb?.(...arg))
   }
-  /** 搜索后 afterSearch(()=>{})  */
-  const afterSearch = (cb: () => Promise<any> | any | void) => {
-    emitter.on('afterSearch', async () => await cb?.())
+  /** 搜索后 afterSearch((searchForm)=>{})  */
+  const afterSearch = (cb: (searchForm: P) => Promise<any> | any | void) => {
+    emitter.on('afterSearch', async (...arg) => await cb?.(...arg))
   }
-  /** 搜索重置前 beforeSearchReset(()=>{})  */
-  const beforeSearchReset = (cb: () => Promise<any> | any | void) => {
-    emitter.on('beforeSearch', async () => await cb?.())
+  /** 搜索重置前 beforeSearchReset((searchForm)=>{})  */
+  const beforeSearchReset = (cb: (searchForm: P) => Promise<any> | any | void) => {
+    emitter.on('beforeSearchReset', async (...arg) => await cb?.(...arg))
   }
-  /** 搜索重置后 afterSearchReset(()=>{})  */
-  const afterSearchReset = (cb: () => Promise<any> | any | void) => {
-    emitter.on('afterSearch', async () => await cb?.())
+  /** 搜索重置后 afterSearchReset((searchForm)=>{})  */
+  const afterSearchReset = (cb: (searchForm: P) => Promise<any> | any | void) => {
+    emitter.on('afterSearchReset', async (...arg) => await cb?.(...arg))
   }
   /** 打开弹窗前 beforeOpen((type)=>{}) */
   const beforeOpen = (cb: (type: FormType) => Promise<any> | any | void) => {
