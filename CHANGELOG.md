@@ -1,3 +1,15 @@
+# [3.0.0-beta.39](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.37...v3.0.0-beta.39) (2024-05-22)
+
+
+### Bug Fixes
+
+* **flow-design:** 找不到节点时不更新样式 ([c3eb6df](https://github.com/SoulLyoko/yusui-tools/commit/c3eb6df4559e06882f48e2e8615155878880f56e))
+* **form-design:** editor-setter中useAttrs的问题 ([2c7353f](https://github.com/SoulLyoko/yusui-tools/commit/2c7353f35bc73901b8e80daad4b5f3a97c338267))
+* **types:** avue types ([1959977](https://github.com/SoulLyoko/yusui-tools/commit/1959977b38d01a28fa26875a31b6b304e5e216f0))
+* **use-crud:** beforeSearchReset和 ([748c995](https://github.com/SoulLyoko/yusui-tools/commit/748c99521437b55189910c5a563c9756b216f28c))
+
+
+
 # [3.0.0-beta.38](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.37...v3.0.0-beta.38) (2024-05-16)
 
 
