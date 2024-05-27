@@ -758,7 +758,7 @@ declare module '@smallwei/avue' {
     'empty': () => VNode[]
     /** 展开插槽 */
     'expand': (props: { row: D, index: number }) => VNode[]
-    /** 菜单插槽 */
+    /** 菜单列插槽 */
     'menu': (props: {
       row: D
       column: TableColumnCtx<T> & AvueCrudColumn<T>
@@ -767,16 +767,24 @@ declare module '@smallwei/avue' {
       size: ElSize
       index: number
     }) => VNode[]
+    /** 菜单列左侧插槽 */
+    'menu-before': AvueCrudSlots<T>['menu']
     /** 表单菜单插槽 */
     'menu-form': (props: { disabled: boolean, size: ElSize, type: FormType }) => VNode[]
+    /** 表单菜单左侧插槽 */
+    'menu-form-before': AvueCrudSlots<T>['menu-form']
     /** 表格头部插槽 */
     'header': () => VNode[]
+    /** 表格主体插槽 */
+    'body': () => VNode[]
     /** 表格底部部插槽 */
     'footer': () => VNode[]
     /** 分页插槽 */
     'page': () => VNode[]
     /** 下拉菜单插槽 */
     'menu-btn': AvueCrudSlots<T>['menu']
+    /** 下拉菜单左侧插槽 */
+    'menu-btn-before': AvueCrudSlots<T>['menu']
     /** 左侧菜单插槽 */
     'menu-left': (props: { size: ElSize }) => VNode[]
     /** 右侧菜单插槽 */
