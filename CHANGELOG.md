@@ -1,3 +1,14 @@
+# [3.0.0-beta.40](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.39...v3.0.0-beta.40) (2024-05-27)
+
+
+### Bug Fixes
+
+* **flow-design:** 升级avue导致子表单套子表单报错 ([38451e5](https://github.com/SoulLyoko/yusui-tools/commit/38451e58036fe3adafbb74147a5257aa6b3e53e7))
+* **pro-crud:** footer插槽改为body插槽 ([bbdb366](https://github.com/SoulLyoko/yusui-tools/commit/bbdb36681bebeeb3c5ab4da0cf7bbe9fd3d1b385))
+* **types:** avue types ([6973c11](https://github.com/SoulLyoko/yusui-tools/commit/6973c11c4447b67186a00ab5fd813c33f0cb34c4))
+
+
+
 # [3.0.0-beta.39](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.37...v3.0.0-beta.39) (2024-05-22)
 
 
