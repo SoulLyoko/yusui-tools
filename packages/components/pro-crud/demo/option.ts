@@ -1,12 +1,12 @@
 import type { ProCrudOption } from '../types'
 
 export const data = [
-  { avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
-  { avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
-  { avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
-  { avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
-  { avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
-  { avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
 ]
 export const option: ProCrudOption = {
   viewBtn: false,

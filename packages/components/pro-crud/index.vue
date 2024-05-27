@@ -26,10 +26,7 @@ onMounted(() => {
 
 <template>
   <avue-crud ref="crudRef" class="pro-crud" :class="{ 'is-card': isCard, 'is-list': isList }" :option="option" :data="data">
-    <template v-for="(slot, slotName) in slots" #[slotName]="slotProps">
-      <slot :name="slotName" v-bind="slotProps" />
-    </template>
-    <template v-if="isCard || isList" #footer>
+    <template v-if="isCard || isList" #body>
       <CrudCard v-if="isCard">
         <template v-for="(slot, slotName) in slots" #[slotName]="slotProps">
           <slot :name="slotName" v-bind="any(slotProps)" />
@@ -41,7 +38,9 @@ onMounted(() => {
         </template>
       </CrudList>
       <el-empty v-if="!data?.length" description="暂无数据" />
-      <slot name="footer" />
+    </template>
+    <template v-for="(slot, slotName) in slots" #[slotName]="slotProps">
+      <slot :name="slotName" v-bind="slotProps" />
     </template>
   </avue-crud>
 </template>
