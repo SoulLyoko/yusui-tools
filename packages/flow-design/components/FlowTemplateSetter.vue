@@ -10,7 +10,7 @@ import { useInjectState } from '../composables/state'
 import { formColumnToDic, getFormColumn } from '../utils'
 
 const props = defineProps<{ modelValue: TemplateItem[], dataKey?: string }>()
-const { modelValue: tableData } = useVModels(props, undefined, { defaultValue: [] })
+const { modelValue: tableData } = useVModels(props)
 
 const TemplateSelect = defineComponent({
   props: {
@@ -50,12 +50,15 @@ const tableOption = computed(() => {
         prop: 'children',
         type: 'dynamic',
         span: 24,
-        children: {
-          column: [
-            { label: '模板书签', prop: 'label' },
-            { label: '表单字段', prop: 'value', type: 'select', dicData: propDic, filterable: true },
-            { label: '默认值', prop: 'defaultValue' },
-          ],
+        value: [],
+        params: {
+          children: {
+            column: [
+              { label: '模板书签', prop: 'label' },
+              { label: '表单字段', prop: 'value', type: 'select', dicData: propDic, filterable: true },
+              { label: '默认值', prop: 'defaultValue' },
+            ],
+          },
         },
       },
     ],
