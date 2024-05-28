@@ -1,15 +1,15 @@
 import type { App } from 'vue'
 
-import ContextMenu from './context-menu/index.vue'
-import IconSelect from './icon-select/index.vue'
-import ProCrud from './pro-crud/index.vue'
-import ProDict from './pro-dict/index.vue'
-import ProHtml from './pro-html/index.vue'
-import ProMenu from './pro-menu/index.vue'
-import ProText from './pro-text/index.vue'
-import ProTree from './pro-tree/index.vue'
+import { ContextMenu, IconSelect, ProCrud, ProDict, ProHtml, ProMenu, ProText, ProTree } from '.'
 
-export { ContextMenu, IconSelect, ProCrud, ProDict, ProHtml, ProMenu, ProText, ProTree }
+export * from './context-menu'
+export * from './icon-select'
+export * from './pro-crud'
+export * from './pro-dict'
+export * from './pro-html'
+export * from './pro-menu'
+export * from './pro-text'
+export * from './pro-tree'
 
 export default {
   install(app: App) {
