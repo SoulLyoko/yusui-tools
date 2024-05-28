@@ -19,13 +19,15 @@ export function mittAsync<Events extends Record<EventType, unknown>>(all?: Event
   const inst = mitt<Events>(all) as EmitterAsync<Events>
   inst.emitAsync = async function (type, e) {
     const typeHandlers = this.all.get(type)
-    if (typeHandlers)
+    if (typeHandlers) {
       // @ts-ignore
       for (const f of typeHandlers) await f(e)
+    }
     const anyHandlers = this.all.get('*')
-    if (anyHandlers)
+    if (anyHandlers) {
       // @ts-ignore
       for (const f of anyHandlers) await f(type, e)
+    }
   }
   return inst
 }

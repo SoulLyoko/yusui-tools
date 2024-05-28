@@ -28,7 +28,7 @@
     "@iconify/vue": "^4.1.2",
     "@logicflow/core": "^1.2.27",
     "@logicflow/extension": "^1.2.27",
-    "@vueuse/core": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "dagre": "^0.8.5",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@smallwei/avue": "^3.4.3",
     "@types/file-saver": "^2.0.7",
-    "element-plus": "^2.7.0",
+    "element-plus": "^2.7.3",
     "sass": "^1.77.2",
     "vue": "^3.4.27"
   }

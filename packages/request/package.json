@@ -26,7 +26,7 @@
   "dependencies": {
     "@umijs/openapi": "^1.12.1",
     "axios": "^1.7.2",
-    "element-plus": "^2.7.0",
+    "element-plus": "^2.7.3",
     "vue-request": "^2.0.4"
   },
   "devDependencies": {

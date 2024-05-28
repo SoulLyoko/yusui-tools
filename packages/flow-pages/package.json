@@ -15,7 +15,7 @@
   "module": "index.ts",
   "dependencies": {
     "@iconify/vue": "^4.1.2",
-    "@vueuse/core": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
     "@yusui/composables": "workspace:*",
     "@yusui/flow-design": "workspace:*",
     "@yusui/form-design": "workspace:*",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@smallwei/avue": "^3.4.3",
     "@types/lodash-es": "^4.17.12",
-    "element-plus": "^2.7.0",
+    "element-plus": "^2.7.3",
     "sass": "^1.77.2",
     "vue": "^3.4.27"
   }
