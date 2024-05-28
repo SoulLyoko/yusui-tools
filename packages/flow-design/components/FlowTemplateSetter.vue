@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TemplateItem } from '../types'
 
-import { computed, defineComponent, h } from 'vue'
+import { computed, defineComponent, h, resolveComponent } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { set } from 'lodash-unified'
 import { ProDict } from '@yusui/components'
@@ -36,31 +36,41 @@ const allColumn = computed(() => {
   return formOptions.map(e => getFormColumn(e)).flat()
 })
 
+const TemplateChildrenSetter = defineComponent({
+  props: {
+    modelValue: { type: Array, default: () => [] },
+  },
+  emits: ['update:modelValue'],
+  setup() {
+    const propDic = formColumnToDic(allColumn.value ?? [])
+    const option = {
+      column: [
+        { label: '模板书签', prop: 'label' },
+        { label: '表单字段', prop: 'value', type: 'select', dicData: propDic, filterable: true },
+        { label: '默认值', prop: 'defaultValue' },
+      ],
+    }
+
+    return { option }
+  },
+  render() {
+    return h(resolveComponent('avue-dynamic'), {
+      'modelValue': this.modelValue,
+      'children': this.option,
+      'onUpdate:modelValue': (val: any) => this.$emit('update:modelValue', val),
+    })
+  },
+})
+
 const tableOption = computed(() => {
   // @ts-ignore
   const templateDic = dataOptions.value?.[props.dataKey] ?? []
-  const propDic = formColumnToDic(allColumn.value ?? [])
   return {
     type: 'form',
     index: false,
     column: [
       { label: '模板', prop: 'value', type: 'select', dicData: templateDic, component: TemplateSelect },
-      {
-        label: '字段映射',
-        prop: 'children',
-        type: 'dynamic',
-        span: 24,
-        value: [],
-        params: {
-          children: {
-            column: [
-              { label: '模板书签', prop: 'label' },
-              { label: '表单字段', prop: 'value', type: 'select', dicData: propDic, filterable: true },
-              { label: '默认值', prop: 'defaultValue' },
-            ],
-          },
-        },
-      },
+      { label: '字段映射', prop: 'children', type: 'dynamic', span: 24, value: [], component: TemplateChildrenSetter },
     ],
   }
 })

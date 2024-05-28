@@ -34,7 +34,6 @@ const option = computed(() => {
     <template #reference>
       <el-button>更多</el-button>
     </template>
-    <!-- eslint-disable-next-line vue/no-mutating-props -->
     <avue-form v-model="form" :option="option" />
   </el-popover>
 </template>
