@@ -45,6 +45,12 @@ aside: false
 | subtitle       | 副标题字段名或通过函数返回内容 | string\|(row,index)=>any |                    |          |
 | content        | 内容字段名或通过函数返回内容   | string\|(row,index)=>any |                    |          |
 | actionPosition | 菜单位置                       | string                   | 'header'\|'footer' | 'footer' |
+| size           | 组件大小                       | string                   |                    |          |
+| labelWidth     | 标题宽度                       | string\|number           |                    |          |
+| labelPosition  | 标题位置                       | string                   |                    |          |
+| labelSuffix    | 标题后缀                       | string                   |                    |          |
+| span           | 栅格                           | number                   |                    | 6        |
+| gutter         | 间隔                           | number                   |                    | 10       |
 
 ## CrudListOption
 

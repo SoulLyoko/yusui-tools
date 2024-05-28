@@ -92,8 +92,8 @@
   }
 
   .avue-upload {
-    .avue-upload--list .el-upload {
-      background-color: unset;
+    .el-upload {
+      background-color: unset !important;
       border-color: var(--el-border-color);
     }
   }

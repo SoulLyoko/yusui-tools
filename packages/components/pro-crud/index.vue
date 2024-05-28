@@ -3,7 +3,7 @@ import type { AvueCrudInstance, AvueCrudMethods } from '@smallwei/avue'
 import type { ProCrudProps, ProCrudSlots } from './types'
 
 import { computed, onMounted, reactive, ref } from 'vue'
-import { pickBy } from 'lodash-unified'
+import { isFunction, pickBy } from 'lodash-unified'
 
 import CrudCard from './components/CrudCard.vue'
 import CrudList from './components/CrudList.vue'
@@ -19,7 +19,7 @@ const crudRef = ref<AvueCrudInstance>()
 const methods = reactive({} as AvueCrudMethods)
 defineExpose(methods)
 onMounted(() => {
-  const crudMethods = pickBy(crudRef.value ?? {}, value => typeof value === 'function')
+  const crudMethods = pickBy(crudRef.value ?? {}, isFunction)
   Object.assign(methods, crudMethods)
 })
 </script>
@@ -37,7 +37,7 @@ onMounted(() => {
           <slot :name="slotName" v-bind="any(slotProps)" />
         </template>
       </CrudList>
-      <el-empty v-if="!data?.length" description="暂无数据" />
+      <el-empty v-if="!data?.length" class="pro-crud__empty" :description="option?.emptyText" />
     </template>
     <template v-for="(slot, slotName) in slots" #[slotName]="slotProps">
       <slot :name="slotName" v-bind="slotProps" />

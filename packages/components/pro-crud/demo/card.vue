@@ -1,46 +1,65 @@
 <script setup lang="ts">
+import type { ProCrudOption } from '@yusui/components'
+
+import { useCrud } from '@yusui/composables'
 import { ref } from 'vue'
 
-import { cardOption, data, option, page, permission } from './option'
+const option: ProCrudOption = {
+  type: 'card',
+  viewBtn: true,
+  span: 24,
+  cardOption: {
+    actionPosition: 'footer',
+    icon: 'avatar',
+    title: 'name',
+    subtitle: '$sex',
+    // content: 'remark',
+  },
+  column: [
+    {
+      label: '头像',
+      prop: 'avatar',
+      type: 'upload',
+      listType: 'picture-img',
+    },
+    {
+      label: '名称',
+      prop: 'name',
+    },
+    {
+      label: '性别',
+      prop: 'sex',
+      type: 'select',
+      dicData: [
+        { label: '男', value: 1 },
+        { label: '女', value: 0 },
+      ],
+    },
+    {
+      label: '备注',
+      prop: 'remark',
+      hide: true,
+    },
+  ],
+}
 
-const defaults = ref({})
+const data = [
+  { id: '1', avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { id: '2', avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { id: '3', avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { id: '4', avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { id: '5', avatar: 'https://p.qqan.com/up/2020-11/16043833185056669.jpg', name: '张三', sex: 1, remark: '备注备注备注备注备注备注备注备注备注备注' },
+  { id: '6', avatar: 'https://p.qqan.com/up/2020-12/16070652272519101.jpg', name: '李四', sex: 0, remark: '备注备注备注备注备注备注备注备注备注备注' },
+]
+
+const crudRef = ref()
+const { bindVal, getDataList } = useCrud({
+  tableOption: option,
+  mockData: data,
+})
+getDataList()
 </script>
 
 <template>
-  <ProCrud
-    v-model:defaults="defaults" :data="data" :option="cardOption" :page="page"
-    :permission="permission"
-  >
-    <template #menu-left>
-      菜单位置:
-      <el-radio-group v-model="option.cardOption!.actionPosition">
-        <el-radio label="header">
-          头部
-        </el-radio>
-        <el-radio label="footer">
-          底部
-        </el-radio>
-      </el-radio-group>
-      菜单类型:
-      <el-radio-group v-model="option.menuType">
-        <el-radio label="text">
-          文字
-        </el-radio>
-        <el-radio label="icon">
-          图标
-        </el-radio>
-        <el-radio label="button">
-          按钮
-        </el-radio>
-        <el-radio label="menu">
-          下拉
-        </el-radio>
-      </el-radio-group>
-    </template>
-    <template #menu-btn>
-      <el-dropdown-item icon="el-icon-plus">
-        新增下级
-      </el-dropdown-item>
-    </template>
-  </ProCrud>
+  <ProCrud v-bind="bindVal" ref="crudRef" />
 </template>

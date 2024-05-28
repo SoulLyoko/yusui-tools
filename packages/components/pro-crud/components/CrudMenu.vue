@@ -9,7 +9,7 @@ import { useCrudInstance } from '../composables'
 const props = defineProps<{ row: T, index: number }>()
 defineSlots<CrudMenuSlots<T>>()
 
-const $AVUE = getCurrentInstance()?.proxy?.$AVUE ?? {} as any
+const $AVUE = getCurrentInstance()!.proxy!.$AVUE
 const { crudRef, tableOption, getPermission } = useCrudInstance()
 
 const menuType = computed(() => {
