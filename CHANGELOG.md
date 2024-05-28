@@ -1,3 +1,18 @@
+# [3.0.0-beta.41](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.40...v3.0.0-beta.41) (2024-05-28)
+
+
+### Bug Fixes
+
+* **flow-design:** 升级element-plus导致子表单套子表单报错 ([c6f52f7](https://github.com/SoulLyoko/yusui-tools/commit/c6f52f7eebe3c1abc5b6f1c638ab769d8482ffe0))
+* **pro-crud:** 空数据时隐藏原来的empty ([4b244f8](https://github.com/SoulLyoko/yusui-tools/commit/4b244f8b68c3218b2922e1cb4ff9455f769c1d1b))
+
+
+### Features
+
+* **components:** 导出所有组件及相关函数 ([24f9e95](https://github.com/SoulLyoko/yusui-tools/commit/24f9e9531cf83dfce1855be2c6d813031f668941))
+
+
+
 # [3.0.0-beta.40](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.39...v3.0.0-beta.40) (2024-05-27)
 
 
