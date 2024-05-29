@@ -5,6 +5,7 @@ import { computed, onUnmounted, ref, watchEffect } from 'vue'
 import { useFileDialog, useVModels } from '@vueuse/core'
 import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
 import { saveAs } from 'file-saver'
+import { ElMessageBox } from 'element-plus'
 
 const props = withDefaults(
   defineProps<{
@@ -28,7 +29,9 @@ function onConfirm() {
   visible.value = false
 }
 watchEffect(() => {
-  jsonForEdit.value = JSON.stringify(modelValue.value, null, 2)
+  if (visible.value) {
+    jsonForEdit.value = JSON.stringify(modelValue.value, null, 2)
+  }
 })
 
 const editorProps = computed(() => {
@@ -43,26 +46,19 @@ const editorProps = computed(() => {
   }
 })
 
-function handleResetAssignee() {
-  modelValue.value?.flowElementList?.forEach((item) => {
-    if (item.properties?.assignee)
-      item.properties.assignee = []
+async function handleResetProperties() {
+  const { value } = await ElMessageBox.prompt('请输入重置的属性', '重置属性', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    inputPlaceholder: 'features、fields、assignee、property等',
+    inputPattern: /.+/,
+    inputErrorMessage: '请输入属性名称',
   })
-  modelValue.value = { ...modelValue.value }
-}
-function handleResetButton() {
-  modelValue.value?.flowElementList?.forEach((item) => {
-    if (item.properties?.button)
-      item.properties.button = []
+  const data: TurboData = JSON.parse(jsonForEdit.value)
+  data.flowElementList?.forEach((item) => {
+    delete item.properties?.[value]
   })
-  modelValue.value = { ...modelValue.value }
-}
-function handleResetFormProperty() {
-  modelValue.value?.flowElementList?.forEach((item) => {
-    if (item.properties?.formProperty)
-      item.properties.formProperty = []
-  })
-  modelValue.value = { ...modelValue.value }
+  jsonForEdit.value = JSON.stringify(data, null, 2)
 }
 
 const { open: handleImport, onChange: onFileChange, reset } = useFileDialog({ multiple: false, accept: '.json' })
@@ -84,38 +80,15 @@ function handleExport() {
     <template #header>
       <span>编辑配置</span>
       <el-space>
-        <el-dropdown>
-          <el-button type="primary" icon="el-icon-refresh">
-            重置字段
-          </el-button>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item disabled>
-                <el-text tag="strong">
-                  重置后将实时生效
-                </el-text>
-              </el-dropdown-item>
-              <el-dropdown-item icon="el-icon-avatar" @click="handleResetAssignee">
-                重置人员配置
-              </el-dropdown-item>
-              <el-dropdown-item icon="el-icon-info-filled" @click="handleResetButton">
-                重置按钮配置
-              </el-dropdown-item>
-              <el-dropdown-item icon="el-icon-list" @click="handleResetFormProperty">
-                重置表单配置
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
+        <el-button type="primary" icon="el-icon-refresh" @click="handleResetProperties">
+          重置配置属性
+        </el-button>
         <el-button type="primary" icon="el-icon-upload" @click="handleImport()">
           导入配置
         </el-button>
-
         <el-button type="primary" icon="el-icon-download" @click="handleExport">
           导出配置
         </el-button>
-
         <el-button type="primary" icon="el-icon-check" style="margin-right:8px" @click="onConfirm">
           确定
         </el-button>
