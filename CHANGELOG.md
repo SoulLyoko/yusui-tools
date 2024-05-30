@@ -1,3 +1,13 @@
+# [3.0.0-beta.42](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.41...v3.0.0-beta.42) (2024-05-30)
+
+
+### Features
+
+* **flow-design:** 编辑json重置配置属性可自由输入属性 ([57ccd59](https://github.com/SoulLyoko/yusui-tools/commit/57ccd59b50d1378d4b0ea561b7d67f24604bf52d))
+* **flow-design:** 表单配置可设置为默认值 ([40d7e55](https://github.com/SoulLyoko/yusui-tools/commit/40d7e55b35f664c4aaad9db43482d9691e144c89))
+
+
+
 # [3.0.0-beta.41](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.40...v3.0.0-beta.41) (2024-05-28)
 
 
