@@ -11,6 +11,6 @@ export const formPropertyColumn: AvueFormColumn<FlowFormData>[] = [
     type: 'dynamic',
     component: FlowFormProperty,
     value: [],
-    tip: '需要覆盖默认表单配置时从这里添加',
+    tip: '需要覆盖默认表单字段配置时从这里添加',
   },
 ]

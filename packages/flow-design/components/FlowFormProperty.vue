@@ -2,13 +2,12 @@
 import type { AvueFormOption, DicItem } from '@smallwei/avue'
 import type { FormPropertyItem } from '../types'
 
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { createReusableTemplate, useVModels } from '@vueuse/core'
-import { filterTree, sleep } from '@yusui/utils'
+import { filterTree } from '@yusui/utils'
 
 import { useInjectState } from '../composables/state'
 import { formColumnToDic } from '../utils'
-import { defaultFormProperty } from '../constants'
 import FlowCheckbox from './FlowCheckbox.vue'
 import FlowFormPropertyExtra from './FlowFormPropertyExtra.vue'
 
@@ -26,28 +25,32 @@ const formOptions = computed(() => {
   return dataOptions.value?.formOptions?.filter(e => e.prop) ?? []
 })
 
-const activeTab = ref(0)
+// onMounted(async () => {
+//   await sleep()
+//   tableDataModel.value = formOptions.value.map((option) => {
+//     return {
+//       ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail', 'readonly']),
+//       children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
+//     }
+//   })
+// })
 
-onMounted(async () => {
-  await sleep()
-  // tableDataModel.value = formOptions.value.map((option) => {
-  //   return {
-  //     ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail', 'readonly']),
-  //     children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
-  //   }
-  // })
-})
+const activeTab = ref(0)
 
 const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
   const formOption = formOptions.value[activeTab.value]
   const propDic = formColumnToDic(formOption?.column ?? [])
   return {
     menuBtn: false,
+    labelWidth: 120,
+    span: 8,
     column: [
-      { label: '表单显示', prop: 'display', type: 'switch', value: true, span: 6 },
-      { label: '表单禁用', prop: 'disabled', type: 'switch', value: false, span: 6 },
-      { label: '表单详情', prop: 'detail', type: 'switch', value: false, span: 6 },
-      { label: '表单只读', prop: 'readonly', type: 'switch', value: false, span: 6 },
+      { label: '表单显示', prop: 'display', component: FlowCheckbox, labelTip: '不受字段配置控制' },
+      { label: '表单禁用', prop: 'disabled', component: FlowCheckbox, labelTip: '不受字段配置控制' },
+      { label: '表单详情', prop: 'detail', component: FlowCheckbox, labelTip: '不受字段配置控制' },
+      { label: '全部字段显示', prop: 'allDisplay', component: FlowCheckbox, labelTip: '可通过字段配置覆盖' },
+      { label: '全部字段禁用', prop: 'allDisabled', component: FlowCheckbox, labelTip: '可通过字段配置覆盖' },
+      { label: '全部字段详情', prop: 'allDetail', component: FlowCheckbox, labelTip: '可通过字段配置覆盖' },
       {
         prop: 'children',
         type: 'dynamic',
@@ -60,14 +63,10 @@ const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
           align: 'center',
           column: [
             { label: '', prop: 'prop', component: PropSelect, dicData: propDic },
-            { label: '显示', prop: 'display', width: 60, component: FlowCheckbox },
-            { label: '禁用', prop: 'disabled', width: 60, component: FlowCheckbox },
-            { label: '详情', prop: 'detail', width: 60, component: FlowCheckbox },
-            { label: '只读', prop: 'readonly', width: 60, component: FlowCheckbox },
-            { label: '必填', prop: 'required', width: 60, component: FlowCheckbox },
-            { label: '校验', prop: 'validate', width: 60, component: FlowCheckbox },
-            // { label: '通过时更新值', prop: 'upSend', width: 110, placeholder: '请输入' },
-            // { label: '接收时更新值', prop: 'upReceive', width: 110, placeholder: '请输入' },
+            { label: '显示', prop: 'display', width: 80, component: FlowCheckbox },
+            { label: '禁用', prop: 'disabled', width: 80, component: FlowCheckbox },
+            { label: '详情', prop: 'detail', width: 80, component: FlowCheckbox },
+            { label: '必填', prop: 'required', width: 80, component: FlowCheckbox },
             { label: '其它', prop: '', width: 100, component: FlowFormPropertyExtra },
           ],
         },
@@ -77,7 +76,7 @@ const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
 })
 
 function handleAdd() {
-  tableDataModel.value[activeTab.value]?.children?.push({ ...defaultFormProperty })
+  tableDataModel.value[activeTab.value]?.children?.push({ $cellEdit: true })
 }
 
 function handleAddChild(prop: string) {
@@ -86,7 +85,7 @@ function handleAddChild(prop: string) {
     return
   if (!row?.children)
     row.children = []
-  row.children.push({ ...defaultFormProperty, $cellEdit: true } as any)
+  row.children.push({ $cellEdit: true })
 }
 
 function handleDel(prop: string) {
@@ -108,18 +107,16 @@ function showAddChildBtn(prop: string, dic: DicItem[]) {
     </div>
   </DefinePropSelect>
 
-  <div>
-    <el-tabs v-model="activeTab">
-      <el-tab-pane v-for="(item, index) in formOptions" :key="index" :label="item.label" :name="index">
-        <avue-form v-model="tableDataModel[index]" :option="tableFormOption">
-          <template #children-label>
-            <div style="position:absolute;left:20px;top:4px;z-index:10;">
-              <el-button type="primary" icon="el-icon-plus" size="small" circle @click="handleAdd" />
-              <strong> 字段</strong>
-            </div>
-          </template>
-        </avue-form>
-      </el-tab-pane>
-    </el-tabs>
-  </div>
+  <el-tabs v-model="activeTab">
+    <el-tab-pane v-for="(item, index) in formOptions" :key="index" :label="item.label" :name="index" lazy>
+      <avue-form v-model="tableDataModel[index]" :option="tableFormOption">
+        <template #children-label>
+          <div style="position:absolute;left:20px;top:4px;z-index:10;">
+            <el-button type="primary" icon="el-icon-plus" size="small" circle @click="handleAdd" />
+            <strong> 字段配置</strong>
+          </div>
+        </template>
+      </avue-form>
+    </el-tab-pane>
+  </el-tabs>
 </template>

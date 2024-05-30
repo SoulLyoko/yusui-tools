@@ -104,9 +104,10 @@ export interface FormPropertyItem extends Record<string, any> {
   display?: boolean
   disabled?: boolean
   detail?: boolean
-  readonly?: boolean
   required?: boolean
-  validate?: boolean
+  allDisplay?: boolean
+  allDisabled?: boolean
+  allDetail?: boolean
   children?: FormPropertyItem[]
 }
 
