@@ -2,9 +2,9 @@
 import type { AvueFormOption, DicItem } from '@smallwei/avue'
 import type { FormPropertyItem } from '../types'
 
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { createReusableTemplate, useVModels } from '@vueuse/core'
-import { filterTree } from '@yusui/utils'
+import { filterTree, sleep } from '@yusui/utils'
 
 import { useInjectState } from '../composables/state'
 import { formColumnToDic } from '../utils'
@@ -12,7 +12,7 @@ import FlowCheckbox from './FlowCheckbox.vue'
 import FlowFormPropertyExtra from './FlowFormPropertyExtra.vue'
 
 const props = defineProps<{ modelValue: FormPropertyItem[] }>()
-const { modelValue: tableDataModel } = useVModels(props, undefined, { defaultValue: { modelValue: () => [] } })
+const { modelValue: tableDataModel } = useVModels(props, undefined, { defaultValue: [] })
 
 const [DefinePropSelect, PropSelect] = createReusableTemplate<{
   'modelValue': string
@@ -25,15 +25,10 @@ const formOptions = computed(() => {
   return dataOptions.value?.formOptions?.filter(e => e.prop) ?? []
 })
 
-// onMounted(async () => {
-//   await sleep()
-//   tableDataModel.value = formOptions.value.map((option) => {
-//     return {
-//       ...pick(option, ['label', 'prop', 'display', 'disabled', 'detail', 'readonly']),
-//       children: mergeFormProperty(option, tableDataModel.value.find(e => e.prop === option.prop)?.children ?? []),
-//     }
-//   })
-// })
+onMounted(async () => {
+  await sleep()
+  tableDataModel.value?.forEach((e, i) => e.prop ??= formOptions.value[i].prop)
+})
 
 const activeTab = ref(0)
 
@@ -108,7 +103,7 @@ function showAddChildBtn(prop: string, dic: DicItem[]) {
   </DefinePropSelect>
 
   <el-tabs v-model="activeTab">
-    <el-tab-pane v-for="(item, index) in formOptions" :key="index" :label="item.label" :name="index" lazy>
+    <el-tab-pane v-for="(item, index) in formOptions" :key="index" :label="item.label" :name="index">
       <avue-form v-model="tableDataModel[index]" :option="tableFormOption">
         <template #children-label>
           <div style="position:absolute;left:20px;top:4px;z-index:10;">
