@@ -1,3 +1,12 @@
+# [3.0.0-beta.43](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.42...v3.0.0-beta.43) (2024-05-30)
+
+
+### Bug Fixes
+
+* **flow-design:** 表单配置的prop丢失 ([fba6dd9](https://github.com/SoulLyoko/yusui-tools/commit/fba6dd9df36dee8c91a598e16b2f05542f46bd8c))
+
+
+
 # [3.0.0-beta.42](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.41...v3.0.0-beta.42) (2024-05-30)
 
 
