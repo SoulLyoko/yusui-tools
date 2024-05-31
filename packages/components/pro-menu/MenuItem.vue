@@ -48,6 +48,8 @@ const debounceEmit = debounce((event, data) => emit(event, data))
     <el-icon v-if="route.meta?.icon" class="pro-menu-icon">
       <Icon :icon="route.meta?.icon" />
     </el-icon>
-    <span class="pro-menu-title">{{ route.meta?.title }}</span>
+    <template #title>
+      <span class="pro-menu-title">{{ route.meta?.title }}</span>
+    </template>
   </el-menu-item>
 </template>
