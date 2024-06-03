@@ -1,3 +1,12 @@
+# [3.0.0-beta.44](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.43...v3.0.0-beta.44) (2024-06-03)
+
+
+### Bug Fixes
+
+* **pro-menu:** 折叠后显示title的tooltip ([938a285](https://github.com/SoulLyoko/yusui-tools/commit/938a2857f0d6410cc0226aaa56e64ff3919107ce))
+
+
+
 # [3.0.0-beta.43](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.42...v3.0.0-beta.43) (2024-05-30)
 
 
