@@ -22,7 +22,7 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
       edgeTextEdit: true,
       plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnElements, TurboAdapter],
       edgeGenerator: (sourceNode, targetNode) => {
-        if (['note', 'serviceTask'].includes(targetNode.type))
+        if (['note', 'serviceTask', 'branchTask'].includes(targetNode.type))
           return 'noteFlow'
       },
     }, props.initOptions)

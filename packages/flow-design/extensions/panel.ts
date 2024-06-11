@@ -41,11 +41,11 @@ export class Panel extends _DndPanel {
         label: '服务任务',
         icon: 'https://api.iconify.design/bpmn/service-task.svg?width=24&height=24',
       },
-      // {
-      //   type: 'circulateTask',
-      //   label: '传阅任务',
-      //   icon: 'https://api.iconify.design/bpmn/manual-task.svg?width=24&height=24',
-      // },
+      {
+        type: 'branchTask',
+        label: '分办任务',
+        icon: 'https://api.iconify.design/bpmn/manual-task.svg?width=24&height=24',
+      },
       {
         type: 'exclusiveGateway',
         label: '互斥网关',

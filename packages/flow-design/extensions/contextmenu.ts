@@ -25,10 +25,10 @@ export class ContextMenu extends _ContextMenu {
       icon: 'https://api.iconify.design/bpmn/service-task.svg',
       type: 'serviceTask',
     }
-    // const circulateTask = {
-    //   icon: 'https://api.iconify.design/bpmn/manual-task.svg',
-    //   type: 'circulateTask',
-    // }
+    const branchTask = {
+      icon: 'https://api.iconify.design/bpmn/manual-task.svg',
+      type: 'branchTask',
+    }
     const exclusiveGateway = {
       icon: 'https://api.iconify.design/bpmn/gateway-xor.svg',
       type: 'exclusiveGateway',
@@ -58,7 +58,7 @@ export class ContextMenu extends _ContextMenu {
       },
     }
 
-    const userTaskMenus = [userTask, serviceTask, /** circulateTask, */ exclusiveGateway, parallelGateway, note, endEvent, copy, remove]
+    const userTaskMenus = [userTask, serviceTask, branchTask, exclusiveGateway, parallelGateway, note, endEvent, copy, remove]
     const serviceTaskMenus = [note, copy, remove]
     this.setContextMenuByType('userTask', userTaskMenus)
     this.setContextMenuByType('serviceTask', serviceTaskMenus)

@@ -6,7 +6,6 @@ import {
   assigneeColumn,
   baseColumn,
   buttonColumn,
-  circulateColumn,
   executionListenerColumn,
   formPropertyColumn,
   gatewayColumn,
@@ -27,7 +26,6 @@ export * from './approval'
 export * from './assignee'
 export * from './base'
 export * from './button'
-export * from './circulate'
 export * from './executionListener'
 export * from './formProperty'
 export * from './gateway'
@@ -75,11 +73,12 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '服务配置', prop: 'serviceGroup', column: serviceTaskColumn },
     { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
   ],
-  circulateTask: [
+  branchTask: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
-    { label: '传阅配置', prop: 'circulateGroup', column: circulateColumn },
+    { label: '人员配置', prop: 'assigneeGroup', column: assigneeColumn },
     { label: '按钮配置', prop: 'buttonGroup', column: buttonColumn },
     { label: '表单配置', prop: 'formPropertyGroup', column: formPropertyColumn },
+    { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
   ],
   sequenceFlow: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
@@ -98,7 +97,6 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
     { label: '套红配置', prop: 'redTemplateGroup', column: redTemplateColumn },
     { label: '执行监听', prop: 'executionListenerGroup', column: executionListenerColumn },
     { label: '扩展属性', prop: 'propertyGroup', column: propertyColumn },
-
   ],
   group: [
     { label: '基本配置', prop: 'baseGroup', column: baseColumn },
