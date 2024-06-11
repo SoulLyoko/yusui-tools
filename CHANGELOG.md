@@ -1,3 +1,12 @@
+# [3.0.0-beta.45](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.44...v3.0.0-beta.45) (2024-06-11)
+
+
+### Features
+
+* **flow-design:** 新增分办任务节点 ([0027f0f](https://github.com/SoulLyoko/yusui-tools/commit/0027f0f674527590ebe1ba978a84854a6d8d3400))
+
+
+
 # [3.0.0-beta.44](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.43...v3.0.0-beta.44) (2024-06-03)
 
 
