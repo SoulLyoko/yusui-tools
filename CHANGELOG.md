@@ -1,3 +1,12 @@
+# [3.0.0-beta.46](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.45...v3.0.0-beta.46) (2024-06-12)
+
+
+### Bug Fixes
+
+* **flow-design:** 调整分办任务图标和noteFlow的文字位置 ([c36b4f3](https://github.com/SoulLyoko/yusui-tools/commit/c36b4f302179ec1b53aa4b2547c4cebbb23f7727))
+
+
+
 # [3.0.0-beta.45](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.44...v3.0.0-beta.45) (2024-06-11)
 
 
