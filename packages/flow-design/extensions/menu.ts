@@ -79,7 +79,7 @@ export class Menu extends _Menu {
       text: '结束',
       icon: true,
       className: 'lf-menu-end-event',
-      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'endEvent', x: ele.x + 150, y: ele.y }),
+      callback: (ele: NodeConfig) => this.addNode(ele, { type: 'endEvent', x: ele.x + 150, y: ele.y, text: '结束' }),
     }
     const addExclusiveGateway = {
       text: '互斥网关',
