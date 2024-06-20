@@ -1,3 +1,13 @@
+# [3.0.0-beta.47](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.46...v3.0.0-beta.47) (2024-06-20)
+
+
+### Bug Fixes
+
+* **flow-design:** 节点的鼠标样式 ([3ef9579](https://github.com/SoulLyoko/yusui-tools/commit/3ef9579e71360e35de53711b9623e9d949f0318b))
+* **flow-design:** 结束节点默认文字 ([2a9b1d1](https://github.com/SoulLyoko/yusui-tools/commit/2a9b1d10f36872542e106781d2e1c391ba93b8c0))
+
+
+
 # [3.0.0-beta.46](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.45...v3.0.0-beta.46) (2024-06-12)
 
 
