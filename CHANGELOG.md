@@ -1,3 +1,13 @@
+# [3.0.0-beta.48](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.47...v3.0.0-beta.48) (2024-07-01)
+
+
+### Bug Fixes
+
+* **useDict:** dicFormatter传入参数改为res ([e96ed71](https://github.com/SoulLyoko/yusui-tools/commit/e96ed71399529b402ea144c85cb4107f7e5a9ece))
+* **utils:** 从dayjs/esm导入dayjs ([6562d6d](https://github.com/SoulLyoko/yusui-tools/commit/6562d6d617e298099064c25cad0c127c98ed86ed))
+
+
+
 # [3.0.0-beta.47](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.46...v3.0.0-beta.47) (2024-06-20)
 
 
