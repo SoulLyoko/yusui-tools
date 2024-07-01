@@ -1,9 +1,9 @@
-import type { ConfigType } from 'dayjs'
+import type { ConfigType } from 'dayjs/esm'
 
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn.js'
-import durationPlugin from 'dayjs/plugin/duration.js'
-import relativeTime from 'dayjs/plugin/relativeTime.js'
+import dayjs from 'dayjs/esm'
+import 'dayjs/esm/locale/zh-cn'
+import durationPlugin from 'dayjs/esm/plugin/duration'
+import relativeTime from 'dayjs/esm/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 dayjs.extend(durationPlugin)
