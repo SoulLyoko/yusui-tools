@@ -1,5 +1,5 @@
 import type { DicItem } from '@smallwei/avue'
-import type { AxiosInstance, AxiosResponse } from 'axios'
+import type { AxiosInstance } from 'axios'
 
 import { ref } from 'vue'
 import { useRequest } from 'vue-request'
@@ -18,7 +18,7 @@ export interface UseDictOptions {
   dicUrl?: string
   dicQuery?: object
   dicHeaders?: object
-  dicFormatter?: (res: AxiosResponse['data']) => DicItem[]
+  dicFormatter?: (res: any) => DicItem[]
   dicMethod?: string
 }
 
@@ -39,7 +39,7 @@ export function useDict(options: UseDictOptions, request?: AxiosInstance) {
     } = props
     return request!({ url: dicUrl, method: dicMethod, params: dicQuery, data: dicQuery, headers: dicHeaders }).then((res) => {
       if (dicFormatter) {
-        return dicFormatter(res.data)
+        return dicFormatter(res)
       }
       else {
         const data = get(res.data, dataPath, [])

@@ -50,7 +50,7 @@ export function useDict(options: UseDictOptions = {}): UseDictReturn {
     else if (dicUrl && request) {
       return request({ url: dicUrl, method: dicMethod, params: dicQuery, data: dicQuery, headers: dicHeaders }).then((res) => {
         if (dicFormatter)
-          return dicFormatter(res.data)
+          return dicFormatter(res)
         else
           return get(res.data, dicProps.res!, [])
       })
