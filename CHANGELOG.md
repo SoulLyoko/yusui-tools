@@ -1,3 +1,12 @@
+# [3.0.0-beta.49](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.48...v3.0.0-beta.49) (2024-07-22)
+
+
+### Bug Fixes
+
+* **uvue:** 从dayjs/esm导入dayjs ([d746c12](https://github.com/SoulLyoko/yusui-tools/commit/d746c129ecadf16593148cb37a9cb9ddb54eb52e))
+
+
+
 # [3.0.0-beta.48](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.47...v3.0.0-beta.48) (2024-07-01)
 
 
