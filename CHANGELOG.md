@@ -1,3 +1,12 @@
+# [3.0.0-beta.50](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.49...v3.0.0-beta.50) (2024-07-23)
+
+
+### Bug Fixes
+
+* **flow-design:** 表单配置字段选择的分组字段 ([c7cf542](https://github.com/SoulLyoko/yusui-tools/commit/c7cf54226c2682269fc757bf7703451b3ee452c4))
+
+
+
 # [3.0.0-beta.49](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.48...v3.0.0-beta.49) (2024-07-22)
 
 
