@@ -7,7 +7,7 @@ import { createReusableTemplate, useVModels } from '@vueuse/core'
 import { filterTree, sleep } from '@yusui/utils'
 
 import { useInjectState } from '../composables/state'
-import { formColumnToDic } from '../utils'
+import { formColumnToDic, getFormColumn } from '../utils'
 import FlowCheckbox from './FlowCheckbox.vue'
 import FlowFormPropertyExtra from './FlowFormPropertyExtra.vue'
 
@@ -34,7 +34,7 @@ const activeTab = ref(0)
 
 const tableFormOption = computed<AvueFormOption<FormPropertyItem>>(() => {
   const formOption = formOptions.value[activeTab.value]
-  const propDic = formColumnToDic(formOption?.column ?? [])
+  const propDic = formColumnToDic(getFormColumn(formOption))
   return {
     menuBtn: false,
     labelWidth: 120,

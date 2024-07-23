@@ -65,6 +65,13 @@ const dataOptions = {
         { label: '字段1', prop: 'field1', type: 'dynamic', children: { column: [{ label: '字段5', prop: 'field5' }] } },
         { label: '字段2', prop: 'field2' },
       ],
+      group: [
+        {
+          label: '分组1',
+          prop: 'group1',
+          column: [{ label: '字段6', prop: 'field6' }, { label: '字段7', prop: 'field7' }],
+        },
+      ],
     },
     { label: '表单2', prop: 'form2', column: [{ label: '字段3', prop: 'field3' }, { label: '字段4', prop: 'field4' }] },
   ],
