@@ -1,3 +1,12 @@
+# [3.0.0-beta.51](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.50...v3.0.0-beta.51) (2024-07-30)
+
+
+### Bug Fixes
+
+* **form-design:** 获取表单的方式从`props.tableData.row`改为`inject('formSafe')` ([5ba5ff8](https://github.com/SoulLyoko/yusui-tools/commit/5ba5ff889bed1554a44fa8cf58da708daf04e5b9))
+
+
+
 # [3.0.0-beta.50](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.49...v3.0.0-beta.50) (2024-07-23)
 
 
