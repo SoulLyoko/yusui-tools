@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // import { parse } from "acorn";
-import type { AvueFormOption } from '@smallwei/avue'
+import type { AvueFormInstance, AvueFormOption } from '@smallwei/avue'
 
-import { ref, watch } from 'vue'
+import { inject, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 
 import EditorSetter from '../editor-setter/index.vue'
@@ -19,10 +19,12 @@ interface OnLoadData {
 }
 
 const props = withDefaults(
-  defineProps<{ modelValue?: string, tableData?: { row: any } }>(),
+  defineProps<{ modelValue?: string }>(),
   { modelValue: '' },
 )
 const { modelValue } = useVModels(props)
+
+const formInstance = inject<AvueFormInstance>('formSafe')
 
 const visible = ref(false)
 const onLoadData = ref<OnLoadData>({})
@@ -31,7 +33,7 @@ watch(
   () => {
     if (!modelValue.value)
       return
-    onLoadData.value = props.tableData?.row?.onLoadData ?? {}
+    onLoadData.value = formInstance?.form?.onLoadData ?? {}
     // try {
     //   const ast = parse(modelValue.value, { ecmaVersion: "latest" }) as any;
     //   const dataCacheAst = ast.body[0]?.expression?.body?.body?.find(
@@ -48,9 +50,9 @@ watch(
   () => {
     if (!visible.value)
       return
-    if (!props.tableData?.row)
+    if (!formInstance?.form)
       return
-    props.tableData!.row.onLoadData = onLoadData.value
+    formInstance.form.onLoadData = onLoadData.value
     if (onLoadData.value.codeMode)
       return
     const { url, method, isPage, currentPageKey, pageSizeKey, totalPath, dataPath } = onLoadData.value

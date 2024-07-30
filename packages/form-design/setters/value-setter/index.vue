@@ -9,7 +9,6 @@ type ValueType = 'string' | 'number' | 'boolean' | 'array' | 'object'
 
 const props = defineProps<{
   modelValue: any
-  tableData?: { row?: any }
   prop?: string
   /** 显示的选择项 */
   types?: ValueType[]
