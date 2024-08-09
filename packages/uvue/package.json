@@ -13,17 +13,17 @@
   "main": "index.ts",
   "module": "index.ts",
   "dependencies": {
-    "@vueuse/core": "^10.10.0",
+    "@vueuse/core": "^10.11.1",
     "@yusui/composables": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "lodash-es": "^4.17.21",
     "vue-request": "^2.0.4"
   },
   "devDependencies": {
     "@dcloudio/uni-app": "vue3",
     "@yusui/types": "workspace:*",
-    "uview-plus": "3.2.22",
-    "vue": "^3.4.27"
+    "uview-plus": "3.3.14",
+    "vue": "^3.4.37"
   }
 }

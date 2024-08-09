@@ -24,11 +24,11 @@
   ],
   "dependencies": {
     "@antv/layout": "^0.3.25",
-    "@guolao/vue-monaco-editor": "^1.5.1",
+    "@guolao/vue-monaco-editor": "^1.5.4",
     "@iconify/vue": "^4.1.2",
-    "@logicflow/core": "^1.2.27",
-    "@logicflow/extension": "^1.2.27",
-    "@vueuse/core": "^10.10.0",
+    "@logicflow/core": "^1.2.28",
+    "@logicflow/extension": "^1.2.28",
+    "@vueuse/core": "^10.11.1",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "dagre": "^0.8.5",
@@ -38,10 +38,10 @@
     "lodash-unified": "1.0.3"
   },
   "devDependencies": {
-    "@smallwei/avue": "^3.4.3",
+    "@smallwei/avue": "^3.4.8",
     "@types/file-saver": "^2.0.7",
-    "element-plus": "^2.7.3",
-    "sass": "^1.77.2",
-    "vue": "^3.4.27"
+    "element-plus": "^2.7.8",
+    "sass": "^1.77.8",
+    "vue": "^3.4.37"
   }
 }

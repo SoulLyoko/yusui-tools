@@ -30,7 +30,6 @@ const external = [
   /node:/,
   /pinia/,
   'rollup-plugin-visualizer',
-  /unocss/,
   /unplugin/,
   /virtual:/,
   /vite-plugin/,

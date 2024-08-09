@@ -12,6 +12,7 @@ export default antfu(
       'eslint-comments/no-unlimited-disable': 'off', // 允许忽略规则
       'ts/ban-ts-comment': 'off', // 允许忽略类型检查
       'ts/prefer-ts-expect-error': 'off', // 允许@ts-ignore
+      'ts/no-unused-expressions': 'off', // 允许未使用的表达式
       'vue/v-on-event-hyphenation': ['error', 'always', { autofix: true }], // 不允许驼峰事件名
       'import/consistent-type-specifier-style': ['error', 'prefer-top-level'], // 类型导入放在顶层
       'import/order': [ // 导入排序

@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "@iconify/vue": "^4.1.2",
-    "@vueuse/core": "^10.10.0",
+    "@vueuse/core": "^10.11.1",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "lodash": "4.17.21",
@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
-    "element-plus": "^2.7.3",
-    "sass": "^1.77.2",
-    "vue": "^3.4.27"
+    "element-plus": "^2.7.8",
+    "sass": "^1.77.8",
+    "vue": "^3.4.37"
   }
 }
