@@ -1,3 +1,12 @@
+# [3.0.0-beta.52](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.51...v3.0.0-beta.52) (2024-09-09)
+
+
+### Features
+
+* **uvue:** 支持全局配置 ([e35afdf](https://github.com/SoulLyoko/yusui-tools/commit/e35afdf9363c1ec0b2c2625bcd9ccbc67e685196))
+
+
+
 # [3.0.0-beta.51](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.50...v3.0.0-beta.51) (2024-07-30)
 
 
