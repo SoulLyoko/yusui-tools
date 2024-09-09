@@ -2,21 +2,13 @@ import type { UvueListOption } from '../types'
 
 import { computed } from 'vue'
 
-export const defaultOption: UvueListOption = {
-  rowKey: 'id',
-  sticky: {},
-  search: {},
-  empty: {},
-  loadmore: {},
-  backTop: {},
-  cellGroup: {},
-  cell: {},
-}
+import { useConfigProvider } from '../../../composables/config'
 
 export function useOption(props: any) {
+  const globalOption = useConfigProvider()
   const option = computed(() => {
     return {
-      ...defaultOption,
+      ...globalOption.listOption,
       ...props.option,
     } as UvueListOption
   })

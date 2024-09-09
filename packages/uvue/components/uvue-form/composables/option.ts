@@ -10,15 +10,7 @@ import type {
 
 import { computed, ref } from 'vue'
 
-export const defaultFormOption: UvueFormOption = {
-  menuBtn: true, // 是否显示按钮
-  submitBtn: true, // 是否显示提交按钮
-  submitText: '提交', // 提交按钮文字
-  emptyBtn: true, // 是否显示清空按钮
-  emptyText: '清空', // 清空按钮文字
-  delBtn: false, // 是否显示删除按钮
-  delText: '删除', // 删除按钮文字
-}
+import { useConfigProvider } from '../../../composables/config'
 
 export const defaultFormColumn: UvueFormColumn = {
   type: 'text',
@@ -94,9 +86,10 @@ export function flatGroupColumn({ column, group }: Pick<UvueFormOption, 'group' 
 export function useOption(props: UvueFormProps, emit: UvueFormEmitFn) {
   const defaultValues = ref({})
   const defaults = ref<UvueFormDefaults>({})
+  const globalOption = useConfigProvider()
   const option = computed<UvueFormOption>(() => {
     const result = {
-      ...defaultFormOption,
+      ...globalOption.formOption,
       ...props.option,
       ...props.permission,
       column: handleColumn(props.option.column, props.formType!),
