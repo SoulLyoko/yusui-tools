@@ -6,5 +6,8 @@ fs.removeSync('dist')
 const dirs = fs.readdirSync('packages')
 
 dirs.forEach((dir) => {
-  fs.removeSync(path.join('packages', dir, 'dist'))
+  const distPath = path.join('packages', dir, 'dist')
+  if (fs.existsSync(distPath)) {
+    fs.removeSync(distPath)
+  }
 })
