@@ -31,7 +31,7 @@ export function useMock<T extends Data, P extends Data>({ crudState }: { crudSta
     const filterData = crudState.mockData.filter((item) => {
       return Object.entries(searchForm).every(([key, value]) => {
         if (typeof item[key] === 'string')
-          return item[key].includes(value)
+          return item[key].includes(value as string)
         else
           return item[key] === value
       })
