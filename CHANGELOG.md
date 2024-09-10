@@ -1,3 +1,12 @@
+# [3.0.0-beta.54](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.53...v3.0.0-beta.54) (2024-09-10)
+
+
+### Bug Fixes
+
+* **uvue:** 修复配置合并方法 ([5df218c](https://github.com/SoulLyoko/yusui-tools/commit/5df218c3061d5b22e13a4b006f2018c7978d7a37))
+
+
+
 # [3.0.0-beta.53](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.52...v3.0.0-beta.53) (2024-09-10)
 
 
