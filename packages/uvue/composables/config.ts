@@ -1,8 +1,9 @@
 import type { UvueConfig } from '../types'
 
-import { reactive } from 'vue'
+import { inject, reactive } from 'vue'
 
-const globalConfigState = reactive<UvueConfig>({
+const globalConfigKey = 'uvueCrudConfig'
+const globalConfig: UvueConfig = reactive({
   listOption: {
     rowKey: 'id',
     sticky: {},
@@ -23,6 +24,14 @@ const globalConfigState = reactive<UvueConfig>({
     delText: '删除',
   },
 })
-export function useConfigProvider(config?: typeof globalConfigState) {
-  return Object.assign(globalConfigState, config)
+
+export function useConfigProvider(config?: UvueConfig, provide?: (key: any, value: any) => any) {
+  const mergedConfig = Object.assign(globalConfig, config || {})
+  if (provide && typeof provide === 'function') {
+    provide(globalConfigKey, mergedConfig)
+    return mergedConfig
+  }
+  else {
+    return inject<UvueConfig>(globalConfigKey) || mergedConfig
+  }
 }
