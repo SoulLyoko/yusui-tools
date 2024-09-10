@@ -1,3 +1,12 @@
+# [3.0.0-beta.53](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.52...v3.0.0-beta.53) (2024-09-10)
+
+
+### Bug Fixes
+
+* **uvue:** 使用provide注入全局配置 ([34ae984](https://github.com/SoulLyoko/yusui-tools/commit/34ae98458bca5e0dbdaca96967f33895f57b1083))
+
+
+
 # [3.0.0-beta.52](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.51...v3.0.0-beta.52) (2024-09-09)
 
 
