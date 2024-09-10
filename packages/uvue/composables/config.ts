@@ -1,6 +1,7 @@
 import type { UvueConfig } from '../types'
 
 import { inject, reactive } from 'vue'
+import { merge } from 'lodash-es'
 
 const globalConfigKey = 'uvueCrudConfig'
 const globalConfig: UvueConfig = reactive({
@@ -26,7 +27,7 @@ const globalConfig: UvueConfig = reactive({
 })
 
 export function useConfigProvider(config?: UvueConfig, provide?: (key: any, value: any) => any) {
-  const mergedConfig = Object.assign(globalConfig, config || {})
+  const mergedConfig = merge(globalConfig, config || {})
   if (provide && typeof provide === 'function') {
     provide(globalConfigKey, mergedConfig)
     return mergedConfig
