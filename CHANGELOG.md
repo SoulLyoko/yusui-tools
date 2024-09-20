@@ -1,3 +1,13 @@
+# [3.0.0-beta.55](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.54...v3.0.0-beta.55) (2024-09-20)
+
+
+### Bug Fixes
+
+* **uvue-datetime-picker:** 添加类型为year-month的格式化默认值 ([2e75eba](https://github.com/SoulLyoko/yusui-tools/commit/2e75ebab557c7d2459459750b7024a11aeaee767))
+* **uvue-select:** 处理dic为空的情况 ([9b186e2](https://github.com/SoulLyoko/yusui-tools/commit/9b186e24a4399b6618147d9b56d96af566ac83e0))
+
+
+
 # [3.0.0-beta.54](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.53...v3.0.0-beta.54) (2024-09-10)
 
 
