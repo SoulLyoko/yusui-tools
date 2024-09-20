@@ -12,9 +12,10 @@ const emit = defineEmits(['update:modelValue', 'change'])
 const defaultValue = computed(() => props.modelValue || Date.now())
 
 const formatMap = {
-  date: 'YYYY-MM-DD',
-  time: 'HH:mm:ss',
-  datetime: 'YYYY-MM-DD HH:mm:ss',
+  'date': 'YYYY-MM-DD',
+  'time': 'HH:mm:ss',
+  'datetime': 'YYYY-MM-DD HH:mm:ss',
+  'year-month': 'YYYY-MM',
 }
 
 const attrs = useAttrs()
@@ -24,7 +25,7 @@ function onShow() {
     return
   show.value = true
 }
-function onConfirm({ value, mode }: { value: number, mode: 'date' | 'time' | 'datetime' }) {
+function onConfirm({ value, mode }: { value: number, mode: keyof typeof formatMap }) {
   const f = attrs.valueFormat || formatMap[mode]
   const d = dayjs(value).format(f as string)
   emit('update:modelValue', d)
