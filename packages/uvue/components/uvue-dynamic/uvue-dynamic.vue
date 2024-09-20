@@ -61,7 +61,7 @@ function delItem(index: number) {
 
 <template>
   <view class="uvue-dynamic" style="width: 100%">
-    <template v-for="(dataItem, dataIndex) in vModel" :key="dataItem[prop] || dataIndex">
+    <template v-for="(dataItem, dataIndex) in vModel" :key="dataItem[prop!] || dataIndex">
       <u-row>
         <u-col span="10">
           <u-text :text="`${label}${dataIndex}`" type="info" />

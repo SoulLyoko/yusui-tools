@@ -16,7 +16,7 @@ const selectedLabel = computed(() => {
 })
 
 const columns = computed(() => {
-  return [props.dic]
+  return props.dic?.length ? [props.dic] : []
 })
 
 const attrs = useAttrs()
