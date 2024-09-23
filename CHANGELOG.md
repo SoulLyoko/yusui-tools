@@ -1,3 +1,12 @@
+# [3.0.0-beta.56](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.55...v3.0.0-beta.56) (2024-09-23)
+
+
+### Bug Fixes
+
+* **uvue:** uvue-form-item显示year-month类型 ([ff0585c](https://github.com/SoulLyoko/yusui-tools/commit/ff0585c775f9736b66565dfce00f228b6ea23fa2))
+
+
+
 # [3.0.0-beta.55](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.54...v3.0.0-beta.55) (2024-09-20)
 
 
