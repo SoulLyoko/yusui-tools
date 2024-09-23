@@ -10,7 +10,6 @@
     "**/demo.*",
     "**/*.test.*",
     "**/*.md",
-    "packages/flow-pages",
     "packages/uvue"
   ]
 }

@@ -3,7 +3,6 @@ import Inspect from 'vite-plugin-inspect'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import { mdDemoTransform } from './plugins/md-demo-transform'
-import { avuePatch, loadProxy } from '../plugins/index'
 import { alias } from '../../vite.config'
 import pkg from '../../package.json'
 
@@ -23,14 +22,12 @@ export default defineConfig({
         items: [
           { text: '@yusui/components', link: '/components/index' },
           { text: '@yusui/composables', link: '/composables/index' },
-          { text: '@yusui/plugins', link: '/plugins/index' },
           { text: '@yusui/theme', link: '/theme/index' },
           { text: '@yusui/types', link: '/types/index' },
           { text: '@yusui/utils', link: '/utils/index' },
           { text: '@yusui/uvue', link: '/uvue/index' },
           { text: '@yusui/form-design 表单设计器', link: '/form-design/index' },
           { text: '@yusui/flow-design 流程设计器', link: '/flow-design/index' },
-          { text: '@yusui/flow-pages 工作流页面', link: '/flow-pages/index' },
         ],
       },
     ],
@@ -69,22 +66,6 @@ export default defineConfig({
             { text: 'useDict', link: '/composables/use-dict/index' },
             { text: 'useOverlay', link: '/composables/use-overlay/index' },
             { text: 'useRes', link: '/composables/use-res/index' },
-          ],
-        },
-      ],
-      '/plugins': [
-        {
-          text: 'Plugins',
-          items: [
-            { text: 'Start', link: '/plugins/index' },
-            { text: 'avuePatch', link: '/plugins/avue-patch/index' },
-            { text: 'createEnvDts', link: '/plugins/env-dts/index' },
-            { text: 'loadProxy', link: '/plugins/load-proxy/index' },
-            { text: 'setupExtend', link: '/plugins/setup-extend/index' },
-            { text: 'setupRouterComponents', link: '/plugins/router/index' },
-            { text: 'uniPatch', link: '/plugins/uni-patch/index' },
-            { text: 'uniUIPatch', link: '/plugins/uni-ui-patch/index' },
-            { text: 'uviewPatch', link: '/plugins/uview-patch/index' },
           ],
         },
       ],
@@ -169,17 +150,6 @@ export default defineConfig({
           ],
         },
       ],
-      'uvue': [
-        {
-          text: 'Types',
-          items: [
-            { text: 'Start', link: '/uvue/index' },
-            { text: 'UvueList', link: '/uvue/components/uvue-list/index' },
-            { text: 'UvueForm', link: '/uvue/components/uvue-form/index' },
-            { text: 'useCrud', link: '/uvue/composables/use-crud/index' },
-          ],
-        },
-      ],
       '/form-design': [
         {
           text: '表单设计器',
@@ -198,43 +168,21 @@ export default defineConfig({
           ],
         },
       ],
-      '/flow-pages': [
+      '/uvue': [
         {
-          text: '工作流页面',
+          text: 'Types',
           items: [
-            { text: '开始', link: '/flow-pages/index' },
-            {
-              text: '页面',
-              items: [
-                { text: '流程设计', link: '/flow-pages/pages/flow-manage/index' },
-                { text: '流程运维', link: '/flow-pages/pages/flow-ops/index' },
-                { text: '表单模板', link: '/flow-pages/pages/form-template/index' },
-                { text: '流程模板', link: '/flow-pages/pages/flow-template/index' },
-                { text: '建表设计', link: '/flow-pages/pages/table-template/index' },
-                { text: '流程参数', link: '/flow-pages/pages/flow-param/index' },
-                { text: '流程按钮', link: '/flow-pages/pages/flow-button/index' },
-                { text: '工作台', link: '/flow-pages/pages/flow-workbench/index' },
-                { text: '流程表单页', link: '/flow-pages/pages/flow-form/index?flowKey=test' },
-              ],
-            },
-            {
-              text: '组件及其它',
-              items: [
-                { text: 'FlowForm', link: '/flow-pages/flow-form/index' },
-                { text: 'useFlowForm', link: '/flow-pages/composables/useFlowForm' },
-              ],
-            },
-            {
-              text: '接口',
-              link: '/flow-pages/api/index',
-            },
+            { text: 'Start', link: '/uvue/index' },
+            { text: 'UvueList', link: '/uvue/components/uvue-list/index' },
+            { text: 'UvueForm', link: '/uvue/components/uvue-form/index' },
+            { text: 'useCrud', link: '/uvue/composables/use-crud/index' },
           ],
         },
       ],
     },
   },
   vite: {
-    plugins: [vueJsx(), mdDemoTransform(), avuePatch(), loadProxy(), Inspect()],
+    plugins: [vueJsx(), mdDemoTransform(), Inspect()],
     resolve: {
       alias,
     },

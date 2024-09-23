@@ -46,17 +46,13 @@ const entry = {
   'composables': resolve(__dirname, 'packages/composables/index.ts'),
   'form-design': resolve(__dirname, 'packages/form-design/index.ts'),
   'flow-design': resolve(__dirname, 'packages/flow-design/index.ts'),
-  'plugins': resolve(__dirname, 'packages/plugins/index.ts'),
-  'request': resolve(__dirname, 'packages/request/index.ts'),
-  'request/openapi': resolve(__dirname, 'packages/request/openapi/index.ts'),
   'theme': resolve(__dirname, 'packages/theme/index.ts'),
   'types': resolve(__dirname, 'packages/types/index.ts'),
   'utils': resolve(__dirname, 'packages/utils/index.ts'),
 }
 // 不打包
 const unpkg = {
-  'flow-pages': resolve(__dirname, 'packages/flow-pages/index.ts'),
-  'uvue': resolve(__dirname, 'packages/uvue/index.ts'),
+  uvue: resolve(__dirname, 'packages/uvue/index.ts'),
 }
 
 export const alias = Object.entries({ ...entry, ...unpkg })

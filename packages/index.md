@@ -23,10 +23,6 @@ features:
     details: Vue Composables
     link: /composables/
 
-  - title: '@yusui/plugins'
-    details: Vite Plugins
-    link: /plugins/
-
   - title: '@yusui/types'
     details: TypeScript Definitions
     link: /types/

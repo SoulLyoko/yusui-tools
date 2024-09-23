@@ -1,6 +1,0 @@
-export { default as CategoryTree } from './CategoryTree.vue'
-export { default as DesignSteps } from './DesignSteps.vue'
-export { default as DesignView } from './DesignView.vue'
-export { default as FlowDesignWrapper } from './FlowDesignWrapper.vue'
-export { default as FormDesignWrapper } from './FormDesignWrapper.vue'
-export { default as TemplateSelect } from './TemplateSelect.vue'

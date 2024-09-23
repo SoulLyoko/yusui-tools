@@ -1,6 +1,10 @@
-import type { Res } from '@yusui/types'
-
 import { useCrud } from '.'
+
+interface Res {
+  code?: number
+  msg?: string
+  data?: any
+}
 
 vi.mock('./lifeCycle', async () => {
   const useLifeCycle = () => { }

@@ -63,12 +63,6 @@ const menuList = ref<RouteRecordRaw[]>([
     ],
   },
   {
-    name: 'plugins',
-    path: '/plugins',
-    redirect: '',
-    meta: { title: 'Plugins', icon: 'ep:menu', disabled: true },
-  },
-  {
     name: 'types',
     path: '/types',
     redirect: '',

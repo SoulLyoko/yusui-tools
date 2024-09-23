@@ -38,10 +38,7 @@ jobs:
             @yusui/components
             @yusui/composables
             @yusui/flow-design
-            @yusui/flow-pages
             @yusui/form-design
-            @yusui/plugins
-            @yusui/request
             @yusui/theme
             @yusui/types
             @yusui/utils
