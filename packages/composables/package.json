@@ -1,5 +1,6 @@
 {
   "name": "@yusui/composables",
+  "type": "module",
   "version": "3.0.0-beta.55",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -22,16 +23,20 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "unbuild"
+  },
   "dependencies": {
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "lodash": "4.17.21",
-    "lodash-es": "4.17.21",
-    "lodash-unified": "1.0.3",
-    "vue-request": "^2.0.4"
+    "lodash": "catalog:",
+    "lodash-es": "catalog:",
+    "lodash-unified": "catalog:",
+    "vue-request": "catalog:"
   },
   "devDependencies": {
-    "element-plus": "^2.7.8",
-    "vue": "^3.4.37"
+    "@smallwei/avue": "catalog:",
+    "element-plus": "catalog:",
+    "vue": "catalog:"
   }
 }

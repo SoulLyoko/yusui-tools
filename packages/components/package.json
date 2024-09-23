@@ -1,5 +1,6 @@
 {
   "name": "@yusui/components",
+  "type": "module",
   "version": "3.0.0-beta.55",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -27,19 +28,21 @@
     "global.d.ts"
   ],
   "dependencies": {
-    "@iconify/vue": "^4.1.2",
-    "@vueuse/core": "^10.11.1",
+    "@iconify/vue": "catalog:",
+    "@vueuse/core": "catalog:",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "lodash": "4.17.21",
-    "lodash-es": "4.17.21",
-    "lodash-unified": "1.0.3",
-    "vue-request": "^2.0.4"
+    "lodash": "catalog:",
+    "lodash-es": "catalog:",
+    "lodash-unified": "catalog:",
+    "vue-request": "catalog:"
   },
   "devDependencies": {
-    "@iconify/types": "^2.0.0",
-    "element-plus": "^2.7.8",
-    "sass": "^1.77.8",
-    "vue": "^3.4.37"
+    "@iconify/types": "catalog:",
+    "@smallwei/avue": "catalog:",
+    "element-plus": "catalog:",
+    "sass": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
   }
 }

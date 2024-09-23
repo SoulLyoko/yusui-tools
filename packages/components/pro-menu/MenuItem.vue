@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { MenuItemSlots } from './props'
 
-import { computed } from 'vue'
 import { subMenuProps } from 'element-plus'
 import { debounce, pick } from 'lodash-unified'
+import { computed } from 'vue'
 
 import { menuItemEmits, menuItemProps } from './props'
 

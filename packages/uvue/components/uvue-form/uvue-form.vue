@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
 import { useVModel } from '@vueuse/core'
+import { nextTick, ref, watch } from 'vue'
 
-import { formEmits, formProps } from './constants'
-import { useMethods, useOption, useRules } from './composables'
 import FormItemDefault from './components/form-item-default.vue'
+import { useMethods, useOption, useRules } from './composables'
+import { formEmits, formProps } from './constants'
 
 const props = defineProps(formProps)
 const emit = defineEmits(formEmits)

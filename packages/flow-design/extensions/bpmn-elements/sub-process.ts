@@ -1,6 +1,6 @@
 import type { LogicFlow } from '@logicflow/core'
 
-import { Group, SubProcessFactory, bpmnUtils } from '@logicflow/extension'
+import { bpmnUtils, Group, SubProcessFactory } from '@logicflow/extension'
 
 /** SubProcess */
 export class SubProcessModel extends SubProcessFactory().model {

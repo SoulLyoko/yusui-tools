@@ -1,5 +1,5 @@
-import type { AvueCrudSlots } from '@smallwei/avue'
 import type { ProCrudOption } from './option'
+import type { AvueCrudSlots } from '@smallwei/avue'
 
 export interface ProCrudProps<T> {
   option?: ProCrudOption<T>

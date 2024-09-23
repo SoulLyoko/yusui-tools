@@ -4,15 +4,15 @@ import { h } from '@logicflow/core'
 import {
   EndEventFactory,
   GatewayNodeFactory,
-  StartEventFactory,
-  TaskNodeFactory,
   icons,
   sequenceFlowFactory,
+  StartEventFactory,
+  TaskNodeFactory,
   useDefinition,
 } from '@logicflow/extension'
 
-import { NoteFlow } from './note-flow'
 import { Note } from './note'
+import { NoteFlow } from './note-flow'
 import { ProcessNode } from './process'
 import { SubProcess } from './sub-process'
 

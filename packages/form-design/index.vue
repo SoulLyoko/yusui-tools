@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { FormDesignProps } from './types'
 
-import { useProvideState } from './composables'
 import LeftPanel from './components/left-panel/index.vue'
+import MainHeader from './components/main-header/index.vue'
 import MainWorkspace from './components/main-workspace/index.vue'
 import RightPanel from './components/right-panel/index.vue'
-import MainHeader from './components/main-header/index.vue'
+import { useProvideState } from './composables'
 import { adapterIn, adapterOut } from './utils'
 
 const props = withDefaults(

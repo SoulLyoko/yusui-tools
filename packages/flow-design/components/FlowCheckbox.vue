@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { CheckboxValueType } from 'element-plus'
 
-import { computed, watch } from 'vue'
 import { useCycleList, useVModels } from '@vueuse/core'
+import { computed, watch } from 'vue'
 
 const props = withDefaults(
   defineProps<{ modelValue?: CheckboxValueType }>(),

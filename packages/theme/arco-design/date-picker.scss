@@ -72,8 +72,7 @@
       color: inherit;
     }
 
-    td:hover:not(.current, .selected, .start-date, .end-date)
-      .el-date-table-cell__text {
+    td:hover:not(.current, .selected, .start-date, .end-date) .el-date-table-cell__text {
       background-color: var(--el-datepicker-hover-bg-color);
     }
 

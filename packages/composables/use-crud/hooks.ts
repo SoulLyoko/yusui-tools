@@ -1,5 +1,5 @@
-import type { FormType } from '@smallwei/avue'
 import type { Emitter } from './types'
+import type { FormType } from '@smallwei/avue'
 
 import { mittAsync } from '@yusui/utils'
 

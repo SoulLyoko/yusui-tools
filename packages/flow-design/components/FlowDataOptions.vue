@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { DicItem } from '@smallwei/avue'
 
-import { computed } from 'vue'
 import { ProDict } from '@yusui/components'
+import { computed } from 'vue'
 
 import { useInjectState } from '../composables/state'
 

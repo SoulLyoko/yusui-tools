@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useLocalStorage } from '@vueuse/core'
 import { DiffEditor } from '@guolao/vue-monaco-editor'
+import { useLocalStorage } from '@vueuse/core'
 import { computed } from 'vue'
 
 import { useInjectState } from '../../composables'

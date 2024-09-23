@@ -1,5 +1,5 @@
+import type { IconifyInfo, IconsData, IconSelectProps } from '../types'
 import type { Ref } from 'vue'
-import type { IconSelectProps, IconifyInfo, IconsData } from '../types'
 
 import { computed, ref, watchEffect } from 'vue'
 

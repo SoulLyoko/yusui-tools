@@ -1,6 +1,0 @@
-.history
-coverage
-node_modules
-dist
-*/.vitepress/cache
-*.scss

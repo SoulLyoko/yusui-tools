@@ -1,11 +1,11 @@
-import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
+import type { AvueFormColumn } from '@smallwei/avue'
 
 import { enumToDic } from '@yusui/utils'
 
-import { ApprovalReturnMethod, ApprovalTaskNodeType, MultiPersonApprovalType, UserTaskEmptyApproveType } from '../types'
 import FlowDataOptions from '../components/FlowDataOptions.vue'
 import FlowNodeSelect from '../components/FlowNodeSelect.vue'
+import { ApprovalReturnMethod, ApprovalTaskNodeType, MultiPersonApprovalType, UserTaskEmptyApproveType } from '../types'
 
 export const approvalColumn: AvueFormColumn<FlowFormData>[] = [
   {

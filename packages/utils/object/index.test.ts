@@ -25,6 +25,6 @@ describe('object utils', () => {
     expect(getDataType({})).toBe('Object')
     expect(getDataType(() => {})).toBe('Function')
     expect(getDataType(new Date())).toBe('Date')
-    expect(getDataType(new RegExp(''))).toBe('RegExp')
+    expect(getDataType(/(?:)/)).toBe('RegExp')
   })
 })

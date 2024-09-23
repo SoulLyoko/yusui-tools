@@ -1,4 +1,4 @@
-import type { IconifyCategories, IconifyJSONIconsData, IconifyInfo as _IconifyInfo, IconifyJSONPackageExports as _IconifyJSONPackageExports } from '@iconify/types'
+import type { IconifyInfo as _IconifyInfo, IconifyJSONPackageExports as _IconifyJSONPackageExports, IconifyCategories, IconifyJSONIconsData } from '@iconify/types'
 
 export interface IconifyInfo extends _IconifyInfo {
   prefix?: string

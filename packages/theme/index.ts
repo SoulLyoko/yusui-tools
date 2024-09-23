@@ -1,7 +1,7 @@
 import type { MaybeRefOrGetter, Ref } from 'vue'
 
-import { watch } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
+import { watch } from 'vue'
 
 export interface UseThemeOptions {
   initialValue?: MaybeRefOrGetter<Theme>

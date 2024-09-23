@@ -3,8 +3,8 @@ import type { AvueFormColumn } from '@smallwei/avue'
 
 import { findTree, treeMap } from '@yusui/utils'
 
-import { alignDic, placementDic, positionDic, sizeDic } from './dic'
 import { RulesSetter, SwitchSetter, ValueSetter } from '../setters'
+import { alignDic, placementDic, positionDic, sizeDic } from './dic'
 
 const basic: AvueFormColumn[] = [
   {

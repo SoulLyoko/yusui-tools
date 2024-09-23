@@ -75,8 +75,5 @@
 }
 
 .el-menu--collapse {
-  width: calc(
-    var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2 +
-      var(--el-menu-padding) * 2
-  );
+  width: calc(var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2 + var(--el-menu-padding) * 2);
 }

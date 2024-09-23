@@ -11,9 +11,9 @@ pnpm i @yusui/components
 :::code-group
 
 ```js [main.js]
-import { createApp } from 'vue'
 import YSComponents from '@yusui/components'
 import '@yusui/components/dist/index.css'
+import { createApp } from 'vue'
 
 import App from './App.vue'
 

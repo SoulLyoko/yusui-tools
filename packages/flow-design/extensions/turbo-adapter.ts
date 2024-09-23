@@ -1,5 +1,5 @@
-import type { EdgeConfig, GraphConfigData, LogicFlow, NodeConfig } from '@logicflow/core'
 import type { FlowEdge, FlowElement, FlowNode, ProcessData, TurboData } from '../types'
+import type { EdgeConfig, GraphConfigData, LogicFlow, NodeConfig } from '@logicflow/core'
 
 import { isString, omit } from 'lodash-unified'
 

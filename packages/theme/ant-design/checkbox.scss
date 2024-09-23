@@ -81,13 +81,11 @@
     }
 
     &:first-child {
-      border-radius: var(--el-checkbox-border-radius) 0 0
-        var(--el-checkbox-border-radius);
+      border-radius: var(--el-checkbox-border-radius) 0 0 var(--el-checkbox-border-radius);
     }
 
     &:last-child {
-      border-radius: 0 var(--el-checkbox-border-radius)
-        var(--el-checkbox-border-radius) 0;
+      border-radius: 0 var(--el-checkbox-border-radius) var(--el-checkbox-border-radius) 0;
     }
 
     &:hover {
@@ -125,13 +123,11 @@
   }
 
   &:first-child .el-checkbox-button__inner {
-    border-radius: var(--el-checkbox-border-radius) 0 0
-      var(--el-checkbox-border-radius);
+    border-radius: var(--el-checkbox-border-radius) 0 0 var(--el-checkbox-border-radius);
   }
 
   &:last-child .el-checkbox-button__inner {
-    border-radius: 0 var(--el-checkbox-border-radius)
-      var(--el-checkbox-border-radius) 0;
+    border-radius: 0 var(--el-checkbox-border-radius) var(--el-checkbox-border-radius) 0;
   }
 
   &.is-disabled {

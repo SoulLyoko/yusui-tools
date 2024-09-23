@@ -39,19 +39,14 @@
     .el-step__line {
       height: 1px;
       top: calc(var(--el-step-icon-width) / 2);
-      margin-left: calc(
-        var(--el-step-icon-width) + var(--el-step-horizontal-line-margin)
-      );
+      margin-left: calc(var(--el-step-icon-width) + var(--el-step-horizontal-line-margin));
       margin-right: var(--el-step-horizontal-line-margin);
     }
 
     &.is-center .el-step__line {
       height: 1px;
       top: calc(var(--el-step-icon-width) / 2);
-      margin: 0
-        calc(
-          var(--el-step-icon-width) / 2 + var(--el-step-horizontal-line-margin)
-        );
+      margin: 0 calc(var(--el-step-icon-width) / 2 + var(--el-step-horizontal-line-margin));
     }
   }
 
@@ -59,9 +54,7 @@
     .el-step__line {
       width: 1px;
       left: calc(var(--el-step-icon-width) / 2);
-      margin-top: calc(
-        var(--el-step-icon-width) + var(--el-step-vertical-line-margin)
-      );
+      margin-top: calc(var(--el-step-icon-width) + var(--el-step-vertical-line-margin));
       margin-bottom: var(--el-step-vertical-line-margin);
     }
 

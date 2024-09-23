@@ -1,7 +1,7 @@
 import type { FormType, PageOption } from '@smallwei/avue'
-import type { UvueFormDefaults, UvueFormOption, UvueListOption } from '@yusui/uvue'
-import type { EmitterAsync } from '@yusui/utils'
 import type { CrudOption as _CrudOption, CrudState as _CrudState } from '@yusui/composables'
+import type { EmitterAsync } from '@yusui/utils'
+import type { UvueFormDefaults, UvueFormOption, UvueListOption } from '@yusui/uvue'
 
 export interface CrudOption<T, P> extends _CrudOption<T, P> {
   getInfo: (() => Promise<any>) | ((params?: any) => Promise<any>) | ((params: any) => Promise<any>)

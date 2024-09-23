@@ -1,2 +1,2 @@
-export * from './props'
 export * from './option'
+export * from './props'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import History from './history.vue'
 import Resource from './resource.vue'
 import Tree from './tree.vue'
-import History from './history.vue'
 
 const tabs = [
   { title: '组件', icon: 'el-icon-menu', component: Resource },

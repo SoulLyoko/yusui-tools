@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { onPageScroll, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app'
+import { ref } from 'vue'
 
 import { listOption } from './option'
 
@@ -42,7 +42,7 @@ function onSearch() {
 
 <template>
   <uvue-list
-    v-model:searchValue="searchValue"
+    v-model:search-value="searchValue"
     :data="data"
     :option="listOption"
     :status="status"

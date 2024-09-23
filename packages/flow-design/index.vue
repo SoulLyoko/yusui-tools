@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { FlowDesignProps } from './types'
 
-import { onMounted } from 'vue'
-import { uniqueId } from 'lodash-unified'
-
-import { useInit, useProvideState } from './composables'
-import FlowEditor from './components/FlowEditor.vue'
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
+import { uniqueId } from 'lodash-unified'
+import { onMounted } from 'vue'
+
+import FlowEditor from './components/FlowEditor.vue'
+import { useInit, useProvideState } from './composables'
 
 const props = defineProps<FlowDesignProps>()
 

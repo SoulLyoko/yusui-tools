@@ -6,10 +6,7 @@
   --el-table-fixed-left-column: inset 10px 0 8px -8px var(--el-color-split);
   --el-table-fixed-right-column: inset -10px 0 8px -8px var(--el-color-split);
 
-  &.el-table--striped
-    .el-table__body
-    tr.el-table__row--striped
-    td.el-table__cell {
+  &.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
     background-color: var(--el-table-header-bg-color);
   }
 

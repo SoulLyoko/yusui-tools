@@ -1,11 +1,11 @@
-import type { Ref } from 'vue'
-import type { TreeInstance } from 'element-plus'
-import type { ElTreeNode } from '@yusui/types'
 import type { ProTreeProps } from '../types'
+import type { ElTreeNode } from '@yusui/types'
+import type { TreeInstance } from 'element-plus'
+import type { Ref } from 'vue'
 
-import { computed, nextTick, onMounted, toRefs, useAttrs, watch } from 'vue'
 import { ElTree } from 'element-plus'
 import { isEqual, pick } from 'lodash-unified'
+import { computed, nextTick, onMounted, toRefs, useAttrs, watch } from 'vue'
 
 export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
   const attrs = useAttrs() as any

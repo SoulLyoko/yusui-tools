@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { FormItemRule } from 'element-plus'
 import type { AvueFormOption } from '@smallwei/avue'
+import type { FormItemRule } from 'element-plus'
 
-import { computed, nextTick, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
-import { ElButton } from 'element-plus'
 import { filterObj } from '@yusui/utils'
+import { ElButton } from 'element-plus'
+import { computed, nextTick, ref } from 'vue'
 
 import EditorSetter from '../editor-setter/index.vue'
 

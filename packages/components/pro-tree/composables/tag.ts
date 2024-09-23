@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
-import type { TreeInstance } from 'element-plus'
-import type { ElTreeNode } from '@yusui/types'
 import type { ProTreeProps } from '../types'
+import type { ElTreeNode } from '@yusui/types'
+import type { TreeInstance } from 'element-plus'
+import type { Ref } from 'vue'
 
 import { computed } from 'vue'
 

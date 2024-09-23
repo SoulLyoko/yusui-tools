@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { MergeWithCustomizer } from 'lodash'
 import type { Resource } from './types'
+import type { MergeWithCustomizer } from 'lodash'
 
+import { base, groupList as defaultGroupList, SwitchSetter } from '@yusui/form-design'
 import { ref } from 'vue'
-import { SwitchSetter, base, groupList as defaultGroupList } from '@yusui/form-design'
 
 const option = ref({})
 

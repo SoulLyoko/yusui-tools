@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
+import { ref } from 'vue'
 
 const data = [
   { label: 'test1', icon: 'ep:plus' },

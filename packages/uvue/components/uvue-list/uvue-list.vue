@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useSlots } from 'vue'
 
-import { listEmits, listProps } from './constants'
 import { useOption, useSearch } from './composables'
+import { listEmits, listProps } from './constants'
 
 const props = defineProps(listProps)
 const emit = defineEmits(listEmits)

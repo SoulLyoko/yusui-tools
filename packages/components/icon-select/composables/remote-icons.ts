@@ -1,8 +1,8 @@
+import type { CollectionsData, IconifyInfo, IconsData, IconSelectProps } from '../types'
 import type { Ref } from 'vue'
-import type { CollectionsData, IconSelectProps, IconifyInfo, IconsData } from '../types'
 
-import { computed, ref, watchEffect } from 'vue'
 import { useFetch } from '@vueuse/core'
+import { computed, ref, watchEffect } from 'vue'
 
 export function useRemoteIcons(props: IconSelectProps, popVisible: Ref<boolean>) {
   const activeTab = ref('')

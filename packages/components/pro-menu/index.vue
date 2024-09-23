@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { RouteRecordRaw } from 'vue-router'
 import type { MenuEmits, MenuSlots } from './props'
+import type { RouteRecordRaw } from 'vue-router'
 
-import { computed, onMounted, reactive, ref } from 'vue'
-import { pick, pickBy } from 'lodash-unified'
 import { useVModels } from '@vueuse/core'
 import { menuProps as elMenuProps } from 'element-plus'
+import { pick, pickBy } from 'lodash-unified'
+import { computed, onMounted, reactive, ref } from 'vue'
 
 import MenuItem from './MenuItem.vue'
 import { menuEmits, menuItemProps, menuProps } from './props'

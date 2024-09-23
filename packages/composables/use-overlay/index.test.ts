@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import { defineComponent, h } from 'vue'
 import { sleep } from '@yusui/utils'
+import { defineComponent, h } from 'vue'
 
 import { useOverlay } from '.'
 

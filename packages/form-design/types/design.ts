@@ -1,5 +1,5 @@
-import type { AvueFormColumn, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
 import type { DesignActionKey, HistoryTypeKey } from '../constants'
+import type { AvueFormColumn, AvueFormGroup, AvueFormOption } from '@smallwei/avue'
 
 /** 中间拖拽元素 */
 export interface ElementTreeNode {

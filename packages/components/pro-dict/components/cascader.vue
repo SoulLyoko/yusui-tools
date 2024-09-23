@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { ProDictProps } from '../types'
 
-import { computed, useAttrs } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { mergeDicProps, useDict } from '@yusui/composables'
+import { computed, useAttrs } from 'vue'
 
 const props = defineProps<ProDictProps>()
 const { modelValue } = useVModels(props)

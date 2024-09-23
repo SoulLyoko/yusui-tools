@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { IconSelectProps } from './types'
 
-import { computed } from 'vue'
-import { useVModel } from '@vueuse/core'
 import { Icon } from '@iconify/vue'
+import { useVModel } from '@vueuse/core'
+import { computed } from 'vue'
 
 import { useDisplayIcons, useIframeSrc, useLocalIcons, usePopCliboard, useRemoteIcons } from './composables'
 
@@ -46,7 +46,7 @@ const { searchValue, displayIcons, resetDisplayIcons, loadDisplayIcons } = useDi
         </template>
         <template #default>
           <el-scrollbar :height="height">
-            <div v-infinite-scroll="loadDisplayIcons" class="icon-select-list" :infinite-scroll-distance="height / 2">
+            <div v-infinite-scroll="loadDisplayIcons" class="icon-select-list" :infinite-scroll-distance="height! / 2">
               <el-button v-for="icon in displayIcons" :key="icon" :title="icon" size="large" text style="margin: 0" @click="modelValue = icon">
                 <Icon :icon="icon" width="32px" />
               </el-button>

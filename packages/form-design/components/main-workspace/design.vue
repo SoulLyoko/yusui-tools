@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { ElementTreeNode } from '../../types'
 import type { DesignActionKey, HistoryTypeKey } from '../../constants'
+import type { ElementTreeNode } from '../../types'
 
-import { nextTick } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { nextTick } from 'vue'
 import Draggable from 'vuedraggable'
 
-// eslint-disable-next-line import/no-self-import
-import Design from './design.vue'
-import DesignItem from './design-item.vue'
 import { useInjectState } from '../../composables'
 import { checkRules, copyItem } from '../../utils'
+import DesignItem from './design-item.vue'
+// eslint-disable-next-line import/no-self-import
+import Design from './design.vue'
 
 const props = defineProps<{ list: ElementTreeNode[], componentData: ElementTreeNode }>()
 const emit = defineEmits(['update:active', 'update:list'])

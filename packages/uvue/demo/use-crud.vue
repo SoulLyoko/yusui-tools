@@ -3,7 +3,7 @@ import type { UvueFormDefaults, UvueFormOption, UvueListOption } from '@yusui/uv
 
 import { nextTick, reactive, ref } from 'vue'
 
-import { UvueForm, UvueList, useCrud } from '..'
+import { useCrud, UvueForm, UvueList } from '..'
 
 interface User {
   userName: string

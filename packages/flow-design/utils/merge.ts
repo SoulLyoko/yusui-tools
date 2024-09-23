@@ -1,6 +1,6 @@
-import type { AvueFormOption } from '@smallwei/avue'
 import type { ButtonItem, FormPropertyItem } from '../types'
 import type { Definition } from '@logicflow/core'
+import type { AvueFormOption } from '@smallwei/avue'
 
 import { uniqBy } from 'lodash-unified'
 

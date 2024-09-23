@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import type { IconSelectProps } from '../types'
+import type { Ref } from 'vue'
 
 import { computed, ref } from 'vue'
 

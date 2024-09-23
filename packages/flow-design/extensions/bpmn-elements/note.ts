@@ -1,4 +1,4 @@
-import { RectResize, bpmnUtils } from '@logicflow/extension'
+import { bpmnUtils, RectResize } from '@logicflow/extension'
 
 /** Note */
 const RectResizeModel = RectResize.model as any

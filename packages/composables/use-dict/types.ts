@@ -1,6 +1,6 @@
-import type { MaybeRefOrGetter, Ref } from 'vue'
-import type { AxiosInstance } from 'axios'
 import type { DicItem, DicProps } from '@smallwei/avue'
+import type { AxiosInstance } from 'axios'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { useRequest } from 'vue-request'
 
 export interface UseDictOptions {

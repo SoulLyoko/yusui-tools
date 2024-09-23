@@ -1,13 +1,13 @@
 import type { FlowDesignProps, FlowDesignState } from '../types'
 
-import { nextTick, watch } from 'vue'
 import { LogicFlow } from '@logicflow/core'
 import { InsertNodeInPolyline, MiniMap, SelectionSelect } from '@logicflow/extension'
+import { nextTick, watch } from 'vue'
 
-import { BpmnElements, Control, Menu, Panel, Styles, Tooltips, TurboAdapter } from '../extensions'
-import { defaultTheme } from '../constants'
-import { mergeInitOptions } from '../utils'
 import { useModelerListener } from '.'
+import { defaultTheme } from '../constants'
+import { BpmnElements, Control, Menu, Panel, Styles, Tooltips, TurboAdapter } from '../extensions'
+import { mergeInitOptions } from '../utils'
 
 export function useInit({ props, state }: { props: FlowDesignProps, state: FlowDesignState }) {
   const { lf, graphData } = state

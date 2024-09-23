@@ -1,4 +1,3 @@
-import type { FormType } from '@smallwei/avue'
 import type {
   UvueFormColumn,
   UvueFormDefaults,
@@ -7,6 +6,7 @@ import type {
   UvueFormOption,
   UvueFormProps,
 } from '../types'
+import type { FormType } from '@smallwei/avue'
 
 import { computed, ref } from 'vue'
 

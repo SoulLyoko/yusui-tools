@@ -1,5 +1,5 @@
-import type { EdgeConfig, NodeConfig, TextConfig } from '@logicflow/core'
 import type { FlowDesignState } from '../types'
+import type { EdgeConfig, NodeConfig, TextConfig } from '@logicflow/core'
 
 import { nextTick } from 'vue'
 

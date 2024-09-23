@@ -1,10 +1,10 @@
 import type { DicItem } from '@smallwei/avue'
 import type { AxiosInstance } from 'axios'
 
+import { serialize, treeMap } from '@yusui/utils'
+import { get } from 'lodash-es'
 import { ref } from 'vue'
 import { useRequest } from 'vue-request'
-import { get } from 'lodash-es'
-import { serialize, treeMap } from '@yusui/utils'
 
 export interface UseDictOptions {
   props?: {

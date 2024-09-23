@@ -1,5 +1,5 @@
-import type { AvueFormColumn } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
+import type { AvueFormColumn } from '@smallwei/avue'
 
 const eventNameDic = [
   { label: '开始', value: 'start', desc: 'start' },

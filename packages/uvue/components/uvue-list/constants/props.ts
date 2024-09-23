@@ -1,5 +1,5 @@
-import type { PropType } from 'vue'
 import type { UvueListOption } from '../types'
+import type { PropType } from 'vue'
 
 export const listProps = {
   /** 列表数据 */

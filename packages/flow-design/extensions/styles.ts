@@ -1,5 +1,5 @@
-import type { LogicFlow } from '@logicflow/core'
 import type { StyleItem } from '../types'
+import type { LogicFlow } from '@logicflow/core'
 
 export class Styles {
   static pluginName = 'styles'

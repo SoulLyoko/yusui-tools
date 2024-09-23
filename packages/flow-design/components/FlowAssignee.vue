@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { AssigneeItem } from '../types'
 
-import { computed } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { enumToDic } from '@yusui/utils'
+import { computed } from 'vue'
 
 import { AssigneeType } from '../types'
 import FlowAssigneeSetter from './FlowAssigneeSetter.vue'

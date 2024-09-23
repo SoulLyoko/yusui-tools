@@ -1,5 +1,5 @@
-import type { AvueFormGroup } from '@smallwei/avue'
 import type { FlowFormData } from '../types'
+import type { AvueFormGroup } from '@smallwei/avue'
 
 import {
   approvalColumn,

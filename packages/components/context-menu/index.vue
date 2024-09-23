@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ContextMenuItem, ContextMenuProps } from './types'
 
-import { computed, ref } from 'vue'
 import { createReusableTemplate, onClickOutside, useEventListener, useVModels } from '@vueuse/core'
+import { computed, ref } from 'vue'
 
 const props = withDefaults(defineProps<ContextMenuProps>(), { x: '', y: '' })
 const emit = defineEmits<{

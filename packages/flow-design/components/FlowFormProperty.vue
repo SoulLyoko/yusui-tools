@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { AvueFormOption, DicItem } from '@smallwei/avue'
 import type { FormPropertyItem } from '../types'
+import type { AvueFormOption, DicItem } from '@smallwei/avue'
 
-import { computed, onMounted, ref } from 'vue'
 import { createReusableTemplate, useVModels } from '@vueuse/core'
 import { filterTree, sleep } from '@yusui/utils'
+import { computed, onMounted, ref } from 'vue'
 
 import { useInjectState } from '../composables/state'
 import { formColumnToDic, getFormColumn } from '../utils'

@@ -1,14 +1,14 @@
-import type { MaybeRefOrGetter } from 'vue'
-import type { DicItem } from '@smallwei/avue'
 import type { UseDictOptions, UseDictReturn } from './types'
+import type { DicItem } from '@smallwei/avue'
+import type { MaybeRefOrGetter } from 'vue'
 
+import { filterTree, findTree, serialize } from '@yusui/utils'
+import { get } from 'lodash-unified'
 import { computed, unref, watch } from 'vue'
 import { useRequest } from 'vue-request'
-import { get } from 'lodash-unified'
-import { filterTree, findTree, serialize } from '@yusui/utils'
 
-import { mergeDicProps } from './constants'
 import { useDictConfigProvider } from './config'
+import { mergeDicProps } from './constants'
 
 export * from './config'
 export * from './constants'

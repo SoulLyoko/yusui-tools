@@ -1,9 +1,9 @@
-import type { ConcreteComponent, VNode } from 'vue'
 import type { UseOverlayOptions, UseOverlayType } from './types'
+import type { ConcreteComponent, VNode } from 'vue'
 
-import { getCurrentInstance, h, render, resolveComponent } from 'vue'
-import { pick } from 'lodash-es'
 import { sleep } from '@yusui/utils'
+import { pick } from 'lodash-es'
+import { getCurrentInstance, h, render, resolveComponent } from 'vue'
 
 /** 命令式使用弹窗 */
 export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOptions<T>) {

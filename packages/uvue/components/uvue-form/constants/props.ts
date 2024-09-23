@@ -1,5 +1,5 @@
-import type { PropType } from 'vue'
 import type { UvueFormDefaults, UvueFormOption } from '../types'
+import type { PropType } from 'vue'
 
 export const formProps = {
   modelValue: { type: Object, default: () => ({}) },

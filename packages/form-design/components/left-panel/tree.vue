@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ElTreeNode } from '@yusui/types'
-import type { ElementTreeNode } from '../../types'
 import type { DesignActionKey } from '../../constants'
+import type { ElementTreeNode } from '../../types'
+import type { ElTreeNode } from '@yusui/types'
 
 import { ElTree } from 'element-plus'
-import { computed, ref, watchEffect } from 'vue'
 import { cloneDeep } from 'lodash-unified'
+import { computed, ref, watchEffect } from 'vue'
 
 import { useInjectState } from '../../composables'
 import { checkRules, copyItem } from '../../utils'

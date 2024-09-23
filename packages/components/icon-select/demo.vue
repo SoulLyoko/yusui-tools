@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import * as ep from '@iconify-json/ep'
 import { addCollection } from '@iconify/vue'
+import { ref } from 'vue'
 
 // 添加本地图标集
 addCollection(ep.icons)

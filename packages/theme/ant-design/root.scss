@@ -64,14 +64,14 @@
   --el-fill-color-dark: rgba(0, 0, 0, 0.1);
   --el-fill-color-darker: rgba(0, 0, 0, 0.15);
   --el-fill-color-blank: #ffffff;
-  --el-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
-    0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
-  --el-box-shadow-light: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-  --el-box-shadow-lighter: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-  --el-box-shadow-dark: 0 0 16px 0 rgba(0, 0, 0, 0.08),
-    0 0 6px -4px rgba(0, 0, 0, 0.12), 0 0 28px 8px rgba(0, 0, 0, 0.05);
+  --el-box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+    0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  --el-box-shadow-light: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --el-box-shadow-lighter: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --el-box-shadow-dark: 0 0 16px 0 rgba(0, 0, 0, 0.08), 0 0 6px -4px rgba(0, 0, 0, 0.12),
+    0 0 28px 8px rgba(0, 0, 0, 0.05);
   --el-disabled-bg-color: var(--el-fill-color-light);
   --el-disabled-text-color: var(--el-text-color-placeholder);
   --el-disabled-border-color: var(--el-border-color);
@@ -83,8 +83,7 @@
   --el-border-width: 1px;
   --el-border-style: solid;
   --el-border-color-hover: var(--el-color-primary);
-  --el-border: var(--el-border-width) var(--el-border-style)
-    var(--el-border-color);
+  --el-border: var(--el-border-width) var(--el-border-style) var(--el-border-color);
   --el-svg-monochrome-grey: var(--el-border-color);
   --el-font-size-extra-large: 20px;
   --el-font-size-large: 18px;
@@ -92,9 +91,8 @@
   --el-font-size-base: 14px;
   --el-font-size-small: 13px;
   --el-font-size-extra-small: 12px;
-  --el-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --el-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --el-font-weight-primary: 400;
   --el-font-line-height-primary: 24px;
   --el-index-normal: 1;

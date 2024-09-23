@@ -28,6 +28,7 @@ export function jsonParse(str: string, reviver?: (key: string, value: any) => an
   const parseReviver = (key: string, value: any) => {
     if (typeof value === 'string' && value.includes('=>')) {
       try {
+        // eslint-disable-next-line no-eval
         return eval(value)
       }
       catch {

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { TemplateItem } from '../types'
 
-import { computed, defineComponent, h, resolveComponent } from 'vue'
 import { useVModels } from '@vueuse/core'
-import { set } from 'lodash-unified'
 import { ProDict } from '@yusui/components'
+import { set } from 'lodash-unified'
+import { computed, defineComponent, h, resolveComponent } from 'vue'
 
 import { useInjectState } from '../composables/state'
 import { formColumnToDic, getFormColumn } from '../utils'

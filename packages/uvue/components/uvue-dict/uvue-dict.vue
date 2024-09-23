@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 
-import { useAttrs } from 'vue'
 import { useConfigProvider, useDict } from '@yusui/uvue'
+import { useAttrs } from 'vue'
 
 defineProps({
   type: { type: String as PropType<'select' | 'cascader' | 'checkbox' | 'radio' | 'switch'>, default: 'select' },

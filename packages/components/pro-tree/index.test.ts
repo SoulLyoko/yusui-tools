@@ -26,7 +26,10 @@ describe('test ProTree', () => {
     },
   ]
 
-  const wrapper = mount(ProTree, { props: { data: treeData } })
+  const wrapper = mount(ProTree, {
+    props: { data: treeData },
+    global: { stubs: { transition: false } }, // solve el-tag error
+  })
 
   it('mount', async () => {
     expect(wrapper.find('.pro-tree').html()).toContain('一级 1')

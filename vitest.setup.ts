@@ -1,9 +1,9 @@
 import type { App } from 'vue'
 
-import { config } from '@vue/test-utils'
 import { Icon } from '@iconify/vue'
-import ElementPlus, { ElOverlay } from 'element-plus'
 import Avue from '@smallwei/avue'
+import { config } from '@vue/test-utils'
+import ElementPlus, { ElOverlay } from 'element-plus'
 
 const GlobalComponents = {
   install(app: App) {

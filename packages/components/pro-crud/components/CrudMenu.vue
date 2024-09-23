@@ -3,8 +3,8 @@ import type { CrudMenuSlots } from '../types'
 
 import { computed, getCurrentInstance } from 'vue'
 
-import { any } from '../utils'
 import { useCrudInstance } from '../composables'
+import { any } from '../utils'
 
 const props = defineProps<{ row: T, index: number }>()
 defineSlots<CrudMenuSlots<T>>()

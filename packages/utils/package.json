@@ -24,10 +24,10 @@
   ],
   "dependencies": {
     "@yusui/types": "workspace:*",
-    "dayjs": "^1.11.12",
-    "lodash": "4.17.21",
-    "lodash-es": "4.17.21",
-    "lodash-unified": "1.0.3",
-    "mitt": "^3.0.1"
+    "dayjs": "catalog:",
+    "lodash": "catalog:",
+    "lodash-es": "catalog:",
+    "lodash-unified": "catalog:",
+    "mitt": "catalog:"
   }
 }

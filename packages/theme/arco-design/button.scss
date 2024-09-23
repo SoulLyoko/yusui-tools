@@ -7,13 +7,7 @@
     border-color: transparent;
   }
 
-  &:not(
-      .el-button--primary,
-      .el-button--success,
-      .el-button--info,
-      .el-button--warning,
-      .el-button--danger
-    ) {
+  &:not(.el-button--primary, .el-button--success, .el-button--info, .el-button--warning, .el-button--danger) {
     --el-button-divide-border-color: var(--el-border-color);
     --el-button-bg-color: var(--el-fill-color-light);
     --el-button-hover-text-color: var(--el-button-text-color);

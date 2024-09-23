@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { editor as MonacoEditor } from 'monaco-editor'
 
-import { computed, ref, watchEffect } from 'vue'
 import { Editor } from '@guolao/vue-monaco-editor'
+import { computed, ref, watchEffect } from 'vue'
 
 const props = defineProps<{
   tableData?: { row: any }

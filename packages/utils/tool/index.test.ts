@@ -11,12 +11,12 @@ describe('tool utils', () => {
 
   it('awaitTo', async () => {
     const fail = async () => {
-      const [err, res] = await to(Promise.reject('fail'))
+      const [err, res] = await to(Promise.reject(new Error('fail')))
       if (err)
         return err
       return res
     }
-    expect(fail()).resolves.toBe('fail')
+    expect(fail()).resolves.toBeInstanceOf(Error)
     const success = async () => {
       const [err, res] = await to(Promise.resolve('success'))
       if (err)

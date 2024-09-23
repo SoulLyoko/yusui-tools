@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import type { UvueFormOption } from '../types'
+import type { Ref } from 'vue'
 
 import { ref, unref, watch } from 'vue'
 

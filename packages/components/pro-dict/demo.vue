@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useDictConfigProvider } from '@yusui/composables'
+import { ref } from 'vue'
 
 const single = ref('value1')
 const multiple = ref([])

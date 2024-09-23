@@ -1,6 +1,6 @@
+import type { MenuItemSlots } from './menu-item'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import type { MenuItemSlots } from './menu-item'
 
 import { menuEmits as elMenuEmits, menuProps as elMenuProps } from 'element-plus'
 import { omit } from 'lodash-unified'

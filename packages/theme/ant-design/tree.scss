@@ -19,9 +19,7 @@
     }
   }
 
-  &.el-tree--highlight-current
-    .el-tree-node.is-current
-    > .el-tree-node__content {
+  &.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
     background-color: unset;
 
     .el-tree-node__label {

@@ -1,13 +1,13 @@
 <script setup lang="ts" generic="T extends any">
-import type { AvueFormOption } from '@smallwei/avue'
 import type { CrudCardOption, CrudCardSlots } from '../types'
+import type { AvueFormOption } from '@smallwei/avue'
 
-import { computed } from 'vue'
 import { cloneDeep } from 'lodash-es'
+import { computed } from 'vue'
 
-import CrudMenu from './CrudMenu.vue'
-import { any } from '../utils'
 import { useCrudInstance } from '../composables'
+import { any } from '../utils'
+import CrudMenu from './CrudMenu.vue'
 
 const slots = defineSlots<CrudCardSlots<T>>()
 

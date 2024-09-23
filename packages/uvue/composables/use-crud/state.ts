@@ -1,8 +1,8 @@
-import type { Data } from '@yusui/types'
 import type { CrudState, UseCrudStateOptions } from './types'
+import type { Data } from '@yusui/types'
 
-import { reactive } from 'vue'
 import { merge } from 'lodash-es'
+import { reactive } from 'vue'
 
 export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T, P>) {
   const listState = reactive(

@@ -1,8 +1,8 @@
-import type { AvueCrudInstance, TableRowData } from '@smallwei/avue'
 import type { CrudListOption, ProCrudOption } from '../types'
+import type { AvueCrudInstance, TableRowData } from '@smallwei/avue'
 
-import { computed, inject } from 'vue'
 import { pick } from 'lodash-es'
+import { computed, inject } from 'vue'
 
 export function useCrudInstance<T = any>() {
   const crudRef = inject<AvueCrudInstance<T>>('crud')

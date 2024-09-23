@@ -1,5 +1,5 @@
-import type { AvueFormGroup } from '@smallwei/avue'
 import type { TurboData } from '../types'
+import type { AvueFormGroup } from '@smallwei/avue'
 
 import { ref } from 'vue'
 

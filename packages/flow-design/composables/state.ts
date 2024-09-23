@@ -1,8 +1,8 @@
-import type { AvueFormInstance } from '@smallwei/avue'
 import type { FlowDesignProps } from '../types'
+import type { AvueFormInstance } from '@smallwei/avue'
 
-import { inject, provide, ref } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { inject, provide, ref } from 'vue'
 
 export const injectionKey = Symbol('flowDesignState')
 

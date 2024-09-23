@@ -1,7 +1,7 @@
 import type { UvueConfig } from '../types'
 
-import { inject, reactive } from 'vue'
 import { merge } from 'lodash-es'
+import { inject, reactive } from 'vue'
 
 const globalConfigKey = 'uvueCrudConfig'
 const globalConfig: UvueConfig = reactive({

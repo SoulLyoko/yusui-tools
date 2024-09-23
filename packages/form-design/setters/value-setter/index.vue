@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { getDataType } from '@yusui/utils'
+import { computed, ref, watch } from 'vue'
 
 import EditorSetter from '../editor-setter/index.vue'
 

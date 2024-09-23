@@ -1,7 +1,7 @@
-import type { SetupContext } from 'vue'
+import type { ElementTreeNode, Resource } from '.'
 import type { AvueFormOption } from '@smallwei/avue'
 import type { MergeWithCustomizer } from 'lodash'
-import type { ElementTreeNode, Resource } from '.'
+import type { SetupContext } from 'vue'
 
 export interface FormDesignProps {
   /** 绑定的表单配置json */

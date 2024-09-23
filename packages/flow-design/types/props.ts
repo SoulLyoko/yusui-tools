@@ -1,6 +1,6 @@
-import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption, DicItem } from '@smallwei/avue'
-import type { Definition, EdgeConfig, LogicFlow, NodeConfig } from '@logicflow/core'
 import type { ButtonItem, FlowFormData, StyleItem, TooltipItem, TurboData } from '../types'
+import type { Definition, EdgeConfig, LogicFlow, NodeConfig } from '@logicflow/core'
+import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption, DicItem } from '@smallwei/avue'
 
 export interface DataOptions {
   /** 按钮数据 */

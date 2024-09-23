@@ -3,9 +3,9 @@ import type { CrudListSlots } from '../types'
 
 import { computed } from 'vue'
 
-import CrudMenu from './CrudMenu.vue'
-import { any } from '../utils'
 import { useCrudInstance } from '../composables'
+import { any } from '../utils'
+import CrudMenu from './CrudMenu.vue'
 
 const slots = defineSlots<CrudListSlots<T>>()
 

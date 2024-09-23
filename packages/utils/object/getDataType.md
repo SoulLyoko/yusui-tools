@@ -25,5 +25,5 @@ getDataType(() => {}) // "Function"
 
 getDataType(new Date()) // "Date"
 
-getDataType(new RegExp('')) // "RegExp"
+getDataType(/(?:)/) // "RegExp"
 ```

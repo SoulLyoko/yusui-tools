@@ -21,7 +21,6 @@
   }
 
   .avue-dialog__footer {
-    border-radius: 0 0 var(--el-dialog-border-radius)
-      var(--el-dialog-border-radius);
+    border-radius: 0 0 var(--el-dialog-border-radius) var(--el-dialog-border-radius);
   }
 }

@@ -1,14 +1,14 @@
-import type { AvueFormOption } from '@smallwei/avue'
-import type { ElementTreeNode, FormDesignEmit, FormDesignProps, History, Resource } from '../types'
 import type { HistoryTypeKey } from '../constants'
+import type { ElementTreeNode, FormDesignEmit, FormDesignProps, History, Resource } from '../types'
+import type { AvueFormOption } from '@smallwei/avue'
 
-import { computed, inject, provide, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { cloneDeep, isEqual, mergeWith, omit } from 'lodash-unified'
+import { computed, inject, provide, ref, watch } from 'vue'
 
+import { advance as defaultAdvanceOption, base as defaultBaseOption, groupList as defaultGroupList } from '../options'
 import * as defaultResources from '../resources'
 import { adapterIn, adapterOut } from '../utils'
-import { advance as defaultAdvanceOption, base as defaultBaseOption, groupList as defaultGroupList } from '../options'
 
 const injectKey = Symbol('form-design-state')
 

@@ -9,10 +9,7 @@
       "@yusui/form-design": ["packages/form-design/index.ts"],
       "@yusui/types": ["packages/types/index.ts"],
       "@yusui/utils": ["packages/utils/index.ts"],
-      "@yusui/uvue": ["packages/uvue/index.ts"],
-      "@vue/shared": ["node_modules/@vue/shared"],
-      "async-validator": ["node_modules/async-validator"],
-      "preact": ["node_modules/preact"]
+      "@yusui/uvue": ["packages/uvue/index.ts"]
     },
     "types": [
       "@dcloudio/types",

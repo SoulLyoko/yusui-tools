@@ -155,7 +155,7 @@ describe.skip('useCrud', () => {
     beforeGetList(() => {
       crudState.listData = []
       crudState.pageOption.total = 0
-      return Promise.reject('reject')
+      return Promise.reject(new Error('reject'))
     })
     await getDataList()
     expect(crudState.listData).toEqual([])
@@ -164,14 +164,14 @@ describe.skip('useCrud', () => {
 
   it('handleSubmit reject', async () => {
     let isReject = false
-    beforeSubmit(() => Promise.reject('reject'))
+    beforeSubmit(() => Promise.reject(new Error('reject')))
     await handleSubmit({}, () => (isReject = true))
     expect(isReject).toBeTruthy()
   })
 
   it('handleDel reject', async () => {
     let isReject = true
-    beforeDel(() => Promise.reject('reject'))
+    beforeDel(() => Promise.reject(new Error('reject')))
     afterDel(() => (isReject = false))
     await handleDel({})
     expect(isReject).toBeTruthy()

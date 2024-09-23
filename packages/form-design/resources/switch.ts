@@ -1,7 +1,7 @@
 import type { Resource } from '../types'
 
-import { EditorSetter, SwitchSetter } from '../setters'
 import { iconList } from '../options'
+import { EditorSetter, SwitchSetter } from '../setters'
 
 const switchs: Resource = {
   name: 'switch',

@@ -8,7 +8,7 @@ try catch 的替代方案
 // to = awaitTo
 const [err, res] = await to(getList())
 if (err)
-  return console.error(err)
+  console.error(err)
 ```
 
 ## 参数

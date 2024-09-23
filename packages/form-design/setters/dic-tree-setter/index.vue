@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { AvueTreeEmits } from '@smallwei/avue'
 
-import { ref } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { ref } from 'vue'
 
 import { getRandomId } from '../../utils'
 

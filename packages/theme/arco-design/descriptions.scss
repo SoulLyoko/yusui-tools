@@ -1,8 +1,6 @@
 .el-descriptions {
   --el-descriptions-table-border: 1px solid var(--el-border-color);
-  --el-descriptions-item-bordered-label-background: var(
-    --el-fill-color-lighter
-  );
+  --el-descriptions-item-bordered-label-background: var(--el-fill-color-lighter);
 
   .el-descriptions__title {
     font-weight: unset;

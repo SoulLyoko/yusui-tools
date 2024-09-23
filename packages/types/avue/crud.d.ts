@@ -1,7 +1,7 @@
+import type { ElSize, EmitFn } from '@yusui/types'
 import type { FormItemRule, TableColumnCtx, TableProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import type TableColumnPropsConstructor from 'element-plus/es/components/table/src/table-column/defaults'
 import type { ExtractPropTypes, VNode } from 'vue'
-import type { ElSize, EmitFn } from '@yusui/types'
 
 declare module '@smallwei/avue' {
   export type Align = 'left' | 'center' | 'right'

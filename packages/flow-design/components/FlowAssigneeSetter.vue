@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { AssigneeItem } from '../types'
 
-import { computed, ref, watch } from 'vue'
 import { filterTree, treeMap } from '@yusui/utils'
+import { computed, ref, watch } from 'vue'
 
 import { useInjectState } from '../composables/state'
 import FlowNodeSelect from './FlowNodeSelect.vue'

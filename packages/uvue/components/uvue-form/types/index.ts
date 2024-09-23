@@ -1,6 +1,6 @@
-import type { ExtractPropTypes, SetupContext } from 'vue'
-import type { AvueFormColumn, AvueFormGroup, AvueFormOption, PropKeyType } from '@smallwei/avue'
 import type { formEmits, formProps } from '../constants'
+import type { AvueFormColumn, AvueFormGroup, AvueFormOption, PropKeyType } from '@smallwei/avue'
+import type { ExtractPropTypes, SetupContext } from 'vue'
 
 export type UvueFormProps = ExtractPropTypes<typeof formProps>
 export type UvueFormEmitFn = SetupContext<typeof formEmits>['emit']

@@ -2,8 +2,8 @@
 import type { EditorProps } from '@guolao/vue-monaco-editor'
 import type { editor as MonacoEditor } from 'monaco-editor'
 
-import { computed, onUnmounted, ref, useAttrs } from 'vue'
 import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
+import { computed, onUnmounted, ref, useAttrs } from 'vue'
 
 import { jsonParse, jsonStringify } from '../../utils'
 
@@ -61,6 +61,7 @@ function onEditorMount(editor: MonacoEditor.ICodeEditor) {
     if (val === editorValue.value)
       return
     if (props.valueType === 'function')
+      // eslint-disable-next-line no-eval
       val = eval(`${val}`)
     else if (['object', 'array'].includes(props.valueType!))
       val = jsonParse(val)

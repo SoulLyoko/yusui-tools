@@ -1,10 +1,10 @@
-import { defineConfig } from 'vitepress'
-import Inspect from 'vite-plugin-inspect'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import Inspect from 'vite-plugin-inspect'
+import { defineConfig } from 'vitepress'
 
-import { mdDemoTransform } from './plugins/md-demo-transform'
-import { alias } from '../../vite.config'
 import pkg from '../../package.json'
+import { alias } from '../../vite.config'
+import { mdDemoTransform } from './plugins/md-demo-transform'
 
 export default defineConfig({
   base: `/${pkg.name}/`,
@@ -185,6 +185,13 @@ export default defineConfig({
     plugins: [vueJsx(), mdDemoTransform(), Inspect()],
     resolve: {
       alias,
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: ['legacy-js-api'],
+        },
+      },
     },
   },
 })

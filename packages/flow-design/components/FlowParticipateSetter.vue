@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { ParticipateItem } from '../types'
 
-import { computed } from 'vue'
 import { useVModels } from '@vueuse/core'
 import { enumToDic } from '@yusui/utils'
+import { computed } from 'vue'
 
 import { ParticipateType } from '../types'
 import FlowAssigneeSetter from './FlowAssigneeSetter.vue'

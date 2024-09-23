@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { AvueFormOption } from '@smallwei/avue'
 import type { ElementTreeNode } from '../../types'
+import type { AvueFormOption } from '@smallwei/avue'
 
-import { nextTick, ref, watch } from 'vue'
 import { watchDebounced } from '@vueuse/core'
-import { cloneDeep, debounce, get, isEqual, set } from 'lodash-unified'
 import { filterObjDeep } from '@yusui/utils'
+import { cloneDeep, debounce, get, isEqual, set } from 'lodash-unified'
+import { nextTick, ref, watch } from 'vue'
 
 import { useInjectState } from '../../composables'
 

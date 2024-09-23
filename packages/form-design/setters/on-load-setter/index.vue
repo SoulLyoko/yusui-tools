@@ -2,8 +2,8 @@
 // import { parse } from "acorn";
 import type { AvueFormInstance, AvueFormOption } from '@smallwei/avue'
 
-import { inject, ref, watch } from 'vue'
 import { useVModels } from '@vueuse/core'
+import { inject, ref, watch } from 'vue'
 
 import EditorSetter from '../editor-setter/index.vue'
 

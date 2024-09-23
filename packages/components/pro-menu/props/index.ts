@@ -1,5 +1,5 @@
-export * from './menu-item'
 export * from './menu'
+export * from './menu-item'
 
 // #region route-meta
 declare module 'vue-router' {

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { TreeInstance } from 'element-plus'
 import type { ProTreeProps } from './types'
+import type { InputInstance, TreeInstance } from 'element-plus'
 
-import { onMounted, reactive, ref } from 'vue'
 import { isFunction, pickBy } from 'lodash-unified'
+import { onMounted, reactive, ref } from 'vue'
 
 import { useInput, useTag, useTree } from './composables'
 
@@ -13,7 +13,7 @@ const props = withDefaults(
 )
 const emit = defineEmits(['update:modelValue', 'tag-click', 'tag-close'])
 
-const inputRef = ref()
+const inputRef = ref<InputInstance>()
 const treeRef = ref<TreeInstance>()
 const treeProps = useTree(props, { emit, treeRef })
 

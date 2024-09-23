@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { h } from 'vue'
 import { ElButton } from 'element-plus'
+import { h } from 'vue'
 
 import { useOverlay } from '.'
 

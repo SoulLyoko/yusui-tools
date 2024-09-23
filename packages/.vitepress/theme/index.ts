@@ -1,22 +1,22 @@
 import type { App } from 'vue'
 
-import DefaultTheme from 'vitepress/theme'
-import axios from 'axios'
 import { Icon } from '@iconify/vue'
+import axios from 'axios'
 import ElementPlus, { ElOverlay } from 'element-plus'
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@smallwei/avue/lib/index.css'
-import './index.scss'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import DefaultTheme from 'vitepress/theme'
 
-import Layout from './Layout.vue'
-import components from '../components'
 import YSComponents from '../../components/index'
 import '../../components/index.scss'
-import '../../theme/index.scss'
 import '../../flow-design/styles/index.scss'
 import '../../form-design/styles/index.scss'
+import '../../theme/index.scss'
+import components from '../components'
+import './index.scss'
+import Layout from './Layout.vue'
 
 export default {
   extends: DefaultTheme,

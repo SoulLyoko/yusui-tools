@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { AvueFormColumn } from '@smallwei/avue'
 import type { ElementTreeNode } from '../../types'
+import type { AvueFormColumn } from '@smallwei/avue'
 
-import { computed, ref } from 'vue'
 import Avue from '@smallwei/avue'
 import { isFunction, isNil, omitBy, pick } from 'lodash-unified'
+import { computed, ref } from 'vue'
 
 import { useInjectState } from '../../composables'
 

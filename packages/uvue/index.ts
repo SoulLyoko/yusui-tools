@@ -1,5 +1,5 @@
-import type { App } from 'vue'
 import type { UvueConfig } from './types'
+import type { App } from 'vue'
 
 import { useConfigProvider } from './composables'
 

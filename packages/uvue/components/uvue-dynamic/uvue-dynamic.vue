@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
 import type { UvueFormColumn } from '../uvue-form'
+import type { PropType } from 'vue'
 
 import { computed, ref, watch } from 'vue'
 

@@ -1,9 +1,9 @@
 <script setup lang="ts" generic="T extends any">
-import type { AvueCrudInstance, AvueCrudMethods } from '@smallwei/avue'
 import type { ProCrudProps, ProCrudSlots } from './types'
+import type { AvueCrudInstance, AvueCrudMethods } from '@smallwei/avue'
 
-import { computed, onMounted, reactive, ref } from 'vue'
 import { isFunction, pickBy } from 'lodash-unified'
+import { computed, onMounted, reactive, ref } from 'vue'
 
 import CrudCard from './components/CrudCard.vue'
 import CrudList from './components/CrudList.vue'

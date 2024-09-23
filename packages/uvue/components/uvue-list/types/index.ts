@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, SetupContext } from 'vue'
 import type { listEmits, listProps } from '../constants'
+import type { ExtractPropTypes, SetupContext } from 'vue'
 
 export type UvueListProps = ExtractPropTypes<typeof listProps>
 export type UvueListEmitFn = SetupContext<typeof listEmits>['emit']

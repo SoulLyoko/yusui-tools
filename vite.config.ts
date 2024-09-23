@@ -1,8 +1,8 @@
-import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
+import { resolve } from 'node:path'
 
-import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 
 const external = [
   '@antfu/eslint-config',

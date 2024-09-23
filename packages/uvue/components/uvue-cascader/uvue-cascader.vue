@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
 import type { DicItem } from '@smallwei/avue'
+import type { PropType } from 'vue'
 
-import { computed, ref, useAttrs, watch } from 'vue'
 import { findTree } from '@yusui/utils'
+import { computed, ref, useAttrs, watch } from 'vue'
 
 const props = defineProps({
   modelValue: { type: [String, Number, Array] as PropType<string | number | string[] | number[]> },

@@ -173,7 +173,7 @@ describe('useCrud', () => {
     beforeGetList(() => {
       crudState.tableData = []
       crudState.pageOption.total = 0
-      return Promise.reject()
+      return Promise.reject(new Error('reject'))
     })
     await getDataList()
     expect(crudState.tableData).toEqual([])
@@ -183,7 +183,7 @@ describe('useCrud', () => {
   it('getInfoData reject', async () => {
     beforeGetInfo(() => {
       crudState.formData = {}
-      return Promise.reject()
+      return Promise.reject(new Error('reject'))
     })
     await getInfoData(rows[0].id)
     expect(crudState.formData).toEqual({})
@@ -191,21 +191,21 @@ describe('useCrud', () => {
 
   it('handleSave reject', async () => {
     let isReject = false
-    beforeSave(() => Promise.reject('reject'))
+    beforeSave(() => Promise.reject(new Error('reject')))
     await handleSave({}, done, () => (isReject = true))
     expect(isReject).toBeTruthy()
   })
 
   it('handleUpdate reject', async () => {
     let isReject = false
-    beforeUpdate(() => Promise.reject('reject'))
+    beforeUpdate(() => Promise.reject(new Error('reject')))
     await handleUpdate({}, 0, done, () => (isReject = true))
     expect(isReject).toBeTruthy()
   })
 
   it('handleDel reject', async () => {
     let isReject = true
-    beforeDel(() => Promise.reject('reject'))
+    beforeDel(() => Promise.reject(new Error('reject')))
     afterDel(() => (isReject = false))
     await handleDel({}, 0)
     expect(isReject).toBeTruthy()
@@ -213,7 +213,7 @@ describe('useCrud', () => {
 
   it('batchDel reject', async () => {
     let isReject = true
-    beforeBatchDel(() => Promise.reject('reject'))
+    beforeBatchDel(() => Promise.reject(new Error('reject')))
     afterDel(() => (isReject = false))
     await batchDel()
     expect(isReject).toBeTruthy()
