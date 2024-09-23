@@ -64,7 +64,7 @@ async function nodeClick(data: CommonComment) {
   <el-popover :visible="popoverVisible" placement="bottom" title="常用意见" :width="isMobile() ? '98%' : '600px'">
     <template #reference>
       <el-input
-        ref="inputRef" v-model="modelValue" type="textarea" placeholder="请输入意见" rows="5"
+        ref="inputRef" v-model="modelValue" type="textarea" placeholder="请输入意见" :rows="5"
         @focus="popoverVisible = true" @blur="popoverVisible = false"
       />
     </template>
