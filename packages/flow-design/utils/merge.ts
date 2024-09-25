@@ -1,5 +1,4 @@
 import type { ButtonItem, FormPropertyItem } from '../types'
-import type { Definition } from '@logicflow/core'
 import type { AvueFormOption } from '@smallwei/avue'
 
 import { uniqBy } from 'lodash-es'
@@ -58,13 +57,4 @@ export function mergeFormProperty(option: AvueFormOption, source: FormPropertyIt
     result.push(findSource)
   })
   return uniqBy(result, 'prop')
-}
-
-/** 合并初始化配置，主要是合并plugins */
-export function mergeInitOptions(target?: Definition, source?: Definition) {
-  return {
-    ...target,
-    ...source,
-    plugins: [...target?.plugins ?? [], ...source?.plugins ?? []],
-  } as Definition
 }

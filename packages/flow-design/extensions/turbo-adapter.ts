@@ -1,19 +1,19 @@
 import type { FlowEdge, FlowElement, FlowNode, ProcessData, TurboData } from '../types'
-import type { EdgeConfig, GraphConfigData, LogicFlow, NodeConfig } from '@logicflow/core'
+import type { LogicFlow } from '@logicflow/core'
 
 import { isString, omit } from 'lodash-es'
 
 const defaultProcessData: ProcessData = { type: 'process', key: 'Process', properties: {} }
 
 // 将LogicFlow中的Node数据转换为Turbo元素数据
-function convertNodeToTurboElement(node: NodeConfig & { children?: string[] }) {
+function convertNodeToTurboElement(node: LogicFlow.NodeConfig & { children?: string[] }) {
   const { id, type, x, y, properties, children, text } = node
   return {
     incoming: [],
     outgoing: [],
     children,
     type,
-    key: id!,
+    key: id,
     groupKey: properties?.groupKey as string,
     properties: {
       ...properties,
@@ -26,7 +26,7 @@ function convertNodeToTurboElement(node: NodeConfig & { children?: string[] }) {
 }
 
 // 将LogicFlow中的Edge数据转换为Turbo元素数据
-function convertEdgeToTurboElement(edge: EdgeConfig) {
+function convertEdgeToTurboElement(edge: LogicFlow.EdgeConfig) {
   const { id, type, sourceNodeId, targetNodeId, startPoint, endPoint, pointsList, properties, text } = edge
   return {
     incoming: [sourceNodeId],
@@ -45,11 +45,11 @@ function convertEdgeToTurboElement(edge: EdgeConfig) {
   }
 }
 
-function convertNodeToProcessData(node: NodeConfig) {
+function convertNodeToProcessData(node: LogicFlow.NodeConfig) {
   const { id, type, properties, text } = node
   return {
     type,
-    key: id!,
+    key: id,
     properties: {
       ...properties,
       name: isString(text) ? text : text?.value ?? '',
@@ -58,13 +58,13 @@ function convertNodeToProcessData(node: NodeConfig) {
 }
 
 // 将LogicFlow中数据转换为Turbo数据
-export function toTurboData(data: GraphConfigData) {
+export function toTurboData(data: LogicFlow.GraphData) {
   const nodeMap = new Map()
   const turboData: TurboData = {
     processData: defaultProcessData,
     flowElementList: [],
   }
-  data.nodes.forEach((node) => {
+  data.nodes?.forEach((node) => {
     if (node.type === 'process') {
       turboData.processData = convertNodeToProcessData(node)
     }
@@ -74,7 +74,7 @@ export function toTurboData(data: GraphConfigData) {
       nodeMap.set(node.id, flowElement)
     }
   })
-  data.edges.forEach((edge) => {
+  data.edges?.forEach((edge) => {
     const flowElement = convertEdgeToTurboElement(edge)
     const sourceElement = nodeMap.get(edge.sourceNodeId)
     sourceElement.outgoing.push(flowElement.key)
@@ -89,7 +89,7 @@ export function toTurboData(data: GraphConfigData) {
 function convertFlowElementToEdge(element: FlowEdge) {
   const { incoming, outgoing, properties, key, type } = element
   const { text, name, startPoint, endPoint, pointsList } = properties ?? {}
-  const edge: EdgeConfig = {
+  const edge: LogicFlow.EdgeConfig = {
     id: key,
     type,
     sourceNodeId: incoming?.[0] ?? '',
@@ -110,7 +110,7 @@ function convertFlowElementToEdge(element: FlowEdge) {
 function convertFlowElementToNode(element: FlowNode) {
   const { properties, key, type, children } = element
   const { x, y, text, name } = properties ?? {}
-  const node: NodeConfig & { children?: string[] } = {
+  const node: LogicFlow.NodeConfig & { children?: string[] } = {
     id: key,
     type: type ?? '',
     x: x!,
@@ -128,7 +128,7 @@ function convertFlowElementToNode(element: FlowNode) {
 function convertProcessDataToNode(data: ProcessData) {
   const { properties, key, type } = data
   const { name } = properties ?? {}
-  const node: NodeConfig = {
+  const node: LogicFlow.NodeConfig = {
     id: key,
     type: type ?? '',
     text: name,
@@ -147,10 +147,7 @@ export function toLogicflowData(data: TurboData) {
   const nodes = flowElementList?.filter(e => !isFlow(e.type!)).map(convertFlowElementToNode) ?? []
   const edges = flowElementList?.filter(e => isFlow(e.type!)).map(convertFlowElementToEdge) ?? []
   nodes.unshift(convertProcessDataToNode(data.processData ?? defaultProcessData))
-  const lfData: GraphConfigData = {
-    nodes,
-    edges,
-  }
+  const lfData = { nodes, edges } as LogicFlow.GraphData
   return lfData
 }
 
@@ -161,7 +158,7 @@ export class TurboAdapter {
     lf.adapterOut = this.adapterOut
   }
 
-  adapterOut(logicflowData: GraphConfigData) {
+  adapterOut(logicflowData: LogicFlow.GraphData) {
     return toTurboData(logicflowData)
   }
 

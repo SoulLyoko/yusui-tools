@@ -1,9 +1,11 @@
 import type { App } from 'vue'
 
+import { loader } from '@guolao/vue-monaco-editor'
 import { Icon } from '@iconify/vue'
+import Avue from '@smallwei/avue'
 import '@smallwei/avue/lib/index.css'
-// import { FlowDesign } from '@yusui/flow-design'
-// import { FormDesign } from '@yusui/form-design'
+import { FlowDesign } from '@yusui/flow-design'
+import { FormDesign } from '@yusui/form-design'
 import axios from 'axios'
 import ElementPlus, { ElOverlay } from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -12,9 +14,6 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import DefaultTheme from 'vitepress/theme'
 
 import YSComponents from '../../components/index'
-// import '../../components/index.scss'
-import '../../flow-design/styles/index.scss'
-import '../../form-design/styles/index.scss'
 import '../../theme/index.scss'
 import components from '../components'
 import './index.scss'
@@ -24,25 +23,18 @@ export default {
   extends: DefaultTheme,
   Layout,
   async enhanceApp({ app }: { app: App }) {
+    loader.config({
+      paths: {
+        vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.47.0/min/vs',
+      },
+    })
     app.use(components)
     app.use(ElementPlus, { locale: zhCn })
     app.component('ElOverlay', ElOverlay)
+    app.use(Avue, { axios })
     app.use(YSComponents)
     app.component('Icon', Icon)
-    if (!import.meta.env.SSR) {
-      import('@guolao/vue-monaco-editor').then(({ loader }) => {
-        loader.config({
-          paths: {
-            vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.40.0/min/vs',
-          },
-        })
-      })
-      const { default: Avue } = await import('@smallwei/avue')
-      app.use(Avue, { axios })
-      const { FlowDesign } = await import('@yusui/flow-design')
-      const { FormDesign } = await import('@yusui/form-design')
-      app.component('FlowDesign', FlowDesign)
-      app.component('FormDesign', FormDesign)
-    }
+    app.component('FlowDesign', FlowDesign)
+    app.component('FormDesign', FormDesign)
   },
 }

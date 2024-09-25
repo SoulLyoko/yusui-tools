@@ -1,5 +1,5 @@
 import type { FlowDesignState } from '../types'
-import type { EdgeConfig, NodeConfig, TextConfig } from '@logicflow/core'
+import type { LogicFlow } from '@logicflow/core'
 
 import { nextTick } from 'vue'
 
@@ -16,7 +16,7 @@ export function useModelerListener({
   formOptions,
   editorVisible,
 }: FlowDesignState) {
-  async function selectElement({ data }: { data?: EdgeConfig | NodeConfig }) {
+  async function selectElement({ data }: { data?: LogicFlow.EdgeConfig | LogicFlow.NodeConfig }) {
     if (!data || !data.type || !data.id)
       return
 
@@ -32,7 +32,7 @@ export function useModelerListener({
       labelPosition: 'left',
       group: formOptions.value?.[data.type!] ?? defaultGroup,
     }
-    formData.value = { ...data.properties, id: data.id, name: (data.text as TextConfig)?.value || '' }
+    formData.value = { ...data.properties, id: data.id, name: (data.text as LogicFlow.TextConfig)?.value || '' }
     formLoading.value = false
   }
 
@@ -41,7 +41,7 @@ export function useModelerListener({
   // lf.value?.on('node:dnd-add', selectElement)
   // lf.value?.on('node:delete', () => selectElement({}))
   lf.value?.on('history:change', () => {
-    graphData.value = lf.value?.getGraphData()
+    graphData.value = lf.value?.getGraphData() as any
   })
 
   /** 编辑 */

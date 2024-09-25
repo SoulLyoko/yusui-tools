@@ -33,6 +33,7 @@
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "dagre": "catalog:",
+    "defu": "catalog:",
     "file-saver": "catalog:",
     "lodash-es": "catalog:"
   },

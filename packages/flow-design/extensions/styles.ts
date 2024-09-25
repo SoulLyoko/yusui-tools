@@ -10,6 +10,8 @@ export class Styles {
     this.lf = lf
   }
 
+  render() { }
+
   setStyles(styles: StyleItem[]) {
     styles.forEach(({ id, style }) => {
       id && this.lf?.graphModel?.getElement(id) && this.lf?.graphModel?.updateAttributes(id, { style })

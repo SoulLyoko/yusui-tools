@@ -1,5 +1,4 @@
-import type { LogicFlow } from '@logicflow/core'
-
+import { LogicFlow } from '@logicflow/core'
 import { bpmnUtils, Group, SubProcessFactory } from '@logicflow/extension'
 
 /** SubProcess */
@@ -26,7 +25,7 @@ export class SubProcessModel extends SubProcessFactory().model {
 export class SubProcessView extends SubProcessFactory().view { }
 export class SubProcess extends Group {
   constructor({ lf }: { lf: LogicFlow }) {
-    super({ lf })
-    lf.register({ type: 'group', model: SubProcessModel, view: SubProcessView })
+    super({ lf, LogicFlow, options: {} })
+    lf.register({ type: 'group', model: SubProcessModel as any, view: SubProcessView })
   }
 }

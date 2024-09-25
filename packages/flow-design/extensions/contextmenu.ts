@@ -1,5 +1,4 @@
-import type { NodeConfig } from '@logicflow/core'
-import type LogicFlow from '@logicflow/core'
+import type { LogicFlow } from '@logicflow/core'
 
 import { ContextMenu as _ContextMenu } from '@logicflow/extension'
 
@@ -47,13 +46,13 @@ export class ContextMenu extends _ContextMenu {
     }
     const remove = {
       icon: 'https://api.iconify.design/ep/delete.svg',
-      callback(data: NodeConfig) {
+      callback(data: LogicFlow.NodeConfig) {
         lf.deleteNode(data.id!)
       },
     }
     const copy = {
       icon: 'https://api.iconify.design/ep/copy-document.svg',
-      callback(data: NodeConfig) {
+      callback(data: LogicFlow.NodeConfig) {
         lf.cloneNode(data.id!)
       },
     }
@@ -65,9 +64,9 @@ export class ContextMenu extends _ContextMenu {
   }
 
   /** 修改节点类型 */
-  changeNodeType(ele: NodeConfig, type: string) {
+  changeNodeType(ele: LogicFlow.NodeConfig, type: string) {
     this._lf.changeNodeType(ele.id!, type)
     Object.keys(ele.properties || {}).forEach(key => this._lf.deleteProperty(ele.id!, key))
-    this._lf.emit('element:click', { data: { ...ele, type, properties: {} } })
+    this._lf.emit('element:click', { data: { ...ele, type, properties: {} } } as any)
   }
 }

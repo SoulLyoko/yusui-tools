@@ -3,9 +3,9 @@ import type { TurboData } from '../types'
 
 import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
 import { useFileDialog, useVModels } from '@vueuse/core'
-import { ElMessageBox } from 'element-plus'
+import { ElMessageBox, ElOption, ElSelect } from 'element-plus'
 import { saveAs } from 'file-saver'
-import { computed, onUnmounted, ref, watchEffect } from 'vue'
+import { computed, h, onUnmounted, ref, watchEffect } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -47,16 +47,27 @@ const editorProps = computed(() => {
 })
 
 async function handleResetProperties() {
-  const { value } = await ElMessageBox.prompt('请输入重置的属性', '重置属性', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
-    inputPlaceholder: 'features、fields、assignee、property等',
-    inputPattern: /.+/,
-    inputErrorMessage: '请输入属性名称',
-  })
   const data: TurboData = JSON.parse(jsonForEdit.value)
+  const excludeProperties = ['id', 'name', 'desc', 'x', 'y', 'text', 'startPoint', 'endPoint', 'pointsList']
+  const keys = data.flowElementList?.map(e => Object.keys(e.properties ?? {})).flat().filter(e => !excludeProperties.includes(e))
+  const checked = ref<string[]>([])
+  await ElMessageBox({
+    title: '请选择或输入重置的属性',
+    message: () =>
+      h(ElSelect, {
+        'multiple': true,
+        'allowCreate': true,
+        'filterable': true,
+        'clearable': true,
+        'modelValue': checked.value,
+        'onUpdate:modelValue': val => checked.value = val,
+        'style': 'width: 400px',
+      }, () => keys?.map(item => h(ElOption, { label: item, value: item }))),
+  })
   data.flowElementList?.forEach((item) => {
-    delete item.properties?.[value]
+    checked.value.forEach((value) => {
+      delete item.properties?.[value]
+    })
   })
   jsonForEdit.value = JSON.stringify(data, null, 2)
 }

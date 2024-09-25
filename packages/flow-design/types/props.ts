@@ -1,5 +1,5 @@
 import type { ButtonItem, FlowFormData, StyleItem, TooltipItem, TurboData } from '../types'
-import type { Definition, EdgeConfig, LogicFlow, NodeConfig } from '@logicflow/core'
+import type { LogicFlow } from '@logicflow/core'
 import type { AvueFormColumn, AvueFormDefaults, AvueFormGroup, AvueFormOption, DicItem } from '@smallwei/avue'
 
 export interface DataOptions {
@@ -43,11 +43,11 @@ export interface FlowDesignProps {
   /** LogicFlow实例 */
   lf?: LogicFlow
   /** LogicFlow初始化配置 */
-  initOptions?: Definition
+  initOptions?: LogicFlow.Options
   /** 流程图数据 */
   modelValue?: TurboData
   /** 当前选中元素的数据 */
-  elementData?: NodeConfig | EdgeConfig
+  elementData?: LogicFlow.NodeConfig | LogicFlow.EdgeConfig
   /** 所有表单配置 */
   formOptions?: Record<string, AvueFormGroup[]>
   /** 当前选中元素的表单数据 */

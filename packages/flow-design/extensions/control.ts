@@ -1,10 +1,11 @@
-import type { LogicFlow } from '@logicflow/core'
+import type { MiniMap } from '@logicflow/extension'
 
+import { LogicFlow } from '@logicflow/core'
 import { Control as _Control, bpmnUtils } from '@logicflow/extension'
 
 export class Control extends _Control {
   constructor({ lf }: { lf: LogicFlow }) {
-    super({ lf })
+    super({ lf, LogicFlow, options: {} })
     const controls = [
       {
         key: 'clear',
@@ -17,11 +18,15 @@ export class Control extends _Control {
         },
       },
       {
-        key: 'edit',
-        iconClass: 'lf-control-edit',
-        title: '编辑',
-        text: '编辑',
-        onClick: () => lf.emit('custom:edit-click', {}),
+        key: 'mini-map',
+        iconClass: 'lf-control-mini-map',
+        title: '导航',
+        text: '导航',
+        onClick: () => {
+          // @ts-ignore
+          const { isShow, show, hide } = lf.extension.miniMap as MiniMap
+          isShow ? hide() : show()
+        },
       },
       {
         key: 'process',
@@ -29,24 +34,21 @@ export class Control extends _Control {
         title: '流程配置',
         text: '流程配置',
         onClick: () => {
-          const processNode = lf.graphModel.nodes.find(node => node.type === 'process')
+          const processNode = lf.graphModel.nodes.find(node => node.type === 'process' as any)
           let data
           if (!processNode?.id)
             data = lf.addNode({ type: 'process', id: `Process_${bpmnUtils.genBpmnId()}`, x: 0, y: 0 })
           else
             data = lf.getNodeDataById(processNode!.id)
-          lf.emit('element:click', { data })
+          lf.emit('element:click', { data } as any)
         },
       },
       {
-        key: 'mini-map',
-        iconClass: 'lf-control-mini-map',
-        title: '导航',
-        text: '导航',
-        onClick: () => {
-          const { isShow, show, hide } = lf.extension.miniMap ?? {}
-          isShow ? hide() : show()
-        },
+        key: 'edit',
+        iconClass: 'lf-control-edit',
+        title: '高级',
+        text: '高级',
+        onClick: () => lf.emit('custom:edit-click', {}),
       },
       // {
       //   key: 'layout',

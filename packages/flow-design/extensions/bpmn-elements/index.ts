@@ -46,7 +46,7 @@ export class BpmnElements {
     // 注释节点
     lf.register(Note)
     // 注释线
-    lf.register(NoteFlow)
+    lf.register(NoteFlow as any)
     lf.setDefaultEdgeType('sequenceFlow')
   }
 }

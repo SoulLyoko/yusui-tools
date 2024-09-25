@@ -2,18 +2,18 @@ import type { FlowDesignProps, FlowDesignState } from '../types'
 
 import { LogicFlow } from '@logicflow/core'
 import { InsertNodeInPolyline, MiniMap, SelectionSelect } from '@logicflow/extension'
+import { defu } from 'defu'
 import { nextTick, watch } from 'vue'
 
 import { useModelerListener } from '.'
 import { defaultTheme } from '../constants'
 import { BpmnElements, Control, Menu, Panel, Styles, Tooltips, TurboAdapter } from '../extensions'
-import { mergeInitOptions } from '../utils'
 
 export function useInit({ props, state }: { props: FlowDesignProps, state: FlowDesignState }) {
   const { lf, graphData } = state
 
   function initModeler(container: HTMLElement) {
-    const options = mergeInitOptions({
+    const defaultOptions: LogicFlow.Options = {
       container,
       grid: { type: 'dot', size: 10 },
       nodeTextDraggable: true,
@@ -21,11 +21,15 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
       nodeTextEdit: true,
       edgeTextEdit: true,
       plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnElements, TurboAdapter],
+      pluginsOptions: {
+        miniMap: { isShowCloseIcon: true, showEdge: true, width: 200, height: 150 },
+      },
       edgeGenerator: (sourceNode, targetNode) => {
         if (['note', 'serviceTask', 'branchTask'].includes(targetNode.type))
           return 'noteFlow'
       },
-    }, props.initOptions)
+    }
+    const options = defu(props.initOptions, defaultOptions)
     lf.value = new LogicFlow(options)
     lf.value?.setTheme(defaultTheme)
     useModelerListener(state)
@@ -36,28 +40,29 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
         const newVal = JSON.stringify(val)
         const oldVal = JSON.stringify(lf.value?.getGraphData())
         if (newVal !== oldVal)
-          lf.value?.render(val)
+          lf.value?.render(val as any)
       },
       { immediate: true },
     )
   }
 
   function initViewer(container: HTMLElement) {
-    const options = mergeInitOptions({
+    const defaultOptions: LogicFlow.Options = {
       container,
       grid: { type: 'dot', size: 10 },
       isSilentMode: true,
       plugins: [BpmnElements, TurboAdapter, Tooltips, Styles],
-    }, props.initOptions)
+    }
+    const options = defu(props.initOptions, defaultOptions)
     lf.value = new LogicFlow(options)
     lf.value?.setTheme(defaultTheme)
     watch(
       () => [graphData.value, props.styles, props.tooltips],
       async () => {
-        lf.value?.render(graphData.value)
-        await nextTick()
-        lf.value?.extension?.styles?.setStyles(props.styles ?? [])
-        lf.value?.extension?.tooltips?.setTooltips(props.tooltips ?? [])
+        lf.value?.render(graphData.value as any)
+        await nextTick();
+        (lf.value?.extension?.styles as Styles)?.setStyles(props.styles ?? []);
+        (lf.value?.extension?.tooltips as Tooltips)?.setTooltips(props.tooltips ?? [])
       },
       { immediate: true },
     )

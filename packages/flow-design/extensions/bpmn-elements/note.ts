@@ -1,8 +1,8 @@
 import { bpmnUtils, RectResize } from '@logicflow/extension'
 
 /** Note */
-const RectResizeModel = RectResize.model as any
-const RectResizeView = RectResize.view as any
+const RectResizeModel = RectResize.model
+const RectResizeView = RectResize.view
 export class NoteModel extends RectResizeModel {
   createId() {
     return `Note_${bpmnUtils.genBpmnId()}`
@@ -15,7 +15,9 @@ export class NoteModel extends RectResizeModel {
   }
 
   isAllowConnectedAsSource() {
-    return false
+    return {
+      isAllPass: false,
+    }
   }
 
   getNodeStyle() {

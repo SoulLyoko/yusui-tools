@@ -1,4 +1,4 @@
-import type { Point, ShapeStyleAttribute, TextConfig } from '@logicflow/core'
+import type { LogicFlow, Point } from '@logicflow/core'
 
 export interface TooltipItem {
   id?: string
@@ -7,7 +7,7 @@ export interface TooltipItem {
 
 export interface StyleItem {
   id?: string
-  style?: ShapeStyleAttribute
+  style?: LogicFlow.AppendAttributes
 }
 
 export interface ProcessData {
@@ -35,7 +35,7 @@ export interface FlowElement {
 export interface FlowNode extends FlowElement {
   properties?: {
     name?: string
-    text?: TextConfig | string
+    text?: LogicFlow.TextConfig | string
     x?: number
     y?: number
     [x: string]: unknown
@@ -44,7 +44,7 @@ export interface FlowNode extends FlowElement {
 export interface FlowEdge extends FlowElement {
   properties?: {
     name?: string
-    text?: TextConfig | string
+    text?: LogicFlow.TextConfig | string
     startPoint?: Point
     endPoint?: Point
     pointsList?: Point[]

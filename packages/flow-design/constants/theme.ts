@@ -1,6 +1,6 @@
-import type { Theme } from '@logicflow/core/types/constant/DefaultTheme'
+import type { LogicFlow } from '@logicflow/core'
 
-export const defaultTheme: Theme = {
+export const defaultTheme: Partial<LogicFlow.Theme> = {
   rect: {
     radius: 5,
     stroke: 'black',
@@ -19,8 +19,8 @@ export const defaultTheme: Theme = {
   },
   edgeText: {
     color: 'black',
-  },
+  } as LogicFlow.Theme['edgeText'],
   nodeText: {
-    // overflowMode: 'autoWrap', // 会导致节点很难点击
-  },
+    overflowMode: 'autoWrap',
+  } as LogicFlow.Theme['nodeText'],
 }

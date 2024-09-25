@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FlowDesignProps } from './types'
 
-import '@logicflow/core/dist/style/index.css'
+import '@logicflow/core/lib/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
 import { uniqueId } from 'lodash-es'
 import { onMounted } from 'vue'

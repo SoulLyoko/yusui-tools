@@ -11,8 +11,8 @@ catalog:
   '@iconify-json/ep': ^1.2.0
   '@iconify/types': ^2.0.0
   '@iconify/vue': ^4.1.2
-  '@logicflow/core': ^1.2.28
-  '@logicflow/extension': ^1.2.28
+  '@logicflow/core': ^2.0.5
+  '@logicflow/extension': ^2.0.9
   '@smallwei/avue': ^3.5.1
   '@types/file-saver': ^2.0.7
   '@types/fs-extra': ^11.0.4
@@ -29,6 +29,7 @@ catalog:
   conventional-changelog-cli: ^5.0.0
   dagre: ^0.8.5
   dayjs: ^1.11.13
+  defu: ^6.1.4
   element-plus: ^2.8.3
   eslint: ^9.11.1
   eslint-plugin-format: ^0.1.2
