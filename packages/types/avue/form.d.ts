@@ -1,4 +1,4 @@
-import type { ElSize, EmitFn } from '@yusui/types'
+import type { ElSize, EmitFn, MaybePromise } from '@yusui/types'
 import type { FormItemProps, FormItemRule, FormProps, TabsPaneContext, TabsProps, UploadFile, UploadRawFile, UploadUserFile } from 'element-plus'
 import type { Component, VNode } from 'vue'
 
@@ -10,6 +10,7 @@ declare module '@smallwei/avue' {
   export type FormRowData<T> = T & Partial<Record<`$${keyof T}`, string>> & Record<string, any>
   export type PropKeyType<T> = keyof T extends string ? keyof T : string
   export type AvueFormDefaults<T = any, K = PropKeyType<T>> = Record<K, AvueFormColumn<T>>
+  export type FormControl<T> = (val: any, form: FormRowData<T>) => MaybePromise<Partial<AvueFormDefaults<T>>>
   // export type AvueFormDefaults = Record<string, AvueFormColumn>;
 
   export interface AvueFormColumn<T = any, K = PropKeyType<T>, D = FormRowData<T>> extends Partial<FormItemProps> {
@@ -18,7 +19,7 @@ declare module '@smallwei/avue' {
     /** 列字段(唯一不重复) */
     prop?: K
     /** 字段控制器 */
-    control?: (val: any, form: D) => Record<string, AvueFormColumn<T>>
+    control?: FormControl<T>
     /** 深结构数据绑定值 */
     bind?: string
     /** 验证规则可以参考 [async-validator](https://github.com/yiminghe/async-validator) */
@@ -76,7 +77,7 @@ declare module '@smallwei/avue' {
     /** 数据字典属性的配置对象 */
     props?: DicProps
     /** 数据字典值 */
-    dicData?: DicItem[]
+    dicData?: DicData
     /** 数据字典接口url地址 */
     dicUrl?: string
     /** 数据字典接口url携带请求参数 */

@@ -1,4 +1,8 @@
+import type { MaybePromise } from '@yusui/types'
+
 declare module '@smallwei/avue' {
+  export type DicData = DicItem[] | (() => MaybePromise<DicItem[]>)
+
   export interface DicItem extends Record<string, any> {
     label?: string
     value?: any
