@@ -1,5 +1,6 @@
 {
   "name": "@yusui/uvue",
+  "type": "module",
   "version": "3.0.0-beta.55",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -11,7 +12,6 @@
     "./*": "./*"
   },
   "main": "index.ts",
-  "module": "index.ts",
   "dependencies": {
     "@vueuse/core": "catalog:",
     "@yusui/composables": "workspace:*",

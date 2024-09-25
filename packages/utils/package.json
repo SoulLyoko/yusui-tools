@@ -1,5 +1,6 @@
 {
   "name": "@yusui/utils",
+  "type": "module",
   "version": "3.0.0-beta.55",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -9,25 +10,22 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     },
     "./*": "./*"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "unpkg": "dist/index.umd.js",
-  "jsdelivr": "dist/index.umd.js",
-  "types": "dist/index.d.js",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "unbuild"
+  },
   "dependencies": {
     "@yusui/types": "workspace:*",
     "dayjs": "catalog:",
-    "lodash": "catalog:",
     "lodash-es": "catalog:",
-    "lodash-unified": "catalog:",
     "mitt": "catalog:"
   }
 }

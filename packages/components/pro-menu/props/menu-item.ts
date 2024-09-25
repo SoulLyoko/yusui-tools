@@ -2,7 +2,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { menuProps, subMenuProps } from 'element-plus'
-import { omit } from 'lodash-unified'
+import { omit } from 'lodash-es'
 
 export const menuItemProps = {
   ...omit(subMenuProps, 'index'),

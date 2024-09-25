@@ -1,5 +1,6 @@
 {
   "name": "@yusui/form-design",
+  "type": "module",
   "version": "3.0.0-beta.55",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -9,32 +10,29 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     },
     "./*": "./*"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "unpkg": "dist/index.umd.js",
-  "jsdelivr": "dist/index.umd.js",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "unbuild"
+  },
   "dependencies": {
     "@element-plus/icons-vue": "catalog:",
     "@guolao/vue-monaco-editor": "catalog:",
-    "@iconify/vue": "catalog:",
+    "@types/lodash": "catalog:",
     "@vueuse/core": "catalog:",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "acorn": "catalog:",
     "astring": "catalog:",
     "json5": "catalog:",
-    "lodash": "catalog:",
     "lodash-es": "catalog:",
-    "lodash-unified": "catalog:",
     "vuedraggable": "catalog:"
   },
   "devDependencies": {

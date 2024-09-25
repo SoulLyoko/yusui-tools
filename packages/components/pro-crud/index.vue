@@ -2,7 +2,7 @@
 import type { ProCrudProps, ProCrudSlots } from './types'
 import type { AvueCrudInstance, AvueCrudMethods } from '@smallwei/avue'
 
-import { isFunction, pickBy } from 'lodash-unified'
+import { isFunction, pickBy } from 'lodash-es'
 import { computed, onMounted, reactive, ref } from 'vue'
 
 import CrudCard from './components/CrudCard.vue'

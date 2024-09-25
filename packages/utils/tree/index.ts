@@ -1,6 +1,6 @@
 import type { Data, TreeNode } from '@yusui/types'
 
-import { cloneDeep } from 'lodash-unified'
+import { cloneDeep } from 'lodash-es'
 
 export interface BuildTreeOptions {
   /**

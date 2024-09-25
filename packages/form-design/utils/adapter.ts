@@ -1,7 +1,7 @@
 import type { ComponentProps, ElementTreeNode } from '../types'
 import type { AvueFormColumn, AvueFormOption } from '@smallwei/avue'
 
-import { cloneDeep } from 'lodash-unified'
+import { cloneDeep } from 'lodash-es'
 
 import { getRandomId } from '.'
 

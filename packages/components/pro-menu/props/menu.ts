@@ -3,7 +3,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { menuEmits as elMenuEmits, menuProps as elMenuProps } from 'element-plus'
-import { omit } from 'lodash-unified'
+import { omit } from 'lodash-es'
 
 import { menuItemProps } from './menu-item'
 

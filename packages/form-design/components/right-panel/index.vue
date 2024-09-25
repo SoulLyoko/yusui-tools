@@ -4,7 +4,7 @@ import type { AvueFormOption } from '@smallwei/avue'
 
 import { watchDebounced } from '@vueuse/core'
 import { filterObjDeep } from '@yusui/utils'
-import { cloneDeep, debounce, get, isEqual, set } from 'lodash-unified'
+import { cloneDeep, debounce, get, isEqual, set } from 'lodash-es'
 import { nextTick, ref, watch } from 'vue'
 
 import { useInjectState } from '../../composables'

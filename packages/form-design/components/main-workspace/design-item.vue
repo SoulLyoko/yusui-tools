@@ -3,7 +3,7 @@ import type { ElementTreeNode } from '../../types'
 import type { AvueFormColumn } from '@smallwei/avue'
 
 import Avue from '@smallwei/avue'
-import { isFunction, isNil, omitBy, pick } from 'lodash-unified'
+import { isFunction, isNil, omitBy, pick } from 'lodash-es'
 import { computed, ref } from 'vue'
 
 import { useInjectState } from '../../composables'

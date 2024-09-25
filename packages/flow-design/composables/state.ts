@@ -4,7 +4,7 @@ import type { AvueFormInstance } from '@smallwei/avue'
 import { useVModels } from '@vueuse/core'
 import { inject, provide, ref } from 'vue'
 
-export const injectionKey = Symbol('flowDesignState')
+export const injectionKey = 'flowDesignState'
 
 export function useProvideState(props: FlowDesignProps) {
   const vModels = useVModels(props, undefined, { passive: true })

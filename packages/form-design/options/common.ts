@@ -1,5 +1,5 @@
 import * as icons from '@element-plus/icons-vue'
-import { kebabCase } from 'lodash-unified'
+import { kebabCase } from 'lodash-es'
 
 export const iconList = [
   {

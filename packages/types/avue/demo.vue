@@ -10,7 +10,6 @@ import type {
   AvueTreeOption,
 } from '@smallwei/avue'
 
-import { $DialogForm } from '@smallwei/avue'
 import { ref, watchEffect } from 'vue'
 
 interface User {

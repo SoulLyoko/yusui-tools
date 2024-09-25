@@ -1,7 +1,7 @@
 import type { FlowEdge, FlowElement, FlowNode, ProcessData, TurboData } from '../types'
 import type { EdgeConfig, GraphConfigData, LogicFlow, NodeConfig } from '@logicflow/core'
 
-import { isString, omit } from 'lodash-unified'
+import { isString, omit } from 'lodash-es'
 
 const defaultProcessData: ProcessData = { type: 'process', key: 'Process', properties: {} }
 

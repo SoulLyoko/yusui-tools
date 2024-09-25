@@ -3,14 +3,14 @@ import type { ElementTreeNode, FormDesignEmit, FormDesignProps, History, Resourc
 import type { AvueFormOption } from '@smallwei/avue'
 
 import { useVModels } from '@vueuse/core'
-import { cloneDeep, isEqual, mergeWith, omit } from 'lodash-unified'
+import { cloneDeep, isEqual, mergeWith, omit } from 'lodash-es'
 import { computed, inject, provide, ref, watch } from 'vue'
 
 import { advance as defaultAdvanceOption, base as defaultBaseOption, groupList as defaultGroupList } from '../options'
 import * as defaultResources from '../resources'
 import { adapterIn, adapterOut } from '../utils'
 
-const injectKey = Symbol('form-design-state')
+const injectKey = 'formDesignState'
 
 export function useProvideState(props: FormDesignProps, emit: FormDesignEmit) {
   const vModels = useVModels(props)

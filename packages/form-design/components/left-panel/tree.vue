@@ -4,7 +4,7 @@ import type { ElementTreeNode } from '../../types'
 import type { ElTreeNode } from '@yusui/types'
 
 import { ElTree } from 'element-plus'
-import { cloneDeep } from 'lodash-unified'
+import { cloneDeep } from 'lodash-es'
 import { computed, ref, watchEffect } from 'vue'
 
 import { useInjectState } from '../../composables'

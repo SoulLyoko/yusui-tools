@@ -16,7 +16,7 @@ export const approvalColumn: AvueFormColumn<FlowFormData>[] = [
     option: {
       menuBtn: false,
       span: 24,
-      labelWidth: 100,
+      labelWidth: 110,
       column: [
         {
           label: '任务节点类型',

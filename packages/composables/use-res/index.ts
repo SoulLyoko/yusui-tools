@@ -1,7 +1,7 @@
 import type { GetFieldType } from '@yusui/types'
 import type { Options, Service } from 'vue-request'
 
-import { get } from 'lodash-unified'
+import { get } from 'lodash-es'
 import { useRequest } from 'vue-request'
 
 export type QueryResult<R, P extends unknown[]> = ReturnType<typeof useRequest<R, P>>

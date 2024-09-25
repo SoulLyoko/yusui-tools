@@ -3,7 +3,7 @@ import type { TreeInstance } from 'element-plus'
 import type { Ref } from 'vue'
 
 import { ElInput } from 'element-plus'
-import { pick } from 'lodash-unified'
+import { pick } from 'lodash-es'
 import { computed, ref, toRefs, useAttrs, watch } from 'vue'
 
 export function useInput(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {

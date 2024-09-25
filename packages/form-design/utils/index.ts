@@ -1,6 +1,6 @@
 import type { ElementTreeNode, Resource } from '../types'
 
-import { cloneDeep } from 'lodash-unified'
+import { cloneDeep } from 'lodash-es'
 
 export * from './adapter'
 export * from './parser'

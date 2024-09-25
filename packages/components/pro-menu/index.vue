@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import { useVModels } from '@vueuse/core'
 import { menuProps as elMenuProps } from 'element-plus'
-import { pick, pickBy } from 'lodash-unified'
+import { pick, pickBy } from 'lodash-es'
 import { computed, onMounted, reactive, ref } from 'vue'
 
 import MenuItem from './MenuItem.vue'

@@ -7,7 +7,7 @@ const { readJSONSync } = fs
 
 const { version: oldVersion } = readJSONSync('package.json')
 
-execSync('bumpp -r --no-commit --no-tag --no-push', { stdio: 'inherit' })
+execSync('bumpp', { stdio: 'inherit' })
 
 const { version } = readJSONSync('package.json')
 
@@ -22,3 +22,6 @@ execSync('git add .')
 execSync(`git commit -m "chore: release v${version}"`)
 console.log('Git tag')
 execSync(`git tag -a v${version} -m "v${version}"`)
+// console.log('Git push...')
+// execSync(`git push`)
+// execSync(`git push --tags`)

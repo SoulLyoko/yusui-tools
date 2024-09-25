@@ -2,7 +2,7 @@
 import type { ProTreeProps } from './types'
 import type { InputInstance, TreeInstance } from 'element-plus'
 
-import { isFunction, pickBy } from 'lodash-unified'
+import { isFunction, pickBy } from 'lodash-es'
 import { onMounted, reactive, ref } from 'vue'
 
 import { useInput, useTag, useTree } from './composables'

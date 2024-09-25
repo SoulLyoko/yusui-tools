@@ -2,7 +2,7 @@
 import type { MenuItemSlots } from './props'
 
 import { subMenuProps } from 'element-plus'
-import { debounce, pick } from 'lodash-unified'
+import { debounce, pick } from 'lodash-es'
 import { computed } from 'vue'
 
 import { menuItemEmits, menuItemProps } from './props'

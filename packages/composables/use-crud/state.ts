@@ -2,7 +2,7 @@ import type { CrudState, UseCrudStateOptions } from './types'
 /* eslint-disable ts/no-use-before-define */
 import type { Data } from '@yusui/types'
 
-import { merge } from 'lodash-unified'
+import { merge } from 'lodash-es'
 import { reactive } from 'vue'
 
 import { useMock } from './mock'

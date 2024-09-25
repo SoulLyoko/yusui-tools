@@ -4,7 +4,7 @@ layout: home
 hero:
   name: YusuiTools
   text: Collection Of Development Tools
-  tagline: Vue Components and Composables, Vite Plugins, TypeScript Definitions, JavaScript Utils...
+  tagline: Vue Components and Composables, TypeScript Definitions, JavaScript Utils...
   actions:
     - theme: brand
       text: Get Started
@@ -22,6 +22,10 @@ features:
   - title: '@yusui/composables'
     details: Vue Composables
     link: /composables/
+
+  - title: '@yusui/theme'
+    details: UI Themes
+    link: /types/
 
   - title: '@yusui/types'
     details: TypeScript Definitions

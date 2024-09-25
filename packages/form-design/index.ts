@@ -1,3 +1,5 @@
+import './styles/index.scss'
+
 export * from './constants'
 export { default as FormDesign } from './index.vue'
 export * from './options'

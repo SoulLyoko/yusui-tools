@@ -12,7 +12,7 @@ export const processColumn: AvueFormColumn<FlowFormData>[] = [
     option: {
       menuBtn: false,
       span: 24,
-      labelWidth: 100,
+      labelWidth: 110,
       column: [
         {
           label: '流水号模板',

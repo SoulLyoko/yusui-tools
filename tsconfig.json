@@ -1,25 +1,19 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@yusui/components": ["packages/components/index.ts"],
-      "@yusui/composables": ["packages/composables/index.ts"],
-      "@yusui/flow-design": ["packages/flow-design/index.ts"],
-      "@yusui/form-design": ["packages/form-design/index.ts"],
-      "@yusui/types": ["packages/types/index.ts"],
-      "@yusui/utils": ["packages/utils/index.ts"],
-      "@yusui/uvue": ["packages/uvue/index.ts"]
+      "@yusui/*": ["packages/*"],
+      "@vue/shared": ["node_modules/@vue/shared"],
+      "async-validator": ["node_modules/async-validator"],
+      "preact": ["node_modules/preact"]
     },
     "types": [
       "@dcloudio/types",
       "element-plus/global",
       "vite/client",
-      "vitest/globals",
-      "./packages/types/avue"
-    ],
-    "allowJs": true
+      "vitest/globals"
+    ]
   },
-  "include": ["packages", "packages/.vitepress/**/*"],
-  "exclude": ["node_modules", "**/node_modules", "**/dist", "playgrounds", "packages/.vitepress/cache", "**/*.js"]
+  "exclude": ["dist"]
 }

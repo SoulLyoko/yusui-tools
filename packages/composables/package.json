@@ -10,16 +10,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     },
     "./*": "./*"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "unpkg": "dist/index.umd.js",
-  "jsdelivr": "dist/index.umd.js",
-  "types": "dist/index.d.js",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -29,13 +25,12 @@
   "dependencies": {
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "lodash": "catalog:",
     "lodash-es": "catalog:",
-    "lodash-unified": "catalog:",
     "vue-request": "catalog:"
   },
   "devDependencies": {
     "@smallwei/avue": "catalog:",
+    "axios": "catalog:",
     "element-plus": "catalog:",
     "vue": "catalog:"
   }

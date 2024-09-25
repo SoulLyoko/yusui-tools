@@ -12,7 +12,7 @@ export const noticeColumn: AvueFormColumn<FlowFormData>[] = [
     option: {
       menuBtn: false,
       span: 24,
-      labelWidth: 100,
+      labelWidth: 110,
       column: [
         {
           label: '开启退回通知',

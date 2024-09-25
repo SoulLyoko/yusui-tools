@@ -3,7 +3,7 @@ import type { TemplateItem } from '../types'
 
 import { useVModels } from '@vueuse/core'
 import { ProDict } from '@yusui/components'
-import { set } from 'lodash-unified'
+import { set } from 'lodash-es'
 import { computed, defineComponent, h, resolveComponent } from 'vue'
 
 import { useInjectState } from '../composables/state'

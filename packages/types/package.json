@@ -1,5 +1,6 @@
 {
   "name": "@yusui/types",
+  "type": "module",
   "version": "3.0.0-beta.55",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
@@ -8,18 +9,22 @@
   "repository": "https://github.com/SoulLyoko/yusui-tools.git",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "types": "./dist/index.d.ts"
     },
-    "./avue": "./avue/index.d.ts",
+    "./avue": {
+      "types": "./avue/index.d.ts"
+    },
     "./*": "./*"
   },
+  "main": "dist/index.d.ts",
   "types": "dist/index.d.ts",
   "files": [
     "avue",
     "dist"
   ],
+  "scripts": {
+    "build": "unbuild"
+  },
   "devDependencies": {
     "element-plus": "catalog:",
     "vue": "catalog:"

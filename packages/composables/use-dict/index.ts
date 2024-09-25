@@ -3,7 +3,7 @@ import type { DicItem } from '@smallwei/avue'
 import type { MaybeRefOrGetter } from 'vue'
 
 import { filterTree, findTree, serialize } from '@yusui/utils'
-import { get } from 'lodash-unified'
+import { get } from 'lodash-es'
 import { computed, unref, watch } from 'vue'
 import { useRequest } from 'vue-request'
 

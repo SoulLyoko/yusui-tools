@@ -4,7 +4,7 @@ import type { TreeInstance } from 'element-plus'
 import type { Ref } from 'vue'
 
 import { ElTree } from 'element-plus'
-import { isEqual, pick } from 'lodash-unified'
+import { isEqual, pick } from 'lodash-es'
 import { computed, nextTick, onMounted, toRefs, useAttrs, watch } from 'vue'
 
 export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {

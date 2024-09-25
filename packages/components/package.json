@@ -10,38 +10,38 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     },
     "./global": {
       "types": "./global.d.ts"
     },
     "./*": "./*"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "unpkg": "dist/index.umd.js",
-  "jsdelivr": "dist/index.umd.js",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
     "global.d.ts"
   ],
+  "scripts": {
+    "build": "unbuild"
+  },
   "dependencies": {
     "@iconify/vue": "catalog:",
     "@vueuse/core": "catalog:",
+    "@yusui/composables": "workspace:*",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
-    "lodash": "catalog:",
     "lodash-es": "catalog:",
-    "lodash-unified": "catalog:",
     "vue-request": "catalog:"
   },
   "devDependencies": {
     "@iconify/types": "catalog:",
     "@smallwei/avue": "catalog:",
     "element-plus": "catalog:",
+    "rollup-plugin-scss": "catalog:",
     "sass": "catalog:",
+    "unplugin-vue": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   }

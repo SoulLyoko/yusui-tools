@@ -5,11 +5,10 @@
 使用前全局注入请求实例，就不用每次都传入请求实例了
 
 ```ts
+// main.ts
 import { useDictConfigProvider } from '@yusui/composables'
 
 import { request } from '@/api'
-
-// main.ts
 
 useDictConfigProvider({ request })
 ```

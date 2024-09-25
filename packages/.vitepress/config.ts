@@ -1,9 +1,8 @@
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import Inspect from 'vite-plugin-inspect'
 import { defineConfig } from 'vitepress'
 
 import pkg from '../../package.json'
-import { alias } from '../../vite.config'
+import { alias } from '../../vitest.config'
 import { mdDemoTransform } from './plugins/md-demo-transform'
 
 export default defineConfig({
@@ -182,9 +181,12 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [vueJsx(), mdDemoTransform(), Inspect()],
+    plugins: [mdDemoTransform(), Inspect()],
     resolve: {
-      alias,
+      alias: [
+        ...alias,
+        { find: 'dayjs/esm', replacement: 'dayjs' },
+      ],
     },
     css: {
       preprocessorOptions: {

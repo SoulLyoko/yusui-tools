@@ -2,7 +2,7 @@ import type { CrudState } from './types'
 import type { Data } from '@yusui/types'
 
 import { uuid } from '@yusui/utils'
-import { omit, orderBy } from 'lodash-unified'
+import { omit, orderBy } from 'lodash-es'
 import { watch } from 'vue'
 
 export function useMock<T extends Data, P extends Data>({ crudState }: { crudState: CrudState<T, P> }) {

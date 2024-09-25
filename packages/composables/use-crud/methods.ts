@@ -4,7 +4,7 @@ import type { Data } from '@yusui/types'
 import type { Ref } from 'vue'
 
 import { sleep, to } from '@yusui/utils'
-import { cloneDeep, get, isNil, omitBy, overSome, snakeCase } from 'lodash-unified'
+import { cloneDeep, get, isNil, omitBy, overSome, snakeCase } from 'lodash-es'
 import { getCurrentInstance, nextTick } from 'vue'
 
 export function useCrudMethods<T extends Data, P extends Data>({

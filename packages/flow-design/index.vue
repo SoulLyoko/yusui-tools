@@ -3,7 +3,7 @@ import type { FlowDesignProps } from './types'
 
 import '@logicflow/core/dist/style/index.css'
 import '@logicflow/extension/lib/style/index.css'
-import { uniqueId } from 'lodash-unified'
+import { uniqueId } from 'lodash-es'
 import { onMounted } from 'vue'
 
 import FlowEditor from './components/FlowEditor.vue'
