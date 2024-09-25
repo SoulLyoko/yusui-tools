@@ -6,7 +6,7 @@ import { useConfigProvider, useDict } from '../../composables'
 const emit = defineEmits(['update:dic', 'update:modelValue'])
 
 const inputTypes = ['input', 'text', 'password', 'number'] // 显示input组件的类型
-const pickerTypes = ['date', 'time', 'datetime'] // 显示picker组件的类型
+const pickerTypes = ['date', 'time', 'datetime', 'year-month'] // 显示picker组件的类型
 const dicTypes = ['select', 'cascader', 'checkbox', 'radio', 'switch'] // 显示picker组件的类型
 
 const dic = useDict(useAttrs(), useConfigProvider().request)
