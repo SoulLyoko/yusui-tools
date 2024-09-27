@@ -198,3 +198,27 @@ export function treeMap<T extends TreeNode, N extends TreeNode>(
   })
   return result
 }
+
+export interface GetTreeDepthOptions {
+  /**
+   * 子数组的key
+   * @default "children"
+   */
+  childrenKey?: string
+}
+/**
+ * 获取树的深度
+ * @param tree
+ * @returns
+ */
+export function getTreeDepth<T extends TreeNode>(tree: T[], options: GetTreeDepthOptions = {}) {
+  const { childrenKey = 'children' } = options
+  let depth = 0
+  for (const item of tree) {
+    if (item[childrenKey]) {
+      const childDepth = getTreeDepth(item[childrenKey], options)
+      depth = Math.max(depth, childDepth + 1)
+    }
+  }
+  return depth
+}
