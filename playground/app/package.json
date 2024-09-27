@@ -1,0 +1,25 @@
+{
+  "name": "@yusui/app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "uni",
+    "dev:h5": "uni",
+    "dev:mp": "uni -p mp-weixin",
+    "build": "uni build",
+    "build:h5": "uni build",
+    "build:mp": "uni build -p mp-weixin",
+    "tc": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "catalog:",
+    "@dcloudio/uni-app-plus": "catalog:",
+    "@dcloudio/uni-h5": "catalog:",
+    "@dcloudio/uni-mp-weixin": "catalog:",
+    "uview-plus": "catalog:"
+  },
+  "devDependencies": {
+    "@dcloudio/vite-plugin-uni": "catalog:",
+    "sass": "catalog:"
+  }
+}

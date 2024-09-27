@@ -1,5 +1,7 @@
 node_modules
 dist
+.vixt
+pages.json
 cache
-.temp
 *.local
+.hbuilderx

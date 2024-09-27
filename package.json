@@ -18,6 +18,8 @@
     "docs:build": "vitepress build packages",
     "docs:dev": "vitepress dev packages --host",
     "docs:serve": "vitepress serve packages",
+    "dev:h5": "pnpm -F app dev",
+    "dev:mp": "pnpm -F app dev:mp",
     "lint": "eslint .",
     "postinstall": "npx simple-git-hooks",
     "release": "tsx scripts/release.ts",
@@ -61,6 +63,7 @@
     "vite-plugin-inspect": "catalog:",
     "vitepress": "catalog:",
     "vitest": "catalog:",
+    "vixt": "catalog:",
     "vue": "catalog:",
     "vue-tsc": "catalog:"
   },
