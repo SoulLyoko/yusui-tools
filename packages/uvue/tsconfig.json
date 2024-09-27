@@ -1,0 +1,3 @@
+{
+  "extends": "../../playground/app/.vixt/tsconfig.json"
+}

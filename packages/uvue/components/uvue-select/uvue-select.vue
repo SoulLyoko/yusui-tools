@@ -1,14 +1,21 @@
 <script setup lang="ts">
+import type { DicItem } from '@smallwei/avue'
 import type { PropType } from 'vue'
 
 import { computed, ref, useAttrs } from 'vue'
 
 const props = defineProps({
-  modelValue: { type: [String, Number, Array] as PropType<string | number | string[] | number[]> },
+  modelValue: { type: [String, Number] },
   dic: { type: Array as PropType<{ label?: string, value?: string }[]>, default: () => [] },
   allowCreate: { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:modelValue', 'change'])
+
+const defaultIndex = computed(() => {
+  // eslint-disable-next-line eqeqeq
+  const index = Math.max(props.dic.findIndex(e => e.value == props.modelValue), 0)
+  return [index]
+})
 
 const selectedLabel = computed(() => {
   // eslint-disable-next-line eqeqeq
@@ -26,7 +33,7 @@ function onShow() {
     return
   show.value = true
 }
-function onConfirm({ value }: any) {
+function onConfirm({ value }: { value: DicItem[] }) {
   emit('update:modelValue', value[0]?.value)
   emit('change', value[0]?.value)
   show.value = false
@@ -57,6 +64,7 @@ function onInput(value: any) {
     v-bind="$attrs"
     :show="show"
     :columns="columns"
+    :default-index="defaultIndex"
     key-name="label"
     @confirm="onConfirm"
     @cancel="show = false"

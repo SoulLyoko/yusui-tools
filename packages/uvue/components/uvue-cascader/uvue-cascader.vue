@@ -2,14 +2,19 @@
 import type { DicItem } from '@smallwei/avue'
 import type { PropType } from 'vue'
 
-import { findTree } from '@yusui/utils'
+import { findTree, getTreeDepth } from '@yusui/utils'
 import { computed, ref, useAttrs, watch } from 'vue'
 
 const props = defineProps({
-  modelValue: { type: [String, Number, Array] as PropType<string | number | string[] | number[]> },
+  modelValue: { type: Array as PropType<(string | number)[]> },
   dic: { type: Array as PropType<DicItem[]>, default: () => [] },
 })
 const emit = defineEmits(['update:modelValue', 'change'])
+
+const defaultIndex = computed(() => {
+  const depth = getTreeDepth(props.dic ?? [])
+  return Array.from({ length: depth + 1 }, () => 0)
+})
 
 const selectedLabel = computed(() => {
   // eslint-disable-next-line eqeqeq
@@ -45,9 +50,10 @@ function onShow() {
     return
   show.value = true
 }
-function onConfirm({ value }: any) {
-  emit('update:modelValue', value[0]?.value)
-  emit('change', value[0]?.value)
+function onConfirm({ value }: { value: DicItem[] }) {
+  const val = value[value?.length - 1].value
+  emit('update:modelValue', val)
+  emit('change', val)
   show.value = false
 }
 </script>
@@ -67,6 +73,7 @@ function onConfirm({ value }: any) {
     v-bind="$attrs"
     :show="show"
     key-name="label"
+    :default-index="defaultIndex"
     @change="onChange"
     @confirm="onConfirm"
     @cancel="show = false"
