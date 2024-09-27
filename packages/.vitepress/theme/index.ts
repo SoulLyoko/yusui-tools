@@ -1,3 +1,4 @@
+/// <reference types="@yusui/types/avue" />
 import type { App } from 'vue'
 
 import { loader } from '@guolao/vue-monaco-editor'

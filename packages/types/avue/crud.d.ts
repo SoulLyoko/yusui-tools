@@ -321,6 +321,12 @@ declare module '@smallwei/avue' {
     gridBtn?: boolean
     /** 卡片模式按钮图标 */
     gridBtnIcon?: string
+    /** 卡片模式格栅 */
+    gridSpan?: number
+    /** 卡片模式背景图片 */
+    gridBackgroundImage?: string
+    /** 卡片模式背景颜色 */
+    gridBackground?: string | ((row: D, index: number) => string)
     /** 新增窗口标题 */
     addTitle?: string
     /** 编辑窗口标题 */

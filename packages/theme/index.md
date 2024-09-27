@@ -22,12 +22,12 @@ import '@yusui/theme/dist/index.css'
 ### 仅导入某个主题
 
 ```js
-// 仅导入avue暗黑模式
-import '@yusui/theme/avue-dark/index.css'
+// 导入avue暗黑模式
+import '@yusui/theme/dist/avue-dark/index.css'
 // 仅导入ant-design
-import '@yusui/theme/ant-design/index.css'
+import '@yusui/theme/dist/ant-design/index.css'
 // 仅导入arco-design
-import '@yusui/theme/arco-design/index.css'
+import '@yusui/theme/dist/arco-design/index.css'
 ```
 
 ## Button 按钮
