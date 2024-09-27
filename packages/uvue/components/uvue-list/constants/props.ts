@@ -12,4 +12,6 @@ export const listProps = {
   status: { type: String as PropType<'loadmore' | 'loading' | 'nomore'> },
   /** 页面的滚动距离，通过 onPageScroll 生命周期获取 */
   scrollTop: { type: Number, default: 0 },
+  /** 筛选栏绑定值 */
+  filterForm: { type: Object, default: () => ({}) },
 }

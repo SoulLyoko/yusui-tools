@@ -10,4 +10,5 @@ export const listEmits = {
   'searchClick': () => true,
   'searchClickIcon': () => true,
   'itemClick': (row: any, index: number) => row && typeof index === 'number',
+  'filterChange': (filterForm: object) => filterForm,
 }

@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { CellSlots } from 'uview-plus/types/comps/cell'
+
 import { useSlots } from 'vue'
 
-import { useOption, useSearch } from './composables'
+import { useFilter, useOption, useSearch } from './composables'
 import { listEmits, listProps } from './constants'
 
 const props = defineProps(listProps)
@@ -18,6 +20,7 @@ const slotNames = {
 
 const { option } = useOption(props)
 const { searchValue, searchListeners } = useSearch(props, emit)
+const { filterForm, filterListeners } = useFilter(props, emit)
 
 function onLoadmore() {
   emit('loadmore')
@@ -26,20 +29,19 @@ function onItemClick(row: any, index: number) {
   emit('itemClick', row, index)
 }
 function getSlotName(name: string) {
-  return slots[name] ? name : ''
+  return (slots[name] ? name : '') as keyof CellSlots
 }
 </script>
 
 <template>
   <view class="uvue-list">
-    <u-sticky custom-nav-height="0" v-bind="option.sticky">
+    <u-sticky bg-color="#ffffff" v-bind="option.sticky">
       <slot name="search-top" />
       <u-search
-        v-if="option.search"
-        v-model="searchValue"
-        placeholder="输入关键字搜索"
+        v-if="option.search" v-model="searchValue" placeholder="输入关键字搜索"
         v-bind="{ ...searchListeners, ...option.search }"
       />
+      <uvue-filter v-if="option.filter" v-model="filterForm" :option="option.filter" v-bind="{ ...filterListeners }" />
       <slot name="search-bottom" />
     </u-sticky>
 
@@ -52,20 +54,15 @@ function getSlotName(name: string) {
 
     <view v-if="$slots['list-item']">
       <slot
-        v-for="(row, index) in data"
-        :key="(option.rowKey && row[option.rowKey]) || index"
-        name="list-item"
-        :row="row"
-        :index="index"
+        v-for="(row, index) in data" :key="(option.rowKey && row[option.rowKey]) || index" name="list-item"
+        :row="row" :index="index"
       />
     </view>
 
     <u-cell-group v-else v-bind="option.cellGroup">
       <u-cell
-        v-for="(row, index) in data"
-        :key="(option.rowKey && row[option.rowKey]) || index"
-        v-bind="{ ...option.cell, ...(option.formatter?.(row) ?? row) }"
-        @click="onItemClick(row, index)"
+        v-for="(row, index) in data" :key="(option.rowKey && row[option.rowKey]) || index"
+        v-bind="{ ...option.cell, ...(option.formatter?.(row) ?? row) }" @click="onItemClick(row, index)"
       >
         <template #[getSlotName(slotNames.title)]>
           <slot name="title" :row="row" :index="index" />
@@ -91,7 +88,7 @@ function getSlotName(name: string) {
     <slot name="loadmore-bottom" />
 
     <u-back-top v-if="option.backTop" :scroll-top="scrollTop" v-bind="option.backTop">
-      <template #[getSlotName(slotNames.backTop)]>
+      <template v-if="$slots['back-top']" #default>
         <slot name="back-top" />
       </template>
     </u-back-top>
@@ -100,6 +97,6 @@ function getSlotName(name: string) {
 
 <style lang="scss" scoped>
 .uvue-list {
-  padding: 20rpx;
+  padding: 10px;
 }
 </style>

@@ -4,6 +4,7 @@ import {
   UvueDatetimePicker,
   UvueDict,
   UvueDynamic,
+  UvueFilter,
   UvueForm,
   UvueFormItem,
   UvueList,
@@ -17,6 +18,7 @@ export * from './uvue-checkbox'
 export * from './uvue-datetime-picker'
 export * from './uvue-dict'
 export * from './uvue-dynamic'
+export * from './uvue-filter'
 export * from './uvue-form'
 export * from './uvue-form-item'
 export * from './uvue-list'
@@ -36,6 +38,7 @@ export default {
   UvueRadio,
   UvueSelect,
   UvueSwitch,
+  UvueFilter,
 }
 
 declare module '@vue/runtime-core' {
@@ -51,5 +54,6 @@ declare module '@vue/runtime-core' {
     UvueRadio: typeof UvueRadio
     UvueSelect: typeof UvueSelect
     UvueSwitch: typeof UvueSwitch
+    UvueFilter: typeof UvueFilter
   }
 }
