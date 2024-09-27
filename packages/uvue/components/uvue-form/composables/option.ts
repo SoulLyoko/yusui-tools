@@ -11,6 +11,7 @@ import type { FormType } from '@smallwei/avue'
 import { computed, ref } from 'vue'
 
 import { useConfigProvider } from '../../../composables/config'
+import { dateTypes, dicTypes } from '../../../constants'
 
 export const defaultFormColumn: UvueFormColumn = {
   type: 'text',
@@ -41,8 +42,7 @@ export function handleGroup(group: UvueFormGroup[] = [], formType: FormType) {
 
 export function handleColumn(column: UvueFormColumn[] = [], formType: FormType) {
   return column.map((col) => {
-    const operation
-      = col.type && ['select', 'cascader', 'date', 'time', 'datetime'].includes(col.type) ? '选择' : '输入'
+    const operation = col.type && [...dateTypes, ...dicTypes].includes(col.type) ? '选择' : '输入'
     const disabledFlags = [!!col.disabled]
     formType === 'add' && disabledFlags.push(!!col.addDisabled)
     formType === 'edit' && disabledFlags.push(!!col.editDisabled)
@@ -104,14 +104,10 @@ export function useOption(props: UvueFormProps, emit: UvueFormEmitFn) {
     return result
   })
 
-  const defaultCollapse = computed(() => {
-    return option.value.group?.filter(g => g.collapse).map(g => g.prop)
-  })
-
   const currentTab = ref(0)
   const currentGroup = computed(() => {
     return option.value.group?.[currentTab.value] ?? []
   })
 
-  return { option, defaultCollapse, currentTab, currentGroup, defaultValues, defaults }
+  return { option, currentTab, currentGroup, defaultValues, defaults }
 }

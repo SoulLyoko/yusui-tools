@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { dateTypes } from '../../constants'
 import type { PropType } from 'vue'
 
 import dayjs from 'dayjs/esm'
@@ -6,6 +7,7 @@ import { computed, ref, useAttrs } from 'vue'
 
 const props = defineProps({
   modelValue: { type: [String, Number] as PropType<string | number> },
+  type: { type: String as PropType<typeof dateTypes[number]> },
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -47,9 +49,9 @@ function onConfirm({ value, mode }: { value: number, mode: keyof typeof formatMa
     v-bind="$attrs"
     :model-value="defaultValue"
     :show="show"
-    :mode="$attrs.type"
+    :mode="type"
     close-on-click-overlay
-    @confirm="onConfirm"
+    @confirm="onConfirm as any"
     @cancel="show = false"
     @close="show = false"
   />

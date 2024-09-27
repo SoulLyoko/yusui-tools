@@ -1,21 +1,24 @@
+/* eslint-disable ts/no-use-before-define */
 import type { CrudState, UseCrudStateOptions } from './types'
 import type { Data } from '@yusui/types'
 
 import { merge } from 'lodash-es'
 import { reactive } from 'vue'
 
-export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T, P>) {
-  const listState = reactive(
+import { useMock } from './mock'
+
+export function useCrudState<T extends Data, P extends Data>(options: UseCrudStateOptions<T, P>) {
+  const crudState = reactive(
     merge(
       {
         crudOption: {
           rowKey: options.listOption?.rowKey ?? options.formOption?.rowKey ?? 'id', // 行键值(id/_id/uuid/...)
           searchKey: '', // 搜索栏绑定的字段
-          getList: null, // 获取数据列表方法
           getInfo: null, // 获取表单数据方法
-          create: null, // 添加数据方法
-          update: null, // 编辑数据方法
-          remove: null, // 删除数据方法
+          getList: (params: P) => getList(params), // 获取数据列表方法
+          create: (row: T) => create(row), // 添加数据方法
+          update: (row: T) => update(row), // 编辑数据方法
+          remove: (ids: string | number) => remove(ids), // 删除数据方法
           dataPath: 'res.data.records', // 接口返回数据的路径
           totalPath: 'res.data.total', // 接口返回总数的路径
           currKey: 'current', // 当前页key
@@ -42,8 +45,8 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
         },
         // 排序
         sortOption: {
-          order: 'desc', // asc正序,desc倒序
-          prop: 'createTime', // 排序参数
+          // order: 'desc', // asc正序,desc倒序
+          // prop: 'createTime', // 排序参数
         },
         loadStatus: 'loadmore', // 加载状态
         queryForm: {}, // 必传查询条件
@@ -54,10 +57,14 @@ export function useCrudState<T = Data, P = Data>(options: UseCrudStateOptions<T,
         formData: {}, // 表单数据
         formType: options.formType || '', // add,edit,view
         defaults: {}, // 修改表单配置
+        mockData: [], // 假数据
+        mockCache: '', // 缓存假数据的key
       },
       options,
     ),
   ) as CrudState<T, P>
 
-  return listState
+  const { getList, create, update, remove } = useMock({ crudState })
+
+  return crudState
 }

@@ -9,6 +9,13 @@ import { useLifeCycle } from './life-cycle'
 import { useCrudMethods } from './methods'
 import { useCrudState } from './state'
 
+export * from './hooks'
+export * from './life-cycle'
+export * from './methods'
+export * from './mock'
+export * from './state'
+export * from './types'
+
 export function useCrud<T extends Data = Data, P extends Data = Data>(options: UseCrudOptions<T, P>) {
   /** listRef.value等同于this.$refs.listRef */
   const listRef = ref()
@@ -63,6 +70,8 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     'searchValue': crudState.searchForm[crudState.crudOption.searchKey] ?? '',
     // 事件
     'onSearch': handleSearch,
+    'onSearchCustom': handleSearch,
+    'onSearchClear': handleSearch,
     'onLoadmore': loadMore,
     'onFilterChange': filterChange,
     'onUpdate:filterForm': (form: any) => Object.assign(crudState.searchForm, form),

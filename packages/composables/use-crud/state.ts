@@ -1,5 +1,5 @@
-import type { CrudState, UseCrudStateOptions } from './types'
 /* eslint-disable ts/no-use-before-define */
+import type { CrudState, UseCrudStateOptions } from './types'
 import type { Data } from '@yusui/types'
 
 import { merge } from 'lodash-es'
@@ -52,7 +52,7 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
         formType: '', // 弹窗表单类型
         defaults: {}, // 修改配置
         mockData: [], // 假数据
-        mockCache: '', // 将假数据存在缓存中使用的key
+        mockCache: '', // 缓存假数据的key
       },
       options,
     ),

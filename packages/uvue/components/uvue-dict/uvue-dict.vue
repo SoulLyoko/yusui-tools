@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 
-import { useConfigProvider, useDict } from '@yusui/uvue'
+import { useDict } from '@yusui/composables'
 import { useAttrs } from 'vue'
 
 defineProps({
@@ -9,7 +9,7 @@ defineProps({
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const { data: dic } = useDict(useAttrs(), useConfigProvider().request)
+const { data: dic } = useDict(useAttrs())
 </script>
 
 <template>
