@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useVModel } from '@vueuse/core'
-import { nextTick, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 import FormItemDefault from './components/form-item-default.vue'
-import { useMethods, useOption, useRules } from './composables'
+import { useCollapse, useMethods, useOption, useRules } from './composables'
 import { formEmits, formProps } from './constants'
 
 const props = defineProps(formProps)
 const emit = defineEmits(formEmits)
 
 const vModel = useVModel(props, 'modelValue', emit, { deep: true })
-const { option, defaults, defaultCollapse, currentTab, defaultValues } = useOption(props, emit)
+const { option, defaults, currentTab, defaultValues } = useOption(props, emit)
 watch(defaultValues, () => {
   vModel.value = Object.assign(vModel.value, { ...defaultValues.value, ...vModel.value })
 })
@@ -33,13 +33,7 @@ function onDel() {
   const loading = () => (submitLoading.value = false)
   emit('del', props.modelValue, loading)
 }
-
-const collapseRef = ref()
-async function initCollapse() {
-  await nextTick()
-  await nextTick()
-  collapseRef.value?.init()
-}
+const { collapseRef, collapsed, initCollapse, onCollapseChange } = useCollapse(option)
 </script>
 
 <template>
@@ -48,9 +42,7 @@ async function initCollapse() {
       <!-- 渲染表单项 -->
       <template v-for="(columnItem, columnIndex) in option.column" :key="columnItem.prop || columnIndex">
         <u-form-item
-          v-if="columnItem.display"
-          class="uvue-form-item"
-          v-bind="columnItem"
+          v-if="columnItem.display" class="uvue-form-item" v-bind="columnItem"
           :label="columnItem.type === 'dynamic' ? '' : columnItem.label"
         >
           <template #default>
@@ -59,11 +51,8 @@ async function initCollapse() {
               <slot v-if="$slots[columnItem.prop!]" :name="columnItem.prop" />
               <!-- 子表单 -->
               <uvue-dynamic
-                v-else-if="columnItem.type === 'dynamic'"
-                v-bind="columnItem"
-                v-model="vModel[columnItem.prop!]"
-                @add="initCollapse"
-                @del="initCollapse"
+                v-else-if="columnItem.type === 'dynamic'" v-bind="columnItem"
+                v-model="vModel[columnItem.prop!]" @add="initCollapse" @del="initCollapse"
               >
                 <template #default="{ dataIndex }">
                   <template
@@ -71,16 +60,13 @@ async function initCollapse() {
                     :key="childColumnItem.prop || childColumnIndex"
                   >
                     <u-form-item
-                      v-if="childColumnItem.display"
-                      class="uvue-form-item"
-                      v-bind="childColumnItem"
+                      v-if="childColumnItem.display" class="uvue-form-item" v-bind="childColumnItem"
                       :prop="`${columnItem.prop}.${dataIndex}.${childColumnItem.prop}`"
                     >
                       <template #default>
                         <slot v-if="$slots[childColumnItem.prop!]" :name="childColumnItem.prop" />
                         <FormItemDefault
-                          v-else
-                          v-bind="childColumnItem"
+                          v-else v-bind="childColumnItem"
                           v-model="vModel[columnItem.prop!][dataIndex][childColumnItem.prop!]"
                         />
                       </template>
@@ -109,9 +95,7 @@ async function initCollapse() {
           <template v-if="groupItem.display">
             <template v-for="(columnItem, columnIndex) in groupItem.column" :key="columnItem.prop || columnIndex">
               <u-form-item
-                v-if="columnItem.display"
-                class="uvue-form-item"
-                v-bind="columnItem"
+                v-if="columnItem.display" class="uvue-form-item" v-bind="columnItem"
                 :label="columnItem.type === 'dynamic' ? '' : columnItem.label"
                 :style="groupIndex === currentTab ? '' : 'display:none'"
               >
@@ -121,11 +105,8 @@ async function initCollapse() {
                     <slot v-if="$slots[columnItem.prop!]" :name="columnItem.prop" />
                     <!-- 子表单 -->
                     <uvue-dynamic
-                      v-else-if="columnItem.type === 'dynamic'"
-                      v-bind="columnItem"
-                      v-model="vModel[columnItem.prop!]"
-                      @add="initCollapse"
-                      @del="initCollapse"
+                      v-else-if="columnItem.type === 'dynamic'" v-bind="columnItem"
+                      v-model="vModel[columnItem.prop!]" @add="initCollapse" @del="initCollapse"
                     >
                       <template #default="{ dataIndex }">
                         <template
@@ -133,16 +114,13 @@ async function initCollapse() {
                           :key="childColumnItem.prop || childColumnIndex"
                         >
                           <u-form-item
-                            v-if="childColumnItem.display"
-                            class="uvue-form-item"
-                            v-bind="childColumnItem"
+                            v-if="childColumnItem.display" class="uvue-form-item" v-bind="childColumnItem"
                             :prop="`${columnItem.prop}.${dataIndex}.${childColumnItem.prop}`"
                           >
                             <template #default>
                               <slot v-if="$slots[childColumnItem.prop!]" :name="childColumnItem.prop" />
                               <FormItemDefault
-                                v-else
-                                v-bind="childColumnItem"
+                                v-else v-bind="childColumnItem"
                                 v-model="vModel[columnItem.prop!][dataIndex][childColumnItem.prop!]"
                               />
                             </template>
@@ -154,11 +132,7 @@ async function initCollapse() {
                       </template>
                     </uvue-dynamic>
                     <!-- 默认 -->
-                    <FormItemDefault
-                      v-else
-                      v-bind="columnItem"
-                      v-model="vModel[columnItem.prop!]"
-                    />
+                    <FormItemDefault v-else v-bind="columnItem" v-model="vModel[columnItem.prop!]" />
                   </view>
                 </template>
                 <template #right>
@@ -171,21 +145,15 @@ async function initCollapse() {
       </template>
 
       <!-- 渲染分组表单项 -->
-      <u-collapse v-if="option.group?.length && !option.tabs" ref="collapseRef" :value="defaultCollapse">
+      <u-collapse v-if="option.group?.length && !option.tabs" ref="collapseRef" :value="collapsed" @change="onCollapseChange">
         <template v-for="(groupItem, groupIndex) in option.group" :key="groupItem.prop || groupIndex">
           <u-collapse-item
-            v-if="groupItem.display"
-            :title="groupItem.label"
-            :name="groupItem.prop"
-            :is-link="groupItem.arrow"
-            v-bind="groupItem"
-            label=""
+            v-if="groupItem.display" :title="groupItem.label" :name="groupItem.prop"
+            :is-link="groupItem.arrow" v-bind="groupItem" label=""
           >
             <template v-for="(columnItem, columnIndex) in groupItem.column" :key="columnItem.prop || columnIndex">
               <u-form-item
-                v-if="columnItem.display"
-                class="uvue-form-item"
-                v-bind="columnItem"
+                v-if="columnItem.display" class="uvue-form-item" v-bind="columnItem"
                 :label="columnItem.type === 'dynamic' ? '' : columnItem.label"
               >
                 <template #default>
@@ -194,11 +162,8 @@ async function initCollapse() {
                     <slot v-if="$slots[columnItem.prop!]" :name="columnItem.prop" />
                     <!-- 子表单 -->
                     <uvue-dynamic
-                      v-else-if="columnItem.type === 'dynamic'"
-                      v-bind="columnItem"
-                      v-model="vModel[columnItem.prop!]"
-                      @add="initCollapse"
-                      @del="initCollapse"
+                      v-else-if="columnItem.type === 'dynamic'" v-bind="columnItem"
+                      v-model="vModel[columnItem.prop!]" @add="initCollapse" @del="initCollapse"
                     >
                       <template #default="{ dataIndex }">
                         <template
@@ -206,16 +171,13 @@ async function initCollapse() {
                           :key="childColumnItem.prop || childColumnIndex"
                         >
                           <u-form-item
-                            v-if="childColumnItem.display"
-                            class="uvue-form-item"
-                            v-bind="childColumnItem"
+                            v-if="childColumnItem.display" class="uvue-form-item" v-bind="childColumnItem"
                             :prop="`${columnItem.prop}.${dataIndex}.${childColumnItem.prop}`"
                           >
                             <template #default>
                               <slot v-if="$slots[childColumnItem.prop!]" :name="childColumnItem.prop" />
                               <FormItemDefault
-                                v-else
-                                v-bind="childColumnItem"
+                                v-else v-bind="childColumnItem"
                                 v-model="vModel[columnItem.prop!][dataIndex][childColumnItem.prop!]"
                               />
                             </template>
@@ -227,11 +189,7 @@ async function initCollapse() {
                       </template>
                     </uvue-dynamic>
                     <!-- 默认 -->
-                    <FormItemDefault
-                      v-else
-                      v-bind="columnItem"
-                      v-model="vModel[columnItem.prop!]"
-                    />
+                    <FormItemDefault v-else v-bind="columnItem" v-model="vModel[columnItem.prop!]" />
                   </view>
                 </template>
                 <template #right>
@@ -261,13 +219,16 @@ async function initCollapse() {
 
 <style lang="scss" scoped>
 .uvue-form {
-  padding: 20rpx;
+  padding: 10px;
+
   .uvue-form-item {
     width: 100%;
+
     &__content {
       width: 100%;
     }
   }
+
   .uvue-form-menu {
     .u-button + .u-button {
       margin-top: 10rpx;
