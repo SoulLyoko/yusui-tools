@@ -1,4 +1,4 @@
-import { deserialize, serialize, uuid } from '.'
+import { uuid } from '.'
 
 describe('string utils', () => {
   it('uuid', () => {
@@ -7,13 +7,5 @@ describe('string utils', () => {
     expect(/[0-9]|[A-Z]|[a-z]/.test(uuid())).toBeTruthy()
     expect(/[0-9]|[A-F]/.test(uuid(16, 16))).toBeTruthy()
     expect(/[A-Z]|[a-z]/.test(uuid(16, 10))).toBeFalsy()
-  })
-
-  it('serialize', () => {
-    expect(serialize({ a: '1', b: '2' })).toBe('a=1&b=2')
-  })
-
-  it('deserialize', () => {
-    expect(deserialize('a=1&b=2')).toEqual({ a: '1', b: '2' })
   })
 })

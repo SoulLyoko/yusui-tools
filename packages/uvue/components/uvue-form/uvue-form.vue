@@ -230,8 +230,8 @@ const { collapseRef, collapsed, initCollapse, onCollapseChange } = useCollapse(o
   }
 
   .uvue-form-menu {
-    .u-button + .u-button {
-      margin-top: 10rpx;
+    .u-button {
+      margin-top: 10px;
     }
   }
 }

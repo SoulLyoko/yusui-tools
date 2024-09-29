@@ -52,8 +52,6 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     handleView,
     getFormData,
     handleSubmit,
-    encodeData,
-    decodeData,
     getFormUrl,
     openForm,
   } = useCrudMethods<T, P>({ crudState, emitter, options })
@@ -112,8 +110,6 @@ export function useCrud<T extends Data = Data, P extends Data = Data>(options: U
     handleView,
     getFormData,
     handleSubmit,
-    encodeData,
-    decodeData,
     getFormUrl,
     openForm,
     beforeGetList,

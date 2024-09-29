@@ -42,8 +42,3 @@ export function filterObjDeep<R = any, T = any>(obj: T, values: any[] = [undefin
   }
   return temp as R
 }
-
-/** 获取数据类型 */
-export function getDataType(data: any) {
-  return Object.prototype.toString.call(data).match(/\[object (.*)\]/)?.[1] ?? ''
-}

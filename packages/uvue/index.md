@@ -21,11 +21,10 @@ pnpm i @yusui/uvue
 ## 注册组件
 
 ```ts
+// main.ts
 import Uvue from '@yusui/uvue'
 
 import request from '@/api'
-
-// main.ts
 
 app.use(Uvue, { request })
 ```

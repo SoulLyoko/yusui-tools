@@ -27,6 +27,7 @@ const dicMap = {
     { label: 'date', value: 'date' },
     { label: 'time', value: 'time' },
     { label: 'datetime', value: 'datetime' },
+    { label: 'year-month', value: 'year-month' },
   ],
 }
 

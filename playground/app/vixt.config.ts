@@ -9,8 +9,12 @@ export default defineVixtConfig({
     tsConfig: {
       compilerOptions: {
         paths: {
-          '@yusui/uvue': ['../../../packages/uvue'],
+          '@yusui/*': ['../../../packages/*'],
         },
+        types: [
+          'element-plus/global',
+          '@yusui/types/avue',
+        ],
       },
     },
   },

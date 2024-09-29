@@ -26,7 +26,7 @@ export function useCrudState<T extends Data, P extends Data>(options: UseCrudSta
           formPath: '', // 跳转到表单页的路径
           formKeys: [], // 跳转到表单携带的参数
           isPage: true, // 是否分页
-          isSort: true, // 搜否排序
+          isSort: true, // 是否排序
           isReachBottom: true, // 是否触底加载更多数据
           isPullDown: true, // 是否下拉刷新，需要在pages配置中开启enablePullDownRefresh
           isSrollTop: true, // 是否显示返回顶部按钮

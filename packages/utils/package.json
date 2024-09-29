@@ -25,6 +25,7 @@
   "dependencies": {
     "@yusui/types": "workspace:*",
     "dayjs": "catalog:",
+    "flatted": "catalog:",
     "lodash-es": "catalog:",
     "mitt": "catalog:"
   }

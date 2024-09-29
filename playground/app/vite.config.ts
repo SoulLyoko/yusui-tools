@@ -9,9 +9,6 @@ export default defineConfig({
   },
   server: { port: 5174 },
   plugins: [vixt()],
-  optimizeDeps: {
-    exclude: ['@yusui/uvue'],
-  },
   css: {
     preprocessorOptions: {
       scss: {

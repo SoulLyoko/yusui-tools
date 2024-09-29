@@ -1,16 +1,12 @@
 import path from 'node:path'
 
-import fg from 'fast-glob'
 import vue from 'unplugin-vue/vite'
 import { defineConfig } from 'vite'
 
-const packages = fg.globSync('packages/*/index.ts')
-export const alias = packages.map((pkg) => {
-  return {
-    find: pkg.replace(/^packages\/(.*)\/index.ts$/, '@yusui/$1'),
-    replacement: path.resolve(__dirname, pkg),
-  }
-})
+export const alias = [{
+  find: /^@yusui\/(.*)$/,
+  replacement: path.resolve(import.meta.dirname, 'packages/$1'),
+}]
 
 export default defineConfig(() => {
   return {

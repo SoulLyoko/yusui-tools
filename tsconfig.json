@@ -10,6 +10,7 @@
     },
     "types": [
       "@dcloudio/types",
+      "@yusui/types/avue",
       "element-plus/global",
       "vite/client",
       "vitest/globals"

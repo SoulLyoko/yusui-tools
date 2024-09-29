@@ -9,6 +9,7 @@ const props = defineProps({
   children: { type: Object as PropType<Required<UvueFormColumn>['children']>, default: () => ({}) },
   label: { type: String },
   prop: { type: String },
+  disabled: { type: Boolean },
 })
 const emit = defineEmits(['update:modelValue', 'add', 'del'])
 
@@ -67,7 +68,7 @@ function delItem(index: number) {
           <u-text :text="`${label}${dataIndex}`" type="info" />
         </u-col>
         <u-col span="2">
-          <u-text v-if="children.delBtn" text="删除" type="primary" @click="delItem(dataIndex)" />
+          <u-text v-if="!disabled && children.delBtn" text="删除" type="primary" @click="delItem(dataIndex)" />
         </u-col>
       </u-row>
 
@@ -81,7 +82,7 @@ function delItem(index: number) {
     </template>
 
     <u-text
-      v-if="children.addBtn"
+      v-if="!disabled && children.addBtn"
       :text="`增加${label}`"
       type="primary"
       prefix-icon="plus"

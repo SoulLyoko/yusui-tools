@@ -1,6 +1,6 @@
 import type { CrudState, Emitter, UseCrudMethodsOptions } from './types'
 
-import { filterObj, to } from '@yusui/utils'
+import { deserialize, filterObj, serialize, to } from '@yusui/utils'
 import { cloneDeep, get, pick } from 'lodash-es'
 
 export function useCrudMethods<T extends object = object, P extends object = object>({
@@ -108,15 +108,13 @@ export function useCrudMethods<T extends object = object, P extends object = obj
     })
   const handleSearch = options.handleSearch ?? handleRefresh
   const filterChange = options.filterChange ?? handleRefresh
-  const encodeData = options.encodeData ?? ((data: any) => encodeURIComponent(JSON.stringify(data)))
-  const decodeData = options.decodeData ?? ((data: string) => JSON.parse(decodeURIComponent(data)))
   const getFormUrl
     = options.getFormUrl
     ?? ((row: T, formType: string) => {
       const { formPath, formKeys } = crudState.crudOption
       const formData = formKeys?.length ? pick(row, formKeys) : row
-      const url = `${formPath}?formType=${formType}&formData=${encodeData(formData)}`
-      return url
+      const query = { formType, formData }
+      return `${formPath}?${serialize(query)}`
     })
   const openForm
     = options.openForm
@@ -135,14 +133,8 @@ export function useCrudMethods<T extends object = object, P extends object = obj
   const getFormData
     = options.getFormData
     ?? (async (options: any) => {
-      const { formType, formData } = options as { formData: string | object, formType: CrudState<T, P>['formType'] }
+      const { formType, formData: urlFormData = {} } = deserialize(serialize(options)) as { formType: CrudState<T, P>['formType'], formData: object }
       crudState.formType = formType
-      let urlFormData = {}
-      if (typeof formData === 'string')
-        urlFormData = formData ? decodeData(formData) : {}
-      else if (typeof formData === 'object')
-        urlFormData = formData || {}
-
       const [err] = await to(emitter.emitAsync('beforeGetInfo', urlFormData))
       if (err !== null)
         return
@@ -200,8 +192,6 @@ export function useCrudMethods<T extends object = object, P extends object = obj
     handleView,
     getFormData,
     handleSubmit,
-    encodeData,
-    decodeData,
     getFormUrl,
     openForm,
   }

@@ -11,7 +11,7 @@ export interface User {
 
 export const mockData: User[] = Array.from({ length: 20 }).map((e, i) => {
   const id = `${i}`
-  return { id, userName: `admin${id}`, nickName: `管理员${id}`, deptName: '研发部' }
+  return { id, userName: `admin${id}`, nickName: `管理员${id}`, deptName: '研发部', postName: '前端' }
 })
 
 export const listOption: UvueListOption = {
@@ -26,21 +26,19 @@ export const listOption: UvueListOption = {
         dicData: [{ label: '研发部', value: '研发部' }, { label: '市场部', value: '市场部' }],
       },
       {
-        title: '部门2',
-        prop: 'deptName2',
+        title: '岗位',
+        prop: 'postName',
         multiple: true,
-        dicData: [{ label: '研发部', value: '研发部' }, { label: '市场部', value: '市场部' }],
+        dicData: [{ label: '前端', value: '前端' }, { label: '后端', value: '后端' }],
       },
     ],
   },
   formatter(row: any) {
-    const { nickName, userName, deptName } = row
+    const { nickName, userName, deptName, postName } = row
     return {
       title: nickName,
-      label: userName,
-      value: deptName,
+      label: `账号：${userName}\n部门：${deptName}\n岗位：${postName}`,
       isLink: true,
-      url: '/pages/form',
     }
   },
 }
@@ -51,7 +49,6 @@ const group: UvueFormOption['group'] = [
   {
     label: 'group1',
     prop: 'group1',
-    collapse: false,
     column: [
       { label: 'slot', prop: 'slot', type: 'slot' },
       {
@@ -107,6 +104,7 @@ const group: UvueFormOption['group'] = [
   {
     label: 'group3',
     prop: 'group3',
+    collapse: false,
     column: [
       {
         label: 'checkbox',
@@ -134,6 +132,7 @@ const group: UvueFormOption['group'] = [
   {
     label: 'group4',
     prop: 'group4',
+    collapse: false,
     column: [
       {
         label: 'dynamic',
@@ -143,9 +142,9 @@ const group: UvueFormOption['group'] = [
           labelWidth: 70,
           limit: 3,
           column: [
-            { label: 'column1', prop: 'column1', rules: [{ required: true, message: '请输入' }] },
-            { label: 'column2', prop: 'column2', value: 'column2' },
-            { label: 'column3', prop: 'column3' },
+            { label: 'dynamic1', prop: 'dynamic1', required: true, rules: [{ required: true, message: '请输入' }] },
+            { label: 'dynamic2', prop: 'dynamic2', value: 'dynamic2' },
+            { label: 'dynamic3', prop: 'dynamic3' },
           ],
         },
       },
@@ -154,10 +153,21 @@ const group: UvueFormOption['group'] = [
 ]
 
 // const column = group.map(g => g.column).flat();
-const column: UvueFormOption['column'] = [{ label: 'isTabs', prop: 'isTabs', type: 'switch', value: false }]
+const column: UvueFormOption['column'] = [
+  {
+    label: 'isTabs',
+    prop: 'isTabs',
+    type: 'switch',
+    value: false,
+  },
+  { label: 'userName', prop: 'userName' },
+  { label: 'nickName', prop: 'nickName' },
+  { label: 'deptName', prop: 'deptName' },
+  { label: 'postName', prop: 'postName' },
+]
 
 export const formOption = {
-  labelWidth: 70,
+  labelWidth: 80,
   tabs: true,
   group,
   column,

@@ -1,4 +1,4 @@
-import { filterObj, filterObjDeep, getDataType } from '.'
+import { filterObj, filterObjDeep } from '.'
 
 describe('object utils', () => {
   it('filterObj', () => {
@@ -13,18 +13,5 @@ describe('object utils', () => {
     expect(filterObjDeep(testData)).toEqual({ a: [{ aa: 1 }], b: { bb: '1' } })
     expect(filterObjDeep(testData, [])).toEqual(testData)
     expect(filterObjDeep(testData, undefined, ['aa', 'bb'])).toEqual({ a: [{}], b: {} })
-  })
-  it('getDataType', () => {
-    expect(getDataType(true)).toBe('Boolean')
-    expect(getDataType(null)).toBe('Null')
-    expect(getDataType(undefined)).toBe('Undefined')
-    expect(getDataType(123)).toBe('Number')
-    expect(getDataType('123')).toBe('String')
-    expect(getDataType(Symbol('s'))).toBe('Symbol')
-    expect(getDataType([])).toBe('Array')
-    expect(getDataType({})).toBe('Object')
-    expect(getDataType(() => {})).toBe('Function')
-    expect(getDataType(new Date())).toBe('Date')
-    expect(getDataType(/(?:)/)).toBe('RegExp')
   })
 })

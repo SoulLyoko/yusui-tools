@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { useCrud } from '@yusui/uvue'
+import { computed, watch } from 'vue'
 
 import { formOption } from './option'
 
-const option = ref(formOption)
-
-const formData = ref<any>({
-  cascader: '1-2',
-  select: '2',
-  datetime: '2022-01-01',
+const {
+  bindForm,
+  crudStateRefs: { formData, defaults },
+  getFormData,
+} = useCrud({
+  formOption,
 })
-const defaults = ref<any>({})
+console.log('🚀 ~ bindForm:', bindForm)
+
+onLoad((query) => {
+  getFormData(query)
+})
 
 const formConsole = computed(() => {
   return JSON.stringify(formData.value)
@@ -25,7 +30,6 @@ watch(
   (val) => {
     defaults.value.datetime.type = val
     defaults.value.datetime.label = val
-    defaults.value.input.display = false
   },
 )
 watch(
@@ -48,20 +52,17 @@ function onSubmit(form: any, loading: () => void) {
 
 <template>
   <view>{{ formConsole }}</view>
-  <uvue-form
-    v-model="formData" v-model:defaults="defaults" :option="option" :permission="permission"
-    @submit="onSubmit"
-  >
+  <uvue-form v-bind="bindForm" :permission="permission" @submit="onSubmit">
     <template #slot>
       <view>slot</view>
     </template>
     <template #slot-right>
       <view>slot-right</view>
     </template>
-    <template #column3>
+    <template #dynamic3>
       <view>dynamicSlot</view>
     </template>
-    <template #column3-right>
+    <template #dynamic3-right>
       <view>dynamicSlotRight</view>
     </template>
   </uvue-form>
