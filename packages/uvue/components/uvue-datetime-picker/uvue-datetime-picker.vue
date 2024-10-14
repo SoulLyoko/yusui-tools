@@ -51,8 +51,8 @@ function onConfirm({ value, mode }: { value: number, mode: keyof typeof formatMa
     :show="show"
     :mode="type"
     close-on-click-overlay
-    @confirm="onConfirm as any"
     @cancel="show = false"
     @close="show = false"
+    @confirm="onConfirm as any"
   />
 </template>

@@ -154,16 +154,11 @@ const group: UvueFormOption['group'] = [
 
 // const column = group.map(g => g.column).flat();
 const column: UvueFormOption['column'] = [
-  {
-    label: 'isTabs',
-    prop: 'isTabs',
-    type: 'switch',
-    value: false,
-  },
-  { label: 'userName', prop: 'userName' },
-  { label: 'nickName', prop: 'nickName' },
-  { label: 'deptName', prop: 'deptName' },
-  { label: 'postName', prop: 'postName' },
+  { label: 'isTabs', prop: 'isTabs', type: 'switch', value: false },
+  { label: 'userName', prop: 'userName', disabled: true },
+  { label: 'nickName', prop: 'nickName', disabled: true },
+  { label: 'deptName', prop: 'deptName', disabled: true },
+  { label: 'postName', prop: 'postName', disabled: true },
 ]
 
 export const formOption = {

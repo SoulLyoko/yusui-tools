@@ -5,9 +5,24 @@ import { isNil } from 'lodash-es'
 
 import { isJSON } from '../assert'
 
+const encode = encodeURIComponent
+/**
+ * Decode text using `decodeURIComponent`. Returns the original text if it fails.
+ * @param text - string to decode
+ * @returns decoded string
+ */
+function decode(text: string | number): string {
+  try {
+    return decodeURIComponent(`${text}`)
+  }
+  catch {
+    return `${text}`
+  }
+}
+
 /** 对数据进行编码，一般用于url传参，与decodeData配合使用 */
 export function encodeData(data: any) {
-  return encodeURIComponent(JSON.stringify(data))
+  return encode(JSON.stringify(data))
 }
 /**
  * 对数据进行解码
@@ -19,7 +34,7 @@ export function encodeData(data: any) {
  * ```
  */
 export function decodeData(data: string) {
-  return JSON.parse(decodeURIComponent(data))
+  return JSON.parse(decode(data))
 }
 
 /**
@@ -35,7 +50,6 @@ export function getDataType(data: any) {
   return Object.prototype.toString.call(data).match(/\[object (.*)\]/)?.[1] ?? ''
 }
 
-const encode = encodeURIComponent
 /**
  * data序列化，用JSON.stringify转换对象和数组
  * @param {object} data 序列化的对象
@@ -54,19 +68,6 @@ export function serialize<T extends Data>(query: T) {
   return res.join('&')
 }
 
-/**
- * Decode text using `decodeURIComponent`. Returns the original text if it fails.
- * @param text - string to decode
- * @returns decoded string
- */
-function decode(text: string | number): string {
-  try {
-    return decodeURIComponent(`${text}`)
-  }
-  catch {
-    return `${text}`
-  }
-}
 /**
  * url反序列化，用JSON.parse解析对象和数组
  * @param {string} url 反序列化的url

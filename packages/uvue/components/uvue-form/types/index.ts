@@ -18,7 +18,9 @@ export interface UvueFormOption<T = any> extends Omit<AvueFormOption<T>, 'labelP
 export interface UvueFormColumn<T = any> extends Omit<AvueFormColumn<T>, 'labelPosition'>, FormItemProps {
   children?: {
     addBtn?: boolean
+    addText?: string
     delBtn?: boolean
+    delText?: string
     limit?: number
     rowAdd?: (done: (row: any) => void) => void
     rowDel?: (row: any, done: () => void) => void

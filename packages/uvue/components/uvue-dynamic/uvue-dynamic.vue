@@ -61,33 +61,44 @@ function delItem(index: number) {
 </script>
 
 <template>
-  <view class="uvue-dynamic" style="width: 100%">
+  <view class="uvue-dynamic">
+    <u-row>
+      <u-col span="10">
+        <u-text :text="label" />
+      </u-col>
+      <u-col span="2">
+        <u-text
+          v-if="!disabled && children.addBtn" :text="children.delText || '新增'" type="primary" align="right"
+          @click="addItem"
+        />
+      </u-col>
+    </u-row>
     <template v-for="(dataItem, dataIndex) in vModel" :key="dataItem[prop!] || dataIndex">
-      <u-row>
-        <u-col span="10">
-          <u-text :text="`${label}${dataIndex}`" type="info" />
-        </u-col>
-        <u-col span="2">
-          <u-text v-if="!disabled && children.delBtn" text="删除" type="primary" @click="delItem(dataIndex)" />
-        </u-col>
-      </u-row>
+      <uvue-form v-model="vModel[dataIndex]" :option="children">
+        <!-- #ifndef MP -->
+        <!-- @vue-skip -->
+        <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
+          <slot :name="slotName" v-bind="slotProps" />
+        </template>
+        <!-- #endif -->
+      </uvue-form>
 
-      <slot name="default" :data-index="dataIndex" />
+      <u-text
+        v-if="!disabled && children.delBtn" :text="children.delText || '删除'" type="error" align="right"
+        @click="delItem(dataIndex)"
+      />
 
-      <!-- <template v-for="(columnItem, columnIndex) in children.column" :key="columnItem.prop || columnIndex">
-      <slot :name="columnItem.prop"></slot>
-    </template> -->
-
-      <u-line margin="20rpx 0" />
+      <u-line margin="10px 0" />
     </template>
-
-    <u-text
-      v-if="!disabled && children.addBtn"
-      :text="`增加${label}`"
-      type="primary"
-      prefix-icon="plus"
-      align="center"
-      @click="addItem"
-    />
   </view>
 </template>
+
+<style lang="scss" scoped>
+.uvue-dynamic {
+  width: 100%;
+
+  & > .uvue-form {
+    padding: 0;
+  }
+}
+</style>

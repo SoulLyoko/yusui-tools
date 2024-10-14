@@ -11,11 +11,8 @@ const {
 } = useCrud({
   formOption,
 })
-console.log('🚀 ~ bindForm:', bindForm)
 
-onLoad((query) => {
-  getFormData(query)
-})
+onLoad(getFormData)
 
 const formConsole = computed(() => {
   return JSON.stringify(formData.value)
@@ -53,14 +50,14 @@ function onSubmit(form: any, loading: () => void) {
 <template>
   <view>{{ formConsole }}</view>
   <uvue-form v-bind="bindForm" :permission="permission" @submit="onSubmit">
-    <template #slot>
-      <view>slot</view>
+    <template #slot="scoped">
+      <view>slot:{{ scoped }}</view>
     </template>
     <template #slot-right>
       <view>slot-right</view>
     </template>
-    <template #dynamic3>
-      <view>dynamicSlot</view>
+    <template #dynamic3="scoped">
+      <view>dynamicSlot:{{ scoped }}</view>
     </template>
     <template #dynamic3-right>
       <view>dynamicSlotRight</view>

@@ -1,6 +1,6 @@
 import type { CrudState, Emitter, UseCrudMethodsOptions } from './types'
 
-import { deserialize, filterObj, serialize, to } from '@yusui/utils'
+import { decodeData, filterObj, serialize, to } from '@yusui/utils'
 import { cloneDeep, get, pick } from 'lodash-es'
 
 export function useCrudMethods<T extends object = object, P extends object = object>({
@@ -133,14 +133,15 @@ export function useCrudMethods<T extends object = object, P extends object = obj
   const getFormData
     = options.getFormData
     ?? (async (options: any) => {
-      const { formType, formData: urlFormData = {} } = deserialize(serialize(options)) as { formType: CrudState<T, P>['formType'], formData: object }
+      let { formType, formData: urlFormData = '' } = options as { formType: CrudState<T, P>['formType'], formData: any }
+      urlFormData = decodeData(urlFormData)
       crudState.formType = formType
       const [err] = await to(emitter.emitAsync('beforeGetInfo', urlFormData))
       if (err !== null)
         return
       const { getInfo, rowKey, dataPath } = crudState.crudOption
       if (formType !== 'add' && getInfo) {
-        const res = await getInfo(urlFormData[rowKey as keyof typeof urlFormData])
+        const res = await getInfo(urlFormData[rowKey])
         console.log('getFormData ~ res', res)
         crudState.formData = get({ res }, dataPath, {} as T)
         await emitter.emitAsync('afterGetInfo', res)

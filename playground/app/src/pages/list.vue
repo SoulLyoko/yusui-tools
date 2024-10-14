@@ -3,7 +3,7 @@ import { useCrud } from '@yusui/uvue'
 
 import { listOption, mockData } from './option'
 
-const { bindList, getDataList, handleView } = useCrud({
+const { bindList, getDataList, handleEdit } = useCrud({
   listOption,
   crudOption: {
     searchKey: 'userName',
@@ -15,7 +15,7 @@ getDataList()
 </script>
 
 <template>
-  <uvue-list v-bind="bindList" @item-click="handleView">
+  <uvue-list v-bind="bindList" @item-click="handleEdit">
     <template #value>
       <view>slot</view>
     </template>
