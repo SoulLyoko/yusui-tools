@@ -1,3 +1,12 @@
+# [3.0.0-beta.59](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.58...v3.0.0-beta.59) (2024-10-14)
+
+
+### Bug Fixes
+
+* **utils:** 处理deserialize的参数为空的情况 ([8bf70ed](https://github.com/SoulLyoko/yusui-tools/commit/8bf70ed73f1cfd2d233ddcae1a7ed6a5047231dd))
+
+
+
 # [3.0.0-beta.58](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.57...v3.0.0-beta.58) (2024-10-14)
 
 
