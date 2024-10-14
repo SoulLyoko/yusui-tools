@@ -6,10 +6,12 @@ describe('string utils', () => {
 
   it('serialize', () => {
     expect(serialize(query)).toBe(search)
+    expect(serialize({})).toBe('')
   })
 
   it('deserialize', () => {
     expect(deserialize(search)).toEqual(query)
+    expect(deserialize('')).toEqual({})
   })
 
   it('getDataType', () => {

@@ -76,8 +76,10 @@ export function serialize<T extends Data>(query: T) {
 export function deserialize<T = Data>(search: string): T {
   if (search?.startsWith('?'))
     search = search.slice(1)
-  const searchParams = search.split('&')
+  if (!search)
+    return {} as T
   const res: Data = {}
+  const searchParams = search.split('&')
   for (const item of searchParams) {
     let [key, value] = item.split('=')
     key = decode(key)
