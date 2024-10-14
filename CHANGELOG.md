@@ -1,3 +1,25 @@
+# [3.0.0-beta.58](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.57...v3.0.0-beta.58) (2024-10-14)
+
+
+### Bug Fixes
+
+* **types:** 补充AvueCrud中卡片模式grid相关的类型 ([5ae2c7c](https://github.com/SoulLyoko/yusui-tools/commit/5ae2c7c0c94cd4b9c3663ef9051b936fe1a9383b))
+* **uvue:** 保存collapse的展开状态 ([9afb71d](https://github.com/SoulLyoko/yusui-tools/commit/9afb71d874533740bd2fb5ae25494ad4714447c6))
+* **uvue:** 修复cascader组件和select组件的值回显 ([053ac3c](https://github.com/SoulLyoko/yusui-tools/commit/053ac3c0da2ef44339b785d901d9a3e84bd98602))
+
+
+### Features
+
+* **flow-design:** 升级logicflow v2 ([b70119c](https://github.com/SoulLyoko/yusui-tools/commit/b70119c241c0e43443a9fe88230062fee5999b09))
+* **types:** 适配avue新增支持dicData的函数和Promise类型，control的Promise类型 ([640908f](https://github.com/SoulLyoko/yusui-tools/commit/640908f2cd720fab20eda4c20b89d5768e3748d5))
+* **types:** 新增`MaybePromise`类型 ([17e216e](https://github.com/SoulLyoko/yusui-tools/commit/17e216e40af621b4ee61989bfc3d7e0f7194b83b))
+* **utils:** 新增函数getTreeDepth获取树的深度 ([902f615](https://github.com/SoulLyoko/yusui-tools/commit/902f61508f45ecb79cdf08c7f9753e9ccb01865b))
+* **utils:** 新增isMobile,isJSON,encodeData,decodeData,jsonClone,优化serialize和deserialize ([e639876](https://github.com/SoulLyoko/yusui-tools/commit/e6398765d66488582220812c4a6d989697e834cc))
+* **uvue:** 新增filter组件用于列表筛选 ([1835e36](https://github.com/SoulLyoko/yusui-tools/commit/1835e366869c49c81927b1a45e0701eff13f1b82))
+* **uvue:** useCrud新增mock数据功能 ([07d4158](https://github.com/SoulLyoko/yusui-tools/commit/07d415876c170845d6a7da66441b6a3b399bb018))
+
+
+
 # [3.0.0-beta.57](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.56...v3.0.0-beta.57) (2024-09-25)
 
 
