@@ -1,3 +1,12 @@
+# [3.0.0-beta.60](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.59...v3.0.0-beta.60) (2024-10-14)
+
+
+### Features
+
+* **utils:** isFunctionString判断是否函数字符串 ([a991185](https://github.com/SoulLyoko/yusui-tools/commit/a991185e23fa7510555bfbe3c2947edbdd46a352))
+
+
+
 # [3.0.0-beta.59](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.58...v3.0.0-beta.59) (2024-10-14)
 
 
