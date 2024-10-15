@@ -1,3 +1,12 @@
+# [3.0.0-beta.61](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.60...v3.0.0-beta.61) (2024-10-15)
+
+
+### Bug Fixes
+
+* **uvue:** 缺少computed导入 ([31af176](https://github.com/SoulLyoko/yusui-tools/commit/31af1763af7f36864f1f8b58ef4ba0a2c8c76cf6))
+
+
+
 # [3.0.0-beta.60](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.59...v3.0.0-beta.60) (2024-10-14)
 
 
