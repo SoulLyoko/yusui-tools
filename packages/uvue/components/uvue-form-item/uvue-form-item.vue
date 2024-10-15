@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 import { dateTypes, dicTypes, inputTypes } from '../../constants'
 
