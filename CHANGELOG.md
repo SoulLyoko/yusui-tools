@@ -1,3 +1,17 @@
+# [3.0.0-beta.62](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.60...v3.0.0-beta.62) (2024-10-17)
+
+
+### Bug Fixes
+
+* **uvue:** 缺少computed导入 ([11b7ef8](https://github.com/SoulLyoko/yusui-tools/commit/11b7ef811379cb192b0b98c63f548f77b3a8eb78))
+
+
+### Features
+
+* **ProTree:** 支持虚拟化树组件 ([2aeebb9](https://github.com/SoulLyoko/yusui-tools/commit/2aeebb99e38e2ed900d1395029eb9607ada99b9b))
+
+
+
 # [3.0.0-beta.61](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.60...v3.0.0-beta.61) (2024-10-15)
 
 
