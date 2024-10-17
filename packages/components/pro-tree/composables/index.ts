@@ -1,3 +1,2 @@
-export * from './input'
-export * from './tag'
+export * from './select'
 export * from './tree'

@@ -4,7 +4,7 @@
 
 ## 基础用法
 
-<<< @/uvue/demo/use-crud.vue
+<!-- <<< @/uvue/demo/use-crud.vue -->
 
 ## Type Definitions
 

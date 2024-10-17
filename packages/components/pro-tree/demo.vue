@@ -60,7 +60,12 @@ const multiValue = ref([])
 
 <template>
   单选：
-  <ProTree v-model="singleValue" :data="treeData" clearable />
+  <ProTree v-model="singleValue" :data="treeData" />
   多选：
-  <ProTree v-model="multiValue" :data="treeData" multiple clearable />
+  <ProTree
+    v-model="multiValue" :data="treeData" multiple default-expand-all virtualized
+    collapse-tags
+    collapse-tags-tooltip
+    :max-collapse-tags="3"
+  />
 </template>

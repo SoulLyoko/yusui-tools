@@ -167,17 +167,17 @@ export default defineConfig({
           ],
         },
       ],
-      '/uvue': [
-        {
-          text: 'Types',
-          items: [
-            { text: 'Start', link: '/uvue/index' },
-            { text: 'UvueList', link: '/uvue/components/uvue-list/index' },
-            { text: 'UvueForm', link: '/uvue/components/uvue-form/index' },
-            { text: 'useCrud', link: '/uvue/composables/use-crud/index' },
-          ],
-        },
-      ],
+      // '/uvue': [
+      //   {
+      //     text: 'Types',
+      //     items: [
+      //       { text: 'Start', link: '/uvue/index' },
+      //       { text: 'UvueList', link: '/uvue/components/uvue-list/index' },
+      //       { text: 'UvueForm', link: '/uvue/components/uvue-form/index' },
+      //       { text: 'useCrud', link: '/uvue/composables/use-crud/index' },
+      //     ],
+      //   },
+      // ],
     },
   },
   vite: {

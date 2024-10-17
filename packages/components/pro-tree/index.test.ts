@@ -37,13 +37,11 @@ describe('test ProTree', () => {
 
   it('show tag', async () => {
     await wrapper.setProps({ modelValue: '1-1' })
-    expect(wrapper.find('.el-tag').html()).toContain('二级 1-1')
+    expect(wrapper.find('.el-select__selection').html()).toContain('二级 1-1')
   })
 
   it('show multi tag', async () => {
     await wrapper.setProps({ modelValue: ['1-1', '2-1'], multiple: true })
-    await wrapper.vm.$nextTick()
-    await wrapper.vm.$nextTick()
-    expect(wrapper.find('.el-input').html()).and.contain('二级 1-1').contain('二级 2-1')
+    expect(wrapper.find('.el-select__selection').html()).and.contain('二级 1-1').contain('二级 2-1')
   })
 })

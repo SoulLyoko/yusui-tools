@@ -3,6 +3,7 @@ import type { ElTreeNode } from '@yusui/types'
 import type { TreeInstance } from 'element-plus'
 import type { Ref } from 'vue'
 
+import { flatTree } from '@yusui/utils'
 import { ElTree } from 'element-plus'
 import { isEqual, pick } from 'lodash-es'
 import { computed, nextTick, onMounted, toRefs, useAttrs, watch } from 'vue'
@@ -78,20 +79,31 @@ export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, tre
   }
 
   function filterNodeMethod(value: string, data: ElTreeNode['data'], node: ElTreeNode) {
+    node = node ?? treeRef.value?.getNode(data)
     if (props.filterNodeMethod)
       return props.filterNodeMethod(value, data, node)
     if (!value)
       return true
-    return data.label.includes(value)
+    return node.label?.includes(value)
   }
+
+  const defaultExpandedKeys = computed(() => {
+    // virtualized defaultExpandAll
+    if (props.virtualized && props.defaultExpandAll && !props.defaultExpandedKeys?.length)
+      return flatTree(props.data ?? [], { childrenKey: props.props?.children }).map(item => item[props.nodeKey!])
+    return props.defaultExpandedKeys
+  })
 
   return {
     ...pick(toRefs(props), Object.keys(ElTree.props)),
     ...attrs,
+    defaultExpandedKeys,
+    props: computed(() => props.virtualized ? ({ ...props.props, value: props.nodeKey }) : props.props),
     showCheckbox: computed(() => props.multiple),
     highlightCurrent: computed(() => !props.multiple),
     expandOnClickNode: computed(() => !props.checkStrictly && props.expandOnClickNode),
     filterNodeMethod,
+    filterMethod: filterNodeMethod, // virtualized
     onNodeClick,
     onCheck,
   }

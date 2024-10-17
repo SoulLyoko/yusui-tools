@@ -1,70 +1,56 @@
 <script setup lang="ts">
 import type { ProTreeProps } from './types'
-import type { InputInstance, TreeInstance } from 'element-plus'
+import type { TreeInstance } from 'element-plus'
 
+import { ElTree, ElTreeV2 } from 'element-plus'
 import { isFunction, pickBy } from 'lodash-es'
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 
-import { useInput, useTag, useTree } from './composables'
+import { useSelect, useTree } from './composables'
 
 const props = withDefaults(
   defineProps<ProTreeProps>(),
-  { nodeKey: 'value', tagType: 'info', placeholder: '输入关键字搜索' },
+  {
+    autoExpandParent: true,
+    clearable: true,
+    expandOnClickNode: true,
+    filterable: true,
+    renderAfterExpand: true,
+    reserveKeyword: true,
+    teleported: true,
+    persistent: true,
+    nodeKey: 'value',
+    placeholder: '输入关键字搜索',
+  },
 )
-const emit = defineEmits(['update:modelValue', 'tag-click', 'tag-close'])
+const emit = defineEmits(['update:modelValue'])
 
-const inputRef = ref<InputInstance>()
+const treeComponent = computed(() => props.virtualized ? ElTreeV2 : ElTree)
+
+const selectRef = ref()
 const treeRef = ref<TreeInstance>()
+const selectProps = useSelect(props, { emit, treeRef })
 const treeProps = useTree(props, { emit, treeRef })
-
-const inputProps = useInput(props, { emit, treeRef })
-const { checkedNodes, onTagClick, onTagClose } = useTag(props, { emit, treeRef })
-const { clearable, onClear, modelValue: searchValue } = inputProps
 
 const methods = reactive<any>({})
 defineExpose(methods)
 onMounted(() => {
+  const selectMethods = pickBy(selectRef.value ?? {}, isFunction)
   const treeMethods = pickBy(treeRef.value ?? {}, isFunction)
-  const inputMethods = pickBy(inputRef.value ?? {}, isFunction)
-  Object.assign(methods, treeMethods, inputMethods)
+  Object.assign(methods, selectMethods, treeMethods)
 })
 </script>
 
 <template>
   <div class="pro-tree">
-    <el-input ref="inputRef" v-bind="reactive(inputProps)" :clearable="false">
-      <template #prefix>
-        <slot name="prefix" />
-        <el-space wrap>
-          <el-tag
-            v-for="item in checkedNodes" :key="item.key" closable :type="tagType" @click="onTagClick(item)"
-            @close="onTagClose(item)"
-          >
-            {{ item.label }}
-          </el-tag>
-        </el-space>
-      </template>
-      <template #suffix>
-        <slot name="suffix" />
-        <Icon
-          v-if="clearable && (checkedNodes.length || searchValue)" class="el-input__clear" icon="ep:circle-close"
-          @click="onClear"
-        />
-      </template>
-      <template v-if="$slots.prepend" #prepend>
-        <slot name="prepend" />
-      </template>
-      <template v-if="$slots.append" #append>
-        <slot name="append" />
-      </template>
-    </el-input>
-    <el-tree ref="treeRef" v-bind="reactive(treeProps)">
+    <el-tree-select ref="selectRef" v-bind="reactive(selectProps)" popper-class="pro-tree__popper" />
+    <component :is="treeComponent" ref="treeRef" v-bind="reactive(treeProps)">
       <template v-if="$slots.default" #default="slotProps">
         <slot name="default" v-bind="slotProps" />
       </template>
       <template v-if="$slots.empty" #empty>
         <slot name="empty" />
       </template>
-    </el-tree>
+    </component>
   </div>
 </template>
