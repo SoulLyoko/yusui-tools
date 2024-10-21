@@ -35,6 +35,13 @@ export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, tre
     )
   })
 
+  const defaultExpandedKeys = computed(() => {
+    // virtualized defaultExpandAll
+    if (props.virtualized && props.defaultExpandAll && !props.defaultExpandedKeys?.length)
+      return flatTree(props.data ?? [], { childrenKey: props.props?.children }).map(item => item[props.nodeKey!])
+    return props.defaultExpandedKeys
+  })
+
   function onNodeClick(data: ElTreeNode['data'], node: ElTreeNode, e: any) {
     // `onCheck` is trigger when `checkOnClickNode`
     if (props.multiple && props.checkOnClickNode)
@@ -87,18 +94,11 @@ export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, tre
     return node.label?.includes(value)
   }
 
-  const defaultExpandedKeys = computed(() => {
-    // virtualized defaultExpandAll
-    if (props.virtualized && props.defaultExpandAll && !props.defaultExpandedKeys?.length)
-      return flatTree(props.data ?? [], { childrenKey: props.props?.children }).map(item => item[props.nodeKey!])
-    return props.defaultExpandedKeys
-  })
-
   return {
     ...pick(toRefs(props), Object.keys(ElTree.props)),
     ...attrs,
     defaultExpandedKeys,
-    props: computed(() => props.virtualized ? ({ ...props.props, value: props.nodeKey }) : props.props),
+    props: computed(() => ({ ...props.props, value: props.nodeKey })),
     showCheckbox: computed(() => props.multiple),
     highlightCurrent: computed(() => !props.multiple),
     expandOnClickNode: computed(() => !props.checkStrictly && props.expandOnClickNode),

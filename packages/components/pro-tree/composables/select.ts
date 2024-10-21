@@ -2,13 +2,25 @@ import type { ProTreeProps } from '../types'
 import type { TreeInstance } from 'element-plus'
 import type { Ref } from 'vue'
 
-import { sleep } from '@yusui/utils'
-import { ElSelect, ElTree } from 'element-plus'
+import { flatTree } from '@yusui/utils'
+import { ElSelect } from 'element-plus'
 import { pick } from 'lodash-es'
-import { toRefs, useAttrs } from 'vue'
+import { computed, toRefs, useAttrs, watchEffect } from 'vue'
 
-export function useSelect(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
+export function useSelect(props: ProTreeProps, { emit, selectRef, treeRef }: { emit: any, selectRef: Ref<any>, treeRef: Ref<TreeInstance | undefined> }) {
   const attrs = useAttrs() as any
+
+  watchEffect(() => {
+    if (!selectRef.value)
+      return
+
+    // 使输入框的值在丢失焦点后不被清空
+    if (!selectRef.value.expanded)
+      selectRef.value.expanded = true
+    if (selectRef.value.dropdownMenuVisible) {
+      selectRef.value.dropdownMenuVisible = false
+    }
+  })
 
   function filterMethod(keyword = '') {
     if (props.filterMethod) {
@@ -31,23 +43,19 @@ export function useSelect(props: ProTreeProps, { emit, treeRef }: { emit: any, t
   }
 
   function onClear() {
+    selectRef.value.states.inputValue = ''
+    treeRef.value?.filter('')
     emit('update:modelValue')
     emit('clear')
   }
 
-  async function onBlur() {
-    await sleep(0)
-    treeRef.value?.filter('')
-    emit('blur')
-  }
-
   return {
     ...pick(toRefs(props), Object.keys(ElSelect.props)),
-    ...pick(toRefs(props), Object.keys(ElTree.props)),
     ...attrs,
+    options: computed(() => flatTree(props.data ?? [], { childrenKey: props.props?.children })),
+    props: computed(() => ({ ...props.props, value: props.nodeKey })),
     filterMethod,
     onRemoveTag,
     onClear,
-    onBlur,
   }
 }

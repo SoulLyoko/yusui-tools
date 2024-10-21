@@ -29,7 +29,7 @@ const treeComponent = computed(() => props.virtualized ? ElTreeV2 : ElTree)
 
 const selectRef = ref()
 const treeRef = ref<TreeInstance>()
-const selectProps = useSelect(props, { emit, treeRef })
+const selectProps = useSelect(props, { emit, selectRef, treeRef })
 const treeProps = useTree(props, { emit, treeRef })
 
 const methods = reactive<any>({})
@@ -43,7 +43,7 @@ onMounted(() => {
 
 <template>
   <div class="pro-tree">
-    <el-tree-select ref="selectRef" v-bind="reactive(selectProps)" popper-class="pro-tree__popper" />
+    <el-select-v2 ref="selectRef" v-bind="reactive(selectProps)" popper-class="pro-tree__select-popper" />
     <component :is="treeComponent" ref="treeRef" v-bind="reactive(treeProps)">
       <template v-if="$slots.default" #default="slotProps">
         <slot name="default" v-bind="slotProps" />
