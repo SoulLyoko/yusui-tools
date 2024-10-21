@@ -1,3 +1,12 @@
+# [3.0.0-beta.63](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.62...v3.0.0-beta.63) (2024-10-21)
+
+
+### Performance Improvements
+
+* 优化ProTree ([69a541f](https://github.com/SoulLyoko/yusui-tools/commit/69a541f3c8ead519006cf4ff9d504bef14e3b35f))
+
+
+
 # [3.0.0-beta.62](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.60...v3.0.0-beta.62) (2024-10-17)
 
 
