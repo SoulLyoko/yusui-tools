@@ -51,6 +51,8 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
       container,
       grid: { type: 'dot', size: 10 },
       isSilentMode: true,
+      nodeTextEdit: false,
+      edgeTextEdit: false,
       plugins: [BpmnElements, TurboAdapter, Tooltips, Styles],
     }
     const options = defu(props.initOptions, defaultOptions)
