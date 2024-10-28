@@ -1,3 +1,17 @@
+# [3.0.0-beta.64](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.63...v3.0.0-beta.64) (2024-10-28)
+
+
+### Bug Fixes
+
+* **flow-design:** 修复查看模式文字仍可编辑的问题 ([58964a5](https://github.com/SoulLyoko/yusui-tools/commit/58964a5c6130fa73d9f7b3370268c4b2186911aa))
+
+
+### Features
+
+* **flow-design:** tooltips支持在节点下方显示 ([4210f0a](https://github.com/SoulLyoko/yusui-tools/commit/4210f0a6b0e54f13db17bd2868050c410bb54de2))
+
+
+
 # [3.0.0-beta.63](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.62...v3.0.0-beta.63) (2024-10-21)
 
 
