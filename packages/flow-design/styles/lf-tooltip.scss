@@ -1,9 +1,15 @@
 .lf-tooltip {
-  background-color: #333;
-  width: 150px;
-  color: #eee;
-  padding: 8px;
-  border-radius: 4px;
   font-size: 14px;
   text-align: center;
+  word-break: break-all;
+}
+.lf-tooltip.show-hover {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #333;
+  color: #eee;
+}
+.lf-tooltip.show-always {
+  color: #333;
+  font-weight: bold;
 }

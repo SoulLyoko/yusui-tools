@@ -12,7 +12,6 @@ import {
   multiInstanceColumn,
   noteColumn,
   noticeColumn,
-  participateColumn,
   printTemplateColumn,
   processColumn,
   propertyColumn,
@@ -91,7 +90,7 @@ export const defaultOptions: Record<string, AvueFormGroup<FlowFormData>[]> = {
   ],
   process: [
     { label: '基本配置', prop: 'baseGroup', column: processColumn },
-    { label: '参与人员配置', prop: 'participateGroup', column: participateColumn },
+    // { label: '参与人员配置', prop: 'participateGroup', column: participateColumn },
     { label: '通知配置', prop: 'noticeGroup', column: noticeColumn },
     { label: '打印配置', prop: 'printTemplateGroup', column: printTemplateColumn },
     { label: '套红配置', prop: 'redTemplateGroup', column: redTemplateColumn },

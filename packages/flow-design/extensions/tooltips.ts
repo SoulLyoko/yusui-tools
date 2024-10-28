@@ -1,42 +1,72 @@
 import type { TooltipItem } from '../types'
 import type { LogicFlow } from '@logicflow/core'
 
+import { HtmlNode, HtmlNodeModel } from '@logicflow/core'
+
+export class TooltipsView extends HtmlNode {
+  setHtml(rootEl: SVGForeignObjectElement) {
+    let { content, height, width } = this.props.model.properties as TooltipItem ?? {}
+    const tooltipDOM = document.createElement('div')
+    tooltipDOM.className = 'lf-tooltip show-always'
+    tooltipDOM.innerHTML = content ?? ''
+    rootEl.appendChild(tooltipDOM)
+    height = height ?? rootEl.scrollHeight
+    this.props.model.updateAttributes({ width, height, y: this.props.model.y + height / 2 })
+  }
+}
+
+export class TooltipsModel extends HtmlNodeModel {}
+
 export class Tooltips {
   static pluginName = 'tooltips'
 
   lf: LogicFlow
-  container?: HTMLElement
-  __tooltipDOM: HTMLElement
-  __tooltips: TooltipItem[] = []
+  tooltips: TooltipItem[] = []
 
   constructor({ lf }: { lf: LogicFlow }) {
-    this.__tooltipDOM = document.createElement('div')
-    this.__tooltipDOM.className = 'lf-tooltip'
-    this.__tooltipDOM.style.position = 'absolute'
-    this.__tooltipDOM.style.display = 'none'
     this.lf = lf
+    lf.register({ type: 'tooltips', model: TooltipsModel, view: TooltipsView })
   }
 
   render(lf: LogicFlow, container: HTMLElement) {
-    this.container = container
-    container.appendChild(this.__tooltipDOM)
-    lf.on('node:mouseenter,edge:mouseenter', ({ data, e }) => {
-      const content = this.__tooltips.find(item => item.id === data.id)?.content
-      if (!content)
+    const tooltipDOM = document.createElement('div')
+    tooltipDOM.className = 'lf-tooltip show-hover'
+    tooltipDOM.style.position = 'absolute'
+    tooltipDOM.style.display = 'none'
+    container.appendChild(tooltipDOM)
+    lf.on('node:mouseenter', ({ data, e }) => {
+      const { show, content, width, height } = this.tooltips.find(item => item.id === data.id) ?? {}
+      if (show === 'always' || !content)
         return
-      this.__tooltipDOM.innerHTML = content
+      tooltipDOM.innerHTML = content
       const point = lf.getPointByClient(e.x, e.y)!
       const { domOverlayPosition: { x, y } } = point
-      this.__tooltipDOM.style.top = `${y + 10}px`
-      this.__tooltipDOM.style.left = `${x + 10}px`
-      this.__tooltipDOM.style.display = 'block'
+      tooltipDOM.style.top = `${y + 10}px`
+      tooltipDOM.style.left = `${x + 10}px`
+      tooltipDOM.style.display = 'block'
+      tooltipDOM.style.width = `${width}px`
+      tooltipDOM.style.height = height ? `${height}px` : 'auto'
     })
-    lf.on('node:mouseleave,edge:mouseleave', () => {
-      this.__tooltipDOM.style.display = 'none'
+    lf.on('node:mouseleave', () => {
+      tooltipDOM.style.display = 'none'
     })
   }
 
   setTooltips(tooltips: TooltipItem[]) {
-    this.__tooltips = tooltips
+    this.tooltips = tooltips?.map(item => ({ show: 'hover', width: 150, ...item })) ?? []
+    this.tooltips.forEach((item) => {
+      if (item.show === 'hover' || !item.content)
+        return
+      const node = this.lf.graphModel.getNodeModelById(item.id!)
+      const { x, y, height } = node ?? {}
+      if (!x || !y || !height)
+        return
+      this.lf.graphModel.addNode({
+        type: 'tooltips',
+        x,
+        y: y + height / 2,
+        properties: item,
+      })
+    })
   }
 }

@@ -1,8 +1,10 @@
 import type { LogicFlow, Point } from '@logicflow/core'
 
-export interface TooltipItem {
+export interface TooltipItem extends LogicFlow.PropertiesType {
   id?: string
   content?: string
+  /** always | hover | both */
+  show?: string
 }
 
 export interface StyleItem {

@@ -12,15 +12,21 @@ const styles = computed(() => {
   return [
     { id: startNode?.key, style: { fill: 'lightgreen' } },
     { id: taskNode?.key, style: { fill: 'lightgreen' } },
+    { id: taskNode?.key, style: { fill: 'lightblue' } }, // 同一个节点后面设置的会覆盖前面的设置
     { id: noexistNode.key, style: { fill: 'red' } }, // 不存在的节点不会被设置
-    { id: taskNode?.key, style: { fill: 'lightblue' } },
   ]
 })
 const tooltips = computed(() => {
   return graphData.value.flowElementList?.map((item) => {
+    console.log('🚀 ~ returngraphData.value.flowElementList?.map ~ item:', item)
     return {
       id: item.key,
-      content: `<div>${item.key}</div>`,
+      show: item.type === 'userTask' ? 'both' : 'hover',
+      content: `
+<div>${item.type}</div>
+<div>${item.key}</div>
+<div>${item.properties?.name}</div>
+`,
     }
   })
 })
@@ -29,7 +35,9 @@ const tooltips = computed(() => {
 <template>
   <div class="flow-status-legend">
     <div class="legend-item">
-      <div class="legend-color" />
+      <div class="legend-color status-0" />
+      <span class="legend-text">待办</span>
+      <div class="legend-color status-1" />
       <span class="legend-text">已办</span>
     </div>
   </div>
@@ -52,7 +60,12 @@ const tooltips = computed(() => {
       width: 16px;
       height: 16px;
       margin-right: 5px;
-      background-color: lightgreen;
+      &.status-0 {
+        background-color: lightblue;
+      }
+      &.status-1 {
+        background-color: lightgreen;
+      }
     }
 
     .legend-text {
