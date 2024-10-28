@@ -2,6 +2,7 @@ node_modules
 dist
 .vixt
 pages.json
-cache
 *.local
 .hbuilderx
+**/.vitepress/.temp
+**/.vitepress/cache

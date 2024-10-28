@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useGraphData } from './data'
+import { defaultGraphData } from '../constants'
 
-const graphData = useGraphData()
+const graphData = defaultGraphData()
+const startNode = graphData.flowElementList?.[0]
+const taskNode = graphData.flowElementList?.[1]
+const noexistNode = { key: 'noexist' }
 
 const styles = computed(() => {
-  const startNode = graphData.value.flowElementList?.[0]
-  const taskNode = graphData.value.flowElementList?.[1]
-  const noexistNode = { key: 'noexist' }
   return [
     { id: startNode?.key, style: { fill: 'lightgreen' } },
     { id: taskNode?.key, style: { fill: 'lightgreen' } },
@@ -17,18 +17,17 @@ const styles = computed(() => {
   ]
 })
 const tooltips = computed(() => {
-  return graphData.value.flowElementList?.map((item) => {
-    console.log('🚀 ~ returngraphData.value.flowElementList?.map ~ item:', item)
-    return {
-      id: item.key,
-      show: item.type === 'userTask' ? 'both' : 'hover',
-      content: `
+  const getContent = (item: any) => `
 <div>${item.type}</div>
 <div>${item.key}</div>
-<div>${item.properties?.name}</div>
-`,
-    }
-  })
+<div>${item.properties?.name}${Math.random().toFixed(2)}</div>
+`
+  return [
+    { id: startNode?.key, show: 'hover', content: getContent(startNode) },
+    { id: taskNode?.key, show: 'always', content: getContent(taskNode) },
+    { id: taskNode?.key, show: 'both', content: getContent(taskNode) }, // 同一个节点只会显示最后一个
+    { id: noexistNode.key, content: getContent(noexistNode) }, // 不存在的节点不会被设置
+  ]
 })
 </script>
 

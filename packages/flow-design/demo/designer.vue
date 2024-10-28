@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useGraphData, useOptions } from './data'
+import { defaultGraphData } from '../constants'
+import { defaultOptions } from '../options'
 
-const graphData = useGraphData()
+const graphData = defaultGraphData()
 
-const formOptions = useOptions()
+const formOptions = defaultOptions
 
 const dataOptions = {
   buttonList: [

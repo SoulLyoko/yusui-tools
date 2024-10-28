@@ -2,6 +2,7 @@ import type { TooltipItem } from '../types'
 import type { LogicFlow } from '@logicflow/core'
 
 import { HtmlNode, HtmlNodeModel } from '@logicflow/core'
+import { uniqBy } from 'lodash-es'
 
 export class TooltipsView extends HtmlNode {
   setHtml(rootEl: SVGForeignObjectElement) {
@@ -52,8 +53,8 @@ export class Tooltips {
     })
   }
 
-  setTooltips(tooltips: TooltipItem[]) {
-    this.tooltips = tooltips?.map(item => ({ show: 'hover', width: 150, ...item })) ?? []
+  setTooltips(tooltips: TooltipItem[] = []) {
+    this.tooltips = uniqBy([...tooltips].reverse(), 'id').reverse().map(item => ({ show: 'hover', width: 150, ...item })) ?? []
     this.tooltips.forEach((item) => {
       if (item.show === 'hover' || !item.content)
         return

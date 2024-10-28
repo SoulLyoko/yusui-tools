@@ -4,7 +4,7 @@ import type { TurboData } from '../types'
 import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
 import { useFileDialog, useVModels } from '@vueuse/core'
 import { ElMessageBox, ElOption, ElSelect } from 'element-plus'
-import { saveAs } from 'file-saver'
+import fileSaver from 'file-saver'
 import { computed, h, onUnmounted, ref, watchEffect } from 'vue'
 
 const props = withDefaults(
@@ -82,7 +82,7 @@ onFileChange(async (files) => {
 
 function handleExport() {
   const file = new File([jsonForEdit.value], 'flow.json', { type: 'text/json' })
-  saveAs(file)
+  fileSaver.saveAs(file)
 }
 </script>
 
