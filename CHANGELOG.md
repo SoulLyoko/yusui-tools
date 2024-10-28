@@ -1,3 +1,12 @@
+# [3.0.0-beta.65](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.64...v3.0.0-beta.65) (2024-10-28)
+
+
+### Bug Fixes
+
+* **flow-design:** 处理tooltips多个相同节点的情况 ([efd5610](https://github.com/SoulLyoko/yusui-tools/commit/efd56101a542f88723cf2984fe7b9aa5694a74f7))
+
+
+
 # [3.0.0-beta.64](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.63...v3.0.0-beta.64) (2024-10-28)
 
 
