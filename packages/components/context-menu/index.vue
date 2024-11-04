@@ -43,9 +43,9 @@ const [DefineDropdownItem, DropdownItem] = createReusableTemplate<{ item: Contex
     >
       <template #reference>
         <li class="el-dropdown-menu__item" @click="onItemClick(item)">
-          <i>
+          <el-icon>
             <Icon :icon="item.icon" />
-          </i>
+          </el-icon>
           <span>{{ item.label }}</span>
           <Icon v-if="item.children?.length" icon="ep:arrow-right" />
         </li>
