@@ -383,7 +383,7 @@ declare module '@smallwei/avue' {
     searchSize?: ElSize
     /** 搜索操作按钮栅格占据的列数 */
     searchMenuSpan?: number
-    /** 首次加载是否显示搜索 */
+    /** 回车按键触发搜索 */
     searchEnter?: boolean
     /** 表格行编辑时添加按钮 */
     addRowBtn?: boolean

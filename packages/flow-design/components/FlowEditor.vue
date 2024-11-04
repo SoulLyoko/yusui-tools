@@ -48,7 +48,7 @@ const editorProps = computed(() => {
 
 async function handleResetProperties() {
   const data: TurboData = JSON.parse(jsonForEdit.value)
-  const excludeProperties = ['id', 'name', 'desc', 'x', 'y', 'text', 'startPoint', 'endPoint', 'pointsList']
+  const excludeProperties = ['id', 'name', 'desc', 'x', 'y', 'text', 'width', 'height', 'startPoint', 'endPoint', 'pointsList']
   const keys = data.flowElementList?.map(e => Object.keys(e.properties ?? {})).flat().filter(e => !excludeProperties.includes(e))
   const checked = ref<string[]>([])
   await ElMessageBox({
