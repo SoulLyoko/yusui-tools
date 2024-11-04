@@ -1,3 +1,13 @@
+# [3.0.0-beta.66](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.65...v3.0.0-beta.66) (2024-11-04)
+
+
+### Bug Fixes
+
+* **ContextMenu:** 图标显示偏移 ([5548252](https://github.com/SoulLyoko/yusui-tools/commit/55482520d33ae75cb1d72cadcfb413ba0d37394a))
+* **flow-design:** 重置属性排除width,height ([eb2a10c](https://github.com/SoulLyoko/yusui-tools/commit/eb2a10c87aeaccc92968c5be3eeb35071755ac9e))
+
+
+
 # [3.0.0-beta.65](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.64...v3.0.0-beta.65) (2024-10-28)
 
 
