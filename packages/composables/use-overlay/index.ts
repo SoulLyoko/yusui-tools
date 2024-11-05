@@ -6,7 +6,7 @@ import { pick } from 'lodash-es'
 import { getCurrentInstance, h, render, resolveComponent } from 'vue'
 
 /** 命令式使用弹窗 */
-export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOptions<T>) {
+export function useOverlay<T extends UseOverlayType>(options?: UseOverlayOptions<T>) {
   const { appContext: _appContext } = getCurrentInstance() ?? {}
 
   const overlayComponentMap = {
@@ -17,9 +17,9 @@ export function useOverlay<T extends UseOverlayType>(initOptions?: UseOverlayOpt
 
   let vnode: VNode | null
   let overlay: Element | null
-  async function open(options?: UseOverlayOptions<T>) {
-    options = { ...initOptions, ...options }
-    const { type = 'dialog', appContext = _appContext, onClose } = options
+  async function open(localOptions?: UseOverlayOptions<T>) {
+    const mergedOptions = { ...options, ...localOptions }
+    const { type = 'dialog', appContext = _appContext, onClose } = mergedOptions
     vnode = h(
       overlayComponentMap[type],
       {

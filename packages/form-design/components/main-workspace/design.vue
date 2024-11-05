@@ -14,12 +14,12 @@ import Design from './design.vue'
 
 const props = defineProps<{ list: ElementTreeNode[], componentData: ElementTreeNode }>()
 const emit = defineEmits(['update:active', 'update:list'])
-const { list } = useVModels(props, emit, { passive: true, deep: true })
 
-const { activeElement, hoverElement, formOption, setActiveElement, recordHistory, getResource } = useInjectState()
+const { list } = useVModels(props, emit, { passive: true, deep: true })
+const { activeElement, hoverElement, formOption, deviceType, setActiveElement, recordHistory, getResource } = useInjectState()
 
 function getItemSpan(element: ElementTreeNode) {
-  if (getResource(element.name)?.isContainer)
+  if (getResource(element.name)?.isContainer || deviceType.value === 'mobile')
     return 24
   return element.props?.span || formOption.value.span || 24
 }

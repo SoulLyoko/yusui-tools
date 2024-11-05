@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { AvueFormOption } from '@smallwei/avue'
+
 import { computed, defineComponent, getCurrentInstance, h, ref, resolveComponent } from 'vue'
 
 import { useInjectState } from '../../composables'
@@ -7,13 +9,23 @@ import { jsonParse, jsonStringify } from '../../utils'
 export default defineComponent({
   setup() {
     const { proxy } = getCurrentInstance()!
-    const { modelValue } = useInjectState()
+    const { modelValue, deviceType } = useInjectState()
+
+    const formRef = ref()
     const form = ref({})
     const defaults = ref({})
     const option = computed(() => {
-      return jsonParse.bind(proxy)(jsonStringify(modelValue.value))
+      const parsedOption = jsonParse.bind(proxy)(jsonStringify(modelValue.value)) as AvueFormOption
+      if (parsedOption && deviceType.value === 'mobile') {
+        parsedOption.span = 24
+        parsedOption.column?.forEach(c => c.span = 24)
+        parsedOption.group?.forEach((g) => {
+          g.span = 24
+          g.column?.forEach(c => c.span = 24)
+        })
+      }
+      return parsedOption
     })
-    const formRef = ref()
 
     function onSubmit(form: any, done: () => void) {
       console.log(form)
