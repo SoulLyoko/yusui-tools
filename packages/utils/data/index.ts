@@ -52,7 +52,7 @@ export function getDataType(data: any) {
 
 /**
  * data序列化，用JSON.stringify转换对象和数组
- * @param {object} data 序列化的对象
+ * @param {object} query 序列化的对象
  * @returns 序列化后的字符串
  */
 export function serialize<T extends Data>(query: T) {
@@ -70,7 +70,7 @@ export function serialize<T extends Data>(query: T) {
 
 /**
  * url反序列化，用JSON.parse解析对象和数组
- * @param {string} url 反序列化的url
+ * @param {string} search 反序列化的url
  * @returns 反序列化后的对象
  */
 export function deserialize<T = Data>(search: string): T {

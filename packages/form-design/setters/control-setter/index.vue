@@ -57,11 +57,11 @@ watch(
     const fieldSet = [...new Set(controlList.value?.map(e => e.field))]
     const fn = `(val, form) => ({
     ${fieldSet
-        .map((field) => {
-          const result = controlList.value?.filter(e => e.field === field)
-          return `${field}: { ${result?.map(f => `${f.property}: ${f.value}`).join(', ')} }`
-        })
-        .join(',\n    ')}
+      .map((field) => {
+        const result = controlList.value?.filter(e => e.field === field)
+        return `${field}: { ${result?.map(f => `${f.property}: ${f.value}`).join(', ')} }`
+      })
+      .join(',\n    ')}
 })`
     modelValue.value = fn
   },

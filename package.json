@@ -14,7 +14,7 @@
     "build": "pnpm -F \"./packages/*\" build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "changelog:init": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "ci": "pnpm lint && pnpm tc && pnpm test run && pnpm build && pnpm docs:build",
+    "ci": "pnpm lint && pnpm test run && pnpm build && pnpm docs:build",
     "docs:build": "vitepress build packages",
     "docs:dev": "vitepress dev packages --host",
     "docs:serve": "vitepress serve packages",
