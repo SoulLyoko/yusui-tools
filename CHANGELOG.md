@@ -1,3 +1,12 @@
+# [3.0.0-beta.67](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.66...v3.0.0-beta.67) (2024-11-11)
+
+
+### Bug Fixes
+
+* **form-design:** 兼容移动端展示 ([d129a6e](https://github.com/SoulLyoko/yusui-tools/commit/d129a6e6e6582f117a3c9b4e0b3023e764e8dbd1))
+
+
+
 # [3.0.0-beta.66](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.65...v3.0.0-beta.66) (2024-11-04)
 
 
