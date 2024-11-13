@@ -18,19 +18,19 @@ export function useOverlay<T extends UseOverlayType>(options?: UseOverlayOptions
   let vnode: VNode | null
   let overlay: Element | null
   async function open(localOptions?: UseOverlayOptions<T>) {
-    const mergedOptions = { ...options, ...localOptions }
+    const mergedOptions = { ...options, ...localOptions } as UseOverlayOptions<T>
     const { type = 'dialog', appContext = _appContext, onClose } = mergedOptions
     vnode = h(
       overlayComponentMap[type],
       {
-        ...options,
+        ...mergedOptions,
         modelValue: true,
         onClose() {
           close()
           onClose?.()
         },
       },
-      pick(options, 'header', 'default', 'footer'),
+      pick(mergedOptions, 'header', 'default', 'footer'),
     )
     appContext && (vnode.appContext = appContext)
     const container = document.createElement('div')
