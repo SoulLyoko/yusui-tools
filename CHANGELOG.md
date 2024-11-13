@@ -1,3 +1,12 @@
+# [3.0.0-beta.68](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.67...v3.0.0-beta.68) (2024-11-13)
+
+
+### Bug Fixes
+
+* **composables:** useOverlay打开无内容的问题 ([ed3a445](https://github.com/SoulLyoko/yusui-tools/commit/ed3a4458815dc32d0627cbc5410f12701e91f4c1))
+
+
+
 # [3.0.0-beta.67](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.66...v3.0.0-beta.67) (2024-11-11)
 
 
