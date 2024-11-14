@@ -1,3 +1,12 @@
+# [3.0.0-beta.69](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.68...v3.0.0-beta.69) (2024-11-14)
+
+
+### Bug Fixes
+
+* **lflow-design:** 优化配置 ([019cd47](https://github.com/SoulLyoko/yusui-tools/commit/019cd4775bd83cfb51df054e8000df9cf858a880))
+
+
+
 # [3.0.0-beta.68](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.67...v3.0.0-beta.68) (2024-11-13)
 
 
