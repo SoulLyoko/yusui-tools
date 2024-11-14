@@ -25,6 +25,8 @@ const dataOptions = {
   flowAssigneeUserDic: [
     { label: '用户1', value: 'user1', id: 'user1', type: 'user' },
     { label: '用户2', value: 'user2', id: 'user2', type: 'user' },
+    { label: '用户3', value: 'user3', id: 'user3', type: 'user' },
+    { label: '用户4', value: 'user4', id: 'user4', type: 'user' },
   ],
   flowAssigneeDeptDic: [
     { label: '部门1', value: 'dept1', id: 'dept1', type: 'dept' },

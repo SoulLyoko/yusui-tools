@@ -49,7 +49,8 @@ const editorProps = computed(() => {
 async function handleResetProperties() {
   const data: TurboData = JSON.parse(jsonForEdit.value)
   const excludeProperties = ['id', 'name', 'desc', 'x', 'y', 'text', 'width', 'height', 'startPoint', 'endPoint', 'pointsList']
-  const keys = data.flowElementList?.map(e => Object.keys(e.properties ?? {})).flat().filter(e => !excludeProperties.includes(e))
+  let keys = data.flowElementList?.map(e => Object.keys(e.properties ?? {})).flat().filter(e => !excludeProperties.includes(e))
+  keys = [...new Set(keys)]
   const checked = ref<string[]>([])
   await ElMessageBox({
     title: '请选择或输入重置的属性',
@@ -92,7 +93,7 @@ function handleExport() {
       <span>编辑配置</span>
       <el-space>
         <el-button type="primary" icon="el-icon-refresh" @click="handleResetProperties">
-          重置配置属性
+          清空配置属性
         </el-button>
         <el-button type="primary" icon="el-icon-upload" @click="handleImport()">
           导入配置

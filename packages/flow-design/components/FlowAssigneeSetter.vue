@@ -114,11 +114,14 @@ const treeSelectProps = computed(() => {
 </script>
 
 <template>
-  <div v-if="['dept', 'post', 'user', 'role', 'specifyUser', 'dynamic'].includes(type!)" style="display:flex">
-    <el-tree-select v-model="treeValue" v-bind="treeSelectProps" style="width:100%" />
-    <el-button v-if="treeSelectProps.multiple" text type="primary" icon="el-icon-check" @click="handleSelectAll">
-      全选
-    </el-button>
+  <div v-if="['dept', 'post', 'user', 'role', 'specifyUser', 'dynamic'].includes(type!)">
+    <el-tree-select v-model="treeValue" v-bind="treeSelectProps">
+      <template v-if="treeSelectProps.multiple" #header>
+        <el-link type="primary" icon="el-icon-check" :underline="false" @click="handleSelectAll">
+          全选
+        </el-link>
+      </template>
+    </el-tree-select>
   </div>
   <FlowNodeSelect v-else-if="type === 'userTask'" v-model="singleValue" filter-type="userTask" placeholder="请选择" />
   <el-input v-else v-model="singleValue" clearable placeholder="请输入" />
