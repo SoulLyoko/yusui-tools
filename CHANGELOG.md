@@ -1,3 +1,12 @@
+# [3.0.0-beta.70](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.69...v3.0.0-beta.70) (2024-12-03)
+
+
+### Bug Fixes
+
+* **flow-design:** 增加修改按钮名称的配置 ([f2b2da4](https://github.com/SoulLyoko/yusui-tools/commit/f2b2da4254c1739027a770e493b8065137417bfb))
+
+
+
 # [3.0.0-beta.69](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.68...v3.0.0-beta.69) (2024-11-14)
 
 
