@@ -31,9 +31,10 @@ const tableOption = computed(() => {
     rowKey: 'key',
     column: [
       { label: '按钮', prop: 'key', width: 150, type: 'select', dicData: buttonSelectDic ?? [], filterable: true },
+      { label: '按钮名称', prop: 'name', width: 150 },
       { label: '显示条件', prop: 'display', type: 'select', multiple: true, dataType: 'string', dicData: flowButtonDisplayDic ?? [] },
       { label: '审批窗口', prop: 'approval', type: 'select', multiple: true, dataType: 'string', dicData: flowButtonApprovalDic ?? [] },
-      { label: '是否校验', prop: 'validate', type: 'switch', width: 60, dicData: flowButtonValidateDic ?? [] },
+      { label: '是否校验', prop: 'validate', type: 'switch', width: 60, value: false, dicData: flowButtonValidateDic ?? [] },
     ],
   }
 })

@@ -14,8 +14,9 @@ export function mergeButton(button: ButtonItem[], source: ButtonItem[]) {
     if (!findSource)
       return
     const conditions = [
-      btn.display === findSource.display,
-      btn.approval === findSource.approval,
+      !btn.name || btn.name === findSource.name,
+      !btn.display || btn.display === findSource.display,
+      !btn.display || btn.approval === findSource.approval,
       btn.validate === findSource.validate,
     ]
     // 所有条件满足视为未修改过
