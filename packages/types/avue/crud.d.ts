@@ -130,7 +130,11 @@ declare module '@smallwei/avue' {
     dicFlag?: boolean
     /** 列排序,序号越小越靠前 */
     index?: number
+    /** 列渲染函数 */
+    render?: (args: { column: AvueCrudColumn<T>, params: any, event: any, row: D, index: number }) => VNode | VNode[]
+    /** 表单项渲染函数 */
     renderForm?: AvueFormColumn<T>['render']
+
     [x: string]: any
   }
 

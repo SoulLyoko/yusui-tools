@@ -131,7 +131,7 @@ declare module '@smallwei/avue' {
     /** 失焦事件 */
     onBlur?: AvueFormColumn['blur']
     /** 渲染函数 */
-    render?: (args: { column: AvueFormColumn<T>, params: any, event: any, row: D, index: number }) => VNode
+    render?: (args: { column: AvueFormColumn<T>, params: any, event: any, row: D, index: number }) => VNode | VNode[]
 
     /** 其它属性根据type查看对应的文档 */
     [x: string]: any
