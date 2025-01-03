@@ -17,7 +17,7 @@ export function useLocalIcons(props: IconSelectProps, popVisible: Ref<boolean>) 
   watchEffect(() => {
     if (popVisible.value && Array.isArray(props.collections)) {
       iconInfoList.value = props.collections.map(e => e.info)
-      activeTab.value = iconInfoList.value[0].prefix ?? ''
+      activeTab.value = iconInfoList.value?.[0]?.prefix ?? ''
     }
   })
 

@@ -9,7 +9,7 @@ import { useDisplayIcons, useIframeSrc, useLocalIcons, usePopCliboard, useRemote
 
 const props = withDefaults(
   defineProps<IconSelectProps>(),
-  { modelValue: '', source: 'iconify', width: 800, height: 400 },
+  { modelValue: '', source: 'iconify', width: 800, height: 600 },
 )
 const modelValue = useVModel(props, 'modelValue')
 

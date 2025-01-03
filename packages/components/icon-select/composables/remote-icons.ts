@@ -47,7 +47,7 @@ export function useRemoteIcons(props: IconSelectProps, popVisible: Ref<boolean>)
     if (popVisible.value && typeof props.collections === 'string') {
       await fetchColections()
       // activeTab.value = Object.keys(collectionsData.value ?? {})[0]
-      activeTab.value = iconInfoList.value[0].prefix ?? ''
+      activeTab.value = iconInfoList.value?.[0]?.prefix ?? ''
     }
   })
   return { iconInfoList, iconsData, icons, loading, activeTab }
