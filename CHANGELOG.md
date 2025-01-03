@@ -1,3 +1,14 @@
+# [3.0.0-beta.71](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.70...v3.0.0-beta.71) (2025-01-03)
+
+
+### Bug Fixes
+
+* **IconSelect:** 高度默认600 ([1b09fd5](https://github.com/SoulLyoko/yusui-tools/commit/1b09fd5f8ebacbfab85dac800a3a2a4e82f19587))
+* **theme:** avue表格的grid展示类型在深色模式下的背景色 ([6136c5e](https://github.com/SoulLyoko/yusui-tools/commit/6136c5e1632b2ab8b02cc9a54e689912dc7bbae3))
+* **types:** render函数类型 ([0dfc48f](https://github.com/SoulLyoko/yusui-tools/commit/0dfc48f85bf970d4ab2a133c86814f6d48a60c61))
+
+
+
 # [3.0.0-beta.70](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.69...v3.0.0-beta.70) (2024-12-03)
 
 
