@@ -22,7 +22,7 @@ import '@yusui/theme/dist/index.css'
 ### 仅导入某个主题
 
 ```js
-// 导入avue暗黑模式
+// 导入avue深色模式
 import '@yusui/theme/dist/avue-dark/index.css'
 // 仅导入ant-design
 import '@yusui/theme/dist/ant-design/index.css'

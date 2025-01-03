@@ -1,4 +1,4 @@
-// avue适配暗黑模式
+// avue适配深色模式
 .dark {
   .avue-crud {
     .avue-crud__header {
@@ -15,6 +15,25 @@
       th.el-table__cell {
         color: initial;
         background-color: var(--el-fill-color-light);
+      }
+    }
+
+    .avue-crud__grid {
+      .avue-crud__grid__content {
+        border-color: var(--el-border-color-lighter);
+      }
+
+      .avue-crud__grid__content[style^='background: linear-gradient(rgba(88, 159, 248, 0.1), white);'] {
+        background: linear-gradient(var(--el-color-primary-light-9), var(--el-bg-color)) !important;
+      }
+
+      .title .avue-crud__grid__value,
+      .avue-crud__grid__label {
+        color: var(--el-text-color-primary);
+      }
+
+      .avue-crud__grid__item {
+        color: var(--el-text-color-secondary);
       }
     }
   }
