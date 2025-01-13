@@ -8,7 +8,7 @@ export default antfu(
       'import/consistent-type-specifier-style': ['error', 'prefer-top-level'], // 类型导入放在顶层
       'no-console': 'off', // 允许console
       'perfectionist/sort-imports': ['error', { // 导入排序
-        internalPattern: ['#/**', '~/**', '@/**'],
+        internalPattern: ['^#/.*', '^~/.*', '^@/.*'],
         groups: ['type', 'builtin', 'external', 'internal'],
       }],
       'ts/ban-ts-comment': 'off', // 允许忽略类型检查

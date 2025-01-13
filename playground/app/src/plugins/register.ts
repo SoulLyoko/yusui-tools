@@ -2,9 +2,9 @@
 import type { UvueConfig } from '@yusui/uvue'
 
 import uvue from '@yusui/uvue'
-import { defineVixtPlugin } from 'vixt'
 // @ts-ignore
 import uview, { setConfig } from 'uview-plus'
+import { defineVixtPlugin } from 'vixt'
 
 // 注册全局组件
 export default defineVixtPlugin({

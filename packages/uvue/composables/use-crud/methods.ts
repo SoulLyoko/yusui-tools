@@ -18,110 +18,110 @@ export function useCrudMethods<T extends object = object, P extends object = obj
    */
   const getDataList
     = options.getDataList
-    ?? (async (isLoadmore = false) => {
-      if (!isLoadmore) {
-        crudState.pageOption.currentPage = 1
-        crudState.listData = []
-      }
-      const { dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption
-      const { currentPage, pageSize } = crudState.pageOption
-      const page = isPage ? { [currKey]: currentPage, [sizeKey]: pageSize } : {}
-      const sort = isSort ? crudState.sortOption : {}
-      const params = cloneDeep({ ...crudState.searchForm, ...page, ...sort, ...crudState.queryForm }) as P
-      const [err] = await to(emitter.emitAsync('beforeGetList', params))
-      const { getList } = crudState.crudOption
-      if (err !== null || !getList)
-        return
-      try {
-        crudState.loadStatus = 'loading'
-        const res = await getList(params)
-        console.log('getDataList ~ res', res)
-        const data = get({ res }, dataPath, [])
-        crudState.listData = isLoadmore ? [...crudState.listData, ...data] : data
-        if (isPage) {
-          crudState.pageOption.total = get({ res }, totalPath, 0)
-          crudState.loadStatus = crudState.pageOption.total === crudState.listData.length ? 'nomore' : 'loadmore'
+      ?? (async (isLoadmore = false) => {
+        if (!isLoadmore) {
+          crudState.pageOption.currentPage = 1
+          crudState.listData = []
         }
-        else {
-          crudState.pageOption.total = crudState.listData.length
-          crudState.loadStatus = 'nomore'
+        const { dataPath, totalPath, currKey, sizeKey, isPage, isSort } = crudState.crudOption
+        const { currentPage, pageSize } = crudState.pageOption
+        const page = isPage ? { [currKey]: currentPage, [sizeKey]: pageSize } : {}
+        const sort = isSort ? crudState.sortOption : {}
+        const params = cloneDeep({ ...crudState.searchForm, ...page, ...sort, ...crudState.queryForm }) as P
+        const [err] = await to(emitter.emitAsync('beforeGetList', params))
+        const { getList } = crudState.crudOption
+        if (err !== null || !getList)
+          return
+        try {
+          crudState.loadStatus = 'loading'
+          const res = await getList(params)
+          console.log('getDataList ~ res', res)
+          const data = get({ res }, dataPath, [])
+          crudState.listData = isLoadmore ? [...crudState.listData, ...data] : data
+          if (isPage) {
+            crudState.pageOption.total = get({ res }, totalPath, 0)
+            crudState.loadStatus = crudState.pageOption.total === crudState.listData.length ? 'nomore' : 'loadmore'
+          }
+          else {
+            crudState.pageOption.total = crudState.listData.length
+            crudState.loadStatus = 'nomore'
+          }
+          await emitter.emitAsync('afterGetList', res)
         }
-        await emitter.emitAsync('afterGetList', res)
-      }
-      catch (err) {
-        console.error('getDataList ~ err', err)
+        catch (err) {
+          console.error('getDataList ~ err', err)
         // listState.listData = [];
         // listState.pageOption.total = 0;
         // listState.loadStatus = "nomore";
-      }
-      finally {
-        uni.stopPullDownRefresh()
-        if (!isPage)
-          crudState.loadStatus = 'nomore'
-      }
-    })
+        }
+        finally {
+          uni.stopPullDownRefresh()
+          if (!isPage)
+            crudState.loadStatus = 'nomore'
+        }
+      })
   const loadMore
     = options.loadMore
-    ?? (() => {
-      if (crudState.loadStatus === 'nomore')
-        return
-      crudState.pageOption.currentPage += 1
-      getDataList(true)
-    })
+      ?? (() => {
+        if (crudState.loadStatus === 'nomore')
+          return
+        crudState.pageOption.currentPage += 1
+        getDataList(true)
+      })
   const handleRefresh
     = options.handleRefresh
-    ?? (() => {
-      crudState.pageOption.currentPage = 1
-      getDataList()
-    })
+      ?? (() => {
+        crudState.pageOption.currentPage = 1
+        getDataList()
+      })
   const handleDel
     = options.handleDel
-    ?? (async (row: T, loading?: () => void) => {
-      const data = cloneDeep(row)
-      const [err] = await to(emitter.emitAsync('beforeDel', data))
-      const { rowKey, remove, delBack, delSuccessMsg } = crudState.crudOption
-      if (err !== null || !remove)
-        return loading?.()
-      uni.showModal({
-        title: '提示',
-        content: '确认进行删除操作？',
-        success: async ({ confirm }) => {
-          if (confirm) {
-            try {
-              const res = await remove(row[rowKey as keyof T])
-              delSuccessMsg && uni.showToast({ title: delSuccessMsg, icon: 'success' })
-              await emitter.emitAsync('afterDel', res)
-              // 列表删除
-              handleRefresh()
-              // 表单删除
-              crudState.formType && delBack && setTimeout(() => uni.navigateBack(), 500)
+      ?? (async (row: T, loading?: () => void) => {
+        const data = cloneDeep(row)
+        const [err] = await to(emitter.emitAsync('beforeDel', data))
+        const { rowKey, remove, delBack, delSuccessMsg } = crudState.crudOption
+        if (err !== null || !remove)
+          return loading?.()
+        uni.showModal({
+          title: '提示',
+          content: '确认进行删除操作？',
+          success: async ({ confirm }) => {
+            if (confirm) {
+              try {
+                const res = await remove(row[rowKey as keyof T])
+                delSuccessMsg && uni.showToast({ title: delSuccessMsg, icon: 'success' })
+                await emitter.emitAsync('afterDel', res)
+                // 列表删除
+                handleRefresh()
+                // 表单删除
+                crudState.formType && delBack && setTimeout(() => uni.navigateBack(), 500)
+              }
+              catch (err) {
+                console.error('handleDel ~ err', err)
+              }
+              finally {
+                loading?.()
+              }
             }
-            catch (err) {
-              console.error('handleDel ~ err', err)
-            }
-            finally {
-              loading?.()
-            }
-          }
-        },
+          },
+        })
       })
-    })
   const handleSearch = options.handleSearch ?? handleRefresh
   const filterChange = options.filterChange ?? handleRefresh
   const getFormUrl
     = options.getFormUrl
-    ?? ((row: T, formType: string) => {
-      const { formPath, formKeys } = crudState.crudOption
-      const formData = formKeys?.length ? pick(row, formKeys) : row
-      const query = { formType, formData }
-      return `${formPath}?${serialize(query)}`
-    })
+      ?? ((row: T, formType: string) => {
+        const { formPath, formKeys } = crudState.crudOption
+        const formData = formKeys?.length ? pick(row, formKeys) : row
+        const query = { formType, formData }
+        return `${formPath}?${serialize(query)}`
+      })
   const openForm
     = options.openForm
-    ?? ((row: T, formType: string) => {
-      const { formPath } = crudState.crudOption
-      formPath && uni.navigateTo({ url: getFormUrl(row, formType) })
-    })
+      ?? ((row: T, formType: string) => {
+        const { formPath } = crudState.crudOption
+        formPath && uni.navigateTo({ url: getFormUrl(row, formType) })
+      })
   const handleAdd = options.handleAdd ?? ((row: T) => openForm(row, 'add'))
   const handleEdit = options.handleEdit ?? ((row: T) => openForm(row, 'edit'))
   const handleView = options.handleView ?? ((row: T) => openForm(row, 'view'))
@@ -132,25 +132,25 @@ export function useCrudMethods<T extends object = object, P extends object = obj
    */
   const getFormData
     = options.getFormData
-    ?? (async (options: any) => {
-      let { formType, formData: urlFormData = '' } = options as { formType: CrudState<T, P>['formType'], formData: any }
-      urlFormData = decodeData(urlFormData)
-      crudState.formType = formType
-      const [err] = await to(emitter.emitAsync('beforeGetInfo', urlFormData))
-      if (err !== null)
-        return
-      const { getInfo, rowKey, dataPath } = crudState.crudOption
-      if (formType !== 'add' && getInfo) {
-        const res = await getInfo(urlFormData[rowKey])
-        console.log('getFormData ~ res', res)
-        crudState.formData = get({ res }, dataPath, {} as T)
-        await emitter.emitAsync('afterGetInfo', res)
-      }
-      else {
-        crudState.formData = { ...crudState.formData, ...urlFormData }
-        await emitter.emitAsync('afterGetInfo', urlFormData)
-      }
-    })
+      ?? (async (options: any) => {
+        let { formType, formData: urlFormData = '' } = options as { formType: CrudState<T, P>['formType'], formData: any }
+        urlFormData = decodeData(urlFormData)
+        crudState.formType = formType
+        const [err] = await to(emitter.emitAsync('beforeGetInfo', urlFormData))
+        if (err !== null)
+          return
+        const { getInfo, rowKey, dataPath } = crudState.crudOption
+        if (formType !== 'add' && getInfo) {
+          const res = await getInfo(urlFormData[rowKey])
+          console.log('getFormData ~ res', res)
+          crudState.formData = get({ res }, dataPath, {} as T)
+          await emitter.emitAsync('afterGetInfo', res)
+        }
+        else {
+          crudState.formData = { ...crudState.formData, ...urlFormData }
+          await emitter.emitAsync('afterGetInfo', urlFormData)
+        }
+      })
   /**
    * 提交数据
    * @param {object} form 提交的表单数据
@@ -158,28 +158,28 @@ export function useCrudMethods<T extends object = object, P extends object = obj
    */
   const handleSubmit
     = options.handleSubmit
-    ?? (async (form: T, loading?: () => void) => {
-      const data = cloneDeep({ ...crudState.formData, ...form })
-      const [err] = await to(emitter.emitAsync('beforeSubmit', data))
-      const { create, update, submitBack, saveSuccessMsg, updateSuccessMsg } = crudState.crudOption
-      if (err !== null || (!create && !update))
-        return loading?.()
-      const submitMethod = { add: create, edit: update, view: () => Promise.resolve() }
-      const successMsgMap = { add: saveSuccessMsg, edit: updateSuccessMsg, view: '' }
-      const successMsg = successMsgMap[crudState.formType]
-      try {
-        const res = await submitMethod[crudState.formType](filterObj(data))
-        successMsg && uni.showToast({ title: successMsg, icon: 'success' })
-        await emitter.emitAsync('afterSubmit', res)
-        submitBack && setTimeout(() => uni.navigateBack(), 500)
-      }
-      catch (err) {
-        console.error('handleSubmit ~ err', err)
-      }
-      finally {
-        loading?.()
-      }
-    })
+      ?? (async (form: T, loading?: () => void) => {
+        const data = cloneDeep({ ...crudState.formData, ...form })
+        const [err] = await to(emitter.emitAsync('beforeSubmit', data))
+        const { create, update, submitBack, saveSuccessMsg, updateSuccessMsg } = crudState.crudOption
+        if (err !== null || (!create && !update))
+          return loading?.()
+        const submitMethod = { add: create, edit: update, view: () => Promise.resolve() }
+        const successMsgMap = { add: saveSuccessMsg, edit: updateSuccessMsg, view: '' }
+        const successMsg = successMsgMap[crudState.formType]
+        try {
+          const res = await submitMethod[crudState.formType](filterObj(data))
+          successMsg && uni.showToast({ title: successMsg, icon: 'success' })
+          await emitter.emitAsync('afterSubmit', res)
+          submitBack && setTimeout(() => uni.navigateBack(), 500)
+        }
+        catch (err) {
+          console.error('handleSubmit ~ err', err)
+        }
+        finally {
+          loading?.()
+        }
+      })
 
   return {
     getDataList,
