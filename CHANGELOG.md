@@ -1,3 +1,13 @@
+# [3.0.0-beta.72](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.71...v3.0.0-beta.72) (2025-01-13)
+
+
+### Bug Fixes
+
+* dayjs/esm改为dayjs ([83318e3](https://github.com/SoulLyoko/yusui-tools/commit/83318e39df6ad34799edccf44b6a5c10bf49acc8))
+* **flow-design:** 审批人配置增加接口类型 ([d9af69c](https://github.com/SoulLyoko/yusui-tools/commit/d9af69c103ce6c6be890177ed534d2c4f005a0c5))
+
+
+
 # [3.0.0-beta.71](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.70...v3.0.0-beta.71) (2025-01-03)
 
 
