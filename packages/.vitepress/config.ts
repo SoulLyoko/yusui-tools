@@ -183,10 +183,7 @@ export default defineConfig({
   vite: {
     plugins: [mdDemoTransform(), Inspect()],
     resolve: {
-      alias: [
-        ...alias,
-        { find: 'dayjs/esm', replacement: 'dayjs' },
-      ],
+      alias,
     },
     css: {
       preprocessorOptions: {

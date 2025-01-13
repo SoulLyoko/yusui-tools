@@ -2,7 +2,7 @@
 import type { dateTypes } from '../../constants'
 import type { PropType } from 'vue'
 
-import dayjs from 'dayjs/esm'
+import dayjs from 'dayjs'
 import { computed, ref, useAttrs } from 'vue'
 
 const props = defineProps({
