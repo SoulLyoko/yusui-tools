@@ -8,6 +8,7 @@ export enum AssigneeType {
   指定节点 = 'userTask',
   指定用户 = 'specifyUser',
   自定义 = 'custom',
+  接口 = 'api',
 }
 
 /** 参与人配置类型 */
