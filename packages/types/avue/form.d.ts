@@ -153,7 +153,7 @@ declare module '@smallwei/avue' {
     /** 是否禁用 */
     disabled?: boolean
     /** 表单项配置 */
-    column?: Array<AvueFormColumn<T>>
+    column?: AvueFormColumn<T>[]
     [x: string]: any
   }
 
@@ -161,7 +161,7 @@ declare module '@smallwei/avue' {
     /** 组件大小 */
     size?: ElSize
     /** 表单项配置 */
-    column?: Array<AvueFormColumn<T>>
+    column?: AvueFormColumn<T>[]
     /** 标题宽度 */
     labelWidth?: number | string
     /** 标题位置，如果值为 left 或者 right 时，则需要设置 labelWidth */
@@ -171,7 +171,7 @@ declare module '@smallwei/avue' {
     /** 回车按键触发提交表单 */
     enter?: boolean
     /** 表单分组配置 */
-    group?: Array<AvueFormGroup<T>>
+    group?: AvueFormGroup<T>[]
     /** 选项卡模式 */
     tabs?: boolean
     /** 选项卡风格类型 */
@@ -399,8 +399,13 @@ declare module '@smallwei/avue' {
   }
 
   export interface AvueFormSlots<T = any, D = FormRowData<T>> {
+    /** 表单菜单插槽 */
     'menu-form': (props: { disabled: boolean, size: ElSize }) => VNode[]
-    [x: `${string}-header`]: (props: { column: AvueFormColumn<T> }) => VNode[]
+    /** 表单菜单左侧插槽 */
+    'menu-form-before': AvueCrudSlots<T>['menu-form']
+    /** 表单分组标题插槽 */
+    [x: `${string}-header`]: (props: { column: AvueFormGroup<T> }) => VNode[]
+    /** 表单项标题插槽 */
     [x: `${string}-label`]: (props: {
       column: AvueFormColumn<T>
       value: any
@@ -408,6 +413,7 @@ declare module '@smallwei/avue' {
       size: ElSize
       dic: DicItem[]
     }) => VNode[]
+    /** 表单项错误提示插槽 */
     [x: `${string}-error`]: (props: {
       error: string
       column: AvueFormColumn<T>
@@ -416,6 +422,7 @@ declare module '@smallwei/avue' {
       size: ElSize
       dic: DicItem[]
     }) => VNode[]
+    /** 表单项插槽 */
     [x: string]: (props: {
       row: D
       value: any

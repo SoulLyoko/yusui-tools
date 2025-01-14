@@ -40,10 +40,18 @@ const tableOption: AvueCrudOption<User> = {
         return row.name
       },
     },
+  ],
+  group: [
     {
-      label: '不存在的字段',
-      // @ts-expect-error
-      prop: 'notExist',
+      label: '分组',
+      prop: 'group',
+      column: [
+        {
+          label: '不存在的字段',
+          // @ts-expect-error
+          prop: 'notExist',
+        },
+      ],
     },
   ],
 }
@@ -66,6 +74,19 @@ const formOption: AvueFormOption<User> = {
     dicData: [{ label: '管理员', value: 'admin' }],
     rules: [{ required: true, message: '名称为必填项' }],
   }],
+  group: [
+    {
+      label: '分组',
+      prop: 'group',
+      column: [
+        {
+          label: '不存在的字段',
+          // @ts-expect-error
+          prop: 'notExist',
+        },
+      ],
+    },
+  ],
 }
 const formRef = ref<AvueFormInstance>()
 formRef.value?.dicInit()
@@ -140,6 +161,9 @@ const treeOption: AvueTreeOption<User> = {
     <template #menu-form="props">
       #menu-form: {{ props }}
     </template>
+    <template #group-form-header="props">
+      #group-form-header: {{ props }}
+    </template>
   </avue-crud>
 
   <h2>AvueForm</h2>
@@ -157,6 +181,9 @@ const treeOption: AvueTreeOption<User> = {
     </template>
     <template #menu-form="props">
       #menu-form: {{ props }}
+    </template>
+    <template #group-header="props">
+      #group-header: {{ props }}
     </template>
   </avue-form>
 

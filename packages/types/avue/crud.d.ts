@@ -816,7 +816,7 @@ declare module '@smallwei/avue' {
     [x: `${string}-form` ]: (props: {
       // form
       value: any
-      column: AvueCrudColumn<T> & AvueCrudColumn<T>
+      column: AvueCrudColumn<T>
       size: ElSize
       disabled: boolean
       dic: DicItem[]
@@ -844,8 +844,8 @@ declare module '@smallwei/avue' {
       disabled: boolean
       dic: DicItem[]
     }) => VNode[]
-    /** 列表头插槽 */
-    [x: `${string}-header`]: (props: { column: AvueCrudColumn<T> }) => VNode[]
+    /** 列表头插槽，或表单分组标题插槽 */
+    [x: `${string}-header`]: (props: { column: AvueCrudGroup<T> | AvueCrudColumn<T> }) => VNode[]
     /** 列插槽 */
     [x: string]: (props: {
       row: D
