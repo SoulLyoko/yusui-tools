@@ -1,3 +1,12 @@
+# [3.0.0-beta.73](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.72...v3.0.0-beta.73) (2025-01-14)
+
+
+### Bug Fixes
+
+* **flow-design:** 优化默认配置 ([a9f9cbd](https://github.com/SoulLyoko/yusui-tools/commit/a9f9cbdc8e0b04fce26bfdb123234fecff0e6d6c))
+
+
+
 # [3.0.0-beta.72](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.71...v3.0.0-beta.72) (2025-01-13)
 
 
