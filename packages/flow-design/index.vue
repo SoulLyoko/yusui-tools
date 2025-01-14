@@ -23,10 +23,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="type === 'viewer'" :id="containerId" class="lf-container" />
+  <div class="lf-container">
+    <div :id="containerId" class="lf-main" />
 
-  <el-container v-else class="lf-container">
-    <el-main :id="containerId" class="lf-main" />
     <el-dialog v-if="!formLoading && formVisible" v-model="formVisible" class="lf-form-dialog">
       <avue-form ref="formRef" v-model="formData" v-model:defaults="formDefaults" class="lf-form" :option="formOption" />
       <template #footer>
@@ -40,5 +39,5 @@ onMounted(() => {
     </el-dialog>
 
     <FlowEditor v-model="graphData" v-model:visible="editorVisible" @confirm="lf?.render($event)" />
-  </el-container>
+  </div>
 </template>

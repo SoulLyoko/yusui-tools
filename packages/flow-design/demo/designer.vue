@@ -86,5 +86,5 @@ const dataOptions = {
 </script>
 
 <template>
-  <FlowDesign v-model="graphData" :form-options="formOptions" :data-options="dataOptions" form-width="400px" style="height:800px" />
+  <FlowDesign v-model="graphData" :form-options="formOptions" :data-options="dataOptions" style="height:700px" />
 </template>

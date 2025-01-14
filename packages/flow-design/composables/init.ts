@@ -15,11 +15,7 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
   function initModeler(container: HTMLElement) {
     const defaultOptions: LogicFlow.Options = {
       container,
-      grid: { type: 'dot', size: 10 },
-      nodeTextDraggable: true,
-      edgeTextDraggable: true,
-      nodeTextEdit: true,
-      edgeTextEdit: true,
+      grid: true,
       plugins: [Control, Panel, SelectionSelect, Menu, MiniMap, InsertNodeInPolyline, BpmnElements, TurboAdapter],
       pluginsOptions: {
         miniMap: { isShowCloseIcon: true, showEdge: true, width: 200, height: 150 },
@@ -49,10 +45,8 @@ export function useInit({ props, state }: { props: FlowDesignProps, state: FlowD
   function initViewer(container: HTMLElement) {
     const defaultOptions: LogicFlow.Options = {
       container,
-      grid: { type: 'dot', size: 10 },
+      grid: true,
       isSilentMode: true,
-      nodeTextEdit: false,
-      edgeTextEdit: false,
       plugins: [BpmnElements, TurboAdapter, Tooltips, Styles],
     }
     const options = defu(props.initOptions, defaultOptions)
