@@ -83,12 +83,12 @@ function genTree(length: number, totalDepth: number, depth = 1): any[] {
 
 <template>
   单选：
-  <ProTree v-model="singleValue" :data="treeData" />
+  <ProTree v-model="singleValue" :data="treeData" style="height:200px" />
   多选：
-  <ProTree v-model="multiValue" :data="treeData" multiple />
+  <ProTree v-model="multiValue" :data="treeData" multiple style="height:200px" />
   大数据：
   <ProTree
-    v-model="bigValue" v-loading="loading" :data="bigData" multiple default-expand-all virtualized collapse-tags
-    collapse-tags-tooltip :max-collapse-tags="3"
+    v-model="bigValue" v-loading="loading" :data="bigData" multiple default-expand-all collapse-tags
+    collapse-tags-tooltip :max-collapse-tags="3" :height="400" virtualized
   />
 </template>

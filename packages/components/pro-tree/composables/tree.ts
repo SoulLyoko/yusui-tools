@@ -4,8 +4,8 @@ import type { TreeInstance } from 'element-plus'
 import type { Ref } from 'vue'
 
 import { flatTree } from '@yusui/utils'
-import { ElTree } from 'element-plus'
-import { isEqual, pick } from 'lodash-es'
+import { ElTree, ElTreeV2 } from 'element-plus'
+import { camelCase, isEqual, pick, upperFirst } from 'lodash-es'
 import { computed, nextTick, onMounted, toRefs, useAttrs, watch } from 'vue'
 
 export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, treeRef: Ref<TreeInstance | undefined> }) {
@@ -95,8 +95,8 @@ export function useTree(props: ProTreeProps, { emit, treeRef }: { emit: any, tre
   }
 
   return {
-    ...pick(toRefs(props), Object.keys(ElTree.props)),
-    ...attrs,
+    ...pick(toRefs(props), Object.keys(ElTree.props), Object.keys(ElTreeV2.props)),
+    ...pick(attrs, ElTree.emits!.map(e => upperFirst(camelCase(`on-${e}`)))),
     defaultExpandedKeys,
     props: computed(() => ({ ...props.props, value: props.nodeKey })),
     showCheckbox: computed(() => props.multiple),

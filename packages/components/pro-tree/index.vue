@@ -43,8 +43,8 @@ onMounted(() => {
 
 <template>
   <div class="pro-tree">
-    <el-select-v2 ref="selectRef" v-bind="reactive(selectProps)" popper-class="pro-tree__select-popper" />
-    <component :is="treeComponent" ref="treeRef" v-bind="reactive(treeProps)">
+    <el-select-v2 ref="selectRef" v-bind="reactive<any>(selectProps)" popper-class="pro-tree__select-popper" />
+    <component :is="treeComponent" ref="treeRef" v-bind="reactive<any>(treeProps)">
       <template v-if="$slots.default" #default="slotProps">
         <slot name="default" v-bind="slotProps" />
       </template>

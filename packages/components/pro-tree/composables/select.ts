@@ -3,8 +3,8 @@ import type { TreeInstance } from 'element-plus'
 import type { Ref } from 'vue'
 
 import { flatTree } from '@yusui/utils'
-import { ElSelect } from 'element-plus'
-import { pick } from 'lodash-es'
+import { ElSelect, ElSelectV2 } from 'element-plus'
+import { camelCase, pick, upperFirst } from 'lodash-es'
 import { computed, toRefs, useAttrs, watchEffect } from 'vue'
 
 export function useSelect(props: ProTreeProps, { emit, selectRef, treeRef }: { emit: any, selectRef: Ref<any>, treeRef: Ref<TreeInstance | undefined> }) {
@@ -50,8 +50,8 @@ export function useSelect(props: ProTreeProps, { emit, selectRef, treeRef }: { e
   }
 
   return {
-    ...pick(toRefs(props), Object.keys(ElSelect.props)),
-    ...attrs,
+    ...pick(toRefs(props), Object.keys(ElSelect.props), Object.keys(ElSelectV2)),
+    ...pick(attrs, ElSelect.emits!.map(e => upperFirst(camelCase(`on-${e}`)))),
     options: computed(() => flatTree(props.data ?? [], { childrenKey: props.props?.children })),
     props: computed(() => ({ ...props.props, value: props.nodeKey })),
     filterMethod,
