@@ -1,3 +1,13 @@
+# [3.0.0-beta.74](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.73...v3.0.0-beta.74) (2025-01-16)
+
+
+### Bug Fixes
+
+* **ProTree:** 优化组件事件传递 ([103ebb8](https://github.com/SoulLyoko/yusui-tools/commit/103ebb829a4a9e95515e8ecf5a2827a082948289))
+* **types:** avue types ([3fba494](https://github.com/SoulLyoko/yusui-tools/commit/3fba494a4853c14c5162878397d3902e072c9e4e))
+
+
+
 # [3.0.0-beta.73](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.72...v3.0.0-beta.73) (2025-01-14)
 
 
