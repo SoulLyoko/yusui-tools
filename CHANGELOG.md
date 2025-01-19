@@ -1,3 +1,12 @@
+# [3.0.0-beta.75](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.74...v3.0.0-beta.75) (2025-01-19)
+
+
+### Bug Fixes
+
+* **flow-design:** 任务监听增加退回类型 ([7a14d8f](https://github.com/SoulLyoko/yusui-tools/commit/7a14d8f689609117b9b09da8ace0a841d9a70d33))
+
+
+
 # [3.0.0-beta.74](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.73...v3.0.0-beta.74) (2025-01-16)
 
 
