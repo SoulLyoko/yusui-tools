@@ -8,6 +8,7 @@ const eventNameDic = [
   { label: '删除', value: 'delete', desc: 'delete' },
   { label: '更新', value: 'update', desc: 'update' },
   { label: '超时', value: 'timeout', desc: 'timeout' },
+  { label: '退回', value: 'rollback', desc: 'rollback' },
   { label: '全部', value: 'all', desc: 'all' },
 ]
 const eventTypeDic = [
