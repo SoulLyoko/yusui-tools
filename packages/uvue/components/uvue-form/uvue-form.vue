@@ -61,7 +61,7 @@ function getSlotRight(name: string) {
         <!-- #endif -->
         <!-- #ifndef MP -->
         <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-          <slot :name="slotName" v-bind="slotProps" />
+          <slot :name="slotName" :row="vModel" :column="columnItem" v-bind="slotProps" />
         </template>
         <!-- #endif -->
       </uvue-form-item>
@@ -89,7 +89,7 @@ function getSlotRight(name: string) {
             <!-- #endif -->
             <!-- #ifndef MP -->
             <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-              <slot :name="slotName" v-bind="slotProps" />
+              <slot :name="slotName" :row="vModel" :column="columnItem" v-bind="slotProps" />
             </template>
             <!-- #endif -->
           </uvue-form-item>
@@ -124,7 +124,7 @@ function getSlotRight(name: string) {
               <!-- #endif -->
               <!-- #ifndef MP -->
               <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-                <slot :name="slotName" v-bind="slotProps" />
+                <slot :name="slotName" :row="vModel" :column="columnItem" v-bind="slotProps" />
               </template>
               <!-- #endif -->
             </uvue-form-item>
