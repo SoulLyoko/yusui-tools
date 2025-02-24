@@ -1,3 +1,12 @@
+# [3.0.0-beta.77](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.76...v3.0.0-beta.77) (2025-02-24)
+
+
+### Bug Fixes
+
+* **utils:** 引入dayjs插件添加.js后缀 ([b8f4db5](https://github.com/SoulLyoko/yusui-tools/commit/b8f4db50a7b414c6c026d2a6b8fabcc82a6162b8))
+
+
+
 # [3.0.0-beta.76](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.75...v3.0.0-beta.76) (2025-02-24)
 
 

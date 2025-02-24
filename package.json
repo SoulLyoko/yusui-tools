@@ -2,7 +2,7 @@
   "name": "yusui-tools",
   "upperName": "YusuiTools",
   "type": "module",
-  "version": "3.0.0-beta.76",
+  "version": "3.0.0-beta.77",
   "private": true,
   "packageManager": "pnpm@9.15.5",
   "description": "Collection of development tools",
