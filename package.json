@@ -4,7 +4,7 @@
   "type": "module",
   "version": "3.0.0-beta.75",
   "private": true,
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.5",
   "description": "Collection of development tools",
   "author": "SoulLyoko<https://github.com/SoulLyoko>",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "dev:mp": "pnpm -F app dev:mp",
     "lint": "eslint .",
     "postinstall": "npx simple-git-hooks",
-    "release": "tsx scripts/release.ts",
+    "release": "pnpm build && pnpm test run && tsx scripts/release.ts",
     "rm:dist": "tsx scripts/rm-dist.ts",
     "tc": "vue-tsc --noEmit",
     "test": "vitest",
@@ -69,7 +69,7 @@
   },
   "pnpm": {
     "overrides": {
-      "vite": "^6.0.7",
+      "vite": "^6.1.1",
       "vue": "^3.5.13"
     },
     "peerDependencyRules": {
