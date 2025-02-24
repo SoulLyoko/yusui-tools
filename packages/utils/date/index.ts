@@ -1,9 +1,9 @@
 import type { ConfigType } from 'dayjs'
 
 import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-import durationPlugin from 'dayjs/plugin/duration'
-import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh-cn.js'
+import durationPlugin from 'dayjs/plugin/duration.js'
+import relativeTime from 'dayjs/plugin/relativeTime.js'
 
 dayjs.extend(relativeTime)
 dayjs.extend(durationPlugin)
