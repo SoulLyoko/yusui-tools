@@ -1,3 +1,12 @@
+# [3.0.0-beta.76](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.75...v3.0.0-beta.76) (2025-02-24)
+
+
+### Bug Fixes
+
+* **uvue:** uvue-form添加插槽参数 ([14e73ae](https://github.com/SoulLyoko/yusui-tools/commit/14e73aed280b1873fb4b1a4ab1f9af2e9c3af1b8))
+
+
+
 # [3.0.0-beta.75](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.74...v3.0.0-beta.75) (2025-01-19)
 
 
