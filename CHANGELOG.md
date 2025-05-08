@@ -1,3 +1,7 @@
+# [3.0.0-beta.78](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.77...v3.0.0-beta.78) (2025-05-08)
+
+
+
 # [3.0.0-beta.77](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.76...v3.0.0-beta.77) (2025-02-24)
 
 
