@@ -2,70 +2,74 @@ packages:
   - packages/*
   - playground/*
 catalog:
-  '@antfu/eslint-config': ^4.3.0
+  '@antfu/eslint-config': ^4.13.0
   '@antv/layout': ^0.3.25
-  '@commitlint/cli': ^19.7.1
-  '@commitlint/config-conventional': ^19.7.1
-  '@dcloudio/types': ^3.4.14
-  '@dcloudio/uni-app': 3.0.0-alpha-4050320250221002
-  '@dcloudio/uni-app-plus': 3.0.0-alpha-4050320250224001
-  '@dcloudio/uni-h5': 3.0.0-alpha-4050320250221002
-  '@dcloudio/uni-mp-weixin': 3.0.0-alpha-4050320250221002
-  '@dcloudio/vite-plugin-uni': 3.0.0-alpha-4050320250221002
+  '@codemirror/lang-javascript': ^6.2.3
+  '@codemirror/lang-json': ^6.0.1
+  '@codemirror/merge': ^6.10.0
+  '@codemirror/theme-one-dark': ^6.1.2
+  '@commitlint/cli': ^19.8.0
+  '@commitlint/config-conventional': ^19.8.0
+  '@dcloudio/types': ^3.4.15
+  '@dcloudio/uni-app': 3.0.0-alpha-4060320250423001
+  '@dcloudio/uni-app-plus': 3.0.0-alpha-4060320250423001
+  '@dcloudio/uni-h5': 3.0.0-alpha-4060320250423001
+  '@dcloudio/uni-mp-weixin': 3.0.0-alpha-4060320250423001
+  '@dcloudio/vite-plugin-uni': 3.0.0-alpha-4060320250423001
   '@element-plus/icons-vue': ^2.3.1
-  '@guolao/vue-monaco-editor': ^1.5.4
   '@iconify-json/ep': ^1.2.2
   '@iconify/types': ^2.0.0
-  '@iconify/vue': ^4.3.0
-  '@logicflow/core': ^2.0.11
-  '@logicflow/extension': ^2.0.15
+  '@iconify/vue': ^5.0.0
+  '@logicflow/core': ^2.0.13
+  '@logicflow/extension': ^2.0.17
   '@smallwei/avue': ^3.6.1
   '@types/file-saver': ^2.0.7
   '@types/fs-extra': ^11.0.4
-  '@types/lodash': ^4.17.15
+  '@types/lodash': ^4.17.16
   '@types/lodash-es': ^4.17.12
-  '@types/node': ^22.13.5
+  '@types/node': ^22.15.15
   '@vue/test-utils': ^2.4.6
   '@vue/tsconfig': ^0.7.0
-  '@vueuse/core': ^12.7.0
-  acorn: ^8.14.0
+  '@vueuse/core': ^13.1.0
+  acorn: ^8.14.1
   astring: ^1.9.0
-  axios: ^1.7.9
-  bumpp: ^10.0.3
+  axios: ^1.9.0
+  bumpp: ^10.1.0
+  codemirror: ^6.0.1
   conventional-changelog-cli: ^5.0.0
   dagre: ^0.8.5
   dayjs: ^1.11.13
   defu: ^6.1.4
-  element-plus: ^2.9.5
-  eslint: ^9.21.0
+  element-plus: ^2.9.9
+  eslint: ^9.26.0
   eslint-plugin-format: ^1.0.1
   file-saver: ^2.0.5
   flatted: ^3.3.3
   fs-extra: ^11.3.0
   husky: ^9.1.7
-  jsdom: ^26.0.0
+  jsdom: ^26.1.0
   json5: ^2.2.3
-  lint-staged: ^15.4.3
+  lint-staged: ^15.5.2
   lodash-es: ^4.17.21
   mitt: ^3.0.1
-  monaco-editor: ^0.52.2
   rollup-plugin-scss: ^4.0.1
-  sass: ^1.85.0
-  simple-git-hooks: ^2.11.1
-  taze: ^18.6.0
-  tsc-alias: ^1.8.10
-  tsx: ^4.19.3
-  typescript: ^5.7.3
-  unbuild: ^3.3.1
-  unplugin-vue: ^6.0.0
-  uview-plus: ^3.3.70
-  vite: ^6.1.1
-  vite-plugin-inspect: ^11.0.0
+  sass: ^1.87.0
+  simple-git-hooks: ^2.13.0
+  taze: ^19.0.4
+  tsc-alias: ^1.8.16
+  tsx: ^4.19.4
+  typescript: ^5.8.3
+  unbuild: ^3.5.0
+  unplugin-vue: ^6.2.0
+  uview-plus: ^3.4.26
+  vite: ^6.3.5
+  vite-plugin-inspect: ^11.0.1
   vitepress: ^1.6.3
-  vitest: ^3.0.6
-  vixt: ^0.1.35
+  vitest: ^3.1.3
+  vixt: ^0.3.5
   vue: ^3.5.13
+  vue-codemirror: ^6.1.1
   vue-request: ^2.0.4
-  vue-router: ^4.5.0
-  vue-tsc: 2.0.26
+  vue-router: ^4.5.1
+  vue-tsc: 2.2.10
   vuedraggable: ^4.1.0

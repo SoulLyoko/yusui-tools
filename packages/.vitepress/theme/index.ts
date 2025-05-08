@@ -1,7 +1,6 @@
 /// <reference types="@yusui/types/avue" />
 import type { App } from 'vue'
 
-import { loader } from '@guolao/vue-monaco-editor'
 import { Icon } from '@iconify/vue'
 import Avue from '@smallwei/avue'
 import '@smallwei/avue/lib/index.css'
@@ -24,11 +23,6 @@ export default {
   extends: DefaultTheme,
   Layout,
   async enhanceApp({ app }: { app: App }) {
-    loader.config({
-      paths: {
-        vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.47.0/min/vs',
-      },
-    })
     app.use(components)
     app.use(ElementPlus, { locale: zhCn })
     app.component('ElOverlay', ElOverlay)

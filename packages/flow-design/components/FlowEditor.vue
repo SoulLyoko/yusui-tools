@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { TurboData } from '../types'
 
-import { Editor, useMonaco } from '@guolao/vue-monaco-editor'
+import { json } from '@codemirror/lang-json'
+import { oneDark } from '@codemirror/theme-one-dark'
 import { useFileDialog, useVModels } from '@vueuse/core'
 import { ElMessageBox, ElOption, ElSelect } from 'element-plus'
 import fileSaver from 'file-saver'
-import { computed, h, onUnmounted, ref, watchEffect } from 'vue'
+import { computed, h, ref, watchEffect } from 'vue'
+import { Codemirror } from 'vue-codemirror'
 
 const props = withDefaults(
   defineProps<{
@@ -17,9 +19,6 @@ const props = withDefaults(
 )
 const emit = defineEmits(['confirm'])
 const { modelValue, visible } = useVModels(props)
-
-const { monacoRef, unload } = useMonaco()
-onUnmounted(() => !monacoRef.value && unload())
 
 const jsonForEdit = ref('')
 function onConfirm() {
@@ -35,14 +34,11 @@ watchEffect(() => {
 })
 
 const editorProps = computed(() => {
+  const isDark = document.documentElement.className.includes('dark')
   return {
-    defaultLanguage: 'json',
-    options: {
-      theme: document.documentElement.className.includes('dark') ? 'vs-dark' : 'light',
-      minimap: {
-        enable: true,
-      },
-    } as any,
+    extensions: [json(), isDark ? oneDark : { extension: [] }],
+    autoDestroy: true,
+    style: { width: '100%', height: '100%' },
   }
 })
 
@@ -107,6 +103,6 @@ function handleExport() {
       </el-space>
     </template>
 
-    <Editor v-model:value="jsonForEdit" width="100%" height="100%" v-bind="editorProps" />
+    <Codemirror v-model="jsonForEdit" v-bind="editorProps" />
   </el-drawer>
 </template>

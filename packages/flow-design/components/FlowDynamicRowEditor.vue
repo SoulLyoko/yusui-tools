@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { editor as MonacoEditor } from 'monaco-editor'
-
-import { Editor } from '@guolao/vue-monaco-editor'
+import { json } from '@codemirror/lang-json'
+import { oneDark } from '@codemirror/theme-one-dark'
 import { computed, ref, watchEffect } from 'vue'
+import { Codemirror } from 'vue-codemirror'
 
 const props = defineProps<{
   tableData?: { row: any }
@@ -14,24 +14,21 @@ watchEffect(() => {
 })
 
 const editorProps = computed(() => {
+  const isDark = document.documentElement.className.includes('dark')
   return {
-    defaultLanguage: 'json',
-    options: { lineNumbers: 'off' as const },
-    onMount: onEditorMount,
+    extensions: [json(), isDark ? oneDark : { extension: [] }],
+    autoDestroy: true,
+    onBlur: () => Object.assign(props.tableData!.row, JSON.parse(editorValue.value)),
+    style: { width: '400px', height: '300px' },
   }
 })
-function onEditorMount(editor: MonacoEditor.ICodeEditor) {
-  editor.onDidBlurEditorText(() => {
-    Object.assign(props.tableData!.row, JSON.parse(editorValue.value))
-  })
-}
 </script>
 
 <template>
   <el-tooltip trigger="click" effect="light">
     <el-button>编辑</el-button>
     <template #content>
-      <Editor v-model:value="editorValue" v-bind="editorProps" width="400px" height="300px" />
+      <Codemirror v-model="editorValue" v-bind="editorProps" />
     </template>
   </el-tooltip>
 </template>

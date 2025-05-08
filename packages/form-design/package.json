@@ -23,22 +23,26 @@
     "build": "unbuild"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "catalog:",
+    "@codemirror/lang-json": "catalog:",
+    "@codemirror/merge": "catalog:",
+    "@codemirror/theme-one-dark": "catalog:",
     "@element-plus/icons-vue": "catalog:",
-    "@guolao/vue-monaco-editor": "catalog:",
     "@types/lodash": "catalog:",
     "@vueuse/core": "catalog:",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
     "acorn": "catalog:",
     "astring": "catalog:",
+    "codemirror": "catalog:",
     "json5": "catalog:",
     "lodash-es": "catalog:",
+    "vue-codemirror": "catalog:",
     "vuedraggable": "catalog:"
   },
   "devDependencies": {
     "@smallwei/avue": "catalog:",
     "element-plus": "catalog:",
-    "monaco-editor": "catalog:",
     "sass": "catalog:",
     "vue": "catalog:"
   }

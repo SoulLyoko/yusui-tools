@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "@antv/layout": "catalog:",
-    "@guolao/vue-monaco-editor": "catalog:",
+    "@codemirror/lang-json": "catalog:",
+    "@codemirror/theme-one-dark": "catalog:",
     "@logicflow/core": "catalog:",
     "@logicflow/extension": "catalog:",
     "@vueuse/core": "catalog:",
@@ -32,10 +33,12 @@
     "@yusui/composables": "workspace:*",
     "@yusui/types": "workspace:*",
     "@yusui/utils": "workspace:*",
+    "codemirror": "catalog:",
     "dagre": "catalog:",
     "defu": "catalog:",
     "file-saver": "catalog:",
-    "lodash-es": "catalog:"
+    "lodash-es": "catalog:",
+    "vue-codemirror": "catalog:"
   },
   "devDependencies": {
     "@smallwei/avue": "catalog:",

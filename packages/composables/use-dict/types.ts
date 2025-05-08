@@ -15,7 +15,7 @@ export interface UseDictOptions {
   /** 数据字典属性的配置对象 */
   props?: DicProps
   /** 数据字典值 */
-  dicData?: MaybeRefOrGetter<DicItem[]>
+  dicData?: MaybeRefOrGetter<DicItem[] | undefined>
   /** 数据字典接口url地址 */
   dicUrl?: string
   /** 数据字典接口url携带请求参数 */
