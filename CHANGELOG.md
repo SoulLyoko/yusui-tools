@@ -1,3 +1,12 @@
+# [3.0.0-beta.79](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.78...v3.0.0-beta.79) (2025-06-13)
+
+
+### Bug Fixes
+
+* **uvue:** 兼容u-datetime-picker的hasInput模式 ([3532aee](https://github.com/SoulLyoko/yusui-tools/commit/3532aee778e6d4290c1d474a9c60e0c733b109a3))
+
+
+
 # [3.0.0-beta.78](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.77...v3.0.0-beta.78) (2025-05-08)
 
 
