@@ -181,8 +181,8 @@ catalogs:
       specifier: ^6.2.0
       version: 6.2.0
     uview-plus:
-      specifier: ^3.4.26
-      version: 3.4.26
+      specifier: ^3.4.41
+      version: 3.4.41
     vite-plugin-inspect:
       specifier: ^11.0.1
       version: 11.0.1
@@ -617,7 +617,7 @@ importers:
         version: 1.87.0
       uview-plus:
         specifier: 'catalog:'
-        version: 3.4.26
+        version: 3.4.41
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
@@ -638,7 +638,7 @@ importers:
         version: 3.0.0-alpha-4060320250423001(@nuxt/kit@3.15.1(rollup@4.40.2))(@vueuse/core@13.1.0(vue@3.5.13(typescript@5.8.3)))(postcss@8.5.3)(rollup@4.40.2)(vue@3.5.13(typescript@5.8.3))
       uview-plus:
         specifier: 'catalog:'
-        version: 3.4.26
+        version: 3.4.41
     devDependencies:
       '@dcloudio/vite-plugin-uni':
         specifier: 'catalog:'
@@ -7643,8 +7643,8 @@ packages:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
-  uview-plus@3.4.26:
-    resolution: {integrity: sha512-5Psg1T+9jIl0S46w5lpzIYpZ1C1dJDyMuBFUO2i6+NZiQckbNqJVMB5iX/qnmv92k6OR7yeEclIoOjtdltcaWA==}
+  uview-plus@3.4.41:
+    resolution: {integrity: sha512-0c2KeJmXO4Rez2nERb4yi2fwydRT2pzBcjDlh9DkLaQ39VJD9zpv8NSN0mWAFEgc8U+hykXHt0DDr8yqaXAxbg==}
     engines: {HBuilderX: ^3.1.0}
 
   validate-npm-package-license@3.0.4:
@@ -16925,7 +16925,7 @@ snapshots:
 
   uuid@9.0.1: {}
 
-  uview-plus@3.4.26:
+  uview-plus@3.4.41:
     dependencies:
       clipboard: 2.0.11
       dayjs: 1.11.13

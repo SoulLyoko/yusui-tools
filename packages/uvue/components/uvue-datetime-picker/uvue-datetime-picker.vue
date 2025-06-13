@@ -3,7 +3,7 @@ import type { dateTypes } from '../../constants'
 import type { PropType } from 'vue'
 
 import dayjs from 'dayjs'
-import { computed, ref, useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 const props = defineProps({
   modelValue: { type: [String, Number] as PropType<string | number> },
@@ -11,48 +11,41 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const defaultValue = computed(() => props.modelValue || Date.now())
+const attrs = useAttrs()
 
+// 显示格式化
 const formatMap = {
+  'date': 'YYYY-MM-DD',
+  'time': 'HH:mm',
+  'datetime': 'YYYY-MM-DD HH:mm',
+  'year-month': 'YYYY-MM',
+}
+
+// 值格式化
+const valueFormatMap = {
   'date': 'YYYY-MM-DD',
   'time': 'HH:mm:ss',
   'datetime': 'YYYY-MM-DD HH:mm:ss',
   'year-month': 'YYYY-MM',
 }
 
-const attrs = useAttrs()
-const show = ref(false)
-function onShow() {
-  if (attrs.disabled)
-    return
-  show.value = true
-}
-function onConfirm({ value, mode }: { value: number, mode: keyof typeof formatMap }) {
-  const f = attrs.valueFormat || formatMap[mode]
-  const d = dayjs(value).format(f as string)
-  emit('update:modelValue', d)
-  emit('change', d)
-  show.value = false
-}
+const modelValue = computed({
+  get() {
+    return dayjs(props.modelValue).valueOf() || Date.now()
+  },
+  set(value) {
+    const f = attrs.valueFormat || valueFormatMap[props.type]
+    const d = dayjs(value).format(f as string)
+    emit('update:modelValue', d)
+    emit('change', d)
+  },
+})
+
+const format = computed(() => {
+  return attrs.format || formatMap[props.type]
+})
 </script>
 
 <template>
-  <u-input
-    v-bind="$attrs"
-    type="text"
-    :model-value="modelValue"
-    suffix-icon="arrow-right"
-    readonly
-    @tap="onShow"
-  />
-  <u-datetime-picker
-    v-bind="$attrs"
-    :model-value="defaultValue"
-    :show="show"
-    :mode="type"
-    close-on-click-overlay
-    @cancel="show = false"
-    @close="show = false"
-    @confirm="onConfirm as any"
-  />
+  <u-datetime-picker v-bind="$attrs" v-model="modelValue" :format="format" :mode="type" has-input />
 </template>

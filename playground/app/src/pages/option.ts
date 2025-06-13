@@ -1,5 +1,7 @@
 import type { UvueFormOption, UvueListOption } from '@yusui/uvue'
 
+import dayjs from 'dayjs'
+
 import CustomComponent from './CustomComponent.vue'
 
 export interface User {
@@ -11,7 +13,15 @@ export interface User {
 
 export const mockData: User[] = Array.from({ length: 20 }).map((e, i) => {
   const id = `${i}`
-  return { id, userName: `admin${id}`, nickName: `管理员${id}`, deptName: '研发部', postName: '前端' }
+  return {
+    id,
+    userName: `admin${id}`,
+    nickName: `管理员${id}`,
+    deptName: '研发部',
+    postName: '前端',
+    date: dayjs().add(i, 'day').format('YYYY-MM-DD HH:mm:ss'),
+    datetime: dayjs().add(i, 'day').format('YYYY-MM-DD HH:mm:ss'),
+  }
 })
 
 export const listOption: UvueListOption = {
@@ -94,9 +104,15 @@ const group: UvueFormOption['group'] = [
         change,
       },
       {
+        label: 'date',
+        prop: 'date',
+        type: 'date',
+        change,
+      },
+      {
         label: 'datetime',
         prop: 'datetime',
-        type: 'date',
+        type: 'datetime',
         change,
       },
     ],
