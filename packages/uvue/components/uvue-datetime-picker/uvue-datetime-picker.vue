@@ -31,10 +31,10 @@ const valueFormatMap = {
 
 const modelValue = computed({
   get() {
-    return dayjs(props.modelValue).valueOf() || Date.now()
+    return props.modelValue ? dayjs(props.modelValue).valueOf() : undefined
   },
   set(value) {
-    const f = attrs.valueFormat || valueFormatMap[props.type]
+    const f = attrs.valueFormat || valueFormatMap[props.type!]
     const d = dayjs(value).format(f as string)
     emit('update:modelValue', d)
     emit('change', d)
@@ -42,7 +42,7 @@ const modelValue = computed({
 })
 
 const format = computed(() => {
-  return attrs.format || formatMap[props.type]
+  return attrs.format || formatMap[props.type!]
 })
 </script>
 
