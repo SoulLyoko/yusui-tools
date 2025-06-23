@@ -1,3 +1,12 @@
+# [3.0.0-beta.80](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.79...v3.0.0-beta.80) (2025-06-23)
+
+
+### Bug Fixes
+
+* **uvue:** datetime-picker组件默认值 ([3acd325](https://github.com/SoulLyoko/yusui-tools/commit/3acd32540c42d5545a8f991f65c81e4eedea5c33))
+
+
+
 # [3.0.0-beta.79](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.78...v3.0.0-beta.79) (2025-06-13)
 
 
