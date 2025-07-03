@@ -1,3 +1,12 @@
+# [3.0.0-beta.81](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.80...v3.0.0-beta.81) (2025-07-03)
+
+
+### Bug Fixes
+
+* **uvue:** 日期时间组件默认选项 ([61d29ef](https://github.com/SoulLyoko/yusui-tools/commit/61d29ef03827b3667b80afba88a5bb0e4288e6b3))
+
+
+
 # [3.0.0-beta.80](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.79...v3.0.0-beta.80) (2025-06-23)
 
 
