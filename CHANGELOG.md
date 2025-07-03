@@ -1,3 +1,12 @@
+# [3.0.0-beta.82](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.81...v3.0.0-beta.82) (2025-07-03)
+
+
+### Bug Fixes
+
+* **uvue:** ref undefined ([03e3d8a](https://github.com/SoulLyoko/yusui-tools/commit/03e3d8a47eb0ce340bdd9fd688699087bd8d3392))
+
+
+
 # [3.0.0-beta.81](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.80...v3.0.0-beta.81) (2025-07-03)
 
 
