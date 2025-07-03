@@ -29,13 +29,16 @@ const valueFormatMap = {
   'year-month': 'YYYY-MM',
 }
 
+const pickerRef = ref()
+
 const modelValue = computed({
   get() {
     return props.modelValue ? dayjs(props.modelValue).valueOf() : undefined
   },
   set(value) {
+    const minDate = pickerRef.value?.minDate
     const f = attrs.valueFormat || valueFormatMap[props.type!]
-    const d = dayjs(value).format(f as string)
+    const d = dayjs(value || minDate || undefined).format(f as string)
     emit('update:modelValue', d)
     emit('change', d)
   },
@@ -47,5 +50,5 @@ const format = computed(() => {
 </script>
 
 <template>
-  <u-datetime-picker v-bind="$attrs" v-model="modelValue" :format="format" :mode="type" has-input />
+  <u-datetime-picker v-bind="$attrs" ref="pickerRef" v-model="modelValue" :format="format" :mode="type" has-input />
 </template>
