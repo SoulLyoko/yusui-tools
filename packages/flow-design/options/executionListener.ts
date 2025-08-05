@@ -5,6 +5,7 @@ const eventNameDic = [
   { label: '开始', value: 'start', desc: 'start' },
   { label: '结束', value: 'end', desc: 'end' },
   { label: '任务', value: 'task', desc: 'task' },
+  { label: '终止', value: 'termination', desc: 'termination' },
 ]
 const eventTypeDic = [
   { label: '类', value: 'class', desc: 'class' },
