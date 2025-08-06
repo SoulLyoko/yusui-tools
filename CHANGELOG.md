@@ -1,3 +1,12 @@
+# [3.0.0-beta.83](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.82...v3.0.0-beta.83) (2025-08-06)
+
+
+### Features
+
+* **flow-design:** 执行监听增加"终止"类型 ([93272f6](https://github.com/SoulLyoko/yusui-tools/commit/93272f610ae8bb6be7c26b57b5568a4b036ad5ad))
+
+
+
 # [3.0.0-beta.82](https://github.com/SoulLyoko/yusui-tools/compare/v3.0.0-beta.81...v3.0.0-beta.82) (2025-07-03)
 
 
